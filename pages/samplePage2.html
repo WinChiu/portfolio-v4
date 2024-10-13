@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/workStyle.css" />
+    <title>sampleWork</title>
+  </head>
+  <body>
+    <main class="section section--header">
+      <div class="canvas-wrapper">
+        <canvas id="backgroundCanvas"></canvas>
+      </div>
+      <div class="container container--content"></div>
+    </main>
+    <section class="section section--cover">
+      <div class="container--content">
+        <img src="../img/sample.webp" alt="" />
+      </div>
+    </section>
+    <section class="section section--content">
+      <div class="container container--content">
+        <!-- 嵌入 -->
+      </div>
+    </section>
+    <nav class="nav nav--main" id="navbar">
+      <div class="block block--navList">
+        <h6 class="block__navItem">Back</h6>
+      </div>
+      <div class="block block--navList">
+        <h6 class="block__navItem">Next</h6>
+        <h6 class="block__navItem">Prev</h6>
+      </div>
+    </nav>
+    <script type="module">
+      import { generateContent } from '../utility/addWorkContent.js';
+      import { insertContentFromJson } from '../utility/addWorkCover.js';
+
+      fetch('../json/sampleWorkCover.json')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((jsonData) => {
+          insertContentFromJson(jsonData);
+        })
+        .catch((error) => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+
+      fetch('../json/sampleWork.json')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((jsonData) => {
+          generateContent(jsonData);
+        })
+        .catch((error) => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+    </script>
+    <script src="../utility/bgAnimatation.js"></script>
+  </body>
+</html>

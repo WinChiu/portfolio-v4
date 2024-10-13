@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON Generator</title>
+    <style>
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .input-group {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>JSON Generator</h1>
+
+      <!-- 下拉選單 -->
+      <div class="input-group">
+        <label for="typeSelect">選擇 Type:</label>
+        <select id="typeSelect">
+          <option value="">請選擇</option>
+          <option value="module__sideTitle">module__sideTitle</option>
+          <option value="module__title">module__title</option>
+          <option value="module__singleImage">module__singleImage</option>
+          <option value="module__doubleImage">module__doubleImage</option>
+          <option value="module__quote">module__quote</option>
+          <option value="module__callOut">module__callOut</option>
+          <option value="module__pureText">module__pureText</option>
+        </select>
+      </div>
+
+      <!-- 動態生成的輸入區域 -->
+      <div id="dynamicInputs"></div>
+
+      <!-- 生成的 JSON 顯示區域 -->
+      <button id="addElement">添加元素</button>
+      <div class="input-group">
+        <button id="generateJson">生成 JSON</button>
+      </div>
+      <pre id="jsonOutput"></pre>
+    </div>
+
+    <script>
+      const typeSelect = document.getElementById('typeSelect');
+      const dynamicInputs = document.getElementById('dynamicInputs');
+      const addElementBtn = document.getElementById('addElement');
+      const jsonOutput = document.getElementById('jsonOutput');
+
+      let elements = [];
+
+      // 下拉選單事件監聽
+      typeSelect.addEventListener('change', function () {
+        dynamicInputs.innerHTML = ''; // 清空動態輸入區域
+
+        const selectedType = typeSelect.value;
+        if (selectedType === 'module__sideTitle') {
+          addInputField('sideText', 'Side Text');
+        } else if (selectedType === 'module__title') {
+          addInputField('titleText', 'Title Text');
+        } else if (selectedType === 'module__singleImage') {
+          addInputField('src', 'Image Source');
+          addInputField('alt', 'Alt Text');
+        } else if (selectedType === 'module__doubleImage') {
+          addInputField('src1', 'Image 1 Source');
+          addInputField('alt1', 'Image 1 Alt');
+          addInputField('src2', 'Image 2 Source');
+          addInputField('alt2', 'Image 2 Alt');
+        } else if (selectedType === 'module__quote') {
+          addInputField('quoteText', 'Quote Text');
+        } else if (selectedType === 'module__callOut') {
+          addInputField('callOutTitle', 'Call Out Title');
+          addInputField('callOutText', 'Call Out Text');
+        } else if (selectedType === 'module__pureText') {
+          addPureTextFields(); // 添加多個可動態調整的元素
+        }
+      });
+
+      // 添加純文本模組欄位
+      function addPureTextFields() {
+        const container = document.createElement('div');
+        container.classList.add('pureTextContainer');
+
+        addInputField('text', 'Text', container);
+
+        const addButton = document.createElement('button');
+        addButton.textContent = '添加元素';
+        addButton.type = 'button';
+        addButton.addEventListener('click', function () {
+          addInputField('text', 'Text', container);
+        });
+        container.appendChild(addButton);
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = '刪除元素';
+        removeButton.type = 'button';
+        removeButton.addEventListener('click', function () {
+          if (container.childElementCount > 2) {
+            container.removeChild(container.lastChild.previousSibling);
+          }
+        });
+        container.appendChild(removeButton);
+
+        dynamicInputs.appendChild(container);
+      }
+
+      // 添加動態輸入欄位
+      function addInputField(id, label, parentElement = dynamicInputs) {
+        const group = document.createElement('div');
+        group.classList.add('input-group');
+
+        const inputLabel = document.createElement('label');
+        inputLabel.setAttribute('for', id);
+        inputLabel.textContent = label;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.id = id;
+        input.name = id;
+
+        group.appendChild(inputLabel);
+        group.appendChild(input);
+        parentElement.appendChild(group);
+      }
+
+      // 生成 JSON 的事件
+      document
+        .getElementById('generateJson')
+        .addEventListener('click', function () {
+          const selectedType = typeSelect.value;
+          let jsonObject = { type: selectedType };
+
+          if (selectedType === 'module__sideTitle') {
+            jsonObject.sideText = document.getElementById('sideText').value;
+          } else if (selectedType === 'module__title') {
+            jsonObject.titleText = document.getElementById('titleText').value;
+          } else if (selectedType === 'module__singleImage') {
+            jsonObject.src = document.getElementById('src').value;
+            jsonObject.alt = document.getElementById('alt').value;
+          } else if (selectedType === 'module__doubleImage') {
+            jsonObject.images = [
+              {
+                src: document.getElementById('src1').value,
+                alt: document.getElementById('alt1').value,
+              },
+              {
+                src: document.getElementById('src2').value,
+                alt: document.getElementById('alt2').value,
+              },
+            ];
+          } else if (selectedType === 'module__quote') {
+            jsonObject.quoteText = document.getElementById('quoteText').value;
+          } else if (selectedType === 'module__callOut') {
+            jsonObject.callOutTitle =
+              document.getElementById('callOutTitle').value;
+            jsonObject.callOutText =
+              document.getElementById('callOutText').value;
+          } else if (selectedType === 'module__pureText') {
+            const pureTextContainer =
+              document.querySelector('.pureTextContainer');
+            jsonObject.elements = [];
+            const inputs = pureTextContainer.querySelectorAll('input');
+            inputs.forEach((input) => {
+              jsonObject.elements.push({
+                type: 'text',
+                content: input.value,
+              });
+            });
+          }
+
+          elements.push(jsonObject);
+          jsonOutput.textContent = JSON.stringify(elements, null, 2);
+        });
+    </script>
+  </body>
+</html>

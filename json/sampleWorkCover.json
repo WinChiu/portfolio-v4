@@ -1,0 +1,41 @@
+{
+  "titleSection": {
+    "title": "台北市社會局公托登記與抽籤系統網站改造",
+    "metaData": [
+      {
+        "dataTitle": "專案期間",
+        "dataDescription": "Jul. 2021 ~ Aug. 2021"
+      },
+      {
+        "dataTitle": "擔任角色",
+        "dataDescription": "UX Designer、UX Researcher"
+      },
+      {
+        "dataTitle": "負責項目",
+        "dataDescription": "使用者研究、Wireframe、提案報告"
+      }
+    ]
+  },
+  "summarySection": [
+    {
+      "number": "01",
+      "title": "目標",
+      "text": "為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程"
+    },
+    {
+      "number": "02",
+      "title": "挑戰",
+      "text": "社會局公托網站因缺乏良好的資訊架構與順暢流程，使得家長們難以快速找到需要的資訊與相關規定，導致政府端常收到超過 3 成的不合格申請文件與無數家長的詢問電話。"
+    },
+    {
+      "number": "03",
+      "title": "產出",
+      "text": "完整可操作的 Hifi Prototype 與三階段的解方提案"
+    },
+    {
+      "number": "04",
+      "title": "成果",
+      "text": "設計公托登記報名與抽籤系統的 Hi-Fi原型，並進行提案與提供未來設計建議"
+    }
+  ]
+}

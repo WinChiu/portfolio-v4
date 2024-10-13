@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../style/image-zoom.css" />
+    <link rel="stylesheet" href="../../style/workStyle.css" />
+    <title>設計系統架構規劃與整理</title>
+  </head>
+  <body>
+    <div class="block block__translator">
+      <a href="../en/designSystem.html"><p>繁中 | EN</p></a>
+    </div>
+    <main class="section section--header">
+      <div class="canvas-wrapper">
+        <canvas id="backgroundCanvas"></canvas>
+      </div>
+      <div class="container container--content">
+        <div class="container container--title">
+          <div class="module module__tags">
+            <p class="module__tag">UIUX</p>
+            <p class="module__tag">Design System</p>
+          </div>
+          <h2 class="module module__title">設計系統架構規劃與整理</h2>
+          <div class="module module__metaData">
+            <div class="module__data">
+              <p class="module__dataTitle">Duration</p>
+              <p class="module__dataDescription">May. 2022 ~ Jul. 2022</p>
+            </div>
+            <div class="module__line"></div>
+            <div class="module__data">
+              <p class="module__dataTitle">Role</p>
+              <p class="module__dataDescription">UIUX Designer</p>
+            </div>
+            <div class="module__line"></div>
+            <div class="module__data">
+              <p class="module__dataTitle">Responsibility</p>
+              <p class="module__dataDescription">
+                需求探索、架構規劃、元件製作
+              </p>
+            </div>
+            <div class="module__line"></div>
+            <div class="module__data">
+              <p class="module__dataTitle">Company</p>
+              <p class="module__dataDescription">SHOPLINE</p>
+            </div>
+            <div class="module__line" style="border: none"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <section class="section section--cover">
+      <div class="container--content">
+        <img
+          src="../../img/projects/designSystem/image-ds-wideCover.webp"
+          alt=""
+        />
+      </div>
+    </section>
+    <section class="section section--introduction">
+      <div class="container container--content">
+        <div class="block block__intro">
+          <h6 class="block--title">Purpose</h6>
+          <p class="block--content">
+            以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，進行設計系統架構重設計、元件再造與使用情境盤點。
+          </p>
+        </div>
+        <div class="block block__intro">
+          <h6 class="block--title">Production</h6>
+          <p class="block--content">
+            整理出 5 項使用問題，提出新的設計系統架構與團隊維護方式，定義 45
+            種元件與相關規範。
+          </p>
+        </div>
+        <div class="block block__intro">
+          <h6 class="block--title">Challenge</h6>
+          <p class="block--content">
+            使用中的設計元件與規範分散在各設計系統檔案與設計稿中，許多元件經
+            Sketch 搬運後破損需要重建。
+          </p>
+        </div>
+        <div class="block block__intro">
+          <h6 class="block--title">Outcome</h6>
+          <p class="block--content">
+            設計系統投入 SHOPLINE 電商平台 V2
+            使用，並於內部週會進行設計系統更新討論與迭代。
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section section--content">
+      <div class="container container--content">
+        <div class="container container--contentSection">
+          <div class="module module__bgTitle">
+            <p class="module__bgText">專案背景</p>
+            <div class="module__line"></div>
+          </div>
+          <div class="module module__pureText">
+            <p class="module__text">
+              本次重設系統為 SHOPLINE 電商產品線的 V2.0 設計系統，用於 B
+              端產品後台管理頁面，提供網店設計和訂單處理等功能，是主要設計系統之一。
+            </p>
+            <p class="module__text">
+              目前該系統以 Figma
+              文件構建，供設計師和工程師使用。但由於缺乏完整的管理方式和使用規範，且部分元件來自
+              Sketch 轉檔，<span class="highlight"
+                >導致元件使用情境不明、Figma
+                元件破損、查找困難，降低了效率並影響設計一致性。</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__singleImage">
+            <img
+              src="../../img/projects/designSystem/image-ds-workflow.webp"
+              alt=""
+              data-zoom-image
+            />
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__bgQuote">
+            <img src="../../img/sketch-think.svg" alt="" />
+            <h3>
+              我首先<span class="highlight">訪談了公司三位設計師</span
+              >，了解對設計系統的使用習慣與需求。並整理出<span class="highlight"
+                >五大問題。</span
+              >
+            </h3>
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__bgTitle">
+            <p class="module__bgText">問題定義</p>
+            <div class="module__line"></div>
+          </div>
+          <div class="module module__mdTitle">
+            <p class="module__mdText">問題一</p>
+          </div>
+          <div class="module module_pureTitle">
+            <h6 class="module__semiTitle">
+              各元件無定義使用情境，難以根據設計系統創建新頁面
+            </h6>
+          </div>
+          <div class="module module__pureText">
+            <p class="module__text">
+              本次重設系統為 SHOPLINE 電商產品線的 V2.0 設計系統，用於 B
+              端產品後台管理頁面，提供網店設計和訂單處理等功能，是主要設計系統之一。
+            </p>
+          </div>
+          <div class="module module__singleImage">
+            <img
+              src="../../img/projects/designSystem/image-ds-problem1.webp"
+              alt=""
+              data-zoom-image
+            />
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__mdTitle">
+            <p class="module__mdText">問題二</p>
+          </div>
+          <div class="module module_pureTitle">
+            <h6 class="module__semiTitle">
+              元件命名與歸檔方式無統一規則，造成歸檔不符使用方式，難易查找元件
+            </h6>
+          </div>
+          <div class="module module__pureText">
+            <p class="module__text">
+              元件缺失與命名不統一，導致無法通過搜尋找到所需元件，加上情境定義不明，設計師每次使用元件時都需回到設計系統主文件中查找。
+            </p>
+          </div>
+          <div class="module module__singleImage">
+            <img
+              src="../../img/projects/designSystem/image-ds-problem2.webp"
+              alt=""
+              data-zoom-image
+            />
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__mdTitle">
+            <p class="module__mdText">問題三</p>
+          </div>
+          <div class="module module__verticalIconList">
+            <div class="module__verticalIcon">
+              <img
+                src="../../img/projects/designSystem/image-ds-problem3.webp"
+                alt=""
+                data-zoom-image
+              />
+              <div class="module__content">
+                <h6 class="module__content--title">
+                  無統一架構進行資源管理，導致元件與規範分散無法同步
+                </h6>
+                <p class="module__content--content">
+                  現行設計系統採用元件與規範並行歸檔，導致內容重複。例如，名為
+                  Flow 的文件記錄了所有元件的互動方式（如：menu bar
+                  的互動模式），同時還有各元件規格（如：menu bar
+                  的顏色規範），分屬不同頁面且部分重複。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__mdTitle">
+            <p class="module__mdText">問題四</p>
+          </div>
+          <div class="module module__verticalIconList">
+            <div class="module__verticalIcon">
+              <img src="../../img/sketch-confuse.svg" alt="" />
+              <div class="module__content">
+                <h6 class="module__content--title">
+                  規範編寫無統一格式，閱讀效率低
+                </h6>
+                <p class="module__content--content">
+                  各元件頁面的規範沒有統一的書寫規則，缺乏情境定義，基本樣式、狀態、互動方式等要素也不完整，無法在文件中找到完整規範。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__mdTitle">
+            <p class="module__mdText">問題五</p>
+          </div>
+          <div class="module module__verticalIconList">
+            <div class="module__verticalIcon">
+              <img src="../../img/sketch-webDesign.svg" alt="" />
+              <div class="module__content">
+                <h6 class="module__content--title">
+                  無明確的更新機制，使得設計系統時常無法與線上版本對齊
+                </h6>
+                <p class="module__content--content">
+                  產品中的元件大致分為 V2 原版、工程師自創版、設計師自創版和其他
+                  UI kit 四種。這些版本缺乏明確的溝通和更新機制，導致 V2
+                  設計系統無法及時更新元件與規範，變得過時。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__bgTitle">
+            <p class="module__bgText">設計目標</p>
+            <div class="module__line"></div>
+          </div>
+          <div class="module module__horizontalIconList">
+            <div class="module__horizontalIcon">
+              <img src="../../img/sketch-aha.svg" alt="" />
+              <div class="module__content">
+                <h6 class="module__content--title">提升使用效率</h6>
+                <p class="module__content--content">
+                  重整設計系統在 figma
+                  檔案上的邊排方式，讓設計師能快速查找設計規範與使用元件。
+                </p>
+              </div>
+            </div>
+            <div class="module__horizontalIcon">
+              <img src="../../img/sketch-checkListPaper.svg" alt="" />
+              <div class="module__content">
+                <h6 class="module__content--title">提升上手速度</h6>
+                <p class="module__content--content">
+                  提供足夠的引導與說明，讓首次使用本設計系統的使用者可以快速理解用法。
+                </p>
+              </div>
+            </div>
+            <div class="module__horizontalIcon">
+              <img src="../../img/sketch-fix.svg" alt="" />
+              <div class="module__content">
+                <h6 class="module__content--title">維護品質</h6>
+                <p class="module__content--content">
+                  確保在未來不斷增減與修改設計規範時，內容一員能維持完整性與正確性。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__bgQuote">
+            <img src="../../img/sketch-think.svg" alt="" />
+            <h3>
+              根據目標，我提供了從<span class="highlight"
+                >規範建立、元件歸納到更新維護的完整方案。</span
+              >
+            </h3>
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__bgTitle">
+            <p class="module__bgText">解決方案</p>
+            <div class="module__line"></div>
+          </div>
+          <div class="module module_pureTitle">
+            <h6 class="module__semiTitle">重整文件架構:</h6>
+          </div>
+          <div class="module module__pureText">
+            <p class="module__text">
+              根據設計師既有的使用習慣，以維護品質為目標，利用以下架構整理元件:
+            </p>
+          </div>
+          <div class="module module__imgAndContentBlock">
+            <img
+              src="../../img/projects/designSystem/image-ds-solution1.webp"
+              alt=""
+              data-zoom-image
+            />
+            <div class="module__content">
+              <h6 class="module__content--title">Introduction</h6>
+              <ol class="module__content--content">
+                <li>檔案層級與用途說明</li>
+                <li>文件瀏覽與取用說明</li>
+                <li>元件建立、使用、命名規範、更新方式說明</li>
+                <li>註解方式說明</li>
+              </ol>
+              <h6 class="module__content--title">All Components</h6>
+              <ol class="module__content--content">
+                <li>按類型與狀態，歸類存放元件之子元件</li>
+                <li>建立元件目錄，並連接到 full guide 中對應的元件</li>
+                <li>僅作為取用與查找，此頁面元件不可修正</li>
+              </ol>
+              <h6 class="module__content--title">Full Guide</h6>
+              <ol class="module__content--content">
+                <li>編寫完整規範，存放元件之父元件</li>
+                <li>建立連結連接至 All Components 頁面中對應的子元件</li>
+                <li>作為規範編寫與設計更新使用，此頁面元件不可取用</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module_pureTitle">
+            <h6 class="module__semiTitle">
+              區隔父元件與子元件確保維護性，連接元件與規範以互相參照
+            </h6>
+          </div>
+          <div class="module module__pureText">
+            <p class="module__text">
+              在 All Component
+              頁面中存放所有子元件，使用者只需在此頁面尋找並使用所需元件，且子元件的特性可以避免破壞整體設計系統。
+            </p>
+          </div>
+          <div class="module module__singleImage">
+            <img
+              src="../../img/projects/designSystem/image-ds-solution2.webp"
+              alt=""
+              data-zoom-image
+            />
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__pureText">
+            <p class="module__text">
+              在各子元件區域的右上角附上 storybook 和 full guide
+              的連結，方便使用者查看元件狀態並解決使用疑問。
+            </p>
+            <p class="module__text">
+              同時，在 full guide 頁面右上角也附有 storybook 和 all component
+              的連結，讓使用者在閱讀規範後能回到 all component
+              頁面，避免直接修改母元件。
+            </p>
+          </div>
+          <div class="module module__doubleImage">
+            <img
+              src="../../img/projects/designSystem/image-ds-solution3-1.webp"
+              alt=""
+              data-zoom-image
+            />
+            <img
+              src="../../img/projects/designSystem/image-ds-solution3-2.webp"
+              alt=""
+              data-zoom-image
+            />
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module_pureTitle">
+            <h6 class="module__semiTitle">定義統一編寫樣式與格式</h6>
+          </div>
+          <div class="module module__pureText">
+            <p class="module__text">
+              規範各元件需包含以下 7
+              項固定標題：Usage、Spec、Content、Layout、Application、Asset、Components，並明確規定各標題下的內容。
+            </p>
+          </div>
+          <div class="module module__doubleImage">
+            <img
+              src="../../img/projects/designSystem/image-ds-solution4-1.webp"
+              alt=""
+              data-zoom-image
+            />
+            <img
+              src="../../img/projects/designSystem/image-ds-solution4-2.webp"
+              alt=""
+              data-zoom-image
+            />
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module_pureTitle">
+            <h6 class="module__semiTitle">建立回報表，即時更新元件狀態</h6>
+          </div>
+          <div class="module module__pureText">
+            <p class="module__text">
+              紀錄遇到的元件問題，並指派相關人員進行修正；定期於週會確認待處理的元件問題，並討論解決方案。
+            </p>
+          </div>
+          <div class="module module__singleImage">
+            <img
+              src="../../img/projects/designSystem/image-ds-solution5.webp"
+              alt=""
+              data-zoom-image
+            />
+          </div>
+        </div>
+        <div class="container container--contentSection">
+          <div class="module module__bgTitle">
+            <p class="module__bgText">學習點</p>
+            <div class="module__line"></div>
+          </div>
+          <div class="module module_pureTitle">
+            <h6 class="module__semiTitle">
+              設計系統需以情境為中心，並加強跨職位同步與維護機制
+            </h6>
+          </div>
+          <div class="module module__verticalIconList">
+            <div class="module__verticalIcon">
+              <img src="../../img/sketch-checkList.svg" alt="" />
+              <div class="module__content">
+                <p class="module__content--content">
+                  通過本次專案，我發現設計系統對產品一致性至關重要。如果設計系統未以『情境』為中心進行規範，Design
+                  System
+                  只能作為元件庫，無法提供有效的實作參考。此外，當規範和元件分散在不同文件中時，會增加實作時間成本，最終導致產品設計不一致問題加劇。
+                </p>
+                <p class="module__content--content">
+                  不同職位對設計系統的需求也不同，統一的命名影響程式編寫、設計師查找元件及測試時的效率。無效的溝通會導致元件使用不同步，設計師和工程師使用不同元件。因此，各職位間的同步與更新機制對設計系統的維護尤為重要，這不僅關乎設計師，也關乎產品品質。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <nav class="nav nav--main" id="navbar">
+      <div class="block block--navList">
+        <h6 class="block__navItem"><a href="../../home-zh.html">Back</a></h6>
+      </div>
+      <div class="block block--navList">
+        <h6 class="block__navItem"><a href="../../home-zh.html">Next</a></h6>
+        <h6 class="block__navItem"><a href="../../home-zh.html">Prev</a></h6>
+      </div>
+    </nav>
+    <script src="../../utility/image-zoom.js"></script>
+    <script src="../../utility/bgAnimatation.js"></script>
+    <script>
+      const triggerHeight = 400;
+      window.addEventListener('scroll', function () {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > triggerHeight) {
+          $('.block__translator').fadeOut(500);
+        } else {
+          $('.block__translator').fadeIn(500);
+        }
+      });
+    </script>
+  </body>
+</html>
