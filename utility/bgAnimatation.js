@@ -65,8 +65,8 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // 添加模糊效果
-  ctx.globalAlpha = 0.35; // 透明度設定
-  //ctx.filter = 'blur(30px)'; // 毛玻璃效果
+  ctx.globalAlpha = 0.5; // 透明度設定
+  ctx.filter = 'blur(80px)'; // 毛玻璃效果
   circles.forEach((circle) => {
     drawCircle(circle);
     updateCircle(circle);

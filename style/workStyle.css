@@ -110,6 +110,10 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .section {
   width: 100vw;
   padding-left: 120px;
@@ -212,7 +216,6 @@ body {
 }
 .section--header .container--content .container--title .module__title {
   margin-bottom: 32px;
-  font-family: "GenYoMin TW";
 }
 .section--header .container--content .container--title .module__metaData {
   display: flex;

@@ -64,7 +64,6 @@ ol {
     padding-left: 4px;
   }
 }
-
 h1 {
   line-height: 120%;
   font-size: 88px;
@@ -113,6 +112,9 @@ body {
   width: 100vw;
   overflow-x: hidden;
 }
+html {
+  scroll-behavior: smooth;
+}
 .section {
   width: 100vw;
   padding-left: 120px;
@@ -142,7 +144,6 @@ body {
     }
   }
 }
-
 .block__translator {
   z-index: 10;
   cursor: pointer;
@@ -171,7 +172,6 @@ body {
     color: $color-textWhite;
   }
 }
-
 .section--header {
   position: relative;
   height: 60vh;
@@ -198,7 +198,6 @@ body {
       }
       .module__title {
         margin-bottom: 32px;
-        font-family: $font-serif;
       }
       .module__metaData {
         @include flex(row, space-between, center, 24px);
