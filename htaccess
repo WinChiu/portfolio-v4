@@ -3,9 +3,9 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^winchiuwc.com [NC]
 RewriteRule ^(.*)$ http://www.winchiuwc.com/$1 [L,R=301]
 RewriteBase /
-RewriteRule ^home-zh\.html$ - [L]
+RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule . /home-zh.html [L]
+RewriteRule . /index.html [L]
 </IfModule>
