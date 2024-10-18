@@ -1,19 +1,9 @@
 <IfModule mod_rewrite.c>
-# 設定首頁的優先順序，讓伺服器先讀取 home-en.html
-DirectoryIndex home-zh.html home-en.html
-
 RewriteEngine On
-
-# 重定向無 www 的 URL 到 www 版本
 RewriteCond %{HTTP_HOST} ^winchiuwc.com [NC]
 RewriteRule ^(.*)$ http://www.winchiuwc.com/$1 [L,R=301]
-
 RewriteBase /
-
-# 保留 home-en.html 作為默認處理的規則
 RewriteRule ^home-zh\.html$ - [L]
-
-# 檢查檔案或目錄是否存在，否則重寫為 home-en.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
