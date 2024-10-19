@@ -38,7 +38,10 @@ const circles = [
 
 function drawCircle(circle) {
   ctx.beginPath();
-  ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+
+  const radius = window.innerWidth < 480 ? circle.radius * 0.5 : circle.radius;
+
+  ctx.arc(circle.x, circle.y, radius, 0, Math.PI * 2);
   ctx.fillStyle = circle.color;
   ctx.fill();
   ctx.closePath();

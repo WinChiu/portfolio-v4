@@ -159,7 +159,7 @@ html {
         width: 100%;
         .block__title {
           color: #615f58;
-          margin-bottom: 12px;
+          margin-bottom: 20px;
           font-size: 58px;
           opacity: 0;
           transition: opacity 1.5s ease-in-out; /* 設定過渡效果 */
@@ -168,10 +168,11 @@ html {
       .block__description {
         opacity: 0;
         transition: opacity 1.5s ease-in-out; /* 設定過渡效果 */
+
         .jobBadge {
           color: $color-textWhite;
           background-color: $color-darkOrange;
-          padding: 8px 8px;
+          padding: 4px 8px;
           font-size: 24px;
           &--zh {
             margin: 0px 8px;
@@ -250,7 +251,7 @@ html {
       font-size: 20px;
       .jobBadge {
         font-size: 18px;
-        padding: 4px 8px;
+        padding: 2px 8px;
 
         &--zh {
           margin: 0px 4px;

@@ -169,7 +169,7 @@ html {
 }
 .section--main .container--content .block--introduction .block__header .block__title {
   color: #615f58;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   font-size: 58px;
   opacity: 0;
   transition: opacity 1.5s ease-in-out; /* 設定過渡效果 */
@@ -183,7 +183,7 @@ html {
 .section--main .container--content .block--introduction .block__description .jobBadge {
   color: #ffffff;
   background-color: #c14804;
-  padding: 8px 8px;
+  padding: 4px 8px;
   font-size: 24px;
 }
 .section--main .container--content .block--introduction .block__description .jobBadge--zh {
@@ -266,7 +266,7 @@ html {
   }
   .section--main .container--content .block--introduction .block__description .jobBadge {
     font-size: 18px;
-    padding: 4px 8px;
+    padding: 2px 8px;
   }
   .section--main .container--content .block--introduction .block__description .jobBadge--zh {
     margin: 0px 4px;
