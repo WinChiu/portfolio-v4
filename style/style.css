@@ -144,7 +144,7 @@ html {
 
 /* 主區塊樣式 */
 .section--main {
-  height: calc(100vh - 60px);
+  height: calc(100dvh - 60px);
 }
 .section--main .container--content {
   display: flex;
@@ -252,7 +252,7 @@ html {
 }
 @media (max-width: 480px) {
   .section--main {
-    height: calc(100vh - 40px);
+    height: calc(100dvh - 40px);
   }
   .section--main .container--content .block__translator {
     right: 16px;
@@ -524,7 +524,7 @@ html {
   z-index: 10;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 120px;
   padding: 40px 0;
   background-color: #fbfbf6;
