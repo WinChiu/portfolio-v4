@@ -21,10 +21,10 @@ const circles = [
   {
     x: canvas.width / 2 + 25,
     y: canvas.height / 8 + 25,
-    radius: 50,
+    radius: 80,
     dx: 0.5,
     dy: 0.8,
-    color: '#FFA07A',
+    color: '#5DCC54',
   },
   {
     x: (canvas.width * 3) / 4 - 60,
@@ -32,7 +32,7 @@ const circles = [
     radius: 120,
     dx: -0.4,
     dy: 1,
-    color: '#98FB98',
+    color: '#f37021',
   },
 ];
 
