@@ -179,7 +179,7 @@ html {
 
 .section--header {
   position: relative;
-  height: 60vh;
+  height: 60dvh;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -190,7 +190,7 @@ html {
   align-items: flex-end;
   gap: 32px;
   padding-bottom: 48px;
-  padding-top: 30vh;
+  padding-top: 30dvh;
   min-height: -moz-fit-content;
   min-height: fit-content;
 }
@@ -268,12 +268,12 @@ html {
   .section--header {
     height: -moz-fit-content;
     height: fit-content;
-    min-height: 100vh;
+    min-height: 100dvh;
   }
   .section--header .container--content {
     padding-top: 128px;
     padding-bottom: 24px;
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -294,7 +294,7 @@ html {
 }
 
 .section--cover {
-  height: 40vh;
+  height: 40dvh;
   overflow: hidden;
 }
 .section--cover .container--content {
@@ -698,7 +698,7 @@ html {
   z-index: 850;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 120px;
   padding: 40px 0;
   display: flex;

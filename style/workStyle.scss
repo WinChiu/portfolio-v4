@@ -174,12 +174,12 @@ html {
 }
 .section--header {
   position: relative;
-  height: 60vh;
+  height: 60dvh;
   height: fit-content;
   .container--content {
     @include flex(row, flex-start, flex-end, 32px);
     padding-bottom: 48px;
-    padding-top: 30vh;
+    padding-top: 30dvh;
     min-height: fit-content;
     .container--title {
       z-index: 2;
@@ -241,11 +241,11 @@ html {
   }
   @media (max-width: 480px) {
     height: fit-content;
-    min-height: 100vh;
+    min-height: 100dvh;
     .container--content {
       padding-top: 128px;
       padding-bottom: 24px;
-      min-height: 100vh;
+      min-height: 100dvh;
       @include flex(column, flex-end, flex-end, 48px);
       .container--title {
         .module__metaData {
@@ -260,7 +260,7 @@ html {
   }
 }
 .section--cover {
-  height: 40vh;
+  height: 40dvh;
   overflow: hidden;
   .container--content {
     padding: 0;
@@ -593,7 +593,7 @@ html {
   z-index: 850;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 120px;
   padding: 40px 0;
   @include flex(column, space-between, center, 0px);
