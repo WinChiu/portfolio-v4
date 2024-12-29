@@ -60,7 +60,7 @@ h1 {
   }
 }
 h2 {
-  line-height: 40px;
+  line-height: 48px;
   font-size: 40px;
   @media (max-width: 1000px) {
     font-size: 32px;
@@ -74,7 +74,7 @@ h3 {
   }
 }
 h4 {
-  line-height: 32px;
+  line-height: 40px;
   font-size: 28px;
   @media (max-width: 1000px) {
     font-size: 24px;
@@ -340,7 +340,8 @@ html {
         @include flex(column, center, flex-start);
       }
       .block__title {
-        margin-bottom: 8px;
+        font-weight: 600;
+        margin-bottom: 16px;
       }
       .block__tag {
         color: $color-darkGold;
