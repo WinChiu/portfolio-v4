@@ -5,8 +5,7 @@ $color-darkGold: #7a776d;
 $color-bgWhite: #fbfbf6;
 $color-textWhite: #ffffff;
 $font-serif: 'GenYoMin TW';
-$font-sansSerif: 'GenYoGothic TW';
-$font-sansSerif-en: 'Nunito Sans';
+$font-sansSerif: 'Source Sans 3';
 $color-lightOrange: #f37021;
 $color-darkOrange: #c14804;
 
@@ -22,7 +21,7 @@ $color-darkOrange: #c14804;
 * {
   margin: 0;
   padding: 0;
-  font-family: $font-sansSerif-en, $font-sansSerif;
+  font-family: $font-sansSerif;
   color: $color-black;
   box-sizing: border-box;
 }

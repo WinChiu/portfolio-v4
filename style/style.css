@@ -3,7 +3,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Nunito Sans', 'GenYoGothic TW';
+  font-family: 'Source Sans 3';
   color: #363a35;
   box-sizing: border-box;
 }
@@ -571,7 +571,7 @@ html {
   margin-bottom: 16px;
 }
 .nav--main .block__navItem a {
-  font-family: 'GenYoGothic TW';
+  font-family: 'Source Sans 3';
   cursor: pointer;
   text-decoration: none;
 }
