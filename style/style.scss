@@ -147,7 +147,7 @@ html {
 
 /* 主區塊樣式 */
 .section--main {
-  height: calc(100dvh - 60px);
+  height: calc(100dvh - 48px);
   .container--content {
     @include flex(row, center, center);
     overflow: hidden;
