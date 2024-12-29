@@ -47,7 +47,7 @@ h1 {
 }
 
 h2 {
-  line-height: 120%;
+  line-height: 40px;
   font-size: 40px;
 }
 @media (max-width: 1000px) {
@@ -57,7 +57,7 @@ h2 {
 }
 
 h3 {
-  line-height: 120%;
+  line-height: 48px;
   font-size: 32px;
 }
 @media (max-width: 1000px) {
@@ -67,7 +67,7 @@ h3 {
 }
 
 h4 {
-  line-height: 150%;
+  line-height: 32px;
   font-size: 28px;
 }
 @media (max-width: 1000px) {
@@ -82,17 +82,18 @@ h6 {
 }
 
 h5 {
-  line-height: 120%;
+  line-height: 24px;
   font-size: 24px;
 }
 
 h6 {
   font-size: 20px;
+  line-height: 24px;
 }
 
 p {
-  font-size: 16px;
-  line-height: 140%;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .highlight {
@@ -263,6 +264,7 @@ html {
   }
   .section--main .container--content .block--introduction .block__description {
     font-size: 20px;
+    line-height: 32px !important;
   }
   .section--main .container--content .block--introduction .block__description .jobBadge {
     font-size: 18px;
@@ -272,7 +274,7 @@ html {
     margin: 0px 4px;
   }
   .section--main .container--content .block--introduction .block__header .block__title {
-    font-size: 40px;
+    font-size: 48px;
   }
 }
 
@@ -545,7 +547,7 @@ html {
   margin-bottom: 16px;
 }
 .nav--main .block__navItem a {
-  font-family: "GenYoMin TW";
+  font-family: "GenYoGothic TW";
   cursor: pointer;
   text-decoration: none;
 }

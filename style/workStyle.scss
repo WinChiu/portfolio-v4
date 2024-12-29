@@ -6,10 +6,12 @@ $color-lightGold: #d1b129;
 $color-bgWhite: #fbfbf6;
 $color-textWhite: #ffffff;
 $font-serif: 'GenYoMin TW';
-$font-sansSerif: 'GenYoGothic TW';
+$font-sansSerif: 'Source Sans 3';
 $font-sansEn: 'Nunito Sans';
 $color-lightOrange: #f37021;
 $color-darkOrange: #c14804;
+$color-specialSectionYellow: #f5dead;
+$color-specialSectionGray: #4f4b43;
 
 @mixin flex($flexDirection, $justifyContent, $alignItems, $gap) {
   display: flex;
@@ -22,7 +24,7 @@ $color-darkOrange: #c14804;
 * {
   margin: 0;
   padding: 0;
-  font-family: $font-sansEn, $font-sansSerif;
+  font-family: $font-sansSerif;
   color: $color-black;
   box-sizing: border-box;
 }
@@ -75,28 +77,29 @@ h1 {
   }
 }
 h2 {
-  line-height: 120%;
+  line-height: 40px;
   font-size: 40px;
 }
 h3 {
-  line-height: 120%;
+  line-height: 40px;
   font-size: 32px;
   @media (max-width: 1000px) {
     font-size: 28px;
   }
 }
 h4 {
-  line-height: 120%;
+  line-height: 32px;
   font-size: 28px;
   @media (max-width: 1000px) {
     font-size: 24px;
   }
 }
 h5 {
-  line-height: 120%;
+  line-height: 32px;
   font-size: 24px;
 }
 h6 {
+  line-height: 24px;
   font-size: 20px;
 }
 h5,
@@ -104,8 +107,11 @@ h6 {
   font-weight: normal;
 }
 p {
-  font-size: 16px;
-  line-height: 140%;
+  font-size: 18px;
+  line-height: 24px;
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 }
 html,
 body {
@@ -126,7 +132,7 @@ html {
     height: 100%;
     width: 100%;
     padding: 64px;
-    border-left: $color-black solid 2px;
+    //border-left: $color-black solid 2px;
   }
 
   @media (max-width: 800px) {
@@ -160,10 +166,10 @@ html {
       padding: 8px 20px;
     }
   }
-
   @media (max-width: 480px) {
-    right: 24px;
-    bottom: 36px;
+    right: 16px;
+    bottom: auto;
+    top: 64px;
   }
 }
 .block__translator:hover {
@@ -175,7 +181,7 @@ html {
 .section--header {
   position: relative;
   height: 60dvh;
-  height: fit-content;
+  min-height: fit-content;
   .container--content {
     @include flex(row, flex-start, flex-end, 32px);
     padding-bottom: 48px;
@@ -184,7 +190,6 @@ html {
     .container--title {
       z-index: 2;
       width: 100%;
-
       .module__tags {
         @include flex(row, flex-start, center, 8px);
         margin-bottom: 16px;
@@ -197,20 +202,24 @@ html {
         }
       }
       .module__title {
+        font-weight: 500;
         margin-bottom: 32px;
+        font-size: 48px;
+        line-height: 56px;
       }
       .module__metaData {
         @include flex(row, space-between, center, 24px);
         .module__data {
           @include flex(column, flex-start, flex-start, 8px);
           .module__dataTitle {
-            font-weight: bold;
+            font-weight: normal;
             color: $color-darkGold;
           }
         }
         .module__line {
           height: 24px;
           border: 1px $color-black solid;
+          opacity: 0;
         }
       }
     }
@@ -249,10 +258,16 @@ html {
       @include flex(column, flex-end, flex-end, 48px);
       .container--title {
         .module__metaData {
-          @include flex(column, space-between, flex-start, 16px);
+          @include flex(column, space-between, flex-start, 8px);
+          .module__data {
+            width: 100%;
+            @include flex(row, space-between, flex-start, 16px);
+            .module__dataDescription {
+              text-align: right;
+            }
+          }
           .module__line {
-            height: 1px;
-            width: 24px;
+            display: none;
           }
         }
       }
@@ -300,9 +315,13 @@ html {
   }
 }
 .section--content {
+  [data-zoom-image]:hover {
+    transform: scale(1.02);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  }
   .container--content {
     padding: 64px 20%;
-    @include flex(column, center, flex-start, 160px);
+    @include flex(column, center, center, 160px);
   }
   .container--contentSection {
     position: relative;
@@ -310,21 +329,21 @@ html {
     width: 100%;
     .module__bgTitle {
       .module__bgText {
-        font-weight: bold;
-        color: $color-lightOrange;
+        font-weight: normal;
+        color: $color-black;
         text-align: left;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
       }
       .module__line {
-        width: 32px;
+        width: 100%;
         height: 2px;
-        background-color: $color-lightOrange;
+        background-color: $color-black;
       }
     }
     .module__mdTitle {
       .module__mdText {
         font-weight: bold;
-        color: $color-lightOrange;
+        color: $color-darkOrange;
       }
     }
     .module__pureTitle {
@@ -334,10 +353,6 @@ html {
         color: $color-black;
       }
     }
-    // .module__semiTitle {
-    //   font-weight: bold;
-    //   color: $color-black;
-    // }
     .module__pureText {
       @include flex(column, center, flex-start, 16px);
       .module__bullet {
@@ -397,19 +412,26 @@ html {
       }
     }
     .module__bgQuote {
+      @include flex(row, flex-start, center, 16px);
+      h3 {
+        padding: 32px 0px;
+      }
       img {
         width: 200px;
       }
-      @include flex(row, flex-start, center, 16px);
+      .module__callOutList {
+        padding-left: 8px;
+        @include flex(column, flex-start, center, 16px);
+      }
     }
     .module__smQuote {
+      @include flex(row, flex-start, center, 16px);
       img {
         width: 200px;
       }
       h6 {
         font-weight: bold;
       }
-      @include flex(row, flex-start, center, 16px);
     }
     .module__verticalIconList {
       @include flex(column, center, flex-start, 24px);
@@ -445,6 +467,7 @@ html {
       }
     }
     .module__horizontalIconList {
+      width: 900px;
       @include flex(row, center, flex-start, 48px);
       .module__horizontalIcon {
         @include flex(column, flex-start, center, 16px);
@@ -514,6 +537,54 @@ html {
       }
     }
   }
+  .specialSection {
+    align-items: center;
+    &--gray {
+      padding: 48px 160px;
+      background-color: $color-specialSectionGray;
+      h3,
+      p {
+        color: white !important;
+      }
+      .module__line {
+        background-color: white !important;
+      }
+    }
+    &--yellow {
+      padding: 48px 160px;
+      background-color: $color-specialSectionYellow;
+    }
+    width: 100vw;
+    .module__bgTitle {
+      width: 30%;
+      padding-bottom: 16px;
+      .module__bgText {
+        text-align: center;
+      }
+    }
+    .module__horizontalIconList {
+      width: 100%;
+      .module__horizontalIcon {
+        flex: 1;
+        img {
+          border-radius: 200px;
+          background-color: $color-bgWhite;
+          margin-bottom: 8px;
+        }
+      }
+    }
+    &--narrow {
+      padding: 48px 336px;
+      .module__bgTitle {
+        width: 100%;
+        padding-bottom: 16px;
+        .module__bgText {
+          text-align: left;
+        }
+      }
+    }
+  }
+
   @media (max-width: 800px) {
     .container--content {
       padding: 80px 32px 64px 32px;
@@ -537,13 +608,20 @@ html {
         }
       }
       .module__horizontalIconList {
-        @include flex(column, center, flex-start, 48px);
+        @include flex(column, center, center, 48px);
       }
       .module__imgAndContentBlock {
         @include flex(column, flex-start, flex-start, 24px);
         img {
           width: 100%;
         }
+      }
+    }
+    .specialSection {
+      align-items: center;
+      padding: 48px 72px;
+      .module__bgTitle {
+        width: 100%;
       }
     }
   }
@@ -569,6 +647,10 @@ html {
         h3 {
           text-align: center;
         }
+        .module__callOutList {
+          padding: 0;
+          padding-top: 8px;
+        }
       }
       .module__smQuote {
         h6 {
@@ -585,6 +667,12 @@ html {
         }
       }
     }
+    .specialSection {
+      padding: 48px 16px;
+      .module__bgTitle {
+        width: 100%;
+      }
+    }
   }
 }
 /* 導航樣式 */
@@ -596,6 +684,8 @@ html {
   height: 100dvh;
   width: 120px;
   padding: 40px 0;
+  background-color: $color-bgWhite;
+  border-right: $color-black solid 2px;
   @include flex(column, space-between, center, 0px);
   .block--navList {
     @include flex(column, center, center, 16px);
@@ -604,7 +694,7 @@ html {
   .block__navItem {
     a {
       text-decoration: none;
-      font-family: $font-serif;
+      font-family: $font-sansSerif;
       cursor: pointer;
     }
   }
