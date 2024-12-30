@@ -3,7 +3,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Source Sans 3';
+  font-family: "Source Sans 3";
   color: #363a35;
   box-sizing: border-box;
 }
@@ -168,11 +168,7 @@ html {
   position: relative;
   width: 100%;
 }
-.section--main
-  .container--content
-  .block--introduction
-  .block__header
-  .block__title {
+.section--main .container--content .block--introduction .block__header .block__title {
   color: #615f58;
   margin-bottom: 20px;
   font-size: 58px;
@@ -185,21 +181,13 @@ html {
   font-weight: bold;
   color: #7a776d;
 }
-.section--main
-  .container--content
-  .block--introduction
-  .block__description
-  .jobBadge {
+.section--main .container--content .block--introduction .block__description .jobBadge {
   color: #ffffff;
   background-color: #c14804;
   padding: 4px 8px;
   font-size: 24px;
 }
-.section--main
-  .container--content
-  .block--introduction
-  .block__description
-  .jobBadge--zh {
+.section--main .container--content .block--introduction .block__description .jobBadge--zh {
   margin: 0px 8px;
 }
 .section--main .container--content .media--image {
@@ -278,26 +266,14 @@ html {
     font-size: 20px;
     line-height: 32px !important;
   }
-  .section--main
-    .container--content
-    .block--introduction
-    .block__description
-    .jobBadge {
+  .section--main .container--content .block--introduction .block__description .jobBadge {
     font-size: 18px;
     padding: 2px 8px;
   }
-  .section--main
-    .container--content
-    .block--introduction
-    .block__description
-    .jobBadge--zh {
+  .section--main .container--content .block--introduction .block__description .jobBadge--zh {
     margin: 0px 4px;
   }
-  .section--main
-    .container--content
-    .block--introduction
-    .block__header
-    .block__title {
+  .section--main .container--content .block--introduction .block__header .block__title {
     font-size: 48px;
   }
 }
@@ -329,7 +305,7 @@ html {
 }
 .block--switcher .block__design h4,
 .block--switcher .block__coding h4 {
-  font-family: 'GenYoMin TW';
+  font-family: "GenYoMin TW";
   text-align: center;
 }
 .block--switcher .block__design:hover,
@@ -384,7 +360,7 @@ html {
   margin-bottom: 32px;
 }
 .section--work .container--content .block--introduction .block__number {
-  font-family: 'GenYoMin TW';
+  font-family: "GenYoMin TW";
   color: transparent;
   margin-bottom: 20px;
   -webkit-text-stroke: 2px #7a776d;
@@ -402,7 +378,7 @@ html {
 }
 .section--work .container--content .block--introduction .block__tag {
   color: #7a776d;
-  font-family: 'GenYoMin TW';
+  font-family: "GenYoMin TW";
   font-weight: bold;
 }
 .section--work .container--content .block--introduction .block__description {
@@ -437,7 +413,7 @@ html {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 .section--work .container--content .block--line {
   position: absolute;
@@ -500,7 +476,7 @@ html {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 .section--about .container .block {
   flex: 2;
@@ -515,7 +491,7 @@ html {
   margin-right: 0;
 }
 .section--about .container .block .block__title {
-  font-family: 'GenYoMin TW';
+  font-family: "GenYoMin TW";
   color: transparent;
   margin-bottom: 20px;
   -webkit-text-stroke: 2px #7a776d;
@@ -572,7 +548,7 @@ html {
   margin-bottom: 16px;
 }
 .nav--main .block__navItem a {
-  font-family: 'Source Sans 3';
+  font-family: "Source Sans 3";
   cursor: pointer;
   text-decoration: none;
 }
@@ -650,14 +626,14 @@ html {
 }
 
 .canvas-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   -webkit-backdrop-filter: blur(50px);
-  backdrop-filter: blur(50px); /* 毛玻璃效果 */
+          backdrop-filter: blur(50px); /* 毛玻璃效果 */
   z-index: 1;
   pointer-events: none; /* 讓這層不影響互動 */
 }
@@ -1147,4 +1123,4 @@ svg .svg-elem-54 {
 
 svg.active .svg-elem-54 {
   fill: rgb(35, 31, 32);
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
