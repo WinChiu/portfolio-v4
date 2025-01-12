@@ -8,7 +8,7 @@ $font-serif: 'GenYoMin TW';
 $font-sansSerif: 'Source Sans 3';
 $color-lightOrange: #f37021;
 $color-darkOrange: #c14804;
-
+$color-gray: #c8c8c8;
 @mixin flex($flexDirection, $justifyContent, $alignItems, $gap: 0px) {
   display: flex;
   justify-content: $justifyContent;
@@ -360,16 +360,24 @@ html {
         width: 50%;
         padding: 8px 16px;
         background-color: $color-red;
+
+        p {
+          color: $color-textWhite;
+        }
         a {
           text-decoration: none;
-          p {
-            color: $color-textWhite;
-          }
         }
 
         &:hover {
           cursor: pointer;
           background-color: $color-yellow;
+        }
+        &--disable {
+          background-color: $color-gray;
+          &:hover {
+            cursor: default;
+            background-color: $color-gray;
+          }
         }
       }
     }
