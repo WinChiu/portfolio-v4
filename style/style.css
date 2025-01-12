@@ -146,6 +146,7 @@ html {
 /* 主區塊樣式 */
 .section--main {
   height: calc(100dvh - 48px);
+  border-bottom: none;
 }
 .section--main .container--content {
   display: flex;
@@ -284,7 +285,7 @@ html {
 .block--switcher {
   width: 100%;
   background-color: #fbfbf6;
-  top: 0;
+  top: 0px;
   position: sticky;
   z-index: 1;
   box-sizing: border-box;
@@ -302,8 +303,8 @@ html {
 .block--switcher .block__coding {
   width: 100%;
   padding: 8px 32px;
-  border-left: 2px solid #363a35;
-  border-bottom: 2px solid #363a35;
+  border: 2px solid #363a35;
+  border-right: none;
   background-color: #fbfbf6;
 }
 .block--switcher .block__design h4,
