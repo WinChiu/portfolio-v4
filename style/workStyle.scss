@@ -258,10 +258,10 @@ html {
       @include flex(column, flex-end, flex-end, 48px);
       .container--title {
         .module__title {
-          font-weight: 500;
+          font-weight: 600;
           margin-bottom: 32px;
           font-size: 40px;
-          line-height: 56px;
+          line-height: 120%;
         }
         .module__metaData {
           @include flex(column, space-between, flex-start, 8px);
