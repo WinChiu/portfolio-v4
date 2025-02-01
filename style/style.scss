@@ -177,7 +177,7 @@ html {
       z-index: 1;
       width: 60%;
       @include flex(column, flex-end, flex-start);
-      margin-bottom: 88px;
+      margin-bottom: 76px;
 
       .block__header {
         position: relative;
@@ -199,7 +199,7 @@ html {
         font-family: $font-serif;
         color: $color-darkGray;
         margin-bottom: 32px;
-        line-height: 160%;
+        line-height: 140%;
         .jobBadge {
           color: $color-textWhite;
           background-color: $color-darkOrange;
@@ -219,6 +219,7 @@ html {
         color: $color-darkGold;
         font-weight: normal;
         font-style: italic;
+        line-height: 140%;
       }
     }
     .block__bgImage {
@@ -237,7 +238,7 @@ html {
       opacity: 0.8;
     }
     .media--image {
-      margin-bottom: 88px;
+      margin-bottom: 76px;
       z-index: 1;
       @include flex(column, flex-end, center);
       overflow: visible;
