@@ -292,6 +292,12 @@ html {
     align-items: flex-end;
     gap: 48px;
   }
+  .section--header .container--content .container--title .module__title {
+    font-weight: 500;
+    margin-bottom: 32px;
+    font-size: 40px;
+    line-height: 56px;
+  }
   .section--header .container--content .container--title .module__metaData {
     display: flex;
     flex-direction: column;
@@ -836,10 +842,11 @@ html {
     align-items: center;
     gap: 0px;
     padding: 16px;
-    height: 48px;
+    height: 56px;
     width: 100vw;
     top: 0;
     background-color: #fbfbf6;
+    border-right: none;
     border-bottom: #363a35 solid 2px;
   }
   .nav--main .block--navList {
@@ -851,7 +858,6 @@ html {
   }
   .nav--main .block__navItem {
     margin-bottom: 0;
-    font-size: 16px;
   }
 }
 

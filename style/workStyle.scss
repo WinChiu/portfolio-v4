@@ -257,6 +257,12 @@ html {
       min-height: 100dvh;
       @include flex(column, flex-end, flex-end, 48px);
       .container--title {
+        .module__title {
+          font-weight: 500;
+          margin-bottom: 32px;
+          font-size: 40px;
+          line-height: 56px;
+        }
         .module__metaData {
           @include flex(column, space-between, flex-start, 8px);
           .module__data {
@@ -706,10 +712,11 @@ html {
   @media (max-width: 480px) {
     @include flex(row, space-between, center, 0px);
     padding: 16px;
-    height: 48px;
+    height: 56px;
     width: 100vw;
     top: 0;
     background-color: $color-bgWhite;
+    border-right: none;
     border-bottom: $color-black solid 2px;
 
     .block--navList {
@@ -718,7 +725,6 @@ html {
 
     .block__navItem {
       margin-bottom: 0;
-      font-size: 16px;
     }
   }
 }

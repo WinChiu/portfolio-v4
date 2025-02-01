@@ -1,5 +1,13 @@
 @charset "UTF-8";
-/* 全局樣式 */
+/* ==========================================================================
+   變數設定
+   ========================================================================== */
+/* ==========================================================================
+   Mixin
+   ========================================================================== */
+/* ==========================================================================
+   全局樣式
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -30,10 +38,12 @@ body {
   scrollbar-gutter: unset;
 }
 
-/* 標題樣式 */
+/* ==========================================================================
+   標題樣式
+   ========================================================================== */
 h1 {
   line-height: 120%;
-  font-size: 88px;
+  font-size: 96px;
 }
 @media (max-width: 1000px) {
   h1 {
@@ -47,7 +57,7 @@ h1 {
 }
 
 h2 {
-  line-height: 48px;
+  line-height: 120%;
   font-size: 40px;
 }
 @media (max-width: 1000px) {
@@ -57,7 +67,7 @@ h2 {
 }
 
 h3 {
-  line-height: 48px;
+  line-height: 120%;
   font-size: 32px;
 }
 @media (max-width: 1000px) {
@@ -67,7 +77,7 @@ h3 {
 }
 
 h4 {
-  line-height: 40px;
+  line-height: 120%;
   font-size: 28px;
 }
 @media (max-width: 1000px) {
@@ -82,18 +92,18 @@ h6 {
 }
 
 h5 {
-  line-height: 24px;
+  line-height: 120%;
   font-size: 24px;
 }
 
 h6 {
+  line-height: 120%;
   font-size: 20px;
-  line-height: 24px;
 }
 
 p {
+  line-height: 140%;
   font-size: 18px;
-  line-height: 24px;
 }
 
 .highlight {
@@ -109,8 +119,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 段落樣式 */
+/* ==========================================================================
+   段落樣式
+   ========================================================================== */
 .section {
+  position: relative;
   max-width: 100vw;
   padding-left: 120px;
   box-sizing: border-box;
@@ -143,9 +156,11 @@ html {
   }
 }
 
-/* 主區塊樣式 */
+/* ==========================================================================
+   主區塊樣式
+   ========================================================================== */
 .section--main {
-  height: calc(100dvh - 48px);
+  height: 100dvh;
   border-bottom: none;
 }
 .section--main .container--content {
@@ -164,34 +179,59 @@ html {
   align-items: flex-start;
   flex-direction: column;
   gap: 0px;
+  margin-bottom: 88px;
 }
 .section--main .container--content .block--introduction .block__header {
   position: relative;
   width: 100%;
+  margin-bottom: 8px;
 }
 .section--main .container--content .block--introduction .block__header .block__title {
   color: #615f58;
-  margin-bottom: 20px;
   font-size: 88px;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out; /* 設定過渡效果 */
+  transition: opacity 1.5s ease-in-out;
 }
 .section--main .container--content .block--introduction .block__description {
   opacity: 0;
-  transition: opacity 1.5s ease-in-out; /* 設定過渡效果 */
+  transition: opacity 1.5s ease-in-out;
   font-weight: bold;
-  color: #7a776d;
+  font-family: "Source Serif 4";
+  color: #615f58;
+  margin-bottom: 32px;
+  line-height: 160%;
 }
 .section--main .container--content .block--introduction .block__description .jobBadge {
   color: #ffffff;
   background-color: #c14804;
   padding: 4px 8px;
-  font-size: 24px;
+  font-size: 28px;
+  font-family: "Source Serif 4";
+  border-radius: 4px;
 }
 .section--main .container--content .block--introduction .block__description .jobBadge--zh {
   margin: 0px 8px;
 }
+.section--main .container--content .block--introduction .block__annotation {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  color: #7a776d;
+  font-weight: normal;
+  font-style: italic;
+}
+.section--main .container--content .block__bgImage {
+  z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: 100%;
+  mix-blend-mode: hard-light;
+  opacity: 0.8;
+}
 .section--main .container--content .media--image {
+  margin-bottom: 88px;
   z-index: 1;
   display: flex;
   justify-content: flex-end;
@@ -204,6 +244,13 @@ html {
 .section--main .container--content .media--image .media__img {
   transform-origin: bottom left;
   width: 100%;
+}
+.section--main .container--content .media--downImage {
+  position: absolute;
+  left: 64px;
+  bottom: 88px;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
 }
 .section--main .container--content .block__translator {
   z-index: 10;
@@ -228,6 +275,17 @@ html {
 .section--main .container--content .block__translator:hover p {
   color: #ffffff;
 }
+@media (max-width: 996px) {
+  .section--main .container--content .block--introduction {
+    width: 100%;
+  }
+  .section--main .container--content .media--image {
+    display: none;
+  }
+  .section--main .container--content .media--downImage {
+    bottom: 24px;
+  }
+}
 @media (max-width: 800px) {
   .section--main .container--content {
     display: flex;
@@ -238,12 +296,14 @@ html {
   }
   .section--main .container--content .media--image {
     width: 80%;
-    flex: auto;
+    display: block;
+    margin-bottom: 0;
   }
   .section--main .container--content .media--image .media__img {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   .section--main .container--content .block--introduction {
+    margin-bottom: 0;
     width: 100%;
   }
   .section--main .container--content .block__translator {
@@ -251,13 +311,22 @@ html {
     top: 48px;
     bottom: auto;
   }
+  .section--main .container--content .media--downImage {
+    display: none;
+  }
   .section--main .container--content .block--introduction .block__header .block__title {
     font-size: 56px;
   }
 }
 @media (max-width: 480px) {
   .section--main {
-    height: calc(100dvh - 40px);
+    height: 100dvh;
+  }
+  .section--main .container--content .block--introduction {
+    margin-bottom: 0;
+  }
+  .section--main .container--content .block--introduction .block__annotation {
+    margin-bottom: 16px;
   }
   .section--main .container--content .block__translator {
     right: 16px;
@@ -267,25 +336,34 @@ html {
     margin-bottom: 8px;
   }
   .section--main .container--content .block--introduction .block__description {
-    font-size: 20px;
-    line-height: 32px !important;
+    font-size: 24px;
   }
   .section--main .container--content .block--introduction .block__description .jobBadge {
-    font-size: 18px;
+    font-size: 22px;
     padding: 2px 8px;
   }
   .section--main .container--content .block--introduction .block__description .jobBadge--zh {
     margin: 0px 4px;
+  }
+  .section--main .container--content .block--introduction .block__annotation {
+    font-size: 20px;
+    line-height: 140%;
+  }
+  .section--main .container--content .block--introduction .block__description--zh {
+    line-height: 140%;
   }
   .section--main .container--content .block--introduction .block__header .block__title {
     font-size: 48px;
   }
 }
 
+/* ==========================================================================
+   區塊切換樣式
+   ========================================================================== */
 .block--switcher {
   width: 100%;
   background-color: #fbfbf6;
-  top: 0px;
+  top: -2px;
   position: sticky;
   z-index: 1;
   box-sizing: border-box;
@@ -309,13 +387,13 @@ html {
 }
 .block--switcher .block__design h4,
 .block--switcher .block__coding h4 {
-  font-family: "GenYoMin TW";
+  font-family: "Source Serif 4";
   text-align: center;
 }
 .block--switcher .block__design:hover,
 .block--switcher .block__coding:hover {
-  cursor: pointer;
   background-color: #cabd8a;
+  cursor: pointer;
 }
 .block--switcher .block__design:hover h4,
 .block--switcher .block__coding:hover h4 {
@@ -329,19 +407,22 @@ html {
 }
 @media (max-width: 480px) {
   .block--switcher {
-    top: 47px;
+    top: 54px;
   }
   .block--switcher .block__design,
   .block--switcher .block__coding {
-    padding: 4px 24px;
+    padding: 8px 24px;
+    border-left: none;
   }
-  .block--switcher .block__design border-left:none h4,
-  .block--switcher .block__coding border-left:none h4 {
+  .block--switcher .block__design h4,
+  .block--switcher .block__coding h4 {
     font-size: 20px;
   }
 }
 
-/* 工作區塊樣式 */
+/* ==========================================================================
+   工作區塊樣式
+   ========================================================================== */
 .section--work .container--content {
   display: flex;
   justify-content: center;
@@ -364,7 +445,7 @@ html {
   margin-bottom: 32px;
 }
 .section--work .container--content .block--introduction .block__number {
-  font-family: "GenYoMin TW";
+  font-family: "Source Serif 4";
   color: transparent;
   margin-bottom: 20px;
   -webkit-text-stroke: 2px #7a776d;
@@ -382,7 +463,7 @@ html {
 }
 .section--work .container--content .block--introduction .block__tag {
   color: #7a776d;
-  font-family: "GenYoMin TW";
+  font-family: "Source Serif 4";
   font-weight: bold;
 }
 .section--work .container--content .block--introduction .block__description {
@@ -464,13 +545,16 @@ html {
 @media (max-width: 480px) {
   .section--work .container--content .block--introduction .block__number {
     -webkit-text-stroke: 1.5px #7a776d;
+    display: none;
   }
 }
 .section--work .workHide {
   display: none;
 }
 
-/* 關於區塊樣式 */
+/* ==========================================================================
+   關於區塊樣式
+   ========================================================================== */
 .section--about .container {
   display: flex;
   justify-content: center;
@@ -502,13 +586,44 @@ html {
   margin-right: 0;
 }
 .section--about .container .block .block__title {
-  font-family: "GenYoMin TW";
+  font-family: "Source Serif 4";
   color: transparent;
   margin-bottom: 20px;
   -webkit-text-stroke: 2px #7a776d;
 }
 .section--about .container .block .block__content {
   margin-bottom: 8px;
+}
+.section--about .container .block .block__jobs {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.section--about .container .block .block__jobs .block__jobDescription {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+}
+.section--about .container .block .block__jobs .block__jobDescription--dotLine {
+  border-bottom: 2px dotted #363a35;
+  width: 100%;
+}
+.section--about .container .block .block__jobs .block__jobDescription--company, .section--about .container .block .block__jobs .block__jobDescription--title {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+.section--about .container .block .block__jobs .block__jobDescription--past p {
+  color: #c8c8c8;
+}
+.section--about .container .block .block__jobs .block__jobDescription--past .block__jobDescription--dotLine {
+  border-bottom: 2px dotted #c8c8c8;
 }
 @media (max-width: 800px) {
   .section--about .container {
@@ -530,9 +645,14 @@ html {
   .section--about .container .block .block__title {
     -webkit-text-stroke: 1.5px #7a776d;
   }
+  .section--about .container .block .block__jobs {
+    display: none;
+  }
 }
 
-/* 導航樣式 */
+/* ==========================================================================
+   導航樣式
+   ========================================================================== */
 .nav--main {
   position: fixed;
   z-index: 10;
@@ -587,7 +707,7 @@ html {
     flex-direction: row;
     gap: 0px;
     padding: 16px;
-    height: 48px;
+    height: 56px;
     width: 100vw;
     top: 0;
     background-color: #fbfbf6;
@@ -602,10 +722,16 @@ html {
   }
   .nav--main .block__navItem {
     margin-bottom: 0;
-    font-size: 16px;
     margin-right: 16px;
   }
   .nav--main .media--socialList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0px;
+  }
+  .nav--main .media--socialList a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -619,7 +745,9 @@ html {
   }
 }
 
-/* 背景動畫 */
+/* ==========================================================================
+   背景動畫
+   ========================================================================== */
 .canvas-wrapper {
   position: absolute;
   top: 0;
@@ -649,7 +777,9 @@ html {
   pointer-events: none; /* 讓這層不影響互動 */
 }
 
-/*首頁動畫*/
+/* ==========================================================================
+   首頁 SVG 動畫
+   ========================================================================== */
 svg .svg-elem-1 {
   fill: transparent;
   transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;

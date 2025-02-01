@@ -1,14 +1,22 @@
+/* ==========================================================================
+   變數設定
+   ========================================================================== */
 $color-black: #363a35;
 $color-red: #b74343;
 $color-yellow: #cabd8a;
 $color-darkGold: #7a776d;
 $color-bgWhite: #fbfbf6;
 $color-textWhite: #ffffff;
-$font-serif: 'GenYoMin TW';
-$font-sansSerif: 'Source Sans 3';
 $color-lightOrange: #f37021;
 $color-darkOrange: #c14804;
+$color-darkGray: #615f58;
 $color-gray: #c8c8c8;
+$font-serif: 'Source Serif 4';
+$font-sansSerif: 'Source Sans 3';
+
+/* ==========================================================================
+   Mixin
+   ========================================================================== */
 @mixin flex($flexDirection, $justifyContent, $alignItems, $gap: 0px) {
   display: flex;
   justify-content: $justifyContent;
@@ -17,7 +25,9 @@ $color-gray: #c8c8c8;
   gap: $gap;
 }
 
-/* 全局樣式 */
+/* ==========================================================================
+   全局樣式
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -30,16 +40,13 @@ $color-gray: #c8c8c8;
   width: 8px;
   height: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent !important;
 }
-
 ::-webkit-scrollbar-thumb {
   background: $color-darkGold;
   border-radius: 6px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
@@ -48,10 +55,12 @@ body {
   scrollbar-gutter: unset;
 }
 
-/* 標題樣式 */
+/* ==========================================================================
+   標題樣式
+   ========================================================================== */
 h1 {
   line-height: 120%;
-  font-size: 88px;
+  font-size: 96px;
   @media (max-width: 1000px) {
     font-size: 72px;
   }
@@ -59,45 +68,49 @@ h1 {
     font-size: 56px;
   }
 }
+
 h2 {
-  line-height: 48px;
+  line-height: 120%;
   font-size: 40px;
   @media (max-width: 1000px) {
     font-size: 32px;
   }
 }
+
 h3 {
-  line-height: 48px;
+  line-height: 120%;
   font-size: 32px;
   @media (max-width: 1000px) {
     font-size: 28px;
   }
 }
+
 h4 {
-  line-height: 40px;
+  line-height: 120%;
   font-size: 28px;
   @media (max-width: 1000px) {
     font-size: 24px;
   }
 }
+
 h5,
 h6 {
   font-weight: normal;
 }
 
 h5 {
-  line-height: 24px;
+  line-height: 120%;
   font-size: 24px;
 }
 
 h6 {
+  line-height: 120%;
   font-size: 20px;
-  line-height: 24px;
 }
 
 p {
+  line-height: 140%;
   font-size: 18px;
-  line-height: 24px;
 }
 
 .highlight {
@@ -108,18 +121,23 @@ html,
 body {
   position: relative;
 }
+
 html {
   scroll-behavior: smooth;
 }
 
-/* 段落樣式 */
+/* ==========================================================================
+   段落樣式
+   ========================================================================== */
 .section {
+  position: relative;
   max-width: 100vw;
   padding-left: 120px;
   box-sizing: border-box;
   border-bottom: $color-black solid 2px;
   background-color: $color-bgWhite;
   z-index: 2;
+
   .container--content {
     position: relative;
     height: 100%;
@@ -127,6 +145,7 @@ html {
     padding: 64px;
     border-left: $color-black solid 2px;
   }
+
   @media (max-width: 800px) {
     padding-left: 88px;
     .container--content {
@@ -143,47 +162,82 @@ html {
   }
 }
 
-/* 主區塊樣式 */
+/* ==========================================================================
+   主區塊樣式
+   ========================================================================== */
 .section--main {
-  height: calc(100dvh - 48px);
+  height: calc(100dvh);
   border-bottom: none;
+
   .container--content {
     @include flex(row, center, center);
     overflow: hidden;
+
     .block--introduction {
       z-index: 1;
       width: 60%;
       @include flex(column, flex-end, flex-start);
+      margin-bottom: 88px;
+
       .block__header {
         position: relative;
         width: 100%;
+        margin-bottom: 8px;
+
         .block__title {
-          color: #615f58;
-          margin-bottom: 20px;
+          color: $color-darkGray;
           font-size: 88px;
           opacity: 0;
-          transition: opacity 1.5s ease-in-out; /* 設定過渡效果 */
+          transition: opacity 1.5s ease-in-out; // 過渡效果
         }
       }
+
       .block__description {
         opacity: 0;
-        transition: opacity 1.5s ease-in-out; /* 設定過渡效果 */
-
+        transition: opacity 1.5s ease-in-out;
+        font-weight: bold;
+        font-family: $font-serif;
+        color: $color-darkGray;
+        margin-bottom: 32px;
+        line-height: 160%;
         .jobBadge {
           color: $color-textWhite;
           background-color: $color-darkOrange;
           padding: 4px 8px;
-          font-size: 24px;
+          font-size: 28px;
+          font-family: $font-serif;
+          border-radius: 4px;
           &--zh {
             margin: 0px 8px;
           }
         }
+      }
 
-        font-weight: bold;
+      .block__annotation {
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
         color: $color-darkGold;
+        font-weight: normal;
+        font-style: italic;
       }
     }
+    .block__bgImage {
+      z-index: -1;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: auto;
+      height: 100%;
+      mix-blend-mode: hard-light;
+      opacity: 0.8;
+    }
     .media--image {
+      margin-bottom: 88px;
       z-index: 1;
       @include flex(column, flex-end, center);
       overflow: visible;
@@ -192,6 +246,13 @@ html {
         transform-origin: bottom left;
         width: 100%;
       }
+    }
+    .media--downImage {
+      position: absolute;
+      left: 64px;
+      bottom: 88px;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
     }
     .block__translator {
       z-index: 10;
@@ -203,8 +264,10 @@ html {
       border: $color-black 2px solid;
       border-radius: 4px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
       a {
         text-decoration: none;
+
         p {
           padding: 8px 20px;
         }
@@ -217,24 +280,43 @@ html {
       }
     }
   }
-
+  @media (max-width: 996px) {
+    .container--content {
+      .block--introduction {
+        width: 100%;
+      }
+      .media--image {
+        display: none;
+      }
+      .media--downImage {
+        bottom: 24px;
+      }
+    }
+  }
   @media (max-width: 800px) {
     .container--content {
       @include flex(column-reverse, flex-start, center);
       .media--image {
         width: 80%;
-        flex: auto;
+        display: block;
+        margin-bottom: 0;
         .media__img {
-          margin-bottom: 0px;
+          margin-bottom: 0;
         }
       }
+
       .block--introduction {
+        margin-bottom: 0;
         width: 100%;
       }
+
       .block__translator {
         right: 48px;
         top: 48px;
         bottom: auto;
+      }
+      .media--downImage {
+        display: none;
       }
     }
     .container--content .block--introduction .block__header .block__title {
@@ -242,25 +324,41 @@ html {
     }
   }
   @media (max-width: 480px) {
-    height: calc(100dvh - 40px);
+    height: 100dvh;
+    .container--content {
+      .block--introduction {
+        margin-bottom: 0;
+        .block__annotation {
+          margin-bottom: 16px;
+        }
+      }
+    }
+
     .container--content .block__translator {
       right: 16px;
       top: 64px;
     }
+
     .container--content .media--image .media__img {
       margin-bottom: 8px;
     }
-    .container--content .block--introduction .block__description {
-      font-size: 20px;
-      line-height: 32px !important;
-      .jobBadge {
-        font-size: 18px;
-        padding: 2px 8px;
 
+    .container--content .block--introduction .block__description {
+      font-size: 24px;
+      .jobBadge {
+        font-size: 22px;
+        padding: 2px 8px;
         &--zh {
           margin: 0px 4px;
         }
       }
+    }
+    .container--content .block--introduction .block__annotation {
+      font-size: 20px;
+      line-height: 140%;
+    }
+    .container--content .block--introduction .block__description--zh {
+      line-height: 140%;
     }
     .container--content .block--introduction .block__header .block__title {
       font-size: 48px;
@@ -268,18 +366,23 @@ html {
   }
 }
 
+/* ==========================================================================
+   區塊切換樣式
+   ========================================================================== */
 .block--switcher {
   width: 100%;
   background-color: $color-bgWhite;
-  top: 0px;
+  top: -2px;
   position: sticky;
   z-index: 1;
   box-sizing: border-box;
   @include flex(row, center, center);
+
   a {
     width: 100%;
     text-decoration: none;
   }
+
   .block__design,
   .block__coding {
     width: 100%;
@@ -293,69 +396,85 @@ html {
       text-align: center;
     }
   }
+
   .block__design:hover,
   .block__coding:hover {
+    background-color: $color-yellow;
+
     h4 {
       color: $color-bgWhite;
     }
     cursor: pointer;
-    background-color: $color-yellow;
   }
+
   .selected {
+    background-color: $color-yellow;
+
     h4 {
       color: $color-bgWhite;
     }
-    background-color: $color-yellow;
   }
+
   @media (max-width: 480px) {
-    top: 47px;
+    top: 54px;
     .block__design,
     .block__coding {
-      padding: 4px 24px;
-      border-left:none h4 {
+      padding: 8px 24px;
+      border-left: none;
+
+      h4 {
         font-size: 20px;
       }
     }
   }
 }
 
-/* 工作區塊樣式 */
-
+/* ==========================================================================
+   工作區塊樣式
+   ========================================================================== */
 .section--work {
   .container--content {
     @include flex(row, center, stretch);
     position: relative;
+
     .block--introduction {
       @include flex(column, flex-end, flex-start);
       margin-left: 48px;
       flex: 1;
+
       .block__header {
         position: relative;
         margin-bottom: 32px;
       }
+
       .block__number {
         font-family: $font-serif;
         color: transparent;
         margin-bottom: 20px;
         -webkit-text-stroke: 2px $color-darkGold;
       }
+
       .block__content {
         @include flex(column, center, flex-start);
       }
+
       .block__title {
         font-weight: 600;
         margin-bottom: 16px;
       }
+
       .block__tag {
         color: $color-darkGold;
         font-family: $font-serif;
         font-weight: bold;
       }
+
       .block__description {
         padding-left: 16px;
         border-left: $color-red solid 4px;
         margin-bottom: 32px;
       }
+
       .block__button {
         width: 50%;
         padding: 8px 16px;
@@ -364,6 +483,7 @@ html {
         p {
           color: $color-textWhite;
         }
+
         a {
           text-decoration: none;
         }
@@ -372,8 +492,10 @@ html {
           cursor: pointer;
           background-color: $color-yellow;
         }
+
         &--disable {
           background-color: $color-gray;
+
           &:hover {
             cursor: default;
             background-color: $color-gray;
@@ -381,15 +503,18 @@ html {
         }
       }
     }
+
     .media--workCover {
       flex: 1;
       @include flex(column, flex-end, flex-end);
+
       .media__img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
+
     .block--line {
       position: absolute;
       width: calc(100% + 120px);
@@ -398,14 +523,18 @@ html {
       right: 0;
       background-color: $color-black;
     }
+
     @media (max-width: 1000px) {
       @include flex(column, center, flex-end);
+
       .block--introduction {
         margin-left: 0;
+
         .block__header {
           @include flex(row, flex-start, stretch);
           margin-bottom: 16px;
         }
+
         .block__number {
           margin-bottom: 0;
           margin-right: 16px;
@@ -416,73 +545,124 @@ html {
         margin-bottom: 16px;
       }
     }
+
     @media (max-width: 480px) {
       .block--introduction .block__number {
         -webkit-text-stroke: 1.5px $color-darkGold;
+        display: none;
       }
     }
   }
+
   .workHide {
     display: none;
   }
 }
 
-/* 關於區塊樣式 */
-.section--about .container {
-  @include flex(row, center, stretch);
-  position: relative;
+/* ==========================================================================
+   關於區塊樣式
+   ========================================================================== */
+.section--about {
+  .container {
+    @include flex(row, center, stretch);
+    position: relative;
 
-  .media {
-    flex: 1;
-    margin-right: 48px;
-    .media__img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-  .block {
-    flex: 2;
-    @include flex(column, flex-end, flex-start);
-    &--introduction {
-      .media {
-        margin-bottom: 48px;
-        margin-right: 0;
+    .media {
+      flex: 1;
+      margin-right: 48px;
+
+      .media__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
-    .block__title {
-      font-family: $font-serif;
-      color: transparent;
 
-      margin-bottom: 20px;
-      -webkit-text-stroke: 2px $color-darkGold;
-    }
-    .block__content {
-      margin-bottom: 8px;
-    }
-  }
-  @media (max-width: 800px) {
-    @include flex(column, center, flex-start);
-    .media {
-      margin: 0;
-      margin-bottom: 24px;
-    }
-  }
-  @media (max-width: 480px) {
     .block {
+      flex: 2;
+      @include flex(column, flex-end, flex-start);
+
       &--introduction {
         .media {
-          margin-bottom: 24px;
+          margin-bottom: 48px;
+          margin-right: 0;
         }
       }
+
       .block__title {
-        -webkit-text-stroke: 1.5px $color-darkGold;
+        font-family: $font-serif;
+        color: transparent;
+        margin-bottom: 20px;
+        -webkit-text-stroke: 2px $color-darkGold;
+      }
+
+      .block__content {
+        margin-bottom: 8px;
+      }
+
+      .block__jobs {
+        margin-top: 16px;
+        @include flex(column, flex-start, center, 8px);
+        width: 100%;
+
+        .block__jobDescription {
+          width: 100%;
+          @include flex(row, flex-start, center, 8px);
+
+          &--dotLine {
+            border-bottom: 2px dotted $color-black;
+            width: 100%;
+          }
+
+          &--company,
+          &--title {
+            min-width: fit-content;
+          }
+        }
+
+        .block__jobDescription--past {
+          p {
+            color: $color-gray;
+          }
+
+          .block__jobDescription--dotLine {
+            border-bottom: 2px dotted $color-gray;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 800px) {
+      @include flex(column, center, flex-start);
+
+      .media {
+        margin: 0;
+        margin-bottom: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .block {
+        &--introduction {
+          .media {
+            margin-bottom: 24px;
+          }
+        }
+
+        .block__title {
+          -webkit-text-stroke: 1.5px $color-darkGold;
+        }
+        .block__jobs {
+          display: none;
+        }
       }
     }
   }
 }
 
-/* 導航樣式 */
+/* ==========================================================================
+   導航樣式
+   ========================================================================== */
 .nav--main {
   position: fixed;
   z-index: 10;
@@ -500,6 +680,7 @@ html {
 
   .block__navItem {
     margin-bottom: 16px;
+
     a {
       font-family: $font-sansSerif;
       cursor: pointer;
@@ -523,7 +704,7 @@ html {
   @media (max-width: 480px) {
     @include flex(row, space-between, center);
     padding: 16px;
-    height: 48px;
+    height: 56px;
     width: 100vw;
     top: 0;
     background-color: $color-bgWhite;
@@ -532,17 +713,16 @@ html {
     .block--navList {
       @include flex(row, center, center);
     }
-
     .block__navItem {
       margin-bottom: 0;
-      font-size: 16px;
       margin-right: 16px;
     }
-
     .media--socialList {
       @include flex(row, center, center);
+      a {
+        @include flex(row, center, center);
+      }
     }
-
     .media__img {
       margin-bottom: 0;
       width: 28px;
@@ -550,7 +730,10 @@ html {
     }
   }
 }
-/* 背景動畫 */
+
+/* ==========================================================================
+   背景動畫
+   ========================================================================== */
 .canvas-wrapper {
   position: absolute;
   top: 0;
@@ -579,457 +762,68 @@ html {
   pointer-events: none; /* 讓這層不影響互動 */
 }
 
-/*首頁動畫*/
+/* ==========================================================================
+   首頁 SVG 動畫
+   ========================================================================== */
+@function svg-delay($i) {
+  @if $i == 1 {
+    @return 0s;
+  } @else if $i == 2 {
+    @return 0.05s;
+  } @else if $i == 3 {
+    @return 0.1s;
+  } @else if $i == 4 {
+    @return 0.15s;
+  } @else if $i == 5 {
+    @return 0.2s;
+  } @else if $i == 6 {
+    @return 0.25s;
+  } @else if $i == 7 {
+    @return 0.3s;
+  } @else if $i == 8 {
+    @return 0.35s;
+  } @else if $i == 9 {
+    @return 0.4s;
+  } @else {
+    // 從第 10 個起，每次增加 0.05s（第 10 個為 0.45s）
+    @return 0.45s + (($i - 10) * 0.05s);
+  }
+}
 
-svg .svg-elem-1 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
-}
-svg.active .svg-elem-1 {
-  fill: rgb(209, 211, 212);
-}
-svg .svg-elem-2 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.05s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.05s;
-}
-svg.active .svg-elem-2 {
-  fill: rgb(232, 213, 117);
-}
-svg .svg-elem-3 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.1s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.1s;
-}
-svg.active .svg-elem-3 {
-  fill: rgb(209, 211, 212);
-}
-svg .svg-elem-4 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    0.15000000000000002s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.15000000000000002s;
-}
-svg.active .svg-elem-4 {
-  fill: rgb(209, 211, 212);
-}
-svg .svg-elem-5 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
-}
-svg.active .svg-elem-5 {
-  fill: rgb(209, 211, 212);
-}
-svg .svg-elem-6 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.25s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.25s;
-}
-svg.active .svg-elem-6 {
-  fill: rgb(232, 213, 117);
-}
-svg .svg-elem-7 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    0.30000000000000004s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.30000000000000004s;
-}
-svg.active .svg-elem-7 {
-  fill: rgb(209, 211, 212);
-}
-svg .svg-elem-8 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    0.35000000000000003s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.35000000000000003s;
-}
-svg.active .svg-elem-8 {
-  fill: rgb(232, 213, 117);
-}
-svg .svg-elem-9 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s;
-}
-svg.active .svg-elem-9 {
-  fill: rgb(232, 213, 117);
-}
-svg .svg-elem-10 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.45s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.45s;
-}
-svg.active .svg-elem-10 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-11 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s;
-}
-svg.active .svg-elem-11 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-12 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.55s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.55s;
-}
-svg.active .svg-elem-12 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-13 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    0.6000000000000001s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.6000000000000001s;
-}
-svg.active .svg-elem-13 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-14 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.65s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.65s;
-}
-svg.active .svg-elem-14 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-15 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    0.7000000000000001s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.7000000000000001s;
-}
-svg.active .svg-elem-15 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-16 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.75s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.75s;
-}
-svg.active .svg-elem-16 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-17 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s;
-}
-svg.active .svg-elem-17 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-18 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    0.8500000000000001s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8500000000000001s;
-}
-svg.active .svg-elem-18 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-19 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s;
-}
-svg.active .svg-elem-19 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-20 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    0.9500000000000001s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9500000000000001s;
-}
-svg.active .svg-elem-20 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-21 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1s;
-}
-svg.active .svg-elem-21 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-22 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.05s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.05s;
-}
-svg.active .svg-elem-22 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-23 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s;
-}
-svg.active .svg-elem-23 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-24 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    1.1500000000000001s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1500000000000001s;
-}
-svg.active .svg-elem-24 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-25 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    1.2000000000000002s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2000000000000002s;
-}
-svg.active .svg-elem-25 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-26 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.25s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.25s;
-}
-svg.active .svg-elem-26 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-27 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s;
-}
-svg.active .svg-elem-27 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-28 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.35s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.35s;
-}
-svg.active .svg-elem-28 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-29 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    1.4000000000000001s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4000000000000001s;
-}
-svg.active .svg-elem-29 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-30 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    1.4500000000000002s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4500000000000002s;
-}
-svg.active .svg-elem-30 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-31 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s;
-}
-svg.active .svg-elem-31 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-32 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.55s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.55s;
-}
-svg.active .svg-elem-32 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-33 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6s;
-}
-svg.active .svg-elem-33 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-34 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    1.6500000000000001s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6500000000000001s;
-}
-svg.active .svg-elem-34 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-35 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    1.7000000000000002s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.7000000000000002s;
-}
-svg.active .svg-elem-35 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-36 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.75s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.75s;
-}
-svg.active .svg-elem-36 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-37 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s;
-}
-svg.active .svg-elem-37 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-38 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.85s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.85s;
-}
-svg.active .svg-elem-38 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-39 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    1.9000000000000001s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9000000000000001s;
-}
-svg.active .svg-elem-39 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-40 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    1.9500000000000002s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9500000000000002s;
-}
-svg.active .svg-elem-40 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-41 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2s;
-}
-svg.active .svg-elem-41 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-42 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    2.0500000000000003s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.0500000000000003s;
-}
-svg.active .svg-elem-42 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-43 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.1s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.1s;
-}
-svg.active .svg-elem-43 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-44 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.15s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.15s;
-}
-svg.active .svg-elem-44 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-45 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.2s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.2s;
-}
-svg.active .svg-elem-45 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-46 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.25s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.25s;
-}
-svg.active .svg-elem-46 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-47 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    2.3000000000000003s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.3000000000000003s;
-}
-svg.active .svg-elem-47 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-48 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.35s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.35s;
-}
-svg.active .svg-elem-48 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-49 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    2.4000000000000004s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.4000000000000004s;
-}
-svg.active .svg-elem-49 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-50 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.45s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.45s;
-}
-svg.active .svg-elem-50 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-51 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s;
-}
-svg.active .svg-elem-51 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-52 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    2.5500000000000003s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5500000000000003s;
-}
-svg.active .svg-elem-52 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-53 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6s;
-}
-svg.active .svg-elem-53 {
-  fill: rgb(35, 31, 32);
-}
-svg .svg-elem-54 {
-  fill: transparent;
-  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715)
-    2.6500000000000004s;
-  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6500000000000004s;
-}
-svg.active .svg-elem-54 {
-  fill: rgb(35, 31, 32);
+@function svg-active-fill($i) {
+  @if $i == 1 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 2 {
+    @return rgb(232, 213, 117);
+  } @else if $i == 3 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 4 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 5 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 6 {
+    @return rgb(232, 213, 117);
+  } @else if $i == 7 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 8 {
+    @return rgb(232, 213, 117);
+  } @else if $i == 9 {
+    @return rgb(232, 213, 117);
+  } @else {
+    @return rgb(35, 31, 32);
+  }
+}
+
+@for $i from 1 through 54 {
+  svg .svg-elem-#{$i} {
+    fill: transparent;
+    -webkit-transition: fill
+      0.5s
+      cubic-bezier(0.47, 0, 0.745, 0.715)
+      svg-delay($i);
+    transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) svg-delay($i);
+  }
+  svg.active .svg-elem-#{$i} {
+    fill: svg-active-fill($i);
+  }
 }

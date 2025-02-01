@@ -26,18 +26,27 @@
   <body>
     <main class="section section--main">
       <div class="container container--content">
-        <div class="canvas-wrapper">
+        <!-- <div class="canvas-wrapper">
           <canvas id="backgroundCanvas" />
-        </div>
+        </div> -->
         <article class="block block--introduction">
           <header class="block__header">
             <h1 class="block__title" id="greet">Hi! I'm Win ✨</h1>
           </header>
-          <h4 class="block__description" id="intro" style="line-height: 44px">
-            一位<span class="jobBadge jobBadge--zh">產品設計師</span>，擁有 UIUX
-            設計、使用者研究與前端開發能力。正從零打造醫療器材產業 B2B SaaS
-            產品，享受從無到有的創造過程！
+          <h3 class="block__description block__description--zh" id="intro">
+            擁有 UIUX 設計、研究與前端開發能力的<span
+              class="jobBadge jobBadge--zh"
+              >產品設計師</span
+            >
+          </h3>
+          <h4 class="block__annotation" id="annotation">
+            正從零打造醫療器材產業 B2B SaaS 產品，享受從無到有的創造過程！
           </h4>
+          <img
+            class="block__bgImage"
+            src="../img/image-landingBackground.webp"
+            alt=""
+          />
         </article>
         <figure class="media media--image">
           <svg
@@ -318,6 +327,12 @@
             ></path>
           </svg>
         </figure>
+        <img
+          class="media media--downImage"
+          src="img/image-down.svg"
+          alt=""
+          id="down"
+        />
         <div class="block block__translator">
           <a href="/"><p>繁中 | EN</p></a>
         </div>
@@ -349,7 +364,7 @@
             <h1 class="block__number">01</h1>
             <div class="block__content">
               <h2 class="block__title">POS TW/HK 金流串接正逆流程設計</h2>
-              <h6 class="block__tag">UIUX Design</h6>
+              <h5 class="block__tag">UIUX Design</h5>
             </div>
           </div>
           <p class="block__description">
@@ -375,7 +390,7 @@
             <h1 class="block__number">02</h1>
             <div class="block__content">
               <h2 class="block__title">設計系統架構規劃與整理</h2>
-              <h6 class="block__tag">UIUX Design</h6>
+              <h5 class="block__tag">UIUX Design</h5>
             </div>
           </div>
           <p class="block__description">
@@ -403,7 +418,7 @@
               <h2 class="block__title">
                 台北市社會局公托登記與抽籤系統網站改造
               </h2>
-              <h6 class="block__tag">UX Research | UX Design</h6>
+              <h5 class="block__tag">UX Research | UX Design</h5>
             </div>
           </div>
           <p class="block__description">
@@ -430,7 +445,7 @@
               <h2 class="block__title">
                 IM 訊息接收者對傳送者收回訊息行為的解讀
               </h2>
-              <h6 class="block__tag">UX Research</h6>
+              <h5 class="block__tag">UX Research</h5>
             </div>
           </div>
           <p class="block__description">
@@ -459,7 +474,7 @@
             <h1 class="block__number">01</h1>
             <div class="block__content">
               <h2 class="block__title">BizPro - 社團官方網站前後臺開發</h2>
-              <h6 class="block__tag">Frontend Development</h6>
+              <h5 class="block__tag">Frontend Development</h5>
             </div>
           </div>
           <p class="block__description">
@@ -485,7 +500,7 @@
             <h1 class="block__number">02</h1>
             <div class="block__content">
               <h2 class="block__title">森活 - 森林永續議題倡議動畫網頁</h2>
-              <h6 class="block__tag">Frontend Development</h6>
+              <h5 class="block__tag">Frontend Development</h5>
             </div>
           </div>
           <p class="block__description">
@@ -511,7 +526,7 @@
             <h1 class="block__number">03</h1>
             <div class="block__content">
               <h2 class="block__title">工尺 - 北管樂混音器操作展示網站</h2>
-              <h6 class="block__tag">Frontend Development</h6>
+              <h5 class="block__tag">Frontend Development</h5>
             </div>
           </div>
           <p class="block__description">
@@ -536,7 +551,7 @@
             <h1 class="block__number">04</h1>
             <div class="block__content">
               <h2 class="block__title">菁英狙擊手 - 英打練習與對戰遊戲</h2>
-              <h6 class="block__tag">Programmer</h6>
+              <h5 class="block__tag">Programmer</h5>
             </div>
           </div>
           <p class="block__description">
@@ -556,9 +571,6 @@
           <img class="media__img" src="/img/intro.webp" alt="" />
         </figure>
         <article class="block block--introduction">
-          <figure class="media media--avatar">
-            <img class="media__img" src="/img/intro2.webp" alt="" />
-          </figure>
           <h1 class="block__title">About</h1>
           <p class="block__content">
             我是邱威辰，一位產品設計師，畢業於臺大經濟學系、臺大 D-school
@@ -569,6 +581,32 @@
           <p class="block__content">
             我相信一個好的產品，能夠讓使用者滿意、客戶認同，同時能為設計師帶來成就感。我很享受以一個設計師的身份幫助他人解決問題，也會因為使用者簡單的一句「我喜歡你做的東西」而感到高興。我希望不只為自己，更能在未來為他人帶來更多正面的影響！
           </p>
+          <div class="block__jobs">
+            <div class="block__jobDescription">
+              <p class="block__jobDescription--company">Wellell inc.</p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">Product Designer</p>
+            </div>
+            <div class="block__jobDescription block__jobDescription--past">
+              <p class="block__jobDescription--company">
+                National Taiwan University
+              </p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">Design Thinking Coach</p>
+            </div>
+            <div class="block__jobDescription block__jobDescription--past">
+              <p class="block__jobDescription--company">
+                SHOPLINE Technology Corp., Ltd.
+              </p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">UIUX Intern</p>
+            </div>
+            <div class="block__jobDescription block__jobDescription--past">
+              <p class="block__jobDescription--company">PDIS Ray5.0</p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">UIUX Intern</p>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -623,7 +661,13 @@
         }, 100);
         setTimeout(function () {
           $('#intro').css('opacity', 1);
+        }, 300);
+        setTimeout(function () {
+          $('#annotation').css('opacity', 1);
         }, 500);
+        setTimeout(function () {
+          $('#down').css('opacity', 1);
+        }, 700);
       });
     </script>
   </body>

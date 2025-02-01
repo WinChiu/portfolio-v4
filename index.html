@@ -18,18 +18,25 @@
   <body>
     <main class="section section--main">
       <div class="container container--content">
-        <div class="canvas-wrapper">
+        <!-- <div class="canvas-wrapper">
           <canvas id="backgroundCanvas" />
-        </div>
+        </div> -->
         <article class="block block--introduction">
           <header class="block__header">
             <h1 class="block__title" id="greet">Hi! I'm Win✨</h1>
           </header>
-          <h4 class="block__description" id="intro">
+          <h3 class="block__description" id="intro">
             <span class="jobBadge"> A Product Designer</span> with strength in
-            UIUX design, user research and front-end development. Now enjoying
-            building medical B2B SaaS from 0 to 1!
+            UIUX design, user research and front-end development.
+          </h3>
+          <h4 class="block__annotation" id="annotation">
+            Now enjoying building medical B2B SaaS from 0 to 1!
           </h4>
+          <img
+            class="block__bgImage"
+            src="../img/image-landingBackground.webp"
+            alt=""
+          />
         </article>
         <figure class="media media--image">
           <svg
@@ -310,6 +317,12 @@
             ></path>
           </svg>
         </figure>
+        <img
+          class="media media--downImage"
+          src="img/image-down.svg"
+          alt=""
+          id="down"
+        />
         <div class="block block__translator">
           <a href="/home-zh.html"><p>繁中 | EN</p></a>
         </div>
@@ -344,7 +357,7 @@
                 POS TW/HK Payment Gateway Integration - Forward and Reverse
                 Process Design
               </h2>
-              <h6 class="block__tag">UIUX Design</h6>
+              <h5 class="block__tag">UIUX Design</h5>
             </div>
           </div>
           <p class="block__description">
@@ -374,7 +387,7 @@
               <h2 class="block__title">
                 Design System Architecture Design and Organization
               </h2>
-              <h6 class="block__tag">UIUX Design</h6>
+              <h5 class="block__tag">UIUX Design</h5>
             </div>
           </div>
           <p class="block__description">
@@ -404,7 +417,7 @@
               <h2 class="block__title">
                 Taipei City Childcare Registration and Lottery System Redesign
               </h2>
-              <h6 class="block__tag">UX Research | UX Design</h6>
+              <h5 class="block__tag">UX Research | UX Design</h5>
             </div>
           </div>
           <p class="block__description">
@@ -434,7 +447,7 @@
               <h2 class="block__title">
                 Interpreting Message Recall Behavior in IM Communications
               </h2>
-              <h6 class="block__tag">UX Research</h6>
+              <h5 class="block__tag">UX Research</h5>
             </div>
           </div>
           <p class="block__description">
@@ -466,7 +479,7 @@
               <h2 class="block__title">
                 BizPro - Club Official Website Design and Development
               </h2>
-              <h6 class="block__tag">UIUX Design｜Frontend Development</h6>
+              <h5 class="block__tag">UIUX Design｜Frontend Development</h5>
             </div>
           </div>
           <p class="block__description">
@@ -495,7 +508,7 @@
               <h2 class="block__title">
                 Forest Life - Forest Sustainability Advocacy Website
               </h2>
-              <h6 class="block__tag">Frontend Development</h6>
+              <h5 class="block__tag">Frontend Development</h5>
             </div>
           </div>
           <p class="block__description">
@@ -525,7 +538,7 @@
               <h2 class="block__title">
                 GongChi - Beiguan Music Mixer Simulation Website
               </h2>
-              <h6 class="block__tag">Frontend Development</h6>
+              <h5 class="block__tag">Frontend Development</h5>
             </div>
           </div>
           <p class="block__description">
@@ -554,7 +567,7 @@
               <h2 class="block__title">
                 Elite Sniper - English Typing Practice and Battle Game
               </h2>
-              <h6 class="block__tag">Programmer</h6>
+              <h5 class="block__tag">Programmer</h5>
             </div>
           </div>
           <p class="block__description">
@@ -574,9 +587,9 @@
           <img class="media__img" src="/img/intro.webp" alt="" />
         </figure>
         <article class="block block--introduction">
-          <figure class="media media--avatar">
+          <!-- <figure class="media media--avatar">
             <img class="media__img" src="/img/intro2.webp" alt="" />
-          </figure>
+          </figure> -->
           <h1 class="block__title">About</h1>
           <p class="block__content">
             I am Win Chiu, a product designer with strength in UIUX design, user
@@ -595,6 +608,32 @@
             what I needed" My goal is not only to create for myself but also to
             bring more positive impacts to others.
           </p>
+          <div class="block__jobs">
+            <div class="block__jobDescription">
+              <p class="block__jobDescription--company">Wellell inc.</p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">Product Designer</p>
+            </div>
+            <div class="block__jobDescription block__jobDescription--past">
+              <p class="block__jobDescription--company">
+                National Taiwan University
+              </p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">Design Thinking Coach</p>
+            </div>
+            <div class="block__jobDescription block__jobDescription--past">
+              <p class="block__jobDescription--company">
+                SHOPLINE Technology Corp., Ltd.
+              </p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">UIUX Intern</p>
+            </div>
+            <div class="block__jobDescription block__jobDescription--past">
+              <p class="block__jobDescription--company">PDIS Ray5.0</p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">UIUX Intern</p>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -649,7 +688,13 @@
         }, 100);
         setTimeout(function () {
           $('#intro').css('opacity', 1);
+        }, 300);
+        setTimeout(function () {
+          $('#annotation').css('opacity', 1);
         }, 500);
+        setTimeout(function () {
+          $('#down').css('opacity', 1);
+        }, 700);
       });
     </script>
   </body>
