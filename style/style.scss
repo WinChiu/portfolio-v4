@@ -195,7 +195,7 @@ html {
       .block__description {
         opacity: 0;
         transition: opacity 1.5s ease-in-out;
-        font-weight: bold;
+        font-weight: 600;
         font-family: $font-serif;
         color: $color-darkGray;
         margin-bottom: 32px;
@@ -393,6 +393,7 @@ html {
 
     h4 {
       font-family: $font-serif;
+      font-weight: 700;
       text-align: center;
     }
   }
@@ -466,7 +467,7 @@ html {
       .block__tag {
         color: $color-darkGold;
         font-family: $font-serif;
-        font-weight: bold;
+        font-weight: 600;
       }
 
       .block__description {

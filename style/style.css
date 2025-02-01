@@ -195,7 +195,7 @@ html {
 .section--main .container--content .block--introduction .block__description {
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
-  font-weight: bold;
+  font-weight: 600;
   font-family: "Source Serif 4";
   color: #615f58;
   margin-bottom: 32px;
@@ -388,6 +388,7 @@ html {
 .block--switcher .block__design h4,
 .block--switcher .block__coding h4 {
   font-family: "Source Serif 4";
+  font-weight: 700;
   text-align: center;
 }
 .block--switcher .block__design:hover,
@@ -464,7 +465,7 @@ html {
 .section--work .container--content .block--introduction .block__tag {
   color: #7a776d;
   font-family: "Source Serif 4";
-  font-weight: bold;
+  font-weight: 600;
 }
 .section--work .container--content .block--introduction .block__description {
   padding-left: 16px;
