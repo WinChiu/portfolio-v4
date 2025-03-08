@@ -19,16 +19,12 @@
     <link rel="icon" href="./img/favicon.png" type="image/png" />
   </head>
   <body>
+    <div class="block block__translator">
+      <a href="../zh/gongChi.html"><p>繁中 | EN</p></a>
+    </div>
     <main class="section section--header" id="top">
-      <div class="canvas-wrapper">
-        <canvas id="backgroundCanvas"></canvas>
-      </div>
       <div class="container container--content">
         <div class="container container--title">
-          <div class="module module__tags">
-            <p class="module__tag">Frontend</p>
-            <p class="module__tag">Animation</p>
-          </div>
           <h2 class="module module__title">
             GongChi - Beiguan Music Mixer Simulation Website
           </h2>
@@ -72,21 +68,32 @@
     </section>
     <section class="section section--introduction">
       <div class="container container--content">
-        <div class="block block__intro">
-          <h6 class="block--title">Purpose</h6>
-          <p class="block--content">
-            Provide step-by-step tutorials explaining the purpose of each
-            button, along with a free-play mode to simulate the operation of the
-            physical Beiguan music mixer "Gong-Chi."
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Production</h6>
-          <p class="block--content">
-            Use website animations and the Tone.js library to enable users to
-            perform mixer operations such as pitch shifting, recording, mixing,
-            and playing on a tablet with multi-touch functionality.
-          </p>
+        <div class="block block__top">
+          <div class="block block__img">
+            <img
+              src="../../img/image-projectCover-gongChi.webp"
+              alt="Taipei Childcare System Redesign"
+              class="img"
+            />
+          </div>
+          <div class="block block__topRight">
+            <div class="block block__intro">
+              <h6 class="block--title">Purpose</h6>
+              <p class="block--content">
+                Provide step-by-step tutorials explaining the purpose of each
+                button, along with a free-play mode to simulate the operation of
+                the physical Beiguan music mixer "Gong-Chi."
+              </p>
+            </div>
+            <div class="block block__intro">
+              <h6 class="block--title">Production</h6>
+              <p class="block--content">
+                Use website animations and the Tone.js library to enable users
+                to perform mixer operations such as pitch shifting, recording,
+                mixing, and playing on a tablet with multi-touch functionality.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -159,13 +166,14 @@
     </section>
     <nav class="nav nav--main" id="navbar">
       <div class="block block--navList">
-        <h6 class="block__navItem"><a href="/">Back</a></h6>
+        <h6 class="block__navItem"><a href="/#work">Back</a></h6>
       </div>
       <div class="block block--navList">
         <h6 class="block__navItem"><a href="#top">Top</a></h6>
       </div>
     </nav>
     <script src="../../utility/image-zoom.js"></script>
-    <script src="../../utility/bgAnimatation.js"></script>
+    <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/hideTranslator.js"></script>
   </body>
 </html>

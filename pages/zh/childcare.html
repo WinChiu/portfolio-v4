@@ -17,16 +17,12 @@
     <link rel="icon" href="./img/favicon.png" type="image/png" />
   </head>
   <body>
+    <div class="block block__translator">
+      <a href="../en/childcare.html"><p>繁中 | EN</p></a>
+    </div>
     <main class="section section--header" id="top">
-      <div class="canvas-wrapper">
-        <canvas id="backgroundCanvas"></canvas>
-      </div>
       <div class="container container--content">
         <div class="container container--title">
-          <div class="module module__tags">
-            <p class="module__tag">UX</p>
-            <p class="module__tag">Government</p>
-          </div>
           <h2 class="module module__title">
             台北市社會局公托登記與抽籤系統網站改造
           </h2>
@@ -60,40 +56,46 @@
         </div>
       </div>
     </main>
-    <section class="section section--cover">
-      <div class="container--content">
-        <img
-          src="../../img/projects/childcare/image-cc-wideCover.webp"
-          alt=""
-        />
-      </div>
-    </section>
+
     <section class="section section--introduction">
       <div class="container container--content">
-        <div class="block block__intro">
-          <h6 class="block--title">Purpose</h6>
-          <p class="block--content">
-            為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。
-          </p>
+        <div class="block block__top">
+          <div class="block block__img">
+            <img
+              src="../../img/image-projectCover-childcare.webp"
+              alt="Taipei Childcare System Redesign"
+              class="img"
+            />
+          </div>
+          <div class="block block__topRight">
+            <div class="block block__intro">
+              <h6 class="block--title">Purpose</h6>
+              <p class="block--content">
+                為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。
+              </p>
+            </div>
+            <div class="block block__intro">
+              <h6 class="block--title">Challenge</h6>
+              <p class="block--content">
+                政府單位並無事先編列預算，如何說服與提案讓政府部門採納是為一項挑戰。
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Production</h6>
-          <p class="block--content">
-            完成易用性測試、使用者訪談、Wireframe、Hifi Protoype
-            與概念測試，最終提供 Hifi 設計稿供政府部門參考。
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Challenge</h6>
-          <p class="block--content">
-            政府單位並無事先編列預算，如何說服與提案讓政府部門採納是為一項挑戰。
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Outcome</h6>
-          <p class="block--content">
-            由簡至繁提供三種方案讓政府部門參考。最終於專案結束後兩年，促成新懶人包上架於網站上。
-          </p>
+        <div class="block block__bottom">
+          <div class="block block__intro">
+            <h6 class="block--title">Production</h6>
+            <p class="block--content">
+              完成易用性測試、使用者訪談、Wireframe、Hifi Prototype
+              與概念測試，最終提供 Hifi 設計稿供政府部門參考。
+            </p>
+          </div>
+          <div class="block block__intro">
+            <h6 class="block--title">Outcome</h6>
+            <p class="block--content">
+              由簡至繁提供三種方案讓政府部門參考。最終於專案結束後兩年，促成新懶人包上架於網站上。
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -448,13 +450,16 @@
     </section>
     <nav class="nav nav--main" id="navbar">
       <div class="block block--navList">
-        <h6 class="block__navItem"><a href="../../home-zh.html">Back</a></h6>
+        <h6 class="block__navItem">
+          <a href="../../home-zh.html#work">Back</a>
+        </h6>
       </div>
       <div class="block block--navList">
         <h6 class="block__navItem"><a href="#top">Top</a></h6>
       </div>
     </nav>
     <script src="../../utility/image-zoom.js"></script>
-    <script src="../../utility/bgAnimatation.js"></script>
+    <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/hideTranslator.js"></script>
   </body>
 </html>

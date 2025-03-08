@@ -26,6 +26,21 @@ $font-sansSerif: 'Source Sans 3';
 }
 
 /* ==========================================================================
+   Keyframes
+   ========================================================================== */
+
+/* 定義名為 bounce 的關鍵影格 */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  /* 50% 時往上位移 10px，你可自行調整數值改變「彈跳」幅度 */
+  50% {
+    transform: translateY(-20px);
+  }
+}
+/* ==========================================================================
    全局樣式
    ========================================================================== */
 * {
@@ -55,12 +70,11 @@ body {
   scrollbar-gutter: unset;
 }
 
-/* ==========================================================================
-   標題樣式
-   ========================================================================== */
+/* ========== Heading Styles ========== */
 h1 {
   line-height: 120%;
   font-size: 96px;
+
   @media (max-width: 1000px) {
     font-size: 72px;
   }
@@ -72,6 +86,7 @@ h1 {
 h2 {
   line-height: 120%;
   font-size: 40px;
+
   @media (max-width: 1000px) {
     font-size: 32px;
   }
@@ -80,6 +95,7 @@ h2 {
 h3 {
   line-height: 120%;
   font-size: 32px;
+
   @media (max-width: 1000px) {
     font-size: 28px;
   }
@@ -88,11 +104,13 @@ h3 {
 h4 {
   line-height: 120%;
   font-size: 28px;
+
   @media (max-width: 1000px) {
     font-size: 24px;
   }
 }
 
+/* ========== Sub-heading Styles ========== */
 h5,
 h6 {
   font-weight: normal;
@@ -108,20 +126,24 @@ h6 {
   font-size: 20px;
 }
 
+/* ========== Paragraph Styles ========== */
 p {
   line-height: 140%;
   font-size: 18px;
 }
 
+/* ========== Utility Classes ========== */
 .highlight {
   color: $color-darkOrange;
 }
 
+/* ========== Global Layout ========== */
 html,
 body {
   position: relative;
 }
 
+/* ========== HTML Specific ========== */
 html {
   scroll-behavior: smooth;
 }
@@ -165,7 +187,9 @@ html {
 /* ==========================================================================
    主區塊樣式
    ========================================================================== */
+
 .section--main {
+  /* 主區塊設定 */
   height: calc(100dvh);
   border-bottom: none;
 
@@ -173,12 +197,14 @@ html {
     @include flex(row, center, center);
     overflow: hidden;
 
+    /* 介紹區塊 */
     .block--introduction {
       z-index: 1;
       width: 60%;
       @include flex(column, flex-end, flex-start);
       margin-bottom: 76px;
 
+      /* 標題區塊 */
       .block__header {
         position: relative;
         width: 100%;
@@ -192,6 +218,7 @@ html {
         }
       }
 
+      /* 描述區塊 */
       .block__description {
         opacity: 0;
         transition: opacity 1.5s ease-in-out;
@@ -200,6 +227,7 @@ html {
         color: $color-darkGray;
         margin-bottom: 32px;
         line-height: 140%;
+
         .jobBadge {
           color: $color-textWhite;
           background-color: $color-darkOrange;
@@ -207,12 +235,14 @@ html {
           font-size: 28px;
           font-family: $font-serif;
           border-radius: 4px;
+
           &--zh {
             margin: 0px 8px;
           }
         }
       }
 
+      /* 註解區塊 */
       .block__annotation {
         opacity: 0;
         transition: opacity 1.5s ease-in-out;
@@ -222,6 +252,8 @@ html {
         line-height: 140%;
       }
     }
+
+    /* 背景圖片區塊 */
     .block__bgImage {
       z-index: -1;
       position: fixed;
@@ -237,24 +269,32 @@ html {
       mix-blend-mode: hard-light;
       opacity: 0.8;
     }
+
+    /* 主要圖片區塊 */
     .media--image {
       margin-bottom: 76px;
       z-index: 1;
       @include flex(column, flex-end, center);
       overflow: visible;
       width: 40%;
+
       .media__img {
         transform-origin: bottom left;
         width: 100%;
       }
     }
+
+    /* 向下圖片區塊 */
     .media--downImage {
       position: absolute;
       left: 64px;
       bottom: 88px;
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
+      animation: bounce 1.5s infinite ease-in-out;
     }
+
+    /* 語言切換按鈕 */
     .block__translator {
       z-index: 10;
       cursor: pointer;
@@ -273,14 +313,20 @@ html {
           padding: 8px 20px;
         }
       }
-    }
-    .block__translator:hover {
-      background-color: $color-yellow;
-      p {
-        color: $color-textWhite;
+
+      &:hover {
+        background-color: $color-yellow;
+
+        p {
+          color: $color-textWhite;
+        }
       }
     }
-  }
+  } // end .container--content
+
+  /* === Media Queries === */
+
+  /* 畫面寬度 ≤ 996px */
   @media (max-width: 996px) {
     .container--content {
       .block--introduction {
@@ -294,13 +340,17 @@ html {
       }
     }
   }
+
+  /* 畫面寬度 ≤ 800px */
   @media (max-width: 800px) {
     .container--content {
       @include flex(column-reverse, flex-start, center);
+
       .media--image {
         width: 80%;
         display: block;
         margin-bottom: 0;
+
         .media__img {
           margin-bottom: 0;
         }
@@ -320,49 +370,55 @@ html {
         display: none;
       }
     }
+
+    /* 調整標題字型大小 */
     .container--content .block--introduction .block__header .block__title {
       font-size: 56px;
     }
   }
+
+  /* 畫面寬度 ≤ 480px */
   @media (max-width: 480px) {
     height: 100dvh;
+
     .container--content {
       .block--introduction {
         margin-bottom: 0;
+
         .block__annotation {
           margin-bottom: 16px;
         }
-      }
-    }
 
-    .container--content .block__translator {
-      right: 16px;
-      top: 64px;
-    }
+        .block__description {
+          font-size: 24px;
 
-    .container--content .media--image .media__img {
-      margin-bottom: 8px;
-    }
+          .jobBadge {
+            font-size: 22px;
+            padding: 2px 8px;
 
-    .container--content .block--introduction .block__description {
-      font-size: 24px;
-      .jobBadge {
-        font-size: 22px;
-        padding: 2px 8px;
-        &--zh {
-          margin: 0px 4px;
+            &--zh {
+              margin: 0px 4px;
+            }
+          }
+        }
+
+        .block__header {
+          .block__title {
+            font-size: 48px;
+          }
         }
       }
-    }
-    .container--content .block--introduction .block__annotation {
-      font-size: 20px;
-      line-height: 140%;
-    }
-    .container--content .block--introduction .block__description--zh {
-      line-height: 140%;
-    }
-    .container--content .block--introduction .block__header .block__title {
-      font-size: 48px;
+
+      .block__translator {
+        right: 16px;
+        top: 64px;
+      }
+
+      .media--image {
+        .media__img {
+          margin-bottom: 8px;
+        }
+      }
     }
   }
 }
@@ -379,11 +435,13 @@ html {
   box-sizing: border-box;
   @include flex(row, center, center);
 
+  /* 鏈結樣式 */
   a {
     width: 100%;
     text-decoration: none;
   }
 
+  /* 內部區塊：設計與程式碼 */
   .block__design,
   .block__coding {
     width: 100%;
@@ -394,11 +452,12 @@ html {
 
     h4 {
       font-family: $font-serif;
-      font-weight: 700;
+      font-weight: 600;
       text-align: center;
     }
   }
 
+  /* 滑鼠懸停效果 */
   .block__design:hover,
   .block__coding:hover {
     background-color: $color-yellow;
@@ -409,6 +468,7 @@ html {
     cursor: pointer;
   }
 
+  /* 選取狀態 */
   .selected {
     background-color: $color-yellow;
 
@@ -417,8 +477,10 @@ html {
     }
   }
 
+  /* 手機斷點設定 */
   @media (max-width: 480px) {
     top: 54px;
+
     .block__design,
     .block__coding {
       padding: 8px 24px;
@@ -436,19 +498,23 @@ html {
    ========================================================================== */
 .section--work {
   .container--content {
+    // 基本設定
     @include flex(row, center, stretch);
     position: relative;
 
+    // 介紹區塊
     .block--introduction {
       @include flex(column, flex-end, flex-start);
       margin-left: 48px;
       flex: 1;
 
+      // 標題區塊
       .block__header {
         position: relative;
         margin-bottom: 32px;
       }
 
+      // 數字區塊：使用隱藏文字與描邊效果
       .block__number {
         font-family: $font-serif;
         color: transparent;
@@ -456,31 +522,42 @@ html {
         -webkit-text-stroke: 2px $color-darkGold;
       }
 
+      // 內容區塊
       .block__content {
         @include flex(column, center, flex-start);
       }
 
+      // 標題文字
       .block__title {
         font-weight: 600;
         margin-bottom: 16px;
       }
 
+      // 標籤
       .block__tag {
         color: $color-darkGold;
         font-family: $font-serif;
         font-weight: 600;
       }
 
+      // 描述區塊：左側有紅色邊框
       .block__description {
         padding-left: 16px;
         border-left: $color-red solid 4px;
         margin-bottom: 32px;
       }
 
+      // 按鈕容器
+      .block__buttonContainer {
+        @include flex(row, flex-start, center, 16px);
+      }
+
+      // 按鈕樣式
       .block__button {
         width: 50%;
         padding: 8px 16px;
         background-color: $color-red;
+        border: 2px $color-red solid;
 
         p {
           color: $color-textWhite;
@@ -493,10 +570,18 @@ html {
         &:hover {
           cursor: pointer;
           background-color: $color-yellow;
+          border: 2px $color-yellow solid;
         }
 
+        // Code 按鈕特殊設定
+        &--code {
+          width: fit-content;
+        }
+
+        // 禁用狀態按鈕
         &--disable {
           background-color: $color-gray;
+          border: 2px $color-gray solid;
 
           &:hover {
             cursor: default;
@@ -504,12 +589,32 @@ html {
           }
         }
       }
-    }
 
+      // 查看網站按鈕
+      .block__button--viewSite {
+        color: $color-darkGray;
+        border: 2px $color-darkGray solid;
+        padding: 8px 16px;
+        text-decoration: none;
+        p {
+          color: $color-darkGray;
+        }
+
+        &:hover {
+          color: $color-yellow;
+          border: 2px $color-yellow solid;
+
+          p {
+            color: $color-yellow;
+          }
+        }
+      }
+    } // end .block--introduction
+
+    // 工作封面圖片區塊
     .media--workCover {
       flex: 1;
       @include flex(column, flex-end, flex-end);
-
       .media__img {
         width: 100%;
         height: 100%;
@@ -517,6 +622,7 @@ html {
       }
     }
 
+    // 底部分隔線
     .block--line {
       position: absolute;
       width: calc(100% + 120px);
@@ -526,6 +632,7 @@ html {
       background-color: $color-black;
     }
 
+    /* ===== Media Query ===== */
     @media (max-width: 1000px) {
       @include flex(column, center, flex-end);
 
@@ -554,8 +661,9 @@ html {
         display: none;
       }
     }
-  }
+  } // end .container--content
 
+  // 隱藏工作區塊
   .workHide {
     display: none;
   }

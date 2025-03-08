@@ -24,15 +24,8 @@
       <a href="../en/pos.html"><p>繁中 | EN</p></a>
     </div>
     <main class="section section--header" id="top">
-      <div class="canvas-wrapper">
-        <canvas id="backgroundCanvas"></canvas>
-      </div>
       <div class="container container--content">
         <div class="container container--title">
-          <div class="module module__tags">
-            <p class="module__tag">UIUX</p>
-            <p class="module__tag">Ecommerce</p>
-          </div>
           <h2 class="module module__title">POS TW/HK 金流串接正逆流程設計</h2>
           <div class="module module__metaData">
             <div class="module__data">
@@ -61,37 +54,45 @@
         </div>
       </div>
     </main>
-    <section class="section section--cover">
-      <div class="container--content">
-        <img src="../../img/projects/pos/image-pos-wideCover.webp" alt="" />
-      </div>
-    </section>
     <section class="section section--introduction">
       <div class="container container--content">
-        <div class="block block__intro">
-          <h6 class="block--title">Purpose</h6>
-          <p class="block--content">
-            為 SHOPLINE POS
-            台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待
-          </p>
+        <div class="block block__top">
+          <div class="block block__img">
+            <img
+              src="../../img/image-projectCover-pos.webp"
+              alt="SHOPLINE POS Payment Flow Design"
+              class="img"
+            />
+          </div>
+          <div class="block block__topRight">
+            <div class="block block__intro">
+              <h6 class="block--title">Purpose</h6>
+              <p class="block--content">
+                為 SHOPLINE POS
+                台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。
+              </p>
+            </div>
+            <div class="block block__intro">
+              <h6 class="block--title">Challenge</h6>
+              <p class="block--content">
+                POS
+                產品已經上線使用且店家已習慣既有流程，為降低學習成本，在進行設計時需貼合既有流程進行。
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Production</h6>
-          <p class="block--content">
-            完成 6 項正逆金流系統操作流程設計，涵蓋 3
-            種金流、非金流付款方式與多種付款結果處理（成功、失敗、離線、操作錯誤…）
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Challenge</h6>
-          <p class="block--content">
-            POS
-            產品已經上線使用且店家已習慣既有流程，為降低學習成本，在進行設計時需貼合既有流程進行。
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Outcome</h6>
-          <p class="block--content">產品上線並讓台灣與香港店家使用</p>
+        <div class="block block__bottom">
+          <div class="block block__intro">
+            <h6 class="block--title">Production</h6>
+            <p class="block--content">
+              完成 6 項正逆金流系統操作流程設計，涵蓋 3
+              種金流、非金流付款方式與多種付款結果處理（成功、失敗、離線、操作錯誤…）。
+            </p>
+          </div>
+          <div class="block block__intro">
+            <h6 class="block--title">Outcome</h6>
+            <p class="block--content">產品上線並讓台灣與香港店家使用。</p>
+          </div>
         </div>
       </div>
     </section>
@@ -388,7 +389,9 @@
     </section>
     <nav class="nav nav--main" id="navbar">
       <div class="block block--navList">
-        <h6 class="block__navItem"><a href="../../home-zh.html">Back</a></h6>
+        <h6 class="block__navItem">
+          <a href="../../home-zh.html#work">Back</a>
+        </h6>
       </div>
       <div class="block block--navList">
         <h6 class="block__navItem">
@@ -397,18 +400,7 @@
       </div>
     </nav>
     <script src="../../utility/image-zoom.js"></script>
-    <script src="../../utility/bgAnimatation.js"></script>
-    <script>
-      const triggerHeight = 400;
-      window.addEventListener('scroll', function () {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > triggerHeight) {
-          $('.block__translator').fadeOut(500);
-        } else {
-          $('.block__translator').fadeIn(500);
-        }
-      });
-    </script>
+    <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/hideTranslator.js"></script>
   </body>
 </html>

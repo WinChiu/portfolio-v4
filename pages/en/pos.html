@@ -26,15 +26,8 @@
       <a href="../zh/pos.html"><p>繁中 | EN</p></a>
     </div>
     <main class="section section--header" id="top">
-      <div class="canvas-wrapper">
-        <canvas id="backgroundCanvas"></canvas>
-      </div>
       <div class="container container--content">
         <div class="container container--title">
-          <div class="module module__tags">
-            <p class="module__tag">UIUX</p>
-            <p class="module__tag">Ecommerce</p>
-          </div>
           <h2 class="module module__title">
             POS TW/HK Payment Gateway Integration - Forward and Reverse Process
             Design
@@ -66,44 +59,52 @@
         </div>
       </div>
     </main>
-    <section class="section section--cover">
-      <div class="container--content">
-        <img src="../../img/projects/pos/image-pos-wideCover.webp" alt="" />
-      </div>
-    </section>
     <section class="section section--introduction">
       <div class="container container--content">
-        <div class="block block__intro">
-          <h6 class="block--title">Purpose</h6>
-          <p class="block--content">
-            Designed the forward and reverse payment integration flow for
-            SHOPLINE POS in Taiwan and Hong Kong, enabling merchants to complete
-            transactions quickly while efficiently resolving errors to minimize
-            customer wait times.
-          </p>
+        <div class="block block__top">
+          <div class="block block__img">
+            <img
+              src="../../img/image-projectCover-pos.webp"
+              alt=""
+              class="img"
+            />
+          </div>
+          <div class="block block__topRight">
+            <div class="block block__intro">
+              <h6 class="block--title">Purpose</h6>
+              <p class="block--content">
+                Designed the forward and reverse payment integration flow for
+                SHOPLINE POS in Taiwan and Hong Kong, enabling merchants to
+                complete transactions quickly while efficiently resolving errors
+                to minimize customer wait times.
+              </p>
+            </div>
+            <div class="block block__intro">
+              <h6 class="block--title">Challenge</h6>
+              <p class="block--content">
+                The POS product is already in use, and merchants are accustomed
+                to the existing processes. To reduce learning costs, the design
+                must align closely with the current workflow.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Production</h6>
-          <p class="block--content">
-            Completed the design of 6 forward and reverse payment system
-            processes, covering 3 payment gateways, non-payment methods, and
-            various payment outcome handling (success, failure, offline,
-            operational errors, etc.).
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Challenge</h6>
-          <p class="block--content">
-            The POS product is already in use, and merchants are accustomed to
-            the existing processes. To reduce learning costs, the design must
-            align closely with the current workflow.
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Outcome</h6>
-          <p class="block--content">
-            Launched the product for use by merchants in Taiwan and Hong Kong.
-          </p>
+        <div class="block block__bottom">
+          <div class="block block__intro">
+            <h6 class="block--title">Production</h6>
+            <p class="block--content">
+              Completed the design of 6 forward and reverse payment system
+              processes, covering 3 payment gateways, non-payment methods, and
+              various payment outcome handling (success, failure, offline,
+              operational errors, etc.).
+            </p>
+          </div>
+          <div class="block block__intro">
+            <h6 class="block--title">Outcome</h6>
+            <p class="block--content">
+              Launched the product for use by merchants in Taiwan and Hong Kong.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -464,25 +465,36 @@
     </section>
     <nav class="nav nav--main" id="navbar">
       <div class="block block--navList">
-        <h6 class="block__navItem"><a href="/">Back</a></h6>
+        <h6 class="block__navItem"><a href="/#work">Back</a></h6>
       </div>
+      <!-- <div class="block block--tocList">
+        <a class="toc" href="#toc1">
+          <div class="toc--dot"></div>
+          <p class="toc--content">Project Background</p>
+        </a>
+        <a class="toc" href="#toc2">
+          <div class="toc--dot"></div>
+          <p class="toc--content">Problem Definition</p>
+        </a>
+        <a class="toc toc--focus" href="#toc3">
+          <div class="toc--dot"></div>
+          <p class="toc--content">Design Process</p>
+        </a>
+        <a class="toc" href="#toc4">
+          <div class="toc--dot"></div>
+          <p class="toc--content">Solution 1</p>
+        </a>
+        <div class="toc" href="#toc5">
+          <div class="toc--dot"></div>
+          <p class="toc--content">Solution 2</p>
+        </div>
+      </div> -->
       <div class="block block--navList">
         <h6 class="block__navItem"><a href="#top">Top</a></h6>
       </div>
     </nav>
     <script src="../../utility/image-zoom.js"></script>
-    <script src="../../utility/bgAnimatation.js"></script>
-    <script>
-      const triggerHeight = 400;
-      window.addEventListener('scroll', function () {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > triggerHeight) {
-          $('.block__translator').fadeOut(500);
-        } else {
-          $('.block__translator').fadeIn(500);
-        }
-      });
-    </script>
+    <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/hideTranslator.js"></script>
   </body>
 </html>

@@ -24,15 +24,8 @@
       <a href="../en/designSystem.html"><p>繁中 | EN</p></a>
     </div>
     <main class="section section--header" id="top">
-      <div class="canvas-wrapper">
-        <canvas id="backgroundCanvas"></canvas>
-      </div>
       <div class="container container--content">
         <div class="container container--title">
-          <div class="module module__tags">
-            <p class="module__tag">UIUX</p>
-            <p class="module__tag">Design System</p>
-          </div>
           <h2 class="module module__title">設計系統架構規劃與整理</h2>
           <div class="module module__metaData">
             <div class="module__data">
@@ -61,42 +54,48 @@
         </div>
       </div>
     </main>
-    <section class="section section--cover">
-      <div class="container--content">
-        <img
-          src="../../img/projects/designSystem/image-ds-wideCover.webp"
-          alt=""
-        />
-      </div>
-    </section>
+
     <section class="section section--introduction">
       <div class="container container--content">
-        <div class="block block__intro">
-          <h6 class="block--title">Purpose</h6>
-          <p class="block--content">
-            以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，進行設計系統架構重設計、元件再造與使用情境盤點。
-          </p>
+        <div class="block block__top">
+          <div class="block block__img">
+            <img
+              src="../../img/image-projectCover-designSystem.webp"
+              alt="Design System Redesign"
+              class="img"
+            />
+          </div>
+          <div class="block block__topRight">
+            <div class="block block__intro">
+              <h6 class="block--title">Purpose</h6>
+              <p class="block--content">
+                以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，進行設計系統架構重設計、元件再造與使用情境盤點。
+              </p>
+            </div>
+            <div class="block block__intro">
+              <h6 class="block--title">Challenge</h6>
+              <p class="block--content">
+                使用中的設計元件與規範分散在各設計系統檔案與設計稿中，許多元件經
+                Sketch 搬運後破損需要重建。
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Production</h6>
-          <p class="block--content">
-            整理出 5 項使用問題，提出新的設計系統架構與團隊維護方式，定義 45
-            種元件與相關規範。
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Challenge</h6>
-          <p class="block--content">
-            使用中的設計元件與規範分散在各設計系統檔案與設計稿中，許多元件經
-            Sketch 搬運後破損需要重建。
-          </p>
-        </div>
-        <div class="block block__intro">
-          <h6 class="block--title">Outcome</h6>
-          <p class="block--content">
-            設計系統投入 SHOPLINE 電商平台 V2
-            使用，並於內部週會進行設計系統更新討論與迭代。
-          </p>
+        <div class="block block__bottom">
+          <div class="block block__intro">
+            <h6 class="block--title">Production</h6>
+            <p class="block--content">
+              整理出 5 項使用問題，提出新的設計系統架構與團隊維護方式，定義 45
+              種元件與相關規範。
+            </p>
+          </div>
+          <div class="block block__intro">
+            <h6 class="block--title">Outcome</h6>
+            <p class="block--content">
+              設計系統投入 SHOPLINE 電商平台 V2
+              使用，並於內部週會進行設計系統更新討論與迭代。
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -466,18 +465,7 @@
       </div>
     </nav>
     <script src="../../utility/image-zoom.js"></script>
-    <script src="../../utility/bgAnimatation.js"></script>
-    <script>
-      const triggerHeight = 400;
-      window.addEventListener('scroll', function () {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > triggerHeight) {
-          $('.block__translator').fadeOut(500);
-        } else {
-          $('.block__translator').fadeIn(500);
-        }
-      });
-    </script>
+    <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/hideTranslator.js"></script>
   </body>
 </html>
