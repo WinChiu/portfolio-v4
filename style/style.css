@@ -384,6 +384,19 @@ html {
   }
 }
 
+/* 預設狀態：元素透明且稍微往下並縮小 */
+.animate-item {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* 當元素進入視窗，漸漸浮現並回到正常大小位置 */
+.animate-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* ==========================================================================
    區塊切換樣式
    ========================================================================== */

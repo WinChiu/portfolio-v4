@@ -29,6 +29,9 @@ $color-lightYellow: #f8f6ed;
   color: $color-black;
   box-sizing: border-box;
 }
+body {
+  overflow-y: hidden;
+}
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

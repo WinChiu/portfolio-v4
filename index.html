@@ -25,7 +25,6 @@
   <body>
     <main class="section section--main">
       <div class="container container--content">
-
         <article class="block block--introduction">
           <header class="block__header">
             <h1 class="block__title" id="greet">Hi! I'm Win✨</h1>
@@ -688,44 +687,6 @@
         /></a>
       </figure>
     </nav>
-    <script src="./utility/bgAnimatationMain.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const designButton = document.querySelector('.block__design');
-        const codingButton = document.querySelector('.block__coding');
-        const designBlocks = document.querySelectorAll('[data-type="design"]');
-        const codeBlocks = document.querySelectorAll('[data-type="code"]');
-
-        designButton.addEventListener('click', function () {
-          designButton.classList.add('selected');
-          codingButton.classList.remove('selected');
-          designBlocks.forEach((block) => block.classList.remove('workHide'));
-          codeBlocks.forEach((block) => block.classList.add('workHide'));
-        });
-
-        codingButton.addEventListener('click', function () {
-          codingButton.classList.add('selected');
-          designButton.classList.remove('selected');
-          codeBlocks.forEach((block) => block.classList.remove('workHide'));
-          designBlocks.forEach((block) => block.classList.add('workHide'));
-        });
-      });
-
-      $(document).ready(function () {
-        $('.media__img').addClass('active');
-        setTimeout(function () {
-          $('#greet').css('opacity', 1);
-        }, 100);
-        setTimeout(function () {
-          $('#intro').css('opacity', 1);
-        }, 300);
-        setTimeout(function () {
-          $('#annotation').css('opacity', 1);
-        }, 500);
-        setTimeout(function () {
-          $('#down').css('opacity', 1);
-        }, 700);
-      });
-    </script>
+    <script src="utility/landingPageAnimation.js"></script>
   </body>
 </html>
