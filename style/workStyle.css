@@ -790,6 +790,17 @@ html {
   }
 }
 
+.animate-item {
+  opacity: 0;
+  margin-top: 20px;
+  transition: margin-top 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.animate-item.visible {
+  opacity: 1;
+  margin-top: 0;
+}
+
 /* 導航樣式 */
 .nav--main {
   position: fixed;
