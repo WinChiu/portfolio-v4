@@ -8,7 +8,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-
+    <script type="module" src="../../components/components.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,89 +26,22 @@
     <div class="block block__translator">
       <a href="../zh/pos.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">
-            POS TW/HK Payment Gateway Integration - Forward and Reverse Process
-            Design
-          </h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">Jul. 2022 ~ Nov. 2022</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">UX Designer</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                Process Planning, UI Mock-up, UI Testing
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">SHOPLINE</p>
-            </div>
-            <div class="module__line" style="border: none"></div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-pos.webp"
-              alt=""
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                Designed the forward and reverse payment integration flow for
-                SHOPLINE POS in Taiwan and Hong Kong, enabling merchants to
-                complete transactions quickly while efficiently resolving errors
-                to minimize customer wait times.
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Challenge</h6>
-              <p class="block--content">
-                The POS product is already in use, and merchants are accustomed
-                to the existing processes. To reduce learning costs, the design
-                must align closely with the current workflow.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="block block__bottom">
-          <div class="block block__intro">
-            <h6 class="block--title">Production</h6>
-            <p class="block--content">
-              Completed the design of 6 forward and reverse payment system
-              processes, covering 3 payment gateways, non-payment methods, and
-              various payment outcome handling (success, failure, offline,
-              operational errors, etc.).
-            </p>
-          </div>
-          <div class="block block__intro">
-            <h6 class="block--title">Outcome</h6>
-            <p class="block--content">
-              Launched the product for use by merchants in Taiwan and Hong Kong.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-header
+      title="POS TW/HK Payment Gateway Integration - Forward and Reverse Process
+            Design"
+      duration="Jul. 2022 ~ Nov. 2022"
+      role="UX Designer"
+      responsibility=" Process Planning, UI Mock-up, UI Testing"
+      company="SHOPLINE"
+    ></project-header>
+    <project-introduction
+      image-url="../../img/image-projectCover-pos.webp"
+      image-alt="POS TW/HK Payment Gateway Integration"
+      purpose="Designed the forward and reverse payment integration flow for SHOPLINE POS in Taiwan and Hong Kong, enabling merchants to complete transactions quickly while efficiently resolving errors to minimize customer wait times."
+      challenge="The POS product is already in use, and merchants are accustomed to the existing processes. To reduce learning costs, the design must align closely with the current workflow."
+      production="Completed the design of 6 forward and reverse payment system processes, covering 3 payment gateways, non-payment methods, and various payment outcome handling (success, failure, offline, operational errors, etc.)."
+      outcome="Launched the product for use by merchants in Taiwan and Hong Kong."
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -184,18 +117,11 @@
             </div>
           </div>
         </div>
-
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              Based on the business situation outlined in the PRD,
-              <span class="highlight"
-                >I defined the product and design goals</span
-              >
-              for this project to focus on design solutions.
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="Based on the business situation outlined in the PRD, ==I defined the product and design goals== for this project to focus on design solutions."
+          ></project-content-bigquote>
         </div>
         <div
           class="container container--contentSection specialSection specialSection--yellow"
@@ -262,16 +188,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              Although the PRD provided clear design solutions,
-              <span class="highlight"
-                >I redefined the problem and proposed a solution that better
-                aligned with the goals</span
-              >, which was subsequently adopted.
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="Although the PRD provided clear design solutions, ==I redefined the problem and proposed a solution that better aligned with the goals==, which was subsequently adopted."
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -332,7 +252,6 @@
               communicated to merchants without adding informational overload.
             </p>
           </div>
-
           <div class="module module__pureText">
             <p class="module__text">
               As a key feature for merchant payments, I designed a separate
@@ -464,14 +383,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="/#work">Back</a></h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

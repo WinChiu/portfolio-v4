@@ -20,13 +20,11 @@
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="/components/components.js"></script>
   </head>
   <body>
     <main class="section section--main">
       <div class="container container--content">
-        <!-- <div class="canvas-wrapper">
-          <canvas id="backgroundCanvas" />
-        </div> -->
         <article class="block block--introduction">
           <header class="block__header">
             <h1 class="block__title" id="greet">Hi! I'm Win ✨</h1>
@@ -346,247 +344,89 @@
           </div></a
         >
       </article>
-      <div class="container container--content" data-type="design">
-        <figure class="media media--workCover">
-          <img
-            class="media__img"
-            src="/img/image-projectCover-pos.webp"
-            alt=""
-          />
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">01</h1>
-            <div class="block__content">
-              <h2 class="block__title">POS TW/HK 金流串接正逆流程設計</h2>
-              <h5 class="block__tag">UIUX Design</h5>
-            </div>
-          </div>
-          <p class="block__description">
-            為 SHOPLINE POS
-            台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。
-          </p>
-          <div class="block__button">
-            <a href="pages/zh/pos.html"><p>View Project</p></a>
-          </div>
-        </article>
-        <div class="block block--line"></div>
-      </div>
-      <div class="container container--content" data-type="design">
-        <figure class="media media--workCover">
-          <img
-            class="media__img"
-            src="/img/image-projectCover-designSystem.webp"
-            alt=""
-          />
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">02</h1>
-            <div class="block__content">
-              <h2 class="block__title">設計系統架構規劃與整理</h2>
-              <h5 class="block__tag">UIUX Design</h5>
-            </div>
-          </div>
-          <p class="block__description">
-            以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，為
-            SHOPLINE 進行設計系統架構重設計、元件再造與使用情境盤點。
-          </p>
-          <div class="block__button">
-            <a href="pages/zh/designSystem.html"><p>View Project</p></a>
-          </div>
-        </article>
-        <div class="block block--line"></div>
-      </div>
-      <div class="container container--content" data-type="design">
-        <figure class="media media--workCover">
-          <img
-            class="media__img"
-            src="/img/image-projectCover-childcare.webp"
-            alt=""
-          />
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">03</h1>
-            <div class="block__content">
-              <h2 class="block__title">
-                台北市社會局公托登記與抽籤系統網站改造
-              </h2>
-              <h5 class="block__tag">UX Research | UX Design</h5>
-            </div>
-          </div>
-          <p class="block__description">
-            為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。
-          </p>
-          <div class="block__button">
-            <a href="pages/zh/childcare.html"><p>View Project</p></a>
-          </div>
-        </article>
-        <div class="block block--line"></div>
-      </div>
-      <div class="container container--content" data-type="design">
-        <figure class="media media--workCover">
-          <img
-            class="media__img"
-            src="/img/image-projectCover-im.webp"
-            alt=""
-          />
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">04</h1>
-            <div class="block__content">
-              <h2 class="block__title">
-                IM 訊息接收者對傳送者收回訊息行為的解讀
-              </h2>
-              <h5 class="block__tag">UX Research</h5>
-            </div>
-          </div>
-          <p class="block__description">
-            整理訊息接收者對於傳訊者收回訊息行為的解讀，給予傳訊策略。最終投稿於
-            TAICHI 2022 人機互動言討會論文海報組別進行展示
-          </p>
-          <div class="block__button">
-            <a
-              href="https://drive.google.com/file/d/1cI0S_KCWYoxT3DvD1jzc0C0oGQ0VbR-t/view"
-              target="_blank"
-              ><p>View Project</p></a
-            >
-          </div>
-        </article>
-      </div>
-      <div class="container container--content workHide" data-type="code">
-        <figure class="media media--workCover">
-          <img
-            class="media__img"
-            src="/img/image-projectCover-bp.webp"
-            alt=""
-          />
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">01</h1>
-            <div class="block__content">
-              <h2 class="block__title">BizPro - 社團官方網站前後臺開發</h2>
-              <h5 class="block__tag">UIUX Design｜Full-Stack Development</h5>
-            </div>
-          </div>
-          <p class="block__description">
-            以 MERN 框架協助 BizPro
-            台大商學研究社的重新設計網站與後續開發，改善資訊易讀性並突顯社團價值。
-          </p>
-          <div class="block__buttonContainer">
-            <div class="block__button block__button--code">
-              <a href="pages/zh/bizpro.html"><p>View Project</p></a>
-            </div>
-            <a
-              href="https://www.bizpro-taipei.com"
-              class="block__button--viewSite"
-              target="_blank"
-              ><p>View Site</p></a
-            >
-          </div>
-        </article>
-        <div class="block block--line"></div>
-      </div>
-      <div class="container container--content workHide" data-type="code">
-        <figure class="media media--workCover">
-          <img
-            class="media__img"
-            src="/img/image-projectCover-forest.webp"
-            alt=""
-          />
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">02</h1>
-            <div class="block__content">
-              <h2 class="block__title">森活 - 森林永續議題倡議動畫網頁</h2>
-              <h5 class="block__tag">Frontend Development</h5>
-            </div>
-          </div>
-          <p class="block__description">
-            以 SDGs 中永續森林為主題，在 50
-            小時內製作互動式動畫網頁。於第五屆台灣青年黑克松競賽中獲得冠軍、最佳人氣獎。
-          </p>
-          <div class="block__buttonContainer">
-            <div class="block__button block__button--code">
-              <a href="pages/zh/forest.html"><p>View Project</p></a>
-            </div>
-            <a
-              href="https://forest-life.onrender.com"
-              class="block__button--viewSite"
-              target="_blank"
-              ><p>View Site</p></a
-            >
-          </div>
-        </article>
-        <div class="block block--line"></div>
-      </div>
-      <div class="container container--content workHide" data-type="code">
-        <figure class="media media--workCover">
-          <img
-            class="media__img"
-            src="/img/image-projectCover-gongChi.webp"
-            alt=""
-          />
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">03</h1>
-            <div class="block__content">
-              <h2 class="block__title">工尺 - 北管樂混音器操作展示網站</h2>
-              <h5 class="block__tag">Frontend Development</h5>
-            </div>
-          </div>
-          <p class="block__description">
-            以步驟式教學說明各按鍵用途，搭配自由遊玩模式，模擬實體北管樂混音器「工尺」的操作效果。
-          </p>
-          <div class="block__buttonContainer">
-            <div class="block__button block__button--code">
-              <a href="pages/zh/gongChi.html"><p>View Project</p></a>
-            </div>
-            <a
-              href="https://ntust-music-project.onrender.com"
-              class="block__button--viewSite"
-              target="_blank"
-              ><p>View Site</p></a
-            >
-          </div>
-        </article>
-        <div class="block block--line"></div>
-      </div>
-      <div class="container container--content workHide" data-type="code">
-        <figure class="media media--workCover">
-          <img
-            class="media__img"
-            src="/img/image-projectCover-sniper.webp"
-            alt=""
-          />
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">04</h1>
-            <div class="block__content">
-              <h2 class="block__title">菁英狙擊手 - 英打練習與對戰遊戲</h2>
-              <h5 class="block__tag">Programmer</h5>
-            </div>
-          </div>
-          <p class="block__description">
-            透過 Python
-            與遊戲套件，以射擊遊戲為主題製作具有多種遊玩模式的英文打字練習遊戲。於
-            2020 年 Coding 101 競賽中獲得冠軍。
-          </p>
-          <div class="block__button">
-            <a
-              href="https://drive.google.com/file/d/11le_59yoEMBsNNcp3lJiriQ2L9N855OX/view?usp=sharing"
-              target="_blank"
-              ><p>View Project</p></a
-            >
-          </div>
-        </article>
-      </div>
+      <project-card
+        number="01"
+        title="POS TW/HK 金流串接正逆流程設計"
+        tag="UIUX Design"
+        description="為 SHOPLINE POS 台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。"
+        image-url="/img/image-projectCover-pos.webp"
+        project-url="pages/zh/pos.html"
+        type="design"
+        lang="zh"
+      ></project-card>
+      <project-card
+        number="02"
+        title="設計系統架構規劃與整理"
+        tag="UIUX Design"
+        description="以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，為 SHOPLINE 進行設計系統架構重設計、元件再造與使用情境盤點。"
+        image-url="/img/image-projectCover-designSystem.webp"
+        project-url="pages/zh/designSystem.html"
+        type="design"
+        lang="zh"
+      ></project-card>
+      <project-card
+        number="03"
+        title="台北市社會局公托登記與抽籤系統網站改造"
+        tag="UX Research | UX Design"
+        description="為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。"
+        image-url="/img/image-projectCover-childcare.webp"
+        project-url="pages/zh/childcare.html"
+        type="design"
+        lang="zh"
+      ></project-card>
+      <project-card
+        number="04"
+        title="IM 訊息接收者對傳送者收回訊息行為的解讀"
+        tag="UX Research"
+        description="整理訊息接收者對於傳訊者收回訊息行為的解讀，給予傳訊策略。最終投稿於 TAICHI 2022 人機互動言討會論文海報組別進行展示"
+        image-url="/img/image-projectCover-im.webp"
+        project-url="https://drive.google.com/file/d/1cI0S_KCWYoxT3DvD1jzc0C0oGQ0VbR-t/view"
+        type="design"
+        lang="zh"
+      ></project-card>
+      <project-card
+        number="01"
+        title="BizPro - 社團官方網站前後臺開發"
+        tag="UIUX Design｜Full-Stack Development"
+        description="以 MERN 框架協助 BizPro 台大商學研究社的重新設計網站與後續開發，改善資訊易讀性並突顯社團價值。"
+        image-url="/img/image-projectCover-bp.webp"
+        project-url="pages/zh/bizpro.html"
+        site-url="https://www.bizpro-taipei.com"
+        type="code"
+        lang="zh"
+      ></project-card>
+      <project-card
+        number="02"
+        title="森活 - 森林永續議題倡議動畫網頁"
+        tag="Frontend Development"
+        description="以 SDGs 中永續森林為主題，在 50 小時內製作互動式動畫網頁。於第五屆台灣青年黑克松競賽中獲得冠軍、最佳人氣獎。"
+        image-url="/img/image-projectCover-forest.webp"
+        project-url="pages/zh/forest.html"
+        site-url="https://forest-life.onrender.com"
+        type="code"
+        lang="zh"
+      ></project-card>
+      <project-card
+        number="03"
+        title="工尺 - 北管樂混音器操作展示網站"
+        tag="Frontend Development"
+        description="以步驟式教學說明各按鍵用途，搭配自由遊玩模式，模擬實體北管樂混音器「工尺」的操作效果。"
+        image-url="/img/image-projectCover-gongChi.webp"
+        project-url="pages/zh/gongChi.html"
+        site-url="https://ntust-music-project.onrender.com"
+        type="code"
+        lang="zh"
+      ></project-card>
+      <project-card
+        number="04"
+        title="菁英狙擊手 - 英打練習與對戰遊戲"
+        tag="Programmer"
+        description="透過 Python 與遊戲套件，以射擊遊戲為主題製作具有多種遊玩模式的英文打字練習遊戲。於 2020 年 Coding 101 競賽中獲得冠軍。"
+        image-url="/img/image-projectCover-sniper.webp"
+        project-url="https://drive.google.com/file/d/11le_59yoEMBsNNcp3lJiriQ2L9N855OX/view?usp=sharing"
+        type="code"
+        lang="zh"
+      ></project-card>
     </section>
     <section class="section section--about" id="about">
       <div class="container container--content">
@@ -603,6 +443,15 @@
           </p>
           <div class="block__jobs">
             <div class="block__jobDescription">
+              <p class="block__jobDescription--company">
+                KTH Royal Institute of Technology
+              </p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--title">
+                MSc Interactive Media Technology
+              </p>
+            </div>
+            <div class="block__jobDescription block__jobDescription--past">
               <p class="block__jobDescription--company">Wellell inc.</p>
               <div class="block__jobDescription--dotLine"></div>
               <p class="block__jobDescription--title">Product Designer</p>

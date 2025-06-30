@@ -1,0 +1,57 @@
+@use "../../style/variables.scss" as *;
+
+@mixin flex($flexDirection, $justifyContent, $alignItems, $gap) {
+  display: flex;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  gap: $gap;
+}
+.section--introduction {
+  box-sizing: border-box;
+  .container--content {
+    @include flex(column, center, center, 24px);
+    .block__intro {
+      border: $color-black solid 2px;
+      padding: 24px;
+      background-color: $color-lightYellow;
+      width: 100%;
+      .block--title {
+        margin-bottom: 16px;
+        color: $color-darkGold;
+      }
+    }
+    .block__top {
+      @include flex(row, center, stretch, 24px);
+      .block__img {
+        flex: 1;
+        .img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .block__topRight {
+        flex: 1;
+        @include flex(column, center, stretch, 24px);
+        .block__intro {
+          height: 100%;
+        }
+      }
+    }
+    .block__bottom {
+      @include flex(row, center, stretch, 24px);
+      width: 100%;
+    }
+  }
+  @media (max-width: 800px) {
+    .container--content {
+      .block__top {
+        @include flex(column, center, stretch, 24px);
+      }
+      .block__bottom {
+        @include flex(column, center, stretch, 24px);
+      }
+    }
+  }
+}

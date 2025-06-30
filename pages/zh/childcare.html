@@ -14,6 +14,7 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script type="module" src="../../components/components.js"></script>
     <title>台北市社會局公托登記與抽籤系統網站改造</title>
     <link rel="icon" href="./img/favicon.png" type="image/png" />
   </head>
@@ -21,85 +22,22 @@
     <div class="block block__translator">
       <a href="../en/childcare.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">
-            台北市社會局公托登記與抽籤系統網站改造
-          </h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">Jul. 2021 ~ Aug. 2021</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">UX Researcher, UX Designer</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                易用性測試、認知走查、使用者訪談、問題收斂
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">PDIS - Ray 5.0 Program</p>
-            </div>
-            <div
-              class="module__line"
-              style="background-color: transparent"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <project-header
+      title="台北市社會局公托登記與抽籤系統網站改造"
+      duration="Jul. 2021 ~ Aug. 2021"
+      role="UX Researcher, UX Designer"
+      responsibility="易用性測試、認知走查、使用者訪談、問題收斂"
+      company="PDIS - Ray 5.0 Program"
+    ></project-header>
 
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-childcare.webp"
-              alt="Taipei Childcare System Redesign"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Challenge</h6>
-              <p class="block--content">
-                政府單位並無事先編列預算，如何說服與提案讓政府部門採納是為一項挑戰。
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="block block__bottom">
-          <div class="block block__intro">
-            <h6 class="block--title">Production</h6>
-            <p class="block--content">
-              完成易用性測試、使用者訪談、Wireframe、Hifi Prototype
-              與概念測試，最終提供 Hifi 設計稿供政府部門參考。
-            </p>
-          </div>
-          <div class="block block__intro">
-            <h6 class="block--title">Outcome</h6>
-            <p class="block--content">
-              由簡至繁提供三種方案讓政府部門參考。最終於專案結束後兩年，促成新懶人包上架於網站上。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-introduction
+      image-url="../../img/image-projectCover-childcare.webp"
+      image-alt="台北市社會局公托登記與抽籤系統網站改造"
+      purpose="為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。"
+      challenge="政府單位並無事先編列預算，如何說服與提案讓政府部門採納是為一項挑戰。"
+      production="完成易用性測試、使用者訪談、Wireframe、Hifi Prototype 與概念測試，最終提供 Hifi 設計稿供政府部門參考。"
+      outcome="由簡至繁提供三種方案讓政府部門參考。最終於專案結束後兩年，促成新懶人包上架於網站上。"
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -139,7 +77,6 @@
           </div>
           <div class="module module__verticalIconList">
             <div class="module__verticalIcon">
-              <!-- <img src="../../img/sketch-fail.svg" alt="" /> -->
               <div class="module__content">
                 <h3 class="module__content--title">
                   超過 3 成的不合格申請文件
@@ -246,14 +183,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-interview.svg" alt="" />
-            <h3>
-              我們邀請 6 位家長進行訪談，根據結果歸納出<span class="highlight">
-                3 類人物誌</span
-              >
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-interview.svg"
+            content="我們邀請 6 位家長進行訪談，根據結果歸納出==3 類人物誌=="
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -281,14 +214,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              我們根據現況與使用者訪談結果，總結<span class="highlight"
-                >三項系統無法回應用戶需求的問題</span
-              >，並發展設計解方
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="我們根據現況與使用者訪談結果，總結==三項系統無法回應用戶需求的問題==，並發展設計解方"
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -331,14 +260,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              我們也發現在日常情境中，<span class="highlight"
-                >家長使用手機進行服務申請的比例相當高</span
-              >，因此決定優化 RWD 介面
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="我們也發現在日常情境中，==家長使用手機進行服務申請的比例相當高==，因此決定優化 RWD 介面"
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -411,14 +336,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-yeah.svg" alt="" />
-            <h3>
-              專案結束兩年後，承辦人有<span class="highlight"
-                >聯繫我們索取當時設計的懶人包</span
-              >，並以此為基礎公布了新的懶人包！
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-yeah.svg"
+            content="專案結束兩年後，承辦人有==聯繫我們索取當時設計的懶人包==，並以此為基礎公布了新的懶人包！"
+          ></project-content-bigquote>
         </div>
 
         <div class="container container--contentSection">
@@ -449,16 +370,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem">
-          <a href="../../home-zh.html#work">Back</a>
-        </h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation language="zh"></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

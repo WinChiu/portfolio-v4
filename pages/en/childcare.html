@@ -14,6 +14,7 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script type="module" src="../../components/components.js"></script>
     <title>
       Taipei City Childcare Registration and Lottery System Redesign
     </title>
@@ -23,92 +24,21 @@
     <div class="block block__translator">
       <a href="../zh/childcare.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">
-            Taipei City Childcare Registration and Lottery System Redesign
-          </h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">Jul. 2021 ~ Aug. 2021</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">UX Researcher, UX Designer</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                Usability Testing, Cognitive Walkthrough, User Interviews
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">PDIS - Ray 5.0 Program</p>
-            </div>
-            <div
-              class="module__line"
-              style="background-color: transparent"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-childcare.webp"
-              alt="Taipei Childcare System Redesign"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                Conducted user research and redesign for Taipei City's public
-                childcare registration and lottery system, enabling citizens to
-                complete all processes—such as understanding rules, searching
-                for institutions, and registering—on a single platform.
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Challenge</h6>
-              <p class="block--content">
-                Persuading the government to adopt the proposal without a
-                pre-allocated budget was a significant challenge.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="block block__bottom">
-          <div class="block block__intro">
-            <h6 class="block--title">Production</h6>
-            <p class="block--content">
-              Completed usability testing, user interviews, wireframes,
-              high-fidelity prototypes, and concept testing, ultimately
-              delivering high-fidelity design files for government reference.
-            </p>
-          </div>
-          <div class="block block__intro">
-            <h6 class="block--title">Outcome</h6>
-            <p class="block--content">
-              Proposed three solutions of varying complexity for the
-              government’s consideration. Two years after the project’s
-              completion, a new user-friendly guide was successfully launched on
-              the official website.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-header
+      title="Taipei City Childcare Registration and Lottery System Redesign"
+      duration="Jul. 2021 ~ Aug. 2021"
+      role="UX Researcher, UX Designer"
+      responsibility="Usability Testing, Cognitive Walkthrough, User Interviews"
+      company="PDIS - Ray 5.0 Program"
+    ></project-header>
+    <project-introduction
+      image-url="../../img/image-projectCover-childcare.webp"
+      image-alt="Taipei Childcare System Redesign"
+      purpose="Conducted user research and redesign for Taipei City's public childcare registration and lottery system, enabling citizens to complete all processes—such as understanding rules, searching for institutions, and registering—on a single platform."
+      challenge="Persuading the government to adopt the proposal without a pre-allocated budget was a significant challenge."
+      production="Completed usability testing, user interviews, wireframes, high-fidelity prototypes, and concept testing, ultimately delivering high-fidelity design files for government reference."
+      outcome="Proposed three solutions of varying complexity for the government's consideration. Two years after the project's completion, a new user-friendly guide was successfully launched on the official website."
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -287,13 +217,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-interview.svg" alt="" />
-            <h3>
-              We interviewed six parents and summarized the results into
-              <span class="highlight"> three personas</span>
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-interview.svg"
+            content="We interviewed six parents and summarized the results into ==three personas=="
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -322,17 +249,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              Based on the current situation and user interview results, we
-              identified
-              <span class="highlight"
-                >three issues where the system fails to meet user needs</span
-              >
-              and developed corresponding design solutions.
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="Based on the current situation and user interview results, we identified ==three issues where the system fails to meet user needs== and developed corresponding design solutions."
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -375,15 +295,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              We also found that parents
-              <span class="highlight">frequently use their mobile phones</span>
-              for service applications in daily scenarios, so we decided to
-              optimize the <span class="highlight">RWD interface.</span>
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="We also found that parents ==frequently use their mobile phones== for service applications in daily scenarios, so we decided to optimize the ==RWD interface.=="
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -470,16 +385,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-yeah.svg" alt="" />
-            <h3>
-              Two years after the project ended, the staff contacted us to
-              <span class="highlight">
-                request the design of the original guide</span
-              >, which was then used as the foundation for the release of a new
-              guide!
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-yeah.svg"
+            content="Two years after the project ended, the staff contacted us to ==request the design of the original guide==, which was then used as the foundation for the release of a new guide!"
+          ></project-content-bigquote>
         </div>
 
         <div class="container container--contentSection">
@@ -510,14 +419,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="/#work">Back</a></h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

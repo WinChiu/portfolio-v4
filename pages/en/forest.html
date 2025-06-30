@@ -17,7 +17,7 @@
     <script src="    https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
 "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-
+    <script type="module" src="../../components/components.js"></script>
     <title>Forest Life - Forest Sustainability Advocacy Website</title>
     <link rel="icon" href="./img/favicon.png" type="image/png" />
   </head>
@@ -25,74 +25,19 @@
     <div class="block block__translator">
       <a href="../zh/forest.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">
-            Forest Life - Forest Sustainability Advocacy Website
-          </h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">Jul. 2021 (50 hr)</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">Frontend Developer</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                Front-end Layout, Animation Production
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">hackathon taiwan junior 5th</p>
-            </div>
-            <div
-              class="module__line"
-              style="background-color: transparent"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-forest.webp"
-              alt="Taipei Childcare System Redesign"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                Participated in the 5th Taiwan Youth Hackathon, with the theme
-                of 'Life on Land' from the SDGs 15, and created an interactive
-                animated webpage within 50 hours.
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Production</h6>
-              <p class="block--content">
-                Designed a gamified quiz that provides different sustainability
-                advocacy pages for users based on their results, paired with
-                interactive animated design. The project won both the
-                championship and the Best Popularity Award.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-header
+      title="Forest Life - Forest Sustainability Advocacy Website"
+      duration="Jul. 2021 (50 hr)"
+      role="Frontend Developer"
+      responsibility="Front-end Layout, Animation Production"
+      company="hackathon taiwan junior 5th"
+    ></project-header>
+    <project-introduction
+      image-url="../../img/image-projectCover-forest.webp"
+      image-alt="Forest Life - Forest Sustainability Advocacy Website"
+      purpose="Participated in the 5th Taiwan Youth Hackathon, with the theme of 'Life on Land' from the SDGs 15, and created an interactive animated webpage within 50 hours."
+      production="Designed a gamified quiz that provides different sustainability advocacy pages for users based on their results, paired with interactive animated design. The project won both the championship and the Best Popularity Award."
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -192,14 +137,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="/#work">Back</a></h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

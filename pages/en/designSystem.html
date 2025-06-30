@@ -8,7 +8,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-
+    <script type="module" src="../../components/components.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,90 +24,21 @@
     <div class="block block__translator">
       <a href="../zh/designSystem.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">
-            Design System Architecture Design and Organization
-          </h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">May. 2022 ~ Jul. 2022</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">UIUX Designer</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                Requirement Exploration, Architecture Planning, and Component
-                Creation
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">SHOPLINE</p>
-            </div>
-            <div class="module__line" style="border: none"></div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-designSystem.webp"
-              alt="Design System Redesign"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                To improve efficiency, speed up onboarding, and ensure integrity
-                and accuracy by redesigning the design system architecture,
-                rebuilding components, and reviewing usage scenarios.
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Challenge</h6>
-              <p class="block--content">
-                Currently, the design components and guidelines are scattered
-                across various design system files and design drafts. Many
-                components, after being migrated from Sketch, were broken and
-                required rebuilding.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="block block__bottom">
-          <div class="block block__intro">
-            <h6 class="block--title">Production</h6>
-            <p class="block--content">
-              Identified 5 usability issues, proposed a new design system
-              architecture and team maintenance approach, and defined 45
-              components with related guidelines.
-            </p>
-          </div>
-          <div class="block block__intro">
-            <h6 class="block--title">Outcome</h6>
-            <p class="block--content">
-              The design system was implemented in SHOPLINE's e-commerce
-              platform V2, with ongoing discussions and iterations held during
-              internal weekly meetings.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-header
+      title="Design System Architecture Design and Organization"
+      duration="May. 2022 ~ Jul. 2022"
+      role="UIUX Designer"
+      responsibility="Requirement Exploration, Architecture Planning, and Component Creation"
+      company="SHOPLINE"
+    ></project-header>
+    <project-introduction
+      image-url="../../img/image-projectCover-designSystem.webp"
+      image-alt="Design System Redesign"
+      purpose="To improve efficiency, speed up onboarding, and ensure integrity and accuracy by redesigning the design system architecture, rebuilding components, and reviewing usage scenarios."
+      challenge="Currently, the design components and guidelines are scattered across various design system files and design drafts. Many components, after being migrated from Sketch, were broken and required rebuilding."
+      production="Identified 5 usability issues, proposed a new design system architecture and team maintenance approach, and defined 45 components with related guidelines."
+      outcome="The design system was implemented in SHOPLINE's e-commerce platform V2, with ongoing discussions and iterations held during internal weekly meetings."
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -146,17 +77,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              I first
-              <span class="highlight">interviewed three designers</span> from
-              the company to understand their usage habits and needs regarding
-              the design system. From this, I identified<span class="highlight">
-                five key issues</span
-              >
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="I first ==interviewed three designers== from the company to understand their usage habits and needs regarding the design system. From this, I identified ==five key issues=="
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -338,16 +262,11 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              Based on the goals, I provided a comprehensive solution covering
-              <span class="highlight"
-                >guideline creation, component organization, and maintenance
-                updates.</span
-              >
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="Based on the goals, I provided a comprehensive solution covering ==guideline creation, component organization, and maintenance
+                updates.=="
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -549,14 +468,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="/#work">Back</a></h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>
