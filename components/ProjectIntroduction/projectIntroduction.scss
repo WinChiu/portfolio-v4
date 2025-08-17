@@ -45,6 +45,7 @@
     }
   }
   @media (max-width: 800px) {
+    border: 0 !important;
     .container--content {
       .block__top {
         @include flex(column, center, stretch, 24px);

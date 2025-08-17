@@ -109,13 +109,13 @@ h5 {
 }
 
 h6 {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.4;
   font-weight: normal;
 }
 @media (max-width: 480px) {
   h6 {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -327,68 +327,6 @@ body {
   scrollbar-gutter: unset;
 }
 
-/* ========== Heading Styles ========== */
-h1 {
-  line-height: 120%;
-  font-size: 96px;
-}
-@media (max-width: 1000px) {
-  h1 {
-    font-size: 72px;
-  }
-}
-@media (max-width: 480px) {
-  h1 {
-    font-size: 56px;
-  }
-}
-
-h2 {
-  line-height: 120%;
-  font-size: 40px;
-}
-@media (max-width: 1000px) {
-  h2 {
-    font-size: 32px;
-  }
-}
-
-h3 {
-  line-height: 120%;
-  font-size: 32px;
-}
-@media (max-width: 1000px) {
-  h3 {
-    font-size: 28px;
-  }
-}
-
-h4 {
-  line-height: 120%;
-  font-size: 28px;
-}
-@media (max-width: 1000px) {
-  h4 {
-    font-size: 24px;
-  }
-}
-
-/* ========== Sub-heading Styles ========== */
-h5,
-h6 {
-  font-weight: normal;
-}
-
-h5 {
-  line-height: 120%;
-  font-size: 24px;
-}
-
-h6 {
-  line-height: 120%;
-  font-size: 20px;
-}
-
 /* ========== Utility Classes ========== */
 .highlight {
   color: #c14804;
@@ -449,28 +387,26 @@ html {
   height: 100dvh;
   border-bottom: none;
   /* === Media Queries === */
-  /* 畫面寬度 ≤ 996px */
-  /* 畫面寬度 ≤ 800px */
-  /* 畫面寬度 ≤ 480px */
 }
 .section--main .container--content {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: end;
   flex-direction: row;
   gap: 0px;
   overflow: hidden;
+  padding-bottom: 0;
   /* 介紹區塊 */
   /* 背景圖片區塊 */
-  /* 主要圖片區塊 */
   /* 向下圖片區塊 */
   /* 語言切換按鈕 */
 }
 .section--main .container--content .block--introduction {
   z-index: 1;
-  width: 60%;
+  min-width: 55%;
+  height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-start;
   flex-direction: column;
   gap: 0px;
@@ -489,6 +425,7 @@ html {
   font-size: 88px;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
+  width: 110%;
 }
 .section--main .container--content .block--introduction .block__description {
   opacity: 0;
@@ -498,17 +435,7 @@ html {
   color: #615f58;
   margin-bottom: 32px;
   line-height: 140%;
-}
-.section--main .container--content .block--introduction .block__description .jobBadge {
-  color: #ffffff;
-  background-color: #c14804;
-  padding: 4px 8px;
-  font-size: 28px;
-  font-family: "Source Serif 4";
-  border-radius: 4px;
-}
-.section--main .container--content .block--introduction .block__description .jobBadge--zh {
-  margin: 0px 8px;
+  width: 110%;
 }
 .section--main .container--content .block--introduction .block__annotation {
   opacity: 0;
@@ -517,6 +444,7 @@ html {
   font-weight: normal;
   font-style: italic;
   line-height: 140%;
+  width: 110%;
 }
 .section--main .container--content .block__bgImage {
   z-index: -1;
@@ -528,25 +456,56 @@ html {
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: auto;
+  width: 100%;
   height: 100%;
   mix-blend-mode: hard-light;
   opacity: 0.8;
+  background-image: url("../img/image-landingBackground.webp");
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
 }
 .section--main .container--content .media--image {
-  margin-bottom: 76px;
-  z-index: 1;
+  opacity: 0;
+  transition-duration: 2.5s;
+  position: relative;
+  height: 100vh;
+  width: auto;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: column;
-  gap: 0px;
+  align-items: flex-end;
+  justify-content: center;
   overflow: visible;
-  width: 40%;
+  z-index: 1;
 }
-.section--main .container--content .media--image .media__img {
-  transform-origin: bottom left;
-  width: 100%;
+.section--main .container--content .media--image .media__img--body {
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  align-self: flex-start;
+  object-fit: contain;
+  position: relative;
+  transform: none;
+}
+.section--main .container--content .media--image .media__img--facial {
+  position: absolute;
+  width: auto;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.section--main .container--content .media--image .media__img--eye1Left {
+  height: 6%;
+  left: 31.5%;
+  top: 42%;
+}
+.section--main .container--content .media--image .media__img--eye1Right {
+  height: 6%;
+  left: 47.5%;
+  top: 42%;
+}
+.section--main .container--content .media--image .media__img--mouth {
+  height: 2.8%;
+  left: 40%;
+  top: 54%;
 }
 .section--main .container--content .media--downImage {
   position: absolute;
@@ -572,6 +531,7 @@ html {
 }
 .section--main .container--content .block__translator a p {
   padding: 8px 20px;
+  color: #363a35;
 }
 .section--main .container--content .block__translator:hover {
   background-color: #cabd8a;
@@ -601,17 +561,25 @@ html {
     flex-direction: column-reverse;
     gap: 0px;
   }
-  .section--main .container--content .media--image {
-    width: 80%;
-    display: block;
-    margin-bottom: 0;
-  }
-  .section--main .container--content .media--image .media__img {
-    margin-bottom: 0;
-  }
   .section--main .container--content .block--introduction {
     margin-bottom: 0;
     width: 100%;
+    /* 描述區塊 */
+  }
+  .section--main .container--content .block--introduction .block__header {
+    margin-top: 64px;
+  }
+  .section--main .container--content .block--introduction .block__header .block__title {
+    text-align: center;
+    width: 100%;
+  }
+  .section--main .container--content .block--introduction .block__description {
+    width: 100%;
+    text-align: center;
+  }
+  .section--main .container--content .block--introduction .block__annotation {
+    width: 100%;
+    text-align: center;
   }
   .section--main .container--content .block__translator {
     right: 48px;
@@ -632,28 +600,15 @@ html {
   .section--main .container--content .block--introduction {
     margin-bottom: 0;
   }
-  .section--main .container--content .block--introduction .block__annotation {
+  .section--main .container--content .block--introduction .block__description {
     margin-bottom: 16px;
   }
-  .section--main .container--content .block--introduction .block__description {
-    font-size: 24px;
-  }
-  .section--main .container--content .block--introduction .block__description .jobBadge {
-    font-size: 22px;
-    padding: 2px 8px;
-  }
-  .section--main .container--content .block--introduction .block__description .jobBadge--zh {
-    margin: 0px 4px;
-  }
-  .section--main .container--content .block--introduction .block__header .block__title {
-    font-size: 48px;
+  .section--main .container--content .block--introduction .block__annotation {
+    margin-bottom: 64px;
   }
   .section--main .container--content .block__translator {
     right: 16px;
-    top: 64px;
-  }
-  .section--main .container--content .media--image .media__img {
-    margin-bottom: 8px;
+    top: 72px;
   }
 }
 
@@ -680,13 +635,14 @@ html {
   position: sticky;
   z-index: 1;
   box-sizing: border-box;
+  border-top: 2px solid #363a35;
+  border-bottom: 2px solid #363a35;
+  border-left: 2px solid #363a35;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   gap: 0px;
-  /* 鏈結樣式 */
-  /* 內部區塊：設計與程式碼 */
   /* 滑鼠懸停效果 */
   /* 選取狀態 */
   /* 手機斷點設定 */
@@ -695,12 +651,16 @@ html {
   width: 100%;
   text-decoration: none;
 }
+.block--switcher .block__design {
+  border-right: 2px solid #363a35;
+}
+.block--switcher .block__coding {
+  border-right: none;
+}
 .block--switcher .block__design,
 .block--switcher .block__coding {
   width: 100%;
   padding: 8px 32px;
-  border: 2px solid #363a35;
-  border-right: none;
   background-color: #fbfbf6;
 }
 .block--switcher .block__design h4,
@@ -727,11 +687,11 @@ html {
 @media (max-width: 480px) {
   .block--switcher {
     top: 54px;
+    border-left: none;
   }
   .block--switcher .block__design,
   .block--switcher .block__coding {
     padding: 8px 24px;
-    border-left: none;
   }
   .block--switcher .block__design h4,
   .block--switcher .block__coding h4 {
@@ -908,6 +868,9 @@ html {
     flex-direction: row;
     gap: 0px;
   }
+  .nav--main .block--navList a {
+    font-size: 18px;
+  }
   .nav--main .block__navItem {
     margin-bottom: 0;
     margin-right: 16px;
@@ -928,7 +891,7 @@ html {
   }
   .nav--main .media__img {
     margin-bottom: 0;
-    width: 28px;
+    width: 36px;
     margin-left: 8px;
   }
 }

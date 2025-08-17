@@ -77,21 +77,23 @@ html {
 .block__translator {
   z-index: 10;
   cursor: pointer;
-  background-color: $color-bgWhite;
+  background-color: $color-red;
   position: fixed;
   right: 48px;
-  bottom: 48px;
+  top: 48px;
   border: $color-black 2px solid;
   border-radius: 4px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   a {
     text-decoration: none;
     p {
-      padding: 8px 20px;
+      padding: 8px 16px;
+      color: $color-textWhite;
     }
   }
   @media (max-width: 480px) {
-    right: 16px;
+    top: auto;
+    right: 24px;
     bottom: 24px;
   }
 }
@@ -372,7 +374,6 @@ html {
       }
     }
   }
-
   @media (max-width: 800px) {
     .container--content {
       padding: 80px 32px 64px 32px;
@@ -416,6 +417,7 @@ html {
   @media (max-width: 480px) {
     .container--content {
       padding: 80px 16px 64px 16px;
+      @include flex(column, center, center, 120px);
     }
     .container--contentSection {
       .module__verticalIconList {

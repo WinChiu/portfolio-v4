@@ -51,7 +51,7 @@ class ProjectCard extends HTMLElement {
            ${siteButton}
          </div>`
       : `<div class="block__button">
-           <a href="${projectUrl}" target="_blank" rel="noopener noreferrer">
+           <a href="${projectUrl}" rel="noopener noreferrer">
              <p>${viewProjectText}</p>
            </a>
          </div>`;
