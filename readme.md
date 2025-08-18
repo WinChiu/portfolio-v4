@@ -1,1 +1,1 @@
-sass --watch style/dist/style.scss:style/dist/style.css \ style/dist/workStyle.scss:style/dist/workStyle.css
+sass --watch style/style.scss:style/style.css style/workStyle.scss:style/workStyle.css

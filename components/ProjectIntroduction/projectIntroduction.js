@@ -15,7 +15,7 @@ class ProjectIntroduction extends HTMLElement {
       if (!content) return "";
       return `
         <div class="block block__intro">
-          <h6 class="block--title">${title}</h6>
+          <h5 class="block--title">${title}</h5>
           <p class="block--content">${content}</p>
         </div>`;
     };

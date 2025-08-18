@@ -18,7 +18,7 @@ class ProjectHeader extends HTMLElement {
           .map(
             (tag) => `
           <div class="module__tag">
-            <h6>${tag}</h6>
+            <p>${tag}</p>
           </div>
         `
           )

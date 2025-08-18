@@ -26,7 +26,7 @@
           background-color: $color-yellow;
           width: fit-content;
           border-radius: 100px;
-          h6 {
+          p {
             color: $color-textWhite;
           }
         }
@@ -74,6 +74,9 @@
           padding-right: 16px;
           padding-left: 16px;
           margin-bottom: 8px;
+          .module__tag {
+            padding: 2px 12px;
+          }
         }
         .module__title {
           font-weight: 500;
