@@ -1,17 +1,1466 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 2 | @use "../components/projectCard/projectCard.scss" as *;
- *   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   style\style.scss 2:1  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 2 \2502  @use \"../components/projectCard/projectCard.scss\" as *;\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   style\\style.scss 2:1  root stylesheet";
+@charset "UTF-8";
+h1 .highlight,
+h2 .highlight,
+h3 .highlight,
+h4 .highlight,
+h5 .highlight,
+h6 .highlight,
+p .highlight {
+  color: #c14804;
+  font-weight: bold;
 }
+
+p,
+li {
+  font-size: 18px;
+  line-height: 28px;
+}
+@media (max-width: 768px) {
+  p,
+  li {
+    font-size: 16px;
+    line-height: 26px;
+  }
+}
+
+ol {
+  padding-left: 24px;
+}
+ol li {
+  padding-left: 4px;
+}
+
+h1 {
+  font-size: 120px;
+  line-height: 1;
+}
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 72px;
+  }
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 44px;
+  }
+}
+
+h2 {
+  font-size: 44px;
+  line-height: 1.2;
+}
+@media (max-width: 1000px) {
+  h2 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 480px) {
+  h2 {
+    font-size: 32px;
+  }
+}
+
+h3 {
+  font-size: 36px;
+  line-height: 1.2;
+}
+@media (max-width: 1000px) {
+  h3 {
+    font-size: 30px;
+  }
+}
+@media (max-width: 480px) {
+  h3 {
+    font-size: 24px;
+  }
+}
+
+h4 {
+  font-size: 28px;
+  line-height: 1.4;
+}
+@media (max-width: 1000px) {
+  h4 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 480px) {
+  h4 {
+    font-size: 20px;
+  }
+}
+
+h5 {
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: normal;
+}
+@media (max-width: 480px) {
+  h5 {
+    font-size: 18px;
+  }
+}
+
+h6 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: normal;
+}
+@media (max-width: 480px) {
+  h6 {
+    font-size: 18px;
+  }
+}
+
+.section--work .container--content {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  gap: 0px;
+  position: relative;
+  border-bottom: 2px #363a35 solid;
+  /* ===== Media Query ===== */
+}
+.section--work .container--content .block--introduction {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0px;
+  margin-left: 48px;
+  flex: 1;
+}
+.section--work .container--content .block--introduction .block__header {
+  position: relative;
+  margin-bottom: 16px;
+}
+.section--work .container--content .block--introduction .block__number {
+  font-family: "Source Serif 4";
+  color: transparent;
+  margin-bottom: 20px;
+  -webkit-text-stroke: 2px #7a776d;
+}
+.section--work .container--content .block--introduction .block__content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0px;
+}
+.section--work .container--content .block--introduction .block__title {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.section--work .container--content .block--introduction .block__tag {
+  color: #7a776d;
+  font-family: "Source Serif 4";
+  font-weight: 600;
+}
+.section--work .container--content .block--introduction .block__description {
+  padding-left: 16px;
+  border-left: #b74343 solid 4px;
+  margin-bottom: 32px;
+}
+.section--work .container--content .block--introduction .block__buttonContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 16px;
+}
+.section--work .container--content .block--introduction .block__button {
+  width: 50%;
+  padding: 8px 16px;
+  background-color: #b74343;
+  border: 2px #b74343 solid;
+}
+.section--work .container--content .block--introduction .block__button p {
+  color: #ffffff;
+}
+.section--work .container--content .block--introduction .block__button a {
+  text-decoration: none;
+}
+.section--work .container--content .block--introduction .block__button:hover {
+  cursor: pointer;
+  background-color: #cabd8a;
+  border: 2px #cabd8a solid;
+}
+.section--work .container--content .block--introduction .block__button--code {
+  width: fit-content;
+}
+.section--work .container--content .block--introduction .block__button--disable {
+  background-color: #c8c8c8;
+  border: 2px #c8c8c8 solid;
+}
+.section--work .container--content .block--introduction .block__button--disable:hover {
+  cursor: default;
+  background-color: #c8c8c8;
+}
+.section--work .container--content .block--introduction .block__button--viewSite {
+  color: #615f58;
+  border: 2px #615f58 solid;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.section--work .container--content .block--introduction .block__button--viewSite p {
+  color: #615f58;
+}
+.section--work .container--content .block--introduction .block__button--viewSite:hover {
+  color: #cabd8a;
+  border: 2px #cabd8a solid;
+}
+.section--work .container--content .block--introduction .block__button--viewSite:hover p {
+  color: #cabd8a;
+}
+.section--work .container--content .media--workCover {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 0px;
+}
+.section--work .container--content .media--workCover .media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.section--work .container--content .block--line {
+  position: absolute;
+  width: calc(100% + 120px);
+  height: 2px;
+  bottom: 0;
+  right: 0;
+  background-color: #363a35;
+}
+@media (max-width: 1000px) {
+  .section--work .container--content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 0px;
+  }
+  .section--work .container--content .block--introduction {
+    margin-left: 0;
+  }
+  .section--work .container--content .block--introduction .block__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: row;
+    gap: 0px;
+    margin-bottom: 16px;
+  }
+  .section--work .container--content .block--introduction .block__number {
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+  .section--work .container--content .media--workCover {
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .section--work .container--content .block--introduction .block__number {
+    -webkit-text-stroke: 1.5px #7a776d;
+    display: none;
+  }
+}
+.section--work .workHide {
+  display: none;
+}
+
+/* ==========================================================================
+   Mixin
+   ========================================================================== */
+/* ==========================================================================
+   Keyframes
+   ========================================================================== */
+/* 定義名為 bounce 的關鍵影格 */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  /* 50% 時往上位移 10px，你可自行調整數值改變「彈跳」幅度 */
+  50% {
+    transform: translateY(-20px);
+  }
+}
+/* ==========================================================================
+   全局樣式
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Source Sans 3";
+  color: #363a35;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7a776d;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  scrollbar-gutter: unset;
+}
+
+/* ========== Utility Classes ========== */
+.highlight {
+  color: #c14804;
+}
+
+/* ========== Global Layout ========== */
+html,
+body {
+  position: relative;
+}
+
+/* ========== HTML Specific ========== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   段落樣式
+   ========================================================================== */
+.section {
+  position: relative;
+  max-width: 100vw;
+  padding-left: 120px;
+  box-sizing: border-box;
+  background-color: #fbfbf6;
+  z-index: 2;
+}
+.section .container--content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 64px;
+  border-left: #363a35 solid 2px;
+}
+@media (max-width: 800px) {
+  .section {
+    padding-left: 88px;
+  }
+  .section .container--content {
+    padding: 32px;
+  }
+}
+@media (max-width: 480px) {
+  .section {
+    padding-left: 0;
+  }
+  .section .container--content {
+    padding: 24px 16px;
+    border-left: none;
+  }
+}
+
+/* ==========================================================================
+   主區塊樣式
+   ========================================================================== */
+.section--main {
+  /* 主區塊設定 */
+  height: 100dvh;
+  border-bottom: none;
+  /* === Media Queries === */
+}
+.section--main .container--content {
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  flex-direction: row;
+  gap: 0px;
+  overflow: hidden;
+  padding-bottom: 0;
+  /* 介紹區塊 */
+  /* 背景圖片區塊 */
+  /* 向下圖片區塊 */
+  /* 語言切換按鈕 */
+}
+.section--main .container--content .block--introduction {
+  z-index: 1;
+  min-width: 55%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0px;
+  margin-bottom: 76px;
+  /* 標題區塊 */
+  /* 描述區塊 */
+  /* 註解區塊 */
+}
+.section--main .container--content .block--introduction .block__header {
+  position: relative;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.section--main .container--content .block--introduction .block__header .block__title {
+  color: #615f58;
+  font-size: 88px;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  width: 110%;
+}
+.section--main .container--content .block--introduction .block__description {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  font-weight: 600;
+  font-family: "Source Serif 4";
+  color: #615f58;
+  margin-bottom: 32px;
+  line-height: 140%;
+  width: 110%;
+}
+.section--main .container--content .block--introduction .block__annotation {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  color: #7a776d;
+  font-weight: normal;
+  font-style: italic;
+  line-height: 140%;
+  width: 110%;
+}
+.section--main .container--content .block__bgImage {
+  z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: hard-light;
+  opacity: 0.8;
+  background-image: url("../img/image-landingBackground.webp");
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
+}
+.section--main .container--content .media--image {
+  opacity: 0;
+  transition-duration: 2.5s;
+  position: relative;
+  height: 100vh;
+  width: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+  z-index: 1;
+}
+.section--main .container--content .media--image .media__img--body {
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  align-self: flex-start;
+  object-fit: contain;
+  position: relative;
+  transform: none;
+}
+.section--main .container--content .media--image .media__img--facial {
+  position: absolute;
+  width: auto;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.section--main .container--content .media--image .media__img--eye1Left {
+  height: 6%;
+  left: 31.5%;
+  top: 42%;
+}
+.section--main .container--content .media--image .media__img--eye1Right {
+  height: 6%;
+  left: 47.5%;
+  top: 42%;
+}
+.section--main .container--content .media--image .media__img--mouth {
+  height: 2.8%;
+  left: 40%;
+  top: 54%;
+}
+.section--main .container--content .media--downImage {
+  position: absolute;
+  left: 64px;
+  bottom: 88px;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+.section--main .container--content .block__translator {
+  z-index: 10;
+  cursor: pointer;
+  background-color: #fbfbf6;
+  position: absolute;
+  right: 48px;
+  bottom: 48px;
+  border: #363a35 2px solid;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.section--main .container--content .block__translator a {
+  text-decoration: none;
+}
+.section--main .container--content .block__translator a p {
+  padding: 8px 20px;
+  color: #363a35;
+}
+.section--main .container--content .block__translator:hover {
+  background-color: #cabd8a;
+}
+.section--main .container--content .block__translator:hover p {
+  color: #ffffff;
+}
+@media (max-width: 996px) {
+  .section--main .container--content .block--introduction {
+    width: 100%;
+  }
+  .section--main .container--content .media--image {
+    display: none;
+  }
+  .section--main .container--content .media--downImage {
+    bottom: 24px;
+  }
+}
+@media (max-width: 800px) {
+  .section--main {
+    /* 調整標題字型大小 */
+  }
+  .section--main .container--content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 0px;
+  }
+  .section--main .container--content .block--introduction {
+    margin-bottom: 0;
+    width: 100%;
+    /* 描述區塊 */
+  }
+  .section--main .container--content .block--introduction .block__header {
+    margin-top: 64px;
+  }
+  .section--main .container--content .block--introduction .block__header .block__title {
+    text-align: center;
+    width: 100%;
+  }
+  .section--main .container--content .block--introduction .block__description {
+    width: 100%;
+    text-align: center;
+  }
+  .section--main .container--content .block--introduction .block__annotation {
+    width: 100%;
+    text-align: center;
+  }
+  .section--main .container--content .block__translator {
+    right: 48px;
+    top: 48px;
+    bottom: auto;
+  }
+  .section--main .container--content .media--downImage {
+    display: none;
+  }
+  .section--main .container--content .block--introduction .block__header .block__title {
+    font-size: 56px;
+  }
+}
+@media (max-width: 480px) {
+  .section--main {
+    height: 100dvh;
+  }
+  .section--main .container--content .block--introduction {
+    margin-bottom: 0;
+  }
+  .section--main .container--content .block--introduction .block__description {
+    margin-bottom: 16px;
+  }
+  .section--main .container--content .block--introduction .block__annotation {
+    margin-bottom: 64px;
+  }
+  .section--main .container--content .block__translator {
+    right: 16px;
+    top: 72px;
+  }
+}
+
+/* 預設狀態：元素透明且稍微往下並縮小 */
+.animate-item {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* 當元素進入視窗，漸漸浮現並回到正常大小位置 */
+.animate-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================================================
+   區塊切換樣式
+   ========================================================================== */
+.block--switcher {
+  width: 100%;
+  background-color: #fbfbf6;
+  top: -2px;
+  position: sticky;
+  z-index: 1;
+  box-sizing: border-box;
+  border-top: 2px solid #363a35;
+  border-bottom: 2px solid #363a35;
+  border-left: 2px solid #363a35;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0px;
+  /* 滑鼠懸停效果 */
+  /* 選取狀態 */
+  /* 手機斷點設定 */
+}
+.block--switcher a {
+  width: 100%;
+  text-decoration: none;
+}
+.block--switcher .block__design {
+  border-right: 2px solid #363a35;
+}
+.block--switcher .block__coding {
+  border-right: none;
+}
+.block--switcher .block__design,
+.block--switcher .block__coding {
+  width: 100%;
+  padding: 8px 32px;
+  background-color: #fbfbf6;
+}
+.block--switcher .block__design h4,
+.block--switcher .block__coding h4 {
+  font-family: "Source Serif 4";
+  font-weight: 600;
+  text-align: center;
+}
+.block--switcher .block__design:hover,
+.block--switcher .block__coding:hover {
+  background-color: #cabd8a;
+  cursor: pointer;
+}
+.block--switcher .block__design:hover h4,
+.block--switcher .block__coding:hover h4 {
+  color: #fbfbf6;
+}
+.block--switcher .selected {
+  background-color: #cabd8a;
+}
+.block--switcher .selected h4 {
+  color: #fbfbf6;
+}
+@media (max-width: 480px) {
+  .block--switcher {
+    top: 54px;
+    border-left: none;
+  }
+  .block--switcher .block__design,
+  .block--switcher .block__coding {
+    padding: 8px 24px;
+  }
+  .block--switcher .block__design h4,
+  .block--switcher .block__coding h4 {
+    font-size: 20px;
+  }
+}
+
+/* ==========================================================================
+   工作區塊樣式
+   ========================================================================== */
+/* ==========================================================================
+   關於區塊樣式
+   ========================================================================== */
+.section--about .container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  gap: 0px;
+  position: relative;
+}
+.section--about .container .media {
+  flex: 1;
+  margin-right: 48px;
+}
+.section--about .container .media .media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.section--about .container .block {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0px;
+}
+.section--about .container .block--introduction .media {
+  margin-bottom: 48px;
+  margin-right: 0;
+}
+.section--about .container .block .block__title {
+  font-family: "Source Serif 4";
+  color: transparent;
+  margin-bottom: 20px;
+  -webkit-text-stroke: 2px #7a776d;
+}
+.section--about .container .block .block__content {
+  margin-bottom: 8px;
+}
+.section--about .container .block .block__jobs {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.section--about .container .block .block__jobs .block__jobDescription {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+}
+.section--about .container .block .block__jobs .block__jobDescription--dotLine {
+  border-bottom: 2px dotted #363a35;
+  width: 100%;
+}
+.section--about .container .block .block__jobs .block__jobDescription--company, .section--about .container .block .block__jobs .block__jobDescription--title {
+  min-width: fit-content;
+}
+.section--about .container .block .block__jobs .block__jobDescription--past p {
+  color: #c8c8c8;
+}
+.section--about .container .block .block__jobs .block__jobDescription--past .block__jobDescription--dotLine {
+  border-bottom: 2px dotted #c8c8c8;
+}
+@media (max-width: 800px) {
+  .section--about .container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0px;
+  }
+  .section--about .container .media {
+    margin: 0;
+    margin-bottom: 24px;
+  }
+}
+@media (max-width: 480px) {
+  .section--about .container .block--introduction .media {
+    margin-bottom: 24px;
+  }
+  .section--about .container .block .block__title {
+    -webkit-text-stroke: 1.5px #7a776d;
+  }
+  .section--about .container .block .block__jobs {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   導航樣式
+   ========================================================================== */
+.nav--main {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  height: 100dvh;
+  width: 120px;
+  padding: 40px 0;
+  background-color: #fbfbf6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+}
+.nav--main .block--navList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+}
+.nav--main .block__navItem {
+  margin-bottom: 16px;
+}
+.nav--main .block__navItem a {
+  font-family: "Source Sans 3";
+  cursor: pointer;
+  text-decoration: none;
+}
+.nav--main .media--socialList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+}
+.nav--main .media__img {
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+@media (max-width: 800px) {
+  .nav--main {
+    width: 88px;
+  }
+}
+@media (max-width: 480px) {
+  .nav--main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 0px;
+    padding: 16px;
+    height: 56px;
+    width: 100vw;
+    top: 0;
+    background-color: #fbfbf6;
+    border-bottom: #363a35 solid 2px;
+  }
+  .nav--main .block--navList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0px;
+  }
+  .nav--main .block--navList a {
+    font-size: 18px;
+  }
+  .nav--main .block__navItem {
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+  .nav--main .media--socialList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0px;
+  }
+  .nav--main .media--socialList a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0px;
+  }
+  .nav--main .media__img {
+    margin-bottom: 0;
+    width: 36px;
+    margin-left: 8px;
+  }
+}
+
+/* ==========================================================================
+   背景動畫
+   ========================================================================== */
+.canvas-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+#backgroundCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.canvas-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(50px); /* 毛玻璃效果 */
+  z-index: 1;
+  pointer-events: none; /* 讓這層不影響互動 */
+}
+
+/* ==========================================================================
+   首頁 SVG 動畫
+   ========================================================================== */
+svg .svg-elem-1 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+}
+
+svg.active .svg-elem-1 {
+  fill: rgb(209, 211, 212);
+}
+
+svg .svg-elem-2 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.05s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.05s;
+}
+
+svg.active .svg-elem-2 {
+  fill: rgb(232, 213, 117);
+}
+
+svg .svg-elem-3 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.1s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.1s;
+}
+
+svg.active .svg-elem-3 {
+  fill: rgb(209, 211, 212);
+}
+
+svg .svg-elem-4 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.15s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.15s;
+}
+
+svg.active .svg-elem-4 {
+  fill: rgb(209, 211, 212);
+}
+
+svg .svg-elem-5 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.2s;
+}
+
+svg.active .svg-elem-5 {
+  fill: rgb(209, 211, 212);
+}
+
+svg .svg-elem-6 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.25s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.25s;
+}
+
+svg.active .svg-elem-6 {
+  fill: rgb(232, 213, 117);
+}
+
+svg .svg-elem-7 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.3s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.3s;
+}
+
+svg.active .svg-elem-7 {
+  fill: rgb(209, 211, 212);
+}
+
+svg .svg-elem-8 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.35s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.35s;
+}
+
+svg.active .svg-elem-8 {
+  fill: rgb(232, 213, 117);
+}
+
+svg .svg-elem-9 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.4s;
+}
+
+svg.active .svg-elem-9 {
+  fill: rgb(232, 213, 117);
+}
+
+svg .svg-elem-10 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.45s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.45s;
+}
+
+svg.active .svg-elem-10 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-11 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s;
+}
+
+svg.active .svg-elem-11 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-12 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.55s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.55s;
+}
+
+svg.active .svg-elem-12 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-13 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.6s;
+}
+
+svg.active .svg-elem-13 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-14 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.65s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.65s;
+}
+
+svg.active .svg-elem-14 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-15 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.7s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.7s;
+}
+
+svg.active .svg-elem-15 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-16 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.75s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.75s;
+}
+
+svg.active .svg-elem-16 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-17 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s;
+}
+
+svg.active .svg-elem-17 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-18 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.85s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.85s;
+}
+
+svg.active .svg-elem-18 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-19 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s;
+}
+
+svg.active .svg-elem-19 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-20 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.95s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 0.95s;
+}
+
+svg.active .svg-elem-20 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-21 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1s;
+}
+
+svg.active .svg-elem-21 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-22 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.05s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.05s;
+}
+
+svg.active .svg-elem-22 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-23 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.1s;
+}
+
+svg.active .svg-elem-23 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-24 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.15s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.15s;
+}
+
+svg.active .svg-elem-24 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-25 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.2s;
+}
+
+svg.active .svg-elem-25 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-26 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.25s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.25s;
+}
+
+svg.active .svg-elem-26 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-27 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.3s;
+}
+
+svg.active .svg-elem-27 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-28 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.35s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.35s;
+}
+
+svg.active .svg-elem-28 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-29 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.4s;
+}
+
+svg.active .svg-elem-29 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-30 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.45s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.45s;
+}
+
+svg.active .svg-elem-30 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-31 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.5s;
+}
+
+svg.active .svg-elem-31 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-32 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.55s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.55s;
+}
+
+svg.active .svg-elem-32 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-33 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.6s;
+}
+
+svg.active .svg-elem-33 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-34 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.65s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.65s;
+}
+
+svg.active .svg-elem-34 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-35 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.7s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.7s;
+}
+
+svg.active .svg-elem-35 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-36 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.75s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.75s;
+}
+
+svg.active .svg-elem-36 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-37 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.8s;
+}
+
+svg.active .svg-elem-37 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-38 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.85s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.85s;
+}
+
+svg.active .svg-elem-38 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-39 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.9s;
+}
+
+svg.active .svg-elem-39 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-40 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.95s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 1.95s;
+}
+
+svg.active .svg-elem-40 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-41 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2s;
+}
+
+svg.active .svg-elem-41 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-42 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.05s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.05s;
+}
+
+svg.active .svg-elem-42 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-43 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.1s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.1s;
+}
+
+svg.active .svg-elem-43 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-44 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.15s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.15s;
+}
+
+svg.active .svg-elem-44 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-45 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.2s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.2s;
+}
+
+svg.active .svg-elem-45 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-46 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.25s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.25s;
+}
+
+svg.active .svg-elem-46 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-47 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.3s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.3s;
+}
+
+svg.active .svg-elem-47 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-48 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.35s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.35s;
+}
+
+svg.active .svg-elem-48 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-49 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.4s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.4s;
+}
+
+svg.active .svg-elem-49 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-50 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.45s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.45s;
+}
+
+svg.active .svg-elem-50 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-51 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.5s;
+}
+
+svg.active .svg-elem-51 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-52 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.55s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.55s;
+}
+
+svg.active .svg-elem-52 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-53 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.6s;
+}
+
+svg.active .svg-elem-53 {
+  fill: rgb(35, 31, 32);
+}
+
+svg .svg-elem-54 {
+  fill: transparent;
+  -webkit-transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.65s;
+  transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) 2.65s;
+}
+
+svg.active .svg-elem-54 {
+  fill: rgb(35, 31, 32);
+}
+
+/*# sourceMappingURL=style.css.map */

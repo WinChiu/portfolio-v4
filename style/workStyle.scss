@@ -1,7 +1,7 @@
 @use "variables" as *;
-@use "../components/projectHeader/projectHeader.scss" as *;
-@use "../components/projectIntroduction/projectIntroduction.scss" as *;
-@use "../components/projectNavigation/projectNavigation.scss" as *;
+@use "../components/ProjectHeader/projectHeader.scss" as *;
+@use "../components/ProjectIntroduction/projectIntroduction.scss" as *;
+@use "../components/ProjectNavigation/projectNavigation.scss" as *;
 
 @mixin flex($flexDirection, $justifyContent, $alignItems, $gap) {
   display: flex;
