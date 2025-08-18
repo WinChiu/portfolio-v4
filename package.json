@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "scss": "sass style/style.scss style/style.css && sass style/workStyle.scss style/workStyle.css",
+    "scss:watch": "sass --watch style/style.scss:style/style.css style/workStyle.scss:style/workStyle.css"
+  }
+}

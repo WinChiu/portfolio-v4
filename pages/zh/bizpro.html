@@ -15,6 +15,7 @@
     <script src="    https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
 "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script type="module" src="../../components/components.js"></script>
 
     <title>BizPro Official Website - 社團官方網站前後臺開發</title>
     <link rel="icon" href="./img/favicon.png" type="image/png" />
@@ -23,75 +24,21 @@
     <div class="block block__translator">
       <a href="../en/bizpro.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">
-            BizPro Official Website - 社團官方網站前後臺開發
-          </h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">Sep.2022 ~ Jan.2023</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">
-                UIUX Designer, Frontend Developer
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                UIUX 介面設計、資料庫維護 (MongoDB)、前端後端開發
-                (React.js、Node.js)
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">BizPro 臺大商學研究社</p>
-            </div>
-            <div
-              class="module__line"
-              style="background-color: transparent"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <project-header
+      tags="CMS Management,Full-stack"
+      title="BizPro Official Website - 社團官方網站前後臺開發"
+      duration="Sep. 2022 ~ Jan. 2023"
+      role="UIUX Designer, Frontend Developer"
+      responsibility="UIUX 介面設計、資料庫維護 (MongoDB)、前端後端開發 (React.js、Node.js)"
+      company="BizPro 臺大商學研究社"
+    ></project-header>
 
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-bp.webp"
-              alt="BizPro"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                協助 BizPro
-                台大商學研究社的重新設計網站與後續開發，改善資訊易讀性並突顯社團價值。
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Production</h6>
-              <p class="block--content">
-                以 MERN
-                框架製作具後台功能的網站，包含歷屆成員資料搜索與維護功能，方便不具程式背景的社員維護網站資料
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-introduction
+      image-url="../../img/image-projectCover-bp.webp"
+      image-alt="BizPro 台大商學研究社官方網站"
+      purpose="協助 BizPro 台大商學研究社的重新設計網站與後續開發，改善資訊易讀性並突顯社團價值。"
+      production="以 MERN 框架製作具後台功能的網站，包含歷屆成員資料搜索與維護功能，方便不具程式背景的社員維護網站資料"
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -220,16 +167,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem">
-          <a href="../../home-zh.html#work">Back</a>
-        </h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation language="zh"></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

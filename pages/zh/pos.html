@@ -8,7 +8,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-
+    <script type="module" src="../../components/components.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,79 +24,22 @@
     <div class="block block__translator">
       <a href="../en/pos.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">POS TW/HK 金流串接正逆流程設計</h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">Jul. 2022 ~ Nov. 2022</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">UX Designer</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                流程規劃、設計完稿、UI Testing
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">SHOPLINE</p>
-            </div>
-            <div class="module__line" style="border: none"></div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-pos.webp"
-              alt="SHOPLINE POS Payment Flow Design"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                為 SHOPLINE POS
-                台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Challenge</h6>
-              <p class="block--content">
-                POS
-                產品已經上線使用且店家已習慣既有流程，為降低學習成本，在進行設計時需貼合既有流程進行。
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="block block__bottom">
-          <div class="block block__intro">
-            <h6 class="block--title">Production</h6>
-            <p class="block--content">
-              完成 6 項正逆金流系統操作流程設計，涵蓋 3
-              種金流、非金流付款方式與多種付款結果處理（成功、失敗、離線、操作錯誤…）。
-            </p>
-          </div>
-          <div class="block block__intro">
-            <h6 class="block--title">Outcome</h6>
-            <p class="block--content">產品上線並讓台灣與香港店家使用。</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-header
+      tags="E-commerce,Finance"
+      title="POS TW/HK 金流串接正逆流程設計"
+      duration="Jul. 2022 ~ Nov. 2022"
+      role="UX Designer"
+      responsibility="流程規劃、設計完稿、UI Testing"
+      company="SHOPLINE"
+    ></project-header>
+    <project-introduction
+      image-url="../../img/image-projectCover-pos.webp"
+      image-alt="POS TW/HK 金流串接正逆流程設計"
+      purpose="為 SHOPLINE POS 台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。"
+      challenge="POS 產品已經上線使用且店家已習慣既有流程，為降低學習成本，在進行設計時需貼合既有流程進行。"
+      production="完成 6 項正逆金流系統操作流程設計，涵蓋 3 種金流、非金流付款方式與多種付款結果處理（成功、失敗、離線、操作錯誤…）。"
+      outcome="產品上線並讓台灣與香港店家使用。"
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -159,14 +102,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              我針對 PRD 交付文件中對於商業現況的描述，<span class="highlight"
-                >定義本次專案在產品面與設計面的目標</span
-              >，以聚焦設計解方。
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="我針對 PRD 交付文件中對於商業現況的描述，==定義本次專案在產品面與設計面的目標==，以聚焦設計解方。"
+          ></project-content-bigquote>
         </div>
         <div
           class="container container--contentSection specialSection specialSection--yellow"
@@ -226,14 +165,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              雖然 PRD 已經提供明確的設計解方，但我<span class="highlight"
-                >重新釐清問題後提出更能對應到目標的解方</span
-              >，並獲得採納。
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="雖然 PRD 已經提供明確的設計解方，但我==重新釐清問題後提出更能對應到目標的解方==，並獲得採納。"
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -388,18 +323,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem">
-          <a href="../../home-zh.html#work">Back</a>
-        </h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem">
-          <a href="#top">Top</a>
-        </h6>
-      </div>
-    </nav>
+    <project-navigation language="zh"></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

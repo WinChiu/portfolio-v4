@@ -12,10 +12,10 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
       rel="stylesheet"
     />
-    <script src="    https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
 "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-
+    <script type="module" src="../../components/components.js"></script>
     <title>BizPro - Club Official Website Design and Development</title>
     <link rel="icon" href="./img/favicon.png" type="image/png" />
   </head>
@@ -23,78 +23,21 @@
     <div class="block block__translator">
       <a href="../zh/bizpro.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">
-            BizPro - Club Official Website Design and Development
-          </h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">Sep.2022 ~ Jan.2023</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">
-                UIUX Designer, Frontend Developer
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                UI/UX design, database maintenance (MongoDB), frontend and
-                backend development (React.js、Node.js)
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">BizPro</p>
-            </div>
-            <div
-              class="module__line"
-              style="background-color: transparent"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <project-header
+      tags="CMS Management,Full-stack"
+      title="BizPro - Club Official Website Design and Development"
+      duration="Sep. 2022 ~ Jan. 2023"
+      role="UIUX Designer, Frontend Developer"
+      responsibility="UI/UX design, database maintenance (MongoDB), frontend and backend development (React.js, Node.js)"
+      company="BizPro"
+    ></project-header>
 
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-bp.webp"
-              alt="BizPro"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                Assisted BizPro, the NTU Business Research Club, in redesigning
-                and developing their website to enhance information readability
-                and highlight the club's value.
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Production</h6>
-              <p class="block--content">
-                Developed a website with backend functionality using the MERN
-                stack, featuring a searchable and maintainable database of past
-                members. Designed for ease of use, allowing non-technical club
-                members to manage website data efficiently.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-introduction
+      image-url="../../img/image-projectCover-bp.webp"
+      image-alt="BizPro"
+      purpose="Assisted BizPro, the NTU Business Research Club, in redesigning and developing their website to enhance information readability and highlight the club's value."
+      production="Developed a website with backend functionality using the MERN stack, featuring a searchable and maintainable database of past members. Designed for ease of use, allowing non-technical club members to manage website data efficiently."
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -102,7 +45,6 @@
             <h3 class="module__bgText">Project Background</h3>
             <div class="module__line"></div>
           </div>
-
           <div class="module module__pureText">
             <p class="module__text">
               This website redesign for BizPro, the NTU Business Research Club,
@@ -244,16 +186,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem">
-          <a href="/#work">Back</a>
-        </h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

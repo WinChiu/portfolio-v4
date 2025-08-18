@@ -8,7 +8,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-
+    <script type="module" src="../../components/components.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,82 +24,23 @@
     <div class="block block__translator">
       <a href="../en/designSystem.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">設計系統架構規劃與整理</h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">May. 2022 ~ Jul. 2022</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">UIUX Designer</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">
-                需求探索、架構規劃、元件製作
-              </p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">SHOPLINE</p>
-            </div>
-            <div class="module__line" style="border: none"></div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <project-header
+      tags="Design System"
+      title="設計系統架構規劃與整理"
+      duration="May. 2022 ~ Jul. 2022"
+      role="UIUX Designer"
+      responsibility="需求探索、架構規劃、元件製作"
+      company="SHOPLINE"
+    ></project-header>
 
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-designSystem.webp"
-              alt="Design System Redesign"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，進行設計系統架構重設計、元件再造與使用情境盤點。
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Challenge</h6>
-              <p class="block--content">
-                使用中的設計元件與規範分散在各設計系統檔案與設計稿中，許多元件經
-                Sketch 搬運後破損需要重建。
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="block block__bottom">
-          <div class="block block__intro">
-            <h6 class="block--title">Production</h6>
-            <p class="block--content">
-              整理出 5 項使用問題，提出新的設計系統架構與團隊維護方式，定義 45
-              種元件與相關規範。
-            </p>
-          </div>
-          <div class="block block__intro">
-            <h6 class="block--title">Outcome</h6>
-            <p class="block--content">
-              設計系統投入 SHOPLINE 電商平台 V2
-              使用，並於內部週會進行設計系統更新討論與迭代。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-introduction
+      image-url="../../img/image-projectCover-designSystem.webp"
+      image-alt="設計系統架構規劃與整理"
+      purpose="以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，進行設計系統架構重設計、元件再造與使用情境盤點。"
+      challenge="使用中的設計元件與規範分散在各設計系統檔案與設計稿中，許多元件經 Sketch 搬運後破損需要重建。"
+      production="整理出 5 項使用問題，提出新的設計系統架構與團隊維護方式，定義 45 種元件與相關規範。"
+      outcome="設計系統投入 SHOPLINE 電商平台 V2 使用，並於內部週會進行設計系統更新討論與迭代。"
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -132,15 +73,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              我首先<span class="highlight">訪談了公司三位設計師</span
-              >，了解對設計系統的使用習慣與需求。並整理出<span class="highlight"
-                >五大問題。</span
-              >
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="我首先==訪談了公司三位設計師==，了解對設計系統的使用習慣與需求。並整理出==五大問題。=="
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -293,14 +229,10 @@
           </div>
         </div>
         <div class="container container--contentSection">
-          <div class="module module__bgQuote">
-            <img src="../../img/sketch-think.svg" alt="" />
-            <h3>
-              根據目標，我提供了從<span class="highlight"
-                >規範建立、元件歸納到更新維護的完整方案。</span
-              >
-            </h3>
-          </div>
+          <project-content-bigquote
+            icon="../../img/sketch-think.svg"
+            content="根據目標，我提供了從==規範建立、元件歸納到更新維護的完整方案。=="
+          ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
           <div class="module module__bgTitle">
@@ -457,14 +389,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="/home-zh.html">Back</a></h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation language="zh"></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

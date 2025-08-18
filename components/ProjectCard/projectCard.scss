@@ -1,0 +1,179 @@
+@use "../../style/variables" as *;
+@mixin flex($flexDirection, $justifyContent, $alignItems, $gap: 0px) {
+  display: flex;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-direction: $flexDirection;
+  gap: $gap;
+}
+.section--work {
+  .container--content {
+    // 基本設定
+    @include flex(row, center, stretch);
+    position: relative;
+    border-bottom: 2px $color-black solid;
+    // 介紹區塊
+    .block--introduction {
+      @include flex(column, flex-end, flex-start);
+      margin-left: 48px;
+      flex: 1;
+
+      // 標題區塊
+      .block__header {
+        position: relative;
+        margin-bottom: 16px;
+      }
+
+      // 數字區塊：使用隱藏文字與描邊效果
+      .block__number {
+        font-family: $font-serif;
+        color: transparent;
+        margin-bottom: 20px;
+        -webkit-text-stroke: 2px $color-darkGold;
+      }
+
+      // 內容區塊
+      .block__content {
+        @include flex(column, center, flex-start);
+      }
+
+      // 標題文字
+      .block__title {
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+
+      // 標籤
+      .block__tag {
+        color: $color-darkGold;
+        font-family: $font-serif;
+        font-weight: 600;
+      }
+
+      // 描述區塊：左側有紅色邊框
+      .block__description {
+        padding-left: 16px;
+        border-left: $color-red solid 4px;
+        margin-bottom: 32px;
+      }
+
+      // 按鈕容器
+      .block__buttonContainer {
+        @include flex(row, flex-start, center, 16px);
+      }
+
+      // 按鈕樣式
+      .block__button {
+        width: 50%;
+        padding: 8px 16px;
+        background-color: $color-red;
+        border: 2px $color-red solid;
+
+        p {
+          color: $color-textWhite;
+        }
+
+        a {
+          text-decoration: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: $color-yellow;
+          border: 2px $color-yellow solid;
+        }
+
+        // Code 按鈕特殊設定
+        &--code {
+          width: fit-content;
+        }
+
+        // 禁用狀態按鈕
+        &--disable {
+          background-color: $color-gray;
+          border: 2px $color-gray solid;
+
+          &:hover {
+            cursor: default;
+            background-color: $color-gray;
+          }
+        }
+      }
+
+      // 查看網站按鈕
+      .block__button--viewSite {
+        color: $color-darkGray;
+        border: 2px $color-darkGray solid;
+        padding: 8px 16px;
+        text-decoration: none;
+        p {
+          color: $color-darkGray;
+        }
+
+        &:hover {
+          color: $color-yellow;
+          border: 2px $color-yellow solid;
+
+          p {
+            color: $color-yellow;
+          }
+        }
+      }
+    } // end .block--introduction
+
+    // 工作封面圖片區塊
+    .media--workCover {
+      flex: 1;
+      @include flex(column, flex-end, flex-end);
+      .media__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    // 底部分隔線
+    .block--line {
+      position: absolute;
+      width: calc(100% + 120px);
+      height: 2px;
+      bottom: 0;
+      right: 0;
+      background-color: $color-black;
+    }
+
+    /* ===== Media Query ===== */
+    @media (max-width: 1000px) {
+      @include flex(column, center, flex-end);
+
+      .block--introduction {
+        margin-left: 0;
+
+        .block__header {
+          @include flex(row, flex-start, stretch);
+          margin-bottom: 16px;
+        }
+
+        .block__number {
+          margin-bottom: 0;
+          margin-right: 16px;
+        }
+      }
+
+      .media--workCover {
+        margin-bottom: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .block--introduction .block__number {
+        -webkit-text-stroke: 1.5px $color-darkGold;
+        display: none;
+      }
+    }
+  } // end .container--content
+  // 隱藏工作區塊
+  .workHide {
+    display: none;
+  }
+}

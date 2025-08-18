@@ -15,7 +15,7 @@
     <script src="    https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
 "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-
+    <script type="module" src="../../components/components.js"></script>
     <title>工尺 - 北管樂混音器操作展示網站</title>
     <link rel="icon" href="./img/favicon.png" type="image/png" />
   </head>
@@ -23,67 +23,21 @@
     <div class="block block__translator">
       <a href="../en/gongChi.html"><p>繁中 | EN</p></a>
     </div>
-    <main class="section section--header" id="top">
-      <div class="container container--content">
-        <div class="container container--title">
-          <h2 class="module module__title">工尺 - 北管樂混音器操作展示網站</h2>
-          <div class="module module__metaData">
-            <div class="module__data">
-              <p class="module__dataTitle">Duration</p>
-              <p class="module__dataDescription">Jul. 2021 ~ Aug. 2021</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Role</p>
-              <p class="module__dataDescription">Frontend Developer</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Responsibility</p>
-              <p class="module__dataDescription">前端切版、發聲操作功能</p>
-            </div>
-            <div class="module__line"></div>
-            <div class="module__data">
-              <p class="module__dataTitle">Company</p>
-              <p class="module__dataDescription">自行接案</p>
-            </div>
-            <div
-              class="module__line"
-              style="background-color: transparent"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <project-header
+      tags="Animated,Interactive"
+      title="工尺 - 北管樂混音器操作展示網站"
+      duration="Jul. 2021 ~ Aug. 2021"
+      role="Frontend Developer"
+      responsibility="前端切版、發聲操作功能"
+      company="自行接案"
+    ></project-header>
 
-    <section class="section section--introduction">
-      <div class="container container--content">
-        <div class="block block__top">
-          <div class="block block__img">
-            <img
-              src="../../img/image-projectCover-gongChi.webp"
-              alt="Taipei Childcare System Redesign"
-              class="img"
-            />
-          </div>
-          <div class="block block__topRight">
-            <div class="block block__intro">
-              <h6 class="block--title">Purpose</h6>
-              <p class="block--content">
-                以步驟式教學說明各按鍵用途，搭配自由遊玩模式，模擬實體北管樂混音器「工尺」的操作效果。
-              </p>
-            </div>
-            <div class="block block__intro">
-              <h6 class="block--title">Production</h6>
-              <p class="block--content">
-                以網站動畫與 tone.js
-                套件，讓使用者在平板上以多點觸控達到升降調、錄音、混音、演奏…等混音器操作效果。
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <project-introduction
+      image-url="../../img/image-projectCover-gongChi.webp"
+      image-alt="工尺 - 北管樂混音器操作展示網站"
+      purpose="以步驟式教學說明各按鍵用途，搭配自由遊玩模式，模擬實體北管樂混音器「工尺」的操作效果。"
+      production="以網站動畫與 tone.js 套件，讓使用者在平板上以多點觸控達到升降調、錄音、混音、演奏…等混音器操作效果。"
+    ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
         <div class="container container--contentSection">
@@ -144,16 +98,7 @@
         </div>
       </div>
     </section>
-    <nav class="nav nav--main" id="navbar">
-      <div class="block block--navList">
-        <h6 class="block__navItem">
-          <a href="../../home-zh.html#work">Back</a>
-        </h6>
-      </div>
-      <div class="block block--navList">
-        <h6 class="block__navItem"><a href="#top">Top</a></h6>
-      </div>
-    </nav>
+    <project-navigation language="zh"></project-navigation>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

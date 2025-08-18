@@ -1,27 +1,27 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   /* ========== 第 1 步：幫 .module__bgText 加上 ID，並動態生成 TOC ========== */
-  const bgTextElements = document.querySelectorAll('.module__bgText');
+  const bgTextElements = document.querySelectorAll(".module__bgText");
 
   // 建立 TOC 容器
-  const tocContainer = document.createElement('div');
-  tocContainer.className = 'block block--tocList';
+  const tocContainer = document.createElement("div");
+  tocContainer.className = "block block--tocList";
 
   bgTextElements.forEach((section, index) => {
     const id = `toc${index + 1}`;
     section.id = id; // 幫每個 .module__bgText 加上動態 ID
 
     // 建立 <a> 作為 TOC 連結
-    const tocLink = document.createElement('a');
-    tocLink.className = 'toc';
+    const tocLink = document.createElement("a");
+    tocLink.className = "toc";
     tocLink.href = `#${id}`;
 
     // dot
-    const tocDot = document.createElement('div');
-    tocDot.className = 'toc--dot';
+    const tocDot = document.createElement("div");
+    tocDot.className = "toc--dot";
 
     // 文字
-    const tocText = document.createElement('p');
-    tocText.className = 'toc--content';
+    const tocText = document.createElement("p");
+    tocText.className = "toc--content";
     tocText.textContent = section.textContent.trim();
 
     // 組合
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // 插入到 nav 裡第一個子元素後
-  const navbar = document.getElementById('navbar');
+  const navbar = document.getElementById("navbar");
   if (navbar && navbar.firstElementChild) {
     navbar.insertBefore(tocContainer, navbar.firstElementChild.nextSibling);
   } else if (navbar) {
@@ -103,15 +103,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // （保留上一個焦點，不清除）
 
     // 更新 TOC focus 樣式
-    document.querySelectorAll('.toc').forEach((link) => {
-      link.classList.remove('toc--focus');
+    document.querySelectorAll(".toc").forEach((link) => {
+      link.classList.remove("toc--focus");
     });
     if (lastActiveSection) {
       const link = document.querySelector(
         `.toc[href="#${lastActiveSection.id}"]`
       );
       if (link) {
-        link.classList.add('toc--focus');
+        link.classList.add("toc--focus");
       }
     }
   }, observerOptions);
@@ -120,13 +120,13 @@ document.addEventListener('DOMContentLoaded', function () {
   bgTextElements.forEach((section) => observer.observe(section));
 
   /* ========== 第 3 步：預留錨點滾動的置頂空間 ========== */
-  const tocLinks = document.querySelectorAll('.toc');
+  const tocLinks = document.querySelectorAll(".toc");
   const offset = 24; // 預留 24px 空間
   tocLinks.forEach((link) => {
-    link.addEventListener('click', function (event) {
+    link.addEventListener("click", function (event) {
       event.preventDefault(); // 阻止預設的錨點跳轉行為
-      console.log('hi');
-      const targetId = this.getAttribute('href').substring(1); // 取得 ID
+      console.log("hi");
+      const targetId = this.getAttribute("href").substring(1); // 取得 ID
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 執行平滑滾動
         window.scrollTo({
           top: targetPosition,
-          behavior: 'smooth',
+          behavior: "smooth",
         });
       }
     });
