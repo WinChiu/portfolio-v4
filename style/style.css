@@ -36,7 +36,7 @@ h1 {
 }
 @media (max-width: 1000px) {
   h1 {
-    font-size: 60px;
+    font-size: 72px;
   }
 }
 @media (max-width: 480px) {
