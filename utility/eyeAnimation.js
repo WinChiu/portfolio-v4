@@ -1,86 +1,10 @@
-// // avatar-eye.js
-// (function () {
-//   // 取得左右眼元素
-//   const eyeLeft = document.querySelector(".media__img--eye1Left");
-//   const eyeRight = document.querySelector(".media__img--eye1Right");
-
-//   if (!eyeLeft || !eyeRight) return; // 沒找到就退出，避免報錯
-
-//   // 開眼/閉眼圖片路徑
-//   const eyeSrc = {
-//     left: {
-//       open: "/img/image-landingAvatarEye1-left.webp",
-//       close: "/img/image-landingAvatarEye2-left.webp",
-//     },
-//     right: {
-//       open: "/img/image-landingAvatarEye1-right.webp",
-//       close: "/img/image-landingAvatarEye2-right.webp",
-//     },
-//   };
-
-//   // --- 眨眼邏輯 ---
-//   function blinkOnce() {
-//     eyeLeft.src = eyeSrc.left.close;
-//     eyeRight.src = eyeSrc.right.close;
-
-//     setTimeout(() => {
-//       eyeLeft.src = eyeSrc.left.open;
-//       eyeRight.src = eyeSrc.right.open;
-//     }, 120); // 眨眼閉合時間（ms）
-//   }
-
-//   // 隨機間隔（3–6 秒）眨眼
-//   function scheduleBlink() {
-//     const t = 1500 + Math.random() * 1500;
-//     setTimeout(() => {
-//       blinkOnce();
-//       scheduleBlink();
-//     }, t);
-//   }
-
-//   scheduleBlink();
-
-//   // ----- 眼球追蹤 + 3D rotate -----
-//   const maxOffset = 8; // 平移最大偏移 px
-//   const maxRotateX = 30; // X 軸旋轉最大角度 deg
-//   const maxRotateY = 5; // Y 軸旋轉最大角度 deg
-
-//   function moveEyes(e) {
-//     const vw = window.innerWidth;
-//     const vh = window.innerHeight;
-
-//     // 正規化座標 -1 ~ 1
-//     const normX = (e.clientX / vw) * 2 - 1;
-//     const normY = (e.clientY / vh) * 2 - 1;
-
-//     // 平移量
-//     const dx = normX * maxOffset;
-//     const dy = normY * maxOffset;
-
-//     // 上下對應 X 軸旋轉角度
-//     const rotX = normY * maxRotateX; // 往下看正角度，往上看負角度
-//     const rotY = normX * maxRotateY; // 左右 → Y 軸旋轉 ✅ 新增
-
-//     const transformVal = (dx, dy) =>
-//       `translate(-50%, -50%) translate(${dx}px, ${dy}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-
-//     eyeLeft.style.transform = transformVal(dx, dy);
-//     eyeRight.style.transform = transformVal(dx, dy);
-//   }
-
-//   window.addEventListener("mousemove", moveEyes);
-
-//   // 可選：點擊頭像也觸發眨眼
-//   //   const avatar = document.querySelector(".media--image");
-//   //   if (avatar) {
-//   //     avatar.addEventListener("click", blinkOnce);
-//   //   }
-// })();
-
-// avatar-eye.js
 (function () {
   const eyeLeft = document.querySelector(".media__img--eye1Left");
   const eyeRight = document.querySelector(".media__img--eye1Right");
+  const eyeLeftSocket = document.querySelector(".media__img--eye1SocketLeft");
+  const eyeRightSocket = document.querySelector(".media__img--eye1SocketRight");
+  const eyebrowLeft = document.querySelector(".media__img--eyebrowLeft");
+  const eyebrowRight = document.querySelector(".media__img--eyebrowRight");
   const mouth = document.querySelector(".media__img--mouth");
 
   if (!eyeLeft || !eyeRight || !mouth) return;
@@ -113,11 +37,15 @@
     if (isPaused) return;
     eyeLeft.src = eyeSrc.left.close;
     eyeRight.src = eyeSrc.right.close;
+    eyeLeftSocket.style.display = "none";
+    eyeRightSocket.style.display = "none";
 
     setTimeout(() => {
       if (!isPaused) {
         eyeLeft.src = eyeSrc.left.open;
         eyeRight.src = eyeSrc.right.open;
+        eyeLeftSocket.style.display = "block";
+        eyeRightSocket.style.display = "block";
       }
     }, 120);
   }
@@ -153,15 +81,12 @@
     return Math.hypot(a.x - b.x, a.y - b.y);
   }
 
-  // ----- 眼球追蹤 + 3D rotate + 靠近變臉 -----
-  const maxOffset = 8; // 平移最大偏移 px
-  const maxRotateX = 30; // X 軸旋轉最大角度 deg
-  const maxRotateY = 5; // Y 軸旋轉最大角度 deg
+  // ----- 眼球追蹤 + 靠近變臉 -----
+  const maxOffset = 10; // 平移最大偏移 px
   const threshold = 100; // 滑鼠與眼睛/嘴巴的距離閾值 px
 
   window.addEventListener("mousemove", (e) => {
     const mouse = { x: e.clientX, y: e.clientY };
-
     // --- 判斷靠近表情區 ---
     const centers = [getCenter(eyeLeft), getCenter(eyeRight), getCenter(mouth)];
     const minDist = Math.min(...centers.map((c) => distance(c, mouse)));
@@ -171,32 +96,80 @@
       stopBlinking();
       eyeLeft.src = eyeSrc.left.focus;
       eyeRight.src = eyeSrc.right.focus;
+      eyeLeftSocket.style.display = "none";
+      eyeRightSocket.style.display = "none";
       mouth.src = mouthSrc.strange;
     } else if (minDist >= threshold && inFocusZone) {
       inFocusZone = false;
       eyeLeft.src = eyeSrc.left.open;
       eyeRight.src = eyeSrc.right.open;
+      eyeLeftSocket.style.display = "block";
+      eyeRightSocket.style.display = "block";
       mouth.src = mouthSrc.normal;
       startBlinking();
     }
 
-    // --- 眼球移動與翻轉 ---
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
+    // --- 眼球移動值 ---
+    // const vw = window.innerWidth;
+    // const vh = window.innerHeight;
+    // const normX = (e.clientX / vw) * 2 - 1; // -1 ~ 1
+    // const normY = (e.clientY / vh) * 2 - 1;
+    // const dx = normX * maxOffset;
+    // const dy = normY * maxOffset;
 
-    const normX = (e.clientX / vw) * 2 - 1; // -1 ~ 1
-    const normY = (e.clientY / vh) * 2 - 1;
+    // 抓兩隻眼睛的中心
+    const rectL = eyeLeft.getBoundingClientRect();
+    const rectR = eyeRight.getBoundingClientRect();
+    const cL = {
+      x: rectL.left + rectL.width / 2,
+      y: rectL.top + rectL.height / 2,
+    };
+    const cR = {
+      x: rectR.left + rectR.width / 2,
+      y: rectR.top + rectR.height / 2,
+    };
 
-    const dx = normX * maxOffset;
-    const dy = normY * maxOffset;
+    // 兩眼中點
+    const eyeCenter = {
+      x: (cL.x + cR.x) / 2,
+      y: (cL.y + cR.y) / 2,
+    };
 
-    const rotX = normY * maxRotateX; // 上下看
-    const rotY = normX * maxRotateY; // 左右看
+    // 滑鼠相對中點的偏移
+    const dxRaw = e.clientX - eyeCenter.x;
+    const dyRaw = e.clientY - eyeCenter.y;
 
-    const transformVal = (dx, dy) =>
-      `translate(-50%, -50%) translate(${dx}px, ${dy}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    const eyeDist = Math.hypot(cR.x - cL.x, cR.y - cL.y);
+    const normX = dxRaw / (eyeDist * 4); // 倍數越小越靈敏
+    const normY = dyRaw / (eyeDist * 4);
 
-    eyeLeft.style.transform = transformVal(dx, dy);
-    eyeRight.style.transform = transformVal(dx, dy);
+    // 限制範圍 [-1, 1]
+    const clamp = (v) => Math.max(-1, Math.min(1, v));
+    const dx = clamp(normX) * maxOffset;
+    const dy = clamp(normY) * maxOffset;
+
+    // ---眼球位移---
+    const transformEye = `translate(-50%, -50%) translate(${dx}px, ${
+      dy > 0 ? dy * 1.5 : dy
+    }px)`;
+
+    eyeLeft.style.transform = transformEye;
+    eyeRight.style.transform = transformEye;
+
+    // ---眼框位移---
+    const transformEyeSocket = `translate(-50%, -50%) translate(${
+      dx * 0.2
+    }px, ${dy}px)`;
+
+    eyeLeftSocket.style.transform = transformEyeSocket;
+    eyeRightSocket.style.transform = transformEyeSocket;
+
+    // ---眉毛位移---
+    const transformEyebrow = `translate(-50%, -50%) translate(0px, ${
+      dy * 2
+    }px)`;
+
+    eyebrowLeft.style.transform = transformEyebrow;
+    eyebrowRight.style.transform = transformEyebrow;
   });
 })();
