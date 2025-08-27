@@ -109,14 +109,6 @@
       startBlinking();
     }
 
-    // --- 眼球移動值 ---
-    // const vw = window.innerWidth;
-    // const vh = window.innerHeight;
-    // const normX = (e.clientX / vw) * 2 - 1; // -1 ~ 1
-    // const normY = (e.clientY / vh) * 2 - 1;
-    // const dx = normX * maxOffset;
-    // const dy = normY * maxOffset;
-
     // 抓兩隻眼睛的中心
     const rectL = eyeLeft.getBoundingClientRect();
     const rectR = eyeRight.getBoundingClientRect();
