@@ -617,6 +617,10 @@ html {
   border-bottom: #d1b129 solid 4px;
   border-radius: 2px;
 }
+.section--content .container--contentSection .module__quote .warning {
+  background-color: rgba(183, 67, 67, 0.2);
+  border-bottom: #b74343 solid 4px;
+}
 .section--content .container--contentSection .module__callOut {
   display: flex;
   flex-direction: column;

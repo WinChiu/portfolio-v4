@@ -1,7 +1,7 @@
-@use "variables" as *;
-@use "../components/ProjectHeader/projectHeader.scss" as *;
-@use "../components/ProjectIntroduction/projectIntroduction.scss" as *;
-@use "../components/ProjectNavigation/projectNavigation.scss" as *;
+@use 'variables' as *;
+@use '../components/ProjectHeader/projectHeader.scss' as *;
+@use '../components/ProjectIntroduction/projectIntroduction.scss' as *;
+@use '../components/ProjectNavigation/projectNavigation.scss' as *;
 
 @mixin flex($flexDirection, $justifyContent, $alignItems, $gap) {
   display: flex;
@@ -186,6 +186,10 @@ html {
         background-color: rgba($color-lightGold, 0.2);
         border-bottom: $color-lightGold solid 4px;
         border-radius: 2px;
+      }
+      .warning {
+        background-color: rgba($color-red, 0.2);
+        border-bottom: $color-red solid 4px;
       }
     }
     .module__callOut {
@@ -485,7 +489,7 @@ html {
 }
 
 .canvas-wrapper::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;

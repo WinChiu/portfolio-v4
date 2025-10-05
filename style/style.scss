@@ -1,5 +1,5 @@
-@use "variables" as *;
-@use "../components/ProjectCard/projectCard.scss" as *;
+@use 'variables' as *;
+@use '../components/ProjectCard/projectCard.scss' as *;
 /* ==========================================================================
    Mixin
    ========================================================================== */
@@ -238,7 +238,7 @@ html {
       mix-blend-mode: hard-light;
       opacity: 0.8;
 
-      background-image: url("../img/image-landingBackground.webp");
+      background-image: url('../img/image-landingBackground.webp');
       background-position: center;
       background-repeat: none;
       background-size: cover;
@@ -704,7 +704,7 @@ html {
 }
 
 .canvas-wrapper::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
