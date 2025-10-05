@@ -120,7 +120,6 @@ h6 {
   gap: 0px;
   position: relative;
   border-bottom: 2px #363a35 solid;
-  /* ===== Media Query ===== */
 }
 .section--work .container--content .block--introduction {
   display: flex;
@@ -233,6 +232,9 @@ h6 {
   bottom: 0;
   right: 0;
   background-color: #363a35;
+}
+.section--work .container--content {
+  /* ===== Media Query ===== */
 }
 @media (max-width: 1000px) {
   .section--work .container--content {
@@ -379,7 +381,6 @@ html {
   /* 主區塊設定 */
   height: 100dvh;
   border-bottom: none;
-  /* === Media Queries === */
 }
 .section--main .container--content {
   display: flex;
@@ -390,9 +391,6 @@ html {
   overflow: hidden;
   padding-bottom: 0;
   /* 介紹區塊 */
-  /* 背景圖片區塊 */
-  /* 向下圖片區塊 */
-  /* 語言切換按鈕 */
 }
 .section--main .container--content .block--introduction {
   z-index: 1;
@@ -405,8 +403,6 @@ html {
   gap: 0px;
   margin-bottom: 76px;
   /* 標題區塊 */
-  /* 描述區塊 */
-  /* 註解區塊 */
 }
 .section--main .container--content .block--introduction .block__header {
   position: relative;
@@ -420,6 +416,9 @@ html {
   transition: opacity 1.5s ease-in-out;
   width: 110%;
 }
+.section--main .container--content .block--introduction {
+  /* 描述區塊 */
+}
 .section--main .container--content .block--introduction .block__description {
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
@@ -430,6 +429,9 @@ html {
   line-height: 140%;
   width: 110%;
 }
+.section--main .container--content .block--introduction {
+  /* 註解區塊 */
+}
 .section--main .container--content .block--introduction .block__annotation {
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
@@ -438,6 +440,9 @@ html {
   font-style: italic;
   line-height: 140%;
   width: 110%;
+}
+.section--main .container--content {
+  /* 背景圖片區塊 */
 }
 .section--main .container--content .block__bgImage {
   z-index: -1;
@@ -512,6 +517,9 @@ html {
   left: 40%;
   top: 54%;
 }
+.section--main .container--content {
+  /* 向下圖片區塊 */
+}
 .section--main .container--content .media--downImage {
   position: absolute;
   left: 64px;
@@ -519,6 +527,9 @@ html {
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
   animation: bounce 1.5s infinite ease-in-out;
+}
+.section--main .container--content {
+  /* 語言切換按鈕 */
 }
 .section--main .container--content .block__translator {
   z-index: 10;
@@ -544,6 +555,9 @@ html {
 .section--main .container--content .block__translator:hover p {
   color: #ffffff;
 }
+.section--main {
+  /* === Media Queries === */
+}
 @media (max-width: 996px) {
   .section--main .container--content .block--introduction {
     width: 100%;
@@ -556,9 +570,6 @@ html {
   }
 }
 @media (max-width: 800px) {
-  .section--main {
-    /* 調整標題字型大小 */
-  }
   .section--main .container--content {
     display: flex;
     justify-content: flex-start;
@@ -569,7 +580,6 @@ html {
   .section--main .container--content .block--introduction {
     margin-bottom: 0;
     width: 100%;
-    /* 描述區塊 */
   }
   .section--main .container--content .block--introduction .block__header {
     margin-top: 64px;
@@ -577,6 +587,9 @@ html {
   .section--main .container--content .block--introduction .block__header .block__title {
     text-align: center;
     width: 100%;
+  }
+  .section--main .container--content .block--introduction {
+    /* 描述區塊 */
   }
   .section--main .container--content .block--introduction .block__description {
     width: 100%;
@@ -593,6 +606,9 @@ html {
   }
   .section--main .container--content .media--downImage {
     display: none;
+  }
+  .section--main {
+    /* 調整標題字型大小 */
   }
   .section--main .container--content .block--introduction .block__header .block__title {
     font-size: 56px;
@@ -648,9 +664,6 @@ html {
   align-items: center;
   flex-direction: row;
   gap: 0px;
-  /* 滑鼠懸停效果 */
-  /* 選取狀態 */
-  /* 手機斷點設定 */
 }
 .block--switcher a {
   width: 100%;
@@ -674,20 +687,32 @@ html {
   font-weight: 600;
   text-align: center;
 }
+.block--switcher {
+  /* 滑鼠懸停效果 */
+}
 .block--switcher .block__design:hover,
 .block--switcher .block__coding:hover {
   background-color: #cabd8a;
-  cursor: pointer;
 }
 .block--switcher .block__design:hover h4,
 .block--switcher .block__coding:hover h4 {
   color: #fbfbf6;
+}
+.block--switcher .block__design:hover,
+.block--switcher .block__coding:hover {
+  cursor: pointer;
+}
+.block--switcher {
+  /* 選取狀態 */
 }
 .block--switcher .selected {
   background-color: #cabd8a;
 }
 .block--switcher .selected h4 {
   color: #fbfbf6;
+}
+.block--switcher {
+  /* 手機斷點設定 */
 }
 @media (max-width: 480px) {
   .block--switcher {

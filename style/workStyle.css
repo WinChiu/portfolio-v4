@@ -934,16 +934,16 @@ html {
     padding: 0;
     padding-top: 8px;
   }
+  .section--content .container--contentSection .module__smQuote h6 {
+    text-align: center;
+    width: 100%;
+  }
   .section--content .container--contentSection .module__smQuote {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 16px;
-  }
-  .section--content .container--contentSection .module__smQuote h6 {
-    text-align: center;
-    width: 100%;
   }
   .section--content .container--contentSection .module__article img {
     display: none;
