@@ -1,4 +1,4 @@
-@use "../../style/variables" as *;
+@use '../../style/variables' as *;
 @mixin flex($flexDirection, $justifyContent, $alignItems, $gap: 0px) {
   display: flex;
   justify-content: $justifyContent;
@@ -155,8 +155,9 @@
         }
 
         .block__number {
-          margin-bottom: 0;
-          margin-right: 16px;
+          // margin-bottom: 0;
+          // margin-right: 16px;
+          display: none;
         }
       }
 
@@ -165,12 +166,12 @@
       }
     }
 
-    @media (max-width: 480px) {
-      .block--introduction .block__number {
-        -webkit-text-stroke: 1.5px $color-darkGold;
-        display: none;
-      }
-    }
+    // @media (max-width: 480px) {
+    //   .block--introduction .block__number {
+    //     -webkit-text-stroke: 1.5px $color-darkGold;
+    //     display: none;
+    //   }
+    // }
   } // end .container--content
   // 隱藏工作區塊
   .workHide {

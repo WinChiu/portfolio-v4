@@ -6,10 +6,10 @@ class ProjectNavigation extends HTMLElement {
   connectedCallback() {
     // Default to English if no language is specified
     const language = this.getAttribute('language') || 'en';
-    
+
     // Determine the back link based on language
     const backLink = language === 'zh' ? '../../home-zh.html#work' : '/#work';
-    
+
     this.innerHTML = `
       <nav class="nav nav--main" id="navbar">
         <div class="block block--navList">
@@ -28,8 +28,8 @@ class ProjectNavigation extends HTMLElement {
 }
 
 // Define the custom element
-if (!customElements.get("project-navigation")) {
-  customElements.define("project-navigation", ProjectNavigation);
+if (!customElements.get('project-navigation')) {
+  customElements.define('project-navigation', ProjectNavigation);
 }
 
 export default ProjectNavigation;

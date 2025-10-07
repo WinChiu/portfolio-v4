@@ -135,7 +135,7 @@ h6 {
   margin-bottom: 16px;
 }
 .section--work .container--content .block--introduction .block__number {
-  font-family: "Source Serif 4";
+  font-family: 'Noto Serif';
   color: transparent;
   margin-bottom: 20px;
   -webkit-text-stroke: 2px #7a776d;
@@ -153,7 +153,7 @@ h6 {
 }
 .section--work .container--content .block--introduction .block__tag {
   color: #7a776d;
-  font-family: "Source Serif 4";
+  font-family: 'Noto Serif';
   font-weight: 600;
 }
 .section--work .container--content .block--introduction .block__description {
@@ -161,7 +161,10 @@ h6 {
   border-left: #b74343 solid 4px;
   margin-bottom: 32px;
 }
-.section--work .container--content .block--introduction .block__buttonContainer {
+.section--work
+  .container--content
+  .block--introduction
+  .block__buttonContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -188,28 +191,48 @@ h6 {
 .section--work .container--content .block--introduction .block__button--code {
   width: fit-content;
 }
-.section--work .container--content .block--introduction .block__button--disable {
+.section--work
+  .container--content
+  .block--introduction
+  .block__button--disable {
   background-color: #c8c8c8;
   border: 2px #c8c8c8 solid;
 }
-.section--work .container--content .block--introduction .block__button--disable:hover {
+.section--work
+  .container--content
+  .block--introduction
+  .block__button--disable:hover {
   cursor: default;
   background-color: #c8c8c8;
 }
-.section--work .container--content .block--introduction .block__button--viewSite {
+.section--work
+  .container--content
+  .block--introduction
+  .block__button--viewSite {
   color: #615f58;
   border: 2px #615f58 solid;
   padding: 8px 16px;
   text-decoration: none;
 }
-.section--work .container--content .block--introduction .block__button--viewSite p {
+.section--work
+  .container--content
+  .block--introduction
+  .block__button--viewSite
+  p {
   color: #615f58;
 }
-.section--work .container--content .block--introduction .block__button--viewSite:hover {
+.section--work
+  .container--content
+  .block--introduction
+  .block__button--viewSite:hover {
   color: #cabd8a;
   border: 2px #cabd8a solid;
 }
-.section--work .container--content .block--introduction .block__button--viewSite:hover p {
+.section--work
+  .container--content
+  .block--introduction
+  .block__button--viewSite:hover
+  p {
   color: #cabd8a;
 }
 .section--work .container--content .media--workCover {
@@ -256,17 +279,10 @@ h6 {
     margin-bottom: 16px;
   }
   .section--work .container--content .block--introduction .block__number {
-    margin-bottom: 0;
-    margin-right: 16px;
+    display: none;
   }
   .section--work .container--content .media--workCover {
     margin-bottom: 16px;
-  }
-}
-@media (max-width: 480px) {
-  .section--work .container--content .block--introduction .block__number {
-    -webkit-text-stroke: 1.5px #7a776d;
-    display: none;
   }
 }
 .section--work .workHide {
@@ -281,7 +297,8 @@ h6 {
    ========================================================================== */
 /* 定義名為 bounce 的關鍵影格 */
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   /* 50% 時往上位移 10px，你可自行調整數值改變「彈跳」幅度 */
@@ -295,7 +312,7 @@ h6 {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Source Sans 3";
+  font-family: 'Noto Sans TC';
   color: #363a35;
   box-sizing: border-box;
 }
@@ -409,7 +426,11 @@ html {
   width: 100%;
   margin-bottom: 8px;
 }
-.section--main .container--content .block--introduction .block__header .block__title {
+.section--main
+  .container--content
+  .block--introduction
+  .block__header
+  .block__title {
   color: #615f58;
   font-size: 88px;
   opacity: 0;
@@ -423,7 +444,7 @@ html {
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
   font-weight: 600;
-  font-family: "Source Serif 4";
+  font-family: 'Noto Serif';
   color: #615f58;
   margin-bottom: 32px;
   line-height: 140%;
@@ -458,7 +479,7 @@ html {
   height: 100%;
   mix-blend-mode: hard-light;
   opacity: 0.8;
-  background-image: url("../img/image-landingBackground.webp");
+  background-image: url('../img/image-landingBackground.webp');
   background-position: center;
   background-repeat: none;
   background-size: cover;
@@ -584,7 +605,11 @@ html {
   .section--main .container--content .block--introduction .block__header {
     margin-top: 64px;
   }
-  .section--main .container--content .block--introduction .block__header .block__title {
+  .section--main
+    .container--content
+    .block--introduction
+    .block__header
+    .block__title {
     text-align: center;
     width: 100%;
   }
@@ -610,7 +635,11 @@ html {
   .section--main {
     /* 調整標題字型大小 */
   }
-  .section--main .container--content .block--introduction .block__header .block__title {
+  .section--main
+    .container--content
+    .block--introduction
+    .block__header
+    .block__title {
     font-size: 56px;
   }
 }
@@ -683,7 +712,7 @@ html {
 }
 .block--switcher .block__design h4,
 .block--switcher .block__coding h4 {
-  font-family: "Source Serif 4";
+  font-family: 'Noto Sans TC';
   font-weight: 600;
   text-align: center;
 }
@@ -765,7 +794,7 @@ html {
   margin-right: 0;
 }
 .section--about .container .block .block__title {
-  font-family: "Source Serif 4";
+  font-family: 'Noto Serif';
   color: transparent;
   margin-bottom: 20px;
   -webkit-text-stroke: 2px #7a776d;
@@ -794,13 +823,19 @@ html {
   border-bottom: 2px dotted #363a35;
   width: 100%;
 }
-.section--about .container .block .block__jobs .block__jobDescription--company, .section--about .container .block .block__jobs .block__jobDescription--title {
+.section--about .container .block .block__jobs .block__jobDescription--company,
+.section--about .container .block .block__jobs .block__jobDescription--title {
   min-width: fit-content;
 }
 .section--about .container .block .block__jobs .block__jobDescription--past p {
   color: #c8c8c8;
 }
-.section--about .container .block .block__jobs .block__jobDescription--past .block__jobDescription--dotLine {
+.section--about
+  .container
+  .block
+  .block__jobs
+  .block__jobDescription--past
+  .block__jobDescription--dotLine {
   border-bottom: 2px dotted #c8c8c8;
 }
 @media (max-width: 800px) {
@@ -857,7 +892,7 @@ html {
   margin-bottom: 16px;
 }
 .nav--main .block__navItem a {
-  font-family: "Source Sans 3";
+  font-family: 'Noto Sans TC';
   cursor: pointer;
   text-decoration: none;
 }
@@ -946,7 +981,7 @@ html {
 }
 
 .canvas-wrapper::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
