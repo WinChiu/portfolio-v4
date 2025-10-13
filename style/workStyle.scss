@@ -77,7 +77,7 @@ html {
 .block__translator {
   z-index: 10;
   cursor: pointer;
-  background-color: $color-red;
+  background-color: $color-bgWhite;
   position: fixed;
   right: 48px;
   top: 48px;
@@ -88,7 +88,7 @@ html {
     text-decoration: none;
     p {
       padding: 8px 16px;
-      color: $color-textWhite;
+      color: $color-black;
     }
   }
   @media (max-width: 480px) {

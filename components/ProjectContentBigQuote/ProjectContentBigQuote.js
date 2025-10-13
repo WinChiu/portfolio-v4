@@ -4,11 +4,11 @@ class ProjectContentBigQuote extends HTMLElement {
   }
 
   connectedCallback() {
-    const icon = this.getAttribute("icon") || "";
-    let content = this.getAttribute("content") || this.innerHTML.trim();
+    const icon = this.getAttribute('icon') || '';
+    let content = this.getAttribute('content') || this.innerHTML.trim();
 
     // First, normalize the content by replacing newlines with a space
-    content = content.replace(/\s+/g, " ").trim();
+    content = content.replace(/\s+/g, ' ').trim();
 
     // Then apply the highlight
     content = content.replace(
@@ -19,7 +19,7 @@ class ProjectContentBigQuote extends HTMLElement {
     // Set innerHTML directly without shadow DOM
     this.innerHTML = `
       <div class="module module__bgQuote">
-        ${icon ? `<img src="${icon}" alt="" />` : ""}
+        ${icon ? `<img src="${icon}" alt="" />` : ''}
         <h3>${content}</h3>
       </div>
     `;
@@ -27,8 +27,8 @@ class ProjectContentBigQuote extends HTMLElement {
 }
 
 // Define the custom element
-if (!customElements.get("project-content-bigquote")) {
-  customElements.define("project-content-bigquote", ProjectContentBigQuote);
+if (!customElements.get('project-content-bigquote')) {
+  customElements.define('project-content-bigquote', ProjectContentBigQuote);
 }
 
 export default ProjectContentBigQuote;

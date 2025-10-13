@@ -3,6 +3,7 @@ import ProjectIntroduction from './ProjectIntroduction/projectIntroduction.js';
 import ProjectNavigation from './ProjectNavigation/projectNavigation.js';
 import ProjectCard from './ProjectCard/projectCard.js';
 import ProjectContentBigQuote from './ProjectContentBigQuote/ProjectContentBigQuote.js';
+
 // Register all components
 const components = {
   'project-header': ProjectHeader,
