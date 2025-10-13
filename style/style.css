@@ -31,7 +31,7 @@ ol li {
 }
 
 h1 {
-  font-size: 120px;
+  font-size: 96px;
   line-height: 1;
 }
 @media (max-width: 1000px) {
@@ -201,6 +201,7 @@ h6 {
   border: 2px #615f58 solid;
   padding: 8px 16px;
   text-decoration: none;
+  width: fit-content;
 }
 .section--work .container--content .block--introduction .block__button--viewSite p {
   color: #615f58;
@@ -260,6 +261,17 @@ h6 {
   }
   .section--work .container--content .media--workCover {
     margin-bottom: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .section--work .container--content .block--introduction .block__buttonContainer,
+  .section--work .container--content .block--introduction .block__button,
+  .section--work .container--content .block--introduction .block__button--viewSite {
+    width: 100%;
+  }
+  .section--work .container--content .block--introduction .block__button p,
+  .section--work .container--content .block--introduction .block__button--viewSite p {
+    text-align: center;
   }
 }
 .section--work .workHide {
@@ -400,11 +412,11 @@ html {
 .section--main .container--content .block--introduction .block__header {
   position: relative;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 .section--main .container--content .block--introduction .block__header .block__title {
   color: #615f58;
-  font-size: 88px;
+  font-size: 80px;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
   width: 110%;
@@ -416,7 +428,7 @@ html {
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
   font-weight: 600;
-  font-family: "Noto Serif";
+  font-family: "Noto Sans TC";
   color: #615f58;
   margin-bottom: 32px;
   line-height: 140%;
@@ -622,7 +634,8 @@ html {
   }
   .section--main .container--content .block__translator {
     right: 16px;
-    top: 72px;
+    top: auto;
+    bottom: 32px;
   }
 }
 

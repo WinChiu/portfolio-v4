@@ -106,6 +106,7 @@
         border: 2px $color-darkGray solid;
         padding: 8px 16px;
         text-decoration: none;
+        width: fit-content;
         p {
           color: $color-darkGray;
         }
@@ -119,7 +120,7 @@
           }
         }
       }
-    } // end .block--introduction
+    }
 
     // 工作封面圖片區塊
     .media--workCover {
@@ -153,10 +154,7 @@
           @include flex(row, flex-start, stretch);
           margin-bottom: 16px;
         }
-
         .block__number {
-          // margin-bottom: 0;
-          // margin-right: 16px;
           display: none;
         }
       }
@@ -165,15 +163,22 @@
         margin-bottom: 16px;
       }
     }
-
-    // @media (max-width: 480px) {
-    //   .block--introduction .block__number {
-    //     -webkit-text-stroke: 1.5px $color-darkGold;
-    //     display: none;
-    //   }
-    // }
-  } // end .container--content
-  // 隱藏工作區塊
+    @media (max-width: 480px) {
+      .block--introduction {
+        .block__buttonContainer,
+        .block__button,
+        .block__button--viewSite {
+          width: 100%;
+        }
+        .block__button,
+        .block__button--viewSite {
+          p {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
   .workHide {
     display: none;
   }

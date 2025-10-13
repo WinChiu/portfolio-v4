@@ -31,7 +31,7 @@ ol li {
 }
 
 h1 {
-  font-size: 120px;
+  font-size: 96px;
   line-height: 1;
 }
 @media (max-width: 1000px) {
@@ -490,7 +490,7 @@ html {
 .block__translator {
   z-index: 10;
   cursor: pointer;
-  background-color: #b74343;
+  background-color: #fbfbf6;
   position: fixed;
   right: 48px;
   top: 48px;
@@ -503,7 +503,7 @@ html {
 }
 .block__translator a p {
   padding: 8px 16px;
-  color: #ffffff;
+  color: #363a35;
 }
 @media (max-width: 480px) {
   .block__translator {
