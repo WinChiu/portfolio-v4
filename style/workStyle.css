@@ -139,22 +139,13 @@ h6 {
   padding-left: 48px;
   margin-bottom: 16px;
 }
-.section--header
-  .container--content
-  .container--title
-  .module__tags
-  .module__tag {
+.section--header .container--content .container--title .module__tags .module__tag {
   padding: 2px 16px;
   background-color: #cabd8a;
   width: fit-content;
   border-radius: 100px;
 }
-.section--header
-  .container--content
-  .container--title
-  .module__tags
-  .module__tag
-  p {
+.section--header .container--content .container--title .module__tags .module__tag p {
   color: #ffffff;
 }
 .section--header .container--content .container--title .module__title {
@@ -173,11 +164,7 @@ h6 {
   gap: 0px;
   border-top: #363a35 2px solid;
 }
-.section--header
-  .container--content
-  .container--title
-  .module__metaData
-  .module__data {
+.section--header .container--content .container--title .module__metaData .module__data {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -188,27 +175,14 @@ h6 {
   flex: 1;
   border-right: #363a35 2px solid;
 }
-.section--header
-  .container--content
-  .container--title
-  .module__metaData
-  .module__data:last-child {
+.section--header .container--content .container--title .module__metaData .module__data:last-child {
   border-right: none;
   padding-right: 48px;
 }
-.section--header
-  .container--content
-  .container--title
-  .module__metaData
-  .module__data:first-child {
+.section--header .container--content .container--title .module__metaData .module__data:first-child {
   padding-left: 48px;
 }
-.section--header
-  .container--content
-  .container--title
-  .module__metaData
-  .module__data
-  .module__dataTitle {
+.section--header .container--content .container--title .module__metaData .module__data .module__dataTitle {
   font-weight: 600;
   color: #c14804;
 }
@@ -229,11 +203,7 @@ h6 {
     padding-left: 16px;
     margin-bottom: 8px;
   }
-  .section--header
-    .container--content
-    .container--title
-    .module__tags
-    .module__tag {
+  .section--header .container--content .container--title .module__tags .module__tag {
     padding: 2px 12px;
   }
   .section--header .container--content .container--title .module__title {
@@ -252,26 +222,14 @@ h6 {
     gap: 0px;
     border-top: 0px;
   }
-  .section--header
-    .container--content
-    .container--title
-    .module__metaData
-    .module__data {
+  .section--header .container--content .container--title .module__metaData .module__data {
     padding: 24px 16px 0px 16px;
     border-right: none;
   }
-  .section--header
-    .container--content
-    .container--title
-    .module__metaData
-    .module__data:first-child {
+  .section--header .container--content .container--title .module__metaData .module__data:first-child {
     padding-left: 16px;
   }
-  .section--header
-    .container--content
-    .container--title
-    .module__metaData
-    .module__data:last-child {
+  .section--header .container--content .container--title .module__metaData .module__data:last-child {
     border-right: none;
     padding-right: 16px;
     padding-bottom: 24px;
@@ -321,11 +279,7 @@ h6 {
   align-items: stretch;
   gap: 24px;
 }
-.section--introduction
-  .container--content
-  .block__top
-  .block__topRight
-  .block__intro {
+.section--introduction .container--content .block__top .block__topRight .block__intro {
   height: 100%;
 }
 .section--introduction .container--content .block__bottom {
@@ -424,7 +378,7 @@ h6 {
 }
 .nav--main .block__navItem a {
   text-decoration: none;
-  font-family: 'Noto Sans TC';
+  font-family: "Noto Sans TC";
   cursor: pointer;
 }
 @media (max-width: 800px) {
@@ -465,7 +419,7 @@ h6 {
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans TC';
+  font-family: "Noto Sans TC";
   color: #363a35;
   box-sizing: border-box;
 }
@@ -629,26 +583,14 @@ html {
   padding: 8px 12px;
   background-color: #b74343;
 }
-.section--content
-  .container--contentSection
-  .module__pureText
-  .module__button
-  a {
+.section--content .container--contentSection .module__pureText .module__button a {
   text-decoration: none;
 }
-.section--content
-  .container--contentSection
-  .module__pureText
-  .module__button
-  a
-  p {
+.section--content .container--contentSection .module__pureText .module__button a p {
   color: #ffffff;
   text-overflow: ellipsis;
 }
-.section--content
-  .container--contentSection
-  .module__pureText
-  .module__button:hover {
+.section--content .container--contentSection .module__pureText .module__button:hover {
   cursor: pointer;
   background-color: #cabd8a;
 }
@@ -707,10 +649,7 @@ html {
 .section--content .container--contentSection .module__bgQuote img {
   width: 200px;
 }
-.section--content
-  .container--contentSection
-  .module__bgQuote
-  .module__callOutList {
+.section--content .container--contentSection .module__bgQuote .module__callOutList {
   padding-left: 8px;
   display: flex;
   flex-direction: column;
@@ -738,28 +677,17 @@ html {
   align-items: flex-start;
   gap: 24px;
 }
-.section--content
-  .container--contentSection
-  .module__verticalIconList
-  .module__verticalIcon {
+.section--content .container--contentSection .module__verticalIconList .module__verticalIcon {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
 }
-.section--content
-  .container--contentSection
-  .module__verticalIconList
-  .module__verticalIcon
-  img {
+.section--content .container--contentSection .module__verticalIconList .module__verticalIcon img {
   width: 200px;
 }
-.section--content
-  .container--contentSection
-  .module__verticalIconList
-  .module__verticalIcon
-  .module__content {
+.section--content .container--contentSection .module__verticalIconList .module__verticalIcon .module__content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -767,11 +695,7 @@ html {
   gap: 16px;
   width: 100%;
 }
-.section--content
-  .container--contentSection
-  .module__verticalIconList
-  .module__verticalIcon
-  .module__content--title {
+.section--content .container--contentSection .module__verticalIconList .module__verticalIcon .module__content--title {
   font-weight: bold;
 }
 .section--content .container--contentSection .module__imgAndContentBlock {
@@ -784,10 +708,7 @@ html {
 .section--content .container--contentSection .module__imgAndContentBlock img {
   width: calc(40% - 24px);
 }
-.section--content
-  .container--contentSection
-  .module__imgAndContentBlock
-  .module__content {
+.section--content .container--contentSection .module__imgAndContentBlock .module__content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -795,10 +716,7 @@ html {
   gap: 16px;
   flex: 1;
 }
-.section--content
-  .container--contentSection
-  .module__imgAndContentBlock
-  .module__content--title {
+.section--content .container--contentSection .module__imgAndContentBlock .module__content--title {
   font-weight: bold;
 }
 .section--content .container--contentSection .module__horizontalIconList {
@@ -809,48 +727,29 @@ html {
   align-items: flex-start;
   gap: 48px;
 }
-.section--content
-  .container--contentSection
-  .module__horizontalIconList
-  .module__horizontalIcon {
+.section--content .container--contentSection .module__horizontalIconList .module__horizontalIcon {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
 }
-.section--content
-  .container--contentSection
-  .module__horizontalIconList
-  .module__horizontalIcon
-  img {
+.section--content .container--contentSection .module__horizontalIconList .module__horizontalIcon img {
   width: 200px;
 }
-.section--content
-  .container--contentSection
-  .module__horizontalIconList
-  .module__horizontalIcon
-  .module__content {
+.section--content .container--contentSection .module__horizontalIconList .module__horizontalIcon .module__content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 16px;
 }
-.section--content
-  .container--contentSection
-  .module__horizontalIconList
-  .module__horizontalIcon
-  .module__content--title {
+.section--content .container--contentSection .module__horizontalIconList .module__horizontalIcon .module__content--title {
   font-weight: bold;
   text-align: center;
   width: 100%;
 }
-.section--content
-  .container--contentSection
-  .module__horizontalIconList
-  .module__horizontalIcon
-  .module__content--content {
+.section--content .container--contentSection .module__horizontalIconList .module__horizontalIcon .module__content--content {
   text-align: center;
 }
 .section--content .container--contentSection .module__article {
@@ -872,11 +771,7 @@ html {
   gap: 16px;
   max-height: 160px;
 }
-.section--content
-  .container--contentSection
-  .module__article
-  .module__content
-  h6 {
+.section--content .container--contentSection .module__article .module__content h6 {
   font-weight: bold;
   max-height: 28px;
   overflow: hidden;
@@ -886,11 +781,7 @@ html {
   -webkit-box-orient: vertical;
   white-space: normal;
 }
-.section--content
-  .container--contentSection
-  .module__article
-  .module__content
-  p {
+.section--content .container--contentSection .module__article .module__content p {
   max-height: 66px;
   flex-grow: 1;
   margin: 0;
@@ -901,38 +792,19 @@ html {
   -webkit-box-orient: vertical;
   white-space: normal;
 }
-.section--content
-  .container--contentSection
-  .module__article
-  .module__content
-  .module__button {
+.section--content .container--contentSection .module__article .module__content .module__button {
   width: fit-content;
   padding: 4px 8px;
   background-color: #b74343;
 }
-.section--content
-  .container--contentSection
-  .module__article
-  .module__content
-  .module__button
-  a {
+.section--content .container--contentSection .module__article .module__content .module__button a {
   text-decoration: none;
 }
-.section--content
-  .container--contentSection
-  .module__article
-  .module__content
-  .module__button
-  a
-  p {
+.section--content .container--contentSection .module__article .module__content .module__button a p {
   color: #ffffff;
   text-overflow: ellipsis;
 }
-.section--content
-  .container--contentSection
-  .module__article
-  .module__content
-  .module__button:hover {
+.section--content .container--contentSection .module__article .module__content .module__button:hover {
   cursor: pointer;
   background-color: #cabd8a;
 }
@@ -965,17 +837,10 @@ html {
 .section--content .specialSection .module__horizontalIconList {
   width: 100%;
 }
-.section--content
-  .specialSection
-  .module__horizontalIconList
-  .module__horizontalIcon {
+.section--content .specialSection .module__horizontalIconList .module__horizontalIcon {
   flex: 1;
 }
-.section--content
-  .specialSection
-  .module__horizontalIconList
-  .module__horizontalIcon
-  img {
+.section--content .specialSection .module__horizontalIconList .module__horizontalIcon img {
   border-radius: 200px;
   background-color: #fbfbf6;
   margin-bottom: 8px;
@@ -1001,10 +866,7 @@ html {
     width: auto;
     border: none;
   }
-  .section--content
-    .container--contentSection
-    .module__sideTitle
-    .module__sideText {
+  .section--content .container--contentSection .module__sideTitle .module__sideText {
     text-align: left;
   }
   .section--content .container--contentSection .module__doubleImage {
@@ -1051,21 +913,14 @@ html {
     align-items: center;
     gap: 120px;
   }
-  .section--content
-    .container--contentSection
-    .module__verticalIconList
-    .module__verticalIcon {
+  .section--content .container--contentSection .module__verticalIconList .module__verticalIcon {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 16px;
   }
-  .section--content
-    .container--contentSection
-    .module__verticalIconList
-    .module__verticalIcon
-    .module__content--title {
+  .section--content .container--contentSection .module__verticalIconList .module__verticalIcon .module__content--title {
     width: 100%;
     text-align: center;
   }
@@ -1079,10 +934,7 @@ html {
   .section--content .container--contentSection .module__bgQuote h3 {
     text-align: center;
   }
-  .section--content
-    .container--contentSection
-    .module__bgQuote
-    .module__callOutList {
+  .section--content .container--contentSection .module__bgQuote .module__callOutList {
     padding: 0;
     padding-top: 8px;
   }
@@ -1126,7 +978,7 @@ html {
 }
 
 .canvas-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
