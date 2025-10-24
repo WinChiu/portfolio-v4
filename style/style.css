@@ -1506,4 +1506,31 @@ svg.active .svg-elem-54 {
   fill: rgb(35, 31, 32);
 }
 
+/* ==========================================================================
+   Loading System
+   ========================================================================== */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fbfbf6;
+  z-index: 9999;
+  opacity: 1;
+  transition: 1.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0px;
+}
+.loading-mask.hidden {
+  opacity: 0;
+}
+.loading-mask dotlottie-wc {
+  width: 250px;
+  height: 250px;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -14,14 +14,19 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
       rel="stylesheet"
     />
-    <script src="    https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
-"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
     <script type="module" src="../../components/components.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
     <title>森活 - 森林永續議題倡議動畫網頁</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
   <body>
+    <!-- Loading Mask -->
+    <div class="loading-mask">
+      <dotlottie-wc src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie" autoplay loop></dotlottie-wc>
+    </div>
+
     <div class="block block__translator">
       <a href="../en/forest.html"><p>繁中 | EN</p></a>
     </div>
@@ -129,5 +134,6 @@
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>
     <script src="../../utility/workScrollAnimation.js"></script>
+    <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

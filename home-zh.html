@@ -12,6 +12,7 @@
       content="Hi! I'm Win ✨ 擁有 UIUX 設計、研究與前端開發能力的產品設計師。作為一個經濟系與創意創業學程出身的設計師，我相信設計的價值來自使用者和消費者。我非常喜歡親手打造產品的過程，享受以設計師的角度幫他人解決問題，特別是使用者的認同與讚許所帶來的成就感。"
     />
     <title>Win's Portfolio</title>
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,8 +22,21 @@
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module" src="/components/components.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
   </head>
   <body>
+    <!-- Loading Mask -->
+    <div class="loading-mask">
+      <dotlottie-wc
+        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
+        autoplay
+        loop
+      ></dotlottie-wc>
+    </div>
+
     <main class="section section--main">
       <div class="container container--content">
         <article class="block block--introduction">
@@ -288,5 +302,6 @@
     </nav>
     <script src="utility/landingPageAnimation.js"></script>
     <script src="utility/eyeAnimation.js"></script>
+    <script src="utility/loadingPage.js"></script>
   </body>
 </html>
