@@ -4,28 +4,28 @@ class ProjectCard extends HTMLElement {
   }
 
   connectedCallback() {
-    const number = this.getAttribute("number") || "";
-    const title = this.getAttribute("title") || "";
-    const tag = this.getAttribute("tag") || "";
-    const description = this.getAttribute("description") || "";
-    const imageUrl = this.getAttribute("image-url") || "";
-    const projectUrl = this.getAttribute("project-url") || "#";
-    const siteUrl = this.getAttribute("site-url");
-    const type = this.getAttribute("type") || "design";
-    const lang = this.getAttribute("lang") || "zh";
+    const number = this.getAttribute('number') || '';
+    const title = this.getAttribute('title') || '';
+    const tag = this.getAttribute('tag') || '';
+    const description = this.getAttribute('description') || '';
+    const imageUrl = this.getAttribute('image-url') || '';
+    const projectUrl = this.getAttribute('project-url') || '#';
+    const siteUrl = this.getAttribute('site-url');
+    const type = this.getAttribute('type') || 'design';
+    const lang = this.getAttribute('lang') || 'zh';
 
-    const viewProjectText = lang === "zh" ? "查看專案" : "View Project";
-    const viewSiteText = lang === "zh" ? "查看網站" : "View Site";
-    const hideClass = type === "code" ? "workHide" : "";
+    const viewProjectText = lang === 'zh' ? '查看專案' : 'View Project';
+    const viewSiteText = lang === 'zh' ? '查看網站' : 'View Site';
+    const hideClass = type === 'code' ? 'workHide' : '';
     const buttonClass = `block__button block__button--${
-      type === "code" ? "code" : "design"
+      type === 'code' ? 'code' : 'design'
     }`;
 
     // Create the project button
     const projectButton = `
       <div class="${buttonClass}">
         <a href="${projectUrl}"${
-      siteUrl ? "" : ' target="_blank" rel="noopener noreferrer"'
+      siteUrl ? '' : ' target="_blank" rel="noopener noreferrer"'
     }>
           <p>${viewProjectText}</p>
         </a>
@@ -34,15 +34,15 @@ class ProjectCard extends HTMLElement {
     // Create the site button if siteUrl exists
     const siteButton = siteUrl
       ? `
-      <a 
-        href="${siteUrl}" 
-        class="block__button--viewSite" 
-        target="_blank" 
+      <a
+        href="${siteUrl}"
+        class="block__button--viewSite"
+        target="_blank"
         rel="noopener noreferrer"
       >
         <p>${viewSiteText}</p>
       </a>`
-      : "";
+      : '';
 
     // Create the button container with appropriate structure
     const buttonContainer = siteUrl
@@ -65,7 +65,7 @@ class ProjectCard extends HTMLElement {
           <div class="block__header">
             <h1 class="block__number">${number}</h1>
             <div class="block__content">
-              <h2 class="block__title">${title}</h2>
+              <h3 class="block__title">${title}</h3>
               <h4 class="block__tag">${tag}</h4>
             </div>
           </div>
@@ -77,8 +77,8 @@ class ProjectCard extends HTMLElement {
 }
 
 // Define the custom element
-if (!customElements.get("project-card")) {
-  customElements.define("project-card", ProjectCard);
+if (!customElements.get('project-card')) {
+  customElements.define('project-card', ProjectCard);
 }
 
 export default ProjectCard;

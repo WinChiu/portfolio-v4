@@ -125,15 +125,14 @@ html {
       z-index: 1;
       min-width: 55%;
       height: 100%;
-      @include flex(column, center, flex-start);
+      @include flex(column, center, flex-start, 12px);
       margin-bottom: 76px;
 
       /* 標題區塊 */
       .block__header {
         position: relative;
+        margin-bottom: 16px;
         width: 100%;
-        margin-bottom: 12px;
-
         .block__title {
           color: $color-darkGray;
           font-size: 80px;
@@ -149,7 +148,6 @@ html {
         font-weight: 600;
         font-family: $font-sansSerif;
         color: $color-darkGray;
-        margin-bottom: 32px;
         line-height: 140%;
         width: 110%;
       }
@@ -194,14 +192,18 @@ html {
       position: relative;
       height: 100vh;
       width: auto;
-
       display: flex;
       align-items: flex-end;
       justify-content: center;
-
       overflow: visible;
       z-index: 1;
 
+      .media__img--eye2Left,
+      .media__img--eye3Left,
+      .media__img--eye2Right,
+      .media__img--eye3Right {
+        display: none;
+      }
       .media__img--body {
         max-height: 100%;
         width: auto;
@@ -228,13 +230,13 @@ html {
         left: 47.5%;
         top: 37%;
       }
-      .media__img--eye1Left,
+      .media__img--eyeLeft,
       .media__img--eye1SocketLeft {
         height: 6%;
         left: 31.5%;
         top: 42%;
       }
-      .media__img--eye1Right,
+      .media__img--eyeRight,
       .media__img--eye1SocketRight {
         height: 6%;
         left: 47.5%;
@@ -244,6 +246,9 @@ html {
         height: 2.8%;
         left: 40%;
         top: 54%;
+      }
+      .media__img--mouthStrange {
+        display: none;
       }
     }
 
@@ -311,7 +316,7 @@ html {
         width: 100%;
 
         .block__header {
-          margin-top: 64px;
+          // margin-top: 64px;
           .block__title {
             text-align: center;
             width: 100%;
@@ -326,12 +331,13 @@ html {
         .block__annotation {
           width: 100%;
           text-align: center;
+          margin-bottom: 48px;
         }
       }
       .block__translator {
-        right: 48px;
-        top: 48px;
-        bottom: auto;
+        right: 16px;
+        top: auto;
+        bottom: 32px;
       }
       .media--downImage {
         display: none;
@@ -350,19 +356,18 @@ html {
     .container--content {
       .block--introduction {
         margin-bottom: 0;
-
-        .block__description {
-          margin-bottom: 16px;
+        .block__header {
+          margin-bottom: 8px;
         }
         .block__annotation {
-          margin-bottom: 64px;
+          margin-bottom: 48px;
         }
       }
-      .block__translator {
-        right: 16px;
-        top: auto;
-        bottom: 32px;
-      }
+      // .block__translator {
+      //   right: 16px;
+      //   top: auto;
+      //   bottom: 32px;
+      // }
     }
   }
 }
@@ -412,7 +417,7 @@ html {
     background-color: $color-bgWhite;
     h4 {
       font-family: $font-sansSerif;
-      font-weight: 600;
+      font-weight: 500;
       text-align: center;
     }
   }
@@ -476,7 +481,6 @@ html {
     .block {
       flex: 2;
       @include flex(column, flex-end, flex-start);
-
       &--introduction {
         .media {
           margin-bottom: 48px;
@@ -496,8 +500,8 @@ html {
       }
 
       .block__jobs {
-        margin-top: 16px;
         @include flex(column, flex-start, center, 8px);
+        margin-top: 16px;
         width: 100%;
 
         .block__jobDescription {
@@ -527,12 +531,32 @@ html {
       }
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
       @include flex(column, center, flex-start);
-
       .media {
         margin: 0;
         margin-bottom: 24px;
+      }
+
+      .block {
+        .block__jobs {
+          @include flex(column, flex-start, center, 24px);
+          margin-top: 32px;
+
+          .block__jobDescription {
+            @include flex(column, flex-start, flex-start, 4px);
+
+            .block__jobDescription--company {
+              font-weight: bold;
+            }
+            .block__jobDescription--dotLine {
+              display: none;
+            }
+            .block__jobDescription--title {
+              font-style: italic;
+            }
+          }
+        }
       }
     }
 
@@ -547,9 +571,9 @@ html {
         .block__title {
           -webkit-text-stroke: 1.5px $color-darkGold;
         }
-        .block__jobs {
-          display: none;
-        }
+        // .block__jobs {
+        //   display: none;
+        // }
       }
     }
   }
@@ -738,7 +762,7 @@ html {
   background: $color-bgWhite;
   z-index: 9999;
   opacity: 1;
-  transition: 1.5s;
+  transition: 1s;
   @include flex(row, center, center);
 
   &.hidden {

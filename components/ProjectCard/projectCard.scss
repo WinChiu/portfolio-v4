@@ -28,7 +28,7 @@
       .block__number {
         font-family: $font-serif;
         color: transparent;
-        margin-bottom: 20px;
+        margin-bottom: 8px;
         -webkit-text-stroke: 2px $color-darkGold;
       }
 
@@ -39,7 +39,7 @@
 
       // 標題文字
       .block__title {
-        font-weight: 600;
+        font-weight: 500;
         margin-bottom: 16px;
       }
 
@@ -47,7 +47,7 @@
       .block__tag {
         color: $color-darkGold;
         font-family: $font-serif;
-        font-weight: 600;
+        font-weight: 500;
       }
 
       // 描述區塊：左側有紅色邊框
@@ -165,6 +165,9 @@
     }
     @media (max-width: 480px) {
       .block--introduction {
+        .block__title {
+          font-size: 28px;
+        }
         .block__buttonContainer,
         .block__button,
         .block__button--viewSite {

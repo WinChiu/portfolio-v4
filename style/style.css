@@ -137,7 +137,7 @@ h6 {
 .section--work .container--content .block--introduction .block__number {
   font-family: "Noto Serif";
   color: transparent;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   -webkit-text-stroke: 2px #7a776d;
 }
 .section--work .container--content .block--introduction .block__content {
@@ -148,13 +148,13 @@ h6 {
   gap: 0px;
 }
 .section--work .container--content .block--introduction .block__title {
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 16px;
 }
 .section--work .container--content .block--introduction .block__tag {
   color: #7a776d;
   font-family: "Noto Serif";
-  font-weight: 600;
+  font-weight: 500;
 }
 .section--work .container--content .block--introduction .block__description {
   padding-left: 16px;
@@ -264,6 +264,9 @@ h6 {
   }
 }
 @media (max-width: 480px) {
+  .section--work .container--content .block--introduction .block__title {
+    font-size: 28px;
+  }
   .section--work .container--content .block--introduction .block__buttonContainer,
   .section--work .container--content .block--introduction .block__button,
   .section--work .container--content .block--introduction .block__button--viewSite {
@@ -405,14 +408,14 @@ html {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  gap: 0px;
+  gap: 12px;
   margin-bottom: 76px;
   /* 標題區塊 */
 }
 .section--main .container--content .block--introduction .block__header {
   position: relative;
+  margin-bottom: 16px;
   width: 100%;
-  margin-bottom: 12px;
 }
 .section--main .container--content .block--introduction .block__header .block__title {
   color: #615f58;
@@ -430,7 +433,6 @@ html {
   font-weight: 600;
   font-family: "Noto Sans TC";
   color: #615f58;
-  margin-bottom: 32px;
   line-height: 140%;
   width: 110%;
 }
@@ -480,6 +482,12 @@ html {
   overflow: visible;
   z-index: 1;
 }
+.section--main .container--content .media--image .media__img--eye2Left,
+.section--main .container--content .media--image .media__img--eye3Left,
+.section--main .container--content .media--image .media__img--eye2Right,
+.section--main .container--content .media--image .media__img--eye3Right {
+  display: none;
+}
 .section--main .container--content .media--image .media__img--body {
   max-height: 100%;
   width: auto;
@@ -505,13 +513,13 @@ html {
   left: 47.5%;
   top: 37%;
 }
-.section--main .container--content .media--image .media__img--eye1Left,
+.section--main .container--content .media--image .media__img--eyeLeft,
 .section--main .container--content .media--image .media__img--eye1SocketLeft {
   height: 6%;
   left: 31.5%;
   top: 42%;
 }
-.section--main .container--content .media--image .media__img--eye1Right,
+.section--main .container--content .media--image .media__img--eyeRight,
 .section--main .container--content .media--image .media__img--eye1SocketRight {
   height: 6%;
   left: 47.5%;
@@ -521,6 +529,9 @@ html {
   height: 2.8%;
   left: 40%;
   top: 54%;
+}
+.section--main .container--content .media--image .media__img--mouthStrange {
+  display: none;
 }
 .section--main .container--content {
   /* 向下圖片區塊 */
@@ -586,9 +597,6 @@ html {
     margin-bottom: 0;
     width: 100%;
   }
-  .section--main .container--content .block--introduction .block__header {
-    margin-top: 64px;
-  }
   .section--main .container--content .block--introduction .block__header .block__title {
     text-align: center;
     width: 100%;
@@ -603,11 +611,12 @@ html {
   .section--main .container--content .block--introduction .block__annotation {
     width: 100%;
     text-align: center;
+    margin-bottom: 48px;
   }
   .section--main .container--content .block__translator {
-    right: 48px;
-    top: 48px;
-    bottom: auto;
+    right: 16px;
+    top: auto;
+    bottom: 32px;
   }
   .section--main .container--content .media--downImage {
     display: none;
@@ -626,16 +635,11 @@ html {
   .section--main .container--content .block--introduction {
     margin-bottom: 0;
   }
-  .section--main .container--content .block--introduction .block__description {
-    margin-bottom: 16px;
+  .section--main .container--content .block--introduction .block__header {
+    margin-bottom: 8px;
   }
   .section--main .container--content .block--introduction .block__annotation {
-    margin-bottom: 64px;
-  }
-  .section--main .container--content .block__translator {
-    right: 16px;
-    top: auto;
-    bottom: 32px;
+    margin-bottom: 48px;
   }
 }
 
@@ -690,7 +694,7 @@ html {
 .block--switcher .block__design h4,
 .block--switcher .block__coding h4 {
   font-family: "Noto Sans TC";
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
 }
 .block--switcher {
@@ -780,12 +784,12 @@ html {
   margin-bottom: 8px;
 }
 .section--about .container .block .block__jobs {
-  margin-top: 16px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   gap: 8px;
+  margin-top: 16px;
   width: 100%;
 }
 .section--about .container .block .block__jobs .block__jobDescription {
@@ -809,7 +813,7 @@ html {
 .section--about .container .block .block__jobs .block__jobDescription--past .block__jobDescription--dotLine {
   border-bottom: 2px dotted #c8c8c8;
 }
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .section--about .container {
     display: flex;
     justify-content: center;
@@ -821,6 +825,30 @@ html {
     margin: 0;
     margin-bottom: 24px;
   }
+  .section--about .container .block .block__jobs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .section--about .container .block .block__jobs .block__jobDescription {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .section--about .container .block .block__jobs .block__jobDescription .block__jobDescription--company {
+    font-weight: bold;
+  }
+  .section--about .container .block .block__jobs .block__jobDescription .block__jobDescription--dotLine {
+    display: none;
+  }
+  .section--about .container .block .block__jobs .block__jobDescription .block__jobDescription--title {
+    font-style: italic;
+  }
 }
 @media (max-width: 480px) {
   .section--about .container .block--introduction .media {
@@ -828,9 +856,6 @@ html {
   }
   .section--about .container .block .block__title {
     -webkit-text-stroke: 1.5px #7a776d;
-  }
-  .section--about .container .block .block__jobs {
-    display: none;
   }
 }
 
@@ -1518,7 +1543,7 @@ svg.active .svg-elem-54 {
   background: #fbfbf6;
   z-index: 9999;
   opacity: 1;
-  transition: 1.5s;
+  transition: 1s;
   display: flex;
   justify-content: center;
   align-items: center;
