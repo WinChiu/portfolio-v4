@@ -103,7 +103,9 @@ html {
     color: $color-textWhite;
   }
 }
-
+.highlight {
+  color: $color-darkOrange;
+}
 .section--content {
   [data-zoom-image]:hover {
     transform: scale(1.02);

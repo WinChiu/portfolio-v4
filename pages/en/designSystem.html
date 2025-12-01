@@ -9,7 +9,10 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="../../components/components.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +27,11 @@
   <body>
     <!-- Loading Mask -->
     <div class="loading-mask">
-      <dotlottie-wc src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie" autoplay loop></dotlottie-wc>
+      <dotlottie-wc
+        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
+        autoplay
+        loop
+      ></dotlottie-wc>
     </div>
 
     <div class="block block__translator">
@@ -55,22 +62,19 @@
           </div>
           <div class="module module__pureText">
             <p class="module__text">
-              The redesigned system is the V2.0 design system in SHOPLINE's
-              e-commerce product line, used for the backend management pages of
-              B2B products. It offers features like online store design and
-              order processing and is one of the primary design systems.
+              The V2.0 design system in SHOPLINE's e-commerce product line, used
+              for the backend management pages of B2B products. It offers
+              features like online store design and order processing and is one
+              of the primary design systems.
             </p>
             <p class="module__text">
-              Currently built in Figma, the system is widely used by designers
-              and engineers, playing a crucial role in maintaining UI/UX
-              consistency. However, due to the lack of comprehensive management
-              and usage guidelines, and the fact that some components were
-              transferred from Sketch, there are issues such as
+              However, because the system lacked clear management and usage
+              guidelines, the
               <span class="highlight"
-                >unclear component usage scenarios, broken Figma components, and
-                difficulty in locating elements, reducing efficiency and
-                disrupting design consistency.</span
-              >
+                >ulibrary suffered from unclear usage scenarios, broken
+                components, and poor discoverability.</span
+              >This slow down the design process and made it difficult to
+              maintain consistency across projects.
             </p>
           </div>
         </div>
@@ -86,7 +90,7 @@
         <div class="container container--contentSection">
           <project-content-bigquote
             icon="../../img/sketch-think.svg"
-            content="I first ==interviewed three designers== from the company to understand their usage habits and needs regarding the design system. From this, I identified ==five key issues=="
+            content="Through interviews with designers across the company, I analyzed their workflows and needs and identified ==four key issues.=="
           ></project-content-bigquote>
         </div>
         <div class="container container--contentSection">
@@ -99,19 +103,15 @@
           </div>
           <div class="module module__pureTitle">
             <h6 class="module__semiTitle">
-              Lack of Defined Usage Scenarios for Components, Making It
-              Difficult to Create New Pages Based on the Design System
+              Undefined component usage scenarios made it difficult for
+              designers to build new pages using the design system.
             </h6>
           </div>
           <div class="module module__pureText">
             <p class="module__text">
-              When designers need to plan new pages, the lack of defined usage
-              scenarios makes it difficult to determine which components to use
-              (e.g., when to use a Secondary Button) or which guidelines to
-              follow (e.g., spacing between primary and secondary headers). As a
-              result, designers must refer to previously launched pages or
-              consult with others, increasing the risk of inconsistency across
-              the interface.
+              Without clear usage scenarios, designers had to look at existing
+              pages or ask others verbally to confirm which patterns to use.
+              This increased the risk of inconsistencies across the interface.
             </p>
           </div>
           <div class="module module__singleImage">
@@ -129,16 +129,15 @@
           </div>
           <div class="module module__pureTitle">
             <h6 class="module__semiTitle">
-              Inconsistent Component Naming and Filing, Making Components Hard
-              to Find
+              Inconsistent component naming and organization made components
+              difficult to located
             </h6>
           </div>
           <div class="module module__pureText">
             <p class="module__text">
-              Inconsistent naming and missing components make it impossible to
-              search for the needed elements. Combined with unclear usage
-              scenarios, designers must return to the main design system file
-              each time they need to find components.
+              Designers often had to browse through large sections of the design
+              system file just to find a component, rather than finding it
+              through direct search.
             </p>
           </div>
           <div class="module module__singleImage">
@@ -162,17 +161,14 @@
               />
               <div class="module__content">
                 <h6 class="module__content--title">
-                  Lack of Unified Structure for Resource Management, Leading to
-                  Fragmented and Unsynchronized Components and Guidelines
+                  No standardized format for guidelines, reducing reading
+                  efficiency.
                 </h6>
                 <p class="module__content--content">
-                  The current design system uses both component- and
-                  guideline-centered filing, resulting in content duplication.
-                  For example, a document named Flow contains interaction
-                  patterns for all components (e.g., menu bar interactions)
-                  while also having separate pages that record component
-                  specifications (e.g., menu bar color guidelines), leading to
-                  partial overlap across different pages.
+                  The component guidelines lack a unified writing standard. Key
+                  elements such as basic styles, states, and interaction
+                  patterns is incomplete, making it difficult to find
+                  comprehensive documentation.
                 </p>
               </div>
             </div>
@@ -187,39 +183,13 @@
               <img src="../../img/sketch-confuse.svg" alt="" />
               <div class="module__content">
                 <h6 class="module__content--title">
-                  No Standardized Format for Guidelines, Reducing Reading
-                  Efficiency
+                  No clear update mechanism caused the design system to fall out
+                  of sync with the live product.
                 </h6>
                 <p class="module__content--content">
-                  The guidelines for component pages lack a unified writing
-                  standard. In addition to missing usage scenarios, key elements
-                  such as basic styles, states, and interaction patterns are
-                  incomplete, making it difficult to find comprehensive
-                  guidelines in the documentation.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">Problem 5</h6>
-          </div>
-          <div class="module module__verticalIconList">
-            <div class="module__verticalIcon">
-              <img src="../../img/sketch-webDesign.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  No Clear Update Mechanism, Causing the Design System to Fall
-                  Out of Sync with the Live Version
-                </h6>
-                <p class="module__content--content">
-                  The components in the product can be categorized into four
-                  versions: V2 original, engineer-created, designer-created, and
-                  other UI kits. These versions lack clear communication and
-                  update mechanisms, resulting in the V2 design system becoming
-                  outdated as it fails to update components and guidelines in a
-                  timely manner.
+                  Because newly created or updated components were never
+                  documented, the design system remained outdated and failed to
+                  reflect the actual state of the components.
                 </p>
               </div>
             </div>
@@ -286,7 +256,7 @@
           <div class="module module__pureText">
             <p class="module__text">
               To maintain quality and align with designers' habits, components
-              are organized using the following structure:
+              are organized using the following structure in Figma:
             </p>
           </div>
           <div class="module module__imgAndContentBlock">
@@ -297,39 +267,23 @@
             />
             <div class="module__content">
               <h6 class="module__content--title">Introduction</h6>
-              <ol class="module__content--content">
-                <li>File hierarchy and usage explanation</li>
-                <li>Documentation browsing and usage guidelines s</li>
-                <li>
-                  Instructions for component creation, usage, naming
-                  conventions, and update methods
-                </li>
-                <li>Annotation guideline</li>
-              </ol>
+              <div class="module module__pureText">
+                <p class="module__text">
+                  Provides a clear user manual outlining the design system’s
+                  document architecture, along with instruction for creating,
+                  maintaining, and updating components.
+                </p>
+              </div>
               <h6 class="module__content--title">All Components</h6>
-              <ol class="module__content--content">
-                <li>Categorize subcomponents by type and status.</li>
-                <li>
-                  Create a component index with links to the corresponding full
-                  guide entries.
-                </li>
-                <li>
-                  For reference and search only; components on this page cannot
-                  be modified.
-                </li>
-              </ol>
+              <p class="module__text">
+                Lists all components in the design system so designers can
+                easily browse, reference and duplicate.
+              </p>
               <h6 class="module__content--title">Full Guide</h6>
-              <ol class="module__content--content">
-                <li>Write complete guidelines for parent components.</li>
-                <li>
-                  Provide links to corresponding subcomponents on the All
-                  Components page.
-                </li>
-                <li>
-                  For guideline writing and design updates; components on this
-                  page cannot be used.
-                </li>
-              </ol>
+              <p class="module__text">
+                Shows the detail guideline for each component, including UI
+                specification and usage scenarios.
+              </p>
             </div>
           </div>
         </div>
@@ -342,10 +296,9 @@
           </div>
           <div class="module module__pureText">
             <p class="module__text">
-              All subcomponents are stored on the All Component page, allowing
-              users to easily find and use the needed components. The use of
-              subcomponents also helps preserve the integrity of the overall
-              design system.
+              All subcomponents are stored on one page, allowing users to easily
+              find and use the components. The use of subcomponents also helps
+              preserve the integrity of the overall design system.
             </p>
           </div>
           <div class="module module__singleImage">
@@ -361,13 +314,7 @@
             <p class="module__text">
               Links to the storybook and full guide are provided in the top
               right corner of each subcomponent section, allowing users to
-              access the current component status and resolve usage questions.
-            </p>
-            <p class="module__text">
-              Similarly, the full guide page also includes links to the
-              storybook and all component page, enabling users to return to the
-              all component page after reading the guidelines, avoiding direct
-              modifications to the master component.
+              access the current component status and usage guideline.
             </p>
           </div>
           <div class="module module__doubleImage">
@@ -393,8 +340,7 @@
             <p class="module__text">
               Create a checklist that standardizes components under the
               following seven fixed headings: Usage, Spec, Content, Layout,
-              Application, Asset, and Components. Each heading must have
-              specific content written under it.
+              Application, Asset, and Components.
             </p>
           </div>
           <div class="module module__doubleImage">
@@ -419,9 +365,8 @@
           </div>
           <div class="module module__pureText">
             <p class="module__text">
-              Record component issues and assign relevant personnel for
-              resolution; regularly review pending component issues in weekly
-              meetings and discuss solutions.
+              Record component issues and assign an owner. Review all pending
+              issues during the weekly meeting and discuss potential solutions.
             </p>
           </div>
           <div class="module module__singleImage">
@@ -449,25 +394,22 @@
               <img src="../../img/sketch-checkList.svg" alt="" />
               <div class="module__content">
                 <p class="module__content--content">
-                  Through this project, I realized that the design system is
-                  crucial for product consistency. If the design system is not
-                  based on scenario-driven guidelines, it will merely function
-                  as a component library without providing practical
-                  implementation references. Additionally, when guidelines and
-                  components are scattered across different documents, it
-                  increases implementation time and exacerbates inconsistencies
-                  in product design.
+                  I realized that the design system is crucial for product
+                  consistency. Scenario-driven guidelines help designers
+                  understand how to use a component, not just how it looks.
+                  Moreover, when guidelines and components are scattered across
+                  different documents, It slows down implementation and leads to
+                  more design inconsistencies.
                 </p>
                 <p class="module__content--content">
-                  Different roles have different needs for the design system.
-                  Consistent naming affects coding efficiency, designers'
-                  ability to locate components, and testing efficiency.
-                  Ineffective communication can lead to misalignment in
-                  component usage, where designers and engineers might use
-                  different components. Therefore, synchronization and update
-                  mechanisms across roles are essential for maintaining the
-                  design system, which is not only important for designers but
-                  also critical for ensuring product quality.
+                  Another goal of a design system is to improve collaboration
+                  across different product teams. Consistent naming affects
+                  coding efficiency and designers’ ability to locate components.
+                  Poor communication can cause misalignment in component usage,
+                  with designers and engineers choosing different components.
+                  Therefore, clear syncing and update mechanisms across roles
+                  are essential to maintaining the design system and ensuring
+                  overall product quality.
                 </p>
               </div>
             </div>

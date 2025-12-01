@@ -131,7 +131,7 @@ html {
       /* 標題區塊 */
       .block__header {
         position: relative;
-        margin-bottom: 16px;
+        margin-bottom: 8px;
         width: 100%;
         .block__title {
           color: $color-darkGray;
@@ -148,8 +148,10 @@ html {
         font-weight: 600;
         font-family: $font-sansSerif;
         color: $color-darkGray;
-        line-height: 140%;
+        line-height: 150%;
         width: 110%;
+        margin-bottom: 24px;
+        margin-left: 4px;
       }
 
       /* 註解區塊 */
@@ -158,9 +160,9 @@ html {
         transition: opacity 1.5s ease-in-out;
         color: $color-darkGold;
         font-weight: normal;
-        font-style: italic;
         line-height: 140%;
         width: 110%;
+        margin-left: 4px;
       }
     }
 

@@ -45,12 +45,12 @@
       company="Wellell"
     ></project-header>
     <project-introduction
-      image-url="../../img/image-projectCover-rfid-en.webp"
+      image-url="../../img/image-projectCover-rfid.webp"
       image-alt="Decontamination and Rental Service Management System for PRC Medical Device"
       purpose="To align with Europe's Industry 4.0 transformation, we planned to integrate an RFID scanning feature into the existing logistics module, providing customers with a more flexible way to track assets."
       challenge="To reduce development cost and shorten the time to market, RFID feature should be added without major changes to the existing workflow. As the system architecture was complex, it was necessary to map all possible product tracking state and necessary response."
       production="Conducted on-site research and built a simulated environment to test design concepts. Completed the final design of RFID-related features for the logistics module, delivered the full functional specification, and carried out PM testing."
-      outcome="Successfully initiated partnership discussions with a Danish service provider and prepared for gradual implementation."
+      outcome="Successfully initiated partnership discussions with a Danish a service provider and prepared for gradual implementation."
     ></project-introduction>
     <section class="section section--content">
       <div class="container container--content">
@@ -68,13 +68,6 @@
             <h3 class="module__bgText">Project Background</h3>
             <div class="module__line"></div>
           </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-fistImage.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
           <div class="module module__pureText">
             <p class="module__text">
               KeepWell is a SaaS platform designed to streamline the
@@ -85,11 +78,14 @@
               disinfection to orders, logistics, and customer management.
             </p>
             <p>
-              After meeting with a Danish service provider, we found that their
+              After meeting with a service provider, we found that their
               logistics workflow was not well suited for QR code scanning. Since
               QR code asset tags require users to locate and visually access the
-              tag to scan it, it's impossible for the service provider who
-              transports air mattresses in bulk using cage carts.
+              tag to scan it,
+              <span class="highlight"
+                >it's impossible for the service provider who transports air
+                mattresses in bulk using cage carts.</span
+              >
             </p>
           </div>
         </div>
@@ -111,9 +107,8 @@
           </div>
           <div class="module module__bgQuote">
             <h3 style="flex: 1">
-              QR code asset tags require users to locate and scan the label on
-              each product during logistics operations. However, stacked
-              mattresses make it difficult or even impossible to scan the tags.
+              QR codes on stacked mattresses are often hard or even impossible
+              to access.
             </h3>
             <div class="module module__callOutList" style="flex: 1">
               <div class="module module__callOut">
@@ -152,7 +147,7 @@
         <div class="container container--contentSection">
           <project-content-bigquote
             icon="../../img/sketch-factory.svg"
-            content="To increase the efficiency and accuracy of asset tracking, and to align with the Industry 4.0 transformation, == we planned to introduce RFID tracking technology == as an alternative to QR code scanning."
+            content="To increase the efficiency and accuracy of asset tracking, == we planned to introduce RFID tracking technology == as an alternative to QR code scanning."
           ></project-content-bigquote>
         </div>
 
@@ -171,8 +166,8 @@
                   Business Goal: Increase client base and revenue
                 </h6>
                 <p class="module__content--content">
-                  The addition of RFID scanning aims to improve customer
-                  satisfaction and strengthen market competitiveness.
+                  Aims to improve customer satisfaction and strengthen market
+                  competitiveness.
                 </p>
               </div>
             </div>
@@ -184,8 +179,8 @@
                   workflow
                 </h6>
                 <p class="module__content--content">
-                  Provide complete RFID asset tracking across pickup, delivery,
-                  collection, and warehouse processes.
+                  Provide end-to-end RFID asset tracking across logistics and
+                  warehouse operations.
                 </p>
               </div>
             </div>
@@ -193,8 +188,8 @@
               <img src="../../img/sketch-webDesign.svg" alt="" />
               <div class="module__content">
                 <h6 class="module__content--title">
-                  Design Goal: Support multiple scanning workflows and
-                  error-state guidance
+                  Design Goal: Support multiple workflows and error-state
+                  guidance
                 </h6>
                 <p class="module__content--content">
                   Enable users to quickly switch between scanning modes on
@@ -220,8 +215,9 @@
             <p>
               Through on-site research at service provider's facilities, we
               found that the logistics workflow required two types of RFID
-              scanners. KeepWell needed to support both scanning methods to meet
-              different usage scenarios and improve operational efficiency.
+              scanners. KeepWell needed to
+              <span class="highlight"> support both scanning methods</span> to
+              meet different usage scenarios and improve operational efficiency.
             </p>
           </div>
           <div class="module module__singleImage">
@@ -240,31 +236,30 @@
           <div class="module module__pureText">
             <p>
               According to our research, service providers focus on two key
-              tracking points in logistics — when air mattresses are delivered
-              to hospitals and when they are collected by drivers, which serve
-              as the basis for rental billing. For drivers, the main concern
-              on-site is the number of collected mattresses, ensuring the same
-              number of clean ones are delivered.
+              tracking points in logistics,
+              <span class="highlight">
+                when air mattresses are delivered to hospitals and when they are
+                collected by drivers</span
+              >, which serve as the basis for rental billing. For drivers, the
+              main concern on-site is the number of collected mattresses,
+              ensuring the same number of clean ones are delivered.
             </p>
             <p>
-              Details such as product serial numbers, damage conditions, and
-              exact counts are verified only after the items are unloaded at the
-              warehouse by the cleaning and inspection staff. Therefore, I
-              integrated the RFID feature into the logistics module based on two
-              design principles:
+              Therefore, I integrated the RFID feature into the logistics module
+              based on two design principles:
             </p>
           </div>
           <ol class="module__content--content">
             <li>
-              Minimal necessary information: Focus on displaying the scanned
-              model and quantity, while detailed product information is placed
-              on a secondary page.
+              <span class="highlight">Minimal necessary information</span>:
+              Focus on displaying the scanned model and quantity, while detailed
+              product information is placed on a secondary page.
             </li>
             <li>
-              Smooth exception handling: When scanning fails, for example, due
-              to a damaged RFID tag or data inconsistency, the system provides
-              clear prompts and alternative actions to allow operations to
-              continue seamlessly.
+              <span class="highlight">Smooth exception handling</span>: When
+              scanning fails, for example, due to a damaged RFID tag or data
+              inconsistency, the system provides clear prompts and alternative
+              actions to allow operations to continue seamlessly.
             </li>
           </ol>
           <div class="module module__singleImage">
@@ -357,13 +352,15 @@
           <div class="module module__pureText">
             <p>
               Our research revealed that both service providers and hospitals
-              often bypass certain steps we initially considered important, such
-              as rechecking product serial numbers, logging precise return
-              times, or inspecting product conditions on-site, simply to keep
-              everything faster. This showed that the interface we originally
-              designed to reduce errors and improve data accuracy, based on
-              general usability principles, ended up being unnecessarily
-              complex.
+              often
+              <span class="highlight"
+                >bypass certain steps we initially considered important</span
+              >, such as rechecking product serial numbers, logging precise
+              return times, or inspecting product conditions on-site, simply to
+              keep everything faster. This showed that the interface we
+              originally designed to reduce errors and improve data accuracy,
+              based on general usability principles, ended up being
+              unnecessarily complex.
             </p>
           </div>
           <div class="module module__pureTitle">
@@ -381,10 +378,13 @@
               by making each module independently modifiable.
             </p>
             <p>
-              From this experience, we should design with modular integration in
-              mind when serving users with diverse workflows, enabling quick
-              adaptation to different operational processes without costly
-              redesigns.
+              From this experience, we should
+              <span class="highlight"
+                >design with modular integration in mind when serving users with
+                diverse workflows,</span
+              >
+              enabling quick adaptation to different operational processes
+              without costly redesigns.
             </p>
           </div>
         </div>

@@ -80,7 +80,7 @@
         }
         .module__title {
           font-weight: 500;
-          margin-bottom: 0px;
+          margin-bottom: 24px;
           font-size: 36px;
           line-height: 120%;
           padding-right: 16px;
@@ -90,16 +90,16 @@
           @include flex(column, center, stretch, 0px);
           border-top: 0px;
           .module__data {
-            padding: 24px 16px 0px 16px;
+            padding: 24px 16px 24px 16px;
             border-right: none;
+            border-bottom: 2px solid $color-black;
             &:first-child {
-              //border-top: 2px solid $color-black;
               padding-left: 16px;
+              border-top: 2px solid $color-black;
             }
             &:last-child {
-              border-right: none;
-              padding-right: 16px;
-              padding-bottom: 24px;
+              border: none;
+              //padding-right: 16px;
             }
           }
         }

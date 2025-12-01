@@ -414,7 +414,7 @@ html {
 }
 .section--main .container--content .block--introduction .block__header {
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   width: 100%;
 }
 .section--main .container--content .block--introduction .block__header .block__title {
@@ -433,8 +433,10 @@ html {
   font-weight: 600;
   font-family: "Noto Sans TC";
   color: #615f58;
-  line-height: 140%;
+  line-height: 150%;
   width: 110%;
+  margin-bottom: 24px;
+  margin-left: 4px;
 }
 .section--main .container--content .block--introduction {
   /* 註解區塊 */
@@ -444,9 +446,9 @@ html {
   transition: opacity 1.5s ease-in-out;
   color: #7a776d;
   font-weight: normal;
-  font-style: italic;
   line-height: 140%;
   width: 110%;
+  margin-left: 4px;
 }
 .section--main .container--content {
   /* 背景圖片區塊 */
