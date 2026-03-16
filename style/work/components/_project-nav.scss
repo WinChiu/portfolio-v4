@@ -1,0 +1,101 @@
+@use '../../tokens' as *;
+@use '../../base/mixins' as *;
+
+.project-nav {
+  position: fixed;
+  z-index: 850;
+  left: 0;
+  top: 0;
+  height: 100dvh;
+  padding: 2.5rem 2.5rem;
+  background-color: $color-bgWhite;
+  border-right: $color-black solid 0.125rem;
+  @include flex(column, space-between, flex-start, 0rem);
+
+  &:hover {
+    .project-nav__toc {
+      max-width: 31.25rem;
+    }
+  }
+
+  &__group {
+    @include flex(column, center, center, 1rem);
+    width: 2.5rem;
+  }
+
+  &__toc {
+    @include flex(column, center, flex-start, 1rem);
+    max-width: 0.5rem;
+    margin-left: 1rem;
+    transition: max-width 0.25s;
+    overflow: hidden;
+
+    .project-toc {
+      @include flex(row, flex-start, center, 1rem);
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__item {
+    a {
+      text-decoration: none;
+      font-family: $font-sansSerif;
+      cursor: pointer;
+    }
+  }
+
+  .project-toc__dot {
+    min-width: 0.5rem;
+    min-height: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: $color-gray;
+  }
+
+  .project-toc__label {
+    white-space: nowrap;
+    color: $color-darkGold;
+  }
+
+  .project-toc--active {
+    .project-toc__dot {
+      background-color: $color-red;
+    }
+
+    .project-toc__label {
+      color: $color-red;
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: 50rem) {
+    padding: 2.5rem 1rem;
+  }
+
+  @media (max-width: 30rem) {
+    @include flex(row, space-between, center, 0rem);
+    padding: 1rem;
+    height: 3.5rem;
+    width: 100vw;
+    top: 0;
+    background-color: $color-bgWhite;
+    border-right: none;
+    border-bottom: $color-black solid 0.125rem;
+
+    .project-nav__group {
+      @include flex(row, center, center, 1rem);
+    }
+
+    .project-nav__item {
+      margin-bottom: 0;
+    }
+
+    .project-nav__toc {
+      display: none;
+    }
+  }
+}

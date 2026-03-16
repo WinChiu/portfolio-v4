@@ -1,0 +1,74 @@
+@function svg-delay($i) {
+  @if $i == 1 {
+    @return 0s;
+  } @else if $i == 2 {
+    @return 0.05s;
+  } @else if $i == 3 {
+    @return 0.1s;
+  } @else if $i == 4 {
+    @return 0.15s;
+  } @else if $i == 5 {
+    @return 0.2s;
+  } @else if $i == 6 {
+    @return 0.25s;
+  } @else if $i == 7 {
+    @return 0.3s;
+  } @else if $i == 8 {
+    @return 0.35s;
+  } @else if $i == 9 {
+    @return 0.4s;
+  } @else {
+    @return 0.45s + (($i - 10) * 0.05s);
+  }
+}
+
+@function svg-active-fill($i) {
+  @if $i == 1 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 2 {
+    @return rgb(232, 213, 117);
+  } @else if $i == 3 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 4 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 5 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 6 {
+    @return rgb(232, 213, 117);
+  } @else if $i == 7 {
+    @return rgb(209, 211, 212);
+  } @else if $i == 8 {
+    @return rgb(232, 213, 117);
+  } @else if $i == 9 {
+    @return rgb(232, 213, 117);
+  } @else {
+    @return rgb(35, 31, 32);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1.25rem);
+  }
+}
+
+@for $i from 1 through 54 {
+  svg .svg-elem-#{$i} {
+    fill: transparent;
+    -webkit-transition: fill
+      0.5s
+      cubic-bezier(0.47, 0, 0.745, 0.715)
+      svg-delay($i);
+    transition: fill 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) svg-delay($i);
+  }
+
+  svg.active .svg-elem-#{$i} {
+    fill: svg-active-fill($i);
+  }
+}
+

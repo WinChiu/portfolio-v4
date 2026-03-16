@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,8 +8,11 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="../../components/components.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,315 +24,284 @@
     <title>POS TW/HK 金流串接正逆流程設計</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
-  <body>
-    <!-- Loading Mask -->
-    <div class="loading-mask">
-      <dotlottie-wc src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie" autoplay loop></dotlottie-wc>
+  <body class="project-page">
+    <!-- Generated from project content data -->
+    <div class="page-loader">
+      <dotlottie-wc
+        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
+        autoplay
+        loop
+      ></dotlottie-wc>
     </div>
 
-    <div class="block block__translator">
+    <div class="project-translator">
       <a href="../en/pos.html"><p>繁中 | EN</p></a>
     </div>
-    <project-header
-      tags="E-commerce,Finance"
-      title="POS TW/HK 金流串接正逆流程設計"
-      duration="Jul. 2022 ~ Nov. 2022"
-      role="UX Designer"
-      responsibility="流程規劃、設計完稿、UI Testing"
-      company="SHOPLINE"
-    ></project-header>
-    <project-introduction
-      image-url="../../img/image-projectCover-pos.webp"
-      image-alt="POS TW/HK 金流串接正逆流程設計"
-      purpose="為 SHOPLINE POS 台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。"
-      challenge="POS 產品已經上線使用且店家已習慣既有流程，為降低學習成本，在進行設計時需貼合既有流程進行。"
-      production="完成 6 項正逆金流系統操作流程設計，涵蓋 3 種金流、非金流付款方式與多種付款結果處理（成功、失敗、離線、操作錯誤…）。"
-      outcome="產品上線並讓台灣與香港店家使用。"
-    ></project-introduction>
-    <section class="section section--content">
-      <div class="container container--content">
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">專案背景</h3>
-            <div class="module__line"></div>
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="project-header__tag">
+            <p>E-commerce</p>
           </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-marketing.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              SHOPLINE 是一個整合線上線下銷售的電商平台，提供 POS
-              系統幫助店家管理實體店面的支付流程。
-            </p>
-            <p class="module__text">
-              在本專案進行時，SHOPLINE 的 POS
-              系統在台灣尚未串接自有金流，店家需自行與銀行簽約；香港市場雖完成金流串接，但需支援多品牌刷卡機，且手續費高於市場平均。
-            </p>
+          <div class="project-header__tag">
+            <p>Finance</p>
           </div>
         </div>
-        <div class="container container--contentSection">
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-workflow.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div
-          class="container container--contentSection specialSection specialSection--gray"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">問題定義</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__bgQuote">
-            <h3>缺乏金流功能、定價過高導致自家電商方案無競爭力</h3>
-            <div class="module module__callOutList">
-              <div class="module module__callOut">
-                <p class="module__title">無金流服務，降低產品競爭力</p>
-                <p class="module__text">
-                  台灣市場中尚未串接刷卡機服務，導致使用 SHOPLINE
-                  服務的店家需另行處理信用卡結帳項目，降低結帳效率。
-                </p>
-              </div>
-              <div class="module module__callOut">
-                <p class="module__title">售價高於平均，業務難以推廣</p>
-                <p class="module__text">
-                  香港市場中現有刷卡機支付成本高於市面平均價格，導致 POS
-                  系統業務推廣與導入困難。
-                </p>
-              </div>
+          <h2 class="project-header__title">POS TW/HK 金流串接正逆流程設計</h2>
+          <div class="project-header__metadata">
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Duration</p>
+              <p class="project-header__meta-value">Jul. 2022 ~ Nov. 2022</p>
             </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-think.svg"
-            content="我針對 PRD 交付文件中對於商業現況的描述，==定義本次專案在產品面與設計面的目標==，以聚焦設計解方。"
-          ></project-content-bigquote>
-        </div>
-        <div
-          class="container container--contentSection specialSection specialSection--yellow"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">目標拆解</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__horizontalIconList">
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-money.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">商業目標：提高手續費收益</h6>
-                <p class="module__content--content">
-                  增加使用 SHOPLINE Payment 的訂單以提升刷卡手續費收入。
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Role</p>
+              <p class="project-header__meta-value">UX Designer</p>
             </div>
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-function.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  產品目標：提供完整金流服務
-                </h6>
-                <p class="module__content--content">
-                  提供完整（結帳、取消、退款、退貨）的 SHOPLINE Payment
-                  金流服務，以支援店家提供消費者信用卡結帳的選項。
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Responsibility</p>
+              <p class="project-header__meta-value">流程規劃、設計完稿、UI Testing</p>
             </div>
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-webDesign.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  設計目標：提供完整金流服務
-                </h6>
-                <p class="module__content--content">
-                  讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Company</p>
+              <p class="project-header__meta-value">SHOPLINE</p>
             </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__pureText">
-            <p class="module__text">
-              針對 POS 系統現有機制，盤點各狀態的判斷時機、回應時間與各金流 /
-              非金流的判斷差異。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-complexFlow.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-think.svg"
-            content="雖然 PRD 已經提供明確的設計解方，但我==重新釐清問題後提出更能對應到目標的解方==，並獲得採納。"
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Solution 1</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">明確提醒商家尚未進行刷卡機結帳</h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              進行刷卡後，刷卡機並不會立即將款項撥入店家的帳戶中，需手動清機才能收到金流。因此在增加刷卡機結帳功能後，我們需要明確提醒商家尚未進行刷卡機結帳。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-cashFlow.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">原解方</h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              原先預期商家會使用 POS
-              中的「小結」頁面清點帳務後，一同進行清機。因此原需求希望在「小結」頁籤中提示清機操作，但我發現這不符合用戶操作習慣，因此進行了修改。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-sol1Origin.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">我的修正版本</h6>
-          </div>
-
-          <div class="module module__quote">
-            <p>
-              設計聚焦：在不增加資訊負擔的前提下，可以即時提醒店家有重要操作尚未完成。
-            </p>
-          </div>
-
-          <div class="module module__pureText">
-            <p class="module__text">
-              作為店家收款的重要功能，我設計了一個獨立的「清機」頁籤，並使用紅點提示未完成的清機操作。進入頁面後，店家可快速查看每台刷卡機的狀態，並逐台完成清機。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-sol1New.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Solution 2</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              即時提示店家退款限制，減少錯誤操作
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              退款流程中，不同結帳方式與刷卡機機種有不同的退款限制（如僅能全額退或部分退）。若無清楚提示適用的退款方案，可能導致店家進行無謂的嘗試。因此，系統需在保留輸入靈活性的同時，防止錯誤操作，確保退款過程中的良好體驗。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-figmaFlow.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">原解方</h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              為了保留輸入金額的彈性，原需求設計為在輸入後才顯示錯誤提示。但在某些退款情況下，店家只能選擇一種退款額度（如全額退款），這樣的設計會導致不必要的操作，增加時間成本。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-sol2Origin.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">我的修正版本</h6>
-          </div>
-          <div class="module module__quote">
-            <p>
-              設計聚焦：在不影響店家操作效率的情況下，提醒並制止店家進行錯誤的退款金額輸入
-            </p>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              我在「選擇退款方式」和「退款方式列表」中添加可退款金額提示，並在報錯時再次顯示可輸入的金額，幫助店家完成退款流程。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-sol2New.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">學習點</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              回到使用者情境思考解決方案的合理性
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              當接收到很精確的需求時，作為設計師依然該從商業、產品與設計三項目標盤點起，即便是在
-              B2B
-              功能導向的產品中，也要確保解方符合用戶情境與良好的體驗，避免產品本身因功能的堆疊，而逐漸失去易用性。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/pos/image-pos-figmaFile.webp"
-              alt=""
-              data-zoom-image
-            />
           </div>
         </div>
       </div>
+    </main>
+    <section class="project-intro">
+      <div class="project-intro__inner">
+        <div class="project-intro__top">
+          <div class="project-intro__media">
+            <img
+              src="../../img/image-projectCover-pos.webp"
+              alt="POS TW/HK 金流串接正逆流程設計"
+              class="project-intro__image"
+            />
+          </div>
+          <div class="project-intro__summary-grid">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Purpose</p>
+          <p class="project-intro__summary-content">為 SHOPLINE POS 台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Challenge</p>
+          <p class="project-intro__summary-content">POS 產品已經上線使用且店家已習慣既有流程，為降低學習成本，在進行設計時需貼合既有流程進行。</p>
+        </div>
+          </div>
+        </div>
+        <div class="project-intro__bottom">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Production</p>
+          <p class="project-intro__summary-content">完成 6 項正逆金流系統操作流程設計，涵蓋 3 種金流、非金流付款方式與多種付款結果處理（成功、失敗、離線、操作錯誤…）。</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Outcome</p>
+          <p class="project-intro__summary-content">產品上線並讓台灣與香港店家使用。</p>
+        </div>
+        </div>
+      </div>
     </section>
-    <project-navigation language="zh"></project-navigation>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">專案背景</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-marketing.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">SHOPLINE 是一個整合線上線下銷售的電商平台，提供 POS
+                                                                                                              系統幫助店家管理實體店面的支付流程。</p>
+        <p class="project-module__text">在本專案進行時，SHOPLINE 的 POS
+                                                                                                              系統在台灣尚未串接自有金流，店家需自行與銀行簽約；香港市場雖完成金流串接，但需支援多品牌刷卡機，且手續費高於市場平均。</p>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-workflow.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-gray">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">問題定義</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--feature-quote">
+        <h3 class="project-module__heading">缺乏金流功能、定價過高導致自家電商方案無競爭力</h3>
+        <div class="project-module__callout-list">
+
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">我針對 PRD
+                                                                                                              交付文件中對於商業現況的描述，==定義本次專案在產品面與設計面的目標==，以聚焦設計解方。</h3>
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">目標拆解</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module__item">
+        <img src="../../img/sketch-money.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">商業目標：提高手續費收益</h6>
+        <p class="project-module__item-text">增加使用 SHOPLINE Payment 的訂單以提升刷卡手續費收入。</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-function.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">產品目標：提供完整金流服務</h6>
+        <p class="project-module__item-text">提供完整（結帳、取消、退款、退貨）的 SHOPLINE Payment
+                                                                                                                  金流服務，以支援店家提供消費者信用卡結帳的選項。</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-webDesign.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">設計目標：提供完整金流服務</h6>
+        <p class="project-module__item-text">讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--text">
+        <p class="project-module__text">針對 POS 系統現有機制，盤點各狀態的判斷時機、回應時間與各金流 /
+                                                                                                              非金流的判斷差異。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-complexFlow.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">雖然 PRD
+                                                                                                              已經提供明確的設計解方，但我==重新釐清問題後提出更能對應到目標的解方==，並獲得採納。</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Solution 1</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">明確提醒商家尚未進行刷卡機結帳</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">進行刷卡後，刷卡機並不會立即將款項撥入店家的帳戶中，需手動清機才能收到金流。因此在增加刷卡機結帳功能後，我們需要明確提醒商家尚未進行刷卡機結帳。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-cashFlow.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">原解方</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">原先預期商家會使用 POS
+                                                                                                              中的「小結」頁面清點帳務後，一同進行清機。因此原需求希望在「小結」頁籤中提示清機操作，但我發現這不符合用戶操作習慣，因此進行了修改。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-sol1Origin.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">我的修正版本</h6>
+        </div>
+        <div class="project-module project-module--quote">
+        <p class="project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text">設計聚焦：在不增加資訊負擔的前提下，可以即時提醒店家有重要操作尚未完成。</p>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">作為店家收款的重要功能，我設計了一個獨立的「清機」頁籤，並使用紅點提示未完成的清機操作。進入頁面後，店家可快速查看每台刷卡機的狀態，並逐台完成清機。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-sol1New.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Solution 2</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">即時提示店家退款限制，減少錯誤操作</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">退款流程中，不同結帳方式與刷卡機機種有不同的退款限制（如僅能全額退或部分退）。若無清楚提示適用的退款方案，可能導致店家進行無謂的嘗試。因此，系統需在保留輸入靈活性的同時，防止錯誤操作，確保退款過程中的良好體驗。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-figmaFlow.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">原解方</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">為了保留輸入金額的彈性，原需求設計為在輸入後才顯示錯誤提示。但在某些退款情況下，店家只能選擇一種退款額度（如全額退款），這樣的設計會導致不必要的操作，增加時間成本。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-sol2Origin.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">我的修正版本</h6>
+        </div>
+        <div class="project-module project-module--quote">
+        <p class="project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text">設計聚焦：在不影響店家操作效率的情況下，提醒並制止店家進行錯誤的退款金額輸入</p>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">我在「選擇退款方式」和「退款方式列表」中添加可退款金額提示，並在報錯時再次顯示可輸入的金額，幫助店家完成退款流程。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-sol2New.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">學習點</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">回到使用者情境思考解決方案的合理性</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">當接收到很精確的需求時，作為設計師依然該從商業、產品與設計三項目標盤點起，即便是在
+                                                                                                              B2B
+                                                                                                              功能導向的產品中，也要確保解方符合用戶情境與良好的體驗，避免產品本身因功能的堆疊，而逐漸失去易用性。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-figmaFile.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="../../home-zh.html#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

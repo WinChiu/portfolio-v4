@@ -1,0 +1,21 @@
+.module__bgQuote {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+.module__bgQuote h3 {
+  padding: 2rem 0rem;
+}
+.module__bgQuote img {
+  width: 12.5rem;
+}
+.module__bgQuote .module__callOutList {
+  padding-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}/*# sourceMappingURL=ProjectContentBigQuote.css.map */

@@ -1,0 +1,75 @@
+.section--introduction {
+  box-sizing: border-box;
+}
+.section--introduction .container--content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.section--introduction .container--content .block__intro {
+  border: #363a35 solid 0.125rem;
+  padding: 1.5rem;
+  background-color: #f8f6ed;
+  width: 100%;
+}
+.section--introduction .container--content .block__intro .block--title {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #7a776d;
+}
+.section--introduction .container--content .block__top {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+.section--introduction .container--content .block__top .block__img {
+  flex: 1;
+}
+.section--introduction .container--content .block__top .block__img .img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.section--introduction .container--content .block__top .block__topRight {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.section--introduction .container--content .block__top .block__topRight .block__intro {
+  height: 100%;
+}
+.section--introduction .container--content .block__bottom {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  gap: 1.5rem;
+  width: 100%;
+}
+@media (max-width: 50rem) {
+  .section--introduction {
+    border: 0 !important;
+  }
+  .section--introduction .container--content .block__top {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .section--introduction .container--content .block__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}/*# sourceMappingURL=projectIntroduction.css.map */

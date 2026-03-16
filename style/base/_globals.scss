@@ -1,0 +1,26 @@
+@use '../tokens' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $font-sansSerif;
+  color: $color-black;
+  box-sizing: border-box;
+}
+
+body {
+  scrollbar-gutter: unset;
+}
+
+.highlight {
+  color: $color-darkOrange;
+}
+
+html,
+body {
+  position: relative;
+}
+
+html {
+  scroll-behavior: smooth;
+}

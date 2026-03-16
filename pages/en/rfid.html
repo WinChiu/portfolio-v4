@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,21 +21,12 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-    <script type="module" src="../../components/components.js"></script>
-    <script
-      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
-      type="module"
-    ></script>
-    <title>
-      RFID Integration for a B2B PRC Medical Device Management System
-    </title>
+    <title>RFID Integration for a B2B PRC Medical Device Management System</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
-  <body>
-    <!-- Loading Mask -->
-    <div class="loading-mask">
+  <body class="project-page">
+    <!-- Generated from project content data -->
+    <div class="page-loader">
       <dotlottie-wc
         src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
         autoplay
@@ -33,364 +34,312 @@
       ></dotlottie-wc>
     </div>
 
-    <div class="block block__translator">
+    <div class="project-translator">
       <a href="../zh/rfid.html"><p>繁中 | EN</p></a>
     </div>
-    <project-header
-      tags="B2B Medical SaaS, Hardware Integration"
-      title="RFID Integration for a B2B PRC Medical Device Management System"
-      duration="Dec. 2024 ~ Apr. 2025"
-      role="Product Designer"
-      responsibility="UI Mockup, Functional Specification, PM Testing, Field Simulation, Product Proposal"
-      company="Wellell"
-    ></project-header>
-    <project-introduction
-      image-url="../../img/image-projectCover-rfid.webp"
-      image-alt="Decontamination and Rental Service Management System for PRC Medical Device"
-      purpose="To align with Europe's Industry 4.0 transformation, we planned to integrate an RFID scanning feature into the existing logistics module, providing customers with a more flexible way to track assets."
-      challenge="To reduce development cost and shorten the time to market, RFID feature should be added without major changes to the existing workflow. As the system architecture was complex, it was necessary to map all possible product tracking state and necessary response."
-      production="Conducted on-site research and built a simulated environment to test design concepts. Completed the final design of RFID-related features for the logistics module, delivered the full functional specification, and carried out PM testing."
-      outcome="Successfully initiated partnership discussions with a Danish a service provider and prepared for gradual implementation."
-    ></project-introduction>
-    <section class="section section--content">
-      <div class="container container--content">
-        <div class="container container--contentSection">
-          <div class="module module__quote">
-            <p class="warning">
-              This project is under an NDA, so detailed information cannot be
-              shared on public platforms.
-            </p>
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="project-header__tag">
+            <p>B2B Medical SaaS</p>
+          </div>
+          <div class="project-header__tag">
+            <p>Hardware Integration</p>
           </div>
         </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Project Background</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              KeepWell is a SaaS platform designed to streamline the
-              decontamination and rental management of medical equipment,
-              currently focusing on medical air mattresses. By combining QR code
-              asset tags with medical devices, it helps European service
-              providers manage their entire process — from on-site inventory and
-              disinfection to orders, logistics, and customer management.
-            </p>
-            <p>
-              After meeting with a service provider, we found that their
-              logistics workflow was not well suited for QR code scanning. Since
-              QR code asset tags require users to locate and visually access the
-              tag to scan it,
-              <span class="highlight"
-                >it's impossible for the service provider who transports air
-                mattresses in bulk using cage carts.</span
-              >
-            </p>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-workflow-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div
-          class="container container--contentSection specialSection specialSection--gray"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Problem Definition</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__bgQuote">
-            <h3 style="flex: 1">
-              QR codes on stacked mattresses are often hard or even impossible
-              to access.
-            </h3>
-            <div class="module module__callOutList" style="flex: 1">
-              <div class="module module__callOut">
-                <p class="module__title">
-                  Frequent scanning reduce delivery and collection efficiency.
-                </p>
-                <p class="module__text">
-                  Nurses usually don't stack collected air mattresses neatly,
-                  instead, they're scattered in the return area. Drivers
-                  typically confirm them by sight and load them directly onto
-                  the cart without counting each item one by one.
-                </p>
-              </div>
-              <div class="module module__callOut">
-                <p class="module__title">
-                  Stacked products makes it difficult to locate asset tags.
-                </p>
-                <p class="module__text">
-                  Some service providers stack air mattresses in metal cage
-                  carts where QR codes are not always visible, making it
-                  impossible for drivers to scan every code.
-                </p>
-              </div>
+          <h2 class="project-header__title">RFID Integration for a B2B PRC Medical Device Management System</h2>
+          <div class="project-header__metadata">
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Duration</p>
+              <p class="project-header__meta-value">Dec. 2024 ~ Apr. 2025</p>
             </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-problem-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-factory.svg"
-            content="To increase the efficiency and accuracy of asset tracking, == we planned to introduce RFID tracking technology == as an alternative to QR code scanning."
-          ></project-content-bigquote>
-        </div>
-
-        <div
-          class="container container--contentSection specialSection specialSection--yellow"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Goal Breakdown</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__horizontalIconList">
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-money.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  Business Goal: Increase client base and revenue
-                </h6>
-                <p class="module__content--content">
-                  Aims to improve customer satisfaction and strengthen market
-                  competitiveness.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Role</p>
+              <p class="project-header__meta-value">Product Designer</p>
             </div>
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-function.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  Product Goal: Integrate RFID operations into the logistics
-                  workflow
-                </h6>
-                <p class="module__content--content">
-                  Provide end-to-end RFID asset tracking across logistics and
-                  warehouse operations.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Responsibility</p>
+              <p class="project-header__meta-value">UI Mockup, Functional Specification, PM Testing, Field Simulation, Product Proposal</p>
             </div>
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-webDesign.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  Design Goal: Support multiple workflows and error-state
-                  guidance
-                </h6>
-                <p class="module__content--content">
-                  Enable users to quickly switch between scanning modes on
-                  mobile devices and provide clear prompts when unexpected
-                  situations occur during scanning.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Company</p>
+              <p class="project-header__meta-value">Wellell</p>
             </div>
-          </div>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Environment & Equipment Research</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Different contexts require multiple types of RFID devices
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p>
-              Through on-site research at service provider's facilities, we
-              found that the logistics workflow required two types of RFID
-              scanners. KeepWell needed to
-              <span class="highlight"> support both scanning methods</span> to
-              meet different usage scenarios and improve operational efficiency.
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-equipment-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Software Prototype</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <p>
-              According to our research, service providers focus on two key
-              tracking points in logistics,
-              <span class="highlight">
-                when air mattresses are delivered to hospitals and when they are
-                collected by drivers</span
-              >, which serve as the basis for rental billing. For drivers, the
-              main concern on-site is the number of collected mattresses,
-              ensuring the same number of clean ones are delivered.
-            </p>
-            <p>
-              Therefore, I integrated the RFID feature into the logistics module
-              based on two design principles:
-            </p>
-          </div>
-          <ol class="module__content--content">
-            <li>
-              <span class="highlight">Minimal necessary information</span>:
-              Focus on displaying the scanned model and quantity, while detailed
-              product information is placed on a secondary page.
-            </li>
-            <li>
-              <span class="highlight">Smooth exception handling</span>: When
-              scanning fails, for example, due to a damaged RFID tag or data
-              inconsistency, the system provides clear prompts and alternative
-              actions to allow operations to continue seamlessly.
-            </li>
-          </ol>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-prototype1-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-prototype2-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Simulated Environment Design</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <p>
-              We recreated the environments of service providers and hospitals
-              based on the user journey map, building a simulated field and an
-              interactive prototype to test design concepts.
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-testing1.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__doubleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-testing2.webp"
-              alt=""
-              data-zoom-image
-            />
-            <img
-              src="../../img/projects/rfid/image-rfid-testing3.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Proposal Presentation and Outcome</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <p>
-              To validate the concept, we demonstrated different RFID scanning
-              methods and results using a simulated work environment. Through
-              the proposal presentation, we outlined the software development
-              roadmap and implementation plan. The client later confirmed the
-              purchase agreement in the second half of 2025.
-            </p>
-          </div>
-          <div class="module module__doubleImage">
-            <img
-              src="../../img/projects/rfid/image-rfid-presentation1.webp"
-              alt=""
-              data-zoom-image
-            />
-            <img
-              src="../../img/projects/rfid/image-rfid-presentation2.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Self-reflection</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Usability isn't universal: design principles must adapt to user
-              context
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p>
-              Our research revealed that both service providers and hospitals
-              often
-              <span class="highlight"
-                >bypass certain steps we initially considered important</span
-              >, such as rechecking product serial numbers, logging precise
-              return times, or inspecting product conditions on-site, simply to
-              keep everything faster. This showed that the interface we
-              originally designed to reduce errors and improve data accuracy,
-              based on general usability principles, ended up being
-              unnecessarily complex.
-            </p>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Highly coupled systems raise modification costs: modular
-              flexibility is key to scalable solutions
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p>
-              In the original system design, modifying any module could cause
-              the entire workflow to fail due to the tightly coupled data
-              between modules. As a result, we had to put significant effort
-              into restructuring the system to meet the service provider's needs
-              by making each module independently modifiable.
-            </p>
-            <p>
-              From this experience, we should
-              <span class="highlight"
-                >design with modular integration in mind when serving users with
-                diverse workflows,</span
-              >
-              enabling quick adaptation to different operational processes
-              without costly redesigns.
-            </p>
           </div>
         </div>
       </div>
+    </main>
+    <section class="project-intro">
+      <div class="project-intro__inner">
+        <div class="project-intro__top">
+          <div class="project-intro__media">
+            <img
+              src="../../img/image-projectCover-rfid.webp"
+              alt="Decontamination and Rental Service Management System for PRC Medical Device"
+              class="project-intro__image"
+            />
+          </div>
+          <div class="project-intro__summary-grid">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Purpose</p>
+          <p class="project-intro__summary-content">To align with Europe's Industry 4.0 transformation, we planned to integrate an RFID scanning feature into the existing logistics module, providing customers with a more flexible way to track assets.</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Challenge</p>
+          <p class="project-intro__summary-content">To reduce development cost and shorten the time to market, RFID feature should be added without major changes to the existing workflow. As the system architecture was complex, it was necessary to map all possible product tracking state and necessary response.</p>
+        </div>
+          </div>
+        </div>
+        <div class="project-intro__bottom">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Production</p>
+          <p class="project-intro__summary-content">Conducted on-site research and built a simulated environment to test design concepts. Completed the final design of RFID-related features for the logistics module, delivered the full functional specification, and carried out PM testing.</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Outcome</p>
+          <p class="project-intro__summary-content">Successfully initiated partnership discussions with a Danish a service provider and prepared for gradual implementation.</p>
+        </div>
+        </div>
+      </div>
     </section>
-    <project-navigation></project-navigation>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section">
+        <div class="project-module project-module--quote">
+        <p class="project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text warning">This project is under an NDA, so detailed information cannot be
+                                                                                                              shared on public platforms.</p>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Project Background</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">KeepWell is a SaaS platform designed to streamline the
+                                                                                                              decontamination and rental management of medical equipment,
+                                                                                                              currently focusing on medical air mattresses. By combining QR code
+                                                                                                              asset tags with medical devices, it helps European service
+                                                                                                              providers manage their entire process — from on-site inventory and
+                                                                                                              disinfection to orders, logistics, and customer management.</p>
+        <p class="project-module__text">After meeting with a service provider, we found that their
+                                                                                                              logistics workflow was not well suited for QR code scanning. Since
+                                                                                                              QR code asset tags require users to locate and visually access the
+                                                                                                              tag to scan it,
+                                                                                                              <span class="highlight"
+                                                                                                                >it's impossible for the service provider who transports air
+                                                                                                                mattresses in bulk using cage carts.</span
+                                                                                                              ></p>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/rfid/image-rfid-workflow-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-gray">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Problem Definition</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--feature-quote">
+        <h3 class="project-module__heading" style="flex: 1">QR codes on stacked mattresses are often hard or even impossible
+                                                                                                              to access.</h3>
+        <div class="project-module__callout-list" style="flex: 1">
+
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/rfid/image-rfid-problem-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-factory.svg" alt="" />
+        <h3 class="project-module__heading">To increase the efficiency and accuracy of asset tracking, == we
+                                                                                                              planned to introduce RFID tracking technology == as an alternative
+                                                                                                              to QR code scanning.</h3>
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Goal Breakdown</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module__item">
+        <img src="../../img/sketch-money.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Business Goal: Increase client base and revenue</h6>
+        <p class="project-module__item-text">Aims to improve customer satisfaction and strengthen market
+                                                                                                                  competitiveness.</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-function.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Product Goal: Integrate RFID operations into the logistics
+                                                                                                                  workflow</h6>
+        <p class="project-module__item-text">Provide end-to-end RFID asset tracking across logistics and
+                                                                                                                  warehouse operations.</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-webDesign.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Design Goal: Support multiple workflows and error-state
+                                                                                                                  guidance</h6>
+        <p class="project-module__item-text">Enable users to quickly switch between scanning modes on
+                                                                                                                  mobile devices and provide clear prompts when unexpected
+                                                                                                                  situations occur during scanning.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Environment & Equipment Research</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Different contexts require multiple types of RFID devices</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Through on-site research at service provider's facilities, we
+                                                                                                              found that the logistics workflow required two types of RFID
+                                                                                                              scanners. KeepWell needed to
+                                                                                                              <span class="highlight"> support both scanning methods</span> to
+                                                                                                              meet different usage scenarios and improve operational efficiency.</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/rfid/image-rfid-equipment-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Software Prototype</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">According to our research, service providers focus on two key
+                                                                                                              tracking points in logistics,
+                                                                                                              <span class="highlight">
+                                                                                                                when air mattresses are delivered to hospitals and when they are
+                                                                                                                collected by drivers</span
+                                                                                                              >, which serve as the basis for rental billing. For drivers, the
+                                                                                                              main concern on-site is the number of collected mattresses,
+                                                                                                              ensuring the same number of clean ones are delivered.</p>
+        <p class="project-module__text">Therefore, I integrated the RFID feature into the logistics module
+                                                                                                              based on two design principles:</p>
+        </div>
+        <ol class="project-module__list">
+          <li><span class="highlight">Minimal necessary information</span>:
+                                                                                                              Focus on displaying the scanned model and quantity, while detailed
+                                                                                                              product information is placed on a secondary page.</li>
+          <li><span class="highlight">Smooth exception handling</span>: When
+                                                                                                              scanning fails, for example, due to a damaged RFID tag or data
+                                                                                                              inconsistency, the system provides clear prompts and alternative
+                                                                                                              actions to allow operations to continue seamlessly.</li>
+        </ol>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/rfid/image-rfid-prototype1-en.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/rfid/image-rfid-prototype2-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Simulated Environment Design</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">We recreated the environments of service providers and hospitals
+                                                                                                              based on the user journey map, building a simulated field and an
+                                                                                                              interactive prototype to test design concepts.</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/rfid/image-rfid-testing1.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image-pair">
+        <img src="../../img/projects/rfid/image-rfid-testing2.webp" alt="" data-zoom-image />
+        <img src="../../img/projects/rfid/image-rfid-testing3.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Proposal Presentation and Outcome</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">To validate the concept, we demonstrated different RFID scanning
+                                                                                                              methods and results using a simulated work environment. Through
+                                                                                                              the proposal presentation, we outlined the software development
+                                                                                                              roadmap and implementation plan. The client later confirmed the
+                                                                                                              purchase agreement in the second half of 2025.</p>
+        </div>
+        <div class="project-module project-module--image-pair">
+        <img src="../../img/projects/rfid/image-rfid-presentation1.webp" alt="" data-zoom-image />
+        <img src="../../img/projects/rfid/image-rfid-presentation2.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Self-reflection</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Usability isn't universal: design principles must adapt to user
+                                                                                                              context</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Our research revealed that both service providers and hospitals
+                                                                                                              often
+                                                                                                              <span class="highlight"
+                                                                                                                >bypass certain steps we initially considered important</span
+                                                                                                              >, such as rechecking product serial numbers, logging precise
+                                                                                                              return times, or inspecting product conditions on-site, simply to
+                                                                                                              keep everything faster. This showed that the interface we
+                                                                                                              originally designed to reduce errors and improve data accuracy,
+                                                                                                              based on general usability principles, ended up being
+                                                                                                              unnecessarily complex.</p>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Highly coupled systems raise modification costs: modular
+                                                                                                              flexibility is key to scalable solutions</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">In the original system design, modifying any module could cause
+                                                                                                              the entire workflow to fail due to the tightly coupled data
+                                                                                                              between modules. As a result, we had to put significant effort
+                                                                                                              into restructuring the system to meet the service provider's needs
+                                                                                                              by making each module independently modifiable.</p>
+        <p class="project-module__text">From this experience, we should
+                                                                                                              <span class="highlight"
+                                                                                                                >design with modular integration in mind when serving users with
+                                                                                                                diverse workflows,</span
+                                                                                                              >
+                                                                                                              enabling quick adaptation to different operational processes
+                                                                                                              without costly redesigns.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="/#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

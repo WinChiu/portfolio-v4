@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,22 +21,12 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-    <script type="module" src="../../components/components.js"></script>
-    <script
-      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
-      type="module"
-    ></script>
-    <title>
-      Business Analytics Model Design for B2B PRC Medical Device Management
-      System
-    </title>
+    <title>Business Analytics Model Design for B2B PRC Medical Device Management System</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
-  <body>
-    <!-- Loading Mask -->
-    <div class="loading-mask">
+  <body class="project-page">
+    <!-- Generated from project content data -->
+    <div class="page-loader">
       <dotlottie-wc
         src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
         autoplay
@@ -34,248 +34,240 @@
       ></dotlottie-wc>
     </div>
 
-    <div class="block block__translator">
+    <div class="project-translator">
       <a href="../zh/ba.html"><p>繁中 | EN</p></a>
     </div>
-    <project-header
-      tags="B2B Medical SaaS, Business Analytics"
-      title="Business Analytics Model Design for B2B PRC Medical Device Management System"
-      duration="Dec. 2024"
-      role="Product Designer"
-      responsibility="Competitor Analysis, Data Cleaning and Analysis, Report Structure Planning"
-      company="Wellell"
-    ></project-header>
-    <project-introduction
-      image-url="../../img/image-projectCover-ba.webp"
-      image-alt="Decontamination and Rental Service Management System for PRC Medical Device"
-      purpose="Identified client needs and system data limitations, designed business analysis reports that enhanced operational efficiency, and incorporated business models to attract clients to upgrade to advanced software plans."
-      challenge="The system included various modules and data types that had not yet been reviewed. It was necessary to check the existing data and assess the feasibility of adding new data for additional reports."
-      production="6 main categories with a total of 36 business analysis reports. Based on the level of data granularity, the reports were divided into basic and advanced categories, each included in different software pricing plans."
-      outcome="Proposed to the client to conduct initial testing using manually generated reports."
-    ></project-introduction>
-    <section class="section section--content">
-      <div class="container container--content">
-        <div class="container container--contentSection">
-          <div class="module module__quote">
-            <p class="warning">
-              This project is under an NDA, so detailed information cannot be
-              shared on public platforms.
-            </p>
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="project-header__tag">
+            <p>B2B Medical SaaS</p>
+          </div>
+          <div class="project-header__tag">
+            <p>Business Analytics</p>
           </div>
         </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Project Background</h3>
-            <div class="module__line"></div>
-          </div>
-
-          <div class="module module__pureText">
-            <p class="module__text">
-              KeepWell is a SaaS platform designed to streamline the
-              decontamination and rental management of medical equipment,
-              currently focusing on medical air mattresses. By combining QR code
-              asset tags with medical devices, it helps European service
-              providers manage their entire process — from on-site inventory and
-              disinfection to orders, logistics, and customer management.
-            </p>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/ba/image-ba-workflow-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div
-          class="container container--contentSection specialSection specialSection--gray"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Problem Definition</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__bgQuote">
-            <h3 style="flex: 1">
-              Service providers track consumable and maintenance costs and
-              product utilization, but still rely on manual checks and paper
-              records without reliable data for optimization.
-            </h3>
-            <div class="module module__callOutList" style="flex: 1">
-              <div class="module module__callOut">
-                <p class="module__title">
-                  Unable to identify which parts of the process need
-                  optimization.
-                </p>
-                <p class="module__text">
-                  Without data support, providers rely on observation and staff
-                  feedback to assess efficiency, making it hard to find and fix
-                  bottlenecks.
-                </p>
-              </div>
-              <div class="module module__callOut">
-                <p class="module__title">
-                  Unable to analyze equipment replacement and maintenance
-                  records.
-                </p>
-                <p class="module__text">
-                  Without a systematic analysis, it’s hard for them to track
-                  inventory, decide when to restock, and understand why
-                  equipment breaks.
-                </p>
-              </div>
+          <h2 class="project-header__title">Business Analytics Model Design for B2B PRC Medical Device Management System</h2>
+          <div class="project-header__metadata">
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Duration</p>
+              <p class="project-header__meta-value">Dec. 2024</p>
             </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-factory.svg"
-            content="Most report users are senior staff. The key goal of this report design is to ==help them quickly identify operational issues within complex workflows.=="
-          ></project-content-bigquote>
-        </div>
-
-        <div
-          class="container container--contentSection specialSection specialSection--yellow"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Goal Breakdown</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__horizontalIconList">
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-money.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  Business Goal: Increase subscription revenue
-                </h6>
-                <p class="module__content--content">
-                  Attract clients to upgrade to higher-tier software plans to
-                  boost subscription income.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Role</p>
+              <p class="project-header__meta-value">Product Designer</p>
             </div>
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-function.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  Product Goal: Add a new business analysis module
-                </h6>
-                <p class="module__content--content">
-                  Enhance plan differentiation and increase the appeal of
-                  advanced subscription tiers.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Responsibility</p>
+              <p class="project-header__meta-value">Competitor Analysis, Data Cleaning and Analysis, Report Structure Planning</p>
             </div>
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-webDesign.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  Design Goal: Help users identify workflow bottlenecks
-                </h6>
-                <p class="module__content--content">
-                  Ensure users can quickly locate issues in reports, identify
-                  process bottlenecks, and optimize operational efficiency.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Company</p>
+              <p class="project-header__meta-value">Wellell</p>
             </div>
-          </div>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Main Concept of the Report Structure</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__quote">
-            <p>Make sure users don't get lost among numerous reports.</p>
-          </div>
-          <div class="module module__pureText">
-            <p>The reports are divided into two levels of granularity:</p>
-          </div>
-          <ol class="module__content--content">
-            <li>
-              <span class="highlight">High-level reports</span> display key
-              metrics, such as total process time, helping users quickly
-              identify potential issues.
-            </li>
-            <li>
-              <span class="highlight">More detailed reports</span> show
-              segmented data for each major process, allowing users to trace
-              problems efficiently.
-            </li>
-          </ol>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/ba/image-ba-reportConcept-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Outcome</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <p>
-              The report structure includes 6 categories in total, 5 based on
-              relevant KeepWell modules and 1 for employee efficiency analysis,
-              focusing on service providers' key concerns such as consumable and
-              maintenance costs, and product utilization, resulting in 36
-              reports in total.
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/ba/image-ba-outcome.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Self-reflection</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Reports are merely fancy and useless numbers without pointing to a
-              clear next action.
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p>
-              During competitor research, we found that some systems offer a
-              large number of reports and data views but lack a clear hierarchy
-              and logical connections. As a result, users often get lost among
-              various charts and struggle to identify which information truly
-              matters for decision-making. In other words,
-              <span class="highlight"
-                >these reports appear comprehensive but fail to translate into
-                actionable insights.</span
-              >
-            </p>
-            <p>
-              From client interviews, we also learned that service providers
-              tend to focus first on key accounting indicators, such as revenue,
-              to decide whether further investigation is needed. This highlights
-              that
-              <span class="highlight"
-                >a clear structure and actionable guidance are far more
-                important than simply displaying data.</span
-              >
-              A well-designed report should not only present information but
-              also point users toward meaningful decisions.
-            </p>
           </div>
         </div>
       </div>
+    </main>
+    <section class="project-intro">
+      <div class="project-intro__inner">
+        <div class="project-intro__top">
+          <div class="project-intro__media">
+            <img
+              src="../../img/image-projectCover-ba.webp"
+              alt="Decontamination and Rental Service Management System for PRC Medical Device"
+              class="project-intro__image"
+            />
+          </div>
+          <div class="project-intro__summary-grid">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Purpose</p>
+          <p class="project-intro__summary-content">Identified client needs and system data limitations, designed business analysis reports that enhanced operational efficiency, and incorporated business models to attract clients to upgrade to advanced software plans.</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Challenge</p>
+          <p class="project-intro__summary-content">The system included various modules and data types that had not yet been reviewed. It was necessary to check the existing data and assess the feasibility of adding new data for additional reports.</p>
+        </div>
+          </div>
+        </div>
+        <div class="project-intro__bottom">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Production</p>
+          <p class="project-intro__summary-content">6 main categories with a total of 36 business analysis reports. Based on the level of data granularity, the reports were divided into basic and advanced categories, each included in different software pricing plans.</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Outcome</p>
+          <p class="project-intro__summary-content">Proposed to the client to conduct initial testing using manually generated reports.</p>
+        </div>
+        </div>
+      </div>
     </section>
-    <project-navigation></project-navigation>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section">
+        <div class="project-module project-module--quote">
+        <p class="project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text warning">This project is under an NDA, so detailed information cannot be
+                                                                                                              shared on public platforms.</p>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Project Background</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">KeepWell is a SaaS platform designed to streamline the
+                                                                                                              decontamination and rental management of medical equipment,
+                                                                                                              currently focusing on medical air mattresses. By combining QR code
+                                                                                                              asset tags with medical devices, it helps European service
+                                                                                                              providers manage their entire process — from on-site inventory and
+                                                                                                              disinfection to orders, logistics, and customer management.</p>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/ba/image-ba-workflow-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-gray">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Problem Definition</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--feature-quote">
+        <h3 class="project-module__heading" style="flex: 1">Service providers track consumable and maintenance costs and
+                                                                                                              product utilization, but still rely on manual checks and paper
+                                                                                                              records without reliable data for optimization.</h3>
+        <div class="project-module__callout-list" style="flex: 1">
+
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-factory.svg" alt="" />
+        <h3 class="project-module__heading">Most report users are senior staff. The key goal of this report
+                                                                                                              design is to ==help them quickly identify operational issues
+                                                                                                              within complex workflows.==</h3>
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Goal Breakdown</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module__item">
+        <img src="../../img/sketch-money.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Business Goal: Increase subscription revenue</h6>
+        <p class="project-module__item-text">Attract clients to upgrade to higher-tier software plans to
+                                                                                                                  boost subscription income.</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-function.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Product Goal: Add a new business analysis module</h6>
+        <p class="project-module__item-text">Enhance plan differentiation and increase the appeal of
+                                                                                                                  advanced subscription tiers.</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-webDesign.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Design Goal: Help users identify workflow bottlenecks</h6>
+        <p class="project-module__item-text">Ensure users can quickly locate issues in reports, identify
+                                                                                                                  process bottlenecks, and optimize operational efficiency.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Main Concept of the Report Structure</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--quote">
+        <p class="project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text">Make sure users don't get lost among numerous reports.</p>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">The reports are divided into two levels of granularity:</p>
+        </div>
+        <ol class="project-module__list">
+          <li><span class="highlight">High-level reports</span> display key
+                                                                                                              metrics, such as total process time, helping users quickly
+                                                                                                              identify potential issues.</li>
+          <li><span class="highlight">More detailed reports</span> show
+                                                                                                              segmented data for each major process, allowing users to trace
+                                                                                                              problems efficiently.</li>
+        </ol>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/ba/image-ba-reportConcept-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Outcome</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">The report structure includes 6 categories in total, 5 based on
+                                                                                                              relevant KeepWell modules and 1 for employee efficiency analysis,
+                                                                                                              focusing on service providers' key concerns such as consumable and
+                                                                                                              maintenance costs, and product utilization, resulting in 36
+                                                                                                              reports in total.</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/ba/image-ba-outcome.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Self-reflection</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Reports are merely fancy and useless numbers without pointing to a
+                                                                                                              clear next action.</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">During competitor research, we found that some systems offer a
+                                                                                                              large number of reports and data views but lack a clear hierarchy
+                                                                                                              and logical connections. As a result, users often get lost among
+                                                                                                              various charts and struggle to identify which information truly
+                                                                                                              matters for decision-making. In other words,
+                                                                                                              <span class="highlight"
+                                                                                                                >these reports appear comprehensive but fail to translate into
+                                                                                                                actionable insights.</span
+                                                                                                              ></p>
+        <p class="project-module__text">From client interviews, we also learned that service providers
+                                                                                                              tend to focus first on key accounting indicators, such as revenue,
+                                                                                                              to decide whether further investigation is needed. This highlights
+                                                                                                              that
+                                                                                                              <span class="highlight"
+                                                                                                                >a clear structure and actionable guidance are far more
+                                                                                                                important than simply displaying data.</span
+                                                                                                              >
+                                                                                                              A well-designed report should not only present information but
+                                                                                                              also point users toward meaningful decisions.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="/#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

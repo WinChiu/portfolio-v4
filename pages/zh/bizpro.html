@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,20 +21,12 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-    <script type="module" src="../../components/components.js"></script>
-    <script
-      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
-      type="module"
-    ></script>
-
     <title>BizPro Official Website - 社團官方網站前後臺開發</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
-  <body>
-    <!-- Loading Mask -->
-    <div class="loading-mask">
+  <body class="project-page">
+    <!-- Generated from project content data -->
+    <div class="page-loader">
       <dotlottie-wc
         src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
         autoplay
@@ -33,153 +34,161 @@
       ></dotlottie-wc>
     </div>
 
-    <div class="block block__translator">
+    <div class="project-translator">
       <a href="../en/bizpro.html"><p>繁中 | EN</p></a>
     </div>
-    <project-header
-      tags="CMS Management,Full-stack"
-      title="BizPro Official Website - 社團官方網站前後臺開發"
-      duration="Sep. 2022 ~ Jan. 2023"
-      role="UIUX Designer, Frontend Developer"
-      responsibility="UIUX 介面設計、資料庫維護 (MongoDB)、前端後端開發 (React.js、Node.js)"
-      company="BizPro 臺大商學研究社"
-    ></project-header>
-
-    <project-introduction
-      image-url="../../img/image-projectCover-bp.webp"
-      image-alt="BizPro 台大商學研究社官方網站"
-      purpose="協助 BizPro 台大商學研究社的重新設計網站與後續開發，改善資訊易讀性並突顯社團價值。"
-      production="以 MERN 框架製作具後台功能的網站，包含歷屆成員資料搜索與維護功能，方便不具程式背景的社員維護網站資料"
-    ></project-introduction>
-    <section class="section section--content">
-      <div class="container container--content">
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">專案背景</h3>
-            <div class="module__line"></div>
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="project-header__tag">
+            <p>CMS Management</p>
           </div>
-
-          <div class="module module__pureText">
-            <p class="module__text">
-              本專案是為 BizPro
-              台大商學研究社進行的網站重設計，為我擔任幹部期間的個人專案。由於網站自
-              2014
-              年建立後，隨著社團成長與課程調整，內容已不符合現況，一頁式設計也使歷屆人員列表過長，影響閱讀體驗。此外隨著台大其他商業社團的崛起，突顯社團價值與課程差異也變得更加重要。
-            </p>
+          <div class="project-header__tag">
+            <p>Full-stack</p>
           </div>
         </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">視覺設計</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">符號：強調社群連結意象</h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              BizPro
-              是一個以「社群連結」作為主要優勢的社團，因此以相互連接的圓點作為成員相互連結的意象，並以此延伸出重疊圓環、點狀紋理...
-              等其他樣式。
-            </p>
-            <p class="module__text">
-              用色上以 BizPro logo
-              所採用的紅色作為主色調，搭配灰色與白作為占比最大的色系做視覺的呈現。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/bizpro/image-bp-symbol.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/bizpro/image-bp-color.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">成果展示</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <div class="module__button">
-              <a href="https://www.bizpro-taipei.com" target="_blank"
-                ><p>網站連結</p></a
-              >
+          <h2 class="project-header__title">BizPro Official Website - 社團官方網站前後臺開發</h2>
+          <div class="project-header__metadata">
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Duration</p>
+              <p class="project-header__meta-value">Sep. 2022 ~ Jan. 2023</p>
             </div>
-            <p class="module__text">
-              根據兩類使用者對資訊的需求，我建立了四項主軸進行網站內容與架構發想：
-            </p>
-            <ol class="module__content--content">
-              <li>我們如何能凸顯歷屆社員背景強大的優勢？</li>
-              <li>我們如何能凸顯新進社員人均資源集中的優勢？</li>
-              <li>我們如何能讓學生如親身經歷一般了解在社團內能獲得的效益？</li>
-              <li>我們如何能凸顯以人的互動為核心的形象？</li>
-            </ol>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">前臺設計</h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/bizpro/image-bp-front-1.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/bizpro/image-bp-front-2.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/bizpro/image-bp-front-3.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/bizpro/image-bp-front-4.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">後臺設計</h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              本網站每學期皆需要更新歷屆成員資料與心得內容，因此開發用於更新資料的後台以利幹部交接。
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/bizpro/image-bp-back-1.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/bizpro/image-bp-back-2.webp"
-              alt=""
-              data-zoom-image
-            />
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Role</p>
+              <p class="project-header__meta-value">UIUX Designer, Frontend Developer</p>
+            </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Responsibility</p>
+              <p class="project-header__meta-value">UIUX 介面設計、資料庫維護 (MongoDB)、前端後端開發 (React.js、Node.js)</p>
+            </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Company</p>
+              <p class="project-header__meta-value">BizPro 臺大商學研究社</p>
+            </div>
           </div>
         </div>
       </div>
+    </main>
+    <section class="project-intro">
+      <div class="project-intro__inner">
+        <div class="project-intro__top">
+          <div class="project-intro__media">
+            <img
+              src="../../img/image-projectCover-bp.webp"
+              alt="BizPro 台大商學研究社官方網站"
+              class="project-intro__image"
+            />
+          </div>
+          <div class="project-intro__summary-grid">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Purpose</p>
+          <p class="project-intro__summary-content">協助 BizPro 台大商學研究社的重新設計網站與後續開發，改善資訊易讀性並突顯社團價值。</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Production</p>
+          <p class="project-intro__summary-content">以 MERN 框架製作具後台功能的網站，包含歷屆成員資料搜索與維護功能，方便不具程式背景的社員維護網站資料</p>
+        </div>
+          </div>
+        </div>
+
+      </div>
     </section>
-    <project-navigation language="zh"></project-navigation>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">專案背景</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">本專案是為 BizPro
+                                                                                                              台大商學研究社進行的網站重設計，為我擔任幹部期間的個人專案。由於網站自
+                                                                                                              2014
+                                                                                                              年建立後，隨著社團成長與課程調整，內容已不符合現況，一頁式設計也使歷屆人員列表過長，影響閱讀體驗。此外隨著台大其他商業社團的崛起，突顯社團價值與課程差異也變得更加重要。</p>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">視覺設計</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">符號：強調社群連結意象</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">BizPro
+                                                                                                              是一個以「社群連結」作為主要優勢的社團，因此以相互連接的圓點作為成員相互連結的意象，並以此延伸出重疊圓環、點狀紋理...
+                                                                                                              等其他樣式。</p>
+        <p class="project-module__text">用色上以 BizPro logo
+                                                                                                              所採用的紅色作為主色調，搭配灰色與白作為占比最大的色系做視覺的呈現。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/bizpro/image-bp-symbol.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/bizpro/image-bp-color.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">成果展示</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <div class="project-module__button">
+          <a href="https://www.bizpro-taipei.com" target="_blank"><p>網站連結</p></a>
+        </div>
+        <p class="project-module__text">根據兩類使用者對資訊的需求，我建立了四項主軸進行網站內容與架構發想：</p>
+        <ol class="project-module__list">
+          <li>我們如何能凸顯歷屆社員背景強大的優勢？</li>
+          <li>我們如何能凸顯新進社員人均資源集中的優勢？</li>
+          <li>我們如何能讓學生如親身經歷一般了解在社團內能獲得的效益？</li>
+          <li>我們如何能凸顯以人的互動為核心的形象？</li>
+        </ol>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">前臺設計</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/bizpro/image-bp-front-1.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/bizpro/image-bp-front-2.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/bizpro/image-bp-front-3.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/bizpro/image-bp-front-4.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">後臺設計</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">本網站每學期皆需要更新歷屆成員資料與心得內容，因此開發用於更新資料的後台以利幹部交接。</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/bizpro/image-bp-back-1.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/bizpro/image-bp-back-2.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="../../home-zh.html#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

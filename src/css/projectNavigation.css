@@ -1,0 +1,105 @@
+.nav--main {
+  position: fixed;
+  z-index: 850;
+  left: 0;
+  top: 0;
+  height: 100dvh;
+  padding: 2.5rem 2.5rem;
+  background-color: #fbfbf6;
+  border-right: #363a35 solid 0.125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0rem;
+}
+.nav--main:hover .block--tocList {
+  max-width: 31.25rem;
+}
+.nav--main .block--navList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 2.5rem;
+}
+.nav--main .block--tocList {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 0.5rem;
+  margin-left: 1rem;
+  transition: max-width 0.25s;
+  overflow: hidden;
+}
+.nav--main .block--tocList .toc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  text-decoration: none;
+}
+.nav--main .block--tocList .toc--dot {
+  min-width: 0.5rem;
+  min-height: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #c8c8c8;
+}
+.nav--main .block--tocList .toc--content {
+  white-space: nowrap;
+  color: #7a776d;
+}
+.nav--main .block--tocList .toc:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.nav--main .block--tocList .toc--focus .toc--dot {
+  background-color: #b74343;
+}
+.nav--main .block--tocList .toc--focus .toc--content {
+  color: #b74343;
+  font-weight: bold;
+}
+.nav--main .block__navItem a {
+  text-decoration: none;
+  font-family: "Source Sans 3";
+  cursor: pointer;
+}
+@media (max-width: 50rem) {
+  .nav--main {
+    padding: 2.5rem 1rem;
+  }
+}
+@media (max-width: 30rem) {
+  .nav--main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 0rem;
+    padding: 1rem;
+    height: 3.5rem;
+    width: 100vw;
+    top: 0;
+    background-color: #fbfbf6;
+    border-right: none;
+    border-bottom: #363a35 solid 0.125rem;
+  }
+  .nav--main .block--navList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .nav--main .block__navItem {
+    margin-bottom: 0;
+  }
+  .nav--main .block--tocList {
+    display: none;
+  }
+}/*# sourceMappingURL=projectNavigation.css.map */

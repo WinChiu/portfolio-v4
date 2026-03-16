@@ -8,7 +8,7 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="../../components/components.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
     <script
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
@@ -24,9 +24,9 @@
     <title>Design System Architecture Design and Organization</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
-  <body>
-    <!-- Loading Mask -->
-    <div class="loading-mask">
+  <body class="project-page">
+    <!-- Generated from project content data -->
+    <div class="page-loader">
       <dotlottie-wc
         src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
         autoplay
@@ -34,390 +34,300 @@
       ></dotlottie-wc>
     </div>
 
-    <div class="block block__translator">
+    <div class="project-translator">
       <a href="../zh/designSystem.html"><p>繁中 | EN</p></a>
     </div>
-    <project-header
-      tags="Design System"
-      title="Design System Architecture Design and Organization"
-      duration="May. 2022 ~ Jul. 2022"
-      role="UIUX Designer"
-      responsibility="Requirement Exploration, Architecture Planning, and Component Creation"
-      company="SHOPLINE"
-    ></project-header>
-    <project-introduction
-      image-url="../../img/image-projectCover-designSystem.webp"
-      image-alt="Design System Redesign"
-      purpose="To improve efficiency, speed up onboarding, and ensure integrity and accuracy by redesigning the design system architecture, rebuilding components, and reviewing usage scenarios."
-      challenge="Currently, the design components and guidelines are scattered across various design system files and design drafts. Many components, after being migrated from Sketch, were broken and required rebuilding."
-      production="Identified 5 usability issues, proposed a new design system architecture and team maintenance approach, and defined 45 components with related guidelines."
-      outcome="The design system was implemented in SHOPLINE's e-commerce platform V2, with ongoing discussions and iterations held during internal weekly meetings."
-    ></project-introduction>
-    <section class="section section--content">
-      <div class="container container--content">
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Project Background</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              The V2.0 design system in SHOPLINE's e-commerce product line, used
-              for the backend management pages of B2B products. It offers
-              features like online store design and order processing and is one
-              of the primary design systems.
-            </p>
-            <p class="module__text">
-              However, because the system lacked clear management and usage
-              guidelines, the
-              <span class="highlight"
-                >ulibrary suffered from unclear usage scenarios, broken
-                components, and poor discoverability.</span
-              >This slow down the design process and made it difficult to
-              maintain consistency across projects.
-            </p>
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="project-header__tag">
+            <p>Design System</p>
           </div>
         </div>
-        <div class="container container--contentSection">
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/designSystem/image-ds-workflow-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-think.svg"
-            content="Through interviews with designers across the company, I analyzed their workflows and needs and identified ==four key issues.=="
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Problem Definition</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">Problem 1</h6>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Undefined component usage scenarios made it difficult for
-              designers to build new pages using the design system.
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              Without clear usage scenarios, designers had to look at existing
-              pages or ask others verbally to confirm which patterns to use.
-              This increased the risk of inconsistencies across the interface.
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/designSystem/image-ds-problem1-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">Problem 2</h6>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Inconsistent component naming and organization made components
-              difficult to located
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              Designers often had to browse through large sections of the design
-              system file just to find a component, rather than finding it
-              through direct search.
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/designSystem/image-ds-problem2-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">Problem 3</h6>
-          </div>
-          <div class="module module__verticalIconList">
-            <div class="module__verticalIcon">
-              <img
-                src="../../img/projects/designSystem/image-ds-problem3.webp"
-                alt=""
-                data-zoom-image
-              />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  No standardized format for guidelines, reducing reading
-                  efficiency.
-                </h6>
-                <p class="module__content--content">
-                  The component guidelines lack a unified writing standard. Key
-                  elements such as basic styles, states, and interaction
-                  patterns is incomplete, making it difficult to find
-                  comprehensive documentation.
-                </p>
-              </div>
+          <h2 class="project-header__title">Design System Architecture Design and Organization</h2>
+          <div class="project-header__metadata">
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Duration</p>
+              <p class="project-header__meta-value">May. 2022 ~ Jul. 2022</p>
             </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">Problem 4</h6>
-          </div>
-          <div class="module module__verticalIconList">
-            <div class="module__verticalIcon">
-              <img src="../../img/sketch-confuse.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  No clear update mechanism caused the design system to fall out
-                  of sync with the live product.
-                </h6>
-                <p class="module__content--content">
-                  Because newly created or updated components were never
-                  documented, the design system remained outdated and failed to
-                  reflect the actual state of the components.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Role</p>
+              <p class="project-header__meta-value">UIUX Designer</p>
             </div>
-          </div>
-        </div>
-        <div
-          class="container container--contentSection specialSection specialSection--yellow"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Design Goals</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__horizontalIconList">
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-aha.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">Improve Efficiency</h6>
-                <p class="module__content--content">
-                  Restructure the sidebar organization in the Figma file,
-                  allowing designers to quickly locate design guidelines and
-                  components.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Responsibility</p>
+              <p class="project-header__meta-value">Requirement Exploration, Architecture Planning, and Component Creation</p>
             </div>
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-checkListPaper.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">
-                  Increase Onboarding Speed
-                </h6>
-                <p class="module__content--content">
-                  Provide sufficient guidance and instructions to help
-                  first-time users quickly understand the design system.
-                </p>
-              </div>
-            </div>
-            <div class="module__horizontalIcon">
-              <img src="../../img/sketch-fix.svg" alt="" />
-              <div class="module__content">
-                <h6 class="module__content--title">Maintain Quality</h6>
-                <p class="module__content--content">
-                  Ensure the integrity and accuracy of the design guidelines as
-                  they evolve with future updates and modifications.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-think.svg"
-            content="Based on the goals, I provided a comprehensive solution covering ==guideline creation, component organization, and maintenance
-                updates.=="
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Solution</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">Restructure Documentation</h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              To maintain quality and align with designers' habits, components
-              are organized using the following structure in Figma:
-            </p>
-          </div>
-          <div class="module module__imgAndContentBlock">
-            <img
-              src="../../img/projects/designSystem/image-ds-solution1.webp"
-              alt=""
-              data-zoom-image
-            />
-            <div class="module__content">
-              <h6 class="module__content--title">Introduction</h6>
-              <div class="module module__pureText">
-                <p class="module__text">
-                  Provides a clear user manual outlining the design system’s
-                  document architecture, along with instruction for creating,
-                  maintaining, and updating components.
-                </p>
-              </div>
-              <h6 class="module__content--title">All Components</h6>
-              <p class="module__text">
-                Lists all components in the design system so designers can
-                easily browse, reference and duplicate.
-              </p>
-              <h6 class="module__content--title">Full Guide</h6>
-              <p class="module__text">
-                Shows the detail guideline for each component, including UI
-                specification and usage scenarios.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Separate Parent and Subcomponents to Ensure Maintainability, Link
-              Components and Guidelines for Cross-Reference
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              All subcomponents are stored on one page, allowing users to easily
-              find and use the components. The use of subcomponents also helps
-              preserve the integrity of the overall design system.
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/designSystem/image-ds-solution2.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__pureText">
-            <p class="module__text">
-              Links to the storybook and full guide are provided in the top
-              right corner of each subcomponent section, allowing users to
-              access the current component status and usage guideline.
-            </p>
-          </div>
-          <div class="module module__doubleImage">
-            <img
-              src="../../img/projects/designSystem/image-ds-solution3-1.webp"
-              alt=""
-              data-zoom-image
-            />
-            <img
-              src="../../img/projects/designSystem/image-ds-solution3-2.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Define a Unified Writing Style and Format
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              Create a checklist that standardizes components under the
-              following seven fixed headings: Usage, Spec, Content, Layout,
-              Application, Asset, and Components.
-            </p>
-          </div>
-          <div class="module module__doubleImage">
-            <img
-              src="../../img/projects/designSystem/image-ds-solution4-1.webp"
-              alt=""
-              data-zoom-image
-            />
-            <img
-              src="../../img/projects/designSystem/image-ds-solution4-2.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Create a Report Form for Real-Time Component Status Updates
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              Record component issues and assign an owner. Review all pending
-              issues during the weekly meeting and discuss potential solutions.
-            </p>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/designSystem/image-ds-solution5.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Key Learnings</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              The Design System Must Be Scenario-Based and Improve Cross-Role
-              Synchronization
-            </h6>
-          </div>
-          <div class="module module__verticalIconList">
-            <div class="module__verticalIcon">
-              <img src="../../img/sketch-checkList.svg" alt="" />
-              <div class="module__content">
-                <p class="module__content--content">
-                  I realized that the design system is crucial for product
-                  consistency. Scenario-driven guidelines help designers
-                  understand how to use a component, not just how it looks.
-                  Moreover, when guidelines and components are scattered across
-                  different documents, It slows down implementation and leads to
-                  more design inconsistencies.
-                </p>
-                <p class="module__content--content">
-                  Another goal of a design system is to improve collaboration
-                  across different product teams. Consistent naming affects
-                  coding efficiency and designers’ ability to locate components.
-                  Poor communication can cause misalignment in component usage,
-                  with designers and engineers choosing different components.
-                  Therefore, clear syncing and update mechanisms across roles
-                  are essential to maintaining the design system and ensuring
-                  overall product quality.
-                </p>
-              </div>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Company</p>
+              <p class="project-header__meta-value">SHOPLINE</p>
             </div>
           </div>
         </div>
       </div>
+    </main>
+    <section class="project-intro">
+      <div class="project-intro__inner">
+        <div class="project-intro__top">
+          <div class="project-intro__media">
+            <img
+              src="../../img/image-projectCover-designSystem.webp"
+              alt="Design System Redesign"
+              class="project-intro__image"
+            />
+          </div>
+          <div class="project-intro__summary-grid">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Purpose</p>
+          <p class="project-intro__summary-content">To improve efficiency, speed up onboarding, and ensure integrity and accuracy by redesigning the design system architecture, rebuilding components, and reviewing usage scenarios.</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Challenge</p>
+          <p class="project-intro__summary-content">Currently, the design components and guidelines are scattered across various design system files and design drafts. Many components, after being migrated from Sketch, were broken and required rebuilding.</p>
+        </div>
+          </div>
+        </div>
+        <div class="project-intro__bottom">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Production</p>
+          <p class="project-intro__summary-content">Identified 5 usability issues, proposed a new design system architecture and team maintenance approach, and defined 45 components with related guidelines.</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Outcome</p>
+          <p class="project-intro__summary-content">The design system was implemented in SHOPLINE's e-commerce platform V2, with ongoing discussions and iterations held during internal weekly meetings.</p>
+        </div>
+        </div>
+      </div>
     </section>
-    <project-navigation></project-navigation>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Project Background</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">The V2.0 design system in SHOPLINE's e-commerce product line, used for the backend management pages of B2B products. It offers features like online store design and order processing and is one of the primary design systems.</p>
+        <p class="project-module__text">However, because the system lacked clear management and usage guidelines, the <span class="highlight">ulibrary suffered from unclear usage scenarios, broken components, and poor discoverability.</span>This slow down the design process and made it difficult to maintain consistency across projects.</p>
+
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-workflow-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">Through interviews with designers across the company, I analyzed their workflows and needs and identified ==four key issues.==</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Problem Definition</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">Problem 1</h6>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Undefined component usage scenarios made it difficult for designers to build new pages using the design system.</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Without clear usage scenarios, designers had to look at existing pages or ask others verbally to confirm which patterns to use. This increased the risk of inconsistencies across the interface.</p>
+
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-problem1-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">Problem 2</h6>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Inconsistent component naming and organization made components difficult to located</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Designers often had to browse through large sections of the design system file just to find a component, rather than finding it through direct search.</p>
+
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-problem2-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">Problem 3</h6>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+        <img src="../../img/projects/designSystem/image-ds-problem3.webp" alt="" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">No standardized format for guidelines, reducing reading efficiency.</h6>
+        <p class="project-module__item-text">The component guidelines lack a unified writing standard. Key elements such as basic styles, states, and interaction patterns is incomplete, making it difficult to find comprehensive documentation.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">Problem 4</h6>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+        <img src="../../img/sketch-confuse.svg" alt="" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">No clear update mechanism caused the design system to fall out of sync with the live product.</h6>
+        <p class="project-module__item-text">Because newly created or updated components were never documented, the design system remained outdated and failed to reflect the actual state of the components.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Design Goals</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module__item">
+        <img src="../../img/sketch-aha.svg" alt="" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Improve Efficiency</h6>
+        <p class="project-module__item-text">Restructure the sidebar organization in the Figma file, allowing designers to quickly locate design guidelines and components.</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-checkListPaper.svg" alt="" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Increase Onboarding Speed</h6>
+        <p class="project-module__item-text">Provide sufficient guidance and instructions to help first-time users quickly understand the design system.</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-fix.svg" alt="" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Maintain Quality</h6>
+        <p class="project-module__item-text">Ensure the integrity and accuracy of the design guidelines as they evolve with future updates and modifications.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">Based on the goals, I provided a comprehensive solution covering ==guideline creation, component organization, and maintenance updates.==</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Solution</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Restructure Documentation</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">To maintain quality and align with designers' habits, components are organized using the following structure in Figma:</p>
+
+        </div>
+        <div class="project-module project-module--media-content">
+        <img src="../../img/projects/designSystem/image-ds-solution1.webp" alt="" data-zoom-image />
+        <div class="project-module__content">
+        <h6 class="project-module__item-title">Introduction</h6>
+        <p class="project-module__text">Provides a clear user manual outlining the design system’s document architecture, along with instruction for creating, maintaining, and updating components.</p>
+
+        <h6 class="project-module__item-title">All Components</h6>
+        <p class="project-module__text">Lists all components in the design system so designers can easily browse, reference and duplicate.</p>
+
+        <h6 class="project-module__item-title">Full Guide</h6>
+        <p class="project-module__text">Shows the detail guideline for each component, including UI specification and usage scenarios.</p>
+
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Separate Parent and Subcomponents to Ensure Maintainability, Link Components and Guidelines for Cross-Reference</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">All subcomponents are stored on one page, allowing users to easily find and use the components. The use of subcomponents also helps preserve the integrity of the overall design system.</p>
+
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-solution2.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Links to the storybook and full guide are provided in the top right corner of each subcomponent section, allowing users to access the current component status and usage guideline.</p>
+
+        </div>
+        <div class="project-module project-module--image-pair">
+        <img src="../../img/projects/designSystem/image-ds-solution3-1.webp" alt="" data-zoom-image />
+        <img src="../../img/projects/designSystem/image-ds-solution3-2.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Define a Unified Writing Style and Format</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Create a checklist that standardizes components under the following seven fixed headings: Usage, Spec, Content, Layout, Application, Asset, and Components.</p>
+
+        </div>
+        <div class="project-module project-module--image-pair">
+        <img src="../../img/projects/designSystem/image-ds-solution4-1.webp" alt="" data-zoom-image />
+        <img src="../../img/projects/designSystem/image-ds-solution4-2.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Create a Report Form for Real-Time Component Status Updates</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Record component issues and assign an owner. Review all pending issues during the weekly meeting and discuss potential solutions.</p>
+
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-solution5.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Key Learnings</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">The Design System Must Be Scenario-Based and Improve Cross-Role Synchronization</h6>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+        <img src="../../img/sketch-checkList.svg" alt="" data-zoom-image />
+        <div class="project-module__item-content">
+
+        <p class="project-module__item-text">I realized that the design system is crucial for product consistency. Scenario-driven guidelines help designers understand how to use a component, not just how it looks. Moreover, when guidelines and components are scattered across different documents, It slows down implementation and leads to more design inconsistencies.</p>
+        <p class="project-module__item-text">Another goal of a design system is to improve collaboration across different product teams. Consistent naming affects coding efficiency and designers’ ability to locate components. Poor communication can cause misalignment in component usage, with designers and engineers choosing different components. Therefore, clear syncing and update mechanisms across roles are essential to maintaining the design system and ensuring overall product quality.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="/#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>
