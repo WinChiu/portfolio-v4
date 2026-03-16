@@ -2,6 +2,8 @@
 @use '../base/mixins' as *;
 
 .section--about {
+  border-bottom: $color-black solid 0.125rem;
+
   .container {
     @include flex(row, center, stretch);
     position: relative;

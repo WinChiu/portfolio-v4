@@ -341,7 +341,6 @@ h6 {
   width: 100%;
   padding: 4rem;
   border-left: #363a35 solid 0.125rem;
-  border-bottom: #363a35 solid 0.125rem;
 }
 @media (max-width: 50rem) {
   .section {
