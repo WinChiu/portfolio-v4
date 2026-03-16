@@ -5,7 +5,7 @@
 
   const items = Array.from(section.querySelectorAll('[data-kitchen-index]'));
   const rows = Array.from(section.querySelectorAll('.kitchen__row'));
-  const previews = Array.from(section.querySelectorAll('[data-kitchen-preview]'));
+  const preview = section.querySelector('[data-kitchen-preview]');
   const previousButton = section.querySelector('[data-kitchen-prev]');
   const nextButton = section.querySelector('[data-kitchen-next]');
   const lightbox = section.querySelector('[data-kitchen-lightbox]');
@@ -15,13 +15,23 @@
   );
   const mobileMediaQuery = window.matchMedia('(max-width: 62.5rem)');
 
-  if (!items.length || !rows.length || previews.length !== 2 || !previousButton || !nextButton) return;
+  if (
+    !items.length ||
+    !rows.length ||
+    !preview ||
+    !previousButton ||
+    !nextButton
+  )
+    return;
 
   let activeIndex = items.findIndex((item) =>
     item.classList.contains('kitchen__item--active'),
   );
   let currentPage = 0;
-  let activePreviewIndex = 0;
+  let hoverTimer = null;
+  let previewFadeTimer = null;
+  const hoverPreviewDelay = 90;
+  const previewFadeDuration = 180;
   const totalPages =
     Math.max(
       ...rows.map((row) => Number.parseInt(row.dataset.kitchenPage || '0', 10)),
@@ -33,27 +43,45 @@
 
   function getVisibleItems() {
     return items.filter(
-      (item) => Number.parseInt(item.dataset.kitchenPage || '0', 10) === currentPage,
+      (item) =>
+        Number.parseInt(item.dataset.kitchenPage || '0', 10) === currentPage,
     );
+  }
+
+  function clearHoverTimer() {
+    if (hoverTimer) {
+      window.clearTimeout(hoverTimer);
+      hoverTimer = null;
+    }
+  }
+
+  function clearPreviewFadeTimer() {
+    if (previewFadeTimer) {
+      window.clearTimeout(previewFadeTimer);
+      previewFadeTimer = null;
+    }
   }
 
   function updatePreview(item) {
     const nextSrc = item.dataset.kitchenImageSrc;
     const nextAlt = item.dataset.kitchenImageAlt;
     const nextClass = item.dataset.kitchenImageClass || '';
-    const currentPreview = previews[activePreviewIndex];
-    const nextPreview = previews[activePreviewIndex === 0 ? 1 : 0];
 
-    nextPreview.src = nextSrc;
-    nextPreview.alt = nextAlt;
-    nextPreview.className = `kitchen__photo ${nextClass}`.trim();
+    clearPreviewFadeTimer();
+    preview.classList.add('kitchen__photo--fading');
 
-    currentPreview.classList.remove('kitchen__photo--active');
-    currentPreview.setAttribute('aria-hidden', 'true');
-    nextPreview.classList.add('kitchen__photo--active');
-    nextPreview.removeAttribute('aria-hidden');
+    previewFadeTimer = window.setTimeout(() => {
+      preview.src = nextSrc;
+      preview.alt = nextAlt;
+      preview.className =
+        `kitchen__photo ${nextClass} kitchen__photo--fading`.trim();
 
-    activePreviewIndex = activePreviewIndex === 0 ? 1 : 0;
+      requestAnimationFrame(() => {
+        preview.classList.remove('kitchen__photo--fading');
+      });
+
+      previewFadeTimer = null;
+    }, previewFadeDuration);
   }
 
   function openLightbox(item) {
@@ -73,6 +101,7 @@
   }
 
   function setActive(index) {
+    clearHoverTimer();
     activeIndex = (index + items.length) % items.length;
 
     items.forEach((item, itemIndex) => {
@@ -116,9 +145,14 @@
   items.forEach((item, index) => {
     item.addEventListener('mouseenter', () => {
       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        setActive(index);
+        clearHoverTimer();
+        hoverTimer = window.setTimeout(() => {
+          setActive(index);
+        }, hoverPreviewDelay);
       }
     });
+
+    item.addEventListener('mouseleave', clearHoverTimer);
 
     item.addEventListener('focus', () => {
       setActive(index);
@@ -162,6 +196,9 @@
     }
   });
 
-  currentPage = Number.parseInt(items[activeIndex].dataset.kitchenPage || '0', 10);
+  currentPage = Number.parseInt(
+    items[activeIndex].dataset.kitchenPage || '0',
+    10,
+  );
   setPage(currentPage);
 })();

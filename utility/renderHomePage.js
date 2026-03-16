@@ -112,17 +112,10 @@
             <figure class="kitchen__preview">
               <div class="kitchen__photoStack">
                 <img
-                  class="kitchen__photo kitchen__photo--active ${firstItem.imageClass || ''}"
-                  src="${firstItem.imageSrc}"
-                  alt="${firstItem.imageAlt}"
-                  data-kitchen-preview="0"
-                />
-                <img
                   class="kitchen__photo ${firstItem.imageClass || ''}"
                   src="${firstItem.imageSrc}"
-                  alt=""
-                  aria-hidden="true"
-                  data-kitchen-preview="1"
+                  alt="${firstItem.imageAlt}"
+                  data-kitchen-preview
                 />
               </div>
             </figure>

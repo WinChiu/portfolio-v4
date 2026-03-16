@@ -867,13 +867,13 @@ h6 {
   border-radius: 0.5rem;
   object-fit: cover;
   object-position: center;
-  opacity: 0;
+  opacity: 1;
   box-shadow: 0 1.5rem 3.5rem rgba(54, 58, 53, 0.08);
   transition: opacity 0.3s ease;
   margin-top: 1rem;
 }
-.section--kitchen .kitchen__photo--active {
-  opacity: 1;
+.section--kitchen .kitchen__photo--fading {
+  opacity: 0;
 }
 .section--kitchen .kitchen__lightbox {
   position: fixed;
