@@ -528,8 +528,8 @@ window.__HOME_PAGE_CONTENT__ = {
     kitchen: {
       title: 'Kitchen',
       description:
-        '到了瑞典之後，因為真的吃膩了麵包和肉丸，我才慢慢開始喜歡上做菜。雖然稱不上什麼大作，但至少夠真誠，能治好想家，也能幫我撐過北歐物價。',
-      mobileHint: '（點料理可切換照片）',
+        '到了瑞典之後我慢慢開始喜歡上做菜。雖然稱不上什麼大作，但至少能幫我撐過北歐物價。',
+      mobileHint: '（點擊顯示照片）',
       previewLabel: '料理預覽照',
       pageSize: 5,
       items: [
