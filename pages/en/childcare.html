@@ -3,7 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,421 +21,365 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-    <script type="module" src="../../components/components.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
-    <title>
-      Taipei City Childcare Registration and Lottery System Redesign
-    </title>
+    <title>Taipei City Childcare Registration and Lottery System Redesign</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
-  <body>
-    <!-- Loading Mask -->
-    <div class="loading-mask">
-      <dotlottie-wc src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie" autoplay loop></dotlottie-wc>
+  <body class="project-page">
+    <!-- Generated from project content data -->
+    <div class="page-loader">
+      <dotlottie-wc
+        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
+        autoplay
+        loop
+      ></dotlottie-wc>
     </div>
 
-    <div class="block block__translator">
+    <div class="project-translator">
       <a href="../zh/childcare.html"><p>繁中 | EN</p></a>
     </div>
-    <project-header
-      tags="Public Service"
-      title="Taipei City Childcare Registration and Lottery System Redesign"
-      duration="Jul. 2021 ~ Aug. 2021"
-      role="UX Researcher, UX Designer"
-      responsibility="Usability Testing, Cognitive Walkthrough, User Interviews"
-      company="PDIS - Ray 5.0 Program"
-    ></project-header>
-    <project-introduction
-      image-url="../../img/image-projectCover-childcare.webp"
-      image-alt="Taipei Childcare System Redesign"
-      purpose="Conducted user research and redesign for Taipei City's public childcare registration and lottery system, enabling citizens to complete all processes—such as understanding rules, searching for institutions, and registering—on a single platform."
-      challenge="Persuading the government to adopt the proposal without a pre-allocated budget was a significant challenge."
-      production="Completed usability testing, user interviews, wireframes, high-fidelity prototypes, and concept testing, ultimately delivering high-fidelity design files for government reference."
-      outcome="Proposed three solutions of varying complexity for the government's consideration. Two years after the project's completion, a new user-friendly guide was successfully launched on the official website."
-    ></project-introduction>
-    <section class="section section--content">
-      <div class="container container--content">
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Project Background</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-background.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              Public childcare primarily serves infants and toddlers aged 2
-              months to 2 years old, as well as parents registered in Taipei
-              City. Eligible parents can visit the Social Affairs Bureau's
-              public childcare website, read the relevant guidelines, and
-              complete the registration form to participate in the waitlist or
-              lottery for available spots. Each year, many anxious parents hope
-              to secure public childcare services to alleviate the pressures of
-              raising young children.
-            </p>
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="project-header__tag">
+            <p>Public Service</p>
           </div>
         </div>
-        <div class="container container--contentSection">
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-workflow-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div
-          class="container container--contentSection specialSection specialSection--gray specialSection--narrow"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Problem Definition</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__verticalIconList">
-            <div class="module__verticalIcon">
-              <!-- <img src="../../img/sketch-fail.svg" alt="" /> -->
-              <div class="module__content">
-                <h3 class="module__content--title">
-                  Over 30% of applications were disqualified due to errors.
-                </h3>
-                <p class="module__content--content">
-                  The Social Affairs Bureau's public childcare website lacks a
-                  well-structured information architecture and seamless user
-                  flow, making it difficult for parents to quickly find the
-                  necessary information and requirements. As a result, over 30%
-                  of the submitted documents contained errors or were from
-                  ineligible applicants.
-                </p>
-              </div>
+          <h2 class="project-header__title">Taipei City Childcare Registration and Lottery System Redesign</h2>
+          <div class="project-header__metadata">
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Duration</p>
+              <p class="project-header__meta-value">Jul. 2021 ~ Aug. 2021</p>
             </div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-persona1-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              In response to the nature of public services and childcare
-              services, the following three design challenges remain:
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <div class="module module__callOut">
-              <p class="module__title">All users are beginners</p>
-              <p class="module__text">
-                The public childcare service is used infrequently (1-2 times per
-                year), so the design must treat every user as a first-time user.
-              </p>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Role</p>
+              <p class="project-header__meta-value">UX Researcher, UX Designer</p>
             </div>
-            <div class="module module__callOut">
-              <p class="module__title">Extensive childcare information</p>
-              <p class="module__text">
-                With rules varying by publication year and complex eligibility
-                and priority criteria, it is crucial to ensure users can clearly
-                understand the information provided.
-              </p>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Responsibility</p>
+              <p class="project-header__meta-value">Usability Testing, Cognitive Walkthrough, User Interviews</p>
             </div>
-            <div class="module module__callOut">
-              <p class="module__title">Diverse user types and scenarios</p>
-              <p class="module__text">
-                As a public service catering to a wide audience, users will have
-                diverse motivations and needs, requiring thoughtful
-                consideration of different usage scenarios.
-              </p>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Company</p>
+              <p class="project-header__meta-value">PDIS - Ray 5.0 Program</p>
             </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Current State Analysis</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">Stakeholder Map</h6>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Focus on the issues parents face during the stages of selecting
-              childcare institutions, applying, and retrieving information.
-            </h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-stakeholder-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">
-              Usability evaluation and cognitive walkthrough
-            </h6>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              The main issues are cluttered information and difficulty
-              understanding lottery regulations.
-            </h6>
-          </div>
-          <div class="module module__doubleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-noewWeb1.webp"
-              alt=""
-              data-zoom-image
-            />
-            <img
-              src="../../img/projects/childcare/image-cc-noewWeb2.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__pureText">
-            <div class="module module__callOut">
-              <p class="module__title">
-                Insufficient Error Prevention, Lack of Consistency, and Missing
-                Assistance
-              </p>
-              <p class="module__text">
-                We rated issues on a scale of 1 to 4 based on their severity.
-                Among the 64 usability problems identified, the most critical
-                were insufficient error prevention, lack of consistency, and the
-                absence of help or guidance.
-              </p>
-            </div>
-            <div class="module module__callOut">
-              <p class="module__title">
-                Scattered Documents and Poorly Organized Forms
-              </p>
-              <p class="module__text">
-                Through the team's cognitive walkthrough of three main
-                tasks—understanding rules, finding childcare institution
-                information, and registration—it was observed that although the
-                process is simple and linear, disorganized documents,
-                inconsistent text and color usage, and cluttered form layouts
-                significantly reduce users' efficiency in reading and locating
-                information.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-interview.svg"
-            content="We interviewed six parents and summarized the results into ==three personas=="
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Personas and User Variables</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Based on varying motivation levels and information needs, users
-              can be categorized into three types.
-            </h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-personas-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-personaVariable-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-think.svg"
-            content="Based on the current situation and user interview results, we identified ==three issues where the system fails to meet user needs== and developed corresponding design solutions."
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Problem Convergence</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-problem-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Solutions</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-solution1-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-solution2-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-solution3-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-think.svg"
-            content="We also found that parents ==frequently use their mobile phones== for service applications in daily scenarios, so we decided to optimize the ==RWD interface.=="
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Additional Finding</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Due to childcare needs and busy work schedules, parents often rely
-              on their mobile phones for complex information searches and
-              applications.
-            </h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-rwd-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Concept Validation</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              Qualitative feedback from testing shows that the final design
-              successfully addresses the issues originally identified.
-            </h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-feedback-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-sus-en.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Proposal</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-presentation.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              Due to the inherent difficulty of implementing website reforms in
-              the government, we broke down all solutions into the following
-              three approaches and guided Social Affairs Bureau staff, including
-              the Women's and Children's Section staff, Section Chief, and
-              Digital Minister Audrey Tang, to interact with the prototype. All
-              government officials were highly satisfied with our design:
-            </p>
-            <ol class="module__content--content">
-              <li>
-                Minimal Cost Solution: No website development needed, only
-                reorganizing information.
-              </li>
-              <li>
-                Priority Solution for Maximum Benefit: In addition to
-                redesigning the information, prioritize improving the
-                form-filling experience.
-              </li>
-              <li>
-                Full Solution for Maximum User Experience Optimization: Complete
-                solution with all improvements.
-              </li>
-            </ol>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-yeah.svg"
-            content="Two years after the project ended, the staff contacted us to ==request the design of the original guide==, which was then used as the foundation for the release of a new guide!"
-          ></project-content-bigquote>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">Key Learnings</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <a
-              href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%88%91%E5%9C%A8%E5%94%90%E9%B3%B3%E8%BE%A6%E5%85%AC%E5%AE%A4%E5%AF%A6%E7%BF%92%E3%84%9D-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8A-69c5ff8146a0"
-              target="_blank"
-            >
-              <p class="module__text">
-                《 實習心得 》 我在唐鳳辦公室實習ㄝ！？公共數位創新空間 PDIS x
-                Ray 5.0 見習計畫（上）
-              </p></a
-            >
-            <a
-              href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%9B%B2%E7%B5%82%E4%BA%BA%E6%95%A3-%E6%9C%80%E7%B5%82%E6%88%91%E5%80%91%E7%95%99%E4%B8%8B%E4%BA%86%E4%BB%80%E9%BA%BC-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8B-c993ad5c2417"
-              target="_blank"
-            >
-              <p class="module__text">
-                《 實習心得 》 曲終人散 ~ 最終我們留下了什麼？公共數位創新空間
-                PDIS x Ray 5.0 見習計畫（下）
-              </p></a
-            >
           </div>
         </div>
       </div>
+    </main>
+    <section class="project-intro">
+      <div class="project-intro__inner">
+        <div class="project-intro__top">
+          <div class="project-intro__media">
+            <img
+              src="../../img/image-projectCover-childcare.webp"
+              alt="Taipei Childcare System Redesign"
+              class="project-intro__image"
+            />
+          </div>
+          <div class="project-intro__summary-grid">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Purpose</p>
+          <p class="project-intro__summary-content">Conducted user research and redesign for Taipei City's public childcare registration and lottery system, enabling citizens to complete all processes—such as understanding rules, searching for institutions, and registering—on a single platform.</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Challenge</p>
+          <p class="project-intro__summary-content">Persuading the government to adopt the proposal without a pre-allocated budget was a significant challenge.</p>
+        </div>
+          </div>
+        </div>
+        <div class="project-intro__bottom">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Production</p>
+          <p class="project-intro__summary-content">Completed usability testing, user interviews, wireframes, high-fidelity prototypes, and concept testing, ultimately delivering high-fidelity design files for government reference.</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Outcome</p>
+          <p class="project-intro__summary-content">Proposed three solutions of varying complexity for the government's consideration. Two years after the project's completion, a new user-friendly guide was successfully launched on the official website.</p>
+        </div>
+        </div>
+      </div>
     </section>
-    <project-navigation></project-navigation>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Project Background</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-background.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Public childcare primarily serves infants and toddlers aged 2
+                                                                                                              months to 2 years old, as well as parents registered in Taipei
+                                                                                                              City. Eligible parents can visit the Social Affairs Bureau's
+                                                                                                              public childcare website, read the relevant guidelines, and
+                                                                                                              complete the registration form to participate in the waitlist or
+                                                                                                              lottery for available spots. Each year, many anxious parents hope
+                                                                                                              to secure public childcare services to alleviate the pressures of
+                                                                                                              raising young children.</p>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-workflow-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Problem Definition</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">Over 30% of applications were disqualified due to errors.</h6>
+        <p class="project-module__item-text">The Social Affairs Bureau's public childcare website lacks a
+                                                                                                                  well-structured information architecture and seamless user
+                                                                                                                  flow, making it difficult for parents to quickly find the
+                                                                                                                  necessary information and requirements. As a result, over 30%
+                                                                                                                  of the submitted documents contained errors or were from
+                                                                                                                  ineligible applicants.</p>
+        </div>
+        </div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-persona1-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">In response to the nature of public services and childcare
+                                                                                                              services, the following three design challenges remain:</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">All users are beginners</p>
+          <p class="project-module__text">The public childcare service is used infrequently (1-2 times per
+                                                                                                                year), so the design must treat every user as a first-time user.</p>
+        </div>
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">Extensive childcare information</p>
+          <p class="project-module__text">With rules varying by publication year and complex eligibility
+                                                                                                                and priority criteria, it is crucial to ensure users can clearly
+                                                                                                                understand the information provided.</p>
+        </div>
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">Diverse user types and scenarios</p>
+          <p class="project-module__text">As a public service catering to a wide audience, users will have
+                                                                                                                diverse motivations and needs, requiring thoughtful
+                                                                                                                consideration of different usage scenarios.</p>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Current State Analysis</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">Stakeholder Map</h6>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Focus on the issues parents face during the stages of selecting
+                                                                                                              childcare institutions, applying, and retrieving information.</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-stakeholder-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">Usability evaluation and cognitive walkthrough</h6>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">The main issues are cluttered information and difficulty
+                                                                                                              understanding lottery regulations.</h6>
+        </div>
+        <div class="project-module project-module--image-pair">
+        <img src="../../img/projects/childcare/image-cc-noewWeb1.webp" alt="" data-zoom-image />
+        <img src="../../img/projects/childcare/image-cc-noewWeb2.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--text">
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">Insufficient Error Prevention, Lack of Consistency, and Missing
+                                                                                                                Assistance</p>
+          <p class="project-module__text">We rated issues on a scale of 1 to 4 based on their severity.
+                                                                                                                Among the 64 usability problems identified, the most critical
+                                                                                                                were insufficient error prevention, lack of consistency, and the
+                                                                                                                absence of help or guidance.</p>
+        </div>
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">Scattered Documents and Poorly Organized Forms</p>
+          <p class="project-module__text">Through the team's cognitive walkthrough of three main
+                                                                                                                tasks—understanding rules, finding childcare institution
+                                                                                                                information, and registration—it was observed that although the
+                                                                                                                process is simple and linear, disorganized documents,
+                                                                                                                inconsistent text and color usage, and cluttered form layouts
+                                                                                                                significantly reduce users' efficiency in reading and locating
+                                                                                                                information.</p>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-interview.svg" alt="" />
+        <h3 class="project-module__heading">We interviewed six parents and summarized the results into ==three
+                                                                                                              personas==</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Personas and User Variables</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Based on varying motivation levels and information needs, users
+                                                                                                              can be categorized into three types.</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-personas-en.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-personaVariable-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">Based on the current situation and user interview results, we
+                                                                                                              identified ==three issues where the system fails to meet user
+                                                                                                              needs== and developed corresponding design solutions.</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Problem Convergence</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-problem-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Solutions</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-solution1-en.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-solution2-en.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-solution3-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">We also found that parents ==frequently use their mobile phones==
+                                                                                                              for service applications in daily scenarios, so we decided to
+                                                                                                              optimize the ==RWD interface.==</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Additional Finding</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Due to childcare needs and busy work schedules, parents often rely
+                                                                                                              on their mobile phones for complex information searches and
+                                                                                                              applications.</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-rwd-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Concept Validation</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Qualitative feedback from testing shows that the final design
+                                                                                                              successfully addresses the issues originally identified.</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-feedback-en.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-sus-en.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Proposal</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-presentation.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">Due to the inherent difficulty of implementing website reforms in
+                                                                                                              the government, we broke down all solutions into the following
+                                                                                                              three approaches and guided Social Affairs Bureau staff, including
+                                                                                                              the Women's and Children's Section staff, Section Chief, and
+                                                                                                              Digital Minister Audrey Tang, to interact with the prototype. All
+                                                                                                              government officials were highly satisfied with our design:</p>
+        <ol class="project-module__list">
+          <li>Minimal Cost Solution: No website development needed, only
+                                                                                                                reorganizing information.</li>
+          <li>Priority Solution for Maximum Benefit: In addition to
+                                                                                                                redesigning the information, prioritize improving the
+                                                                                                                form-filling experience.</li>
+          <li>Full Solution for Maximum User Experience Optimization: Complete
+                                                                                                                solution with all improvements.</li>
+        </ol>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-yeah.svg" alt="" />
+        <h3 class="project-module__heading">Two years after the project ended, the staff contacted us to
+                                                                                                              ==request the design of the original guide==, which was then used
+                                                                                                              as the foundation for the release of a new guide!</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Key Learnings</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <a href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%88%91%E5%9C%A8%E5%94%90%E9%B3%B3%E8%BE%A6%E5%85%AC%E5%AE%A4%E5%AF%A6%E7%BF%92%E3%84%9D-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8A-69c5ff8146a0" target="_blank">
+          <p class="project-module__text">《 實習心得 》 我在唐鳳辦公室實習ㄝ！？公共數位創新空間 PDIS x
+                                                                                                                Ray 5.0 見習計畫（上）</p>
+        </a>
+        <a href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%9B%B2%E7%B5%82%E4%BA%BA%E6%95%A3-%E6%9C%80%E7%B5%82%E6%88%91%E5%80%91%E7%95%99%E4%B8%8B%E4%BA%86%E4%BB%80%E9%BA%BC-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8B-c993ad5c2417" target="_blank">
+          <p class="project-module__text">《 實習心得 》 曲終人散 ~ 最終我們留下了什麼？公共數位創新空間
+                                                                                                                PDIS x Ray 5.0 見習計畫（下）</p>
+        </a>
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="/#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

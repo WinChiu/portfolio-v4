@@ -1,27 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
-  /* ========== 第 1 步：幫 .module__bgText 加上 ID，並動態生成 TOC ========== */
-  const bgTextElements = document.querySelectorAll(".module__bgText");
+  /* ========== 第 1 步：幫 section title 加上 ID，並動態生成 TOC ========== */
+  const bgTextElements = document.querySelectorAll(
+    ".project-module--section-title .project-module__heading"
+  );
 
   // 建立 TOC 容器
   const tocContainer = document.createElement("div");
-  tocContainer.className = "block block--tocList";
+  tocContainer.className = "project-nav__toc";
 
   bgTextElements.forEach((section, index) => {
     const id = `toc${index + 1}`;
-    section.id = id; // 幫每個 .module__bgText 加上動態 ID
+    section.id = id; // 幫每個 section title 加上動態 ID
 
     // 建立 <a> 作為 TOC 連結
     const tocLink = document.createElement("a");
-    tocLink.className = "toc";
+    tocLink.className = "project-toc";
     tocLink.href = `#${id}`;
 
     // dot
     const tocDot = document.createElement("div");
-    tocDot.className = "toc--dot";
+    tocDot.className = "project-toc__dot";
 
     // 文字
     const tocText = document.createElement("p");
-    tocText.className = "toc--content";
+    tocText.className = "project-toc__label";
     tocText.textContent = section.textContent.trim();
 
     // 組合
@@ -103,29 +105,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // （保留上一個焦點，不清除）
 
     // 更新 TOC focus 樣式
-    document.querySelectorAll(".toc").forEach((link) => {
-      link.classList.remove("toc--focus");
+    document.querySelectorAll(".project-toc").forEach((link) => {
+      link.classList.remove("project-toc--active");
     });
     if (lastActiveSection) {
       const link = document.querySelector(
-        `.toc[href="#${lastActiveSection.id}"]`
+        `.project-toc[href="#${lastActiveSection.id}"]`
       );
       if (link) {
-        link.classList.add("toc--focus");
+        link.classList.add("project-toc--active");
       }
     }
   }, observerOptions);
 
-  // 開始觀察每個 .module__bgText
+  // 開始觀察每個 section title
   bgTextElements.forEach((section) => observer.observe(section));
 
   /* ========== 第 3 步：預留錨點滾動的置頂空間 ========== */
-  const tocLinks = document.querySelectorAll(".toc");
+  const tocLinks = document.querySelectorAll(".project-toc");
   const offset = 24; // 預留 24px 空間
   tocLinks.forEach((link) => {
     link.addEventListener("click", function (event) {
       event.preventDefault(); // 阻止預設的錨點跳轉行為
-      console.log("hi");
       const targetId = this.getAttribute("href").substring(1); // 取得 ID
       const targetElement = document.getElementById(targetId);
 

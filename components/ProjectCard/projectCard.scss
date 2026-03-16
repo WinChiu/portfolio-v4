@@ -1,35 +1,29 @@
-@use '../../style/variables' as *;
-@mixin flex($flexDirection, $justifyContent, $alignItems, $gap: 0px) {
-  display: flex;
-  justify-content: $justifyContent;
-  align-items: $alignItems;
-  flex-direction: $flexDirection;
-  gap: $gap;
-}
+@use '../../style/tokens' as *;
+@use '../../style/base/mixins' as *;
 .section--work {
   .container--content {
     // 基本設定
     @include flex(row, center, stretch);
     position: relative;
-    border-bottom: 2px $color-black solid;
+    border-bottom: 0.125rem $color-black solid;
     // 介紹區塊
     .block--introduction {
       @include flex(column, flex-end, flex-start);
-      margin-left: 48px;
+      margin-left: 3rem;
       flex: 1;
 
       // 標題區塊
       .block__header {
         position: relative;
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
       }
 
       // 數字區塊：使用隱藏文字與描邊效果
       .block__number {
-        font-family: $font-serif;
+        font-family: $font-title;
         color: transparent;
-        margin-bottom: 8px;
-        -webkit-text-stroke: 2px $color-darkGold;
+        margin-bottom: 0.5rem;
+        -webkit-text-stroke: 0.125rem $color-darkGold;
       }
 
       // 內容區塊
@@ -40,7 +34,7 @@
       // 標題文字
       .block__title {
         font-weight: 500;
-        margin-bottom: 16px;
+        margin-bottom: 0.5rem;
       }
 
       // 標籤
@@ -52,22 +46,22 @@
 
       // 描述區塊：左側有紅色邊框
       .block__description {
-        padding-left: 16px;
-        border-left: $color-red solid 4px;
-        margin-bottom: 32px;
+        padding-left: 1rem;
+        border-left: $color-red solid 0.25rem;
+        margin-bottom: 2rem;
       }
 
       // 按鈕容器
       .block__buttonContainer {
-        @include flex(row, flex-start, center, 16px);
+        @include flex(row, flex-start, center, 1rem);
       }
 
       // 按鈕樣式
       .block__button {
         width: 50%;
-        padding: 8px 16px;
+        padding: 0.5rem 1rem;
         background-color: $color-red;
-        border: 2px $color-red solid;
+        border: 0.125rem $color-red solid;
 
         p {
           color: $color-textWhite;
@@ -80,7 +74,7 @@
         &:hover {
           cursor: pointer;
           background-color: $color-yellow;
-          border: 2px $color-yellow solid;
+          border: 0.125rem $color-yellow solid;
         }
 
         // Code 按鈕特殊設定
@@ -91,7 +85,7 @@
         // 禁用狀態按鈕
         &--disable {
           background-color: $color-gray;
-          border: 2px $color-gray solid;
+          border: 0.125rem $color-gray solid;
 
           &:hover {
             cursor: default;
@@ -103,8 +97,8 @@
       // 查看網站按鈕
       .block__button--viewSite {
         color: $color-darkGray;
-        border: 2px $color-darkGray solid;
-        padding: 8px 16px;
+        border: 0.125rem $color-darkGray solid;
+        padding: 0.5rem 1rem;
         text-decoration: none;
         width: fit-content;
         p {
@@ -113,7 +107,7 @@
 
         &:hover {
           color: $color-yellow;
-          border: 2px $color-yellow solid;
+          border: 0.125rem $color-yellow solid;
 
           p {
             color: $color-yellow;
@@ -136,15 +130,15 @@
     // 底部分隔線
     .block--line {
       position: absolute;
-      width: calc(100% + 120px);
-      height: 2px;
+      width: calc(100% + 7.5rem);
+      height: 0.125rem;
       bottom: 0;
       right: 0;
       background-color: $color-black;
     }
 
     /* ===== Media Query ===== */
-    @media (max-width: 1000px) {
+    @media (max-width: 62.5rem) {
       @include flex(column, center, flex-end);
 
       .block--introduction {
@@ -152,7 +146,7 @@
 
         .block__header {
           @include flex(row, flex-start, stretch);
-          margin-bottom: 16px;
+          margin-bottom: 1rem;
         }
         .block__number {
           display: none;
@@ -160,13 +154,13 @@
       }
 
       .media--workCover {
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
       }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 30rem) {
       .block--introduction {
         .block__title {
-          font-size: 28px;
+          font-size: 1.75rem;
         }
         .block__buttonContainer,
         .block__button,

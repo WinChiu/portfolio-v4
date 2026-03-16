@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,372 +21,320 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-    <script type="module" src="../../components/components.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
     <title>台北市社會局公托登記與抽籤系統網站改造</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
-  <body>
-    <!-- Loading Mask -->
-    <div class="loading-mask">
-      <dotlottie-wc src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie" autoplay loop></dotlottie-wc>
+  <body class="project-page">
+    <!-- Generated from project content data -->
+    <div class="page-loader">
+      <dotlottie-wc
+        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
+        autoplay
+        loop
+      ></dotlottie-wc>
     </div>
 
-    <div class="block block__translator">
+    <div class="project-translator">
       <a href="../en/childcare.html"><p>繁中 | EN</p></a>
     </div>
-    <project-header
-      tags="Public Service"
-      title="台北市社會局公托登記與抽籤系統網站改造"
-      duration="Jul. 2021 ~ Aug. 2021"
-      role="UX Researcher, UX Designer"
-      responsibility="易用性測試、認知走查、使用者訪談、問題收斂"
-      company="PDIS - Ray 5.0 Program"
-    ></project-header>
-
-    <project-introduction
-      image-url="../../img/image-projectCover-childcare.webp"
-      image-alt="台北市社會局公托登記與抽籤系統網站改造"
-      purpose="為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。"
-      challenge="政府單位並無事先編列預算，如何說服與提案讓政府部門採納是為一項挑戰。"
-      production="完成易用性測試、使用者訪談、Wireframe、Hifi Prototype 與概念測試，最終提供 Hifi 設計稿供政府部門參考。"
-      outcome="由簡至繁提供三種方案讓政府部門參考。最終於專案結束後兩年，促成新懶人包上架於網站上。"
-    ></project-introduction>
-    <section class="section section--content">
-      <div class="container container--content">
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">專案背景</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-background.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              公共托育主要服務對象為年齡滿 2 個月至 2
-              足歲以下之嬰幼兒和設籍台北市的家長。符合資格的家長可上社會局公托網站，在閱讀相關規則後填寫登記表單，即可參與名額候補與開園抽籤。每年有大量的著急的家長們希望排隊申請公托服務以減緩帶小孩的壓力。
-            </p>
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="project-header__tag">
+            <p>Public Service</p>
           </div>
         </div>
-        <div class="container container--contentSection">
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-workflow.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div
-          class="container container--contentSection specialSection specialSection--gray specialSection--narrow"
-        >
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">現況問題</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__verticalIconList">
-            <div class="module__verticalIcon">
-              <div class="module__content">
-                <h3 class="module__content--title">
-                  超過 3 成的不合格申請文件
-                </h3>
-                <p class="module__content--content">
-                  由於社會局公托網站缺乏良好的資訊架構和流暢的使用流程，家長們難以快速找到所需的資訊與規定，有過
-                  3 成的文件出現填寫錯誤或申請人不合資格。
-                </p>
-              </div>
+          <h2 class="project-header__title">台北市社會局公托登記與抽籤系統網站改造</h2>
+          <div class="project-header__metadata">
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Duration</p>
+              <p class="project-header__meta-value">Jul. 2021 ~ Aug. 2021</p>
             </div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-persona1.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              因應公共服務與公托服務特性，尚有以下三項設計挑戰
-            </h6>
-          </div>
-          <div class="module module__pureText">
-            <div class="module module__callOut">
-              <p class="module__title">使用者皆為新手</p>
-              <p class="module__text">
-                公托服務使用頻率極低（一年抽 1 - 2
-                次），必須將每位使用者當作首次操作來看待。
-              </p>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Role</p>
+              <p class="project-header__meta-value">UX Researcher, UX Designer</p>
             </div>
-            <div class="module module__callOut">
-              <p class="module__title">公托資料繁多</p>
-              <p class="module__text">
-                相關規則具有不同的發布年份，抽籤資格與順位規範多，需注意使用者對資料的理解力。
-              </p>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Responsibility</p>
+              <p class="project-header__meta-value">易用性測試、認知走查、使用者訪談、問題收斂</p>
             </div>
-            <div class="module module__callOut">
-              <p class="module__title">使用者種類與情境多樣</p>
-              <p class="module__text">
-                作為公共服務面向所有大眾，將會有動機與需需求不盡相同的使用者，需多方考量不同的使用情況。
-              </p>
+            <div class="project-header__meta-item">
+              <p class="project-header__meta-label">Company</p>
+              <p class="project-header__meta-value">PDIS - Ray 5.0 Program</p>
             </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">現況分析</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">利害關係人圖</h6>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              聚焦在家長在選擇托育機構、申請及查詢資料階段遇到的問題
-            </h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-stakeholder.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__mdTitle">
-            <h6 class="module__mdText">易用性評估與認知走查</h6>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              資訊雜亂、抽籤規範難以閱讀為最大問題
-            </h6>
-          </div>
-          <div class="module module__doubleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-noewWeb1.webp"
-              alt=""
-              data-zoom-image
-            />
-            <img
-              src="../../img/projects/childcare/image-cc-noewWeb2.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__pureText">
-            <div class="module module__callOut">
-              <p class="module__title">錯誤預防不足、缺乏一致性及缺少幫助</p>
-              <p class="module__text">
-                我們根據問題嚴重程度分為 1 到 4 分評分。而在 64
-                個易用性問題中，錯誤預防不足、缺乏一致性及缺少幫助和說明是最嚴重的問題。
-              </p>
-            </div>
-            <div class="module module__callOut">
-              <p class="module__title">文件散亂、填寫表單未分流</p>
-              <p class="module__text">
-                經團隊認知走查「理解規則」、「查找托育機構資訊」及「登記」三大任務後發現，雖然流程簡單且線性，但未整理的文件、混亂的文字配色與資訊混雜的表單，降低使用者閱讀與查找資料的效率。
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-interview.svg"
-            content="我們邀請 6 位家長進行訪談，根據結果歸納出==3 類人物誌=="
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">人物誌與使用者變數</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              根據不同動機強度與資訊需求，可以將使用者分成 3 類
-            </h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-personas.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-personaVariable.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-think.svg"
-            content="我們根據現況與使用者訪談結果，總結==三項系統無法回應用戶需求的問題==，並發展設計解方"
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">問題收斂</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-problem.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">設計解方</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-solution1.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-solution2.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-solution3.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-think.svg"
-            content="我們也發現在日常情境中，==家長使用手機進行服務申請的比例相當高==，因此決定優化 RWD 介面"
-          ></project-content-bigquote>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">額外發現</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              因為嬰幼兒照護需求與工作繁忙，即便是繁複的資訊查詢與申請，也經常使用手機操作
-            </h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-rwd.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">概念測試</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureTitle">
-            <h6 class="module__semiTitle">
-              在質化測試回饋中，可發現最終設計有解決原先發現的問題
-            </h6>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-feedback.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-sus.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">成果提案</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__singleImage">
-            <img
-              src="../../img/projects/childcare/image-cc-presentation.webp"
-              alt=""
-              data-zoom-image
-            />
-          </div>
-          <div class="module module__pureText">
-            <p class="module__text">
-              因在政府推行網站改革本就有一定難度，我們將所有解方拆分為以下三種解決方式，同時也引導社會局婦幼科承辦人、婦幼科科長、唐鳳政務委員進行原型的操作，各政府機要也十分滿意我們的設計：
-            </p>
-            <ol class="module__content--content">
-              <li>
-                最低成本解決方案：無需進行網站開發，僅針對資訊作重新整理。
-              </li>
-              <li>
-                優先解決效益最高的問題：除重新設計資訊，優先改善表單填寫體驗。
-              </li>
-              <li>最大程度優化使用者經驗：完整解方。</li>
-            </ol>
-          </div>
-        </div>
-        <div class="container container--contentSection">
-          <project-content-bigquote
-            icon="../../img/sketch-yeah.svg"
-            content="專案結束兩年後，承辦人有==聯繫我們索取當時設計的懶人包==，並以此為基礎公布了新的懶人包！"
-          ></project-content-bigquote>
-        </div>
-
-        <div class="container container--contentSection">
-          <div class="module module__bgTitle">
-            <h3 class="module__bgText">專案心得</h3>
-            <div class="module__line"></div>
-          </div>
-          <div class="module module__pureText">
-            <a
-              href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%88%91%E5%9C%A8%E5%94%90%E9%B3%B3%E8%BE%A6%E5%85%AC%E5%AE%A4%E5%AF%A6%E7%BF%92%E3%84%9D-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8A-69c5ff8146a0"
-              target="_blank"
-            >
-              <p class="module__text">
-                《 實習心得 》 我在唐鳳辦公室實習ㄝ！？公共數位創新空間 PDIS x
-                Ray 5.0 見習計畫（上）
-              </p></a
-            >
-            <a
-              href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%9B%B2%E7%B5%82%E4%BA%BA%E6%95%A3-%E6%9C%80%E7%B5%82%E6%88%91%E5%80%91%E7%95%99%E4%B8%8B%E4%BA%86%E4%BB%80%E9%BA%BC-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8B-c993ad5c2417"
-              target="_blank"
-            >
-              <p class="module__text">
-                《 實習心得 》 曲終人散 ~ 最終我們留下了什麼？公共數位創新空間
-                PDIS x Ray 5.0 見習計畫（下）
-              </p></a
-            >
           </div>
         </div>
       </div>
+    </main>
+    <section class="project-intro">
+      <div class="project-intro__inner">
+        <div class="project-intro__top">
+          <div class="project-intro__media">
+            <img
+              src="../../img/image-projectCover-childcare.webp"
+              alt="台北市社會局公托登記與抽籤系統網站改造"
+              class="project-intro__image"
+            />
+          </div>
+          <div class="project-intro__summary-grid">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Purpose</p>
+          <p class="project-intro__summary-content">為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Challenge</p>
+          <p class="project-intro__summary-content">政府單位並無事先編列預算，如何說服與提案讓政府部門採納是為一項挑戰。</p>
+        </div>
+          </div>
+        </div>
+        <div class="project-intro__bottom">
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Production</p>
+          <p class="project-intro__summary-content">完成易用性測試、使用者訪談、Wireframe、Hifi Prototype 與概念測試，最終提供 Hifi 設計稿供政府部門參考。</p>
+        </div>
+        <div class="project-intro__summary">
+          <p class="project-intro__summary-title">Outcome</p>
+          <p class="project-intro__summary-content">由簡至繁提供三種方案讓政府部門參考。最終於專案結束後兩年，促成新懶人包上架於網站上。</p>
+        </div>
+        </div>
+      </div>
     </section>
-    <project-navigation language="zh"></project-navigation>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">專案背景</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-background.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">公共托育主要服務對象為年齡滿 2 個月至 2
+                                                                                                              足歲以下之嬰幼兒和設籍台北市的家長。符合資格的家長可上社會局公托網站，在閱讀相關規則後填寫登記表單，即可參與名額候補與開園抽籤。每年有大量的著急的家長們希望排隊申請公托服務以減緩帶小孩的壓力。</p>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-workflow.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">現況問題</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">超過 3 成的不合格申請文件</h6>
+        <p class="project-module__item-text">由於社會局公托網站缺乏良好的資訊架構和流暢的使用流程，家長們難以快速找到所需的資訊與規定，有過
+                                                                                                                  3 成的文件出現填寫錯誤或申請人不合資格。</p>
+        </div>
+        </div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-persona1.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">因應公共服務與公托服務特性，尚有以下三項設計挑戰</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">使用者皆為新手</p>
+          <p class="project-module__text">公托服務使用頻率極低（一年抽 1 - 2
+                                                                                                                次），必須將每位使用者當作首次操作來看待。</p>
+        </div>
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">公托資料繁多</p>
+          <p class="project-module__text">相關規則具有不同的發布年份，抽籤資格與順位規範多，需注意使用者對資料的理解力。</p>
+        </div>
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">使用者種類與情境多樣</p>
+          <p class="project-module__text">作為公共服務面向所有大眾，將會有動機與需需求不盡相同的使用者，需多方考量不同的使用情況。</p>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">現況分析</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">利害關係人圖</h6>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">聚焦在家長在選擇托育機構、申請及查詢資料階段遇到的問題</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-stakeholder.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">易用性評估與認知走查</h6>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">資訊雜亂、抽籤規範難以閱讀為最大問題</h6>
+        </div>
+        <div class="project-module project-module--image-pair">
+        <img src="../../img/projects/childcare/image-cc-noewWeb1.webp" alt="" data-zoom-image />
+        <img src="../../img/projects/childcare/image-cc-noewWeb2.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--text">
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">錯誤預防不足、缺乏一致性及缺少幫助</p>
+          <p class="project-module__text">我們根據問題嚴重程度分為 1 到 4 分評分。而在 64
+                                                                                                                個易用性問題中，錯誤預防不足、缺乏一致性及缺少幫助和說明是最嚴重的問題。</p>
+        </div>
+        <div class="project-module__callout">
+          <p class="project-module__callout-title">文件散亂、填寫表單未分流</p>
+          <p class="project-module__text">經團隊認知走查「理解規則」、「查找托育機構資訊」及「登記」三大任務後發現，雖然流程簡單且線性，但未整理的文件、混亂的文字配色與資訊混雜的表單，降低使用者閱讀與查找資料的效率。</p>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-interview.svg" alt="" />
+        <h3 class="project-module__heading">我們邀請 6 位家長進行訪談，根據結果歸納出==3 類人物誌==</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">人物誌與使用者變數</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">根據不同動機強度與資訊需求，可以將使用者分成 3 類</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-personas.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-personaVariable.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">我們根據現況與使用者訪談結果，總結==三項系統無法回應用戶需求的問題==，並發展設計解方</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">問題收斂</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-problem.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">設計解方</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-solution1.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-solution2.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-solution3.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">我們也發現在日常情境中，==家長使用手機進行服務申請的比例相當高==，因此決定優化
+                                                                                                              RWD 介面</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">額外發現</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">因為嬰幼兒照護需求與工作繁忙，即便是繁複的資訊查詢與申請，也經常使用手機操作</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-rwd.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">概念測試</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">在質化測試回饋中，可發現最終設計有解決原先發現的問題</h6>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-feedback.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-sus.webp" alt="" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">成果提案</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/childcare/image-cc-presentation.webp" alt="" data-zoom-image />
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">因在政府推行網站改革本就有一定難度，我們將所有解方拆分為以下三種解決方式，同時也引導社會局婦幼科承辦人、婦幼科科長、唐鳳政務委員進行原型的操作，各政府機要也十分滿意我們的設計：</p>
+        <ol class="project-module__list">
+          <li>最低成本解決方案：無需進行網站開發，僅針對資訊作重新整理。</li>
+          <li>優先解決效益最高的問題：除重新設計資訊，優先改善表單填寫體驗。</li>
+          <li>最大程度優化使用者經驗：完整解方。</li>
+        </ol>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-yeah.svg" alt="" />
+        <h3 class="project-module__heading">專案結束兩年後，承辦人有==聯繫我們索取當時設計的懶人包==，並以此為基礎公布了新的懶人包！</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">專案心得</h3>
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <a href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%88%91%E5%9C%A8%E5%94%90%E9%B3%B3%E8%BE%A6%E5%85%AC%E5%AE%A4%E5%AF%A6%E7%BF%92%E3%84%9D-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8A-69c5ff8146a0" target="_blank">
+          <p class="project-module__text">《 實習心得 》 我在唐鳳辦公室實習ㄝ！？公共數位創新空間 PDIS x
+                                                                                                                Ray 5.0 見習計畫（上）</p>
+        </a>
+        <a href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%9B%B2%E7%B5%82%E4%BA%BA%E6%95%A3-%E6%9C%80%E7%B5%82%E6%88%91%E5%80%91%E7%95%99%E4%B8%8B%E4%BA%86%E4%BB%80%E9%BA%BC-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8B-c993ad5c2417" target="_blank">
+          <p class="project-module__text">《 實習心得 》 曲終人散 ~ 最終我們留下了什麼？公共數位創新空間
+                                                                                                                PDIS x Ray 5.0 見習計畫（下）</p>
+        </a>
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="../../home-zh.html#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
     <script src="../../utility/hideTranslator.js"></script>

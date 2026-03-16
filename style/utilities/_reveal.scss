@@ -1,0 +1,11 @@
+.animate-item {
+  opacity: 0;
+  transform: translateY(3.125rem) scale(0.95);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.animate-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
