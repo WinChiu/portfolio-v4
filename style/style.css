@@ -870,6 +870,7 @@ h6 {
   opacity: 0;
   box-shadow: 0 1.5rem 3.5rem rgba(54, 58, 53, 0.08);
   transition: opacity 0.3s ease;
+  margin-top: 1rem;
 }
 .section--kitchen .kitchen__photo--active {
   opacity: 1;
