@@ -1,4 +1,77 @@
 document.addEventListener("DOMContentLoaded", function () {
+  function applyHighlightMarkers(root = document.body) {
+    if (!root) return;
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.includes("==")) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        const parent = node.parentElement;
+        if (
+          !parent ||
+          parent.closest("script, style, noscript, textarea, .highlight")
+        ) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        return NodeFilter.FILTER_ACCEPT;
+      },
+    });
+
+    const textNodes = [];
+    let currentNode = walker.nextNode();
+
+    while (currentNode) {
+      textNodes.push(currentNode);
+      currentNode = walker.nextNode();
+    }
+
+    textNodes.forEach((node) => {
+      const parts = node.nodeValue.split(/(==[\s\S]+?==)/g);
+
+      if (parts.length === 1) return;
+
+      const fragment = document.createDocumentFragment();
+      let hasReplacement = false;
+
+      parts.forEach((part) => {
+        const match = part.match(/^==([\s\S]+)==$/);
+
+        if (match) {
+          const highlightText = match[1].trim();
+
+          if (!highlightText) {
+            fragment.appendChild(document.createTextNode(part));
+            return;
+          }
+
+          const span = document.createElement("span");
+          span.className = "highlight";
+          span.textContent = highlightText;
+          fragment.appendChild(span);
+          hasReplacement = true;
+          return;
+        }
+
+        if (part) {
+          fragment.appendChild(document.createTextNode(part));
+        }
+      });
+
+      if (hasReplacement && node.parentNode) {
+        node.parentNode.replaceChild(fragment, node);
+      }
+    });
+  }
+
+  if (typeof window.__applyHighlightMarkers__ === "function") {
+    window.__applyHighlightMarkers__();
+  } else {
+    applyHighlightMarkers();
+  }
+
   /* ========== 第 1 步：幫 section title 加上 ID，並動態生成 TOC ========== */
   const bgTextElements = document.querySelectorAll(
     ".project-module--section-title .project-module__heading"
