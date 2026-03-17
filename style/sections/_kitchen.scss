@@ -9,8 +9,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
-    height: 100%;
+    height: 56rem;
     width: auto;
     object-fit: contain;
     object-position: top right;
@@ -413,6 +412,10 @@
   }
 
   @media (max-width: 62.5rem) {
+    .kitchen__bg {
+      height: 44rem;
+    }
+
     .container {
       @include flex(column, flex-start, stretch, 2rem);
     }
@@ -441,7 +444,7 @@
 
     .kitchen__header {
       padding: 0 0 0.75rem;
-      font-size: 1.125rem;
+      font-size: 1.25rem;
     }
 
     .kitchen__headerNote {
@@ -497,6 +500,10 @@
   }
 
   @media (max-width: 30rem) {
+    .kitchen__bg {
+      height: 34rem;
+    }
+
     .container {
       gap: 1.5rem;
     }
@@ -514,13 +521,13 @@
     }
 
     .kitchen__header {
-      font-size: 0.95rem;
+      font-size: 1.125rem;
     }
 
     .kitchen__headerHint {
       display: inline;
       margin: 0 0 0 0.3rem;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
 
     .kitchen__nameZh,

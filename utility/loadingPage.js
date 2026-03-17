@@ -78,6 +78,65 @@
     document.querySelector('.page-loader') ||
     document.querySelector('.loading-mask');
 
+  function waitForImageElement(image) {
+    if (!image || !image.currentSrc && !image.src) {
+      return Promise.resolve();
+    }
+
+    if (image.complete) {
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+      const finalize = () => {
+        image.removeEventListener('load', finalize);
+        image.removeEventListener('error', finalize);
+        resolve();
+      };
+
+      image.addEventListener('load', finalize, { once: true });
+      image.addEventListener('error', finalize, { once: true });
+    });
+  }
+
+  function preloadImage(src) {
+    if (!src) return Promise.resolve();
+
+    return new Promise((resolve) => {
+      const image = new Image();
+
+      const finalize = () => {
+        image.onload = null;
+        image.onerror = null;
+        resolve();
+      };
+
+      image.onload = finalize;
+      image.onerror = finalize;
+      image.src = src;
+
+      if (image.complete) {
+        finalize();
+      }
+    });
+  }
+
+  async function waitForPageAssets() {
+    const domImages = Array.from(document.images);
+    const kitchenPreviewSources = Array.from(
+      document.querySelectorAll('[data-kitchen-image-src]'),
+    )
+      .map((item) => item.dataset.kitchenImageSrc)
+      .filter(Boolean);
+
+    const preloadSources = [...new Set(kitchenPreviewSources)];
+
+    await Promise.all([
+      ...domImages.map(waitForImageElement),
+      ...preloadSources.map(preloadImage),
+    ]);
+  }
+
   function removeLoader() {
     if (!loader) return;
 
@@ -94,12 +153,15 @@
 
   // DOM 載入完成後執行
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       applyHighlightMarkers();
+      await waitForPageAssets();
       setTimeout(removeLoader, 500); // 小延遲讓動畫不突兀
     });
   } else {
     applyHighlightMarkers();
-    setTimeout(removeLoader, 500);
+    waitForPageAssets().then(() => {
+      setTimeout(removeLoader, 500);
+    });
   }
 })();

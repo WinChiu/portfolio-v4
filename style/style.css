@@ -810,8 +810,7 @@ h6 {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  height: 100%;
+  height: 56rem;
   width: auto;
   object-fit: contain;
   object-position: top right;
@@ -1174,6 +1173,9 @@ h6 {
   }
 }
 @media (max-width: 62.5rem) {
+  .section--kitchen .kitchen__bg {
+    height: 44rem;
+  }
   .section--kitchen .container {
     display: flex;
     justify-content: flex-start;
@@ -1200,7 +1202,7 @@ h6 {
   }
   .section--kitchen .kitchen__header {
     padding: 0 0 0.75rem;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
   .section--kitchen .kitchen__headerNote {
     display: none;
@@ -1246,6 +1248,9 @@ h6 {
   }
 }
 @media (max-width: 30rem) {
+  .section--kitchen .kitchen__bg {
+    height: 34rem;
+  }
   .section--kitchen .container {
     gap: 1.5rem;
   }
@@ -1259,12 +1264,12 @@ h6 {
     max-width: none;
   }
   .section--kitchen .kitchen__header {
-    font-size: 0.95rem;
+    font-size: 1.125rem;
   }
   .section--kitchen .kitchen__headerHint {
     display: inline;
     margin: 0 0 0 0.3rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   .section--kitchen .kitchen__nameZh,
   .section--kitchen .kitchen__nameEn {
