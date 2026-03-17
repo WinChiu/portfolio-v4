@@ -83,7 +83,7 @@
               class="kitchen__item${activeClass}"
               data-kitchen-index="${index}"
               data-kitchen-page="${pageIndex}"
-              data-kitchen-image-src="${escapeAttribute(item.imageSrc)}"
+              data-kitchen-image-src="${escapeAttribute(resolveAssetPath(item.imageSrc))}"
               data-kitchen-image-alt="${escapeAttribute(item.imageAlt)}"
               data-kitchen-image-class="${escapeAttribute(item.imageClass || '')}"
               role="button"
@@ -119,7 +119,7 @@
               <div class="kitchen__photoStack">
                 <img
                   class="kitchen__photo ${firstItem.imageClass || ''}"
-                  src="${firstItem.imageSrc}"
+                  src="${resolveAssetPath(firstItem.imageSrc)}"
                   alt="${firstItem.imageAlt}"
                   data-kitchen-preview
                 />
@@ -151,7 +151,7 @@
         <div class="kitchen__lightbox" data-kitchen-lightbox hidden>
           <div class="kitchen__lightboxBackdrop" data-kitchen-lightbox-close></div>
           <div class="kitchen__lightboxDialog" role="dialog" aria-modal="true" aria-label="${kitchen.previewLabel}">
-            <img class="kitchen__lightboxImage" src="${firstItem.imageSrc}" alt="${firstItem.imageAlt}" data-kitchen-lightbox-image />
+            <img class="kitchen__lightboxImage" src="${resolveAssetPath(firstItem.imageSrc)}" alt="${firstItem.imageAlt}" data-kitchen-lightbox-image />
           </div>
         </div>
       </section>`;
