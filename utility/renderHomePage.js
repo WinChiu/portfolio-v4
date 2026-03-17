@@ -7,6 +7,12 @@
   const lang = document.documentElement.lang === 'zh' ? 'zh' : 'en';
   const content = contentMap[lang];
 
+  function resolveAssetPath(value) {
+    if (typeof value !== 'string') return value;
+    if (!value.startsWith('/')) return value;
+    return `.${value}`;
+  }
+
   function escapeAttribute(value) {
     return String(value).replace(/"/g, '&quot;');
   }
@@ -19,7 +25,7 @@
           `title="${escapeAttribute(project.title)}"`,
           `tag="${escapeAttribute(project.tag)}"`,
           `description="${escapeAttribute(project.description)}"`,
-          `image-url="${escapeAttribute(project.imageUrl)}"`,
+          `image-url="${escapeAttribute(resolveAssetPath(project.imageUrl))}"`,
           `project-url="${escapeAttribute(project.projectUrl)}"`,
           `type="${escapeAttribute(project.type)}"`,
           `lang="${escapeAttribute(project.lang)}"`,
@@ -57,7 +63,7 @@
   function renderKitchenStars(effort) {
     return Array.from({ length: 3 }, (_, index) => {
       const isFilled = index < effort;
-      const src = isFilled ? '/img/icon-starFilled.svg' : '/img/icon-star.svg';
+      const src = isFilled ? './img/icon-starFilled.svg' : './img/icon-star.svg';
       return `<img class="kitchen__star" src="${src}" alt="" aria-hidden="true" />`;
     }).join('');
   }
@@ -104,7 +110,7 @@
 
     return `
       <section class="section section--kitchen" id="kitchen">
-        <img class="kitchen__bg" src="/img/image-kitchenBg.webp" alt="" aria-hidden="true" />
+        <img class="kitchen__bg" src="./img/image-kitchenBg.webp" alt="" aria-hidden="true" />
         <div class="container container--content">
           <article class="kitchen__intro">
             <h1 class="kitchen__title">${kitchen.title}</h1>
@@ -134,10 +140,10 @@
             </ol>
             <div class="kitchen__controls">
               <button type="button" class="kitchen__control kitchen__control--prev" data-kitchen-prev aria-label="Show previous dish">
-                <img class="kitchen__controlIcon" src="/img/icon-leftArrow.svg" alt="" aria-hidden="true" />
+                <img class="kitchen__controlIcon" src="./img/icon-leftArrow.svg" alt="" aria-hidden="true" />
               </button>
               <button type="button" class="kitchen__control kitchen__control--next" data-kitchen-next aria-label="Show next dish">
-                <img class="kitchen__controlIcon" src="/img/icon-rightArrow.svg" alt="" aria-hidden="true" />
+                <img class="kitchen__controlIcon" src="./img/icon-rightArrow.svg" alt="" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -176,66 +182,66 @@
           <div class="block__bgImage"></div>
         </article>
         <figure class="media media--image">
-          <img src="/img/image-landingAvatar.webp" alt="" class="media__img--body" />
+          <img src="./img/image-landingAvatar.webp" alt="" class="media__img--body" />
           <img
-            src="/img/image-landingAvatarEyebrow-left.webp"
+            src="./img/image-landingAvatarEyebrow-left.webp"
             alt=""
             class="media__img--facial media__img--eyebrowLeft"
           />
           <img
-            src="/img/image-landingAvatarEyebrow-right.webp"
+            src="./img/image-landingAvatarEyebrow-right.webp"
             alt=""
             class="media__img--facial media__img--eyebrowRight"
           />
           <div class="media__img--facial media__img--eyeLeft media__img--eyeLeftFix"></div>
           <div class="media__img--facial media__img--eyeRight media__img--eyeRightFix"></div>
           <img
-            src="/img/image-landingAvatarEye1-left.webp"
+            src="./img/image-landingAvatarEye1-left.webp"
             alt=""
             class="media__img--facial media__img--eyeLeft media__img--eye1Left"
           />
           <img
-            src="/img/image-landingAvatarEye2-left.webp"
+            src="./img/image-landingAvatarEye2-left.webp"
             alt=""
             class="media__img--facial media__img--eyeLeft media__img--eye2Left"
           />
           <img
-            src="/img/image-landingAvatarEye3-left.webp"
+            src="./img/image-landingAvatarEye3-left.webp"
             alt=""
             class="media__img--facial media__img--eyeLeft media__img--eye3Left"
           />
           <img
-            src="/img/image-landingAvatarEye1-right.webp"
+            src="./img/image-landingAvatarEye1-right.webp"
             alt=""
             class="media__img--facial media__img--eyeRight media__img--eye1Right"
           />
           <img
-            src="/img/image-landingAvatarEye2-right.webp"
+            src="./img/image-landingAvatarEye2-right.webp"
             alt=""
             class="media__img--facial media__img--eyeRight media__img--eye2Right"
           />
           <img
-            src="/img/image-landingAvatarEye3-right.webp"
+            src="./img/image-landingAvatarEye3-right.webp"
             alt=""
             class="media__img--facial media__img--eyeRight media__img--eye3Right"
           />
           <img
-            src="/img/image-landingAvatarEye1Socket-left.webp"
+            src="./img/image-landingAvatarEye1Socket-left.webp"
             alt=""
             class="media__img--facial media__img--eye1SocketLeft"
           />
           <img
-            src="/img/image-landingAvatarEye1Socket-right.webp"
+            src="./img/image-landingAvatarEye1Socket-right.webp"
             alt=""
             class="media__img--facial media__img--eye1SocketRight"
           />
           <img
-            src="/img/image-landingAvatarMouth-smile.webp"
+            src="./img/image-landingAvatarMouth-smile.webp"
             alt=""
             class="media__img--facial media__img--mouth media__img--mouthSmile"
           />
           <img
-            src="/img/image-landingAvatarMouth-strange.webp"
+            src="./img/image-landingAvatarMouth-strange.webp"
             alt=""
             class="media__img--facial media__img--mouth media__img--mouthStrange"
           />
@@ -264,7 +270,7 @@
     <section class="section section--about" id="about">
       <div class="container container--content">
         <figure class="media media--avatar">
-          <img class="media__img" src="${content.about.imageSrc}" alt="${content.about.imageAlt}" />
+          <img class="media__img" src="${resolveAssetPath(content.about.imageSrc)}" alt="${content.about.imageAlt}" />
         </figure>
         <article class="block block--introduction">
           <h1 class="block__title">${content.about.title}</h1>
@@ -282,7 +288,7 @@
       </div>
       <figure class="media media--socialList">
         <a href="https://www.linkedin.com/in/wei-chen-win-chiu" target="_blank">
-          <img class="media__img" src="/img/icon-linkedin.svg" alt="" />
+          <img class="media__img" src="./img/icon-linkedin.svg" alt="" />
         </a>
       </figure>
     </nav>
