@@ -488,7 +488,8 @@ window.__HOME_PAGE_CONTENT__ = {
     ],
     hero: {
       title: "Hi! I'm Win✨",
-      description: '擁有 UIUX 設計與前端開發能力的產品設計師',
+      description:
+        '具備 B2B 與設計系統經驗的 UX / 產品設計師，致力於打造以使用者為中心、改善生活的解決方案。',
       annotation:
         '正於瑞典皇家理工學院（KTH）攻讀 Interactive Media Technology 碩士學位',
     },
