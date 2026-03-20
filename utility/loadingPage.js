@@ -128,8 +128,13 @@
     )
       .map((item) => item.dataset.kitchenImageSrc)
       .filter(Boolean);
+    const galleryPreviewSources = Array.from(
+      document.querySelectorAll('[data-gallery-image-src]'),
+    )
+      .map((item) => item.dataset.galleryImageSrc)
+      .filter(Boolean);
 
-    const preloadSources = [...new Set(kitchenPreviewSources)];
+    const preloadSources = [...new Set([...kitchenPreviewSources, ...galleryPreviewSources])];
 
     await Promise.all([
       ...domImages.map(waitForImageElement),

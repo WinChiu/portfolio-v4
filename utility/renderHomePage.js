@@ -17,6 +17,14 @@
     return String(value).replace(/"/g, '&quot;');
   }
 
+  function createNodeId(prefix, value) {
+    return `${prefix}-${String(value)
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\u4e00-\u9fff]+/g, '-')
+      .replace(/^-+|-+$/g, '')}`;
+  }
+
   function renderProjects(projects) {
     return projects
       .map((project) => {
@@ -157,6 +165,115 @@
       </section>`;
   }
 
+  function renderGallerySection(gallery) {
+    const firstItem = gallery.items[0];
+    const graphData = {
+      nodes: [],
+      links: [],
+      items: gallery.items.map((item, index) => ({
+        ...item,
+        id: item.id || createNodeId('image', item.title || index),
+        imageSrc: resolveAssetPath(item.imageSrc),
+        locationDisplay: `${item.country || ''} ${item.location || ''}`.trim(),
+      })),
+    };
+
+    const locationMap = new Map();
+    const tagMap = new Map();
+
+    graphData.items.forEach((item, index) => {
+      const imageId = item.id;
+
+      graphData.nodes.push({
+        id: imageId,
+        type: 'image',
+        title: item.title,
+        imageIndex: index,
+      });
+
+      if (!locationMap.has(item.location)) {
+        const locationId = createNodeId('location', item.location);
+        locationMap.set(item.location, locationId);
+        graphData.nodes.push({
+          id: locationId,
+          type: 'location',
+          label: item.location,
+        });
+      }
+
+      graphData.links.push({
+        source: imageId,
+        target: locationMap.get(item.location),
+      });
+
+      (item.tags || []).forEach((tag) => {
+        if (!tagMap.has(tag)) {
+          const tagId = createNodeId('tag', tag);
+          tagMap.set(tag, tagId);
+          graphData.nodes.push({
+            id: tagId,
+            type: 'tag',
+            label: tag,
+          });
+        }
+
+        graphData.links.push({
+          source: imageId,
+          target: tagMap.get(tag),
+        });
+      });
+    });
+
+    return `
+      <section class="section section--gallery" id="gallery">
+        <div class="container container--content">
+          <article class="gallery__intro">
+            <h1 class="gallery__title">${gallery.title}</h1>
+            <p class="gallery__description">${gallery.description}</p>
+          </article>
+          <div class="gallery__stage" data-gallery-stage>
+            <div class="gallery__graph" data-gallery-graph aria-hidden="true"></div>
+            <aside class="gallery__card" data-gallery-card aria-label="${escapeAttribute(gallery.cardLabel)}" hidden>
+              <figure class="gallery__cardFigure">
+                <img
+                  class="gallery__cardImage"
+                  src="${resolveAssetPath(firstItem.imageSrc)}"
+                  alt="${firstItem.imageAlt}"
+                  data-gallery-card-image
+                />
+              </figure>
+              <div class="gallery__cardBody">
+                <p class="gallery__cardMeta" data-gallery-card-location>${firstItem.locationDisplay}</p>
+                <p class="gallery__cardCaption" data-gallery-card-caption>${firstItem.note || ''}</p>
+                <p class="gallery__cardTags" data-gallery-card-tags>${(firstItem.tags || []).join(' / ')}</p>
+              </div>
+            </aside>
+          </div>
+          <script type="application/json" data-gallery-graph-data>${JSON.stringify(graphData).replace(/</g, '\\u003c')}</script>
+        </div>
+        <div class="gallery__lightbox" data-gallery-lightbox hidden>
+          <div class="gallery__lightboxBackdrop" data-gallery-lightbox-close></div>
+          <div class="gallery__lightboxDialog" role="dialog" aria-modal="true" aria-label="${escapeAttribute(gallery.cardLabel)}">
+            <div class="gallery__lightboxCard" data-gallery-lightbox-card>
+              <figure class="gallery__lightboxFigure">
+                <img
+                  class="gallery__lightboxImage"
+                  src="${resolveAssetPath(firstItem.imageSrc)}"
+                  alt="${firstItem.imageAlt}"
+                  data-gallery-lightbox-image
+                />
+              </figure>
+              <div class="gallery__lightboxBody">
+                <p class="gallery__lightboxMeta" data-gallery-lightbox-location>${firstItem.locationDisplay}</p>
+                <p class="gallery__lightboxCaption" data-gallery-lightbox-caption>${firstItem.note || ''}</p>
+                <p class="gallery__lightboxTags" data-gallery-lightbox-tags>${(firstItem.tags || []).join(' / ')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>`;
+  }
+
   function renderNav(items) {
     return items
       .map(
@@ -282,6 +399,7 @@
       </div>
     </section>
     ${renderKitchenSection(content.kitchen)}
+    ${renderGallerySection(content.gallery)}
     <nav class="nav nav--main" id="navbar">
       <div class="block block--navList">
         ${renderNav(content.nav)}

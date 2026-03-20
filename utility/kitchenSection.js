@@ -90,6 +90,7 @@
     lightboxImage.src = item.dataset.kitchenImageSrc;
     lightboxImage.alt = item.dataset.kitchenImageAlt;
     lightbox.hidden = false;
+    section.classList.add('section--kitchen-lightbox-open');
     document.body.classList.add('kitchen-lightbox-open');
   }
 
@@ -97,6 +98,7 @@
     if (!lightbox) return;
 
     lightbox.hidden = true;
+    section.classList.remove('section--kitchen-lightbox-open');
     document.body.classList.remove('kitchen-lightbox-open');
   }
 

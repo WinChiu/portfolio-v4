@@ -339,8 +339,7 @@ html {
   .project-header__inner {
     padding: 1.5rem 0;
   }
-  .project-header__tags,
-  .project-header__title {
+  .project-header__tags, .project-header__title {
     padding-left: 1rem;
     padding-right: 1rem;
   }

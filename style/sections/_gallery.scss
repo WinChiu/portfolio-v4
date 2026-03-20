@@ -1,0 +1,417 @@
+@use '../tokens' as *;
+@use '../base/mixins' as *;
+
+.section--gallery {
+  background: linear-gradient(180deg, rgba($color-bgWhite, 0.95) 0%, $color-lightYellow 100%);
+  height: 100dvh;
+  min-height: 100dvh;
+
+  &.section--gallery-lightbox-open {
+    z-index: 50;
+  }
+
+  .container {
+    height: 100dvh;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    border-top: 0.125rem solid rgba($color-black, 0.88);
+    border-bottom: 0.125rem solid rgba($color-black, 0.88);
+    border-left: 0.125rem solid rgba($color-black, 0.88);
+    border-right: none;
+    padding: 3rem;
+    background:
+      radial-gradient(circle at top left, rgba($color-textWhite, 0.9), rgba($color-lightYellow, 0.45) 65%, rgba($color-bgWhite, 0.98)),
+      $color-bgWhite;
+  }
+
+  .gallery__intro {
+    @include flex(column, flex-start, flex-start, 1.5rem);
+    max-width: none;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .gallery__title {
+    margin: 0;
+    font-family: $font-title;
+    color: transparent;
+    line-height: 0.9;
+    -webkit-text-stroke: 0.125rem $color-darkGold;
+  }
+
+  .gallery__description {
+    margin: 0;
+    color: $color-black;
+    max-width: none;
+    width: 100%;
+  }
+
+  .gallery__stage {
+    position: relative;
+    height: calc(100% + 3rem);
+    min-height: 0;
+    width: calc(100% + 6rem);
+    margin-left: -3rem;
+    margin-right: -3rem;
+    margin-bottom: -3rem;
+  }
+
+  .gallery__graph {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+  }
+
+  .gallery__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .gallery__line {
+    stroke: rgba($color-darkGray, 0.22);
+    stroke-width: 1.5;
+    transition:
+      stroke 0.2s ease,
+      opacity 0.2s ease,
+      stroke-width 0.2s ease;
+
+    &.is-active {
+      stroke: rgba($color-red, 0.42);
+      stroke-width: 2.5;
+    }
+
+    &.is-dimmed {
+      opacity: 0.18;
+    }
+  }
+
+  .gallery__node {
+    cursor: pointer;
+    transition:
+      r 0.2s ease,
+      fill 0.2s ease,
+      stroke 0.2s ease,
+      opacity 0.2s ease;
+
+    &.is-dimmed {
+      opacity: 0.34;
+    }
+  }
+
+  .gallery__label {
+    fill: $color-black;
+    font-family: $font-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    paint-order: stroke;
+    stroke: rgba($color-bgWhite, 0.9);
+    stroke-width: 6px;
+    pointer-events: none;
+    transition:
+      opacity 0.2s ease,
+      fill 0.2s ease;
+
+    &.is-dimmed {
+      opacity: 0.34;
+    }
+  }
+
+  .gallery__node--image {
+    fill: rgba($color-gray, 0.96);
+    stroke: rgba($color-textWhite, 0.85);
+    stroke-width: 2;
+  }
+
+  .gallery__node--location {
+    fill: $color-red;
+    stroke: rgba($color-textWhite, 0.9);
+    stroke-width: 3;
+  }
+
+  .gallery__node--tag {
+    fill: $color-yellow;
+    stroke: rgba($color-textWhite, 0.9);
+    stroke-width: 3;
+  }
+
+  .gallery__node--image.is-active {
+    fill: $color-darkGray;
+  }
+
+  .gallery__node--location.is-active,
+  .gallery__node--tag.is-active {
+    stroke: rgba($color-bgWhite, 1);
+    stroke-width: 5;
+  }
+
+  .gallery__label.is-active {
+    fill: $color-black;
+  }
+
+  .gallery__card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: fit-content;
+    max-width: none;
+    background: rgba($color-black, 0.12);
+    backdrop-filter: blur(0.3rem);
+    border-radius: 1.3rem;
+    overflow: hidden;
+    box-shadow:
+      0 1.35rem 2.4rem rgba($color-black, 0.2),
+      0 0 0 0.0625rem rgba($color-textWhite, 0.18);
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .gallery__cardFigure {
+    margin: 0;
+    background: rgba($color-darkGray, 0.08);
+    width: fit-content;
+    height: 33dvh;
+  }
+
+  .gallery__card--portrait .gallery__cardFigure {
+    height: 50dvh;
+  }
+
+  .gallery__cardImage {
+    display: block;
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .gallery__cardBody {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem 1.1rem 1.15rem;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 36.75%, rgba(0, 0, 0, 0.15) 62.8%, rgba(105, 105, 105, 0) 100%);
+  }
+
+  .gallery__cardMeta {
+    margin: 0;
+    color: rgba($color-textWhite, 0.96);
+    font-family: $font-serif;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    white-space: nowrap;
+
+    &::after {
+      content: '';
+      flex: 1 1 auto;
+      min-width: 1.5rem;
+      border-bottom: 0.125rem dashed rgba($color-textWhite, 0.9);
+      opacity: 0.9;
+    }
+  }
+
+  .gallery__cardCaption {
+    margin: 0.5rem 0 0.45rem;
+    color: rgba($color-textWhite, 0.94);
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .gallery__cardTags {
+    margin: 0;
+    color: rgba($color-textWhite, 0.82);
+    font-family: $font-serif;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .gallery__lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+  }
+
+  .gallery__lightbox[hidden] {
+    display: none;
+  }
+
+  .gallery__lightboxBackdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .gallery__lightboxDialog {
+    position: relative;
+    z-index: 1;
+    width: min(88vw, 28rem);
+    margin: 50vh auto 0;
+    transform: translateY(-50%);
+  }
+
+  .gallery__lightboxCard {
+    position: relative;
+    background: rgba($color-black, 0.12);
+    backdrop-filter: blur(0.3rem);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow:
+      0 1.5rem 3rem rgba(0, 0, 0, 0.2),
+      0 0 0 0.0625rem rgba($color-textWhite, 0.18);
+  }
+
+  .gallery__lightboxFigure {
+    margin: 0;
+    background: rgba($color-darkGray, 0.08);
+    width: 100%;
+  }
+
+  .gallery__lightboxImage {
+    display: block;
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .gallery__lightboxBody {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem 1.1rem 1.15rem;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 36.75%, rgba(0, 0, 0, 0.15) 62.8%, rgba(105, 105, 105, 0) 100%);
+  }
+
+  .gallery__lightboxMeta {
+    margin: 0;
+    color: rgba($color-textWhite, 0.96);
+    font-family: $font-serif;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    white-space: nowrap;
+
+    &::after {
+      content: '';
+      flex: 1 1 auto;
+      min-width: 1.5rem;
+      border-bottom: 0.125rem dashed rgba($color-textWhite, 0.9);
+      opacity: 0.9;
+    }
+  }
+
+  .gallery__lightboxCaption {
+    margin: 0.5rem 0 0.45rem;
+    color: rgba($color-textWhite, 0.94);
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .gallery__lightboxTags {
+    margin: 0;
+    color: rgba($color-textWhite, 0.82);
+    font-family: $font-serif;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 62.5rem) {
+    .container {
+      padding: 1.5rem;
+    }
+
+    .gallery__intro {
+      margin-bottom: 0;
+    }
+
+    .gallery__stage {
+      height: calc(100% + 1.5rem);
+      min-height: 0;
+      padding-bottom: 1rem;
+      width: calc(100% + 3rem);
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      margin-bottom: -1.5rem;
+    }
+
+    .gallery__graph {
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+    }
+
+    .gallery__card {
+      width: fit-content;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    height: 100dvh;
+    min-height: 100dvh;
+    padding-top: 3.5rem;
+
+    .container {
+      height: 100%;
+      min-height: 0;
+      padding: 1rem 1rem 0;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      border-left: none;
+    }
+
+    .gallery__title {
+      -webkit-text-stroke: 0.0938rem $color-darkGold;
+    }
+
+    .gallery__description {
+      font-size: 1rem;
+    }
+
+    .gallery__graph {
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+    }
+
+    .gallery__stage {
+      position: relative;
+      height: 100%;
+      min-height: 0;
+      width: calc(100% + 2rem);
+      margin-left: -1rem;
+      margin-right: -1rem;
+      margin-bottom: 0;
+    }
+
+    .gallery__card {
+      width: fit-content;
+      border-radius: 1rem;
+    }
+
+    .gallery__lightboxDialog {
+      width: min(88vw, 24rem);
+    }
+
+    .gallery__lightboxImage {
+      max-height: 78dvh;
+    }
+  }
+}
