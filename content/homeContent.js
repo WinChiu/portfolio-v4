@@ -444,7 +444,7 @@ window.__HOME_PAGE_CONTENT__ = {
       {
         number: '06',
         title:
-          'Culture Compass: Visualizing Cultural Values Across Countries and 30 Years.',
+          'Culture Compass: Visualizing Cultural Values Across Countries and 30 Years',
         tag: 'Information Visualization | UIUX Design',
         description:
           'An interactive visualization platform built on the World Values Survey, enabling exploration of cultural value differences across countries, time periods, and demographic groups.',
