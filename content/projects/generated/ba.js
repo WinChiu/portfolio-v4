@@ -106,7 +106,16 @@ const project = {
             "headingHtml": "Service providers track consumable and maintenance costs and\n                                                                                                      product utilization, but still rely on manual checks and paper\n                                                                                                      records without reliable data for optimization.",
             "headingStyle": "flex: 1",
             "callOutListStyle": "flex: 1",
-            "callOuts": []
+            "callOuts": [
+              {
+                "title": "Unable to identified which part of the whole process needs optimization",
+                "text": "The rental workflow is complex and involves many products. Without data support, providers rely on observation and staff feedback to assess efficiency, making it hard to find and fix bottlenecks."
+              },
+              {
+                "title": "Unable to analyze equipment replacement and maintenance records.",
+                "text": "Replacement and maintenance are key cost factors for service providers. Without a systematic analysis, it's hard for them to track inventory, decide when to restock, and understand why equipment breaks."
+              }
+            ]
           }
         ]
       },
@@ -325,7 +334,16 @@ const project = {
             "headingHtml": "使用者重視整體運營中的耗材 /\n                                                                                                      維修成本和產品利用率。當前僅依靠人員觀察與紙本資料，缺乏可靠的流程優化依據",
             "headingStyle": "flex: 1",
             "callOutListStyle": "flex: 1",
-            "callOuts": []
+            "callOuts": [
+              {
+                "title": "難以判斷整體流程中哪些環節需要優化",
+                "text": "租賃流程複雜且涉及多種產品，在缺乏數據支持的情況下，服務商只能依賴觀察與人員回饋來評估效率，因此很難精確找出並改善流程瓶頸。"
+              },
+              {
+                "title": "難以分析設備汰換與維修紀錄",
+                "text": "設備汰換與維修是服務商的重要成本來源。若沒有系統化分析，就難以掌握庫存狀況、判斷何時補貨，或釐清設備損壞的原因。"
+              }
+            ]
           }
         ]
       },

@@ -34,7 +34,7 @@
   }
 
   &__section--featured-gray {
-    padding: 3rem 10rem;
+    padding: 3rem 20%;
     background-color: $color-specialSectionGray;
 
     .project-module__heading,
@@ -48,6 +48,15 @@
     .project-module__line {
       background-color: $color-textWhite !important;
     }
+
+    .project-module--section-title {
+      width: 100%;
+      padding-bottom: 0;
+
+      .project-module__heading {
+        text-align: left;
+      }
+    }
   }
 
   &__section--featured-yellow {
@@ -56,7 +65,7 @@
   }
 
   &__section--narrow {
-    padding: 3rem 21rem;
+    padding: 3rem 23.5rem;
 
     .project-module--section-title {
       width: 100%;
@@ -77,8 +86,13 @@
     }
 
     &__section--featured {
-      padding: 3rem 4.5rem;
+      padding: 3rem 2rem;
     }
+
+    &__section--featured-gray {
+      padding: 3rem 2rem;
+    }
+
   }
 
   @media (max-width: 30rem) {
@@ -138,14 +152,19 @@
 
   &__button {
     width: fit-content;
-    padding: 0.5rem 0.75rem;
     background-color: $color-red;
 
     a {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      padding: 0.5rem 0.75rem;
       text-decoration: none;
     }
 
     p {
+      margin: 0;
       color: $color-textWhite;
       text-overflow: ellipsis;
     }
@@ -262,6 +281,15 @@
     img {
       width: calc(40% - 1.5rem);
     }
+
+    .project-module__content {
+      gap: 2rem;
+    }
+
+    .project-module__entry {
+      @include flex(column, center, flex-start, 1rem);
+      width: 100%;
+    }
   }
 
   &__content {
@@ -274,7 +302,7 @@
   }
 
   .project-page__section--featured &--section-title {
-    width: 30%;
+    width: 100%;
     padding-bottom: 1rem;
 
     .project-module__heading {

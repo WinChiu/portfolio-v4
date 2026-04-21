@@ -45,7 +45,7 @@ const designSystemProject = {
       production:
         'Identified 5 usability issues, proposed a new design system architecture and team maintenance approach, and defined 45 components with related guidelines.',
       outcome:
-        "The design system was implemented in SHOPLINE's e-commerce platform V2, with ongoing discussions and iterations held during internal weekly meetings.",
+        "The design system was implemented in SHOPLINE's e-commerce platform V2, with over 45 newly updated components and UI specifications, ongoing discussions and iterations held during internal weekly meetings.",
     },
     zh: {
       purpose:
@@ -67,7 +67,7 @@ const designSystemProject = {
             type: 'pureText',
             paragraphs: [
               `The V2.0 design system in SHOPLINE's e-commerce product line, used for the backend management pages of B2B products. It offers features like online store design and order processing and is one of the primary design systems.`,
-              `However, because the system lacked clear management and usage guidelines, the <span class="highlight">ulibrary suffered from unclear usage scenarios, broken components, and poor discoverability.</span>This slow down the design process and made it difficult to maintain consistency across projects.`,
+              `However, due to the lack of clear management and usage guidelines, the <span class="highlight">library suffered from unclear usage scenarios, broken components, and poor discoverability. </span>This slowed down the design process and made it difficult to maintain consistency across projects.`,
             ],
           },
         ],
@@ -99,8 +99,7 @@ const designSystemProject = {
           { type: 'mdTitle', text: 'Problem 1' },
           {
             type: 'pureTitle',
-            text:
-              'Undefined component usage scenarios made it difficult for designers to build new pages using the design system.',
+            text: 'Undefined component usage scenarios made it difficult for designers to build new pages using the design system.',
           },
           {
             type: 'pureText',
@@ -122,8 +121,7 @@ const designSystemProject = {
           { type: 'mdTitle', text: 'Problem 2' },
           {
             type: 'pureTitle',
-            text:
-              'Inconsistent component naming and organization made components difficult to located',
+            text: 'Inconsistent component naming and organization made components difficult to located',
           },
           {
             type: 'pureText',
@@ -242,7 +240,7 @@ const designSystemProject = {
               {
                 title: 'Introduction',
                 paragraphs: [
-                  'Provides a clear user manual outlining the design system’s document architecture, along with instruction for creating, maintaining, and updating components.',
+                  `Provides a clear user manual outlining the design system's document architecture, along with instruction for creating, maintaining, and updating components.`,
                 ],
               },
               {
@@ -265,8 +263,7 @@ const designSystemProject = {
         modules: [
           {
             type: 'pureTitle',
-            text:
-              'Separate Parent and Subcomponents to Ensure Maintainability, Link Components and Guidelines for Cross-Reference',
+            text: 'Separate Parent and Subcomponents to Ensure Maintainability, Link Components and Guidelines for Cross-Reference',
           },
           {
             type: 'pureText',
@@ -359,8 +356,7 @@ const designSystemProject = {
           { type: 'bgTitle', text: 'Key Learnings' },
           {
             type: 'pureTitle',
-            text:
-              'The Design System Must Be Scenario-Based and Improve Cross-Role Synchronization',
+            text: 'The Design System Must Be Scenario-Based and Improve Cross-Role Synchronization',
           },
           {
             type: 'verticalIconList',
@@ -372,7 +368,7 @@ const designSystemProject = {
                 },
                 paragraphs: [
                   'I realized that the design system is crucial for product consistency. Scenario-driven guidelines help designers understand how to use a component, not just how it looks. Moreover, when guidelines and components are scattered across different documents, It slows down implementation and leads to more design inconsistencies.',
-                  'Another goal of a design system is to improve collaboration across different product teams. Consistent naming affects coding efficiency and designers’ ability to locate components. Poor communication can cause misalignment in component usage, with designers and engineers choosing different components. Therefore, clear syncing and update mechanisms across roles are essential to maintaining the design system and ensuring overall product quality.',
+                  `Another goal of a design system is to improve collaboration across different product teams. Consistent naming affects coding efficiency and designers' ability to locate components. Poor communication can cause misalignment in component usage, with designers and engineers choosing different components. Therefore, clear syncing and update mechanisms across roles are essential to maintaining the design system and ensuring overall product quality.`,
                 ],
               },
             ],

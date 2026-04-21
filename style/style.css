@@ -55,16 +55,19 @@
   gap: 1rem;
 }
 .section--work .container--content .block--introduction .block__button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   width: 50%;
   padding: 0.5rem 1rem;
   background-color: #b74343;
   border: 0.125rem #b74343 solid;
+  text-decoration: none;
 }
 .section--work .container--content .block--introduction .block__button p {
+  margin: 0;
+  text-align: left;
   color: #ffffff;
-}
-.section--work .container--content .block--introduction .block__button a {
-  text-decoration: none;
 }
 .section--work .container--content .block--introduction .block__button:hover {
   cursor: pointer;

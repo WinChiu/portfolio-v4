@@ -111,7 +111,16 @@ const project = {
             "headingHtml": "QR codes on stacked mattresses are often hard or even impossible\n                                                                                                      to access.",
             "headingStyle": "flex: 1",
             "callOutListStyle": "flex: 1",
-            "callOuts": []
+            "callOuts": [
+              {
+                "title": "Frequent scanning reduce delivery and collection efficiency.",
+                "text": "Nurses usually don't stack collected air mattresses neatly, instead, they're scattered in the return area. Drivers typically confirm them by sight and load them directly onto the cart without counting each item one by one."
+              },
+              {
+                "title": "Stacked products makes it difficult to locate asset tags.",
+                "text": "Some service providers stack air mattresses in metal cage carts where QR codes are not always visible, making it impossible for drivers to scan every code."
+              }
+            ]
           }
         ]
       },
@@ -442,7 +451,16 @@ const project = {
             "headingHtml": "QRcode\n                                                                                                      資產追蹤標籤使得使用者必須於物流作業過程中找出醫療氣墊床上的標籤並掃描，但相互堆疊的氣墊床讓使用者難以、甚至無法翻找。",
             "headingStyle": "flex: 1",
             "callOutListStyle": "flex: 1",
-            "callOuts": []
+            "callOuts": [
+              {
+                "title": "頻繁掃描會降低收送貨作業效率。",
+                "text": "護理人員回收後的氣墊床通常不會整齊堆放，而是分散在回收區。司機多半以目視確認後直接搬上籠車，不會逐一清點每一張床墊。"
+              },
+              {
+                "title": "產品堆疊後難以找到資產追蹤標籤。",
+                "text": "部分服務商會將氣墊床堆疊在金屬籠車中，QRcode 常被遮住或朝內，導致司機無法逐一找到並掃描每個標籤。"
+              }
+            ]
           }
         ]
       },

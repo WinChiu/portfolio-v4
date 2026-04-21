@@ -23,13 +23,14 @@ class ProjectCard extends HTMLElement {
 
     // Create the project button
     const projectButton = `
-      <div class="${buttonClass}">
-        <a href="${projectUrl}"${
+      <a
+        href="${projectUrl}"
+        class="${buttonClass}"${
       siteUrl ? '' : ' target="_blank" rel="noopener noreferrer"'
-    }>
-          <p>${viewProjectText}</p>
-        </a>
-      </div>`;
+    }
+      >
+        <p>${viewProjectText}</p>
+      </a>`;
 
     // Create the site button if siteUrl exists
     const siteButton = siteUrl
@@ -50,11 +51,7 @@ class ProjectCard extends HTMLElement {
            ${projectButton}
            ${siteButton}
          </div>`
-      : `<div class="block__button">
-           <a href="${projectUrl}" rel="noopener noreferrer">
-             <p>${viewProjectText}</p>
-           </a>
-         </div>`;
+      : projectButton;
 
     this.innerHTML = `
       <div class="container container--content ${hideClass}" data-type="${type}">

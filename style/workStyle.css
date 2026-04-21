@@ -339,8 +339,7 @@ html {
   .project-header__inner {
     padding: 1.5rem 0;
   }
-  .project-header__tags,
-  .project-header__title {
+  .project-header__tags, .project-header__title {
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -414,6 +413,9 @@ html {
   flex-direction: row;
   gap: 1.5rem;
   width: 100%;
+}
+.project-intro__bottom .project-intro__summary {
+  flex: 1;
 }
 @media (max-width: 50rem) {
   .project-intro {
@@ -619,7 +621,7 @@ html {
   width: 100vw;
 }
 .project-page__section--featured-gray {
-  padding: 3rem 10rem;
+  padding: 3rem 20%;
   background-color: #4f4b43;
 }
 .project-page__section--featured-gray .project-module__heading,
@@ -632,12 +634,19 @@ html {
 .project-page__section--featured-gray .project-module__line {
   background-color: #ffffff !important;
 }
+.project-page__section--featured-gray .project-module--section-title {
+  width: 100%;
+  padding-bottom: 0;
+}
+.project-page__section--featured-gray .project-module--section-title .project-module__heading {
+  text-align: left;
+}
 .project-page__section--featured-yellow {
   padding: 3rem 10rem;
   background-color: #f5dead;
 }
 .project-page__section--narrow {
-  padding: 3rem 21rem;
+  padding: 3rem 23.5rem;
 }
 .project-page__section--narrow .project-module--section-title {
   width: 100%;
@@ -653,7 +662,10 @@ html {
     padding: 5rem 2rem 4rem;
   }
   .project-page__section--featured {
-    padding: 3rem 4.5rem;
+    padding: 3rem 2rem;
+  }
+  .project-page__section--featured-gray {
+    padding: 3rem 2rem;
   }
 }
 @media (max-width: 30rem) {
@@ -705,13 +717,18 @@ html {
 }
 .project-module__button {
   width: fit-content;
-  padding: 0.5rem 0.75rem;
   background-color: #b74343;
 }
 .project-module__button a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 0.75rem;
   text-decoration: none;
 }
 .project-module__button p {
+  margin: 0;
   color: #ffffff;
   text-overflow: ellipsis;
 }
@@ -837,6 +854,17 @@ html {
 .project-module--media-content img {
   width: calc(40% - 1.5rem);
 }
+.project-module--media-content .project-module__content {
+  gap: 2rem;
+}
+.project-module--media-content .project-module__entry {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
 .project-module__content {
   display: flex;
   justify-content: center;
@@ -849,7 +877,7 @@ html {
   padding-left: 1.5rem;
 }
 .project-page__section--featured .project-module--section-title {
-  width: 30%;
+  width: 100%;
   padding-bottom: 1rem;
 }
 .project-page__section--featured .project-module--section-title .project-module__heading {

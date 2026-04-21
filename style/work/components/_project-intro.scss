@@ -57,6 +57,10 @@
   &__bottom {
     @include flex(row, center, stretch, 1.5rem);
     width: 100%;
+
+    .project-intro__summary {
+      flex: 1;
+    }
   }
 
   @media (max-width: 50rem) {

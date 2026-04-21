@@ -156,9 +156,11 @@ ${entry.orderedList.map((item) => `  <li>${item}</li>`).join('\n')}
 </ol>`
         : '';
 
-      return `<h6 class="project-module__item-title">${entry.title}</h6>
+      return `<div class="project-module__entry">
+<h6 class="project-module__item-title">${entry.title}</h6>
 ${paragraphs}
-${orderedList}`;
+${orderedList}
+</div>`;
     })
     .join('\n');
 

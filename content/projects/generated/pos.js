@@ -108,7 +108,20 @@ const project = {
             "type": "bgQuote",
             "headingTag": "h3",
             "headingHtml": "Lack of Payment Integration and High Pricing Undermining\n                                                                                                      SHOPLINE's Competitiveness",
-            "callOuts": []
+            "headingStyle": "flex: 1",
+            "callOutListStyle": "flex: 1",
+            "callOuts": [
+              {
+                "type": "callOut",
+                "title": "No Payment Integration, Reducing Product Competitiveness",
+                "text": "In the Taiwan market, the lack of card payment integration means merchants using SHOPLINE services must handle credit card payments separately, which decreases checkout efficiency."
+              },
+              {
+                "type": "callOut",
+                "title": "Higher-than-Average Pricing, Hindering Business Promotion",
+                "text": "In the Hong Kong market, the current card terminal payment cost is higher than the market average, making it difficult to promote and adopt the POS system."
+              }
+            ]
           }
         ]
       },
@@ -464,7 +477,20 @@ const project = {
             "type": "bgQuote",
             "headingTag": "h3",
             "headingHtml": "缺乏金流功能、定價過高導致自家電商方案無競爭力",
-            "callOuts": []
+            "headingStyle": "flex: 1",
+            "callOutListStyle": "flex: 1",
+            "callOuts": [
+              {
+                "type": "callOut",
+                "title": "缺乏金流整合，削弱產品競爭力",
+                "text": "在台灣市場，由於缺乏信用卡金流整合，使用 SHOPLINE 服務的店家仍需另外處理刷卡收款流程，降低整體結帳效率。"
+              },
+              {
+                "type": "callOut",
+                "title": "定價高於市場平均，不利商業推廣",
+                "text": "在香港市場，現行刷卡機與金流服務成本高於市場平均，使 POS 系統在推廣與導入上更具阻力。"
+              }
+            ]
           }
         ]
       },

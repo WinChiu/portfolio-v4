@@ -58,17 +58,19 @@
 
       // 按鈕樣式
       .block__button {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
         width: 50%;
         padding: 0.5rem 1rem;
         background-color: $color-red;
         border: 0.125rem $color-red solid;
+        text-decoration: none;
 
         p {
+          margin: 0;
+          text-align: left;
           color: $color-textWhite;
-        }
-
-        a {
-          text-decoration: none;
         }
 
         &:hover {

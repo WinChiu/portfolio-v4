@@ -12,10 +12,10 @@ window.__HOME_PAGE_CONTENT__ = {
       description:
         'A UX/Product Designer with experience in B2B and design systems, creating user-centered solutions that improve life.',
       annotation:
-        "Currently pursuing a Master's in Interactive Media Technology at KTH.",
+        `Currently pursuing a Master's in Interactive Media Technology at KTH in Sweden.`,
     },
     workTabs: {
-      design: 'UI/UX Design',
+      design: 'Design & Research',
       code: 'Programming',
     },
     about: {
@@ -23,7 +23,7 @@ window.__HOME_PAGE_CONTENT__ = {
       imageSrc: '/img/intro.webp',
       imageAlt: 'Win portrait',
       paragraphs: [
-        "Hi! I'm Win, a product designer with a background in Economics and Creative Entrepreneurship, equipped with basic front-end development skills and over two years of industry experience. I've contributed to digital product development across government, e-commerce, and B2B healthcare industry, and I'm currently working on a Master's degree in Interactive Media Technology at KTH.",
+        "Hi! I'm Win, a product designer with 2+ years of experience across e-commerce and B2B healthcare, specializing in complex workflow design and design systems. Currently pursuing a Master's in Interactive Media Technology at KTH, expanding into information visualization and accessibility.",
         'I truly enjoy the hands-on process of building products and the satisfaction that comes from solving real user problems. I believe the value of design lies in the harmony between user experience and a well-defined product strategy. With a cross-field background, I am able to balance business needs, design principles, and feasibility to create comprehensive solutions.',
         "To me, design is not only about solving problems, but also about exploring new possibilities in life. I hope to continue creating meaningful and positive experiences that make a genuine impact on people's lives.",
       ],
@@ -176,7 +176,7 @@ window.__HOME_PAGE_CONTENT__ = {
         {
           nameZh: '台式炒麵',
           nameEn: 'Taiwanese Stir Fried Noodles',
-          note: 'Cooked for 12 Taiwanese on New Year’s Eve.',
+          note: `Cooked for 12 Taiwanese on New Year's Eve.`,
           effort: 1,
           imageSrc: '/img/image-dish-taiwanese-stir-fried-noodles.webp',
           imageAlt: 'Taiwanese stir fried noodles',
@@ -361,9 +361,9 @@ window.__HOME_PAGE_CONTENT__ = {
       {
         number: '01',
         title: 'Design System Architecture Design and Organization',
-        tag: 'UIUX Design',
+        tag: 'Design System | UIUX Design',
         description:
-          'Redesigning the design system architecture, rebuilding components, and reviewing usage scenarios with the goals of improving efficiency, speeding up onboarding, and maintaining integrity and accuracy for SHOPLINE.',
+          'Redesigned the design system architecture, rebuilt components, and reviewed usage scenarios to improve efficiency, speed up onboarding, and maintain integrity and accuracy.',
         imageUrl: '/img/image-projectCover-designSystem.webp',
         projectUrl: 'pages/en/designSystem.html',
         type: 'design',
@@ -373,7 +373,7 @@ window.__HOME_PAGE_CONTENT__ = {
         number: '02',
         title:
           'RFID Integration for a B2B PRC Medical Device Management System',
-        tag: 'UX Design',
+        tag: 'B2B Medical Saas | UIUX Design',
         description:
           'Integrate an RFID scanning feature into the existing logistics module, providing customers with a more flexible way to track assets.',
         imageUrl: '/img/image-projectCover-rfid.webp',
@@ -385,7 +385,7 @@ window.__HOME_PAGE_CONTENT__ = {
         number: '03',
         title:
           'Business Analytics Model Design for B2B PRC Medical Device Management System',
-        tag: 'UX Research | Data Analysis',
+        tag: 'Data Analysis | UX Research',
         description:
           'Identified client needs and system data limitations, designed business analysis reports that enhanced operational efficiency, and incorporated business models to attract clients to upgrade to advanced software plans.',
         imageUrl: '/img/image-projectCover-ba.webp',
@@ -393,22 +393,22 @@ window.__HOME_PAGE_CONTENT__ = {
         type: 'design',
         lang: 'en',
       },
+      // {
+      //   number: '04',
+      //   title:
+      //     'POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design',
+      //   tag: 'Ecommerce | UIUX Design',
+      //   description:
+      //     'Designed the payment integration flow for SHOPLINE POS in Taiwan and Hong Kong. Ensured merchants could quickly complete the payment process and efficiently resolve errors to minimize customer wait times.',
+      //   imageUrl: '/img/image-projectCover-pos.webp',
+      //   projectUrl: 'pages/en/pos.html',
+      //   type: 'design',
+      //   lang: 'en',
+      // },
       {
         number: '04',
-        title:
-          'POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design',
-        tag: 'UIUX Design',
-        description:
-          'Designed the payment integration flow for SHOPLINE POS in Taiwan and Hong Kong. Ensured merchants could quickly complete the payment process and efficiently resolve errors to minimize customer wait times.',
-        imageUrl: '/img/image-projectCover-pos.webp',
-        projectUrl: 'pages/en/pos.html',
-        type: 'design',
-        lang: 'en',
-      },
-      {
-        number: '05',
         title: 'Taipei City Childcare Registration and Lottery System Redesign',
-        tag: 'UX Research | UX Design',
+        tag: 'Public Service | UX Research | UX Design',
         description:
           'Conducted user research and redesigned the Taipei City childcare registration and lottery system. Ensured citizens could complete all tasks in one stop, including understanding rules, searching for institutions, and completing registration.',
         imageUrl: '/img/image-projectCover-childcare.webp',
@@ -416,22 +416,47 @@ window.__HOME_PAGE_CONTENT__ = {
         type: 'design',
         lang: 'en',
       },
+      // {
+      //   number: '06',
+      //   title: 'Interpreting Message Recall Behavior in IM Communications',
+      //   tag: 'UX Research',
+      //   description:
+      //     'Analyzed how message recipients interpret the behavior of message senders recalling messages. Presented messaging strategies at the TAICHI 2022 HCI Conference (Poster Session).',
+      //   imageUrl: '/img/image-projectCover-im.webp',
+      //   projectUrl:
+      //     'https://drive.google.com/file/d/1mlDUvumGRjlcTlMQWbwnuzDjTTObUxR6/view?usp=sharing',
+      //   type: 'design',
+      //   lang: 'en',
+      // },
+      {
+        number: '05',
+        title:
+          'Comparing Haptic and Auditory Guidance in Non-visual Navigation System',
+        tag: 'Multimodal Interaction | UX Research',
+        description:
+          `Evaluate and compare multimodal navigation systems (haptic and audio) in users' wayfinding performance and subjective experience, exploring the feasibility and design potential of non-visual navigation.`,
+        imageUrl: '/img/image-projectCover-wayfinding.webp',
+        projectUrl:
+          'https://drive.google.com/file/d/1gW0bjl66qyWCAEFt6Bqg6CDiXGYfFeJq/view?usp=sharing',
+        type: 'design',
+        lang: 'en',
+      },
       {
         number: '06',
-        title: 'Interpreting Message Recall Behavior in IM Communications',
-        tag: 'UX Research',
+        title:
+          'Culture Compass: Visualizing Cultural Values Across Countries and 30 Years.',
+        tag: 'Information Visualization | UIUX Design',
         description:
-          'Analyzed how message recipients interpret the behavior of message senders recalling messages. Presented messaging strategies at the TAICHI 2022 HCI Conference (Poster Session).',
-        imageUrl: '/img/image-projectCover-im.webp',
-        projectUrl:
-          'https://drive.google.com/file/d/1mlDUvumGRjlcTlMQWbwnuzDjTTObUxR6/view?usp=sharing',
+          'An interactive visualization platform built on the World Values Survey, enabling exploration of cultural value differences across countries, time periods, and demographic groups.',
+        imageUrl: '/img/image-projectCover-culture.webp',
+        projectUrl: 'https://winchiu.github.io/culture-compass/#/overview',
         type: 'design',
         lang: 'en',
       },
       {
         number: '01',
-        title: 'BizPro - Club Official Website Design and Development',
-        tag: 'UIUX Design｜Full-Stack Developer',
+        title: 'BizPro: Club Official Website Design and Development',
+        tag: 'UIUX Design｜Full-Stack Development',
         description:
           "Assisted BizPro, the NTU Business Research Club, in redesigning their website and subsequent development, improving information readability and highlighting the club's value.",
         imageUrl: '/img/image-projectCover-bp.webp',
@@ -442,7 +467,7 @@ window.__HOME_PAGE_CONTENT__ = {
       },
       {
         number: '02',
-        title: 'Forest Life - Forest Sustainability Advocacy Website',
+        title: 'Forest Life: Forest Sustainability Advocacy Website',
         tag: 'Frontend Development',
         description:
           'Created an interactive animation website themed around sustainable forests as part of the SDGs, completed within 50 hours during the 5th Taiwan Youth Hackathon, and won the championship and the Most Popular Award.',
@@ -454,7 +479,7 @@ window.__HOME_PAGE_CONTENT__ = {
       },
       {
         number: '03',
-        title: 'GongChi - Beiguan Music Mixer Simulation Website',
+        title: 'GongChi: Beiguan Music Mixer Simulation Website',
         tag: 'Frontend Development',
         description:
           "A step-by-step guide explaining the function of each button, combined with a free-play mode, simulating the operation of a physical Beiguan music mixer, 'GongChi.'",
@@ -466,7 +491,7 @@ window.__HOME_PAGE_CONTENT__ = {
       },
       {
         number: '04',
-        title: 'Elite Sniper - English Typing Practice and Battle Game',
+        title: 'Elite Sniper: English Typing Practice and Battle Game',
         tag: 'Programmer',
         description:
           'A typing game with multiple play modes using Python and game libraries, themed around a shooting game. Won the championship at the 2020 Coding 101 competition.',
@@ -494,7 +519,7 @@ window.__HOME_PAGE_CONTENT__ = {
         '正於瑞典皇家理工學院（KTH）攻讀 Interactive Media Technology 碩士學位',
     },
     workTabs: {
-      design: 'UI/UX Design',
+      design: 'Design & Research',
       code: 'Programming',
     },
     about: {
@@ -766,7 +791,7 @@ window.__HOME_PAGE_CONTENT__ = {
           nameEn: 'Chinese Fried Dough Sticks',
           note: '成就達成',
           effort: 2,
-          imageSrc: '/img/image-sample-2.webp',
+          imageSrc: '/img/image-dish-chinese-fried-dough-sticks.webp',
           imageAlt: '油條',
           imageClass: 'kitchen__photo--focus-2',
         },
@@ -839,7 +864,7 @@ window.__HOME_PAGE_CONTENT__ = {
       {
         number: '01',
         title: '設計系統架構規劃與整理',
-        tag: 'UIUX Design',
+        tag: 'Design System | UIUX Design',
         description:
           '以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，為 SHOPLINE 進行設計系統架構重設計、元件再造與使用情境盤點。',
         imageUrl: '/img/image-projectCover-designSystem.webp',
@@ -850,7 +875,7 @@ window.__HOME_PAGE_CONTENT__ = {
       {
         number: '02',
         title: 'B2B PRC 醫療器材清消與租賃管理系統：RFID 技術整合',
-        tag: 'UX Design',
+        tag: 'B2B Medical Saas | UIUX Design',
         description:
           '將 RFID 掃描技術與作業流程整合進管理系統，提供客戶更多元的資產追蹤方式。',
         imageUrl: '/img/image-projectCover-rfid.webp',
@@ -869,21 +894,21 @@ window.__HOME_PAGE_CONTENT__ = {
         type: 'design',
         lang: 'zh',
       },
+      // {
+      //   number: '04',
+      //   title: 'POS TW/HK 金流串接正逆流程設計',
+      //   tag: 'Ecommerce | UIUX Design',
+      //   description:
+      //     '為 SHOPLINE POS 台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。',
+      //   imageUrl: '/img/image-projectCover-pos.webp',
+      //   projectUrl: 'pages/zh/pos.html',
+      //   type: 'design',
+      //   lang: 'zh',
+      // },
       {
         number: '04',
-        title: 'POS TW/HK 金流串接正逆流程設計',
-        tag: 'UIUX Design',
-        description:
-          '為 SHOPLINE POS 台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。',
-        imageUrl: '/img/image-projectCover-pos.webp',
-        projectUrl: 'pages/zh/pos.html',
-        type: 'design',
-        lang: 'zh',
-      },
-      {
-        number: '05',
         title: '台北市社會局公托登記與抽籤系統網站改造',
-        tag: 'UX Research | UX Design',
+        tag: 'Public Service | UX Research | UX Design',
         description:
           '為台北市公托登記報名與抽籤系統進行使用者研究與再設計。讓民眾能一站完成規則了解、機構查詢、登記候補...等所有作業流程。',
         imageUrl: '/img/image-projectCover-childcare.webp',
@@ -892,20 +917,31 @@ window.__HOME_PAGE_CONTENT__ = {
         lang: 'zh',
       },
       {
-        number: '06',
-        title: 'IM 訊息接收者對傳送者收回訊息行為的解讀',
-        tag: 'UX Research',
+        number: '05',
+        title: '非視覺導航中觸覺與聽覺引導方式之比較',
+        tag: 'Multimodal Interaction | UX Research',
         description:
-          '整理訊息接收者對於傳訊者收回訊息行為的解讀，給予傳訊策略。最終投稿於 TAICHI 2022 人機互動言討會論文海報組別進行展示',
-        imageUrl: '/img/image-projectCover-im.webp',
+          '比較並評估多模態導航系統（觸覺與音訊）在使用者尋路表現與主觀體驗上的差異，探索非視覺導航的可行性與設計潛力。',
+        imageUrl: '/img/image-projectCover-wayfinding.webp',
         projectUrl:
-          'https://drive.google.com/file/d/1cI0S_KCWYoxT3DvD1jzc0C0oGQ0VbR-t/view',
+          'https://drive.google.com/file/d/1gW0bjl66qyWCAEFt6Bqg6CDiXGYfFeJq/view?usp=sharing',
+        type: 'design',
+        lang: 'zh',
+      },
+      {
+        number: '06',
+        title: 'Culture Compass：跨國與跨 30 年文化價值視覺化平台',
+        tag: 'Information Visualization | UIUX Design',
+        description:
+          '以 World Values Survey 為基礎打造的互動式視覺化平台，讓使用者探索不同國家、時間區段與人口群體之間的文化價值差異。',
+        imageUrl: '/img/image-projectCover-culture.webp',
+        projectUrl: 'https://winchiu.github.io/culture-compass/#/overview',
         type: 'design',
         lang: 'zh',
       },
       {
         number: '01',
-        title: 'BizPro - 社團官方網站前後臺開發',
+        title: 'BizPro：社團官方網站前後臺開發',
         tag: 'UIUX Design｜Full-Stack Development',
         description:
           '以 MERN 框架協助 BizPro 台大商學研究社的重新設計網站與後續開發，改善資訊易讀性並突顯社團價值。',
@@ -917,10 +953,10 @@ window.__HOME_PAGE_CONTENT__ = {
       },
       {
         number: '02',
-        title: '森活 - 森林永續議題倡議動畫網頁',
+        title: '森活：森林永續議題倡議動畫網頁',
         tag: 'Frontend Development',
         description:
-          '以 SDGs 中永續森林為主題，在 50 小時內製作互動式動畫網頁。於第五屆台灣青年黑克松競賽中獲得冠軍、最佳人氣獎。',
+          '以 SDGs 永續森林議題為主題，在 50 小時內完成互動式動畫網頁，並於第五屆台灣青年黑客松獲得冠軍與最佳人氣獎。',
         imageUrl: '/img/image-projectCover-forest.webp',
         projectUrl: 'pages/zh/forest.html',
         siteUrl: 'https://forest-life.onrender.com',
