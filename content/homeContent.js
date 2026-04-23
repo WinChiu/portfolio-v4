@@ -11,8 +11,7 @@ window.__HOME_PAGE_CONTENT__ = {
       title: "Hi! I'm Win✨",
       description:
         'A UX/Product Designer with experience in B2B and design systems, creating user-centered solutions that improve life.',
-      annotation:
-        `Currently pursuing a Master's in Interactive Media Technology at KTH in Sweden.`,
+      annotation: `Currently pursuing a Master's in Interactive Media Technology at KTH in Sweden.`,
     },
     workTabs: {
       design: 'Design & Research',
@@ -393,20 +392,20 @@ window.__HOME_PAGE_CONTENT__ = {
         type: 'design',
         lang: 'en',
       },
-      // {
-      //   number: '04',
-      //   title:
-      //     'POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design',
-      //   tag: 'Ecommerce | UIUX Design',
-      //   description:
-      //     'Designed the payment integration flow for SHOPLINE POS in Taiwan and Hong Kong. Ensured merchants could quickly complete the payment process and efficiently resolve errors to minimize customer wait times.',
-      //   imageUrl: '/img/image-projectCover-pos.webp',
-      //   projectUrl: 'pages/en/pos.html',
-      //   type: 'design',
-      //   lang: 'en',
-      // },
       {
         number: '04',
+        title:
+          'POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design',
+        tag: 'Ecommerce | UIUX Design',
+        description:
+          'Designed the payment integration flow for SHOPLINE POS in Taiwan and Hong Kong. Ensured merchants could quickly complete the payment process and efficiently resolve errors to minimize customer wait times.',
+        imageUrl: '/img/image-projectCover-pos.webp',
+        projectUrl: 'pages/en/pos.html',
+        type: 'design',
+        lang: 'en',
+      },
+      {
+        number: '05',
         title: 'Taipei City Childcare Registration and Lottery System Redesign',
         tag: 'Public Service | UX Research | UX Design',
         description:
@@ -429,12 +428,11 @@ window.__HOME_PAGE_CONTENT__ = {
       //   lang: 'en',
       // },
       {
-        number: '05',
+        number: '06',
         title:
           'Comparing Haptic and Auditory Guidance in Non-visual Navigation System',
         tag: 'Multimodal Interaction | UX Research',
-        description:
-          `Evaluate and compare multimodal navigation systems (haptic and audio) in users' wayfinding performance and subjective experience, exploring the feasibility and design potential of non-visual navigation.`,
+        description: `Evaluate and compare multimodal navigation systems (haptic and audio) in users' wayfinding performance and subjective experience, exploring the feasibility and design potential of non-visual navigation.`,
         imageUrl: '/img/image-projectCover-wayfinding.webp',
         projectUrl:
           'https://drive.google.com/file/d/1gW0bjl66qyWCAEFt6Bqg6CDiXGYfFeJq/view?usp=sharing',
@@ -442,7 +440,7 @@ window.__HOME_PAGE_CONTENT__ = {
         lang: 'en',
       },
       {
-        number: '06',
+        number: '07',
         title:
           'Culture Compass: Visualizing Cultural Values Across Countries and 30 Years',
         tag: 'Information Visualization | UIUX Design',
@@ -894,19 +892,19 @@ window.__HOME_PAGE_CONTENT__ = {
         type: 'design',
         lang: 'zh',
       },
-      // {
-      //   number: '04',
-      //   title: 'POS TW/HK 金流串接正逆流程設計',
-      //   tag: 'Ecommerce | UIUX Design',
-      //   description:
-      //     '為 SHOPLINE POS 台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。',
-      //   imageUrl: '/img/image-projectCover-pos.webp',
-      //   projectUrl: 'pages/zh/pos.html',
-      //   type: 'design',
-      //   lang: 'zh',
-      // },
       {
         number: '04',
+        title: 'POS TW/HK 金流串接正逆流程設計',
+        tag: 'Ecommerce | UIUX Design',
+        description:
+          '為 SHOPLINE POS 台灣與香港版金流串接需求，設計金流正逆流程的設計稿。讓店家能快速完成金流結帳流程，並有效協助排除錯誤狀態以避免顧客長時間的等待。',
+        imageUrl: '/img/image-projectCover-pos.webp',
+        projectUrl: 'pages/zh/pos.html',
+        type: 'design',
+        lang: 'zh',
+      },
+      {
+        number: '05',
         title: '台北市社會局公托登記與抽籤系統網站改造',
         tag: 'Public Service | UX Research | UX Design',
         description:
@@ -917,7 +915,7 @@ window.__HOME_PAGE_CONTENT__ = {
         lang: 'zh',
       },
       {
-        number: '05',
+        number: '06',
         title: '非視覺導航中觸覺與聽覺引導方式之比較',
         tag: 'Multimodal Interaction | UX Research',
         description:
@@ -929,7 +927,7 @@ window.__HOME_PAGE_CONTENT__ = {
         lang: 'zh',
       },
       {
-        number: '06',
+        number: '07',
         title: 'Culture Compass：跨國與跨 30 年文化價值視覺化平台',
         tag: 'Information Visualization | UIUX Design',
         description:

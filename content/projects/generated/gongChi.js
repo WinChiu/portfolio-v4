@@ -92,7 +92,7 @@ const project = {
         modules: [
           {
             type: 'bgTitle',
-            html: '成果展示',
+            html: 'Project Showcase',
           },
           {
             type: 'pureText',
