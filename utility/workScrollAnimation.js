@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   // (a) 選取所有容器（但排除不需要動畫的區域）
   const allContainers = document.querySelectorAll(
-    '.project-header, .project-intro, .project-page__content-inner, .project-page__section, .project-module, img'
+    '.project-header, .project-page__content-inner, .project-page__section, .project-module, img'
   );
   const filteredContainers = Array.from(allContainers).filter((el) => {
     return (

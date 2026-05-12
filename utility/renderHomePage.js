@@ -63,7 +63,9 @@
   function renderKitchenStars(effort) {
     return Array.from({ length: 3 }, (_, index) => {
       const isFilled = index < effort;
-      const src = isFilled ? './img/icon-starFilled.svg' : './img/icon-star.svg';
+      const src = isFilled
+        ? './img/icon-starFilled.svg'
+        : './img/icon-star.svg';
       return `<img class="kitchen__star" src="${src}" alt="" aria-hidden="true" />`;
     }).join('');
   }
@@ -166,19 +168,39 @@
       .join('\n');
   }
 
+  function renderHeroDetails(details) {
+    if (!details || !details.length) return '';
+
+    return `
+          <div class="block__heroDetails" id="annotation">
+            ${details
+              .map(
+                (item) => `
+              <div class="block__heroDetail">
+                <p class="block__heroDetailTitle">${item.title}</p>
+                <p class="block__heroDetailSubtitle">${item.subtitle}</p>
+              </div>`,
+              )
+              .join('\n')}
+          </div>`;
+  }
+
   root.innerHTML = `
     <main class="section section--main">
       <div class="container container--content">
         <article class="block block--introduction">
           <header class="block__header">
+            ${
+              content.hero.eyebrow
+                ? `<p class="block__eyebrow" id="hero-eyebrow">${content.hero.eyebrow}</p>`
+                : ''
+            }
             <h1 class="block__title" id="greet">${content.hero.title}</h1>
           </header>
           <h4 class="block__description${lang === 'zh' ? ' block__description--zh' : ''}" id="intro">
             ${content.hero.description}
           </h4>
-          <h5 class="block__annotation" id="annotation">
-            ${content.hero.annotation}
-          </h5>
+          ${renderHeroDetails(content.hero.details)}
           <div class="block__bgImage"></div>
         </article>
         <figure class="media media--image">
@@ -246,7 +268,6 @@
             class="media__img--facial media__img--mouth media__img--mouthStrange"
           />
         </figure>
-        <img class="media media--downImage" src="img/image-down.svg" alt="" id="down" />
         <div class="block block__translator">
           <a href="${content.translatorHref}"><p>${content.translatorLabel}</p></a>
         </div>
@@ -286,11 +307,14 @@
       <div class="block block--navList">
         ${renderNav(content.nav)}
       </div>
-      <figure class="media media--socialList">
-        <a href="https://www.linkedin.com/in/wei-chen-win-chiu" target="_blank">
-          <img class="media__img" src="./img/icon-linkedin.svg" alt="" />
-        </a>
-      </figure>
+      <div class="nav__actions">
+        <figure class="media media--socialList">
+          <a href="https://www.linkedin.com/in/wei-chen-win-chiu" target="_blank">
+            <img class="media__img" src="./img/icon-linkedin.svg" alt="" />
+          </a>
+        </figure>
+        <a class="nav__language" href="${content.translatorHref}">${content.navLanguageLabel || content.translatorLabel}</a>
+      </div>
     </nav>
   `;
 })();

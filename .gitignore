@@ -1,2 +1,5 @@
 ./pages/samplePage.html
-.gitignore
+node_modules/
+.DS_Store
+Thumbs.db
+*.log

@@ -45,15 +45,11 @@ function parseAttributes(markup) {
 function extractProjectData(filePath, lang) {
   const html = fs.readFileSync(filePath, 'utf8');
   const headerMarkup = html.match(/<main class="project-header"[\s\S]*?<\/main>/)?.[0];
-  const introMarkup = html.match(/<section class="project-intro">[\s\S]*?<\/section>/)?.[0];
 
   if (!headerMarkup) {
     throw new Error(`Failed to extract project header from ${filePath}`);
   }
 
-  if (!introMarkup) {
-    throw new Error(`Failed to extract project introduction from ${filePath}`);
-  }
   const contentHtml = extractMatch(
     html,
     /<section class="(?:section section--content|project-page__content)">\s*<div class="(?:container container--content|project-page__content-inner)">([\s\S]*?)<\/div>\s*<\/section>\s*<nav class="project-nav"/,
@@ -72,17 +68,11 @@ function extractProjectData(filePath, lang) {
   const headerValues = [...headerMarkup.matchAll(/<p class="project-header__meta-value">([\s\S]*?)<\/p>/g)].map(
     (match) => normalizeWhitespace(match[1])
   );
-  const introImage = introMarkup.match(
-    /<img[\s\S]*?src="([^"]+)"[\s\S]*?alt="([^"]*)"[\s\S]*?class="project-intro__image"/
-  );
-  const introSections = [...introMarkup.matchAll(
-    /<div class="project-intro__summary">\s*<p class="project-intro__summary-title">([\s\S]*?)<\/p>\s*<p class="project-intro__summary-content">([\s\S]*?)<\/p>\s*<\/div>/g
-  )];
-  const introMap = Object.fromEntries(
-    introSections.map((match) => [normalizeWhitespace(match[1]).toLowerCase(), normalizeWhitespace(match[2])])
+  const headerImage = headerMarkup.match(
+    /<img[\s\S]*?src="([^"]+)"[\s\S]*?alt="([^"]*)"[\s\S]*?class="project-header__image"/
   );
   const headerTitle =
-    html.match(/<h2 class="project-header__title">([\s\S]*?)<\/h2>/)?.[1] || '';
+    html.match(/<h[23] class="project-header__title">([\s\S]*?)<\/h[23]>/)?.[1] || '';
 
   return {
     head: {
@@ -90,7 +80,7 @@ function extractProjectData(filePath, lang) {
       title: titleMatch ? normalizeWhitespace(titleMatch[1]) : normalizeWhitespace(headerTitle),
       translatorHref: null,
       navigationLanguage,
-      imageAlt: introImage?.[2] || normalizeWhitespace(headerTitle),
+      imageAlt: headerImage?.[2] || normalizeWhitespace(headerTitle),
     },
     header: {
       title: normalizeWhitespace(headerTitle),
@@ -100,12 +90,12 @@ function extractProjectData(filePath, lang) {
       company: headerValues[3] || '',
     },
     introduction: {
-      purpose: introMap.purpose || '',
-      challenge: introMap.challenge || '',
-      production: introMap.production || '',
-      outcome: introMap.outcome || '',
+      purpose: '',
+      challenge: '',
+      production: '',
+      outcome: '',
     },
-    coverImage: introImage?.[1] || '',
+    coverImage: headerImage?.[1] || '',
     tags: tags.join(', '),
     rawContentHtml: contentHtml,
   };

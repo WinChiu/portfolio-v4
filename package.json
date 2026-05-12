@@ -6,6 +6,7 @@
     "build:projects": "node scripts/build-project-pages.js",
     "build:all": "npm run scss && npm run build:projects",
     "rebuild:projects": "npm run extract:projects && npm run convert:projects && npm run build:projects",
+    "check:references": "node scripts/check-local-references.js",
     "scss": "sass --no-source-map style/style.scss style/style.css && sass --no-source-map style/workStyle.scss style/workStyle.css",
     "scss:watch": "sass --no-source-map --watch style/style.scss:style/style.css style/workStyle.scss:style/workStyle.css"
   }

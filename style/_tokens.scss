@@ -1,6 +1,6 @@
 $color-black: #363a35;
 $color-darkGold: #7a776d;
-$color-darkGray: #615f58;
+$color-darkGray: #868684;
 $color-darkOrange: #c14804;
 $color-gray: #c8c8c8;
 $color-lightGold: #d1b129;
@@ -12,6 +12,10 @@ $color-specialSectionYellow: #f5dead;
 $color-textWhite: #ffffff;
 $color-yellow: #cabd8a;
 $color-bgWhite: #fbfbf6;
-$font-title: 'Noto Serif';
-$font-sansSerif: 'Noto Sans TC';
-$font-serif: 'Source Code Pro';
+$font-title: 'DM Serif Display', serif;
+$font-sansSerif: 'DM Sans', system-ui, sans-serif;
+$font-serifText: 'DM Serif Text', serif;
+$font-serif: 'DM Mono', monospace;
+
+$layout-root-font-size-min: 1rem;
+$layout-root-font-size-scaled: var(--layout-root-font-size, 1rem);

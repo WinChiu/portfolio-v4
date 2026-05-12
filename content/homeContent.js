@@ -2,16 +2,27 @@ window.__HOME_PAGE_CONTENT__ = {
   en: {
     translatorHref: 'home-zh.html',
     translatorLabel: '繁中 | EN',
+    navLanguageLabel: '繁 / EN',
     nav: [
       { label: 'Work', href: '#work' },
       { label: 'About', href: '#about' },
       { label: 'Kitchen', href: '#kitchen' },
     ],
     hero: {
-      title: "Hi! I'm Win✨",
+      eyebrow: "Hi! I'm Win🏅, and I'm a",
+      title: 'Product Designer',
       description:
-        'A UX/Product Designer with experience in B2B and design systems, creating user-centered solutions that improve life.',
-      annotation: `Currently pursuing a Master's in Interactive Media Technology at KTH in Sweden.`,
+        'Specialized in <span class="highlight">B2B tool design</span>, <span class="highlight">design systems</span> and <a class="highlight block__descriptionLink" href="#kitchen">cooking</a>, with 2+ years of experience in the <span class="highlight">healthcare</span> and <span class="highlight">e-commerce</span> industries.',
+      details: [
+        {
+          title: 'Stockholm',
+          subtitle: 'Sweden',
+        },
+        {
+          title: "Master's Student (year 1)",
+          subtitle: 'Interactive Media Technology, KTH',
+        },
+      ],
     },
     workTabs: {
       design: 'Design & Research',
@@ -504,17 +515,26 @@ window.__HOME_PAGE_CONTENT__ = {
   zh: {
     translatorHref: 'index.html',
     translatorLabel: '繁中 | EN',
+    navLanguageLabel: '繁 / EN',
     nav: [
       { label: 'Work', href: '#work' },
       { label: 'About', href: '#about' },
       { label: 'Kitchen', href: '#kitchen' },
     ],
     hero: {
-      title: "Hi! I'm Win✨",
+      title: "Hi! I'm Win",
       description:
-        '具備 B2B 與設計系統經驗的 UX / 產品設計師，致力於打造以使用者為中心、改善生活的解決方案。',
-      annotation:
-        '正於瑞典皇家理工學院（KTH）攻讀 Interactive Media Technology 碩士學位',
+        '專注於 <span class="highlight">B2B 工具設計</span>與<span class="highlight">設計系統</span>的產品設計師，具備 2+ 年<span class="highlight">醫療照護</span>與<span class="highlight">電商</span>產業經驗。',
+      details: [
+        {
+          title: 'Stockholm',
+          subtitle: 'Sweden',
+        },
+        {
+          title: "Master's Student (year 1)",
+          subtitle: 'Interactive Media Technology, KTH',
+        },
+      ],
     },
     workTabs: {
       design: 'Design & Research',

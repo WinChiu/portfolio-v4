@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { renderSections } = require('./projectBlocks');
 
 function indent(text, spaces = 4) {
@@ -37,7 +39,56 @@ function renderNavigation(language) {
     </nav>`;
 }
 
+function getProjectHeaderImages(project) {
+  const imageMap = {
+    ba: {
+      bg: '../../img/projects/ba/image-ba-projectHeader-bg.webp',
+      main: '../../img/projects/ba/image-ba-projectHeader-main.webp',
+    },
+    bizpro: {
+      bg: '../../img/projects/bizpro/image-bp-projectHeader-bg.webp',
+      main: '../../img/projects/bizpro/image-bp-projectHeader-main.webp',
+    },
+    childcare: {
+      bg: '../../img/projects/childcare/image-cc-projectHeader-bg.webp',
+      main: '../../img/projects/childcare/image-cc-projectHeader-main.webp',
+    },
+    designSystem: {
+      bg: '../../img/projects/designSystem/image-ds-projectHeader-bg.webp',
+      main: '../../img/projects/designSystem/image-ds-projectHeader-main.webp',
+    },
+    forest: {
+      bg: '../../img/projects/forest/image-forest-projectHeader-bg.webp',
+      main: '../../img/projects/forest/image-forest-projectHeader-main.webp',
+    },
+    gongChi: {
+      bg: '../../img/projects/gongChi/image-gongChi-projectHeader-bg.webp',
+      main: '../../img/projects/gongChi/image-gongChi-projectHeader-main.webp',
+    },
+    pos: {
+      bg: '../../img/projects/pos/image-pos-projectHeader-bg.webp',
+      main: '../../img/projects/pos/image-pos-projectHeader-main.webp',
+    },
+    rfid: {
+      bg: '../../img/projects/rfid/image-rfid-projectHeader-bg.webp',
+      main: '../../img/projects/rfid/image-rfid-projectHeader-main.png',
+    },
+  };
+
+  const images = imageMap[project.slug] || {};
+  const resolveLocalReference = (src) =>
+    path.join(__dirname, '..', src.replace(/^(\.\.\/)+/, ''));
+  const existingOrCover = (src) =>
+    src && fs.existsSync(resolveLocalReference(src)) ? src : project.coverImage;
+
+  return {
+    bg: existingOrCover(images.bg),
+    main: existingOrCover(images.main),
+  };
+}
+
 function renderHeader(project, header) {
+  const headerImages = getProjectHeaderImages(project);
   const tags = (project.tags || '')
     .split(',')
     .map((tag) => tag.trim())
@@ -45,7 +96,7 @@ function renderHeader(project, header) {
     .map(
       (tag) => `          <div class="project-header__tag">
             <p>${tag}</p>
-          </div>`
+          </div>`,
     )
     .join('\n');
 
@@ -57,9 +108,20 @@ ${tags}
     : '';
 
   return `    <main class="project-header" id="top">
+      <img
+        src="${headerImages.bg}"
+        alt=""
+        class="project-header__bg"
+        aria-hidden="true"
+      />
       <div class="project-header__inner">
+        <img
+          src="${headerImages.main}"
+          alt="${header.title}"
+          class="project-header__image"
+        />
         <div class="project-header__content">
-${tagsBlock}          <h2 class="project-header__title">${header.title}</h2>
+${tagsBlock}          <h3 class="project-header__title">${header.title}</h3>
           <div class="project-header__metadata">
             <div class="project-header__meta-item">
               <p class="project-header__meta-label">Duration</p>
@@ -83,77 +145,6 @@ ${tagsBlock}          <h2 class="project-header__title">${header.title}</h2>
     </main>`;
 }
 
-function renderIntroSummary(title, content) {
-  if (!content) {
-    return '';
-  }
-
-  return `        <div class="project-intro__summary">
-          <p class="project-intro__summary-title">${title}</p>
-          <p class="project-intro__summary-content">${content}</p>
-        </div>`;
-}
-
-function renderIntroduction(project, head, introduction) {
-  const purpose = introduction.purpose;
-  const challenge = introduction.challenge;
-  const production = introduction.production;
-  const outcome = introduction.outcome;
-
-  const hasAllSections = purpose && challenge && production && outcome;
-  const hasPurposeProductionOnly =
-    purpose && production && !challenge && !outcome;
-
-  let topRightSections = '';
-  let bottomSections = '';
-
-  if (hasAllSections) {
-    topRightSections = [
-      renderIntroSummary('Purpose', purpose),
-      renderIntroSummary('Challenge', challenge),
-    ].join('\n');
-
-    bottomSections = [
-      renderIntroSummary('Production', production),
-      renderIntroSummary('Outcome', outcome),
-    ].join('\n');
-  } else if (hasPurposeProductionOnly) {
-    topRightSections = [
-      renderIntroSummary('Purpose', purpose),
-      renderIntroSummary('Production', production),
-    ].join('\n');
-  } else {
-    topRightSections = [
-      renderIntroSummary('Purpose', purpose),
-      renderIntroSummary('Challenge', challenge),
-      renderIntroSummary('Production', production),
-      renderIntroSummary('Outcome', outcome),
-    ]
-      .filter(Boolean)
-      .join('\n');
-  }
-
-  return `    <section class="project-intro">
-      <div class="project-intro__inner">
-        <div class="project-intro__top">
-          <div class="project-intro__media">
-            <img
-              src="${project.coverImage}"
-              alt="${head.imageAlt}"
-              class="project-intro__image"
-            />
-          </div>
-${topRightSections ? `          <div class="project-intro__summary-grid">
-${topRightSections}
-          </div>` : ''}
-        </div>
-${bottomSections ? `        <div class="project-intro__bottom">
-${bottomSections}
-        </div>` : ''}
-      </div>
-    </section>`;
-}
-
 function renderNavigationWrapper(language) {
   if (language === 'zh') {
     return renderNavigation('zh');
@@ -171,13 +162,14 @@ function renderContent(project, lang) {
     return indent(project.rawContentHtml[lang].trim(), 8);
   }
 
-  throw new Error(`No content found for project "${project.slug}" in lang "${lang}"`);
+  throw new Error(
+    `No content found for project "${project.slug}" in lang "${lang}"`,
+  );
 }
 
 function renderProjectPage(project, lang) {
   const head = project.head[lang];
   const header = project.header[lang];
-  const introduction = project.introduction[lang];
 
   return `<!DOCTYPE html>
 <html lang="${head.htmlLang}">
@@ -199,13 +191,13 @@ function renderProjectPage(project, lang) {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&display=swap"
       rel="stylesheet"
     />
     <title>${head.title}</title>
-    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../img/favicon.ico" type="image/x-icon" />
   </head>
-  <body class="project-page">
+  <body class="project-page project-page--${project.slug}">
     <!-- Generated from project content data -->
     <div class="page-loader">
       <dotlottie-wc
@@ -217,7 +209,6 @@ function renderProjectPage(project, lang) {
 
 ${renderTranslator(project, lang)}
 ${renderHeader(project, header)}
-${renderIntroduction(project, head, introduction)}
     <section class="project-page__content">
       <div class="project-page__content-inner">
 ${renderContent(project, lang)}

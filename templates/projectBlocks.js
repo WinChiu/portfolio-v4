@@ -90,7 +90,7 @@ function renderBgQuote(module) {
     ? ` style="${module.callOutListStyle}"`
     : '';
 
-  return `<div class="project-module project-module--feature-quote">
+  return `<div class="project-module project-module--feature-quote project-module--bg-quote">
 <${module.headingTag || 'h3'} class="project-module__heading"${headingStyle}>${module.headingHtml}</${module.headingTag || 'h3'}>
 <div class="project-module__callout-list"${callOutListStyle}>
 ${module.callOuts.map((item) => renderContentItem({ ...item, type: 'callOut' })).join('\n')}
@@ -179,13 +179,34 @@ ${module.icon ? `<img class="project-module__icon" src="${module.icon}" alt="" /
 </div>`;
 }
 
+function renderMediaAside(module) {
+  const variantClass = module.variant
+    ? ` project-module--media-aside-${module.variant}`
+    : '';
+  const paragraphs = (module.paragraphs || [])
+    .map((paragraph) => `<p class="project-module__text">${paragraph}</p>`)
+    .join('\n');
+
+  return `<div class="project-module project-module--media-aside${variantClass}">
+<div class="project-module__media">
+${renderImage(module.image)}
+</div>
+<div class="project-module__aside">
+<h3 class="project-module__heading">${module.title}</h3>
+${paragraphs}
+</div>
+</div>`;
+}
+
 function renderModule(module) {
   switch (module.type) {
-    case 'bgTitle':
+    case 'bgTitle': {
+      const line = module.line === false ? '' : '\n<div class="project-module__line"></div>';
       return `<div class="project-module project-module--section-title">
 <h3 class="project-module__heading">${module.html || module.text}</h3>
-<div class="project-module__line"></div>
+${line}
 </div>`;
+    }
     case 'mdTitle':
       return `<div class="project-module project-module--eyebrow">
 <h6 class="project-module__eyebrow">${module.html || module.text}</h6>
@@ -210,6 +231,8 @@ ${module.images.map((image) => renderImage(image)).join('\n')}
 </div>`;
     case 'bigQuote':
       return renderBigQuote(module);
+    case 'mediaAside':
+      return renderMediaAside(module);
     case 'verticalIconList':
       return renderVerticalIconList(module);
     case 'horizontalIconList':

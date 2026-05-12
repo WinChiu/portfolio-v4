@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
   $(".media--image").css("opacity", 1);
   setTimeout(function () {
+    $("#hero-eyebrow").css("opacity", 1);
     $("#greet").css("opacity", 1);
   }, 100);
   setTimeout(function () {
@@ -89,9 +90,6 @@ $(document).ready(function () {
   setTimeout(function () {
     $("#annotation").css("opacity", 1);
   }, 500);
-  setTimeout(function () {
-    $("#down").css("opacity", 1);
-  }, 700);
   setTimeout(function () {
     $(".media--image").css("transition-duration", "0s");
   }, 2500);
