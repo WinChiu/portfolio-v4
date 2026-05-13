@@ -80,40 +80,12 @@ const project = {
         classes: ['sectionNarrow', 'sectionWorkflow'],
         modules: [
           {
-            type: 'processFlow',
-            label: 'POS project workflow',
-            steps: [
-              {
-                number: '01',
-                title: 'Confirm Requirements',
-                description:
-                  'Review the PRD and confirm the scope and limitations of the requirements.',
-              },
-              {
-                number: '02',
-                title: 'Define Objectives',
-                description:
-                  'Establish three key objectives based on business, product, and design needs.',
-              },
-              {
-                number: '03',
-                title: 'Audit User Scenarios',
-                description:
-                  'Audit the current design system components and identify unresolved issues.',
-              },
-              {
-                number: '04',
-                title: 'Create Design Drafts',
-              },
-              {
-                number: '05',
-                title: 'Delivery Confirmation',
-              },
-              {
-                number: '06',
-                title: 'UI Testing',
-              },
-            ],
+            type: 'singleImage',
+            image: {
+              src: '../../img/projects/pos/image-pos-workflow-en.webp',
+              alt: '',
+              zoom: true,
+            },
           },
         ],
       },
@@ -376,37 +348,12 @@ const project = {
         classes: ['sectionNarrow', 'sectionWorkflow'],
         modules: [
           {
-            type: 'processFlow',
-            label: 'POS 專案流程',
-            steps: [
-              {
-                number: '01',
-                title: '確認需求',
-                description: '確認 PRD 內容，釐清需求範圍與限制。',
-              },
-              {
-                number: '02',
-                title: '定義目標',
-                description: '依照商業、產品與設計需求，建立三項核心目標。',
-              },
-              {
-                number: '03',
-                title: '盤點使用情境',
-                description: '盤點既有系統元件與使用情境，找出尚未解決的問題。',
-              },
-              {
-                number: '04',
-                title: '建立設計稿',
-              },
-              {
-                number: '05',
-                title: '交付確認',
-              },
-              {
-                number: '06',
-                title: 'UI Testing',
-              },
-            ],
+            type: 'singleImage',
+            image: {
+              src: '../../img/projects/pos/image-pos-workflow.webp',
+              alt: '',
+              zoom: true,
+            },
           },
         ],
       },
