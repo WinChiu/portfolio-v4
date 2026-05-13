@@ -25,9 +25,7 @@ class ProjectCard extends HTMLElement {
     const projectButton = `
       <a
         href="${projectUrl}"
-        class="${buttonClass}"${
-      siteUrl ? '' : ' target="_blank" rel="noopener noreferrer"'
-    }
+        class="${buttonClass}"
       >
         <p>${viewProjectText}</p>
       </a>`;

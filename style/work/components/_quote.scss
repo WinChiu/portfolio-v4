@@ -1,0 +1,59 @@
+@use '../../tokens' as *;
+@use '../../base/mixins' as *;
+
+.project-module {
+  &--quote {
+    max-width: none;
+
+    p {
+      width: 100%;
+      font-family: $font-sansSerif;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      background-color: rgba($color-lightGold, 0.2);
+      border-bottom: $color-lightGold solid 0.125rem;
+      border-radius: 0;
+    }
+  }
+
+  &__callout {
+    @include flex(column, center, flex-start, 0.5rem);
+    padding: 0.75rem 1rem;
+    border: $color-darkGold 0.125rem solid;
+    border-radius: 0.25rem;
+    width: 100%;
+  }
+
+  &__callout-title {
+    color: $color-black;
+    font-weight: bold;
+  }
+
+  &--feature-quote {
+    @include flex(row, flex-start, center, 1rem);
+
+    .project-module__heading {
+      font-family: $font-serifText;
+      padding: 2rem 0;
+    }
+  }
+
+  &__icon {
+    width: 12.5rem;
+  }
+
+  &__callout-list {
+    padding-left: 0.5rem;
+    @include flex(column, flex-start, center, 1rem);
+  }
+
+  @media (max-width: $bp-mobile) {
+    &--feature-quote {
+      @include flex(column, flex-start, center, 1rem);
+
+      .project-module__heading {
+        text-align: center;
+      }
+    }
+  }
+}

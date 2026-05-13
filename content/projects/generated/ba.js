@@ -56,7 +56,7 @@ const project = {
           {
             "type": "quote",
             "html": "This project is under an NDA, so detailed information cannot be\n                                                                                                      shared on public platforms.",
-            "paragraphClass": "project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text warning"
+            "paragraphClass": "warning"
           }
         ]
       },
@@ -104,8 +104,6 @@ const project = {
             "type": "bgQuote",
             "headingTag": "h3",
             "headingHtml": "Service providers track consumable and maintenance costs and\n                                                                                                      product utilization, but still rely on manual checks and paper\n                                                                                                      records without reliable data for optimization.",
-            "headingStyle": "flex: 1",
-            "callOutListStyle": "flex: 1",
             "callOuts": [
               {
                 "title": "Unable to identified which part of the whole process needs optimization",
@@ -180,8 +178,7 @@ const project = {
           },
           {
             "type": "quote",
-            "html": "Make sure users don't get lost among numerous reports.",
-            "paragraphClass": "project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text"
+            "html": "Make sure users don't get lost among numerous reports."
           },
           {
             "type": "pureText",
@@ -271,7 +268,7 @@ const project = {
           {
             "type": "quote",
             "html": "本專案已簽署 NDA，無法於公開平台展示專案細節。",
-            "paragraphClass": "project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text warning"
+            "paragraphClass": "warning"
           }
         ]
       },
@@ -332,8 +329,6 @@ const project = {
             "type": "bgQuote",
             "headingTag": "h3",
             "headingHtml": "使用者重視整體運營中的耗材 /\n                                                                                                      維修成本和產品利用率。當前僅依靠人員觀察與紙本資料，缺乏可靠的流程優化依據",
-            "headingStyle": "flex: 1",
-            "callOutListStyle": "flex: 1",
             "callOuts": [
               {
                 "title": "難以判斷整體流程中哪些環節需要優化",
@@ -408,8 +403,7 @@ const project = {
           },
           {
             "type": "quote",
-            "html": "確保使用者不會迷失於眾多報表中",
-            "paragraphClass": "project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text"
+            "html": "確保使用者不會迷失於眾多報表中"
           },
           {
             "type": "pureText",

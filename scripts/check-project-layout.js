@@ -14,11 +14,28 @@ const pages = [
 
 const viewports = [
   { name: 'desktop', width: 1280, height: 900 },
+  { name: 'header-above-stack', width: 1153, height: 900 },
+  { name: 'header-at-stack', width: 1152, height: 900 },
   { name: 'mobile', width: 390, height: 844 },
 ];
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function removeDirWithRetry(dir) {
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    try {
+      fs.rmSync(dir, { recursive: true, force: true });
+      return;
+    } catch (error) {
+      if (attempt === 9) {
+        throw error;
+      }
+
+      await delay(150);
+    }
+  }
 }
 
 function requestJson(url) {
@@ -140,6 +157,22 @@ const inspectPage = `(() => {
 
   const normalLine = document.querySelector('.project-page__section:not(.project-page__section--featured) .project-module--section-title .project-module__line');
   const normalRect = rectOf(normalLine);
+  const headerImage = document.querySelector('.project-header__image');
+  const headerImageStyle = headerImage ? getComputedStyle(headerImage) : null;
+
+  const sectionPaddings = [...document.querySelectorAll('.project-page__section')]
+    .map((section, index) => {
+      const style = getComputedStyle(section);
+
+      return {
+        index,
+        classes: section.className,
+        paddingLeft: style.paddingLeft,
+        paddingRight: style.paddingRight,
+        isWide: section.classList.contains('project-page__section--wide'),
+        isNarrow: section.classList.contains('project-page__section--narrow'),
+      };
+    });
 
   const graySections = [...document.querySelectorAll('.project-page__section--featured-gray')].map((section, index) => {
     const style = getComputedStyle(section);
@@ -208,7 +241,9 @@ const inspectPage = `(() => {
     title: document.title,
     viewport: { width: window.innerWidth, height: window.innerHeight },
     documentWidth: document.documentElement.scrollWidth,
+    headerImageDisplay: headerImageStyle ? headerImageStyle.display : null,
     normalLine: normalRect,
+    sectionPaddings,
     graySections,
     visibleOverflow,
     textOverflow,
@@ -272,6 +307,35 @@ async function run() {
     const issues = [];
 
     for (const result of results) {
+      if (result.viewport.width > 1152 && result.headerImageDisplay === 'none') {
+        issues.push(`${result.viewport} ${result.file}: header main image is hidden above 72rem`);
+      }
+
+      if (result.viewport.width <= 1152 && result.headerImageDisplay !== 'none') {
+        issues.push(`${result.viewport} ${result.file}: header main image is visible at or below 72rem`);
+      }
+
+      for (const section of result.sectionPaddings) {
+        const expectedWide = result.viewport.width <= 480
+          ? '16px'
+          : result.viewport.width <= 1152
+            ? '32px'
+            : '64px';
+        const expectedNarrow = result.viewport.width <= 480
+          ? '16px'
+          : result.viewport.width <= 1152
+            ? '32px'
+            : '256px';
+
+        if (section.isWide && (section.paddingLeft !== expectedWide || section.paddingRight !== expectedWide)) {
+          issues.push(`${result.viewport} ${result.file}: wide section ${section.index} padding is ${section.paddingLeft}/${section.paddingRight}, expected ${expectedWide}`);
+        }
+
+        if (section.isNarrow && (section.paddingLeft !== expectedNarrow || section.paddingRight !== expectedNarrow)) {
+          issues.push(`${result.viewport} ${result.file}: narrow section ${section.index} padding is ${section.paddingLeft}/${section.paddingRight}, expected ${expectedNarrow}`);
+        }
+      }
+
       for (const section of result.graySections) {
         if (section.bgQuote && section.isStacked === false) {
           issues.push(`${result.viewport} ${result.file}: gray bgQuote is not stacked`);
@@ -294,7 +358,7 @@ async function run() {
     process.exitCode = issues.length ? 1 : 0;
   } finally {
     chrome.kill();
-    fs.rmSync(userDataDir, { recursive: true, force: true });
+    await removeDirWithRetry(userDataDir);
   }
 }
 

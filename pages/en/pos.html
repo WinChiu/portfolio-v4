@@ -83,13 +83,13 @@
     </main>
     <section class="project-page__content">
       <div class="project-page__content-inner">
-        <div class="project-page__section pos-section--wide pos-section--background">
-        <div class="project-module project-module--media-aside project-module--media-aside-cover">
-        <div class="project-module__media">
-        <img src="../../img/projects/pos/image-pos-marketing.webp" alt="" data-zoom-image />
-        </div>
-        <div class="project-module__aside">
+        <div class="project-page__section project-page__section--narrow project-page__section--flush-top">
+        <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">Project Background</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
         <p class="project-module__text">SHOPLINE is an e-commerce platform that integrates online and
                                                                                                               offline sales, offering a POS system to help merchants manage
                                                                                                               payment processes in physical stores.</p>
@@ -98,24 +98,79 @@
                                                                                                               contract with banks directly. In Hong Kong, although payment
                                                                                                               integration was completed, multiple card terminal brands needed
                                                                                                               support, and fees remained higher than the market average.</p>
+
         </div>
         </div>
+        <div class="project-page__section project-page__section--narrow project-page__section--workflow">
+        <div class="project-module project-module--process-flow" aria-label="POS project workflow">
+        <ol class="project-module__process-list">
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">01</span>
+        <h3 class="project-module__process-title">Confirm Requirements</h3>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--workflow">
-        <div class="project-module project-module--image">
-        <img src="../../img/projects/pos/image-pos-workflow-en.webp" alt="" data-zoom-image />
+        <p class="project-module__process-description">Review the PRD and confirm the scope and limitations of the requirements.</p>
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">02</span>
+        <h3 class="project-module__process-title">Define Objectives</h3>
+        </div>
+        <p class="project-module__process-description">Establish three key objectives based on business, product, and design needs.</p>
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">03</span>
+        <h3 class="project-module__process-title">Audit User Scenarios</h3>
+        </div>
+        <p class="project-module__process-description">Audit the current design system components and identify unresolved issues.</p>
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">04</span>
+        <h3 class="project-module__process-title">Create Design Drafts</h3>
+        </div>
+
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">05</span>
+        <h3 class="project-module__process-title">Delivery Confirmation</h3>
+        </div>
+
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">06</span>
+        <h3 class="project-module__process-title">UI Testing</h3>
+        </div>
+
+        </div>
+        </li>
+        </ol>
         </div>
         </div>
-        <div class="project-page__section project-page__section--featured project-page__section--featured-gray pos-section--narrow">
+        <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">Problem Definition</h3>
 
         <div class="project-module__line"></div>
         </div>
         <div class="project-module project-module--feature-quote project-module--bg-quote">
-        <h3 class="project-module__heading" style="flex: 1">Lack of Payment Integration and High Pricing Undermining
+        <h3 class="project-module__heading">Lack of Payment Integration and High Pricing Undermining
                                                                                                               SHOPLINE's Competitiveness</h3>
-        <div class="project-module__callout-list" style="flex: 1">
+        <div class="project-module__callout-list">
         <div class="project-module__callout">
           <p class="project-module__callout-title">No Payment Integration, Reducing Product Competitiveness</p>
           <p class="project-module__text">In the Taiwan market, the lack of card payment integration means merchants using SHOPLINE services must handle credit card payments separately, which decreases checkout efficiency.</p>
@@ -127,7 +182,7 @@
         </div>
         </div>
         </div>
-        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow pos-section--narrow">
+        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow project-page__section--narrow">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">Goal Breakdown</h3>
 
@@ -162,20 +217,18 @@
         </div>
         </div>
         </div>
-        <div class="project-page__section pos-section--wide pos-section--analysis">
+        <div class="project-page__section project-page__section--wide pos-section--analysis">
         <div class="project-module project-module--media-aside">
         <div class="project-module__media">
         <img src="../../img/projects/pos/image-pos-complexFlow-en.webp" alt="" data-zoom-image />
         </div>
         <div class="project-module__aside">
         <h3 class="project-module__heading">Challenge</h3>
-        <p class="project-module__text">Evaluate the existing POS system mechanism by reviewing the timing
-                                                                                                              of status evaluations, response times, and the differences in
-                                                                                                              handling payment and non-payment methods.</p>
+        <p class="project-module__text">Evaluate the POS payment architecture by reviewing transaction timing, status synchronization, and refund handling across various transaction rules and outcomes. Payment flows required special attention, as inconsistent or delayed statuses directly affected how clearly the system could communicate results to users.</p>
         </div>
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-intro">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">Solution</h3>
 
@@ -195,7 +248,7 @@
         <img src="../../img/projects/pos/image-pos-cashFlow-en.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-detail">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
         <div class="project-module project-module--quote">
         <p class="project-module__text">Design Focus: Ensure that important actions are promptly
                                                                                                               communicated to merchants without adding informational overload.</p>
@@ -211,7 +264,7 @@
         <img src="../../img/projects/pos/image-pos-sol1New-en.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-intro">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
         <div class="project-module project-module--subsection-title">
         <h6 class="project-module__subheading">Real-Time Refund Restrictions to Reduce Operational Errors</h6>
         </div>
@@ -228,19 +281,7 @@
         <img src="../../img/projects/pos/image-pos-figmaFlow.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-detail">
-        <div class="project-module project-module--text">
-        <p class="project-module__text">To maintain flexibility in entering refund amounts, the original
-                                                                                                              design triggered error messages only after the amount was entered.
-                                                                                                              However, in some cases, merchants have only one refund option
-                                                                                                              (e.g., full refund), making this design result in unnecessary
-                                                                                                              actions and increased operation time.</p>
-        </div>
-        <div class="project-module project-module--image">
-        <img src="../../img/projects/pos/image-pos-sol2Origin-en.webp" alt="" data-zoom-image />
-        </div>
-        </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-detail">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
         <div class="project-module project-module--quote">
         <p class="project-module__text">Design Focus: Remind and prevent merchants from entering incorrect
                                                                                                               refund amounts without affecting operational efficiency.</p>
@@ -255,7 +296,7 @@
         <img src="../../img/projects/pos/image-pos-sol2New-en.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--learning">
+        <div class="project-page__section project-page__section--narrow pos-section--learning">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">Key Learnings</h3>
 
@@ -267,7 +308,7 @@
         </div>
         <div class="project-module project-module--icon-list-vertical">
         <div class="project-module__item">
-        <img src="../../img/sketch-checkList.svg" alt="" />
+
         <div class="project-module__item-content">
 
         <p class="project-module__item-text">Even when receiving very specific requirements, a designer

@@ -183,18 +183,50 @@ function renderMediaAside(module) {
   const variantClass = module.variant
     ? ` project-module--media-aside-${module.variant}`
     : '';
+  const textOnlyClass = module.image
+    ? ''
+    : ' project-module--media-aside-text-only';
+  const media = module.image
+    ? `<div class="project-module__media">
+${renderImage(module.image)}
+</div>
+`
+    : '';
   const paragraphs = (module.paragraphs || [])
     .map((paragraph) => `<p class="project-module__text">${paragraph}</p>`)
     .join('\n');
 
-  return `<div class="project-module project-module--media-aside${variantClass}">
-<div class="project-module__media">
-${renderImage(module.image)}
-</div>
-<div class="project-module__aside">
+  return `<div class="project-module project-module--media-aside${variantClass}${textOnlyClass}">
+${media}<div class="project-module__aside">
 <h3 class="project-module__heading">${module.title}</h3>
 ${paragraphs}
 </div>
+</div>`;
+}
+
+function renderProcessFlow(module) {
+  const steps = (module.steps || [])
+    .map((step) => {
+      const description = step.description
+        ? `<p class="project-module__process-description">${step.description}</p>`
+        : '';
+
+      return `<li class="project-module__process-step">
+<div class="project-module__process-content">
+<div class="project-module__process-heading">
+<span class="project-module__process-number">${step.number}</span>
+<h3 class="project-module__process-title">${step.title}</h3>
+</div>
+${description}
+</div>
+</li>`;
+    })
+    .join('\n');
+
+  return `<div class="project-module project-module--process-flow" aria-label="${module.label || ''}">
+<ol class="project-module__process-list">
+${steps}
+</ol>
 </div>`;
 }
 
@@ -233,6 +265,8 @@ ${module.images.map((image) => renderImage(image)).join('\n')}
       return renderBigQuote(module);
     case 'mediaAside':
       return renderMediaAside(module);
+    case 'processFlow':
+      return renderProcessFlow(module);
     case 'verticalIconList':
       return renderVerticalIconList(module);
     case 'horizontalIconList':
@@ -252,6 +286,10 @@ function renderSection(section) {
     'specialSection--gray': 'project-page__section--featured-gray',
     'specialSection--yellow': 'project-page__section--featured-yellow',
     'specialSection--narrow': 'project-page__section--narrow',
+    sectionWide: 'project-page__section--wide',
+    sectionNarrow: 'project-page__section--narrow',
+    sectionFlushTop: 'project-page__section--flush-top',
+    sectionWorkflow: 'project-page__section--workflow',
   };
   const classes = [
     'project-page__section',

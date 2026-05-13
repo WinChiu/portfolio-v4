@@ -61,17 +61,14 @@ const project = {
   sections: {
     en: [
       {
-        classes: ['pos-section--wide', 'pos-section--background'],
+        classes: ['sectionNarrow', 'sectionFlushTop'],
         modules: [
           {
-            type: 'mediaAside',
-            variant: 'cover',
-            title: 'Project Background',
-            image: {
-              src: '../../img/projects/pos/image-pos-marketing.webp',
-              alt: '',
-              zoom: true,
-            },
+            type: 'bgTitle',
+            html: 'Project Background',
+          },
+          {
+            type: 'pureText',
             paragraphs: [
               'SHOPLINE is an e-commerce platform that integrates online and\n                                                                                                      offline sales, offering a POS system to help merchants manage\n                                                                                                      payment processes in physical stores.',
               "At the time of this project, SHOPLINE's POS system in Taiwan had\n                                                                                                      not integrated its own payment service, requiring merchants to\n                                                                                                      contract with banks directly. In Hong Kong, although payment\n                                                                                                      integration was completed, multiple card terminal brands needed\n                                                                                                      support, and fees remained higher than the market average.",
@@ -80,24 +77,48 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--workflow'],
+        classes: ['sectionNarrow', 'sectionWorkflow'],
         modules: [
           {
-            type: 'singleImage',
-            image: {
-              src: '../../img/projects/pos/image-pos-workflow-en.webp',
-              alt: '',
-              zoom: true,
-            },
+            type: 'processFlow',
+            label: 'POS project workflow',
+            steps: [
+              {
+                number: '01',
+                title: 'Confirm Requirements',
+                description:
+                  'Review the PRD and confirm the scope and limitations of the requirements.',
+              },
+              {
+                number: '02',
+                title: 'Define Objectives',
+                description:
+                  'Establish three key objectives based on business, product, and design needs.',
+              },
+              {
+                number: '03',
+                title: 'Audit User Scenarios',
+                description:
+                  'Audit the current design system components and identify unresolved issues.',
+              },
+              {
+                number: '04',
+                title: 'Create Design Drafts',
+              },
+              {
+                number: '05',
+                title: 'Delivery Confirmation',
+              },
+              {
+                number: '06',
+                title: 'UI Testing',
+              },
+            ],
           },
         ],
       },
       {
-        classes: [
-          'specialSection',
-          'specialSection--gray',
-          'pos-section--narrow',
-        ],
+        classes: ['specialSection', 'specialSection--gray', 'sectionNarrow'],
         modules: [
           {
             type: 'bgTitle',
@@ -108,8 +129,6 @@ const project = {
             headingTag: 'h3',
             headingHtml:
               "Lack of Payment Integration and High Pricing Undermining\n                                                                                                      SHOPLINE's Competitiveness",
-            headingStyle: 'flex: 1',
-            callOutListStyle: 'flex: 1',
             callOuts: [
               {
                 type: 'callOut',
@@ -128,11 +147,7 @@ const project = {
         ],
       },
       {
-        classes: [
-          'specialSection',
-          'specialSection--yellow',
-          'pos-section--narrow',
-        ],
+        classes: ['specialSection', 'specialSection--yellow', 'sectionNarrow'],
         modules: [
           {
             type: 'bgTitle',
@@ -179,7 +194,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--wide', 'pos-section--analysis'],
+        classes: ['sectionWide', 'pos-section--analysis'],
         modules: [
           {
             type: 'mediaAside',
@@ -190,13 +205,14 @@ const project = {
               zoom: true,
             },
             paragraphs: [
-              'Evaluate the existing POS system mechanism by reviewing the timing\n                                                                                                      of status evaluations, response times, and the differences in\n                                                                                                      handling payment and non-payment methods.',
+              'Evaluate the POS payment architecture by reviewing transaction timing, status synchronization, and refund handling across various transaction rules and outcomes. Payment flows required special attention, as inconsistent or delayed statuses directly affected how clearly the system could communicate results to users.',
             ],
           },
         ],
       },
+
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-intro'],
+        classes: ['sectionNarrow', 'pos-section--solution-intro'],
         modules: [
           {
             type: 'bgTitle',
@@ -227,7 +243,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-detail'],
+        classes: ['sectionNarrow', 'pos-section--solution-detail'],
         modules: [
           {
             type: 'quote',
@@ -254,7 +270,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-intro'],
+        classes: ['sectionNarrow', 'pos-section--solution-intro'],
         modules: [
           {
             type: 'pureTitle',
@@ -281,30 +297,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-detail'],
-        modules: [
-          {
-            type: 'pureText',
-            items: [
-              {
-                type: 'paragraph',
-                className: 'project-module__text',
-                html: 'To maintain flexibility in entering refund amounts, the original\n                                                                                                      design triggered error messages only after the amount was entered.\n                                                                                                      However, in some cases, merchants have only one refund option\n                                                                                                      (e.g., full refund), making this design result in unnecessary\n                                                                                                      actions and increased operation time.',
-              },
-            ],
-          },
-          {
-            type: 'singleImage',
-            image: {
-              src: '../../img/projects/pos/image-pos-sol2Origin-en.webp',
-              alt: '',
-              zoom: true,
-            },
-          },
-        ],
-      },
-      {
-        classes: ['pos-section--narrow', 'pos-section--solution-detail'],
+        classes: ['sectionNarrow', 'pos-section--solution-detail'],
         modules: [
           {
             type: 'quote',
@@ -331,7 +324,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--learning'],
+        classes: ['sectionNarrow', 'pos-section--learning'],
         modules: [
           {
             type: 'bgTitle',
@@ -345,11 +338,6 @@ const project = {
             type: 'verticalIconList',
             items: [
               {
-                image: {
-                  src: '../../img/sketch-checkList.svg',
-                  alt: '',
-                  zoom: false,
-                },
                 paragraphs: [
                   "Even when receiving very specific requirements, a designer\n                                                                                                          should still assess the business, product, and design goals.\n                                                                                                          This applies even in feature-driven B2B products, where it's\n                                                                                                          essential to ensure that the solution aligns with the user's\n                                                                                                          context and provides a good experience. This prevents the\n                                                                                                          product from becoming overly complex due to feature bloat,\n                                                                                                          which can ultimately compromise usability.",
                 ],
@@ -369,17 +357,14 @@ const project = {
     ],
     zh: [
       {
-        classes: ['pos-section--wide', 'pos-section--background'],
+        classes: ['sectionNarrow', 'sectionFlushTop'],
         modules: [
           {
-            type: 'mediaAside',
-            variant: 'cover',
-            title: '專案背景',
-            image: {
-              src: '../../img/projects/pos/image-pos-marketing.webp',
-              alt: '',
-              zoom: true,
-            },
+            type: 'bgTitle',
+            html: '專案背景',
+          },
+          {
+            type: 'pureText',
             paragraphs: [
               'SHOPLINE 是一個整合線上線下銷售的電商平台，提供 POS\n                                                                                                      系統幫助店家管理實體店面的支付流程。',
               '在本專案進行時，SHOPLINE 的 POS\n                                                                                                      系統在台灣尚未串接自有金流，店家需自行與銀行簽約；香港市場雖完成金流串接，但需支援多品牌刷卡機，且手續費高於市場平均。',
@@ -388,24 +373,45 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--workflow'],
+        classes: ['sectionNarrow', 'sectionWorkflow'],
         modules: [
           {
-            type: 'singleImage',
-            image: {
-              src: '../../img/projects/pos/image-pos-workflow.webp',
-              alt: '',
-              zoom: true,
-            },
+            type: 'processFlow',
+            label: 'POS 專案流程',
+            steps: [
+              {
+                number: '01',
+                title: '確認需求',
+                description: '確認 PRD 內容，釐清需求範圍與限制。',
+              },
+              {
+                number: '02',
+                title: '定義目標',
+                description: '依照商業、產品與設計需求，建立三項核心目標。',
+              },
+              {
+                number: '03',
+                title: '盤點使用情境',
+                description: '盤點既有系統元件與使用情境，找出尚未解決的問題。',
+              },
+              {
+                number: '04',
+                title: '建立設計稿',
+              },
+              {
+                number: '05',
+                title: '交付確認',
+              },
+              {
+                number: '06',
+                title: 'UI Testing',
+              },
+            ],
           },
         ],
       },
       {
-        classes: [
-          'specialSection',
-          'specialSection--gray',
-          'pos-section--narrow',
-        ],
+        classes: ['specialSection', 'specialSection--gray', 'sectionNarrow'],
         modules: [
           {
             type: 'bgTitle',
@@ -415,8 +421,6 @@ const project = {
             type: 'bgQuote',
             headingTag: 'h3',
             headingHtml: '缺乏金流功能、定價過高導致自家電商方案無競爭力',
-            headingStyle: 'flex: 1',
-            callOutListStyle: 'flex: 1',
             callOuts: [
               {
                 type: 'callOut',
@@ -433,7 +437,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--bridge'],
+        classes: ['sectionNarrow', 'pos-section--bridge'],
         modules: [
           {
             type: 'bigQuote',
@@ -444,11 +448,7 @@ const project = {
         ],
       },
       {
-        classes: [
-          'specialSection',
-          'specialSection--yellow',
-          'pos-section--narrow',
-        ],
+        classes: ['specialSection', 'specialSection--yellow', 'sectionNarrow'],
         modules: [
           {
             type: 'bgTitle',
@@ -495,7 +495,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--wide', 'pos-section--analysis'],
+        classes: ['sectionWide', 'pos-section--analysis'],
         modules: [
           {
             type: 'mediaAside',
@@ -512,7 +512,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--bridge'],
+        classes: ['sectionNarrow', 'pos-section--bridge'],
         modules: [
           {
             type: 'bigQuote',
@@ -523,7 +523,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-intro'],
+        classes: ['sectionNarrow', 'pos-section--solution-intro'],
         modules: [
           {
             type: 'bgTitle',
@@ -554,7 +554,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-detail'],
+        classes: ['sectionNarrow', 'pos-section--solution-detail'],
         modules: [
           {
             type: 'pureText',
@@ -577,7 +577,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-detail'],
+        classes: ['sectionNarrow', 'pos-section--solution-detail'],
         modules: [
           {
             type: 'quote',
@@ -604,7 +604,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-intro'],
+        classes: ['sectionNarrow', 'pos-section--solution-intro'],
         modules: [
           {
             type: 'bgTitle',
@@ -635,30 +635,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--solution-detail'],
-        modules: [
-          {
-            type: 'pureText',
-            items: [
-              {
-                type: 'paragraph',
-                className: 'project-module__text',
-                html: '為了保留輸入金額的彈性，原需求設計為在輸入後才顯示錯誤提示。但在某些退款情況下，店家只能選擇一種退款額度（如全額退款），這樣的設計會導致不必要的操作，增加時間成本。',
-              },
-            ],
-          },
-          {
-            type: 'singleImage',
-            image: {
-              src: '../../img/projects/pos/image-pos-sol2Origin.webp',
-              alt: '',
-              zoom: true,
-            },
-          },
-        ],
-      },
-      {
-        classes: ['pos-section--narrow', 'pos-section--solution-detail'],
+        classes: ['sectionNarrow', 'pos-section--solution-detail'],
         modules: [
           {
             type: 'quote',
@@ -685,7 +662,7 @@ const project = {
         ],
       },
       {
-        classes: ['pos-section--narrow', 'pos-section--learning'],
+        classes: ['sectionNarrow', 'pos-section--learning'],
         modules: [
           {
             type: 'bgTitle',

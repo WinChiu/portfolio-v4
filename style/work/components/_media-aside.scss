@@ -1,0 +1,86 @@
+@use '../../tokens' as *;
+@use '../../base/mixins' as *;
+
+.project-module {
+  &--media-aside {
+    @include flex(row, center, center, 4rem);
+
+    .project-module__media {
+      flex: 1 1 68%;
+      min-width: 0;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .project-module__aside {
+      @include flex(column, center, flex-start, 0);
+      flex: 0 1 22rem;
+      min-width: 16rem;
+    }
+
+    .project-module__heading {
+      font-family: $font-serif;
+      font-size: $project-section-title-size;
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: $project-section-title-gap;
+    }
+
+    .project-module__text {
+      font-size: 1rem;
+      line-height: 1.45;
+      overflow-wrap: break-word;
+    }
+
+    .project-module__text + .project-module__text {
+      margin-top: 1rem;
+    }
+  }
+
+  &--media-aside-cover {
+    align-items: stretch;
+
+    .project-module__media {
+      flex: 1 1 55%;
+
+      img {
+        height: 100%;
+        min-height: 24rem;
+        object-fit: cover;
+      }
+    }
+
+    .project-module__aside {
+      flex: 1 1 45%;
+      justify-content: flex-end;
+    }
+  }
+
+  &--media-aside-text-only {
+    justify-content: flex-start;
+
+    .project-module__aside {
+      flex: 0 1 42rem;
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: $bp-tablet) {
+    &--media-aside {
+      @include flex(column, center, stretch, 3rem);
+
+      .project-module__media,
+      .project-module__aside {
+        flex-basis: auto;
+        min-width: 0;
+      }
+
+      .project-module__media img {
+        min-height: 18rem;
+      }
+    }
+  }
+}

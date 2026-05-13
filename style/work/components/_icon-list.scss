@@ -1,0 +1,96 @@
+@use '../../tokens' as *;
+@use '../../base/mixins' as *;
+
+.project-module {
+  &--icon-list-vertical {
+    @include flex(column, center, flex-start, 1.5rem);
+  }
+
+  &--icon-list-horizontal {
+    width: 56.25rem;
+    @include flex(row, center, flex-start, 3rem);
+  }
+
+  &--icon-list-vertical,
+  &--icon-list-horizontal {
+    .project-module__item {
+      @include flex(row, flex-start, center, 1rem);
+    }
+
+    .project-module__item-content {
+      @include flex(column, center, flex-start, 1rem);
+      width: 100%;
+    }
+
+    .project-module__item-title {
+      font-weight: bold;
+    }
+
+    img {
+      flex: 0 0 $project-icon-size;
+      width: $project-icon-size;
+      height: $project-icon-size;
+      object-fit: contain;
+    }
+  }
+
+  &--icon-list-horizontal {
+    .project-module__item {
+      @include flex(column, flex-start, center, 1rem);
+      flex: 1;
+    }
+
+    .project-module__item-title,
+    .project-module__item-text {
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .project-page__section--featured &--icon-list-horizontal {
+    width: 100%;
+
+    img {
+      border-radius: 12.5rem;
+      background-color: $color-bgWhite;
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: $bp-tablet) {
+    &--icon-list-horizontal {
+      @include flex(column, center, center, 3rem);
+    }
+
+    &--icon-list-vertical,
+    &--icon-list-horizontal {
+      img {
+        flex-basis: $project-icon-size-tablet;
+        width: $project-icon-size-tablet;
+        height: $project-icon-size-tablet;
+      }
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    &--icon-list-vertical {
+      .project-module__item {
+        @include flex(column, flex-start, center, 1rem);
+      }
+
+      .project-module__item-title {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    &--icon-list-vertical,
+    &--icon-list-horizontal {
+      img {
+        flex-basis: $project-icon-size-mobile;
+        width: $project-icon-size-mobile;
+        height: $project-icon-size-mobile;
+      }
+    }
+  }
+}

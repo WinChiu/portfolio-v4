@@ -83,34 +83,89 @@
     </main>
     <section class="project-page__content">
       <div class="project-page__content-inner">
-        <div class="project-page__section pos-section--wide pos-section--background">
-        <div class="project-module project-module--media-aside project-module--media-aside-cover">
-        <div class="project-module__media">
-        <img src="../../img/projects/pos/image-pos-marketing.webp" alt="" data-zoom-image />
-        </div>
-        <div class="project-module__aside">
+        <div class="project-page__section project-page__section--narrow project-page__section--flush-top">
+        <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">專案背景</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
         <p class="project-module__text">SHOPLINE 是一個整合線上線下銷售的電商平台，提供 POS
                                                                                                               系統幫助店家管理實體店面的支付流程。</p>
         <p class="project-module__text">在本專案進行時，SHOPLINE 的 POS
                                                                                                               系統在台灣尚未串接自有金流，店家需自行與銀行簽約；香港市場雖完成金流串接，但需支援多品牌刷卡機，且手續費高於市場平均。</p>
+
         </div>
         </div>
+        <div class="project-page__section project-page__section--narrow project-page__section--workflow">
+        <div class="project-module project-module--process-flow" aria-label="POS 專案流程">
+        <ol class="project-module__process-list">
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">01</span>
+        <h3 class="project-module__process-title">確認需求</h3>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--workflow">
-        <div class="project-module project-module--image">
-        <img src="../../img/projects/pos/image-pos-workflow.webp" alt="" data-zoom-image />
+        <p class="project-module__process-description">確認 PRD 內容，釐清需求範圍與限制。</p>
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">02</span>
+        <h3 class="project-module__process-title">定義目標</h3>
+        </div>
+        <p class="project-module__process-description">依照商業、產品與設計需求，建立三項核心目標。</p>
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">03</span>
+        <h3 class="project-module__process-title">盤點使用情境</h3>
+        </div>
+        <p class="project-module__process-description">盤點既有系統元件與使用情境，找出尚未解決的問題。</p>
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">04</span>
+        <h3 class="project-module__process-title">建立設計稿</h3>
+        </div>
+
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">05</span>
+        <h3 class="project-module__process-title">交付確認</h3>
+        </div>
+
+        </div>
+        </li>
+        <li class="project-module__process-step">
+        <div class="project-module__process-content">
+        <div class="project-module__process-heading">
+        <span class="project-module__process-number">06</span>
+        <h3 class="project-module__process-title">UI Testing</h3>
+        </div>
+
+        </div>
+        </li>
+        </ol>
         </div>
         </div>
-        <div class="project-page__section project-page__section--featured project-page__section--featured-gray pos-section--narrow">
+        <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">問題定義</h3>
 
         <div class="project-module__line"></div>
         </div>
         <div class="project-module project-module--feature-quote project-module--bg-quote">
-        <h3 class="project-module__heading" style="flex: 1">缺乏金流功能、定價過高導致自家電商方案無競爭力</h3>
-        <div class="project-module__callout-list" style="flex: 1">
+        <h3 class="project-module__heading">缺乏金流功能、定價過高導致自家電商方案無競爭力</h3>
+        <div class="project-module__callout-list">
         <div class="project-module__callout">
           <p class="project-module__callout-title">缺乏金流整合，削弱產品競爭力</p>
           <p class="project-module__text">在台灣市場，由於缺乏信用卡金流整合，使用 SHOPLINE 服務的店家仍需另外處理刷卡收款流程，降低整體結帳效率。</p>
@@ -122,14 +177,14 @@
         </div>
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--bridge">
+        <div class="project-page__section project-page__section--narrow pos-section--bridge">
         <div class="project-module project-module--feature-quote">
         <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
         <h3 class="project-module__heading">我針對 PRD
                                                                                                               交付文件中對於商業現況的描述，==定義本次專案在產品面與設計面的目標==，以聚焦設計解方。</h3>
         </div>
         </div>
-        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow pos-section--narrow">
+        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow project-page__section--narrow">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">目標拆解</h3>
 
@@ -160,7 +215,7 @@
         </div>
         </div>
         </div>
-        <div class="project-page__section pos-section--wide pos-section--analysis">
+        <div class="project-page__section project-page__section--wide pos-section--analysis">
         <div class="project-module project-module--media-aside">
         <div class="project-module__media">
         <img src="../../img/projects/pos/image-pos-complexFlow.webp" alt="" data-zoom-image />
@@ -172,14 +227,14 @@
         </div>
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--bridge">
+        <div class="project-page__section project-page__section--narrow pos-section--bridge">
         <div class="project-module project-module--feature-quote">
         <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
         <h3 class="project-module__heading">雖然 PRD
                                                                                                               已經提供明確的設計解方，但我==重新釐清問題後提出更能對應到目標的解方==，並獲得採納。</h3>
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-intro">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">Solutions</h3>
 
@@ -195,7 +250,7 @@
         <img src="../../img/projects/pos/image-pos-cashFlow.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-detail">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
         <div class="project-module project-module--text">
         <p class="project-module__text">原先預期商家會使用 POS
                                                                                                               中的「小結」頁面清點帳務後，一同進行清機。因此原需求希望在「小結」頁籤中提示清機操作，但我發現這不符合用戶操作習慣，因此進行了修改。</p>
@@ -204,7 +259,7 @@
         <img src="../../img/projects/pos/image-pos-sol1Origin.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-detail">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
         <div class="project-module project-module--quote">
         <p class="project-module__text">設計聚焦：在不增加資訊負擔的前提下，可以即時提醒店家有重要操作尚未完成。</p>
         </div>
@@ -215,7 +270,7 @@
         <img src="../../img/projects/pos/image-pos-sol1New.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-intro">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">Solution 2</h3>
 
@@ -231,15 +286,7 @@
         <img src="../../img/projects/pos/image-pos-figmaFlow.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-detail">
-        <div class="project-module project-module--text">
-        <p class="project-module__text">為了保留輸入金額的彈性，原需求設計為在輸入後才顯示錯誤提示。但在某些退款情況下，店家只能選擇一種退款額度（如全額退款），這樣的設計會導致不必要的操作，增加時間成本。</p>
-        </div>
-        <div class="project-module project-module--image">
-        <img src="../../img/projects/pos/image-pos-sol2Origin.webp" alt="" data-zoom-image />
-        </div>
-        </div>
-        <div class="project-page__section pos-section--narrow pos-section--solution-detail">
+        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
         <div class="project-module project-module--quote">
         <p class="project-module__text">設計聚焦：在不影響店家操作效率的情況下，提醒並制止店家進行錯誤的退款金額輸入</p>
         </div>
@@ -250,7 +297,7 @@
         <img src="../../img/projects/pos/image-pos-sol2New.webp" alt="" data-zoom-image />
         </div>
         </div>
-        <div class="project-page__section pos-section--narrow pos-section--learning">
+        <div class="project-page__section project-page__section--narrow pos-section--learning">
         <div class="project-module project-module--section-title">
         <h3 class="project-module__heading">學習點</h3>
 

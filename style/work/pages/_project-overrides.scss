@@ -1,0 +1,54 @@
+@use '../../tokens' as *;
+@use '../../base/mixins' as *;
+
+.project-page--pos {
+  .pos-section--analysis {
+    .project-module--media-aside {
+      align-items: stretch;
+      gap: 2rem;
+    }
+
+    .project-module__media {
+      flex: 11 1 0;
+    }
+
+    .project-module__aside {
+      flex: 9 1 0;
+      min-width: 0;
+      align-self: flex-end;
+    }
+  }
+
+  .pos-section--bridge {
+    .project-module--feature-quote {
+      margin-inline: auto;
+    }
+  }
+
+  .pos-section--solution-intro,
+  .pos-section--solution-detail,
+  .pos-section--learning {
+    gap: 2rem;
+  }
+
+  .pos-section--learning {
+    padding-bottom: 8rem;
+  }
+
+  @media (max-width: $bp-mobile-wide) {
+    .pos-section--analysis {
+      .project-module__aside {
+        align-self: stretch;
+      }
+    }
+  }
+
+  @media (max-width: $bp-tablet) {
+    .pos-section--analysis {
+      .project-module__aside {
+        align-self: stretch;
+      }
+    }
+  }
+}
+

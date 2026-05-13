@@ -56,7 +56,7 @@ const project = {
           {
             "type": "quote",
             "html": "This project is under an NDA, so detailed information cannot be\n                                                                                                      shared on public platforms.",
-            "paragraphClass": "project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text warning"
+            "paragraphClass": "warning"
           }
         ]
       },
@@ -109,8 +109,6 @@ const project = {
             "type": "bgQuote",
             "headingTag": "h3",
             "headingHtml": "QR codes on stacked mattresses are often hard or even impossible\n                                                                                                      to access.",
-            "headingStyle": "flex: 1",
-            "callOutListStyle": "flex: 1",
             "callOuts": [
               {
                 "title": "Frequent scanning reduce delivery and collection efficiency.",
@@ -388,7 +386,7 @@ const project = {
           {
             "type": "quote",
             "html": "本專案已簽署 NDA，無法於公開平台展示專案細節。",
-            "paragraphClass": "project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text project-module__text warning"
+            "paragraphClass": "warning"
           }
         ]
       },
@@ -449,8 +447,6 @@ const project = {
             "type": "bgQuote",
             "headingTag": "h3",
             "headingHtml": "QRcode\n                                                                                                      資產追蹤標籤使得使用者必須於物流作業過程中找出醫療氣墊床上的標籤並掃描，但相互堆疊的氣墊床讓使用者難以、甚至無法翻找。",
-            "headingStyle": "flex: 1",
-            "callOutListStyle": "flex: 1",
             "callOuts": [
               {
                 "title": "頻繁掃描會降低收送貨作業效率。",
