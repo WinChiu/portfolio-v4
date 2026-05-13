@@ -840,6 +840,9 @@ html {
   gap: 1rem;
   width: 100%;
 }
+.project-module--media-content .project-module__entry .project-module__item-title {
+  font-weight: bold;
+}
 .project-module__content {
   display: flex;
   justify-content: center;
@@ -1096,13 +1099,13 @@ html {
   .project-module--icon-list-vertical .project-module__item {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     gap: 1rem;
   }
   .project-module--icon-list-vertical .project-module__item-title {
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
   .project-module--icon-list-vertical img, .project-module--icon-list-horizontal img {
     flex-basis: 8rem;

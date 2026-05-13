@@ -126,6 +126,9 @@
     .project-module__entry {
       @include flex(column, center, flex-start, 1rem);
       width: 100%;
+      .project-module__item-title {
+        font-weight: bold;
+      }
     }
   }
 
@@ -160,4 +163,3 @@
     }
   }
 }
-

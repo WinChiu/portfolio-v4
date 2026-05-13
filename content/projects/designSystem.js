@@ -85,16 +85,6 @@ const designSystemProject = {
       },
       {
         modules: [
-          {
-            type: 'bigQuote',
-            icon: '../../img/sketch-think.svg',
-            content:
-              'Through interviews with designers across the company, I analyzed their workflows and needs and identified ==four key issues.==',
-          },
-        ],
-      },
-      {
-        modules: [
           { type: 'bgTitle', text: 'Problem Definition' },
           { type: 'mdTitle', text: 'Problem 1' },
           {
@@ -362,10 +352,6 @@ const designSystemProject = {
             type: 'verticalIconList',
             items: [
               {
-                image: {
-                  src: '../../img/sketch-checkList.svg',
-                  alt: '',
-                },
                 paragraphs: [
                   'I realized that the design system is crucial for product consistency. Scenario-driven guidelines help designers understand how to use a component, not just how it looks. Moreover, when guidelines and components are scattered across different documents, It slows down implementation and leads to more design inconsistencies.',
                   `Another goal of a design system is to improve collaboration across different product teams. Consistent naming affects coding efficiency and designers' ability to locate components. Poor communication can cause misalignment in component usage, with designers and engineers choosing different components. Therefore, clear syncing and update mechanisms across roles are essential to maintaining the design system and ensuring overall product quality.`,
@@ -397,16 +383,6 @@ const designSystemProject = {
               src: '../../img/projects/designSystem/image-ds-workflow.webp',
               alt: '',
             },
-          },
-        ],
-      },
-      {
-        modules: [
-          {
-            type: 'bigQuote',
-            icon: '../../img/sketch-think.svg',
-            content:
-              '我首先==訪談了公司三位設計師==，了解對設計系統的使用習慣與需求。並整理出==五大問題。==',
           },
         ],
       },
@@ -699,10 +675,6 @@ const designSystemProject = {
             type: 'verticalIconList',
             items: [
               {
-                image: {
-                  src: '../../img/sketch-checkList.svg',
-                  alt: '',
-                },
                 paragraphs: [
                   '通過本次專案，我發現設計系統對產品一致性至關重要。如果設計系統未以『情境』為中心進行規範，Design System 只能作為元件庫，無法提供有效的實作參考。此外，當規範和元件分散在不同文件中時，會增加實作時間成本，最終導致產品設計不一致問題加劇。',
                   '不同職位對設計系統的需求也不同，統一的命名影響程式編寫、設計師查找元件及測試時的效率。無效的溝通會導致元件使用不同步，設計師和工程師使用不同元件。因此，各職位間的同步與更新機制對設計系統的維護尤為重要，這不僅關乎設計師，也關乎產品品質。',

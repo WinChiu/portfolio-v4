@@ -75,12 +75,12 @@
   @media (max-width: $bp-mobile) {
     &--icon-list-vertical {
       .project-module__item {
-        @include flex(column, flex-start, center, 1rem);
+        @include flex(column, flex-start, flex-start, 1rem);
       }
 
       .project-module__item-title {
         width: 100%;
-        text-align: center;
+        text-align: left;
       }
     }
 
