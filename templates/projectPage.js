@@ -11,15 +11,7 @@ function indent(text, spaces = 4) {
 }
 
 function renderTranslator(project, lang) {
-  const head = project.head[lang];
-
-  if (!head.translatorHref) {
-    return indent('<div class="project-translator"></div>');
-  }
-
-  return indent(`<div class="project-translator">
-  <a href="${head.translatorHref}"><p>${project.languageLabel}</p></a>
-</div>`);
+  return '';
 }
 
 function renderNavigation(language) {
@@ -217,8 +209,6 @@ ${renderContent(project, lang)}
     ${renderNavigationWrapper(head.navigationLanguage)}
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
-    <script src="../../utility/hideTranslator.js"></script>
-    <script src="../../utility/workScrollAnimation.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>
