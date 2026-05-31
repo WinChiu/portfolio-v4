@@ -29,9 +29,8 @@
   );
   let currentPage = 0;
   let hoverTimer = null;
-  let previewFadeTimer = null;
   const hoverPreviewDelay = 90;
-  const previewFadeDuration = 180;
+  const hasGsap = typeof window.gsap !== 'undefined';
   const totalPages =
     Math.max(
       ...rows.map((row) => Number.parseInt(row.dataset.kitchenPage || '0', 10)),
@@ -55,33 +54,124 @@
     }
   }
 
-  function clearPreviewFadeTimer() {
-    if (previewFadeTimer) {
-      window.clearTimeout(previewFadeTimer);
-      previewFadeTimer = null;
-    }
-  }
-
   function updatePreview(item) {
     const nextSrc = item.dataset.kitchenImageSrc;
     const nextAlt = item.dataset.kitchenImageAlt;
     const nextClass = item.dataset.kitchenImageClass || '';
 
-    clearPreviewFadeTimer();
-    preview.classList.add('kitchen__photo--fading');
-
-    previewFadeTimer = window.setTimeout(() => {
+    if (!hasGsap) {
       preview.src = nextSrc;
       preview.alt = nextAlt;
-      preview.className =
-        `kitchen__photo ${nextClass} kitchen__photo--fading`.trim();
+      preview.className = `kitchen__photo ${nextClass}`.trim();
+      return;
+    }
 
-      requestAnimationFrame(() => {
-        preview.classList.remove('kitchen__photo--fading');
-      });
+    window.gsap.killTweensOf(preview);
+    window.gsap.to(preview, {
+      autoAlpha: 0,
+      scale: 0.97,
+      rotation: -1,
+      duration: 0.16,
+      ease: 'power2.in',
+      onComplete: () => {
+        preview.src = nextSrc;
+        preview.alt = nextAlt;
+        preview.className = `kitchen__photo ${nextClass}`.trim();
 
-      previewFadeTimer = null;
-    }, previewFadeDuration);
+        window.gsap.fromTo(
+          preview,
+          { autoAlpha: 0, scale: 0.97, rotation: 1 },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            rotation: 0,
+            duration: 0.28,
+            ease: 'power3.out',
+            clearProps: 'transform,visibility,opacity',
+          },
+        );
+      },
+    });
+  }
+
+  function animateActiveItem(item) {
+    if (!hasGsap) return;
+
+    window.gsap.killTweensOf(item);
+    window.gsap.fromTo(
+      item,
+      { x: 0 },
+      {
+        x: 4,
+        duration: 0.16,
+        ease: 'power2.out',
+        yoyo: true,
+        repeat: 1,
+        clearProps: 'transform',
+      },
+    );
+  }
+
+  function animateLightboxIn() {
+    if (!hasGsap || !lightbox) return;
+
+    const backdrop = lightbox.querySelector('.kitchen__lightboxBackdrop');
+    const dialog = lightbox.querySelector('.kitchen__lightboxDialog');
+
+    window.gsap.fromTo(
+      backdrop,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 0.2 },
+    );
+    window.gsap.fromTo(
+      dialog,
+      { autoAlpha: 0, yPercent: -50, y: 18, scale: 0.98 },
+      {
+        autoAlpha: 1,
+        yPercent: -50,
+        y: 0,
+        scale: 1,
+        duration: 0.28,
+        ease: 'power3.out',
+      },
+    );
+  }
+
+  function animateLightboxOut(onComplete) {
+    if (!hasGsap || !lightbox) {
+      onComplete();
+      return;
+    }
+
+    const backdrop = lightbox.querySelector('.kitchen__lightboxBackdrop');
+    const dialog = lightbox.querySelector('.kitchen__lightboxDialog');
+
+    window.gsap.to(backdrop, {
+      autoAlpha: 0,
+      duration: 0.18,
+      ease: 'power2.in',
+    });
+
+    window.gsap.to(dialog, {
+      autoAlpha: 0,
+      yPercent: -50,
+      y: 12,
+      scale: 0.98,
+      duration: 0.18,
+      ease: 'power2.in',
+      onComplete,
+    });
+  }
+
+  function resetLightboxStyles() {
+    if (!hasGsap || !lightbox) return;
+
+    const backdrop = lightbox.querySelector('.kitchen__lightboxBackdrop');
+    const dialog = lightbox.querySelector('.kitchen__lightboxDialog');
+
+    window.gsap.set([backdrop, dialog], {
+      clearProps: 'transform,visibility,opacity',
+    });
   }
 
   function openLightbox(item) {
@@ -91,13 +181,17 @@
     lightboxImage.alt = item.dataset.kitchenImageAlt;
     lightbox.hidden = false;
     document.body.classList.add('kitchen-lightbox-open');
+    animateLightboxIn();
   }
 
   function closeLightbox() {
-    if (!lightbox) return;
+    if (!lightbox || lightbox.hidden) return;
 
-    lightbox.hidden = true;
-    document.body.classList.remove('kitchen-lightbox-open');
+    animateLightboxOut(() => {
+      lightbox.hidden = true;
+      document.body.classList.remove('kitchen-lightbox-open');
+      resetLightboxStyles();
+    });
   }
 
   function setActive(index) {
@@ -111,6 +205,7 @@
     });
 
     updatePreview(items[activeIndex]);
+    animateActiveItem(items[activeIndex]);
   }
 
   function setPage(pageIndex) {

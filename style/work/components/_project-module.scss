@@ -163,3 +163,9 @@
     }
   }
 }
+
+.project-page__section,
+.project-module {
+  will-change: transform, opacity;
+}
+

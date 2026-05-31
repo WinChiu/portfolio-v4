@@ -29,7 +29,7 @@
 
   &__toc {
     @include flex(column, center, flex-start, 1rem);
-    max-width: 0.5rem;
+    max-width: 1rem;
     margin-left: 1rem;
     transition: max-width 0.25s;
     overflow: hidden;
@@ -63,6 +63,7 @@
   .project-toc__label {
     white-space: nowrap;
     color: $color-darkGold;
+    will-change: transform;
   }
 
   .project-toc--active {
@@ -103,4 +104,3 @@
     }
   }
 }
-

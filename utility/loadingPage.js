@@ -190,6 +190,8 @@
   }
 
   function removeLoader() {
+    window.dispatchEvent(new CustomEvent('portfolio:assets-ready'));
+
     if (!loader) return;
 
     if (loader.classList.contains('page-loader')) {

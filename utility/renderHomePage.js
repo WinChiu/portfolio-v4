@@ -189,17 +189,19 @@
     <main class="section section--main">
       <div class="container container--content">
         <article class="block block--introduction">
-          <header class="block__header">
-            ${
-              content.hero.eyebrow
-                ? `<p class="block__eyebrow" id="hero-eyebrow">${content.hero.eyebrow}</p>`
-                : ''
-            }
-            <h1 class="block__title" id="greet">${content.hero.title}</h1>
-          </header>
-          <h4 class="block__description${lang === 'zh' ? ' block__description--zh' : ''}" id="intro">
-            ${content.hero.description}
-          </h4>
+          <div class="block__heroCopy">
+            <header class="block__header">
+              ${
+                content.hero.eyebrow
+                  ? `<p class="block__eyebrow" id="hero-eyebrow">${content.hero.eyebrow}</p>`
+                  : ''
+              }
+              <h1 class="block__title" id="greet">${content.hero.title}</h1>
+            </header>
+            <h4 class="block__description${lang === 'zh' ? ' block__description--zh' : ''}" id="intro">
+              ${content.hero.description}
+            </h4>
+          </div>
           ${renderHeroDetails(content.hero.details)}
           <div class="block__bgImage"></div>
         </article>

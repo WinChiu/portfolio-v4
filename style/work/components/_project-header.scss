@@ -31,6 +31,7 @@
       height: 100%;
       object-fit: cover;
       z-index: 0;
+      will-change: transform;
     }
 
     &__inner {
@@ -53,6 +54,7 @@
       min-height: 0;
       object-fit: contain;
       object-position: center;
+      will-change: transform, opacity;
 
       filter: drop-shadow(0 1.5rem 2rem rgba(0, 0, 0, 0.2));
     }
@@ -79,6 +81,7 @@
       font-weight: 600;
       line-height: 1.16;
       letter-spacing: 0;
+      will-change: transform, opacity;
     }
 
     &__metadata {
@@ -94,6 +97,7 @@
       gap: 0.5rem;
       padding: 0;
       border-right: 0;
+      will-change: transform, opacity;
 
       &:first-child {
         padding-left: 0;
