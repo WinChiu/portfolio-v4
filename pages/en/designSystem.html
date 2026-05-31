@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/image-projectCover-designSystem.webp"
           alt="Design System Architecture Design and Organization"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>Design System</p>
@@ -79,62 +83,62 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Project Background</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">The V2.0 design system in SHOPLINE's e-commerce product line, used for the backend management pages of B2B products. It offers features like online store design and order processing and is one of the primary design systems.</p>
         <p class="project-module__text">However, due to the lack of clear management and usage guidelines, the <span class="highlight">library suffered from unclear usage scenarios, broken components, and poor discoverability. </span>This slowed down the design process and made it difficult to maintain consistency across projects.</p>
 
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/designSystem/image-ds-workflow-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Problem Definition</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--eyebrow">
+        <div class="project-module project-module--eyebrow" data-animate="project-module">
         <h6 class="project-module__eyebrow">Problem 1</h6>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Undefined component usage scenarios made it difficult for designers to build new pages using the design system.</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">Without clear usage scenarios, designers had to look at existing pages or ask others verbally to confirm which patterns to use. This increased the risk of inconsistencies across the interface.</p>
 
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/designSystem/image-ds-problem1-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--eyebrow">
+        <div class="project-module project-module--eyebrow" data-animate="project-module">
         <h6 class="project-module__eyebrow">Problem 2</h6>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Inconsistent component naming and organization made components difficult to located</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">Designers often had to browse through large sections of the design system file just to find a component, rather than finding it through direct search.</p>
 
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/designSystem/image-ds-problem2-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--eyebrow">
+        <div class="project-module project-module--eyebrow" data-animate="project-module">
         <h6 class="project-module__eyebrow">Problem 3</h6>
         </div>
-        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module project-module--icon-list-vertical" data-animate="project-module">
         <div class="project-module__item">
         <img src="../../img/projects/designSystem/image-ds-problem3.webp" alt="" data-zoom-image />
         <div class="project-module__item-content">
@@ -145,10 +149,10 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--eyebrow">
+        <div class="project-module project-module--eyebrow" data-animate="project-module">
         <h6 class="project-module__eyebrow">Problem 4</h6>
         </div>
-        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module project-module--icon-list-vertical" data-animate="project-module">
         <div class="project-module__item">
         <img src="../../img/sketch-confuse.svg" alt="" data-zoom-image />
         <div class="project-module__item-content">
@@ -159,12 +163,12 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Design Goals</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module project-module--icon-list-horizontal" data-animate="project-module">
         <div class="project-module__item">
         <img src="../../img/sketch-aha.svg" alt="" data-zoom-image />
         <div class="project-module__item-content">
@@ -189,25 +193,25 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
         <h3 class="project-module__heading">Based on the goals, I provided a comprehensive solution covering ==guideline creation, component organization, and maintenance updates.==</h3>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Solution</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Restructure Documentation</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">To maintain quality and align with designers' habits, components are organized using the following structure in Figma:</p>
 
         </div>
-        <div class="project-module project-module--media-content">
+        <div class="project-module project-module--media-content" data-animate="project-module">
         <img src="../../img/projects/designSystem/image-ds-solution1.webp" alt="" data-zoom-image />
         <div class="project-module__content">
         <div class="project-module__entry">
@@ -229,62 +233,62 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Separate Parent and Subcomponents to Ensure Maintainability, Link Components and Guidelines for Cross-Reference</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">All subcomponents are stored on one page, allowing users to easily find and use the components. The use of subcomponents also helps preserve the integrity of the overall design system.</p>
 
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/designSystem/image-ds-solution2.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">Links to the storybook and full guide are provided in the top right corner of each subcomponent section, allowing users to access the current component status and usage guideline.</p>
 
         </div>
-        <div class="project-module project-module--image-pair">
+        <div class="project-module project-module--image-pair" data-animate="project-module">
         <img src="../../img/projects/designSystem/image-ds-solution3-1.webp" alt="" data-zoom-image />
         <img src="../../img/projects/designSystem/image-ds-solution3-2.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Define a Unified Writing Style and Format</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">Create a checklist that standardizes components under the following seven fixed headings: Usage, Spec, Content, Layout, Application, Asset, and Components.</p>
 
         </div>
-        <div class="project-module project-module--image-pair">
+        <div class="project-module project-module--image-pair" data-animate="project-module">
         <img src="../../img/projects/designSystem/image-ds-solution4-1.webp" alt="" data-zoom-image />
         <img src="../../img/projects/designSystem/image-ds-solution4-2.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Create a Report Form for Real-Time Component Status Updates</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">Record component issues and assign an owner. Review all pending issues during the weekly meeting and discuss potential solutions.</p>
 
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/designSystem/image-ds-solution5.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Key Learnings</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">The Design System Must Be Scenario-Based and Improve Cross-Role Synchronization</h6>
         </div>
-        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module project-module--icon-list-vertical" data-animate="project-module">
         <div class="project-module__item">
 
         <div class="project-module__item-content">
@@ -311,6 +315,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

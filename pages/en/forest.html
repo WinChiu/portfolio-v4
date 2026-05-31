@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/projects/forest/image-forest-projectHeader-main.webp"
           alt="Forest Life: Forest Sustainability Advocacy Website"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>Animated</p>
@@ -82,12 +86,12 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Project Background</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">This project, created for the 5th Taiwan Youth Hackathon, focuses
                                                                                                               on the UN's SDG "SDGs 15: Life on Land." The website centers on
                                                                                                               "forest management" and uses contextualized experiences to raise
@@ -97,12 +101,12 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Experience Design</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">We aim to categorize users based on their profiles and present
                                                                                                               different topic content to help them identify key knowledge
                                                                                                               related to the issues. The user experience will be structured as a
@@ -115,34 +119,34 @@
                                                                                                               tailored content journey. The experience flow is presented in the
                                                                                                               diagram below:</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/forest/image-forest-exp-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Outcome</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <div class="project-module__button">
           <a href="https://forest-life.onrender.com" target="_blank"><p>View Website</p></a>
         </div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/forest/image-forest-demo1.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/forest/image-forest-demo2.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/forest/image-forest-demo3.gif" alt="" data-zoom-image style="border: 2px solid #363a35" />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/forest/image-forest-demo4.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/forest/image-forest-demo5.webp" alt="" data-zoom-image />
         </div>
         </div>
@@ -162,6 +166,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

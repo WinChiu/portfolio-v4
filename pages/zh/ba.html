@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/image-projectCover-ba.webp"
           alt="PRC 醫療器材清消與租賃管理系統：商業分析報表設計"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>B2B Medical SaaS</p>
@@ -82,20 +86,20 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section">
-        <div class="project-module project-module--quote">
+        <div class="project-module project-module--quote" data-animate="project-module">
         <p class="project-module__text warning">本專案已簽署 NDA，無法於公開平台展示專案細節。</p>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">專案背景</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/ba/image-ba-fistImage.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">KeepWell 是一個為 PRC 醫療器材所開發的清消與租賃流程管理 SaaS
                                                                                                               系統，搭配專為醫療器材所設計的 QRcode
                                                                                                               資產追蹤標籤，提供歐洲的醫療器材服務商進行場內器材庫存、清消、訂單、物流、客戶…
@@ -108,17 +112,17 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/ba/image-ba-workflow.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-gray">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">問題定義</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--feature-quote project-module--bg-quote">
+        <div class="project-module project-module--feature-quote project-module--bg-quote" data-animate="project-module">
         <h3 class="project-module__heading">使用者重視整體運營中的耗材 /
                                                                                                               維修成本和產品利用率。當前僅依靠人員觀察與紙本資料，缺乏可靠的流程優化依據</h3>
         <div class="project-module__callout-list">
@@ -134,19 +138,19 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-factory.svg" alt="" />
         <h3 class="project-module__heading">閱讀報表的使用者多為上級人員，==
                                                                                                               如何協助其在繁雜的流程中快速定位營運問題 ==，是本次報表設計的關鍵</h3>
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">目標拆解</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module project-module--icon-list-horizontal" data-animate="project-module">
         <div class="project-module__item">
         <img src="../../img/sketch-money.svg" alt="" />
         <div class="project-module__item-content">
@@ -171,50 +175,50 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">報表架構主概念</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--quote">
+        <div class="project-module project-module--quote" data-animate="project-module">
         <p class="project-module__text">確保使用者不會迷失於眾多報表中</p>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">報表依照顆粒度大小分為兩類：</p>
         </div>
         <ol class="project-module__list">
           <li>顆粒度大者顯示關鍵指標（例如流程總耗時），讓使用者快速判別流程是否出現問題。</li>
           <li>顆粒度小者顯示分段數據，提供各大流程更為細節的數據。</li>
         </ol>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/ba/image-ba-reportConcept.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">專案產出</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">根據服務商在意的「耗材 / 維修成本」和「產品利用率」，挑選 KeepWell
                                                                                                               中 5 個與之相關的模組，並加上「個別員工效率分析」一共 6 大類、36
                                                                                                               份報表。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/ba/image-ba-outcome.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">個人反思</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">每個報表都需要指出明確的下一步，否則只是豐富但無用的數字與圖表</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">在競品調查的過程中，我們發現有些系統雖然提供了大量報表與數據視圖，但缺乏明確的層級與邏輯關聯，導致使用者在閱讀時容易迷失於各式圖表之中，難以快速判斷哪些資訊對決策真正有價值。報表看似豐富卻無法轉化為具體行動。</p>
         <p class="project-module__text">在客戶現況調查中也瞭解到，服務商會優先從會計帳目中聚焦關鍵指標（例如：營收），以此判斷是否需要進一步追查背後原因。這說明了「提供明確的結構與行動指引」比單純展示數據更為關鍵。因此好的報表設計不僅應呈現資訊，更要清楚指示決策方向。</p>
         </div>
@@ -235,6 +239,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

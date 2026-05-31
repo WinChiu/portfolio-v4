@@ -66,6 +66,26 @@
     const nextSrc = item.dataset.kitchenImageSrc;
     const nextAlt = item.dataset.kitchenImageAlt;
     const nextClass = item.dataset.kitchenImageClass || '';
+    const motion = window.PortfolioMotion;
+
+    if (window.gsap && motion && !motion.isReducedMotion()) {
+      clearPreviewFadeTimer();
+      window.gsap.to(preview, {
+        autoAlpha: 0,
+        duration: 0.16,
+        onComplete: () => {
+          preview.src = nextSrc;
+          preview.alt = nextAlt;
+          preview.className = `kitchen__photo ${nextClass}`.trim();
+          window.gsap.to(preview, {
+            autoAlpha: 1,
+            duration: 0.22,
+            clearProps: 'visibility,opacity',
+          });
+        },
+      });
+      return;
+    }
 
     clearPreviewFadeTimer();
     preview.classList.add('kitchen__photo--fading');
@@ -140,6 +160,8 @@
       );
       setActive(nextActiveIndex);
     }
+
+    window.PortfolioMotion?.refreshScrollTrigger();
   }
 
   items.forEach((item, index) => {

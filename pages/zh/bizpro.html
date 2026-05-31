@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/projects/bizpro/image-bp-projectHeader-main.webp"
           alt="BizPro Official Website - 社團官方網站前後臺開發"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>CMS Management</p>
@@ -82,12 +86,12 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">專案背景</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">本專案是為 BizPro
                                                                                                               台大商學研究社進行的網站重設計，為我擔任幹部期間的個人專案。由於網站自
                                                                                                               2014
@@ -95,35 +99,35 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">視覺設計</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">符號：強調社群連結意象</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">BizPro
                                                                                                               是一個以「社群連結」作為主要優勢的社團，因此以相互連接的圓點作為成員相互連結的意象，並以此延伸出重疊圓環、點狀紋理...
                                                                                                               等其他樣式。</p>
         <p class="project-module__text">用色上以 BizPro logo
                                                                                                               所採用的紅色作為主色調，搭配灰色與白作為占比最大的色系做視覺的呈現。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/bizpro/image-bp-symbol.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/bizpro/image-bp-color.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">成果展示</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <div class="project-module__button">
           <a href="https://www.bizpro-taipei.com" target="_blank"><p>網站連結</p></a>
         </div>
@@ -135,31 +139,31 @@
           <li>我們如何能凸顯以人的互動為核心的形象？</li>
         </ol>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">前臺設計</h6>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/bizpro/image-bp-front-1.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/bizpro/image-bp-front-2.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/bizpro/image-bp-front-3.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/bizpro/image-bp-front-4.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">後臺設計</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">本網站每學期皆需要更新歷屆成員資料與心得內容，因此開發用於更新資料的後台以利幹部交接。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/bizpro/image-bp-back-1.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/bizpro/image-bp-back-2.webp" alt="" data-zoom-image />
         </div>
         </div>
@@ -179,6 +183,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

@@ -423,8 +423,6 @@ h6 {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 0.25rem;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
 }
 .section--main .container--content .block--introduction .block__header .block__title {
   color: #363a35;
@@ -433,13 +431,9 @@ h6 {
   font-weight: 500;
   letter-spacing: 0;
   line-height: 1;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
   width: 110%;
 }
 .section--main .container--content .block--introduction .block__description {
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
   font-family: "DM Sans", system-ui, sans-serif;
   color: #868684;
   font-weight: 400;
@@ -460,8 +454,6 @@ h6 {
   color: rgb(133.0426395939, 49.6324873096, 2.7573604061);
 }
 .section--main .container--content .block--introduction .block__annotation {
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
   color: #7a776d;
   font-weight: normal;
   line-height: 140%;
@@ -474,8 +466,6 @@ h6 {
   align-items: flex-start;
   flex-direction: row;
   gap: 2rem;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
   width: 100%;
   margin-top: 10rem;
 }
@@ -514,8 +504,6 @@ h6 {
   background-size: cover;
 }
 .section--main .container--content .media--image {
-  opacity: 0;
-  transition-duration: 2.5s;
   position: relative;
   height: 100vh;
   width: auto;
@@ -1527,6 +1515,23 @@ body.kitchen-lightbox-open {
 .animate-item.visible {
   opacity: 1;
   transform: none;
+}
+
+.motion-enabled [data-animate],
+.motion-enabled [data-animate-child] {
+  will-change: transform, opacity;
+}
+
+.motion-enabled [data-animate=project-line] {
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.motion-reduce [data-animate],
+.motion-reduce [data-animate-child] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 @keyframes bounce {

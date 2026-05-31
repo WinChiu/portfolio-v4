@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/projects/childcare/image-cc-projectHeader-main.webp"
           alt="台北市社會局公托登記與抽籤系統網站改造"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>Public Service</p>
@@ -79,31 +83,31 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">專案背景</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-background.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">公共托育主要服務對象為年齡滿 2 個月至 2
                                                                                                               足歲以下之嬰幼兒和設籍台北市的家長。符合資格的家長可上社會局公托網站，在閱讀相關規則後填寫登記表單，即可參與名額候補與開園抽籤。每年有大量的著急的家長們希望排隊申請公托服務以減緩帶小孩的壓力。</p>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-workflow.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">現況問題</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module project-module--icon-list-vertical" data-animate="project-module">
         <div class="project-module__item">
 
         <div class="project-module__item-content">
@@ -113,15 +117,15 @@
         </div>
         </div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-persona1.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">因應公共服務與公托服務特性，尚有以下三項設計挑戰</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <div class="project-module__callout">
           <p class="project-module__callout-title">使用者皆為新手</p>
           <p class="project-module__text">公托服務使用頻率極低（一年抽 1 - 2
@@ -138,33 +142,33 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">現況分析</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--eyebrow">
+        <div class="project-module project-module--eyebrow" data-animate="project-module">
         <h6 class="project-module__eyebrow">利害關係人圖</h6>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">聚焦在家長在選擇托育機構、申請及查詢資料階段遇到的問題</h6>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-stakeholder.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--eyebrow">
+        <div class="project-module project-module--eyebrow" data-animate="project-module">
         <h6 class="project-module__eyebrow">易用性評估與認知走查</h6>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">資訊雜亂、抽籤規範難以閱讀為最大問題</h6>
         </div>
-        <div class="project-module project-module--image-pair">
+        <div class="project-module project-module--image-pair" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-noewWeb1.webp" alt="" data-zoom-image />
         <img src="../../img/projects/childcare/image-cc-noewWeb2.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <div class="project-module__callout">
           <p class="project-module__callout-title">錯誤預防不足、缺乏一致性及缺少幫助</p>
           <p class="project-module__text">我們根據問題嚴重程度分為 1 到 4 分評分。而在 64
@@ -177,105 +181,105 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-interview.svg" alt="" />
         <h3 class="project-module__heading">我們邀請 6 位家長進行訪談，根據結果歸納出==3 類人物誌==</h3>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">人物誌與使用者變數</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">根據不同動機強度與資訊需求，可以將使用者分成 3 類</h6>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-personas.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-personaVariable.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
         <h3 class="project-module__heading">我們根據現況與使用者訪談結果，總結==三項系統無法回應用戶需求的問題==，並發展設計解方</h3>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">問題收斂</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-problem.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">設計解方</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-solution1.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-solution2.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-solution3.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
         <h3 class="project-module__heading">我們也發現在日常情境中，==家長使用手機進行服務申請的比例相當高==，因此決定優化
                                                                                                               RWD 介面</h3>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">額外發現</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">因為嬰幼兒照護需求與工作繁忙，即便是繁複的資訊查詢與申請，也經常使用手機操作</h6>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-rwd.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">概念測試</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">在質化測試回饋中，可發現最終設計有解決原先發現的問題</h6>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-feedback.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-sus.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">成果提案</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/childcare/image-cc-presentation.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">因在政府推行網站改革本就有一定難度，我們將所有解方拆分為以下三種解決方式，同時也引導社會局婦幼科承辦人、婦幼科科長、唐鳳政務委員進行原型的操作，各政府機要也十分滿意我們的設計：</p>
         <ol class="project-module__list">
           <li>最低成本解決方案：無需進行網站開發，僅針對資訊作重新整理。</li>
@@ -285,18 +289,18 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-yeah.svg" alt="" />
         <h3 class="project-module__heading">專案結束兩年後，承辦人有==聯繫我們索取當時設計的懶人包==，並以此為基礎公布了新的懶人包！</h3>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">專案心得</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <a href="https://winchiu.medium.com/%E5%AF%A6%E7%BF%92%E5%BF%83%E5%BE%97-%E6%88%91%E5%9C%A8%E5%94%90%E9%B3%B3%E8%BE%A6%E5%85%AC%E5%AE%A4%E5%AF%A6%E7%BF%92%E3%84%9D-%E5%85%AC%E5%85%B1%E6%95%B8%E4%BD%8D%E5%89%B5%E6%96%B0%E7%A9%BA%E9%96%93-pdis-x-ray-5-0-%E8%A6%8B%E7%BF%92%E8%A8%88%E7%95%AB-%E4%B8%8A-69c5ff8146a0" target="_blank">
           <p class="project-module__text">《 實習心得 》 我在唐鳳辦公室實習ㄝ！？公共數位創新空間 PDIS x
                                                                                                                 Ray 5.0 見習計畫（上）</p>
@@ -323,6 +327,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

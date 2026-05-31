@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/projects/rfid/image-rfid-projectHeader-main.png"
           alt="RFID Integration for a B2B PRC Medical Device Management System"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>B2B Medical SaaS</p>
@@ -82,18 +86,18 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section">
-        <div class="project-module project-module--quote">
+        <div class="project-module project-module--quote" data-animate="project-module">
         <p class="project-module__text warning">This project is under an NDA, so detailed information cannot be
                                                                                                               shared on public platforms.</p>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Project Background</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">KeepWell is a SaaS platform designed to streamline the
                                                                                                               decontamination and rental management of medical equipment,
                                                                                                               currently focusing on medical air mattresses. By combining QR code
@@ -111,17 +115,17 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-workflow-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-gray">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Problem Definition</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--feature-quote project-module--bg-quote">
+        <div class="project-module project-module--feature-quote project-module--bg-quote" data-animate="project-module">
         <h3 class="project-module__heading">QR codes on stacked mattresses are often hard or even impossible
                                                                                                               to access.</h3>
         <div class="project-module__callout-list">
@@ -137,12 +141,12 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-problem-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-factory.svg" alt="" />
         <h3 class="project-module__heading">To increase the efficiency and accuracy of asset tracking, == we
                                                                                                               planned to introduce RFID tracking technology == as an alternative
@@ -150,12 +154,12 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Goal Breakdown</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module project-module--icon-list-horizontal" data-animate="project-module">
         <div class="project-module__item">
         <img src="../../img/sketch-money.svg" alt="" />
         <div class="project-module__item-content">
@@ -186,32 +190,32 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Environment & Equipment Research</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Different contexts require multiple types of RFID devices</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">Through on-site research at service provider's facilities, we
                                                                                                               found that the logistics workflow required two types of RFID
                                                                                                               scanners. KeepWell needed to
                                                                                                               <span class="highlight"> support both scanning methods</span> to
                                                                                                               meet different usage scenarios and improve operational efficiency.</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-equipment-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Software Prototype</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">According to our research, service providers focus on two key
                                                                                                               tracking points in logistics,
                                                                                                               <span class="highlight">
@@ -232,61 +236,61 @@
                                                                                                               inconsistency, the system provides clear prompts and alternative
                                                                                                               actions to allow operations to continue seamlessly.</li>
         </ol>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-prototype1-en.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-prototype2-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Simulated Environment Design</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">We recreated the environments of service providers and hospitals
                                                                                                               based on the user journey map, building a simulated field and an
                                                                                                               interactive prototype to test design concepts.</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-testing1.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image-pair">
+        <div class="project-module project-module--image-pair" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-testing2.webp" alt="" data-zoom-image />
         <img src="../../img/projects/rfid/image-rfid-testing3.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Proposal Presentation and Outcome</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">To validate the concept, we demonstrated different RFID scanning
                                                                                                               methods and results using a simulated work environment. Through
                                                                                                               the proposal presentation, we outlined the software development
                                                                                                               roadmap and implementation plan. The client later confirmed the
                                                                                                               purchase agreement in the second half of 2025.</p>
         </div>
-        <div class="project-module project-module--image-pair">
+        <div class="project-module project-module--image-pair" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-presentation1.webp" alt="" data-zoom-image />
         <img src="../../img/projects/rfid/image-rfid-presentation2.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Self-reflection</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Usability isn't universal: design principles must adapt to user
                                                                                                               context</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">Our research revealed that both service providers and hospitals
                                                                                                               often
                                                                                                               <span class="highlight"
@@ -298,11 +302,11 @@
                                                                                                               based on general usability principles, ended up being
                                                                                                               unnecessarily complex.</p>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Highly coupled systems raise modification costs: modular
                                                                                                               flexibility is key to scalable solutions</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">In the original system design, modifying any module could cause
                                                                                                               the entire workflow to fail due to the tightly coupled data
                                                                                                               between modules. As a result, we had to put significant effort
@@ -333,6 +337,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

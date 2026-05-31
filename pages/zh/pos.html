@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/projects/pos/image-pos-projectHeader-main.webp"
           alt="POS TW/HK 金流串接正逆流程設計"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>E-commerce</p>
@@ -82,12 +86,12 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section project-page__section--narrow project-page__section--flush-top">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">專案背景</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">SHOPLINE 是一個整合線上線下銷售的電商平台，提供 POS
                                                                                                               系統幫助店家管理實體店面的支付流程。</p>
         <p class="project-module__text">在本專案進行時，SHOPLINE 的 POS
@@ -96,17 +100,17 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow project-page__section--workflow">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-workflow.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">問題定義</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--feature-quote project-module--bg-quote">
+        <div class="project-module project-module--feature-quote project-module--bg-quote" data-animate="project-module">
         <h3 class="project-module__heading">缺乏金流功能、定價過高導致自家電商方案無競爭力</h3>
         <div class="project-module__callout-list">
         <div class="project-module__callout">
@@ -121,19 +125,19 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--bridge">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
         <h3 class="project-module__heading">我針對 PRD
                                                                                                               交付文件中對於商業現況的描述，==定義本次專案在產品面與設計面的目標==，以聚焦設計解方。</h3>
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-yellow project-page__section--narrow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">目標拆解</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module project-module--icon-list-horizontal" data-animate="project-module">
         <div class="project-module__item">
         <img src="../../img/sketch-money.svg" alt="" />
         <div class="project-module__item-content">
@@ -159,7 +163,7 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--wide pos-section--analysis">
-        <div class="project-module project-module--media-aside">
+        <div class="project-module project-module--media-aside" data-animate="project-module">
         <div class="project-module__media">
         <img src="../../img/projects/pos/image-pos-complexFlow.webp" alt="" data-zoom-image />
         </div>
@@ -171,90 +175,90 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--bridge">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
         <h3 class="project-module__heading">雖然 PRD
                                                                                                               已經提供明確的設計解方，但我==重新釐清問題後提出更能對應到目標的解方==，並獲得採納。</h3>
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Solutions</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">明確提醒商家尚未進行刷卡機結帳</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">進行刷卡後，刷卡機並不會立即將款項撥入店家的帳戶中，需手動清機才能收到金流。因此在增加刷卡機結帳功能後，我們需要明確提醒商家尚未進行刷卡機結帳。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-cashFlow.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">原先預期商家會使用 POS
                                                                                                               中的「小結」頁面清點帳務後，一同進行清機。因此原需求希望在「小結」頁籤中提示清機操作，但我發現這不符合用戶操作習慣，因此進行了修改。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-sol1Origin.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
-        <div class="project-module project-module--quote">
+        <div class="project-module project-module--quote" data-animate="project-module">
         <p class="project-module__text">設計聚焦：在不增加資訊負擔的前提下，可以即時提醒店家有重要操作尚未完成。</p>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">作為店家收款的重要功能，我設計了一個獨立的「清機」頁籤，並使用紅點提示未完成的清機操作。進入頁面後，店家可快速查看每台刷卡機的狀態，並逐台完成清機。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-sol1New.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Solution 2</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">即時提示店家退款限制，減少錯誤操作</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">退款流程中，不同結帳方式與刷卡機機種有不同的退款限制（如僅能全額退或部分退）。若無清楚提示適用的退款方案，可能導致店家進行無謂的嘗試。因此，系統需在保留輸入靈活性的同時，防止錯誤操作，確保退款過程中的良好體驗。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-figmaFlow.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
-        <div class="project-module project-module--quote">
+        <div class="project-module project-module--quote" data-animate="project-module">
         <p class="project-module__text">設計聚焦：在不影響店家操作效率的情況下，提醒並制止店家進行錯誤的退款金額輸入</p>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">我在「選擇退款方式」和「退款方式列表」中添加可退款金額提示，並在報錯時再次顯示可輸入的金額，幫助店家完成退款流程。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-sol2New.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--learning">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">學習點</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">回到使用者情境思考解決方案的合理性</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">當接收到很精確的需求時，作為設計師依然該從商業、產品與設計三項目標盤點起，即便是在
                                                                                                               B2B
                                                                                                               功能導向的產品中，也要確保解方符合用戶情境與良好的體驗，避免產品本身因功能的堆疊，而逐漸失去易用性。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-figmaFile.webp" alt="" data-zoom-image />
         </div>
         </div>
@@ -274,6 +278,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

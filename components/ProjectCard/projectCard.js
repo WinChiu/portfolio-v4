@@ -52,20 +52,20 @@ class ProjectCard extends HTMLElement {
       : projectButton;
 
     this.innerHTML = `
-      <div class="container container--content ${hideClass}" data-type="${type}">
-        <figure class="media media--workCover">
+      <div class="container container--content ${hideClass}" data-type="${type}" data-animate="work-card">
+        <figure class="media media--workCover" data-animate-child="media">
           <img class="media__img" src="${imageUrl}" alt="${title}" />
         </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
+        <article class="block block--introduction" data-animate-child="copy">
+          <div class="block__header" data-animate-child="copy">
             <h1 class="block__number">${number}</h1>
             <div class="block__content">
               <h3 class="block__title">${title}</h3>
               <h4 class="block__tag">${tag}</h4>
             </div>
           </div>
-          <p class="block__description">${description}</p>
-          ${buttonContainer}
+          <p class="block__description" data-animate-child="copy">${description}</p>
+          <div data-animate-child="copy">${buttonContainer}</div>
         </article>
       </div>`;
   }

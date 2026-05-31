@@ -112,12 +112,12 @@
 
     return `
       <section class="section section--kitchen" id="kitchen">
-        <img class="kitchen__bg" src="./img/image-kitchenBg.webp" alt="" aria-hidden="true" />
+        <img class="kitchen__bg" src="./img/image-kitchenBg.webp" alt="" aria-hidden="true" data-parallax="kitchen-bg" />
         <div class="container container--content">
-          <article class="kitchen__intro">
+          <article class="kitchen__intro" data-animate="fade-up">
             <h1 class="kitchen__title">${kitchen.title}</h1>
             <p class="kitchen__description">${kitchen.description}</p>
-            <figure class="kitchen__preview">
+            <figure class="kitchen__preview" data-animate="fade-up">
               <div class="kitchen__photoStack">
                 <img
                   class="kitchen__photo ${firstItem.imageClass || ''}"
@@ -128,7 +128,7 @@
               </div>
             </figure>
           </article>
-          <div class="kitchen__panel">
+          <div class="kitchen__panel" data-animate="fade-up">
             <header class="kitchen__header">
               <p class="kitchen__headerItem">
                 ITEM
@@ -172,7 +172,7 @@
     if (!details || !details.length) return '';
 
     return `
-          <div class="block__heroDetails" id="annotation">
+          <div class="block__heroDetails" id="annotation" data-animate="hero-copy">
             ${details
               .map(
                 (item) => `
@@ -192,18 +192,18 @@
           <header class="block__header">
             ${
               content.hero.eyebrow
-                ? `<p class="block__eyebrow" id="hero-eyebrow">${content.hero.eyebrow}</p>`
+                ? `<p class="block__eyebrow" id="hero-eyebrow" data-animate="hero-copy">${content.hero.eyebrow}</p>`
                 : ''
             }
-            <h1 class="block__title" id="greet">${content.hero.title}</h1>
+            <h1 class="block__title" id="greet" data-animate="hero-copy">${content.hero.title}</h1>
           </header>
-          <h4 class="block__description${lang === 'zh' ? ' block__description--zh' : ''}" id="intro">
+          <h4 class="block__description${lang === 'zh' ? ' block__description--zh' : ''}" id="intro" data-animate="hero-copy">
             ${content.hero.description}
           </h4>
           ${renderHeroDetails(content.hero.details)}
           <div class="block__bgImage"></div>
         </article>
-        <figure class="media media--image">
+        <figure class="media media--image" data-animate="hero-media">
           <img src="./img/image-landingAvatar.webp" alt="" class="media__img--body" />
           <img
             src="./img/image-landingAvatarEyebrow-left.webp"
@@ -274,7 +274,7 @@
       </div>
     </main>
     <section class="section section--work" id="work">
-      <article class="block block--switcher">
+      <article class="block block--switcher" data-animate="fade-up">
         <a href="#work">
           <div class="block__design selected">
             <h4>${content.workTabs.design}</h4>
@@ -290,10 +290,10 @@
     </section>
     <section class="section section--about" id="about">
       <div class="container container--content">
-        <figure class="media media--avatar">
-          <img class="media__img" src="${resolveAssetPath(content.about.imageSrc)}" alt="${content.about.imageAlt}" />
+        <figure class="media media--avatar" data-animate="fade-up">
+          <img class="media__img" src="${resolveAssetPath(content.about.imageSrc)}" alt="${content.about.imageAlt}" data-parallax="about-avatar" />
         </figure>
-        <article class="block block--introduction">
+        <article class="block block--introduction" data-animate="fade-up">
           <h1 class="block__title">${content.about.title}</h1>
           ${renderAboutParagraphs(content.about.paragraphs)}
           <div class="block__jobs">

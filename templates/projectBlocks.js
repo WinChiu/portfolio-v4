@@ -22,6 +22,10 @@ function normalizeContentClass(className, fallback) {
   return classMap[className] || className || fallback;
 }
 
+function moduleAttributes(value = 'project-module') {
+  return ` data-animate="${value}"`;
+}
+
 function renderOrderedList(items, className = 'project-module__list') {
   return `<ol class="${normalizeContentClass(className, 'project-module__list')}">
 ${items.map((item) => `  <li>${item}</li>`).join('\n')}
@@ -54,7 +58,7 @@ function renderContentItem(item) {
 
 function renderPureText(module) {
   if (module.items) {
-    return `<div class="project-module project-module--text">
+    return `<div class="project-module project-module--text"${moduleAttributes()}>
 ${module.items.map((item) => renderContentItem(item)).join('\n')}
 </div>`;
   }
@@ -67,7 +71,7 @@ ${module.items.map((item) => renderContentItem(item)).join('\n')}
     ? renderOrderedList(module.orderedList)
     : '';
 
-  return `<div class="project-module project-module--text">
+  return `<div class="project-module project-module--text"${moduleAttributes()}>
 ${paragraphs}
 ${orderedList}
 </div>`;
@@ -77,7 +81,7 @@ function renderQuote(module) {
   const extraClasses = module.paragraphClass ? ` ${module.paragraphClass}` : '';
   const paragraphClass = ` class="project-module__text${extraClasses}"`;
 
-  return `<div class="project-module project-module--quote">
+  return `<div class="project-module project-module--quote"${moduleAttributes()}>
 <p${paragraphClass}>${module.html}</p>
 </div>`;
 }
@@ -90,7 +94,7 @@ function renderBgQuote(module) {
     ? ` style="${module.callOutListStyle}"`
     : '';
 
-  return `<div class="project-module project-module--feature-quote project-module--bg-quote">
+  return `<div class="project-module project-module--feature-quote project-module--bg-quote"${moduleAttributes()}>
 <${module.headingTag || 'h3'} class="project-module__heading"${headingStyle}>${module.headingHtml}</${module.headingTag || 'h3'}>
 <div class="project-module__callout-list"${callOutListStyle}>
 ${module.callOuts.map((item) => renderContentItem({ ...item, type: 'callOut' })).join('\n')}
@@ -121,7 +125,7 @@ ${paragraphs}
     })
     .join('\n');
 
-  return `<div class="project-module project-module--icon-list-vertical">
+  return `<div class="project-module project-module--icon-list-vertical"${moduleAttributes()}>
 ${items}
 </div>`;
 }
@@ -139,7 +143,7 @@ ${renderImage(item.image)}
     )
     .join('\n');
 
-  return `<div class="project-module project-module--icon-list-horizontal">
+  return `<div class="project-module project-module--icon-list-horizontal"${moduleAttributes()}>
 ${items}
 </div>`;
 }
@@ -164,7 +168,7 @@ ${orderedList}
     })
     .join('\n');
 
-  return `<div class="project-module project-module--media-content">
+  return `<div class="project-module project-module--media-content"${moduleAttributes()}>
 ${renderImage(module.image)}
 <div class="project-module__content">
 ${entries}
@@ -173,7 +177,7 @@ ${entries}
 }
 
 function renderBigQuote(module) {
-  return `<div class="project-module project-module--feature-quote">
+  return `<div class="project-module project-module--feature-quote"${moduleAttributes()}>
 ${module.icon ? `<img class="project-module__icon" src="${module.icon}" alt="" />` : ''}
 <h3 class="project-module__heading">${module.content}</h3>
 </div>`;
@@ -196,7 +200,7 @@ ${renderImage(module.image)}
     .map((paragraph) => `<p class="project-module__text">${paragraph}</p>`)
     .join('\n');
 
-  return `<div class="project-module project-module--media-aside${variantClass}${textOnlyClass}">
+  return `<div class="project-module project-module--media-aside${variantClass}${textOnlyClass}"${moduleAttributes()}>
 ${media}<div class="project-module__aside">
 <h3 class="project-module__heading">${module.title}</h3>
 ${paragraphs}
@@ -211,7 +215,7 @@ function renderProcessFlow(module) {
         ? `<p class="project-module__process-description">${step.description}</p>`
         : '';
 
-      return `<li class="project-module__process-step">
+      return `<li class="project-module__process-step" data-animate-child="process-step">
 <div class="project-module__process-content">
 <div class="project-module__process-heading">
 <span class="project-module__process-number">${step.number}</span>
@@ -223,7 +227,7 @@ ${description}
     })
     .join('\n');
 
-  return `<div class="project-module project-module--process-flow" aria-label="${module.label || ''}">
+  return `<div class="project-module project-module--process-flow" aria-label="${module.label || ''}"${moduleAttributes()}>
 <ol class="project-module__process-list">
 ${steps}
 </ol>
@@ -233,18 +237,18 @@ ${steps}
 function renderModule(module) {
   switch (module.type) {
     case 'bgTitle': {
-      const line = module.line === false ? '' : '\n<div class="project-module__line"></div>';
-      return `<div class="project-module project-module--section-title">
+      const line = module.line === false ? '' : '\n<div class="project-module__line" data-animate="project-line"></div>';
+      return `<div class="project-module project-module--section-title"${moduleAttributes()}>
 <h3 class="project-module__heading">${module.html || module.text}</h3>
 ${line}
 </div>`;
     }
     case 'mdTitle':
-      return `<div class="project-module project-module--eyebrow">
+      return `<div class="project-module project-module--eyebrow"${moduleAttributes()}>
 <h6 class="project-module__eyebrow">${module.html || module.text}</h6>
 </div>`;
     case 'pureTitle':
-      return `<div class="project-module project-module--subsection-title">
+      return `<div class="project-module project-module--subsection-title"${moduleAttributes()}>
 <h6 class="project-module__subheading">${module.html || module.text}</h6>
 </div>`;
     case 'pureText':
@@ -254,11 +258,11 @@ ${line}
     case 'bgQuote':
       return renderBgQuote(module);
     case 'singleImage':
-      return `<div class="project-module project-module--image">
+      return `<div class="project-module project-module--image"${moduleAttributes()}>
 ${renderImage(module.image)}
 </div>`;
     case 'doubleImage':
-      return `<div class="project-module project-module--image-pair">
+      return `<div class="project-module project-module--image-pair"${moduleAttributes()}>
 ${module.images.map((image) => renderImage(image)).join('\n')}
 </div>`;
     case 'bigQuote':

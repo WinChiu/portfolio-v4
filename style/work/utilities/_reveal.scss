@@ -16,3 +16,20 @@
   margin-top: 0;
 }
 
+.motion-enabled [data-animate],
+.motion-enabled [data-animate-child] {
+  will-change: transform, opacity;
+}
+
+.motion-enabled [data-animate='project-line'] {
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.motion-reduce [data-animate],
+.motion-reduce [data-animate-child] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+

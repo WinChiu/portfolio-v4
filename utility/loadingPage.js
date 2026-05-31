@@ -190,6 +190,9 @@
   }
 
   function removeLoader() {
+    window.__portfolioPageReady = true;
+    window.dispatchEvent(new CustomEvent('portfolio:page-ready'));
+
     if (!loader) return;
 
     if (loader.classList.contains('page-loader')) {

@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/projects/gongChi/image-gongChi-projectHeader-main.webp"
           alt="工尺 - 北管樂混音器操作展示網站"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>Animated</p>
@@ -82,27 +86,27 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">專案背景</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--image-pair">
+        <div class="project-module project-module--image-pair" data-animate="project-module">
         <img src="../../img/projects/gongChi/image-gongChi-demo1.webp" alt="" data-zoom-image />
         <img src="../../img/projects/gongChi/image-gongChi-demo2.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">此為台灣科技大學畢業生 - 設計系工業設計組王駿騰、
                                                                                                               陳錡淵的畢業製作作品之展示網站。該作品將台灣民俗文化之一：北管樂的音色、樂器等元素與西方音樂常見的混音器結合，創造出北管樂混音器「工尺」。</p>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">成果展示</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">因本網站專為觸控式螢幕做設計，且為保持使用者良好的體驗，僅以
                                                                                                               1366*768 做設計，以避操作操作區過小造成使用者操作上的不便。
                                                                                                               若以電腦操作，請以 chrome 開發者工具中模擬觸控模式進行操作。</p>
@@ -110,10 +114,10 @@
           <a href="https://ntust-music-project.onrender.com" target="_blank"><p>網站連結</p></a>
         </div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/gongChi/image-gongChi-demo3.gif" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/gongChi/image-gongChi-demo4.webp" alt="" data-zoom-image />
         </div>
         </div>
@@ -133,6 +137,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

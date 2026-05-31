@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/projects/rfid/image-rfid-projectHeader-main.png"
           alt="B2B PRC 醫療器材清消與租賃管理系統：RFID 技術整合"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>B2B Medical SaaS</p>
@@ -82,20 +86,20 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section">
-        <div class="project-module project-module--quote">
+        <div class="project-module project-module--quote" data-animate="project-module">
         <p class="project-module__text warning">本專案已簽署 NDA，無法於公開平台展示專案細節。</p>
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">專案背景</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-fistImage.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">KeepWell 是一個為 PRC 醫療器材所開發的清消與租賃流程管理 SaaS
                                                                                                               系統，搭配專為醫療器材所設計的 QRcode
                                                                                                               資產追蹤標籤，提供歐洲的醫療器材服務商進行場內器材庫存、清消、訂單、物流、客戶…
@@ -107,17 +111,17 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-workflow.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-gray">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Problem Definition</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--feature-quote project-module--bg-quote">
+        <div class="project-module project-module--feature-quote project-module--bg-quote" data-animate="project-module">
         <h3 class="project-module__heading">QRcode
                                                                                                               資產追蹤標籤使得使用者必須於物流作業過程中找出醫療氣墊床上的標籤並掃描，但相互堆疊的氣墊床讓使用者難以、甚至無法翻找。</h3>
         <div class="project-module__callout-list">
@@ -133,24 +137,24 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-problem.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--feature-quote">
+        <div class="project-module project-module--feature-quote" data-animate="project-module">
         <img class="project-module__icon" src="../../img/sketch-factory.svg" alt="" />
         <h3 class="project-module__heading">為了提升資產追蹤的效率與準確性與工業 4.0 的浪潮，我們計畫==加入
                                                                                                               RFID資產追蹤技術==，提供除 QRcode 掃描的另一個選項</h3>
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">目標拆解</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module project-module--icon-list-horizontal" data-animate="project-module">
         <div class="project-module__item">
         <img src="../../img/sketch-money.svg" alt="" />
         <div class="project-module__item-content">
@@ -177,29 +181,29 @@
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">環境與設備調查</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">情境多元需配備多種 RFID 設備</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">經過於客戶現場的場域調查，我們發現物流相關流程中，需選配二種 RFID
                                                                                                               掃描設備並使軟體兼容不同的掃描方式，以滿足服務商在不同場域的使用需求，提升作業效率。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-equipment.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">軟體功能原型</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">根據調查，服務商在物流階段資產追蹤最在乎的時間點為「氣墊床送達醫院」和「氣墊床被司機回收」（作為向醫院收取租賃費的依據），且「回收數量」為物流司機現場作業時最在意的資訊（確保補給醫院相同數量的乾淨氣墊床），產品序號、是否損壞、確切數量...
                                                                                                               等皆等到回廠卸貨後，才交給產品清消人員做複查。</p>
         <p class="project-module__text">因此，我採用以下兩個設計原則將 RFID 功能整合進物流模組：</p>
@@ -209,63 +213,63 @@
           <li>確保異常處理流程順利：遇到無法正常掃描的情況時，包含 RFID
                                                                                                               標籤損壞、產品狀態異常，提供明確提示與替代解法讓物流作業依然可以持續進行下去。</li>
         </ol>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-prototype1.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-prototype2.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">模擬場域設計</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">我們仿照服務商與醫院環境，依用戶旅程圖建構模擬場域，並製作可互動原型以測試設計概念。</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-testing1.webp" alt="" data-zoom-image />
         </div>
-        <div class="project-module project-module--image-pair">
+        <div class="project-module project-module--image-pair" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-testing2.webp" alt="" data-zoom-image />
         <img src="../../img/projects/rfid/image-rfid-testing3.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">提案展示與成果</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">我們向客戶展示不同 RFID
                                                                                                               設備的掃描方式與結果，利用模擬場域模擬作業人員的掃描方式，並搭配提案簡報說明軟體開發路徑與導入相關準備事宜。並成功於
                                                                                                               2025 年下半年確認簽約購買相關服務。</p>
         </div>
-        <div class="project-module project-module--image-pair">
+        <div class="project-module project-module--image-pair" data-animate="project-module">
         <img src="../../img/projects/rfid/image-rfid-presentation1.webp" alt="" data-zoom-image />
         <img src="../../img/projects/rfid/image-rfid-presentation2.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">個人反思</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">通用的易用性原則不一定適用於所有使用者：應根據不同的情境調整設計原則</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">在這次調查中發現，服務商和醫院為了提高作業效率，時常私下談妥並省略一部分我們原先認為重要的作業環節，例如出租商品序號複查、準確的回收時間、現場確認出租物無損壞...
                                                                                                               等等。導致我們在初始版本中，根據易用性原則來避免用戶錯誤操作和確保數據精確的設計，對使用者來說反而是多餘的資訊與功能。</p>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">系統過度耦合導致修改成本高：應確保模組間的設計彈性以因應模組化方案的商業模式</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">在系統過往的設計中，不同模組之間的資料是密不可分的，移除任一個模組都會造成資料無法運作。本次專案中，為符合客戶實體場域的需求，我們花了許多時間針對模組的拆解作許多調整，甚至花了不少心力改動其他模組的架構來允許模組拆分。</p>
         <p class="project-module__text">未來，在已知目標使用者群本來就有多種使用流程的情況下，在設計各模組之間的串接時應更注意模組化的可能，避免每次遇到作業流程不同的客戶就需要花費大量時間調整。</p>
         </div>
@@ -286,6 +290,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>

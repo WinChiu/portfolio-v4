@@ -13,6 +13,8 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <script src="../../utility/vendor/gsap/gsap.min.js"></script>
+    <script src="../../utility/vendor/gsap/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,14 +43,16 @@
         alt=""
         class="project-header__bg"
         aria-hidden="true"
+        data-parallax="project-header-bg"
       />
       <div class="project-header__inner">
         <img
           src="../../img/projects/pos/image-pos-projectHeader-main.webp"
           alt="POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design"
           class="project-header__image"
+          data-animate="project-header-media"
         />
-        <div class="project-header__content">
+        <div class="project-header__content" data-animate="project-header-copy">
         <div class="project-header__tags">
           <div class="project-header__tag">
             <p>E-commerce</p>
@@ -82,12 +86,12 @@
     <section class="project-page__content">
       <div class="project-page__content-inner">
         <div class="project-page__section project-page__section--narrow project-page__section--flush-top">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Project Background</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">SHOPLINE is an e-commerce platform that integrates online and
                                                                                                               offline sales, offering a POS system to help merchants manage
                                                                                                               payment processes in physical stores.</p>
@@ -100,17 +104,17 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow project-page__section--workflow">
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-workflow-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Problem Definition</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--feature-quote project-module--bg-quote">
+        <div class="project-module project-module--feature-quote project-module--bg-quote" data-animate="project-module">
         <h3 class="project-module__heading">Lack of Payment Integration and High Pricing Undermining
                                                                                                               SHOPLINE's Competitiveness</h3>
         <div class="project-module__callout-list">
@@ -126,12 +130,12 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--featured project-page__section--featured-yellow project-page__section--narrow">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Goal Breakdown</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module project-module--icon-list-horizontal" data-animate="project-module">
         <div class="project-module__item">
         <img src="../../img/sketch-money.svg" alt="" />
         <div class="project-module__item-content">
@@ -161,7 +165,7 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--wide pos-section--analysis">
-        <div class="project-module project-module--media-aside">
+        <div class="project-module project-module--media-aside" data-animate="project-module">
         <div class="project-module__media">
         <img src="../../img/projects/pos/image-pos-complexFlow-en.webp" alt="" data-zoom-image />
         </div>
@@ -172,46 +176,46 @@
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Solution</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Clearly Remind Merchants of Incomplete Card Terminal Settlement</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">After a card transaction, the funds are not immediately
                                                                                                               transferred to the merchant's account; a manual terminal
                                                                                                               settlement is required. Therefore, when adding the card terminal
                                                                                                               settlement feature, we need to clearly remind merchants to
                                                                                                               complete the settlement.</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-cashFlow-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
-        <div class="project-module project-module--quote">
+        <div class="project-module project-module--quote" data-animate="project-module">
         <p class="project-module__text">Design Focus: Ensure that important actions are promptly
                                                                                                               communicated to merchants without adding informational overload.</p>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">As a key feature for merchant payments, I designed a separate
                                                                                                               'Settlement' tab with a red dot notification for incomplete
                                                                                                               settlements. Upon entering the page, merchants can quickly check
                                                                                                               the status of each card terminal and complete the settlement one
                                                                                                               terminal at a time.</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-sol1New-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Real-Time Refund Restrictions to Reduce Operational Errors</h6>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">In the refund process, different payment methods and card terminal
                                                                                                               types have various refund restrictions (e.g., full refunds only or
                                                                                                               partial refunds). Without clear prompts for the applicable refund
@@ -220,36 +224,36 @@
                                                                                                               preventing incorrect actions to ensure a smooth customer
                                                                                                               experience during refunds.</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-figmaFlow.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
-        <div class="project-module project-module--quote">
+        <div class="project-module project-module--quote" data-animate="project-module">
         <p class="project-module__text">Design Focus: Remind and prevent merchants from entering incorrect
                                                                                                               refund amounts without affecting operational efficiency.</p>
         </div>
-        <div class="project-module project-module--text">
+        <div class="project-module project-module--text" data-animate="project-module">
         <p class="project-module__text">I added refund amount prompts in the 'Select Refund Method' and
                                                                                                               'Refund Method List' sections, and displayed the correct amount
                                                                                                               again in case of an error to assist merchants in completing the
                                                                                                               refund process.</p>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-sol2New-en.webp" alt="" data-zoom-image />
         </div>
         </div>
         <div class="project-page__section project-page__section--narrow pos-section--learning">
-        <div class="project-module project-module--section-title">
+        <div class="project-module project-module--section-title" data-animate="project-module">
         <h3 class="project-module__heading">Key Learnings</h3>
 
-        <div class="project-module__line"></div>
+        <div class="project-module__line" data-animate="project-line"></div>
         </div>
-        <div class="project-module project-module--subsection-title">
+        <div class="project-module project-module--subsection-title" data-animate="project-module">
         <h6 class="project-module__subheading">Reflect on the Rationality of the Solution from the User's
                                                                                                               Perspective</h6>
         </div>
-        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module project-module--icon-list-vertical" data-animate="project-module">
         <div class="project-module__item">
 
         <div class="project-module__item-content">
@@ -264,7 +268,7 @@
         </div>
         </div>
         </div>
-        <div class="project-module project-module--image">
+        <div class="project-module project-module--image" data-animate="project-module">
         <img src="../../img/projects/pos/image-pos-figmaFile.webp" alt="" data-zoom-image />
         </div>
         </div>
@@ -284,6 +288,8 @@
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/gsapSetup.js"></script>
+    <script src="../../utility/projectAnimations.js"></script>
     <script src="../../utility/loadingPage.js"></script>
   </body>
 </html>
