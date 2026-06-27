@@ -57,6 +57,10 @@ function getProjectHeaderImages(project) {
       bg: '../../img/projects/gongChi/image-gongChi-projectHeader-bg.webp',
       main: '../../img/projects/gongChi/image-gongChi-projectHeader-main.webp',
     },
+    keepwell: {
+      bg: '../../img/projects/keepwell/image-keepwell-wideCover.webp',
+      main: '../../img/projects/keepwell/image-keepwell-fistImage.webp',
+    },
     pos: {
       bg: '../../img/projects/pos/image-pos-projectHeader-bg.webp',
       main: '../../img/projects/pos/image-pos-projectHeader-main.webp',

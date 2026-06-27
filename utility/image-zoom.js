@@ -35,7 +35,6 @@ class imageZoom {
 
     // Handle event listeners
     this.image.removeEventListener("click", this.zoomImage);
-    this.image.addEventListener("click", this.resetImage);
     this.backdrop.addEventListener("click", this.resetImage);
     document.addEventListener("keyup", this.resetImage);
     window.addEventListener("scroll", this.resetImage);
@@ -44,11 +43,20 @@ class imageZoom {
     // Fade in backdrop
     this.backdrop.setAttribute("data-zoom-backdrop", "active");
 
-    // Set image style
-    this.image.setAttribute("data-zoom-image", "active");
-
-    // Set image transform
+    // Create a top-level clone so ancestor stacking contexts cannot place the
+    // zoomed image below the backdrop or fixed project navigation.
     this.imageBCR = this.image.getBoundingClientRect();
+    this.zoomedImage = this.image.cloneNode(true);
+    this.zoomedImage.removeAttribute("data-zoom-image");
+    this.zoomedImage.setAttribute("data-zoom-clone", "");
+    this.zoomedImage.setAttribute("aria-hidden", "true");
+    this.zoomedImage.style.top = `${this.imageBCR.top}px`;
+    this.zoomedImage.style.left = `${this.imageBCR.left}px`;
+    this.zoomedImage.style.width = `${this.imageBCR.width}px`;
+    this.zoomedImage.style.height = `${this.imageBCR.height}px`;
+    document.body.appendChild(this.zoomedImage);
+    this.zoomedImage.addEventListener("click", this.resetImage);
+
     var scale = Math.min(
       window.innerWidth / this.imageBCR.width,
       window.innerHeight / this.imageBCR.height
@@ -57,7 +65,9 @@ class imageZoom {
       (window.innerWidth - this.imageBCR.width) / 2 - this.imageBCR.left;
     var translateY =
       (window.innerHeight - this.imageBCR.height) / 2 - this.imageBCR.top;
-    this.image.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+    requestAnimationFrame(() => {
+      this.zoomedImage.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+    });
   }
 
   resetImage() {
@@ -66,28 +76,36 @@ class imageZoom {
     window.removeEventListener("scroll", this.resetImage);
     document.removeEventListener("keyup", this.resetImage);
     this.backdrop.removeEventListener("click", this.resetImage);
-    this.image.removeEventListener("click", this.resetImage);
-    this.image.addEventListener("click", this.zoomImage);
+    if (this.zoomedImage) {
+      this.zoomedImage.removeEventListener("click", this.resetImage);
+    }
 
     // Fade out backdrop
     this.backdrop.setAttribute("data-zoom-backdrop", "");
 
-    // Reset image style
-    this.image.addEventListener("transitionend", this.resetImageComplete);
-
-    // Reset image transform
-    this.image.style.transform = null;
+    // Animate the top-level clone back to the source image.
+    if (this.zoomedImage) {
+      this.zoomedImage.addEventListener(
+        "transitionend",
+        this.resetImageComplete,
+        { once: true }
+      );
+      this.zoomedImage.style.transform = "none";
+    } else {
+      this.resetImageComplete();
+    }
   }
 
   resetImageComplete() {
-    // Handle event listeners
-    this.image.removeEventListener("transitionend", this.resetImageComplete);
+    if (this.zoomedImage) {
+      this.zoomedImage.remove();
+      this.zoomedImage = null;
+    }
 
     // Declare zoom function to be not active
     this.backdrop.setAttribute("data-zoom-active", "false");
 
-    // Reset image style
-    this.image.setAttribute("data-zoom-image", "");
+    this.image.addEventListener("click", this.zoomImage);
   }
 }
 

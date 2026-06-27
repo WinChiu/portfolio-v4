@@ -19,6 +19,12 @@
 
   function renderProjects(projects) {
     return projects
+      .filter((project) => !project.hidden)
+      .sort(
+        (projectA, projectB) =>
+          (projectA.order ?? Number.MAX_SAFE_INTEGER) -
+          (projectB.order ?? Number.MAX_SAFE_INTEGER),
+      )
       .map((project) => {
         const attributes = [
           `number="${escapeAttribute(project.number)}"`,

@@ -52,3 +52,11 @@
   }
 }
 
+.project-page--keepwell {
+  .keepwell-section--problem {
+    .project-module__callout-list {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+}

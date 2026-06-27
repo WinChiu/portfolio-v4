@@ -2,6 +2,12 @@
 @use 'tokens' as *;
 @use 'base/mixins' as *;
 
+// Language switching is temporarily disabled site-wide.
+.block__translator,
+.nav__language {
+  display: none !important;
+}
+
 // ========================================
 // Project Cards
 // ========================================

@@ -32,3 +32,13 @@ Image Zoom JS v0.0.1 | MIT License | https://github.com/alecrios/image-zoom-js
 	z-index: 1000;
 	cursor: zoom-out;
 }
+
+[data-zoom-clone] {
+	position: fixed;
+	z-index: 1000;
+	margin: 0;
+	transform: none;
+	transition: transform 400ms ease;
+	cursor: zoom-out;
+	pointer-events: auto;
+}

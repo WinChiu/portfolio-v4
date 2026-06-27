@@ -70,7 +70,6 @@
     window.gsap.to(preview, {
       autoAlpha: 0,
       scale: 0.97,
-      rotation: -1,
       duration: 0.16,
       ease: 'power2.in',
       onComplete: () => {
@@ -80,11 +79,10 @@
 
         window.gsap.fromTo(
           preview,
-          { autoAlpha: 0, scale: 0.97, rotation: 1 },
+          { autoAlpha: 0, scale: 0.97 },
           {
             autoAlpha: 1,
             scale: 1,
-            rotation: 0,
             duration: 0.28,
             ease: 'power3.out',
             clearProps: 'transform,visibility,opacity',

@@ -28,12 +28,20 @@ ${items.map((item) => `  <li>${item}</li>`).join('\n')}
 </ol>`;
 }
 
+function renderUnorderedList(items, className = 'project-module__list') {
+  return `<ul class="${normalizeContentClass(className, 'project-module__list')}">
+${items.map((item) => `  <li>${item}</li>`).join('\n')}
+</ul>`;
+}
+
 function renderContentItem(item) {
   switch (item.type) {
     case 'paragraph':
       return `<p class="${normalizeContentClass(item.className, 'project-module__text')}">${item.html}</p>`;
     case 'orderedList':
       return renderOrderedList(item.items, item.className);
+    case 'unorderedList':
+      return renderUnorderedList(item.items, item.className);
     case 'button':
       return `<div class="${normalizeContentClass(item.className, 'project-module__button')}">
   <a href="${item.href}"${item.target ? ` target="${item.target}"` : ''}><p>${item.label}</p></a>
@@ -173,7 +181,9 @@ ${entries}
 }
 
 function renderBigQuote(module) {
-  return `<div class="project-module project-module--feature-quote">
+  const extraClass = module.className ? ` ${module.className}` : '';
+
+  return `<div class="project-module project-module--feature-quote${extraClass}">
 ${module.icon ? `<img class="project-module__icon" src="${module.icon}" alt="" />` : ''}
 <h3 class="project-module__heading">${module.content}</h3>
 </div>`;
@@ -230,6 +240,45 @@ ${steps}
 </div>`;
 }
 
+function renderCaptionedMediaGrid(module) {
+  const items = (module.items || [])
+    .map((item) => {
+      const media = item.image
+        ? renderImage(item.image)
+        : `<div class="project-module__media-placeholder">${item.placeholder || 'Media placeholder'}</div>`;
+
+      const caption = item.label ? `<figcaption>${item.label}</figcaption>\n` : '';
+
+      return `<figure class="project-module__captioned-media">
+${caption}
+${media}
+</figure>`;
+    })
+    .join('\n');
+
+  return `<div class="project-module project-module--captioned-media-grid" style="--media-grid-columns: ${module.columns || 2}">
+${items}
+</div>`;
+}
+
+function renderMethodList(module) {
+  const items = (module.items || [])
+    .map(
+      (item) => `<li class="project-module__method-item">
+<span class="project-module__method-icon" aria-hidden="true">${item.icon}</span>
+<div>
+<h6 class="project-module__method-title">${item.title}</h6>
+<p class="project-module__method-text">${item.content}</p>
+</div>
+</li>`,
+    )
+    .join('\n');
+
+  return `<ul class="project-module project-module--method-list">
+${items}
+</ul>`;
+}
+
 function renderModule(module) {
   switch (module.type) {
     case 'bgTitle': {
@@ -243,6 +292,8 @@ ${line}
       return `<div class="project-module project-module--eyebrow">
 <h6 class="project-module__eyebrow">${module.html || module.text}</h6>
 </div>`;
+    case 'mediaCaption':
+      return `<p class="project-module project-module__media-caption">${module.html || module.text}</p>`;
     case 'pureTitle':
       return `<div class="project-module project-module--subsection-title">
 <h6 class="project-module__subheading">${module.html || module.text}</h6>
@@ -267,6 +318,10 @@ ${module.images.map((image) => renderImage(image)).join('\n')}
       return renderMediaAside(module);
     case 'processFlow':
       return renderProcessFlow(module);
+    case 'captionedMediaGrid':
+      return renderCaptionedMediaGrid(module);
+    case 'methodList':
+      return renderMethodList(module);
     case 'verticalIconList':
       return renderVerticalIconList(module);
     case 'horizontalIconList':

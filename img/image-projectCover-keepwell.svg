@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">KeepWell project cover placeholder</title>
+  <desc id="desc">A warm neutral placeholder cover for the KeepWell asset tracking project.</desc>
+  <rect width="1200" height="800" fill="#f4eee8"/>
+  <circle cx="220" cy="170" r="260" fill="#dfc7b6" opacity=".55"/>
+  <circle cx="1070" cy="680" r="330" fill="#c7d8d0" opacity=".65"/>
+  <rect x="145" y="95" width="910" height="610" rx="38" fill="#fffdf9" stroke="#333" stroke-width="3"/>
+  <text x="210" y="320" fill="#333" font-family="Arial, sans-serif" font-size="34" font-weight="700">KEEPWELL</text>
+  <text x="210" y="382" fill="#333" font-family="Arial, sans-serif" font-size="58" font-weight="700">Medical Device</text>
+  <text x="210" y="448" fill="#333" font-family="Arial, sans-serif" font-size="58" font-weight="700">Asset Tracking</text>
+  <text x="210" y="530" fill="#a6542b" font-family="monospace" font-size="22">PROJECT IMAGE PLACEHOLDER</text>
+</svg>

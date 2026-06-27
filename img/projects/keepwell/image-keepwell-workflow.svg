@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 620" role="img" aria-labelledby="title desc">
+  <title id="title">Cleaning and packing workflow placeholder</title>
+  <desc id="desc">Four placeholder steps for the KeepWell cleaning and packing workflow.</desc>
+  <rect width="1400" height="620" rx="20" fill="#f4f1eb"/>
+  <text x="90" y="110" fill="#333" font-family="Arial, sans-serif" font-size="36" font-weight="700">4. Cleaning &amp; packing</text>
+  <path d="M245 330H1155" stroke="#a6542b" stroke-width="4" stroke-dasharray="12 12"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(245 330)"><circle r="72" fill="#fff" stroke="#333" stroke-width="3"/><text y="10" font-size="28" fill="#333">01</text><text y="130" font-size="22" fill="#333">Lorem ipsum</text></g>
+    <g transform="translate(550 330)"><circle r="72" fill="#fff" stroke="#333" stroke-width="3"/><text y="10" font-size="28" fill="#333">02</text><text y="130" font-size="22" fill="#333">Lorem ipsum</text></g>
+    <g transform="translate(855 330)"><circle r="72" fill="#fff" stroke="#333" stroke-width="3"/><text y="10" font-size="28" fill="#333">03</text><text y="130" font-size="22" fill="#333">Lorem ipsum</text></g>
+    <g transform="translate(1160 330)"><circle r="72" fill="#fff" stroke="#333" stroke-width="3"/><text y="10" font-size="28" fill="#333">04</text><text y="130" font-size="22" fill="#333">Lorem ipsum</text></g>
+  </g>
+  <text x="700" y="565" text-anchor="middle" fill="#a6542b" font-family="monospace" font-size="20">WORKFLOW IMAGE PLACEHOLDER — REPLACE WHEN AVAILABLE</text>
+</svg>

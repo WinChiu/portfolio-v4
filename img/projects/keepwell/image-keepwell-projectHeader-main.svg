@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 820" role="img" aria-labelledby="title desc">
+  <title id="title">Mobile interface placeholder</title>
+  <desc id="desc">Placeholder for a hand-held mobile asset tracking interface.</desc>
+  <g transform="rotate(-7 350 410)">
+    <rect x="135" y="30" width="430" height="760" rx="62" fill="#647969"/>
+    <rect x="156" y="54" width="388" height="711" rx="45" fill="#fafafa"/>
+    <rect x="272" y="70" width="156" height="25" rx="12" fill="#242824"/>
+    <text x="205" y="160" fill="#343a36" font-family="Arial, sans-serif" font-size="26" font-weight="700">Route A</text>
+    <rect x="205" y="198" width="290" height="66" rx="8" fill="#e4ebe7"/>
+    <rect x="205" y="288" width="290" height="15" rx="7" fill="#bccac2"/>
+    <rect x="205" y="330" width="245" height="15" rx="7" fill="#d5ddd8"/>
+    <rect x="205" y="372" width="270" height="15" rx="7" fill="#d5ddd8"/>
+    <rect x="205" y="445" width="290" height="70" rx="12" fill="#9fc9d3"/>
+    <text x="273" y="490" fill="#27332f" font-family="Arial, sans-serif" font-size="20">Continue</text>
+    <text x="224" y="665" fill="#a6542b" font-family="monospace" font-size="17">IMAGE PLACEHOLDER</text>
+  </g>
+</svg>

@@ -9,5 +9,8 @@
     "check:references": "node scripts/check-local-references.js",
     "scss": "sass --no-source-map style/style.scss style/style.css && sass --no-source-map style/workStyle.scss style/workStyle.css",
     "scss:watch": "sass --no-source-map --watch style/style.scss:style/style.css style/workStyle.scss:style/workStyle.css"
+  },
+  "dependencies": {
+    "sass": "^1.101.0"
   }
 }
