@@ -6,6 +6,7 @@ h5 .highlight,
 h6 .highlight,
 p .highlight {
   color: #c14804;
+  font-family: inherit;
   font-weight: bold;
 }
 

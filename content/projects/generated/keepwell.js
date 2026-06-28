@@ -424,13 +424,6 @@ const project = {
         modules: [
           { type: 'bgTitle', text: '專案背景', line: false },
           {
-            type: 'singleImage',
-            image: {
-              src: '../../img/projects/keepwell/image-keepwell-fistImage.webp',
-              alt: 'Wellell 工作人員處理醫療氣墊床元件',
-            },
-          },
-          {
             type: 'pureText',
             paragraphs: [
               'KeepWell 是一套協助醫療設備進行去污與租賃管理的 SaaS 平台，初期聚焦於醫療氣墊床。系統透過設備上的條碼資產標籤，協助歐洲租賃服務商管理現場庫存、消毒、訂單、物流與客戶等完整流程。',
