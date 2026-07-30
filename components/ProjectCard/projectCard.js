@@ -17,7 +17,7 @@ class ProjectCard extends HTMLElement {
     const viewProjectText = lang === 'zh' ? '查看專案' : 'View Project';
     const viewSiteText = lang === 'zh' ? '查看網站' : 'View Site';
     const hideClass = type === 'code' ? 'workHide' : '';
-    const buttonClass = `block__button block__button--${
+    const buttonClass = `ui-button ui-button--primary block__button block__button--${
       type === 'code' ? 'code' : 'design'
     }`;
 
@@ -35,7 +35,7 @@ class ProjectCard extends HTMLElement {
       ? `
       <a
         href="${siteUrl}"
-        class="block__button--viewSite"
+        class="ui-button ui-button--secondary block__button--viewSite"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -52,7 +52,7 @@ class ProjectCard extends HTMLElement {
       : projectButton;
 
     this.innerHTML = `
-      <div class="container container--content ${hideClass}" data-type="${type}">
+      <div class="ui-card ui-card--project container container--content ${hideClass}" data-type="${type}">
         <figure class="media media--workCover">
           <img class="media__img" src="${imageUrl}" alt="${title}" />
         </figure>
@@ -61,7 +61,7 @@ class ProjectCard extends HTMLElement {
             <h1 class="block__number">${number}</h1>
             <div class="block__content">
               <h3 class="block__title">${title}</h3>
-              <h4 class="block__tag">${tag}</h4>
+              <h4 class="ui-tag ui-tag--text block__tag">${tag}</h4>
             </div>
           </div>
           <p class="block__description">${description}</p>

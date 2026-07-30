@@ -1,21 +1,23 @@
+@import url('../../../../style/tokens.css');
+
 .module__bgQuote {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 .module__bgQuote h3 {
-  padding: 2rem 0rem;
+  padding: var(--space-3xl) var(--space-0);
 }
 .module__bgQuote img {
   width: 12.5rem;
 }
 .module__bgQuote .module__callOutList {
-  padding-left: 0.5rem;
+  padding-left: var(--space-xs);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-md);
 }/*# sourceMappingURL=ProjectContentBigQuote.css.map */

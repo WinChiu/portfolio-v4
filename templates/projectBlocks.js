@@ -8,8 +8,9 @@ function indent(text, spaces = 8) {
 
 function renderImage(image) {
   const zoomAttribute = image.zoom === false ? '' : ' data-zoom-image';
+  const classAttribute = image.zoom === false ? '' : ' class="ui-zoomable-media"';
   const styleAttribute = image.style ? ` style="${image.style}"` : '';
-  return `<img src="${image.src}" alt="${image.alt || ''}"${zoomAttribute}${styleAttribute} />`;
+  return `<img src="${image.src}" alt="${image.alt || ''}"${classAttribute}${zoomAttribute}${styleAttribute} />`;
 }
 
 function normalizeContentClass(className, fallback) {
@@ -44,15 +45,15 @@ function renderContentItem(item) {
       return renderUnorderedList(item.items, item.className);
     case 'button':
       return `<div class="${normalizeContentClass(item.className, 'project-module__button')}">
-  <a href="${item.href}"${item.target ? ` target="${item.target}"` : ''}><p>${item.label}</p></a>
+  <a class="ui-button ui-button--primary" href="${item.href}"${item.target ? ` target="${item.target}"` : ''}><p>${item.label}</p></a>
 </div>`;
     case 'callOut':
-      return `<div class="project-module__callout">
+      return `<div class="ui-callout project-module__callout">
   <p class="project-module__callout-title">${item.title}</p>
   <p class="project-module__text">${item.text}</p>
 </div>`;
     case 'linkParagraph':
-      return `<a href="${item.href}"${item.target ? ` target="${item.target}"` : ''}>
+      return `<a class="ui-link" href="${item.href}"${item.target ? ` target="${item.target}"` : ''}>
   <p class="${normalizeContentClass(item.className, 'project-module__text')}">${item.html}</p>
 </a>`;
     default:
@@ -85,7 +86,7 @@ function renderQuote(module) {
   const extraClasses = module.paragraphClass ? ` ${module.paragraphClass}` : '';
   const paragraphClass = ` class="project-module__text${extraClasses}"`;
 
-  return `<div class="project-module project-module--quote">
+  return `<div class="ui-quote project-module project-module--quote">
 <p${paragraphClass}>${module.html}</p>
 </div>`;
 }
@@ -98,7 +99,7 @@ function renderBgQuote(module) {
     ? ` style="${module.callOutListStyle}"`
     : '';
 
-  return `<div class="project-module project-module--feature-quote project-module--bg-quote">
+  return `<div class="ui-quote project-module project-module--feature-quote project-module--bg-quote">
 <${module.headingTag || 'h3'} class="project-module__heading"${headingStyle}>${module.headingHtml}</${module.headingTag || 'h3'}>
 <div class="project-module__callout-list"${callOutListStyle}>
 ${module.callOuts.map((item) => renderContentItem({ ...item, type: 'callOut' })).join('\n')}
@@ -183,7 +184,7 @@ ${entries}
 function renderBigQuote(module) {
   const extraClass = module.className ? ` ${module.className}` : '';
 
-  return `<div class="project-module project-module--feature-quote${extraClass}">
+  return `<div class="ui-quote project-module project-module--feature-quote${extraClass}">
 ${module.icon ? `<img class="project-module__icon" src="${module.icon}" alt="" />` : ''}
 <h3 class="project-module__heading">${module.content}</h3>
 </div>`;

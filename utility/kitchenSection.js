@@ -29,6 +29,7 @@
   );
   let currentPage = 0;
   let hoverTimer = null;
+  let previouslyFocusedElement = null;
   const hoverPreviewDelay = 90;
   const hasGsap = typeof window.gsap !== 'undefined';
   const totalPages =
@@ -69,7 +70,6 @@
     window.gsap.killTweensOf(preview);
     window.gsap.to(preview, {
       autoAlpha: 0,
-      scale: 0.97,
       duration: 0.16,
       ease: 'power2.in',
       onComplete: () => {
@@ -79,13 +79,12 @@
 
         window.gsap.fromTo(
           preview,
-          { autoAlpha: 0, scale: 0.97 },
+          { autoAlpha: 0 },
           {
             autoAlpha: 1,
-            scale: 1,
             duration: 0.28,
             ease: 'power3.out',
-            clearProps: 'transform,visibility,opacity',
+            clearProps: 'visibility,opacity',
           },
         );
       },
@@ -175,11 +174,13 @@
   function openLightbox(item) {
     if (!lightbox || !lightboxImage) return;
 
+    previouslyFocusedElement = document.activeElement;
     lightboxImage.src = item.dataset.kitchenImageSrc;
     lightboxImage.alt = item.dataset.kitchenImageAlt;
     lightbox.hidden = false;
     document.body.classList.add('kitchen-lightbox-open');
     animateLightboxIn();
+    lightbox.querySelector('[role="dialog"]')?.focus();
   }
 
   function closeLightbox() {
@@ -189,6 +190,8 @@
       lightbox.hidden = true;
       document.body.classList.remove('kitchen-lightbox-open');
       resetLightboxStyles();
+      previouslyFocusedElement?.focus();
+      previouslyFocusedElement = null;
     });
   }
 
@@ -200,6 +203,7 @@
       const isActive = itemIndex === activeIndex;
       item.classList.toggle('kitchen__item--active', isActive);
       item.setAttribute('aria-pressed', String(isActive));
+      item.classList.toggle('is-active', isActive);
     });
 
     updatePreview(items[activeIndex]);
@@ -221,9 +225,13 @@
 
     previousButton.classList.toggle('kitchen__control--disabled', isFirstPage);
     previousButton.setAttribute('aria-disabled', String(isFirstPage));
+    previousButton.classList.toggle('is-disabled', isFirstPage);
+    previousButton.disabled = isFirstPage;
     nextButton.classList.toggle('kitchen__control--disabled', isLastPage);
     nextButton.setAttribute('aria-disabled', String(isLastPage));
 
+    nextButton.classList.toggle('is-disabled', isLastPage);
+    nextButton.disabled = isLastPage;
     const firstVisibleItem = getVisibleItems()[0];
 
     if (firstVisibleItem) {

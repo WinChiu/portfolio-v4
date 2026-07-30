@@ -37,6 +37,10 @@
       designButton.classList.toggle('selected', isDesign);
       codingButton.classList.toggle('selected', !isDesign);
 
+      designButton.classList.toggle('is-selected', isDesign);
+      codingButton.classList.toggle('is-selected', !isDesign);
+      designButton.setAttribute('aria-pressed', String(isDesign));
+      codingButton.setAttribute('aria-pressed', String(!isDesign));
       if (!hasGsap) {
         setCardsVisibility(currentBlocks, false);
         setCardsVisibility(nextBlocks, true);

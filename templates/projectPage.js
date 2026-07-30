@@ -20,12 +20,12 @@ function renderNavigation(language) {
   return `<nav class="project-nav" id="navbar">
       <div class="project-nav__group">
         <h6 class="project-nav__item">
-          <a href="${backLink}">Back</a>
+          <a class="ui-link ui-link--nav" href="${backLink}">Back</a>
         </h6>
       </div>
       <div class="project-nav__group">
         <h6 class="project-nav__item">
-          <a href="#top">Top</a>
+          <a class="ui-link ui-link--nav" href="#top">Top</a>
         </h6>
       </div>
     </nav>`;
@@ -90,7 +90,7 @@ function renderHeader(project, header) {
     .map((tag) => tag.trim())
     .filter(Boolean)
     .map(
-      (tag) => `          <div class="project-header__tag">
+      (tag) => `          <div class="ui-tag project-header__tag">
             <p>${tag}</p>
           </div>`,
     )
@@ -119,21 +119,21 @@ ${tags}
         <div class="project-header__content">
 ${tagsBlock}          <h3 class="project-header__title">${header.title}</h3>
           <div class="project-header__metadata">
-            <div class="project-header__meta-item">
-              <p class="project-header__meta-label">Duration</p>
-              <p class="project-header__meta-value">${header.duration}</p>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Duration</p>
+              <p class="ui-metadata-item__value project-header__meta-value">${header.duration}</p>
             </div>
-            <div class="project-header__meta-item">
-              <p class="project-header__meta-label">Role</p>
-              <p class="project-header__meta-value">${header.role}</p>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Role</p>
+              <p class="ui-metadata-item__value project-header__meta-value">${header.role}</p>
             </div>
-            <div class="project-header__meta-item">
-              <p class="project-header__meta-label">Responsibility</p>
-              <p class="project-header__meta-value">${header.responsibility}</p>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Responsibility</p>
+              <p class="ui-metadata-item__value project-header__meta-value">${header.responsibility}</p>
             </div>
-            <div class="project-header__meta-item">
-              <p class="project-header__meta-label">Company</p>
-              <p class="project-header__meta-value">${header.company}</p>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Company</p>
+              <p class="ui-metadata-item__value project-header__meta-value">${header.company}</p>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ function renderProjectPage(project, lang) {
   </head>
   <body class="project-page project-page--${project.slug}">
     <!-- Generated from project content data -->
-    <div class="page-loader">
+    <div class="ui-loader page-loader">
       <dotlottie-wc
         src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
         autoplay

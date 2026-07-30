@@ -194,6 +194,7 @@
 
     if (!loader) return;
 
+    loader.classList.add('is-hidden');
     if (loader.classList.contains('page-loader')) {
       loader.classList.add('page-loader--hidden');
     } else {

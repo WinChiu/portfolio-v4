@@ -7,14 +7,14 @@
 
 .project-nav {
   position: fixed;
-  z-index: 850;
+  z-index: var(--z-zoom-clone);
   left: 0;
   top: 0;
   height: 100dvh;
-  padding: 2.5rem 2.5rem;
+  padding: var(--space-4xl) var(--space-4xl);
   background-color: $color-bgWhite;
   border-right: $color-black solid 0.125rem;
-  @include flex(column, space-between, flex-start, 0rem);
+  @include flex(column, space-between, flex-start, var(--space-0));
 
   &:hover {
     .project-nav__toc {
@@ -23,19 +23,19 @@
   }
 
   &__group {
-    @include flex(column, center, center, 1rem);
+    @include flex(column, center, center, var(--space-md));
     width: 2.5rem;
   }
 
   &__toc {
-    @include flex(column, center, flex-start, 1rem);
+    @include flex(column, center, flex-start, var(--space-md));
     max-width: 1rem;
-    margin-left: 1rem;
-    transition: max-width 0.25s;
+    margin-left: var(--space-md);
+    transition: max-width var(--motion-duration-standard);
     overflow: hidden;
 
     .project-toc {
-      @include flex(row, flex-start, center, 1rem);
+      @include flex(row, flex-start, center, var(--space-md));
       text-decoration: none;
 
       &:hover {
@@ -56,7 +56,7 @@
   .project-toc__dot {
     min-width: 0.5rem;
     min-height: 0.5rem;
-    border-radius: 0.25rem;
+    border-radius: var(--radius-sm);
     background-color: $color-gray;
   }
 
@@ -73,17 +73,17 @@
 
     .project-toc__label {
       color: $color-red;
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
     }
   }
 
   @media (max-width: $bp-mobile-wide) {
-    padding: 2.5rem 1rem;
+    padding: var(--space-4xl) var(--space-md);
   }
 
   @media (max-width: $bp-mobile) {
-    @include flex(row, space-between, center, 0rem);
-    padding: 1rem;
+    @include flex(row, space-between, center, var(--space-0));
+    padding: var(--space-md);
     height: 3.5rem;
     width: 100vw;
     top: 0;
@@ -92,11 +92,11 @@
     border-bottom: $color-black solid 0.125rem;
 
     .project-nav__group {
-      @include flex(row, center, center, 1rem);
+      @include flex(row, center, center, var(--space-md));
     }
 
     .project-nav__item {
-      margin-bottom: 0;
+      margin-bottom: var(--space-0);
     }
 
     .project-nav__toc {

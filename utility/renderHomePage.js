@@ -72,14 +72,14 @@
       const src = isFilled
         ? './img/icon-starFilled.svg'
         : './img/icon-star.svg';
-      return `<img class="kitchen__star" src="${src}" alt="" aria-hidden="true" />`;
+      return `<img class="ui-rating__icon kitchen__star" src="${src}" alt="" aria-hidden="true" />`;
     }).join('');
   }
 
   function renderKitchenItems(items, pageSize) {
     return items
       .map((item, index) => {
-        const activeClass = index === 0 ? ' kitchen__item--active' : '';
+        const activeClass = index === 0 ? ' kitchen__item--active is-active' : '';
         const pressed = index === 0 ? 'true' : 'false';
         const pageIndex = Math.floor(index / pageSize);
         const hiddenClass = pageIndex === 0 ? '' : ' kitchen__row--hidden';
@@ -87,26 +87,24 @@
 
         return `
           <li class="kitchen__row${hiddenClass}" data-kitchen-page="${pageIndex}" aria-hidden="${ariaHidden}">
-            <div
-              class="kitchen__item${activeClass}"
+            <button type="button"
+              class="ui-interactive-item kitchen__item${activeClass}"
               data-kitchen-index="${index}"
               data-kitchen-page="${pageIndex}"
               data-kitchen-image-src="${escapeAttribute(resolveAssetPath(item.imageSrc))}"
               data-kitchen-image-alt="${escapeAttribute(item.imageAlt)}"
               data-kitchen-image-class="${escapeAttribute(item.imageClass || '')}"
-              role="button"
-              tabindex="0"
               aria-pressed="${pressed}"
             >
               <span class="kitchen__topRow">
                 <span class="kitchen__nameZh">${item.nameZh}</span>
-                <span class="kitchen__effort" aria-label="Effort level ${item.effort} out of 3">
+                <span class="ui-rating kitchen__effort" aria-label="Effort level ${item.effort} out of 3">
                   ${renderKitchenStars(item.effort)}
                 </span>
               </span>
               <span class="kitchen__nameEn">${item.nameEn}</span>
               <span class="kitchen__note">${item.note}</span>
-            </div>
+            </button>
           </li>`;
       })
       .join('\n');
@@ -147,18 +145,18 @@
               ${renderKitchenItems(kitchen.items, pageSize)}
             </ol>
             <div class="kitchen__controls">
-              <button type="button" class="kitchen__control kitchen__control--prev" data-kitchen-prev aria-label="Show previous dish">
+              <button type="button" class="ui-icon-button kitchen__control kitchen__control--prev" data-kitchen-prev aria-label="Show previous dish">
                 <img class="kitchen__controlIcon" src="./img/icon-leftArrow.svg" alt="" aria-hidden="true" />
               </button>
-              <button type="button" class="kitchen__control kitchen__control--next" data-kitchen-next aria-label="Show next dish">
+              <button type="button" class="ui-icon-button kitchen__control kitchen__control--next" data-kitchen-next aria-label="Show next dish">
                 <img class="kitchen__controlIcon" src="./img/icon-rightArrow.svg" alt="" aria-hidden="true" />
               </button>
             </div>
           </div>
         </div>
-        <div class="kitchen__lightbox" data-kitchen-lightbox hidden>
-          <div class="kitchen__lightboxBackdrop" data-kitchen-lightbox-close></div>
-          <div class="kitchen__lightboxDialog" role="dialog" aria-modal="true" aria-label="${kitchen.previewLabel}">
+        <div class="ui-modal kitchen__lightbox" data-kitchen-lightbox hidden>
+          <div class="ui-modal__backdrop kitchen__lightboxBackdrop" data-kitchen-lightbox-close></div>
+          <div class="ui-modal__dialog kitchen__lightboxDialog" role="dialog" aria-modal="true" aria-label="${kitchen.previewLabel}" tabindex="-1">
             <img class="kitchen__lightboxImage" src="${resolveAssetPath(firstItem.imageSrc)}" alt="${firstItem.imageAlt}" data-kitchen-lightbox-image />
           </div>
         </div>
@@ -169,7 +167,7 @@
     return items
       .map(
         (item) =>
-          `<h6 class="block__navItem"><a href="${item.href}">${item.label}</a></h6>`,
+          `<h6 class="block__navItem"><a class="ui-link ui-link--nav" href="${item.href}">${item.label}</a></h6>`,
       )
       .join('\n');
   }
@@ -277,22 +275,18 @@
           />
         </figure>
         <div class="block block__translator">
-          <a href="${content.translatorHref}"><p>${content.translatorLabel}</p></a>
+          <a class="ui-link ui-link--nav" href="${content.translatorHref}"><p>${content.translatorLabel}</p></a>
         </div>
       </div>
     </main>
     <section class="section section--work" id="work">
-      <article class="block block--switcher">
-        <a href="#work">
-          <div class="block__design selected">
-            <h4>${content.workTabs.design}</h4>
-          </div>
-        </a>
-        <a href="#work">
-          <div class="block__coding">
-            <h4>${content.workTabs.code}</h4>
-          </div>
-        </a>
+      <article class="ui-segmented-control block block--switcher" aria-label="Project type">
+        <button type="button" class="ui-segmented-control__item block__design selected is-selected" aria-pressed="true">
+          <h4>${content.workTabs.design}</h4>
+        </button>
+        <button type="button" class="ui-segmented-control__item block__coding" aria-pressed="false">
+          <h4>${content.workTabs.code}</h4>
+        </button>
       </article>
       ${renderProjects(content.projects)}
     </section>
@@ -317,12 +311,15 @@
       </div>
       <div class="nav__actions">
         <figure class="media media--socialList">
-          <a href="https://www.linkedin.com/in/wei-chen-win-chiu" target="_blank">
+          <a class="ui-link" href="https://www.linkedin.com/in/wei-chen-win-chiu" target="_blank" rel="noopener noreferrer">
             <img class="media__img" src="./img/icon-linkedin.svg" alt="" />
           </a>
         </figure>
-        <a class="nav__language" href="${content.translatorHref}">${content.navLanguageLabel || content.translatorLabel}</a>
+        <a class="ui-link ui-link--nav nav__language" href="${content.translatorHref}">${content.navLanguageLabel || content.translatorLabel}</a>
       </div>
     </nav>
   `;
+
+  root.querySelectorAll('.block__descriptionLink').forEach((link) =>
+    link.classList.add('ui-link'));
 })();

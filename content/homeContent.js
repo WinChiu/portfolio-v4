@@ -12,7 +12,7 @@ window.__HOME_PAGE_CONTENT__ = {
       eyebrow: "Hi! I'm Win🏅, and I'm a",
       title: 'Product Designer',
       description:
-        'Specialized in <span class="highlight">B2B tool design</span>, <span class="highlight">design systems</span> and <a class="highlight block__descriptionLink" href="#kitchen">cooking</a>, with 2+ years of experience in the <span class="highlight">healthcare</span> and <span class="highlight">e-commerce</span> industries.',
+        'Specialized in <span class="highlight">B2B tool design</span>, <span class="highlight">design systems</span> and <a class="ui-link highlight block__descriptionLink" href="#kitchen">cooking</a>, with 2+ years of experience in the <span class="highlight">healthcare</span> and <span class="highlight">e-commerce</span> industries.',
       details: [
         {
           title: 'Stockholm',

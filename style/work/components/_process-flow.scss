@@ -3,21 +3,21 @@
 .project-module {
   &--process-flow {
     width: 100%;
-    padding-block: 0.5rem;
+    padding-block: var(--space-xs);
     container-type: inline-size;
   }
 
   &__process-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 3rem 2rem;
+    gap: var(--space-5xl) var(--space-3xl);
     width: 100%;
-    padding: 0;
+    padding: var(--space-0);
     list-style: none;
   }
 
   &__process-step {
-    --process-accent: #c14804;
+    --process-accent: var(--color-link);
     --process-number-size: 3rem;
     --process-heading-gap: 0.75rem;
     min-width: 0;
@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: var(--space-sm);
     min-width: 0;
   }
 
@@ -44,10 +44,10 @@
   &__process-title {
     min-width: 0;
     max-width: min(100%, 24rem);
-    margin: 0;
+    margin: var(--space-0);
     font-family: $font-sansSerif;
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: var(--font-size-title-md);
+    font-weight: var(--font-weight-bold);
     line-height: 1.15;
     letter-spacing: 0;
     color: $color-black;
@@ -60,21 +60,21 @@
     place-items: center;
     width: var(--process-number-size);
     height: var(--process-number-size);
-    border-radius: 50%;
+    border-radius: var(--radius-round);
     background-color: var(--process-accent);
     color: $color-textWhite;
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-bold);
     line-height: 1;
     letter-spacing: 0;
   }
 
   &__process-description {
     max-width: 24rem;
-    margin: 0 0 0 calc(var(--process-number-size) + var(--process-heading-gap));
+    margin: var(--space-0) var(--space-0) var(--space-0) calc(var(--process-number-size) + var(--process-heading-gap));
     color: $color-darkGold;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
     line-height: 1.45;
     letter-spacing: 0;
     text-align: left;
@@ -85,7 +85,7 @@
   .project-module {
     &__process-list {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
+      gap: var(--space-4xl);
     }
 
     &__process-description {
@@ -98,16 +98,16 @@
   .project-module {
     &__process-list {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
+      gap: var(--space-4xl);
     }
 
     &__process-title {
-      font-size: 1.5rem;
+      font-size: var(--font-size-title-sm);
     }
 
     &__process-description {
       max-width: 34rem;
-      font-size: 1rem;
+      font-size: var(--font-size-body);
       line-height: 1.45;
     }
   }
@@ -116,12 +116,12 @@
 @media (max-width: $bp-mobile-wide) {
   .project-module {
     &__process-list {
-      gap: 1.75rem;
+      gap: var(--space-2xl);
     }
 
     &__process-step {
       align-items: flex-start;
-      gap: 0.75rem;
+      gap: var(--space-sm);
       text-align: left;
       --process-number-size: 2.5rem;
     }
@@ -131,19 +131,19 @@
     }
 
     &__process-number {
-      font-size: 1rem;
+      font-size: var(--font-size-body);
     }
 
     &__process-title {
       max-width: none;
-      font-size: 1.25rem;
+      font-size: var(--font-size-label);
       line-height: 1.2;
       text-align: left;
     }
 
     &__process-description {
       max-width: none;
-      font-size: 1rem;
+      font-size: var(--font-size-body);
       line-height: 1.45;
       text-align: left;
     }
@@ -157,15 +157,15 @@
     }
 
     &__process-number {
-      font-size: 0.9rem;
+      font-size: var(--font-size-small);
     }
 
     &__process-title {
-      font-size: 1.125rem;
+      font-size: var(--font-size-body-lg);
     }
 
     &__process-description {
-      font-size: 0.95rem;
+      font-size: var(--font-size-body);
     }
   }
 }

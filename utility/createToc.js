@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 建立 <a> 作為 TOC 連結
     const tocLink = document.createElement("a");
-    tocLink.className = "project-toc";
+    tocLink.className = "ui-link ui-toc-item project-toc";
     tocLink.href = `#${id}`;
 
     // dot
@@ -181,12 +181,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".project-toc").forEach((link) => {
       link.classList.remove("project-toc--active");
     });
+      link.classList.remove("is-active");
     if (lastActiveSection) {
       const link = document.querySelector(
         `.project-toc[href="#${lastActiveSection.id}"]`
       );
       if (link) {
         link.classList.add("project-toc--active");
+        link.classList.add("is-active");
       }
     }
   }, observerOptions);

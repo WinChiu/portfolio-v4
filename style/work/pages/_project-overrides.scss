@@ -5,7 +5,7 @@
   .pos-section--analysis {
     .project-module--media-aside {
       align-items: stretch;
-      gap: 2rem;
+      gap: var(--space-3xl);
     }
 
     .project-module__media {
@@ -21,18 +21,18 @@
 
   .pos-section--bridge {
     .project-module--feature-quote {
-      margin-inline: auto;
+      margin-inline: var(--space-auto);
     }
   }
 
   .pos-section--solution-intro,
   .pos-section--solution-detail,
   .pos-section--learning {
-    gap: 2rem;
+    gap: var(--space-3xl);
   }
 
   .pos-section--learning {
-    padding-bottom: 8rem;
+    padding-bottom: var(--space-8xl);
   }
 
   @media (max-width: $bp-mobile-wide) {

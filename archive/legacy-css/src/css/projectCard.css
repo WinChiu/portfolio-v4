@@ -1,105 +1,107 @@
+@import url('../../../../style/tokens.css');
+
 .section--work .container--content {
   display: flex;
   justify-content: center;
   align-items: stretch;
   flex-direction: row;
-  gap: 0;
+  gap: var(--space-0);
   position: relative;
-  border-bottom: 0.125rem #363a35 solid;
+  border-bottom: 0.125rem var(--color-text) solid;
 }
 .section--work .container--content .block--introduction {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   flex-direction: column;
-  gap: 0;
-  margin-left: 3rem;
+  gap: var(--space-0);
+  margin-left: var(--space-5xl);
   flex: 1;
 }
 .section--work .container--content .block--introduction .block__header {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
 }
 .section--work .container--content .block--introduction .block__number {
   font-family: "Noto Serif";
-  color: transparent;
-  margin-bottom: 0.5rem;
-  -webkit-text-stroke: 0.125rem #7a776d;
+  color: var(--color-transparent);
+  margin-bottom: var(--space-xs);
+  -webkit-text-stroke: 0.125rem var(--color-text-muted);
 }
 .section--work .container--content .block--introduction .block__content {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-0);
 }
 .section--work .container--content .block--introduction .block__title {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-xs);
 }
 .section--work .container--content .block--introduction .block__tag {
-  color: #7a776d;
+  color: var(--color-text-muted);
   font-family: "Source Code Pro";
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 .section--work .container--content .block--introduction .block__description {
-  padding-left: 1rem;
-  border-left: #b74343 solid 0.25rem;
-  margin-bottom: 2rem;
+  padding-left: var(--space-md);
+  border-left: var(--color-interactive) solid 0.25rem;
+  margin-bottom: var(--space-3xl);
 }
 .section--work .container--content .block--introduction .block__buttonContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 .section--work .container--content .block--introduction .block__button {
   width: 50%;
-  padding: 0.5rem 1rem;
-  background-color: #b74343;
-  border: 0.125rem #b74343 solid;
+  padding: var(--space-xs) var(--space-md);
+  background-color: var(--color-interactive);
+  border: 0.125rem var(--color-interactive) solid;
 }
 .section--work .container--content .block--introduction .block__button p {
-  color: #ffffff;
+  color: var(--color-text-inverse);
 }
 .section--work .container--content .block--introduction .block__button a {
   text-decoration: none;
 }
 .section--work .container--content .block--introduction .block__button:hover {
   cursor: pointer;
-  background-color: #cabd8a;
-  border: 0.125rem #cabd8a solid;
+  background-color: var(--color-interactive-hover);
+  border: 0.125rem var(--color-interactive-hover) solid;
 }
 .section--work .container--content .block--introduction .block__button--code {
   width: -moz-fit-content;
   width: fit-content;
 }
 .section--work .container--content .block--introduction .block__button--disable {
-  background-color: #c8c8c8;
-  border: 0.125rem #c8c8c8 solid;
+  background-color: var(--color-text-disabled);
+  border: 0.125rem var(--color-text-disabled) solid;
 }
 .section--work .container--content .block--introduction .block__button--disable:hover {
   cursor: default;
-  background-color: #c8c8c8;
+  background-color: var(--color-text-disabled);
 }
 .section--work .container--content .block--introduction .block__button--viewSite {
-  color: #615f58;
-  border: 0.125rem #615f58 solid;
-  padding: 0.5rem 1rem;
+  color: var(--color-text-muted);
+  border: 0.125rem var(--color-text-muted) solid;
+  padding: var(--space-xs) var(--space-md);
   text-decoration: none;
   width: -moz-fit-content;
   width: fit-content;
 }
 .section--work .container--content .block--introduction .block__button--viewSite p {
-  color: #615f58;
+  color: var(--color-text-muted);
 }
 .section--work .container--content .block--introduction .block__button--viewSite:hover {
-  color: #cabd8a;
-  border: 0.125rem #cabd8a solid;
+  color: var(--color-interactive-hover);
+  border: 0.125rem var(--color-interactive-hover) solid;
 }
 .section--work .container--content .block--introduction .block__button--viewSite:hover p {
-  color: #cabd8a;
+  color: var(--color-interactive-hover);
 }
 .section--work .container--content .media--workCover {
   flex: 1;
@@ -107,7 +109,7 @@
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-0);
 }
 .section--work .container--content .media--workCover .media__img {
   width: 100%;
@@ -121,7 +123,7 @@
   height: 0.125rem;
   bottom: 0;
   right: 0;
-  background-color: #363a35;
+  background-color: var(--color-text);
 }
 .section--work .container--content {
   /* ===== Media Query ===== */
@@ -132,29 +134,29 @@
     justify-content: center;
     align-items: flex-end;
     flex-direction: column;
-    gap: 0;
+    gap: var(--space-0);
   }
   .section--work .container--content .block--introduction {
-    margin-left: 0;
+    margin-left: var(--space-0);
   }
   .section--work .container--content .block--introduction .block__header {
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
     flex-direction: row;
-    gap: 0;
-    margin-bottom: 1rem;
+    gap: var(--space-0);
+    margin-bottom: var(--space-md);
   }
   .section--work .container--content .block--introduction .block__number {
     display: none;
   }
   .section--work .container--content .media--workCover {
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-md);
   }
 }
 @media (max-width: 30rem) {
   .section--work .container--content .block--introduction .block__title {
-    font-size: 1.75rem;
+    font-size: var(--font-size-title-md);
   }
   .section--work .container--content .block--introduction .block__buttonContainer,
   .section--work .container--content .block--introduction .block__button,

@@ -3,7 +3,7 @@
 
 .project-module {
   &--media-aside {
-    @include flex(row, center, center, 4rem);
+    @include flex(row, center, center, var(--space-6xl));
 
     .project-module__media {
       flex: 1 1 68%;
@@ -16,7 +16,7 @@
     }
 
     .project-module__aside {
-      @include flex(column, center, flex-start, 0);
+      @include flex(column, center, flex-start, var(--space-0));
       flex: 0 1 22rem;
       min-width: 16rem;
     }
@@ -24,19 +24,19 @@
     .project-module__heading {
       font-family: $font-serif;
       font-size: $project-section-title-size;
-      font-weight: 500;
+      font-weight: var(--font-weight-medium);
       line-height: 1.15;
       margin-bottom: $project-section-title-gap;
     }
 
     .project-module__text {
-      font-size: 1rem;
+      font-size: var(--font-size-body);
       line-height: 1.45;
       overflow-wrap: break-word;
     }
 
     .project-module__text + .project-module__text {
-      margin-top: 1rem;
+      margin-top: var(--space-md);
     }
   }
 
@@ -70,7 +70,7 @@
 
   @media (max-width: $bp-tablet) {
     &--media-aside {
-      @include flex(column, center, stretch, 3rem);
+      @include flex(column, center, stretch, var(--space-5xl));
 
       .project-module__media,
       .project-module__aside {

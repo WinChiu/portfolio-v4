@@ -1,27 +1,29 @@
+@import url('../../../../style/tokens.css');
+
 .nav--main {
   position: fixed;
-  z-index: 10;
+  z-index: var(--z-sticky);
   left: 0;
   top: 0;
   height: 100dvh;
   width: 7.5rem;
-  padding: 2.5rem 0;
-  background-color: #fbfbf6;
+  padding: var(--space-4xl) var(--space-0);
+  background-color: var(--color-background);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-0);
 }
 .nav--main .block--navList {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-0);
 }
 .nav--main .block__navItem {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
 }
 .nav--main .block__navItem a {
   font-family: "Noto Sans TC";
@@ -33,10 +35,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-0);
 }
 .nav--main .media__img {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-xs);
   cursor: pointer;
 }
 @media (max-width: 50rem) {
@@ -50,45 +52,45 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    gap: 0;
-    padding: 1rem;
+    gap: var(--space-0);
+    padding: var(--space-md);
     height: 3.5rem;
     width: 100vw;
     top: 0;
-    background-color: #fbfbf6;
-    border-bottom: #363a35 solid 0.125rem;
+    background-color: var(--color-background);
+    border-bottom: var(--color-text) solid 0.125rem;
   }
   .nav--main .block--navList {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    gap: 0;
+    gap: var(--space-0);
   }
   .nav--main .block--navList a {
-    font-size: 1.125rem;
+    font-size: var(--font-size-body-lg);
   }
   .nav--main .block__navItem {
-    margin-bottom: 0;
-    margin-right: 1rem;
+    margin-bottom: var(--space-0);
+    margin-right: var(--space-md);
   }
   .nav--main .media--socialList {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    gap: 0;
+    gap: var(--space-0);
   }
   .nav--main .media--socialList a {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    gap: 0;
+    gap: var(--space-0);
   }
   .nav--main .media__img {
-    margin-bottom: 0;
+    margin-bottom: var(--space-0);
     width: 2.25rem;
-    margin-left: 0.5rem;
+    margin-left: var(--space-xs);
   }
 }/*# sourceMappingURL=mainNav.css.map */

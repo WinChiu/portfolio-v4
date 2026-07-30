@@ -3,27 +3,27 @@
 
 .project-module {
   &--icon-list-vertical {
-    @include flex(column, center, flex-start, 1.5rem);
+    @include flex(column, center, flex-start, var(--space-xl));
   }
 
   &--icon-list-horizontal {
     width: 56.25rem;
-    @include flex(row, center, flex-start, 3rem);
+    @include flex(row, center, flex-start, var(--space-5xl));
   }
 
   &--icon-list-vertical,
   &--icon-list-horizontal {
     .project-module__item {
-      @include flex(row, flex-start, center, 1rem);
+      @include flex(row, flex-start, center, var(--space-md));
     }
 
     .project-module__item-content {
-      @include flex(column, center, flex-start, 1rem);
+      @include flex(column, center, flex-start, var(--space-md));
       width: 100%;
     }
 
     .project-module__item-title {
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
     }
 
     img {
@@ -36,7 +36,7 @@
 
   &--icon-list-horizontal {
     .project-module__item {
-      @include flex(column, flex-start, center, 1rem);
+      @include flex(column, flex-start, center, var(--space-md));
       flex: 1;
     }
 
@@ -51,15 +51,15 @@
     width: 100%;
 
     img {
-      border-radius: 12.5rem;
+      border-radius: var(--radius-pill);
       background-color: $color-bgWhite;
-      margin-bottom: 0;
+      margin-bottom: var(--space-0);
     }
   }
 
   @media (max-width: $bp-tablet) {
     &--icon-list-horizontal {
-      @include flex(column, center, center, 3rem);
+      @include flex(column, center, center, var(--space-5xl));
     }
 
     &--icon-list-vertical,
@@ -75,7 +75,7 @@
   @media (max-width: $bp-mobile) {
     &--icon-list-vertical {
       .project-module__item {
-        @include flex(column, flex-start, flex-start, 1rem);
+        @include flex(column, flex-start, flex-start, var(--space-md));
       }
 
       .project-module__item-title {
