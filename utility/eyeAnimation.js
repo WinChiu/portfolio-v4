@@ -291,6 +291,10 @@
     return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
   }
 
+  function getMouthCenter() {
+    return getCenter(inFocusZone ? mouthStrange : mouthSmile);
+  }
+
   function distance(a, b) {
     return Math.hypot(a.x - b.x, a.y - b.y);
   }
@@ -305,7 +309,7 @@
     const centers = [
       getCenter(eyeLeftFix),
       getCenter(eyeRightFix),
-      getCenter(mouthSmile),
+      getMouthCenter(),
     ];
     const minDist = Math.min(...centers.map((c) => distance(c, mouse)));
 

@@ -60,53 +60,14 @@
     const nextAlt = item.dataset.kitchenImageAlt;
     const nextClass = item.dataset.kitchenImageClass || '';
 
-    if (!hasGsap) {
-      preview.src = nextSrc;
-      preview.alt = nextAlt;
-      preview.className = `kitchen__photo ${nextClass}`.trim();
-      return;
+    if (hasGsap) {
+      window.gsap.killTweensOf(preview);
+      window.gsap.set(preview, { clearProps: 'visibility,opacity' });
     }
 
-    window.gsap.killTweensOf(preview);
-    window.gsap.to(preview, {
-      autoAlpha: 0,
-      duration: 0.16,
-      ease: 'power2.in',
-      onComplete: () => {
-        preview.src = nextSrc;
-        preview.alt = nextAlt;
-        preview.className = `kitchen__photo ${nextClass}`.trim();
-
-        window.gsap.fromTo(
-          preview,
-          { autoAlpha: 0 },
-          {
-            autoAlpha: 1,
-            duration: 0.28,
-            ease: 'power3.out',
-            clearProps: 'visibility,opacity',
-          },
-        );
-      },
-    });
-  }
-
-  function animateActiveItem(item) {
-    if (!hasGsap) return;
-
-    window.gsap.killTweensOf(item);
-    window.gsap.fromTo(
-      item,
-      { x: 0 },
-      {
-        x: 4,
-        duration: 0.16,
-        ease: 'power2.out',
-        yoyo: true,
-        repeat: 1,
-        clearProps: 'transform',
-      },
-    );
+    preview.src = nextSrc;
+    preview.alt = nextAlt;
+    preview.className = `kitchen__photo ${nextClass}`.trim();
   }
 
   function animateLightboxIn() {
@@ -207,7 +168,6 @@
     });
 
     updatePreview(items[activeIndex]);
-    animateActiveItem(items[activeIndex]);
   }
 
   function setPage(pageIndex) {
