@@ -1,6 +1,7 @@
 @use 'tokens' as *;
 @use 'base/mixins' as *;
 @use 'components/ui-primitives';
+@use 'type-scale';
 
 @use 'work/base/typography';
 @use 'work/components/project-header';
