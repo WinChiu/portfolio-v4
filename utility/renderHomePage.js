@@ -76,43 +76,27 @@
     }).join('');
   }
 
-  function renderKitchenItems(items, pageSize) {
+  function renderKitchenData(items) {
     return items
-      .map((item, index) => {
-        const activeClass = index === 0 ? ' kitchen__item--active is-active' : '';
-        const pressed = index === 0 ? 'true' : 'false';
-        const pageIndex = Math.floor(index / pageSize);
-        const hiddenClass = pageIndex === 0 ? '' : ' kitchen__row--hidden';
-        const ariaHidden = pageIndex === 0 ? 'false' : 'true';
-
-        return `
-          <li class="kitchen__row${hiddenClass}" data-kitchen-page="${pageIndex}" aria-hidden="${ariaHidden}">
-            <button type="button"
-              class="ui-interactive-item kitchen__item${activeClass}"
-              data-kitchen-index="${index}"
-              data-kitchen-page="${pageIndex}"
-              data-kitchen-image-src="${escapeAttribute(resolveAssetPath(item.imageSrc))}"
-              data-kitchen-image-alt="${escapeAttribute(item.imageAlt)}"
-              data-kitchen-image-class="${escapeAttribute(item.imageClass || '')}"
-              aria-pressed="${pressed}"
-            >
-              <span class="kitchen__topRow">
-                <span class="kitchen__nameZh">${item.nameZh}</span>
-                <span class="ui-rating kitchen__effort" aria-label="Effort level ${item.effort} out of 3">
-                  ${renderKitchenStars(item.effort)}
-                </span>
-              </span>
-              <span class="kitchen__nameEn">${item.nameEn}</span>
-              <span class="kitchen__note">${item.note}</span>
-            </button>
-          </li>`;
-      })
+      .map(
+        (item, index) => `
+        <li class="kitchen__dataItem"
+          data-kitchen-index="${index}"
+          data-kitchen-name-zh="${escapeAttribute(item.nameZh)}"
+          data-kitchen-name-en="${escapeAttribute(item.nameEn)}"
+          data-kitchen-note="${escapeAttribute(item.note)}"
+          data-kitchen-effort="${item.effort}"
+          data-kitchen-image-src="${escapeAttribute(resolveAssetPath(item.imageSrc))}"
+          data-kitchen-image-alt="${escapeAttribute(item.imageAlt)}"
+          data-kitchen-image-class="${escapeAttribute(item.imageClass || '')}"
+        ></li>`,
+      )
       .join('\n');
   }
 
   function renderKitchenSection(kitchen) {
     const firstItem = kitchen.items[0];
-    const pageSize = kitchen.pageSize || 7;
+    const total = String(kitchen.items.length).padStart(2, '0');
 
     return `
       <section class="section section--kitchen" id="kitchen">
@@ -121,36 +105,46 @@
           <article class="kitchen__intro">
             <h1 class="kitchen__title">${kitchen.title}</h1>
             <p class="kitchen__description">${kitchen.description}</p>
-            <figure class="kitchen__preview">
-              <div class="kitchen__photoStack">
-                <img
-                  class="kitchen__photo ${firstItem.imageClass || ''}"
-                  src="${resolveAssetPath(firstItem.imageSrc)}"
-                  alt="${firstItem.imageAlt}"
-                  data-kitchen-preview
-                />
-              </div>
-            </figure>
+            <p class="kitchen__hint">${kitchen.rolodexHint || ''}</p>
           </article>
           <div class="kitchen__panel">
-            <header class="kitchen__header">
-              <p class="kitchen__headerItem">
-                ITEM
-                <span class="kitchen__headerHint">${kitchen.mobileHint}</span>
-              </p>
-              <p class="kitchen__headerNote">NOTE</p>
-              <p class="kitchen__headerEffort">EFFORT</p>
-            </header>
-            <ol class="kitchen__list">
-              ${renderKitchenItems(kitchen.items, pageSize)}
+            <ol class="kitchen__data" hidden>
+              ${renderKitchenData(kitchen.items)}
             </ol>
-            <div class="kitchen__controls">
-              <button type="button" class="ui-icon-button kitchen__control kitchen__control--prev" data-kitchen-prev aria-label="Show previous dish">
-                <img class="kitchen__controlIcon" src="./img/icon-leftArrow.svg" alt="" aria-hidden="true" />
-              </button>
-              <button type="button" class="ui-icon-button kitchen__control kitchen__control--next" data-kitchen-next aria-label="Show next dish">
-                <img class="kitchen__controlIcon" src="./img/icon-rightArrow.svg" alt="" aria-hidden="true" />
-              </button>
+            <div class="kitchen__rolodex" data-kitchen-rolodex>
+              <div class="kitchen__edges kitchen__edges--above" data-kitchen-edges="above"></div>
+              <article class="kitchen__card" data-kitchen-card>
+                <div class="kitchen__cardMeta">
+                  <span data-kitchen-card-no>NO. 01</span>
+                  <span data-kitchen-card-counter>01 / ${total}</span>
+                </div>
+                <div class="kitchen__cardBody">
+                  <button type="button" class="kitchen__cardPhoto" data-kitchen-zoom aria-label="${kitchen.previewLabel}">
+                    <img
+                      class="kitchen__photo ${firstItem.imageClass || ''}"
+                      src="${resolveAssetPath(firstItem.imageSrc)}"
+                      alt="${firstItem.imageAlt}"
+                      data-kitchen-preview
+                    />
+                  </button>
+                  <div class="kitchen__cardText">
+                    <div class="kitchen__cardNames">
+                      <p class="kitchen__nameZh" data-kitchen-card-name-zh>${firstItem.nameZh}</p>
+                      <p class="kitchen__nameEn" data-kitchen-card-name-en>${firstItem.nameEn}</p>
+                    </div>
+                    <div class="kitchen__cardNote">
+                      <p class="kitchen__note" data-kitchen-card-note>${firstItem.note}</p>
+                    </div>
+                    <div class="kitchen__cardEffort">
+                      <p class="kitchen__cardLabel">EFFORT</p>
+                      <span class="ui-rating kitchen__effort" data-kitchen-card-effort aria-label="Effort level ${firstItem.effort} out of 3">
+                        ${renderKitchenStars(firstItem.effort)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <div class="kitchen__edges kitchen__edges--below" data-kitchen-edges="below"></div>
             </div>
           </div>
         </div>

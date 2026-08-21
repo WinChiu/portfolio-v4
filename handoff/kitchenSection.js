@@ -5,6 +5,7 @@
 // ─────────────────────────────────────────────────────────────
 (function () {
   const EDGE_COUNT = 2;
+  const FLIP_MS = 130;
 
   const section = document.querySelector('.section--kitchen');
   if (!section) return;
@@ -44,6 +45,7 @@
 
   const total = String(items.length).padStart(2, '0');
   let index = 0;
+  let busy = false;
 
   function starsMarkup(effort) {
     return Array.from({ length: 3 }, (_, i) => {
@@ -104,9 +106,26 @@
 
   function goTo(next) {
     const target = Math.max(0, Math.min(items.length - 1, next));
-    if (target === index) return;
-    index = target;
-    render();
+    if (busy || target === index) return;
+    const backwards = target < index;
+    busy = true;
+
+    card.classList.toggle('kitchen__card--reverse', backwards);
+    card.classList.add('kitchen__card--out');
+
+    window.setTimeout(() => {
+      index = target;
+      render();
+      card.classList.remove('kitchen__card--out');
+      card.classList.add('kitchen__card--in');
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          card.classList.remove('kitchen__card--in');
+          card.classList.remove('kitchen__card--reverse');
+          busy = false;
+        });
+      });
+    }, FLIP_MS);
   }
 
   function openLightbox() {

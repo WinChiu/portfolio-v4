@@ -8,17 +8,15 @@
 
 ## 2. Overview
 
-Use for the personal kitchen project list, preview, controls, and lightbox.
+Use for the personal kitchen project list, preview, and lightbox.
 
 Do not use for a generic image carousel.
 
 ## 3. Anatomy
 
 - Intro
-- Preview stack
-- Item table
-- Effort rating
-- Previous and next controls
+- Rolodex card (photo, names, note, effort rating)
+- Peeking edges above/below, or left/right at mobile widths (jump targets)
 - Lightbox
 
 ## 4. Tokens used
@@ -34,21 +32,21 @@ Do not use for a generic image carousel.
 
 ## 5. Props/API
 
-CSS block `.section--kitchen`; composes Interactive List Item, Rating, Icon Button, and Modal primitives.
+CSS block `.section--kitchen`; composes Rating and Modal primitives.
 
 ## 6. States
 
-- Default: first visible item
-- Hover: row highlight and control lift
-- Active: `.kitchen__item--active` highlights selection
-- Focus: controls and rows show focus outline
-- Disabled: `.kitchen__control--disabled` prevents movement
-- Error: missing images should retain item text and controls
+- Default: first card shown, up to 2 card edges peeking above/below; at `<=34rem`, they become textless left/right slivers
+- Hover/Focus: edge shows highlight, focus-visible outline
+- Flipping: `.kitchen__card--out` / `.kitchen__card--in` (with `--reverse` when going backward) transition the card
+- Error: missing images should retain card text
 
 ## 7. Code example
 
 ```html
-<button class="kitchen__item kitchen__item--active"><span class="kitchen__nameZh">料理</span></button>
+<button class="kitchen__edge" data-kitchen-jump="0">
+  <span class="kitchen__edgeNameZh">料理</span>
+</button>
 ```
 
 ## 8. Cross-references

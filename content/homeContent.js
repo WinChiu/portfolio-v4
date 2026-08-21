@@ -61,9 +61,7 @@ window.__HOME_PAGE_CONTENT__ = {
       title: 'Kitchen',
       description:
         "I gradually started to love cooking after I couldn't stand bread and meatballs anymore in Sweden. Definitely not masterpieces, but authentic enough to cure my homesickness and survive Nordic prices.",
-      mobileHint: '(Click a dish to show picture)',
       previewLabel: 'Kitchen dish preview',
-      pageSize: 5,
       items: [
         {
           nameZh: '東坡肉',
@@ -694,9 +692,7 @@ window.__HOME_PAGE_CONTENT__ = {
       title: 'Kitchen',
       description:
         '到了瑞典之後我慢慢開始喜歡上做菜。雖然稱不上什麼大作，但至少能幫我撐過北歐物價。',
-      mobileHint: '（點擊顯示照片）',
       previewLabel: '料理預覽照',
-      pageSize: 5,
       items: [
         {
           nameZh: '東坡肉',

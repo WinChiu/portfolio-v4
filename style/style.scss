@@ -754,7 +754,12 @@ h6 {
       overflow: visible;
 
       .block--introduction {
-        @include flex(column, space-between, flex-start, var(--space-custom-875));
+        @include flex(
+          column,
+          space-between,
+          flex-start,
+          var(--space-custom-875)
+        );
         height: auto;
         min-height: calc(100svh - 7.5rem);
         margin-bottom: var(--space-0);
@@ -1026,7 +1031,7 @@ h6 {
   .kitchen__bg {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 5rem;
     height: 56rem;
     width: auto;
     object-fit: contain;
@@ -1034,6 +1039,7 @@ h6 {
     pointer-events: none;
     z-index: var(--z-base);
     mix-blend-mode: hard-light;
+    transform: rotateY(180deg);
   }
 
   .container {
@@ -1058,30 +1064,6 @@ h6 {
   .kitchen__description {
     width: 100%;
     color: $color-darkGray;
-  }
-
-  .kitchen__preview {
-    @include flex(column, flex-start, flex-start, var(--space-sm));
-    width: 100%;
-  }
-
-  .kitchen__photoStack {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-  }
-
-  .kitchen__photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--radius-lg);
-    object-fit: cover;
-    object-position: center;
-    opacity: 1;
-    box-shadow: var(--shadow-soft);
-    margin-top: var(--space-md);
   }
 
   .kitchen__lightbox {
@@ -1115,88 +1097,66 @@ h6 {
 
   .kitchen__panel {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
+
     padding: var(--space-xs) var(--space-0) var(--space-0);
   }
 
-  .kitchen__header,
-  .kitchen__item {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(16rem, 2fr) minmax(12rem, 1.5fr) auto;
-    column-gap: var(--space-3xl);
+  .kitchen__data {
+    display: none;
+  }
+
+  .kitchen__rolodex {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-items: flex-start;
-  }
-
-  .kitchen__header {
-    padding: var(--space-0) var(--space-2xl) var(--space-sm);
-    border-bottom: 0.125rem solid $color-black;
-    color: $color-black;
-    font-family: $font-serif;
-    font-size: var(--font-size-title-sm);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.08em;
-  }
-
-  .kitchen__headerItem,
-  .kitchen__headerNote,
-  .kitchen__headerEffort {
-    font: inherit;
+    gap: var(--space-0);
     width: 100%;
   }
 
-  .kitchen__headerNote {
-    justify-self: stretch;
-  }
-
-  .kitchen__headerEffort {
-    justify-self: end;
-    width: var(--size-effort-column);
-    text-align: right;
-  }
-
-  .kitchen__headerHint {
-    display: none;
-    margin-left: var(--space-3xs);
-    color: $color-darkGold;
-    font-family: $font-sansSerif;
-    font-size: var(--font-size-caption);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0;
-    text-transform: none;
-  }
-
-  .kitchen__list {
-    flex: 1 1 auto;
-    margin: var(--space-0);
-    padding: var(--space-0);
-    list-style: none;
-  }
-
-  .kitchen__row {
-    border-bottom: 0.125rem dotted var(--color-border-muted);
-    padding: var(--space-0);
-  }
-
-  .kitchen__row--hidden {
-    display: none;
-  }
-
-  .kitchen__item {
+  .kitchen__edges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // 上方卡緣少於 2 張時，讓卡緣貼齊主卡片、空白留在最上方
+    justify-content: flex-end;
     width: 100%;
-    padding: var(--space-2xl);
-    border: 0;
-    background: var(--color-transparent);
+    gap: var(--space-0);
+    // 固定保留 2 張卡緣的高度：清單頭尾露出的卡緣數量會少於 2，
+    // 若不保留這塊空間，kitchen__panel（進而整個 section）高度會跟著縮放。
+    min-height: calc(2 * 2.25rem);
+  }
+
+  .kitchen__edges--below {
+    // 下方卡緣則貼齊主卡片、空白留在最下方
+    justify-content: flex-start;
+  }
+
+  .kitchen__edge {
+    height: 2.25rem;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md);
+    width: var(--kitchen-edge-width, 100%);
+    opacity: var(--kitchen-edge-opacity, 1);
+    padding: var(--space-2xs) var(--space-xl) var(--space-0);
+    border: 0.125rem solid var(--color-text);
+    border-bottom: 0;
+    border-radius: var(--radius-lg) var(--radius-lg) var(--space-0)
+      var(--space-0);
+    background: var(--color-background-soft);
     color: var(--color-inherit);
     cursor: pointer;
     text-align: left;
-    transition: background-color var(--motion-duration-fast) ease;
+    transition: background-color var(--motion-duration-fast)
+      var(--motion-ease-standard);
 
     &:hover,
-    &:focus-visible,
-    &--active {
+    &:focus-visible {
       background: var(--color-highlight-soft);
     }
 
@@ -1206,10 +1166,159 @@ h6 {
     }
   }
 
-  .kitchen__topRow {
-    @include flex(row, space-between, flex-start, var(--space-md));
-    width: 100%;
+  .kitchen__edges--below .kitchen__edge {
+    align-items: flex-end;
+    padding: var(--space-0) var(--space-xl) var(--space-2xs);
+    border-bottom: 0.125rem solid var(--color-text);
+    border-top: 0;
+    border-radius: var(--space-0) var(--space-0) var(--radius-lg)
+      var(--radius-lg);
+  }
+
+  .kitchen__edgeNameZh {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     min-width: 0;
+  }
+
+  .kitchen__edgeNameEn {
+    flex: 0 0 auto;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-small);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .kitchen__card {
+    width: 100%;
+    border: 0.125rem solid var(--color-text);
+    border-radius: var(--radius-lg);
+    background: var(--color-background);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+  }
+
+  .kitchen__cardMeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-xl);
+    border-bottom: 0.125rem dotted var(--color-border-muted);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-small);
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .kitchen__cardBody {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+  }
+
+  .kitchen__cardPhoto {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 0;
+    padding: var(--space-0);
+    border-radius: var(--radius-lg);
+    background: var(--color-background-soft);
+    box-shadow: var(--shadow-soft);
+    cursor: zoom-in;
+    overflow: hidden;
+
+    &:focus-visible {
+      outline: 0.125rem solid var(--color-focus);
+      outline-offset: 0.125rem;
+    }
+  }
+
+  .kitchen__photo {
+    position: static;
+    inset: auto;
+    margin: var(--space-0);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: none;
+  }
+
+  .kitchen__cardText {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    min-width: 0;
+  }
+
+  .kitchen__cardNames {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .kitchen__card .kitchen__nameZh {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--font-size-title-lg);
+    line-height: var(--line-height-heading);
+  }
+
+  // 英文菜名可能較長：讓它換行到最多兩行，而不是被裁掉；
+  // 用固定高度保留兩行空間，短名稱也不會讓卡片跟著縮高。
+  .kitchen__card .kitchen__nameEn {
+    display: -webkit-box;
+    min-height: 3.5rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  .kitchen__cardNote {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding-top: var(--space-sm);
+    border-top: 0.125rem dotted var(--color-border-muted);
+  }
+
+  // 固定兩行高度：note 長短不一時，卡片（進而整個 rolodex）高度才不會跳動
+  .kitchen__cardNote .kitchen__note {
+    display: -webkit-box;
+    min-height: 3.5rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .kitchen__cardLabel {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-caption);
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .kitchen__cardEffort {
+    margin-top: var(--space-auto);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .kitchen__hint {
+    padding-top: var(--space-lg);
+    font-size: var(--font-size-small);
+    color: var(--color-text-subtle);
   }
 
   .kitchen__nameZh {
@@ -1251,63 +1360,6 @@ h6 {
     height: 1.25rem;
   }
 
-  .kitchen__controls {
-    @include flex(row, center, center, var(--space-sm));
-    margin-top: var(--space-auto);
-    padding-top: var(--space-3xl);
-  }
-
-  .kitchen__control {
-    width: 2.5em;
-    height: 2.5em;
-    border: 0;
-    border-radius: var(--radius-lg);
-    @include flex(row, center, center);
-    line-height: 1;
-    cursor: pointer;
-    transition:
-      transform var(--motion-duration-fast) ease,
-      background-color var(--motion-duration-fast) ease,
-      color var(--motion-duration-fast) ease;
-
-    &:hover,
-    &:focus-visible {
-      transform: translateY(-0.125rem);
-    }
-
-    &:focus-visible {
-      outline: 0.125rem solid var(--color-focus-soft);
-      outline-offset: 0.125rem;
-    }
-  }
-
-  .kitchen__controlIcon {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .kitchen__control--prev {
-    background: $color-red;
-    color: $color-textWhite;
-  }
-
-  .kitchen__control--next {
-    background: $color-red;
-    color: $color-textWhite;
-  }
-
-  .kitchen__control--disabled {
-    background: var(--color-interactive-disabled);
-    cursor: default;
-    opacity: 0.4;
-    transform: none;
-
-    &:hover,
-    &:focus-visible {
-      transform: none;
-    }
-  }
-
   .kitchen__photo--focus-1 {
     object-position: center 68%;
   }
@@ -1336,92 +1388,15 @@ h6 {
     object-position: 48% 82%;
   }
 
-  @media (min-width: 62.5625rem) {
-    .kitchen__item {
-      display: grid;
-      grid-template-columns: minmax(16rem, 2fr) minmax(12rem, 1.5fr) auto;
-      column-gap: var(--space-3xl);
-      align-items: start;
-    }
-
-    .kitchen__topRow {
-      display: contents;
-    }
-
-    .kitchen__nameZh {
-      grid-column: 1;
-      display: block;
-      width: 100%;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .kitchen__nameEn {
-      grid-column: 1;
-      display: block;
-      width: 100%;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .kitchen__note {
-      grid-column: 2;
-      grid-row: 1 / span 2;
-      width: 100%;
-      justify-self: stretch;
-      align-self: start;
-      display: -webkit-box;
-      min-height: 3.5rem;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-    }
-
-    .kitchen__effort {
-      grid-column: 3;
-      grid-row: 1 / span 2;
-      justify-self: end;
-      align-self: start;
-      padding-top: var(--space-hairline);
-    }
-
-    .kitchen__item:hover .kitchen__nameZh,
-    .kitchen__item:hover .kitchen__nameEn,
-    .kitchen__item:focus-visible .kitchen__nameZh,
-    .kitchen__item:focus-visible .kitchen__nameEn {
-      overflow: visible;
-      text-overflow: unset;
-      white-space: normal;
-    }
-
-    .kitchen__item:hover .kitchen__note,
-    .kitchen__item:focus-visible .kitchen__note {
-      display: block;
-      min-height: auto;
-      overflow: visible;
-      -webkit-line-clamp: unset;
-      line-clamp: unset;
-    }
-  }
-
   @media (max-width: 75rem) {
     .container {
       gap: var(--space-3xl);
     }
 
-    .kitchen__header,
-    .kitchen__item {
-      grid-template-columns: minmax(13rem, 1.7fr) minmax(10rem, 1.3fr) auto;
-      column-gap: var(--space-lg);
-    }
-
-    .kitchen__item {
-      grid-template-columns: minmax(13rem, 1.7fr) minmax(10rem, 1.3fr) auto;
+    .kitchen__cardBody {
+      grid-template-columns: 11rem minmax(0, 1fr);
+      gap: var(--space-lg);
+      padding: var(--space-lg);
     }
   }
 
@@ -1438,49 +1413,8 @@ h6 {
       flex-basis: auto;
     }
 
-    .kitchen__preview {
-      display: none;
-    }
-
     .kitchen__panel {
       display: block;
-    }
-
-    .kitchen__list {
-      flex: initial;
-    }
-
-    .kitchen__header,
-    .kitchen__item {
-      grid-template-columns: minmax(0, 1fr) auto;
-      column-gap: var(--space-md);
-    }
-
-    .kitchen__header {
-      padding: var(--space-0) var(--space-0) var(--space-sm);
-      font-size: var(--font-size-label);
-    }
-
-    .kitchen__headerNote {
-      display: none;
-    }
-
-    .kitchen__headerHint {
-      display: inline;
-    }
-
-    .kitchen__item {
-      padding: var(--space-md) var(--space-0);
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .kitchen__topRow {
-      display: flex;
-      width: 100%;
-      align-items: flex-start;
-      margin: var(--space-0);
     }
 
     .kitchen__nameZh {
@@ -1506,10 +1440,110 @@ h6 {
       padding-top: var(--space-micro);
     }
 
-    .kitchen__item:hover,
-    .kitchen__item:focus-visible,
-    .kitchen__item--active {
-      background: var(--color-transparent);
+    .kitchen__cardBody {
+      grid-template-columns: 12rem minmax(0, 1fr);
+    }
+
+    .kitchen__edge {
+      padding-left: var(--space-lg);
+      padding-right: var(--space-lg);
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .container {
+      gap: var(--space-lg);
+    }
+
+    .kitchen__rolodex {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .kitchen__edges {
+      flex: 0 0 2.5rem;
+      flex-direction: row;
+      align-items: center;
+      width: 2.5rem;
+      min-height: 0;
+    }
+
+    .kitchen__edges--above {
+      justify-content: flex-end;
+      margin-right: -0.5rem;
+    }
+
+    .kitchen__edges--below {
+      justify-content: flex-start;
+      margin-left: -0.5rem;
+    }
+
+    .kitchen__edge {
+      position: relative;
+      flex: 0 0 1.5rem;
+      width: 1.5rem;
+      height: var(--kitchen-edge-width, 100%);
+      min-height: 2.75rem;
+      padding: var(--space-0);
+      border: 0.125rem solid var(--color-text);
+    }
+
+    .kitchen__edge + .kitchen__edge {
+      margin-left: -0.5rem;
+    }
+
+    .kitchen__edges--above .kitchen__edge {
+      border-right: 0;
+      border-radius: var(--radius-lg) var(--space-0) var(--space-0)
+        var(--radius-lg);
+    }
+
+    .kitchen__edges--above .kitchen__edge:last-child,
+    .kitchen__edges--below .kitchen__edge:first-child {
+      z-index: 1;
+    }
+
+    .kitchen__edges--below .kitchen__edge {
+      // .kitchen__edges--below .kitchen__edge 這條複合選擇器優先權比上面
+      // .kitchen__edge 的完整 reset 高，會蓋掉桌機版留給下方卡緣的
+      // padding / border-top，這裡把該重設的都補回來，避免右側跟左側長得不一樣。
+      padding: var(--space-0);
+      align-items: center;
+      border-top: 0.125rem solid var(--color-text);
+      border-left: 0;
+      border-radius: var(--space-0) var(--radius-lg) var(--radius-lg)
+        var(--space-0);
+    }
+
+    .kitchen__card {
+      position: relative;
+      z-index: 2;
+      min-width: 0;
+    }
+
+    .kitchen__cardBody {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .kitchen__cardPhoto {
+      // max-width: 18rem;
+    }
+
+    .kitchen__card .kitchen__nameZh {
+      font-size: var(--font-size-title-sm);
+    }
+
+    // 英文菜名一行就結束時，原本保留兩行高度的空白會讓虛線分隔線跟名稱之間
+    // 空一大截；手機版卡片較窄，兩行菜名機率低，改成貼合實際內容高度。
+    .kitchen__card .kitchen__nameEn {
+      min-height: 0;
+    }
+
+    .kitchen__edgeNameZh,
+    .kitchen__edgeNameEn {
+      display: none;
     }
   }
 
@@ -1519,7 +1553,7 @@ h6 {
     }
 
     .container {
-      gap: var(--space-xl);
+      gap: var(--space-md);
     }
 
     .kitchen__intro {
@@ -1534,16 +1568,6 @@ h6 {
       max-width: none;
     }
 
-    .kitchen__header {
-      font-size: var(--font-size-body-lg);
-    }
-
-    .kitchen__headerHint {
-      display: inline;
-      margin: var(--space-0) var(--space-0) var(--space-0) var(--space-custom-30);
-      font-size: var(--font-size-small);
-    }
-
     .kitchen__nameZh,
     .kitchen__nameEn {
       font-size: var(--font-size-body);
@@ -1552,11 +1576,6 @@ h6 {
     .kitchen__note {
       font-size: var(--font-size-body);
       margin-top: var(--space-custom-35);
-    }
-
-    .kitchen__control {
-      width: 2.5em;
-      height: 2.5em;
     }
 
     .kitchen__lightboxDialog {
@@ -1740,7 +1759,10 @@ body.kitchen-lightbox-open {
       var(--motion-duration-slow)
       var(--motion-ease-drawing)
       svg-delay($i);
-    transition: fill var(--motion-duration-slow) var(--motion-ease-drawing) svg-delay($i);
+    transition: fill
+      var(--motion-duration-slow)
+      var(--motion-ease-drawing)
+      svg-delay($i);
   }
 
   svg.active .svg-elem-#{$i} {

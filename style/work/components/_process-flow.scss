@@ -71,7 +71,8 @@
 
   &__process-description {
     max-width: 24rem;
-    margin: var(--space-0) var(--space-0) var(--space-0) calc(var(--process-number-size) + var(--process-heading-gap));
+    margin: var(--space-0) var(--space-0) var(--space-0)
+      calc(var(--process-number-size) + var(--process-heading-gap));
     color: $color-darkGold;
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-regular);
