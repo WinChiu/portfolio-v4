@@ -151,42 +151,17 @@
     });
   }
 
-  function preloadImage(src) {
-    if (!src) return Promise.resolve();
-
-    return new Promise((resolve) => {
-      const image = new Image();
-
-      const finalize = () => {
-        image.onload = null;
-        image.onerror = null;
-        resolve();
-      };
-
-      image.onload = finalize;
-      image.onerror = finalize;
-      image.src = src;
-
-      if (image.complete) {
-        finalize();
-      }
-    });
-  }
-
   async function waitForPageAssets() {
-    const domImages = Array.from(document.images);
-    const kitchenPreviewSources = Array.from(
-      document.querySelectorAll('[data-kitchen-image-src]'),
-    )
-      .map((item) => item.dataset.kitchenImageSrc)
-      .filter(Boolean);
+    // Images marked loading="lazy" (e.g. the Kitchen grid's 40+ dish photos)
+    // are deliberately deferred by the browser until they scroll near the
+    // viewport -- waiting for their load/error event here would block the
+    // loading screen for as long as it takes the visitor to scroll down,
+    // sometimes indefinitely. Only gate on eagerly-loaded images.
+    const domImages = Array.from(document.images).filter(
+      (image) => image.loading !== 'lazy',
+    );
 
-    const preloadSources = [...new Set(kitchenPreviewSources)];
-
-    await Promise.all([
-      ...domImages.map(waitForImageElement),
-      ...preloadSources.map(preloadImage),
-    ]);
+    await Promise.all(domImages.map(waitForImageElement));
   }
 
   function removeLoader() {

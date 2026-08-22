@@ -1043,14 +1043,14 @@ h6 {
   }
 
   .container {
-    @include flex(row, space-between, stretch, var(--space-5xl));
+    @include flex(column, flex-start, stretch, var(--space-3xl));
     position: relative;
     z-index: var(--z-content);
   }
 
   .kitchen__intro {
     @include flex(column, flex-start, flex-start, var(--space-xl));
-    flex: 0 0 min(32rem, 36%);
+    max-width: 40rem;
   }
 
   .kitchen__title {
@@ -1066,138 +1066,26 @@ h6 {
     color: $color-darkGray;
   }
 
-  .kitchen__lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: var(--z-overlay);
-  }
-
-  .kitchen__lightboxBackdrop {
-    position: absolute;
-    inset: 0;
-    background: var(--color-overlay);
-  }
-
-  .kitchen__lightboxDialog {
-    position: relative;
-    z-index: var(--z-content);
-    width: min(88vw, 28rem);
-    margin: var(--space-dialog-center) var(--space-auto) var(--space-0);
-    transform: translateY(-50%);
-  }
-
-  .kitchen__lightboxImage {
-    display: block;
-    width: 100%;
-    max-height: 78vh;
-    border-radius: var(--radius-xl);
-    object-fit: cover;
-    box-shadow: var(--shadow-floating);
-  }
-
   .kitchen__panel {
     flex: 1;
     min-width: 0;
-    display: flex;
-    flex-direction: column;
-
     padding: var(--space-xs) var(--space-0) var(--space-0);
   }
 
-  .kitchen__data {
-    display: none;
-  }
-
-  .kitchen__rolodex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-0);
-    width: 100%;
-  }
-
-  .kitchen__edges {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    // 上方卡緣少於 2 張時，讓卡緣貼齊主卡片、空白留在最上方
-    justify-content: flex-end;
-    width: 100%;
-    gap: var(--space-0);
-    // 固定保留 2 張卡緣的高度：清單頭尾露出的卡緣數量會少於 2，
-    // 若不保留這塊空間，kitchen__panel（進而整個 section）高度會跟著縮放。
-    min-height: calc(2 * 2.25rem);
-  }
-
-  .kitchen__edges--below {
-    // 下方卡緣則貼齊主卡片、空白留在最下方
-    justify-content: flex-start;
-  }
-
-  .kitchen__edge {
-    height: 2.25rem;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--space-md);
-    width: var(--kitchen-edge-width, 100%);
-    opacity: var(--kitchen-edge-opacity, 1);
-    padding: var(--space-2xs) var(--space-xl) var(--space-0);
-    border: 0.125rem solid var(--color-text);
-    border-bottom: 0;
-    border-radius: var(--radius-lg) var(--radius-lg) var(--space-0)
-      var(--space-0);
-    background: var(--color-background-soft);
-    color: var(--color-inherit);
-    cursor: pointer;
-    text-align: left;
-    transition: background-color var(--motion-duration-fast)
-      var(--motion-ease-standard);
-
-    &:hover,
-    &:focus-visible {
-      background: var(--color-highlight-soft);
-    }
-
-    &:focus-visible {
-      outline: 0.125rem solid var(--color-focus);
-      outline-offset: -0.125rem;
-    }
-  }
-
-  .kitchen__edges--below .kitchen__edge {
-    align-items: flex-end;
-    padding: var(--space-0) var(--space-xl) var(--space-2xs);
-    border-bottom: 0.125rem solid var(--color-text);
-    border-top: 0;
-    border-radius: var(--space-0) var(--space-0) var(--radius-lg)
-      var(--radius-lg);
-  }
-
-  .kitchen__edgeNameZh {
-    font-size: var(--font-size-body);
-    font-weight: var(--font-weight-bold);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-width: 0;
-  }
-
-  .kitchen__edgeNameEn {
-    flex: 0 0 auto;
-    font-family: var(--font-family-mono);
-    font-size: var(--font-size-small);
-    color: var(--color-text-muted);
-    white-space: nowrap;
+  // ---- recipe-book style grid: every dish as its own static cover card,
+  // no rolodex navigation and no click-to-open behaviour. ----
+  .kitchen__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: var(--space-xl);
   }
 
   .kitchen__card {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     border: 0.125rem solid var(--color-text);
     border-radius: var(--radius-lg);
     background: var(--color-background);
-    box-shadow: var(--shadow-soft);
     overflow: hidden;
   }
 
@@ -1206,36 +1094,18 @@ h6 {
     align-items: center;
     justify-content: space-between;
     gap: var(--space-md);
-    padding: var(--space-sm) var(--space-xl);
-    border-bottom: 0.125rem dotted var(--color-border-muted);
+    padding: var(--space-sm) var(--space-lg);
     font-family: var(--font-family-mono);
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-caption);
     letter-spacing: 0.08em;
     color: var(--color-text-muted);
-  }
-
-  .kitchen__cardBody {
-    display: grid;
-    grid-template-columns: 15rem minmax(0, 1fr);
-    gap: var(--space-xl);
-    padding: var(--space-xl);
   }
 
   .kitchen__cardPhoto {
     width: 100%;
     aspect-ratio: 1/1;
-    border: 0;
-    padding: var(--space-0);
-    border-radius: var(--radius-lg);
     background: var(--color-background-soft);
-    box-shadow: var(--shadow-soft);
-    cursor: zoom-in;
     overflow: hidden;
-
-    &:focus-visible {
-      outline: 0.125rem solid var(--color-focus);
-      outline-offset: 0.125rem;
-    }
   }
 
   .kitchen__photo {
@@ -1245,80 +1115,49 @@ h6 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: var(--radius-lg);
+    border-radius: var(--space-0);
     box-shadow: none;
   }
 
   .kitchen__cardText {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--space-2xs);
     min-width: 0;
+    padding: var(--space-md);
   }
 
   .kitchen__cardNames {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3xs);
+    gap: 0.25rem;
+    margin-bottom: var(--space-2xs);
   }
 
   .kitchen__card .kitchen__nameZh {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: var(--font-size-title-lg);
-    line-height: var(--line-height-heading);
+    font-size: var(--font-size-label);
+    line-height: 1.1;
   }
 
-  // 英文菜名可能較長：讓它換行到最多兩行，而不是被裁掉；
-  // 用固定高度保留兩行空間，短名稱也不會讓卡片跟著縮高。
   .kitchen__card .kitchen__nameEn {
-    display: -webkit-box;
-    min-height: 3.5rem;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    display: block;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-muted);
     line-height: 1.3;
-    white-space: normal;
+    min-height: 0;
   }
 
   .kitchen__cardNote {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2xs);
     padding-top: var(--space-sm);
     border-top: 0.125rem dotted var(--color-border-muted);
   }
 
-  // 固定兩行高度：note 長短不一時，卡片（進而整個 rolodex）高度才不會跳動
+  // 名字/備註都可以正常換行 -- 換行時讓卡片本身變高，而不是省略文字；
+  // 同一列的卡片高度由 CSS Grid 預設的 align-items:stretch 自動對齊。
   .kitchen__cardNote .kitchen__note {
-    display: -webkit-box;
-    min-height: 3.5rem;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-  }
-
-  .kitchen__cardLabel {
-    font-family: var(--font-family-mono);
-    font-size: var(--font-size-caption);
-    letter-spacing: 0.08em;
-    color: var(--color-text-muted);
-  }
-
-  .kitchen__cardEffort {
-    margin-top: var(--space-auto);
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-  }
-
-  .kitchen__hint {
-    padding-top: var(--space-lg);
-    font-size: var(--font-size-small);
-    color: var(--color-text-subtle);
+    overflow: visible;
   }
 
   .kitchen__nameZh {
@@ -1329,20 +1168,10 @@ h6 {
     min-width: 0;
   }
 
-  .kitchen__nameEn {
-    display: block;
-    font-family: $font-serif;
-    font-size: var(--font-size-label);
-    font-weight: var(--font-weight-medium);
-    margin: var(--space-0);
-    width: 100%;
-    min-width: 0;
-  }
-
   .kitchen__note {
     display: block;
     color: $color-darkGray;
-    font-size: var(--font-size-body);
+    font-size: var(--font-size-small);
     line-height: var(--line-height-body);
     width: 100%;
     min-width: 0;
@@ -1351,13 +1180,11 @@ h6 {
 
   .kitchen__effort {
     @include flex(row, flex-end, center, var(--space-3xs));
-    min-width: 4.5rem;
-    padding-top: var(--space-hairline);
   }
 
   .kitchen__star {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
   }
 
   .kitchen__photo--focus-1 {
@@ -1388,65 +1215,14 @@ h6 {
     object-position: 48% 82%;
   }
 
-  @media (max-width: 75rem) {
-    .container {
-      gap: var(--space-3xl);
-    }
-
-    .kitchen__cardBody {
-      grid-template-columns: 11rem minmax(0, 1fr);
-      gap: var(--space-lg);
-      padding: var(--space-lg);
-    }
-  }
-
   @media (max-width: 62.5rem) {
     .kitchen__bg {
       height: 44rem;
     }
 
-    .container {
-      @include flex(column, flex-start, stretch, var(--space-3xl));
-    }
-
-    .kitchen__intro {
-      flex-basis: auto;
-    }
-
-    .kitchen__panel {
-      display: block;
-    }
-
-    .kitchen__nameZh {
-      max-width: calc(100% - 5.5rem);
-      margin: var(--space-0);
-    }
-
-    .kitchen__nameEn {
-      margin-top: var(--space-3xs);
-      padding-right: var(--space-custom-550);
-    }
-
-    .kitchen__note {
-      margin-top: var(--space-custom-35);
-      max-width: none;
-      align-self: start;
-    }
-
-    .kitchen__effort {
-      flex: 0 0 auto;
-      justify-content: flex-end;
-      min-width: 4.5rem;
-      padding-top: var(--space-micro);
-    }
-
-    .kitchen__cardBody {
-      grid-template-columns: 12rem minmax(0, 1fr);
-    }
-
-    .kitchen__edge {
-      padding-left: var(--space-lg);
-      padding-right: var(--space-lg);
+    .kitchen__grid {
+      grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+      gap: var(--space-lg);
     }
   }
 
@@ -1455,95 +1231,9 @@ h6 {
       gap: var(--space-lg);
     }
 
-    .kitchen__rolodex {
-      flex-direction: row;
-      align-items: stretch;
-    }
-
-    .kitchen__edges {
-      flex: 0 0 2.5rem;
-      flex-direction: row;
-      align-items: center;
-      width: 2.5rem;
-      min-height: 0;
-    }
-
-    .kitchen__edges--above {
-      justify-content: flex-end;
-      margin-right: -0.5rem;
-    }
-
-    .kitchen__edges--below {
-      justify-content: flex-start;
-      margin-left: -0.5rem;
-    }
-
-    .kitchen__edge {
-      position: relative;
-      flex: 0 0 1.5rem;
-      width: 1.5rem;
-      height: var(--kitchen-edge-width, 100%);
-      min-height: 2.75rem;
-      padding: var(--space-0);
-      border: 0.125rem solid var(--color-text);
-    }
-
-    .kitchen__edge + .kitchen__edge {
-      margin-left: -0.5rem;
-    }
-
-    .kitchen__edges--above .kitchen__edge {
-      border-right: 0;
-      border-radius: var(--radius-lg) var(--space-0) var(--space-0)
-        var(--radius-lg);
-    }
-
-    .kitchen__edges--above .kitchen__edge:last-child,
-    .kitchen__edges--below .kitchen__edge:first-child {
-      z-index: 1;
-    }
-
-    .kitchen__edges--below .kitchen__edge {
-      // .kitchen__edges--below .kitchen__edge 這條複合選擇器優先權比上面
-      // .kitchen__edge 的完整 reset 高，會蓋掉桌機版留給下方卡緣的
-      // padding / border-top，這裡把該重設的都補回來，避免右側跟左側長得不一樣。
-      padding: var(--space-0);
-      align-items: center;
-      border-top: 0.125rem solid var(--color-text);
-      border-left: 0;
-      border-radius: var(--space-0) var(--radius-lg) var(--radius-lg)
-        var(--space-0);
-    }
-
-    .kitchen__card {
-      position: relative;
-      z-index: 2;
-      min-width: 0;
-    }
-
-    .kitchen__cardBody {
-      grid-template-columns: minmax(0, 1fr);
+    .kitchen__grid {
+      grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
       gap: var(--space-md);
-      padding: var(--space-md);
-    }
-
-    .kitchen__cardPhoto {
-      // max-width: 18rem;
-    }
-
-    .kitchen__card .kitchen__nameZh {
-      font-size: var(--font-size-title-sm);
-    }
-
-    // 英文菜名一行就結束時，原本保留兩行高度的空白會讓虛線分隔線跟名稱之間
-    // 空一大截；手機版卡片較窄，兩行菜名機率低，改成貼合實際內容高度。
-    .kitchen__card .kitchen__nameEn {
-      min-height: 0;
-    }
-
-    .kitchen__edgeNameZh,
-    .kitchen__edgeNameEn {
-      display: none;
     }
   }
 
@@ -1568,24 +1258,10 @@ h6 {
       max-width: none;
     }
 
-    .kitchen__nameZh,
-    .kitchen__nameEn {
-      font-size: var(--font-size-body);
-    }
-
-    .kitchen__note {
-      font-size: var(--font-size-body);
-      margin-top: var(--space-custom-35);
-    }
-
-    .kitchen__lightboxDialog {
-      width: min(88vw, 22rem);
+    .kitchen__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-}
-
-body.kitchen-lightbox-open {
-  overflow: hidden;
 }
 
 // ========================================
