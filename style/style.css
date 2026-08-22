@@ -1318,7 +1318,8 @@ h6 {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-md);
+  border-bottom: 0.125rem solid var(--color-text);
   font-family: var(--font-family-mono);
   font-size: var(--font-size-caption);
   letter-spacing: 0.08em;
@@ -1383,7 +1384,7 @@ h6 {
 .section--kitchen .kitchen__note {
   display: block;
   color: var(--color-text-subtle);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-caption);
   line-height: var(--line-height-body);
   width: 100%;
   min-width: 0;
