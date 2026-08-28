@@ -938,7 +938,7 @@ h6 {
 .section--main .container--content .block__translator:hover p {
   color: var(--color-text-inverse);
 }
-@media (max-width: 62.25rem) {
+@media (max-width: 62.5rem) {
   .section--main .container--content .block--introduction {
     width: 100%;
   }
@@ -1352,12 +1352,8 @@ h6 {
 .section--kitchen .kitchen__cardNames {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: var(--space-3xs);
   margin-bottom: var(--space-2xs);
-}
-.section--kitchen .kitchen__card .kitchen__nameZh {
-  font-size: var(--font-size-label);
-  line-height: 1.1;
 }
 .section--kitchen .kitchen__card .kitchen__nameEn {
   display: block;
@@ -1379,6 +1375,7 @@ h6 {
   display: block;
   font-size: var(--font-size-label);
   font-weight: var(--font-weight-bold);
+  line-height: 1.1;
   margin: var(--space-0);
   min-width: 0;
 }

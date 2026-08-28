@@ -19,7 +19,7 @@ window.__HOME_PAGE_CONTENT__ = {
           subtitle: 'Sweden',
         },
         {
-          title: "Master's Student (year 1)",
+          title: "Master's Student (year 2)",
           subtitle: 'Interactive Media Technology, KTH',
         },
       ],
@@ -650,7 +650,7 @@ window.__HOME_PAGE_CONTENT__ = {
           subtitle: 'Sweden',
         },
         {
-          title: "Master's Student (year 1)",
+          title: "Master's Student (year 2)",
           subtitle: 'Interactive Media Technology, KTH',
         },
       ],

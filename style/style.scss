@@ -156,7 +156,7 @@
     }
 
     // Media Query
-    @media (max-width: 62.5rem) {
+    @media (max-width: $bp-heading) {
       @include flex(column, center, flex-end);
 
       .block--introduction {
@@ -175,7 +175,7 @@
         margin-bottom: var(--space-md);
       }
     }
-    @media (max-width: 30rem) {
+    @media (max-width: $bp-mobile) {
       .block--introduction {
         .block__title {
           font-size: var(--font-size-title-md);
@@ -255,7 +255,7 @@ li {
   font-size: var(--font-size-body-lg);
   line-height: 1.75rem;
 
-  @media (max-width: 48rem) {
+  @media (max-width: $bp-copy) {
     font-size: var(--font-size-body);
     line-height: 1.625rem;
   }
@@ -274,11 +274,11 @@ h1 {
   font-size: var(--font-size-display-lg);
   line-height: 1;
 
-  @media (max-width: 62.5rem) {
+  @media (max-width: $bp-heading) {
     font-size: var(--font-size-display-md);
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     font-size: var(--font-size-display-md);
   }
 }
@@ -287,11 +287,11 @@ h2 {
   font-size: var(--font-size-heading);
   line-height: 1.2;
 
-  @media (max-width: 62.5rem) {
+  @media (max-width: $bp-heading) {
     font-size: var(--font-size-heading);
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     font-size: var(--font-size-title-lg);
   }
 }
@@ -300,11 +300,11 @@ h3 {
   font-size: var(--font-size-title-lg);
   line-height: 1.2;
 
-  @media (max-width: 62.5rem) {
+  @media (max-width: $bp-heading) {
     font-size: var(--font-size-title-md);
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     font-size: var(--font-size-title-sm);
   }
 }
@@ -313,11 +313,11 @@ h4 {
   font-size: var(--font-size-title-md);
   line-height: 1.4;
 
-  @media (max-width: 62.5rem) {
+  @media (max-width: $bp-heading) {
     font-size: var(--font-size-title-sm);
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     font-size: var(--font-size-label);
   }
 }
@@ -327,7 +327,7 @@ h5 {
   line-height: 1.4;
   font-weight: var(--font-weight-regular);
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     font-size: var(--font-size-body-lg);
   }
 }
@@ -337,7 +337,7 @@ h6 {
   line-height: 1.4;
   font-weight: var(--font-weight-regular);
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     font-size: var(--font-size-body-lg);
   }
 }
@@ -384,7 +384,7 @@ h6 {
     border-left: $color-black solid 0.125rem;
   }
 
-  @media (max-width: 50rem) {
+  @media (max-width: $bp-mobile-wide) {
     padding-left: var(--space-custom-550);
 
     .container--content {
@@ -392,7 +392,7 @@ h6 {
     }
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     padding-left: var(--space-0);
 
     .container--content {
@@ -674,7 +674,7 @@ h6 {
     }
   }
 
-  @media (max-width: 62.25rem) {
+  @media (max-width: $bp-heading) {
     .container--content {
       .block--introduction {
         width: 100%;
@@ -686,7 +686,7 @@ h6 {
     }
   }
 
-  @media (max-width: 50rem) {
+  @media (max-width: $bp-mobile-wide) {
     .container--content {
       @include flex(column-reverse, flex-start, center);
 
@@ -743,7 +743,7 @@ h6 {
     }
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     height: auto;
     min-height: 100svh;
     padding-top: var(--space-custom-350);
@@ -881,7 +881,7 @@ h6 {
     }
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     top: 3.375rem;
     border-left: none;
 
@@ -973,7 +973,7 @@ h6 {
       }
     }
 
-    @media (max-width: 62.5rem) {
+    @media (max-width: $bp-heading) {
       @include flex(column, center, flex-start);
 
       .media {
@@ -1004,7 +1004,7 @@ h6 {
       }
     }
 
-    @media (max-width: 30rem) {
+    @media (max-width: $bp-mobile) {
       .block {
         &--introduction {
           .media {
@@ -1132,13 +1132,8 @@ h6 {
   .kitchen__cardNames {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: var(--space-3xs);
     margin-bottom: var(--space-2xs);
-  }
-
-  .kitchen__card .kitchen__nameZh {
-    font-size: var(--font-size-label);
-    line-height: 1.1;
   }
 
   .kitchen__card .kitchen__nameEn {
@@ -1166,6 +1161,7 @@ h6 {
     display: block;
     font-size: var(--font-size-label);
     font-weight: var(--font-weight-bold);
+    line-height: 1.1;
     margin: var(--space-0);
     min-width: 0;
   }
@@ -1217,7 +1213,7 @@ h6 {
     object-position: 48% 82%;
   }
 
-  @media (max-width: 62.5rem) {
+  @media (max-width: $bp-heading) {
     .kitchen__bg {
       height: 44rem;
     }
@@ -1228,7 +1224,7 @@ h6 {
     }
   }
 
-  @media (max-width: 34rem) {
+  @media (max-width: $bp-kitchen-grid) {
     .container {
       gap: var(--space-lg);
     }
@@ -1239,7 +1235,7 @@ h6 {
     }
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     .kitchen__bg {
       height: 34rem;
     }
@@ -1318,11 +1314,11 @@ h6 {
     white-space: nowrap;
   }
 
-  @media (max-width: 50rem) {
+  @media (max-width: $bp-mobile-wide) {
     width: 5.5rem;
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: $bp-mobile) {
     @include flex(row, space-between, center);
     padding: var(--space-md);
     height: 3.5rem;
