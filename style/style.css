@@ -676,7 +676,6 @@ h6 {
   height: 100%;
   width: 100%;
   padding: var(--space-6xl);
-  border-left: var(--color-text) solid 0.125rem;
 }
 @media (max-width: 50rem) {
   .section {
@@ -692,7 +691,6 @@ h6 {
   }
   .section .container--content {
     padding: var(--space-xl) var(--space-md);
-    border-left: none;
   }
 }
 
@@ -1256,7 +1254,6 @@ h6 {
   height: 100dvh;
   min-height: 100dvh;
   overflow: hidden;
-  border-top: 0.125rem solid var(--color-text);
   background: var(--color-background);
 }
 .section--kitchenFan .container {
@@ -1563,6 +1560,7 @@ h6 {
   height: 100dvh;
   width: 7.5rem;
   padding: var(--space-4xl) var(--space-0);
+  border-right: 0.125rem solid var(--color-text);
   background-color: var(--color-background);
   display: flex;
   justify-content: space-between;
@@ -1628,6 +1626,7 @@ h6 {
     height: 3.5rem;
     width: 100vw;
     top: 0;
+    border-right: none;
     background-color: var(--color-background);
     border-bottom: var(--color-text) solid 0.125rem;
   }

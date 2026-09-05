@@ -13,6 +13,7 @@
   height: 100dvh;
   width: 7.5rem;
   padding: var(--space-4xl) var(--space-0);
+  border-right: 0.125rem solid $color-black;
   background-color: $color-bgWhite;
   @include flex(column, space-between, center);
 
@@ -63,6 +64,7 @@
     height: 3.5rem;
     width: 100vw;
     top: 0;
+    border-right: none;
     background-color: $color-bgWhite;
     border-bottom: $color-black solid 0.125rem;
 

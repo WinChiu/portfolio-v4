@@ -17,7 +17,6 @@
     height: 100%;
     width: 100%;
     padding: var(--space-6xl);
-    border-left: $color-black solid 0.125rem;
   }
 
   @media (max-width: $bp-mobile-wide) {
@@ -33,7 +32,6 @@
 
     .container--content {
       padding: var(--space-xl) var(--space-md);
-      border-left: none;
     }
   }
 }
