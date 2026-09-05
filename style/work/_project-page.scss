@@ -1,5 +1,5 @@
-@use '../../tokens' as *;
-@use '../../base/mixins' as *;
+@use '../tokens' as *;
+@use '../mixins' as *;
 
 // ========================================
 // Section / Project Content
@@ -8,7 +8,7 @@
 .project-page {
   &__content {
     width: 100vw;
-    padding-left: var(--space-custom-750);
+    padding-left: var(--space-120);
     border-bottom: $color-black solid 0.125rem;
     background-color: $color-bgWhite;
     z-index: var(--z-raised);
@@ -23,7 +23,7 @@
     position: relative;
     width: 100%;
     padding: var(--space-8xl) var(--space-0);
-    @include flex(column, center, stretch, var(--space-custom-1600));
+    @include flex(column, center, stretch, var(--space-256));
   }
 
   &__section {
@@ -145,7 +145,7 @@
       }
 
       .project-module__item-content {
-        @include flex(column, center, flex-start, var(--space-custom-875));
+        @include flex(column, center, flex-start, var(--space-14));
         min-width: 0;
       }
 
@@ -194,7 +194,7 @@
 
   @media (max-width: $bp-tablet) {
     &__content-inner {
-      padding: var(--space-custom-500) var(--space-0);
+      padding: var(--space-80) var(--space-0);
       gap: var(--space-7xl);
     }
 
@@ -245,7 +245,7 @@
 
   @media (max-width: $bp-mobile-wide) {
     &__content {
-      padding-left: var(--space-custom-450);
+      padding-left: var(--space-72);
     }
   }
 
@@ -255,8 +255,8 @@
     }
 
     &__content-inner {
-      padding: var(--space-custom-500) var(--space-0);
-      @include flex(column, center, stretch, var(--space-custom-500));
+      padding: var(--space-80) var(--space-0);
+      @include flex(column, center, stretch, var(--space-80));
     }
 
     &__section,

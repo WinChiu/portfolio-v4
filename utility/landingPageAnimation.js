@@ -189,13 +189,13 @@
   function setupKitchenReveal() {
     if (!hasGsap || !hasScrollTrigger) return;
 
-    const kitchen = document.querySelector('.section--kitchen');
+    const kitchen = document.querySelector('.section--kitchenFan');
     if (!kitchen) return;
 
     window.gsap.fromTo(
       [
-        kitchen.querySelector('.kitchen__intro'),
-        kitchen.querySelector('.kitchen__panel'),
+        kitchen.querySelector('.kitchenFan__stage'),
+        kitchen.querySelector('.kitchenFan__intro'),
       ].filter(Boolean),
       { autoAlpha: 0, y: 36 },
       {

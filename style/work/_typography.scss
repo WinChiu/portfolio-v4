@@ -1,0 +1,166 @@
+@use '../tokens' as *;
+
+// ========================================
+// Base / Typography
+// ========================================
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  .highlight {
+    color: $color-darkOrange;
+    font-family: inherit;
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+p,
+li {
+  font-size: var(--font-size-body-lg);
+  line-height: 1.75rem;
+
+  @media (max-width: $bp-copy) {
+    font-size: var(--font-size-body);
+    line-height: 1.625rem;
+  }
+}
+
+ol {
+  padding-left: var(--space-xl);
+
+  li {
+    padding-left: var(--space-3xs);
+  }
+}
+
+h1 {
+  font-family: $font-title;
+  font-size: var(--font-size-display-lg);
+  line-height: 1;
+
+  @media (max-width: $bp-heading) {
+    font-size: var(--font-size-display-md);
+  }
+
+  @media (max-width: $bp-mobile) {
+    font-size: var(--font-size-display-md);
+  }
+}
+
+h2 {
+  font-size: var(--font-size-heading);
+  line-height: 1.2;
+
+  @media (max-width: $bp-heading) {
+    font-size: var(--font-size-heading);
+  }
+
+  @media (max-width: $bp-mobile) {
+    font-size: var(--font-size-title-lg);
+  }
+}
+
+h3 {
+  font-size: var(--font-size-title-lg);
+  line-height: 1.2;
+
+  @media (max-width: $bp-heading) {
+    font-size: var(--font-size-title-md);
+  }
+
+  @media (max-width: $bp-mobile) {
+    font-size: var(--font-size-title-sm);
+  }
+}
+
+h4 {
+  font-size: var(--font-size-title-md);
+  line-height: 1.4;
+
+  @media (max-width: $bp-heading) {
+    font-size: var(--font-size-title-sm);
+  }
+
+  @media (max-width: $bp-mobile) {
+    font-size: var(--font-size-label);
+  }
+}
+
+h5 {
+  font-size: var(--font-size-title-sm);
+  line-height: 1.4;
+  font-weight: var(--font-weight-regular);
+
+  @media (max-width: $bp-mobile) {
+    font-size: var(--font-size-body-lg);
+  }
+}
+
+h6 {
+  font-size: var(--font-size-label);
+  line-height: 1.4;
+  font-weight: var(--font-weight-regular);
+
+  @media (max-width: $bp-mobile) {
+    font-size: var(--font-size-body-lg);
+  }
+}
+
+// ========================================
+// Base / Globals
+// ========================================
+
+* {
+  margin: var(--space-0);
+  padding: var(--space-0);
+  font-family: $font-sansSerif;
+  color: $color-black;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-y: hidden;
+}
+
+.highlight {
+  color: $color-darkOrange;
+}
+
+html,
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: max($layout-root-font-size-min, $layout-root-font-size-scaled);
+}
+
+// ========================================
+// Base / Scrollbar
+// ========================================
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-transparent) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-darkGold;
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-strong);
+}
+
+

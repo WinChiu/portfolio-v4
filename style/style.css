@@ -331,6 +331,164 @@
   display: none !important;
 }
 
+* {
+  margin: var(--space-0);
+  padding: var(--space-0);
+  font-family: var(--font-family-body);
+  color: var(--color-text);
+  box-sizing: border-box;
+}
+
+body {
+  scrollbar-gutter: unset;
+}
+
+.highlight {
+  color: var(--color-link);
+}
+
+html,
+body {
+  position: relative;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: max(var(--font-size-body), var(--layout-root-font-size, var(--font-size-body)));
+}
+
+h1 .highlight,
+h2 .highlight,
+h3 .highlight,
+h4 .highlight,
+h5 .highlight,
+h6 .highlight,
+p .highlight {
+  color: var(--color-link);
+  font-weight: var(--font-weight-bold);
+}
+
+p,
+li {
+  font-size: var(--font-size-body-lg);
+  line-height: 1.75rem;
+}
+@media (max-width: 48rem) {
+  p,
+  li {
+    font-size: var(--font-size-body);
+    line-height: 1.625rem;
+  }
+}
+
+ol {
+  padding-left: var(--space-xl);
+}
+ol li {
+  padding-left: var(--space-3xs);
+}
+
+h1 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display-lg);
+  line-height: 1;
+}
+@media (max-width: 62.5rem) {
+  h1 {
+    font-size: var(--font-size-display-md);
+  }
+}
+@media (max-width: 30rem) {
+  h1 {
+    font-size: var(--font-size-display-md);
+  }
+}
+
+h2 {
+  font-size: var(--font-size-heading);
+  line-height: 1.2;
+}
+@media (max-width: 62.5rem) {
+  h2 {
+    font-size: var(--font-size-heading);
+  }
+}
+@media (max-width: 30rem) {
+  h2 {
+    font-size: var(--font-size-title-lg);
+  }
+}
+
+h3 {
+  font-size: var(--font-size-title-lg);
+  line-height: 1.2;
+}
+@media (max-width: 62.5rem) {
+  h3 {
+    font-size: var(--font-size-title-md);
+  }
+}
+@media (max-width: 30rem) {
+  h3 {
+    font-size: var(--font-size-title-sm);
+  }
+}
+
+h4 {
+  font-size: var(--font-size-title-md);
+  line-height: 1.4;
+}
+@media (max-width: 62.5rem) {
+  h4 {
+    font-size: var(--font-size-title-sm);
+  }
+}
+@media (max-width: 30rem) {
+  h4 {
+    font-size: var(--font-size-label);
+  }
+}
+
+h5 {
+  font-size: var(--font-size-title-sm);
+  line-height: 1.4;
+  font-weight: var(--font-weight-regular);
+}
+@media (max-width: 30rem) {
+  h5 {
+    font-size: var(--font-size-body-lg);
+  }
+}
+
+h6 {
+  font-size: var(--font-size-label);
+  line-height: 1.4;
+  font-weight: var(--font-weight-regular);
+}
+@media (max-width: 30rem) {
+  h6 {
+    font-size: var(--font-size-body-lg);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-transparent) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-strong);
+}
+
 .section--work .container--content {
   display: flex;
   justify-content: center;
@@ -505,168 +663,10 @@
   will-change: transform, opacity;
 }
 
-* {
-  margin: var(--space-0);
-  padding: var(--space-0);
-  font-family: var(--font-family-body);
-  color: var(--color-text);
-  box-sizing: border-box;
-}
-
-body {
-  scrollbar-gutter: unset;
-}
-
-.highlight {
-  color: var(--color-link);
-}
-
-html,
-body {
-  position: relative;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: max(var(--font-size-body), var(--layout-root-font-size, var(--font-size-body)));
-}
-
-h1 .highlight,
-h2 .highlight,
-h3 .highlight,
-h4 .highlight,
-h5 .highlight,
-h6 .highlight,
-p .highlight {
-  color: var(--color-link);
-  font-weight: var(--font-weight-bold);
-}
-
-p,
-li {
-  font-size: var(--font-size-body-lg);
-  line-height: 1.75rem;
-}
-@media (max-width: 48rem) {
-  p,
-  li {
-    font-size: var(--font-size-body);
-    line-height: 1.625rem;
-  }
-}
-
-ol {
-  padding-left: var(--space-xl);
-}
-ol li {
-  padding-left: var(--space-3xs);
-}
-
-h1 {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-display-lg);
-  line-height: 1;
-}
-@media (max-width: 62.5rem) {
-  h1 {
-    font-size: var(--font-size-display-md);
-  }
-}
-@media (max-width: 30rem) {
-  h1 {
-    font-size: var(--font-size-display-md);
-  }
-}
-
-h2 {
-  font-size: var(--font-size-heading);
-  line-height: 1.2;
-}
-@media (max-width: 62.5rem) {
-  h2 {
-    font-size: var(--font-size-heading);
-  }
-}
-@media (max-width: 30rem) {
-  h2 {
-    font-size: var(--font-size-title-lg);
-  }
-}
-
-h3 {
-  font-size: var(--font-size-title-lg);
-  line-height: 1.2;
-}
-@media (max-width: 62.5rem) {
-  h3 {
-    font-size: var(--font-size-title-md);
-  }
-}
-@media (max-width: 30rem) {
-  h3 {
-    font-size: var(--font-size-title-sm);
-  }
-}
-
-h4 {
-  font-size: var(--font-size-title-md);
-  line-height: 1.4;
-}
-@media (max-width: 62.5rem) {
-  h4 {
-    font-size: var(--font-size-title-sm);
-  }
-}
-@media (max-width: 30rem) {
-  h4 {
-    font-size: var(--font-size-label);
-  }
-}
-
-h5 {
-  font-size: var(--font-size-title-sm);
-  line-height: 1.4;
-  font-weight: var(--font-weight-regular);
-}
-@media (max-width: 30rem) {
-  h5 {
-    font-size: var(--font-size-body-lg);
-  }
-}
-
-h6 {
-  font-size: var(--font-size-label);
-  line-height: 1.4;
-  font-weight: var(--font-weight-regular);
-}
-@media (max-width: 30rem) {
-  h6 {
-    font-size: var(--font-size-body-lg);
-  }
-}
-
-::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-transparent) !important;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-text-muted);
-  border-radius: var(--radius-md);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-strong);
-}
-
 .section {
   position: relative;
   max-width: 100vw;
-  padding-left: var(--space-custom-750);
+  padding-left: var(--space-120);
   box-sizing: border-box;
   background-color: var(--color-background);
   z-index: var(--z-raised);
@@ -680,7 +680,7 @@ h6 {
 }
 @media (max-width: 50rem) {
   .section {
-    padding-left: var(--space-custom-550);
+    padding-left: var(--space-88);
   }
   .section .container--content {
     padding: var(--space-3xl);
@@ -746,7 +746,7 @@ h6 {
   align-items: flex-start;
   flex-direction: column;
   gap: var(--space-0);
-  margin-bottom: var(--space-custom-475);
+  margin-bottom: var(--space-76);
 }
 .section--main .container--content .block--introduction .block__header {
   position: relative;
@@ -761,7 +761,7 @@ h6 {
   line-height: 1.2;
   margin-bottom: var(--space-3xs);
   opacity: 0;
-  transition: opacity var(--motion-duration-entrance) ease-in-out;
+  transition: var(--transition-entrance);
 }
 .section--main .container--content .block--introduction .block__header .block__title {
   color: var(--color-text);
@@ -771,12 +771,12 @@ h6 {
   letter-spacing: 0;
   line-height: 1;
   opacity: 0;
-  transition: opacity var(--motion-duration-entrance) ease-in-out;
+  transition: var(--transition-entrance);
   width: 110%;
 }
 .section--main .container--content .block--introduction .block__description {
   opacity: 0;
-  transition: opacity var(--motion-duration-entrance) ease-in-out;
+  transition: var(--transition-entrance);
   font-family: var(--font-family-body);
   color: var(--color-text-subtle);
   font-weight: var(--font-weight-regular);
@@ -798,7 +798,7 @@ h6 {
 }
 .section--main .container--content .block--introduction .block__annotation {
   opacity: 0;
-  transition: opacity var(--motion-duration-entrance) ease-in-out;
+  transition: var(--transition-entrance);
   color: var(--color-text-muted);
   font-weight: var(--font-weight-regular);
   line-height: 140%;
@@ -812,9 +812,9 @@ h6 {
   flex-direction: row;
   gap: var(--space-3xl);
   opacity: 0;
-  transition: opacity var(--motion-duration-entrance) ease-in-out;
+  transition: var(--transition-entrance);
   width: 100%;
-  margin-top: var(--space-custom-1000);
+  margin-top: var(--space-160);
 }
 .section--main .container--content .block--introduction .block__heroDetail {
   min-width: 16rem;
@@ -832,6 +832,7 @@ h6 {
   line-height: 1.35;
 }
 .section--main .container--content .block__bgImage {
+  display: none;
   z-index: var(--z-behind);
   position: fixed;
   top: 50%;
@@ -1003,7 +1004,7 @@ h6 {
   .section--main {
     height: auto;
     min-height: 100svh;
-    padding-top: var(--space-custom-350);
+    padding-top: var(--space-56);
   }
   .section--main .container--content {
     min-height: calc(100svh - 3.5rem);
@@ -1015,7 +1016,7 @@ h6 {
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
-    gap: var(--space-custom-875);
+    gap: var(--space-14);
     height: auto;
     min-height: calc(100svh - 7.5rem);
     margin-bottom: var(--space-0);
@@ -1046,7 +1047,7 @@ h6 {
   .section--main .container--content .block--introduction .block__heroDetails {
     width: 100%;
     gap: var(--space-xl);
-    margin: var(--space-custom-225) var(--space-0) var(--space-0);
+    margin: var(--space-36) var(--space-0) var(--space-0);
   }
   .section--main .container--content .block--introduction .block__heroDetailTitle {
     font-size: var(--font-size-label);
@@ -1250,212 +1251,307 @@ h6 {
   }
 }
 
-.section--kitchen {
+.section--kitchenFan {
   position: relative;
+  height: 100dvh;
+  min-height: 100dvh;
   overflow: hidden;
+  border-top: 0.125rem solid var(--color-text);
+  background: var(--color-background);
 }
-.section--kitchen .kitchen__bg {
-  position: absolute;
-  top: 0;
-  left: 5rem;
-  height: 56rem;
-  width: auto;
-  object-fit: contain;
-  object-position: top right;
-  pointer-events: none;
-  z-index: var(--z-base);
-  mix-blend-mode: hard-light;
-  transform: rotateY(180deg);
+.section--kitchenFan .container {
+  display: grid;
+  grid-template-columns: minmax(22rem, 1.35fr) minmax(18rem, 1fr);
+  align-items: center;
+  gap: var(--space-8xl);
+  height: 100%;
+  padding-top: var(--space-0);
+  padding-bottom: var(--space-0);
+  justify-content: center;
 }
-.section--kitchen .container {
+.section--kitchenFan .kitchenFan__intro {
   display: flex;
-  justify-content: flex-start;
-  align-items: stretch;
   flex-direction: column;
-  gap: var(--space-3xl);
-  position: relative;
-  z-index: var(--z-content);
-}
-.section--kitchen .kitchen__intro {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: var(--space-xl);
-  max-width: 40rem;
+  min-width: 0;
+  text-align: center;
 }
-.section--kitchen .kitchen__title {
+.section--kitchenFan .kitchenFan__title {
+  margin: var(--space-0);
+  color: var(--color-transparent);
   font-family: var(--font-family-display);
   font-weight: var(--font-weight-regular);
-  color: var(--color-transparent);
   line-height: 0.9;
   -webkit-text-stroke: 0.125rem var(--color-text-muted);
-}
-.section--kitchen .kitchen__description {
+  text-align: center;
   width: 100%;
+}
+.section--kitchenFan .kitchenFan__description {
+  max-width: 30rem;
+  margin: var(--space-0);
   color: var(--color-text-subtle);
+  text-align: center;
 }
-.section--kitchen .kitchen__panel {
-  flex: 1;
+.section--kitchenFan .kitchenFan__stage {
   min-width: 0;
-  padding: var(--space-xs) var(--space-0) var(--space-0);
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  outline: none;
 }
-.section--kitchen .kitchen__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-  gap: var(--space-xl);
+.section--kitchenFan .kitchenFan__stage::-webkit-scrollbar {
+  display: none;
 }
-.section--kitchen .kitchen__card {
+.section--kitchenFan .kitchenFan__stage:focus-visible {
+  outline: 0.125rem solid var(--color-text);
+  outline-offset: calc(var(--space-xs) * -1);
+}
+.section--kitchenFan .kitchenFan__item {
+  position: relative;
+  width: 100%;
+  height: var(--space-64);
+  margin-bottom: var(--space-md);
+  overflow: hidden;
+}
+.section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
+  height: calc(var(--space-256) + var(--space-56));
+}
+.section--kitchenFan .kitchenFan__item.is-expanding .kitchenFan__summary, .section--kitchenFan .kitchenFan__item.is-expanded .kitchenFan__summary {
+  display: none;
+}
+.section--kitchenFan .kitchenFan__item.is-expanding .kitchenFan__panel, .section--kitchenFan .kitchenFan__item.is-expanded .kitchenFan__panel {
+  display: block;
+}
+.section--kitchenFan .kitchenFan__summary {
   display: flex;
   flex-direction: column;
-  border: 0.125rem solid var(--color-text);
-  border-radius: var(--radius-lg);
-  background: var(--color-background);
-  overflow: hidden;
-}
-.section--kitchen .kitchen__cardMeta {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-  padding: var(--space-md);
-  border-bottom: 0.125rem solid var(--color-text);
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-caption);
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-}
-.section--kitchen .kitchen__cardPhoto {
+  justify-content: center;
+  gap: var(--space-3xs);
   width: 100%;
-  aspect-ratio: 1/1;
-  background: var(--color-background-soft);
-  border-bottom: 0.125rem solid var(--color-text);
-  overflow: hidden;
+  height: 100%;
+  padding: var(--space-sm) var(--space-lg);
+  border: 0.125rem solid var(--color-border-muted);
+  border-radius: var(--radius-none);
+  background: var(--color-background);
+  color: var(--color-text-muted);
+  text-align: center;
+  cursor: pointer;
 }
-.section--kitchen .kitchen__photo {
-  position: static;
-  inset: auto;
-  margin: var(--space-0);
+.section--kitchenFan .kitchenFan__summary:hover {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+.section--kitchenFan .kitchenFan__summary:focus-visible {
+  outline: 0.125rem solid var(--color-text);
+  outline-offset: var(--space-xs);
+}
+.section--kitchenFan .kitchenFan__summaryZh {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+}
+.section--kitchenFan .kitchenFan__summaryEn {
+  font-family: "Courier Prime", var(--font-family-mono);
+  font-size: var(--font-size-caption);
+  line-height: 1.2;
+}
+.section--kitchenFan .kitchenFan__panel {
+  display: none;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  will-change: transform, clip-path, opacity;
+}
+.section--kitchenFan .kitchenFan__cardInner {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-xl);
+  width: 100%;
+  height: 100%;
+  padding: var(--space-xl);
+  overflow: hidden;
+  border: 0.125rem solid var(--color-text);
+  background: var(--color-background);
+}
+.section--kitchenFan .kitchenFan__cardPhoto {
+  flex: 0 0 44%;
+  min-width: 0;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: var(--color-background-soft);
+}
+.section--kitchenFan .kitchenFan__cardPhoto img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--space-0);
-  box-shadow: none;
 }
-.section--kitchen .kitchen__cardText {
+.section--kitchenFan .kitchenFan__cardText {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
-  gap: var(--space-2xs);
+  justify-content: space-between;
   min-width: 0;
-  padding: var(--space-md);
 }
-.section--kitchen .kitchen__cardNames {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3xs);
-  margin-bottom: var(--space-2xs);
+.section--kitchenFan .kitchenFan__cardNames {
+  padding-top: var(--space-3xs);
 }
-.section--kitchen .kitchen__card .kitchen__nameEn {
-  display: block;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-muted);
-  line-height: 1.3;
-  min-height: 0;
-}
-.section--kitchen .kitchen__cardNote {
-  padding-top: var(--space-sm);
-  border-top: 0.125rem dotted var(--color-border-muted);
-}
-.section--kitchen .kitchen__cardNote .kitchen__note {
-  overflow: visible;
-}
-.section--kitchen .kitchen__nameZh {
-  display: block;
-  font-size: var(--font-size-label);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.1;
+.section--kitchenFan .kitchenFan__nameZh {
   margin: var(--space-0);
-  min-width: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-title-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
 }
-.section--kitchen .kitchen__note {
+.section--kitchenFan .kitchenFan__nameEn {
+  margin: var(--space-3xs) var(--space-0) var(--space-0);
+  color: var(--color-text-muted);
+  font-family: "Courier Prime", var(--font-family-mono);
+  font-size: var(--font-size-body);
+  line-height: 1.25;
+}
+.section--kitchenFan .kitchenFan__divider {
   display: block;
-  color: var(--color-text-subtle);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-body);
   width: 100%;
-  min-width: 0;
-  align-self: start;
+  height: auto;
+  margin-top: var(--space-sm);
 }
-.section--kitchen .kitchen__effort {
+.section--kitchenFan .kitchenFan__note {
+  margin: var(--space-md) var(--space-0);
+  overflow: hidden;
+  color: var(--color-text);
+  font-family: "Caveat", var(--font-family-serif);
+  font-size: var(--font-size-title-sm);
+  line-height: 1.25;
+}
+.section--kitchenFan .kitchenFan__cardMeta {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  color: var(--color-text);
+  font-family: "Courier Prime", var(--font-family-mono);
+  font-size: var(--font-size-caption);
+  white-space: nowrap;
+}
+.section--kitchenFan .kitchenFan__cardMeta span {
+  font-family: "Courier Prime", var(--font-family-mono);
+}
+.section--kitchenFan .kitchenFan__effort {
+  display: flex;
+  align-items: center;
   gap: var(--space-3xs);
 }
-.section--kitchen .kitchen__star {
-  width: 1rem;
-  height: 1rem;
-}
-.section--kitchen .kitchen__photo--focus-1 {
-  object-position: center 68%;
-}
-.section--kitchen .kitchen__photo--focus-2 {
-  object-position: 45% 70%;
-}
-.section--kitchen .kitchen__photo--focus-3 {
-  object-position: 58% 76%;
-}
-.section--kitchen .kitchen__photo--focus-4 {
-  object-position: 38% 66%;
-}
-.section--kitchen .kitchen__photo--focus-5 {
-  object-position: 52% 58%;
-}
-.section--kitchen .kitchen__photo--focus-6 {
-  object-position: 62% 64%;
-}
-.section--kitchen .kitchen__photo--focus-7 {
-  object-position: 48% 82%;
+.section--kitchenFan .kitchenFan__star {
+  width: 0.85rem;
+  height: 0.85rem;
 }
 @media (max-width: 62.5rem) {
-  .section--kitchen .kitchen__bg {
-    height: 44rem;
+  .section--kitchenFan .container {
+    grid-template-columns: minmax(18rem, 1.2fr) minmax(14rem, 1fr);
+    gap: var(--space-3xl);
   }
-  .section--kitchen .kitchen__grid {
-    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  .section--kitchenFan .kitchenFan__cardInner {
     gap: var(--space-lg);
-  }
-}
-@media (max-width: 34rem) {
-  .section--kitchen .container {
-    gap: var(--space-lg);
-  }
-  .section--kitchen .kitchen__grid {
-    grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
-    gap: var(--space-md);
+    padding: var(--space-lg);
   }
 }
 @media (max-width: 30rem) {
-  .section--kitchen .kitchen__bg {
-    height: 34rem;
+  .section--kitchenFan {
+    height: auto;
+    min-height: 100svh;
+    padding-top: var(--space-56);
   }
-  .section--kitchen .container {
+  .section--kitchenFan .container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - var(--space-56));
+    padding-right: var(--space-0);
+    padding-left: var(--space-0);
+    gap: var(--space-6xl);
+  }
+  .section--kitchenFan .kitchenFan__intro {
+    order: -1;
+    align-items: flex-start;
     gap: var(--space-md);
+    padding-right: var(--space-md);
+    padding-left: var(--space-md);
+    text-align: left;
   }
-  .section--kitchen .kitchen__intro {
-    gap: var(--space-md);
-  }
-  .section--kitchen .kitchen__title {
+  .section--kitchenFan .kitchenFan__title {
     -webkit-text-stroke: 0.0938rem var(--color-text-muted);
   }
-  .section--kitchen .kitchen__description {
+  .section--kitchenFan .kitchenFan__description {
     max-width: none;
   }
-  .section--kitchen .kitchen__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .section--kitchenFan .kitchenFan__stage {
+    flex: 0 0 calc(var(--space-256) * 2);
+    display: flex;
+    align-items: stretch;
+    height: calc(var(--space-256) * 2);
+    padding: var(--space-0) var(--space-md) var(--space-md);
+    overflow-x: auto;
+    overflow-y: hidden;
+    touch-action: auto;
+  }
+  .section--kitchenFan .kitchenFan__item {
+    display: flex;
+    flex: 0 0 var(--space-56);
+    width: var(--space-56);
+    height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
+    min-height: 0;
+    margin: var(--space-0) var(--space-3xs);
+  }
+  .section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
+    flex-basis: calc(var(--space-256) + var(--space-md));
+    width: calc(var(--space-256) + var(--space-md));
+    height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
+  }
+  .section--kitchenFan .kitchenFan__summary {
+    flex-direction: row;
+    width: 100%;
+    min-height: 100%;
+    padding: var(--space-md) var(--space-xs);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    gap: var(--space-md);
+  }
+  .section--kitchenFan .kitchenFan__summaryEn {
+    max-height: 10rem;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .section--kitchenFan .kitchenFan__cardInner {
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+  .section--kitchenFan .kitchenFan__cardPhoto {
+    flex: 0 0 auto;
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+  .section--kitchenFan .kitchenFan__cardText {
+    gap: var(--space-sm);
+  }
+  .section--kitchenFan .kitchenFan__nameZh {
+    font-size: var(--font-size-label);
+  }
+  .section--kitchenFan .kitchenFan__nameEn,
+  .section--kitchenFan .kitchenFan__note {
+    font-size: var(--font-size-body-lg);
+  }
+  .section--kitchenFan .kitchenFan__divider {
+    margin-top: var(--space-xs);
+  }
+  .section--kitchenFan .kitchenFan__note {
+    margin: var(--space-0);
   }
 }
 

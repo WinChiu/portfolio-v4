@@ -44,13 +44,17 @@ const components = [
     example: '<div class="ui-segmented-control block--switcher"><button class="ui-segmented-control__item is-selected" aria-pressed="true">Design</button></div>', related: ['Project Card', 'Segmented Control'],
   },
   {
-    file: 'kitchen-gallery.md', name: 'Kitchen Gallery', category: 'Interactive content', status: 'Stable',
-    use: 'Use for the personal kitchen project list, preview, controls, and lightbox.', avoid: 'Do not use for a generic image carousel.',
-    anatomy: ['Intro', 'Preview stack', 'Item table', 'Effort rating', 'Previous and next controls', 'Lightbox'],
-    tokens: ['--color-*', '--space-*', '--font-size-*', '--font-weight-*', '--radius-*', '--shadow-*', '--transition-*', '--z-overlay'],
-    api: 'CSS block `.section--kitchen`; composes Interactive List Item, Rating, Icon Button, and Modal primitives.',
-    states: ['Default: first visible item', 'Hover: row highlight and control lift', 'Active: `.kitchen__item--active` highlights selection', 'Focus: controls and rows show focus outline', 'Disabled: `.kitchen__control--disabled` prevents movement', 'Error: missing images should retain item text and controls'],
-    example: '<button class="kitchen__item kitchen__item--active"><span class="kitchen__nameZh">料理</span></button>', related: ['Image Zoom', 'Icon List'],
+    file: 'kitchen-gallery.md', name: 'Kitchen Gallery', category: 'Content display', status: 'Stable',
+    use: 'Use for the personal kitchen project list as an interactive recipe index with one expanded dish.',
+    avoid: 'Do not use for a generic image carousel or click-to-open lightbox.',
+    anatomy: ['Intro (title and description)', 'Infinite compact recipe index', 'Expanded card: photo, names, note, effort rating, and number'],
+    tokens: ['--color-text', '--color-background', '--color-background-soft', '--color-text-muted', '--color-border-muted', '--space-*', '--font-size-label', '--font-size-caption', '--font-weight-regular', '--font-weight-bold', '--font-family-mono', '--line-height-body', '--radius-lg', '--z-base', '--z-content'],
+    api: 'CSS block `.section--kitchenFan`. Markup comes from `renderKitchenFanCard` and `renderKitchenFanSection`; behaviour is initialized by `utility/kitchenFanAnimation.js`.',
+    states: ['Default: compact dishes form an infinitely looping list', 'Browsing: the expanded row closes as scrolling starts and stays closed during inertia', 'Settle: the nearest item snaps to centre, holds, then expands', 'Direct selection: click and arrow-key input close and scroll simultaneously before settling', 'Mobile card: the photo stays square and card content remains visible'],
+    example: `<article class="kitchenFan__item">
+  <button class="kitchenFan__summary" aria-expanded="false">料理</button>
+  <div class="kitchenFan__panel" aria-hidden="true">…</div>
+</article>`, related: ['Rating'],
   },
   {
     file: 'project-header.md', name: 'Project Header', category: 'Case study', status: 'Stable',
@@ -104,7 +108,7 @@ const components = [
     file: 'process-flow.md', name: 'Process Flow', category: 'Case study content', status: 'Stable',
     use: 'Use to show the ordered phases of a project process.', avoid: 'Do not use for unordered feature lists.',
     anatomy: ['Step number', 'Step heading', 'Step description', 'Connector'], tokens: ['--color-link', '--color-text', '--space-*', '--font-size-*', '--font-weight-*'],
-    api: 'Process-flow modifier classes under `.project-module`; local custom properties derive from Layer 2 tokens.', states: ['Default: ordered flow', 'Hover: none', 'Active: none', 'Focus: linked steps retain focus', 'Disabled: not applicable', 'Error: step order and numbering must remain consistent'],
+    api: 'Process-flow modifier classes under `.project-module`; local custom properties derive from the shared design tokens.', states: ['Default: ordered flow', 'Hover: none', 'Active: none', 'Focus: linked steps retain focus', 'Disabled: not applicable', 'Error: step order and numbering must remain consistent'],
     example: '<ol class="project-module__process-flow"><li><h3>Discover</h3></li></ol>', related: ['Project Module', 'Icon List'],
   },
   {

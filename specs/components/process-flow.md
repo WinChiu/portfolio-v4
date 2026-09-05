@@ -29,7 +29,7 @@ Do not use for unordered feature lists.
 
 ## 5. Props/API
 
-Process-flow modifier classes under `.project-module`; local custom properties derive from Layer 2 tokens.
+Process-flow modifier classes under `.project-module`; local custom properties derive from the shared design tokens.
 
 ## 6. States
 

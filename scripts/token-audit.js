@@ -14,28 +14,30 @@ const ignoredFiles = new Set([
 const tokenSuggestions = new Map([
   ['#363a35', '--color-text'], ['#7a776d', '--color-text-muted'],
   ['#868684', '--color-text-subtle'], ['#c14804', '--color-link'],
-  ['#c8c8c8', '--color-disabled'], ['#d1b129', '--color-accent'],
+  ['#c8c8c8', '--color-text-disabled'], ['#d1b129', '--color-accent'],
   ['#f37021', '--color-accent-bright'], ['#f8f6ed', '--color-background-soft'],
   ['#b74343', '--color-interactive'], ['#4f4b43', '--color-surface-inverse'],
   ['#f5dead', '--color-highlight'], ['#ffffff', '--color-text-inverse'],
   ['#cabd8a', '--color-interactive-hover'], ['#fbfbf6', '--color-background'],
   ['#555', '--color-text-strong'], ['400ms', '--motion-duration-slow'],
-  ['0.2s', '--motion-duration-fast'], ['0.25s', '--motion-duration-standard'],
+  ['0.2s', '--motion-duration-fast'],
   ['0.3s', '--motion-duration-standard'], ['0.4s', '--motion-duration-slow'],
-  ['0.5s', '--motion-duration-slow'], ['0.6s', '--motion-duration-slow'], ['1s', '--motion-duration-loading'],
-  ['1.5s', '--motion-duration-entrance'], ['2.5s', '--motion-duration-entrance'],
+  ['1s', '--motion-duration-loading'], ['1.5s', '--motion-duration-entrance'],
 ]);
 
 const categorySuggestions = {
-  'pixel spacing': new Map([['16px', '--space-md'], ['72px', '--size-effort-column-legacy'], ['104px', '--size-effort-column']]),
+  'pixel spacing': new Map([['16px', '--space-md']]),
   spacing: new Map([
     ['0', '--space-0'], ['0rem', '--space-0'], ['0.125rem', '--space-hairline'],
     ['0.25rem', '--space-3xs'], ['0.375rem', '--space-2xs'], ['0.5rem', '--space-xs'],
-    ['0.75rem', '--space-sm'], ['0.875rem', '--space-custom-875'], ['1rem', '--space-md'],
+    ['0.75rem', '--space-sm'], ['0.875rem', '--space-14'], ['1rem', '--space-md'],
     ['1.25rem', '--space-lg'], ['1.5rem', '--space-xl'], ['1.75rem', '--space-2xl'],
-    ['2rem', '--space-3xl'], ['2.5rem', '--space-4xl'], ['3rem', '--space-5xl'],
-    ['4rem', '--space-6xl'], ['6rem', '--space-7xl'], ['8rem', '--space-8xl'],
-    ['auto', '--space-auto'], ['20%', '--space-content-percent'], ['21rem', '--space-custom-2100'],
+    ['2rem', '--space-3xl'], ['2.25rem', '--space-36'], ['2.5rem', '--space-4xl'],
+    ['3rem', '--space-5xl'], ['3.5rem', '--space-56'], ['4rem', '--space-6xl'],
+    ['4.5rem', '--space-72'], ['4.75rem', '--space-76'], ['5rem', '--space-80'],
+    ['5.5rem', '--space-88'], ['6rem', '--space-7xl'], ['7.5rem', '--space-120'],
+    ['8rem', '--space-8xl'], ['10rem', '--space-160'], ['16rem', '--space-256'],
+    ['auto', '--space-auto'],
   ]),
   'font sizes': new Map([
     ['0.75rem', '--font-size-caption'], ['0.8rem', '--font-size-small'], ['0.875rem', '--font-size-small'],
@@ -60,7 +62,7 @@ const categorySuggestions = {
   ]),
   'z-index': new Map([
     ['-1', '--z-behind'], ['0', '--z-base'], ['1', '--z-content'], ['2', '--z-raised'],
-    ['10', '--z-sticky'], ['30', '--z-overlay'], ['800', '--z-zoom-image'],
+    ['10', '--z-sticky'], ['800', '--z-zoom-image'],
     ['850', '--z-zoom-clone'], ['900', '--z-zoom-backdrop'], ['1000', '--z-modal'], ['9999', '--z-loader'],
   ]),
 };

@@ -1,0 +1,108 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ========================================
+// Main Navigation
+// ========================================
+
+.nav--main {
+  position: fixed;
+  z-index: var(--z-sticky);
+  left: 0;
+  top: 0;
+  height: 100dvh;
+  width: 7.5rem;
+  padding: var(--space-4xl) var(--space-0);
+  background-color: $color-bgWhite;
+  @include flex(column, space-between, center);
+
+  .block--navList {
+    @include flex(column, center, center);
+  }
+
+  .block__navItem {
+    margin-bottom: var(--space-md);
+
+    a {
+      font-family: $font-sansSerif;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+
+  .media--socialList {
+    @include flex(column, center, center);
+  }
+
+  .nav__actions {
+    @include flex(column, center, center);
+  }
+
+  .media__img {
+    width: 2.25rem;
+    height: auto;
+    margin-bottom: var(--space-xs);
+    cursor: pointer;
+  }
+
+  .nav__language {
+    display: none;
+    color: $color-black;
+    font-family: $font-sansSerif;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  @media (max-width: $bp-mobile-wide) {
+    width: 5.5rem;
+  }
+
+  @media (max-width: $bp-mobile) {
+    @include flex(row, space-between, center);
+    padding: var(--space-md);
+    height: 3.5rem;
+    width: 100vw;
+    top: 0;
+    background-color: $color-bgWhite;
+    border-bottom: $color-black solid 0.125rem;
+
+    .block--navList {
+      @include flex(row, center, center);
+
+      a {
+        font-size: var(--font-size-body-lg);
+      }
+    }
+
+    .block__navItem {
+      margin-bottom: var(--space-0);
+      margin-right: var(--space-md);
+    }
+
+    .media--socialList {
+      @include flex(row, center, center);
+
+      a {
+        @include flex(row, center, center);
+      }
+    }
+
+    .nav__actions {
+      @include flex(row, center, center, var(--space-xs));
+      margin-left: var(--space-auto);
+    }
+
+    .media__img {
+      margin-bottom: var(--space-0);
+      width: 2.25rem;
+      margin-left: var(--space-0);
+    }
+
+    .nav__language {
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
+      font-size: var(--font-size-small);
+    }
+  }
+}

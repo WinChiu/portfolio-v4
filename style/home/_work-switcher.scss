@@ -1,0 +1,77 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ========================================
+// Section / Work Switcher
+// ========================================
+
+.block--switcher {
+  width: 100%;
+  background-color: $color-bgWhite;
+  top: -0.125rem;
+  position: sticky;
+  z-index: var(--z-content);
+  box-sizing: border-box;
+  border-top: 0.125rem solid $color-black;
+  border-bottom: 0.125rem solid $color-black;
+  border-left: 0.125rem solid $color-black;
+  @include flex(row, center, center);
+
+  a {
+    width: 100%;
+    text-decoration: none;
+  }
+
+  .block__design {
+    border-right: 0.125rem solid $color-black;
+  }
+
+  .block__coding {
+    border-right: none;
+  }
+
+  .block__design,
+  .block__coding {
+    width: 100%;
+    padding: var(--space-xs) var(--space-3xl);
+    background-color: $color-bgWhite;
+
+    h4 {
+      font-family: $font-sansSerif;
+      font-weight: var(--font-weight-medium);
+      text-align: center;
+    }
+  }
+
+  .block__design:hover,
+  .block__coding:hover {
+    background-color: $color-yellow;
+    cursor: pointer;
+
+    h4 {
+      color: $color-bgWhite;
+    }
+  }
+
+  .selected {
+    background-color: $color-yellow;
+
+    h4 {
+      color: $color-bgWhite;
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    top: 3.375rem;
+    border-left: none;
+
+    .block__design,
+    .block__coding {
+      padding: var(--space-xs) var(--space-xl);
+
+      h4 {
+        font-size: var(--font-size-label);
+      }
+    }
+  }
+}

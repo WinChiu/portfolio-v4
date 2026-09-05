@@ -13,7 +13,7 @@ Image Zoom JS v0.0.1 | MIT License | https://github.com/alecrios/image-zoom-js
 	z-index: var(--z-zoom-backdrop);
 	background-color: var(--color-zoom-overlay);
 	opacity: 0;
-	transition: opacity var(--motion-duration-slow) ease;
+	transition: var(--transition-zoom-opacity);
 	pointer-events: none;
 }
 
@@ -26,7 +26,7 @@ Image Zoom JS v0.0.1 | MIT License | https://github.com/alecrios/image-zoom-js
 	position: relative;
 	z-index: var(--z-zoom-image);
 	transform: none;
-	transition: transform var(--motion-duration-slow) ease;
+	transition: var(--transition-zoom-transform);
 	cursor: zoom-in;
 }
 
@@ -40,7 +40,7 @@ Image Zoom JS v0.0.1 | MIT License | https://github.com/alecrios/image-zoom-js
 	z-index: var(--z-modal);
 	margin: var(--space-0);
 	transform: none;
-	transition: transform var(--motion-duration-slow) ease;
+	transition: var(--transition-zoom-transform);
 	cursor: zoom-out;
 	pointer-events: auto;
 }

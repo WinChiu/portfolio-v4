@@ -1,0 +1,94 @@
+@use '../mixins' as *;
+
+// ========================================
+// Utility / Reveal
+// ========================================
+
+.animate-item {
+  opacity: 1;
+  transform: none;
+  transition: var(--transition-none);
+}
+
+.animate-item.visible {
+  opacity: 1;
+  transform: none;
+}
+
+// ========================================
+// Utility / SVG Animation
+// ========================================
+
+@function svg-delay($i) {
+  @return calc(var(--motion-duration-stagger) * #{$i - 1});
+}
+
+@function svg-active-fill($i) {
+  @if $i == 1 {
+    @return var(--color-svg-silver);
+  } @else if $i == 2 {
+    @return var(--color-svg-gold);
+  } @else if $i == 3 {
+    @return var(--color-svg-silver);
+  } @else if $i == 4 {
+    @return var(--color-svg-silver);
+  } @else if $i == 5 {
+    @return var(--color-svg-silver);
+  } @else if $i == 6 {
+    @return var(--color-svg-gold);
+  } @else if $i == 7 {
+    @return var(--color-svg-silver);
+  } @else if $i == 8 {
+    @return var(--color-svg-gold);
+  } @else if $i == 9 {
+    @return var(--color-svg-gold);
+  } @else {
+    @return var(--color-svg-ink);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1.25rem);
+  }
+}
+
+@for $i from 1 through 54 {
+  svg .svg-elem-#{$i} {
+    fill: transparent;
+    -webkit-transition: fill
+      var(--motion-duration-slow)
+      var(--motion-ease-drawing)
+      svg-delay($i);
+    transition: fill
+      var(--motion-duration-slow)
+      var(--motion-ease-drawing)
+      svg-delay($i);
+  }
+
+  svg.active .svg-elem-#{$i} {
+    fill: svg-active-fill($i);
+  }
+}
+
+// ========================================
+// Utility / Loading
+// ========================================
+
+.loading-mask {
+  @include full-page-loader;
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  dotlottie-wc {
+    width: 15.625rem;
+    height: 15.625rem;
+  }
+}

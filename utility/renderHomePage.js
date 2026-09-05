@@ -66,61 +66,109 @@
       .join('\n');
   }
 
-  function renderKitchenStars(effort) {
+  // Interactive recipe index. One dish opens in place while the others remain
+  // compact jump targets in the infinitely looping list.
+  function renderKitchenFanStars(effort) {
     return Array.from({ length: 3 }, (_, index) => {
       const isFilled = index < effort;
       const src = isFilled
         ? './img/icon-starFilled.svg'
         : './img/icon-star.svg';
-      return `<img class="ui-rating__icon kitchen__star" src="${src}" alt="" aria-hidden="true" />`;
+      return `<img class="kitchenFan__star" src="${src}" alt="" aria-hidden="true" />`;
     }).join('');
   }
 
-  // Recipe-book style cover card, one per dish. Static -- no click-to-open
-  // behaviour: every dish is treated as if it has no recipe table to show yet.
-  function renderKitchenCard(item, index) {
+  function renderKitchenFanCard(item, index) {
     const no = String(index + 1).padStart(2, '0');
     return `
-        <article class="kitchen__card">
-          <div class="kitchen__cardMeta">
-            <span>NO. ${no}</span>
-            <span class="ui-rating kitchen__effort" aria-label="Effort level ${item.effort} out of 3">
-              ${renderKitchenStars(item.effort)}
-            </span>
-          </div>
-          <div class="kitchen__cardPhoto">
-            <img
-              class="kitchen__photo ${item.imageClass || ''}"
-              src="${resolveAssetPath(item.imageSrc)}"
-              alt="${item.imageAlt}"
-              loading="lazy"
-            />
-          </div>
-          <div class="kitchen__cardText">
-            <div class="kitchen__cardNames">
-              <p class="kitchen__nameZh">${item.nameZh}</p>
-              <p class="kitchen__nameEn">${item.nameEn}</p>
-            </div>
-            <div class="kitchen__cardNote">
-              <p class="kitchen__note">${item.note}</p>
+        <article class="kitchenFan__item" data-index="${index}">
+          <button
+            class="kitchenFan__summary"
+            type="button"
+            aria-expanded="false"
+          >
+            <span class="kitchenFan__summaryZh">${item.nameZh}</span>
+            <span class="kitchenFan__summaryEn">${item.nameEn}</span>
+          </button>
+          <div class="kitchenFan__panel" aria-hidden="true">
+            <div class="kitchenFan__cardInner">
+              <div class="kitchenFan__cardPhoto">
+                <img
+                  src="${resolveAssetPath(item.imageSrc)}"
+                  alt="${escapeAttribute(item.imageAlt)}"
+                  loading="lazy"
+                />
+              </div>
+              <div class="kitchenFan__cardText">
+                <div class="kitchenFan__cardNames">
+                  <p class="kitchenFan__nameZh">${item.nameZh}</p>
+                  <p class="kitchenFan__nameEn">${item.nameEn}</p>
+                  <img class="kitchenFan__divider" src="./img/icon-kitchenFanDivider.svg" alt="" aria-hidden="true" />
+                </div>
+
+                <p class="kitchenFan__note">${item.note}</p>
+                <div class="kitchenFan__cardMeta">
+                  <span class="kitchenFan__effort">Effort ${renderKitchenFanStars(item.effort)}</span>
+                  <span>No.${no}</span>
+                </div>
+              </div>
             </div>
           </div>
         </article>`;
   }
 
-  function renderKitchenSection(kitchen) {
+  function renderKitchenFanSection(kitchen) {
     return `
-      <section class="section section--kitchen" id="kitchen">
-        <img class="kitchen__bg" src="./img/image-kitchenBg.webp" alt="" aria-hidden="true" />
+      <section class="section section--kitchenFan" id="kitchen">
         <div class="container container--content">
-          <article class="kitchen__intro">
-            <h1 class="kitchen__title">${kitchen.title}</h1>
-            <p class="kitchen__description">${kitchen.description}</p>
+          <div
+            class="kitchenFan__stage"
+            role="region"
+            aria-label="Kitchen recipe index"
+            tabindex="0"
+          >
+            ${kitchen.items.map((item, index) => renderKitchenFanCard(item, index)).join('\n')}
+          </div>
+          <article class="kitchenFan__intro">
+            <h1 class="kitchenFan__title">${kitchen.title}</h1>
+            <p class="kitchenFan__description">${kitchen.description}</p>
           </article>
-          <div class="kitchen__panel">
-            <div class="kitchen__grid">
-              ${kitchen.items.map((item, index) => renderKitchenCard(item, index)).join('\n')}
-            </div>
+        </div>
+      </section>`;
+  }
+
+  // Stacked-Polaroid style card, one per photo. Positioning/tilt/scroll
+  // behaviour is owned by utility/lifeStackAnimation.js -- this only emits
+  // the static markup it hooks into.
+  function renderLifeCard(item, index) {
+    return `
+        <article class="life__card" data-index="${index}">
+          <div class="life__cardPhoto">
+            <img
+              class="life__photo"
+              src="${resolveAssetPath(item.imageSrc)}"
+              alt="${escapeAttribute(item.imageAlt)}"
+              loading="lazy"
+            />
+          </div>
+          <p class="life__note">${item.note}</p>
+          <div class="life__cardMeta">
+            <span class="life__location">${item.location}</span>
+            <span class="life__date">${item.date}</span>
+          </div>
+        </article>`;
+  }
+
+  function renderLifeSection(life) {
+    return `
+      <section class="section section--life" id="life">
+        <div class="container container--content">
+          <article class="life__intro">
+            <h1 class="life__title">${life.title}</h1>
+            <p class="life__description">${life.description}</p>
+          </article>
+          <div class="life__stack">
+            ${life.items.map((item, index) => renderLifeCard(item, index)).join('\n')}
           </div>
         </div>
       </section>`;
@@ -267,10 +315,10 @@
         </article>
       </div>
     </section>
-    ${renderKitchenSection(content.kitchen)}
+    ${renderKitchenFanSection(content.kitchen)}
     <nav class="nav nav--main" id="navbar">
       <div class="block block--navList">
-        ${renderNav(content.nav)}
+        ${renderNav(content.nav.filter((item) => item.href !== '#life'))}
       </div>
       <div class="nav__actions">
         <figure class="media media--socialList">
@@ -283,6 +331,7 @@
     </nav>
   `;
 
-  root.querySelectorAll('.block__descriptionLink').forEach((link) =>
-    link.classList.add('ui-link'));
+  root
+    .querySelectorAll('.block__descriptionLink')
+    .forEach((link) => link.classList.add('ui-link'));
 })();

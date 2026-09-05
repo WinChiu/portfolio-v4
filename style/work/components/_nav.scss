@@ -1,5 +1,5 @@
 @use '../../tokens' as *;
-@use '../../base/mixins' as *;
+@use '../../mixins' as *;
 
 // ========================================
 // Component / Project Navigation
@@ -31,7 +31,7 @@
     @include flex(column, center, flex-start, var(--space-md));
     max-width: 1rem;
     margin-left: var(--space-md);
-    transition: max-width var(--motion-duration-standard);
+    transition: var(--transition-nav);
     overflow: hidden;
 
     .project-toc {

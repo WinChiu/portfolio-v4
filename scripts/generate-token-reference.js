@@ -11,7 +11,6 @@ const variables = [...source.matchAll(/^\s*(--[\w-]+):\s*(.+);$/gm)].map((match)
 }));
 
 function usage(name) {
-  if (name.startsWith('--ds-')) return 'Upstream primitive. Override only when integrating a parent design system.';
   if (name.startsWith('--color-')) return 'Use for semantic color roles named by this token.';
   if (name.startsWith('--space-')) return 'Use for spacing, inset, margin, padding, or gap.';
   if (name.startsWith('--size-')) return 'Use for the named component dimension.';
@@ -31,18 +30,11 @@ function escapeCell(value) {
   return value.replaceAll('|', '\\|');
 }
 
-const sections = [
-  ['Layer 1 upstream primitives', variables.filter((item) => item.name.startsWith('--ds-'))],
-  ['Layer 2 project aliases', variables.filter((item) => !item.name.startsWith('--ds-'))],
-];
-
 let markdown = '# Token reference\n\n';
-markdown += 'Generated from `style/tokens.css` by `node scripts/generate-token-reference.js`. Components may consume Layer 2 only.\n\n';
-for (const [heading, items] of sections) {
-  markdown += `## ${heading}\n\n| Variable | Value | When to use |\n| --- | --- | --- |\n`;
-  for (const item of items) markdown += `| \`${item.name}\` | \`${escapeCell(item.value)}\` | ${usage(item.name)} |\n`;
-  markdown += '\n';
-}
+markdown += 'Generated from `style/tokens.css` by `node scripts/generate-token-reference.js`. Components may consume these tokens only — never a raw value.\n\n';
+markdown += `## Project tokens\n\n| Variable | Value | When to use |\n| --- | --- | --- |\n`;
+for (const item of variables) markdown += `| \`${item.name}\` | \`${escapeCell(item.value)}\` | ${usage(item.name)} |\n`;
+markdown += '\n';
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, markdown);

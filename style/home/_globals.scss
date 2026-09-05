@@ -1,5 +1,40 @@
-@use '../../tokens' as *;
-@use '../../base/mixins' as *;
+@use '../tokens' as *;
+
+// Language switching is temporarily disabled site-wide.
+.block__translator,
+.nav__language {
+  display: none !important;
+}
+
+// ========================================
+// Base / Globals
+// ========================================
+
+* {
+  margin: var(--space-0);
+  padding: var(--space-0);
+  font-family: $font-sansSerif;
+  color: $color-black;
+  box-sizing: border-box;
+}
+
+body {
+  scrollbar-gutter: unset;
+}
+
+.highlight {
+  color: $color-darkOrange;
+}
+
+html,
+body {
+  position: relative;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: max($layout-root-font-size-min, $layout-root-font-size-scaled);
+}
 
 // ========================================
 // Base / Typography
@@ -14,7 +49,6 @@ h6,
 p {
   .highlight {
     color: $color-darkOrange;
-    font-family: inherit;
     font-weight: var(--font-weight-bold);
   }
 }
@@ -112,37 +146,6 @@ h6 {
 }
 
 // ========================================
-// Base / Globals
-// ========================================
-
-* {
-  margin: var(--space-0);
-  padding: var(--space-0);
-  font-family: $font-sansSerif;
-  color: $color-black;
-  box-sizing: border-box;
-}
-
-body {
-  overflow-y: hidden;
-}
-
-.highlight {
-  color: $color-darkOrange;
-}
-
-html,
-body {
-  width: 100vw;
-  overflow-x: hidden;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: max($layout-root-font-size-min, $layout-root-font-size-scaled);
-}
-
-// ========================================
 // Base / Scrollbar
 // ========================================
 
@@ -163,5 +166,3 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-strong);
 }
-
-

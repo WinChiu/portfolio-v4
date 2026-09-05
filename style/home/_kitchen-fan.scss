@@ -1,0 +1,359 @@
+@use '../tokens' as *;
+
+// ========================================
+// Kitchen infinite index. The centred list item itself expands into its recipe
+// card; GSAP keeps its centre anchored while the physical row grows.
+// ========================================
+
+.section--kitchenFan {
+  position: relative;
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  border-top: 0.125rem solid var(--color-text);
+  background: var(--color-background);
+
+  .container {
+    display: grid;
+    grid-template-columns: minmax(22rem, 1.35fr) minmax(18rem, 1fr);
+    align-items: center;
+    gap: var(--space-8xl);
+    height: 100%;
+    padding-top: var(--space-0);
+    padding-bottom: var(--space-0);
+    justify-content: center;
+  }
+
+  .kitchenFan__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    min-width: 0;
+    text-align: center;
+  }
+
+  .kitchenFan__title {
+    margin: var(--space-0);
+    color: var(--color-transparent);
+    font-family: $font-title;
+    font-weight: var(--font-weight-regular);
+    line-height: 0.9;
+    -webkit-text-stroke: 0.125rem $color-darkGold;
+    text-align: center;
+    width: 100%;
+  }
+
+  .kitchenFan__description {
+    max-width: 30rem;
+    margin: var(--space-0);
+    color: $color-darkGray;
+    text-align: center;
+  }
+
+  .kitchenFan__stage {
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    outline: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 0.125rem solid var(--color-text);
+      outline-offset: calc(var(--space-xs) * -1);
+    }
+  }
+
+  .kitchenFan__item {
+    position: relative;
+    width: 100%;
+    height: var(--space-64);
+    margin-bottom: var(--space-md);
+    overflow: hidden;
+
+    &.is-expanding,
+    &.is-expanded {
+      height: calc(var(--space-256) + var(--space-56));
+
+      .kitchenFan__summary {
+        display: none;
+      }
+
+      .kitchenFan__panel {
+        display: block;
+      }
+    }
+  }
+
+  .kitchenFan__summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3xs);
+    width: 100%;
+    height: 100%;
+    padding: var(--space-sm) var(--space-lg);
+    border: 0.125rem solid var(--color-border-muted);
+    border-radius: var(--radius-none);
+    background: var(--color-background);
+    color: var(--color-text-muted);
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--color-text);
+      color: var(--color-text);
+    }
+
+    &:focus-visible {
+      outline: 0.125rem solid var(--color-text);
+      outline-offset: var(--space-xs);
+    }
+  }
+
+  .kitchenFan__summaryZh {
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.15;
+  }
+
+  .kitchenFan__summaryEn {
+    font-family: 'Courier Prime', var(--font-family-mono);
+    font-size: var(--font-size-caption);
+    line-height: 1.2;
+  }
+
+  .kitchenFan__panel {
+    display: none;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 50%;
+    will-change: transform, clip-path, opacity;
+  }
+
+  .kitchenFan__cardInner {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xl);
+    width: 100%;
+    height: 100%;
+    padding: var(--space-xl);
+    overflow: hidden;
+    border: 0.125rem solid var(--color-text);
+    background: var(--color-background);
+  }
+
+  .kitchenFan__cardPhoto {
+    flex: 0 0 44%;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--color-background-soft);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .kitchenFan__cardText {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+  }
+
+  .kitchenFan__cardNames {
+    padding-top: var(--space-3xs);
+  }
+
+  .kitchenFan__nameZh {
+    margin: var(--space-0);
+    color: var(--color-text);
+    font-size: var(--font-size-title-sm);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+  }
+
+  .kitchenFan__nameEn {
+    margin: var(--space-3xs) var(--space-0) var(--space-0);
+    color: var(--color-text-muted);
+    font-family: 'Courier Prime', var(--font-family-mono);
+    font-size: var(--font-size-body);
+    line-height: 1.25;
+  }
+
+  .kitchenFan__divider {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-sm);
+  }
+
+  .kitchenFan__note {
+    margin: var(--space-md) var(--space-0);
+    overflow: hidden;
+    color: var(--color-text);
+    font-family: 'Caveat', $font-serifText;
+    font-size: var(--font-size-title-sm);
+    line-height: 1.25;
+  }
+
+  .kitchenFan__cardMeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    color: var(--color-text);
+    font-family: 'Courier Prime', var(--font-family-mono);
+    font-size: var(--font-size-caption);
+    white-space: nowrap;
+
+    span {
+      font-family: 'Courier Prime', var(--font-family-mono);
+    }
+  }
+
+  .kitchenFan__effort {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+  }
+
+  .kitchenFan__star {
+    width: 0.85rem;
+    height: 0.85rem;
+  }
+
+  @media (max-width: $bp-heading) {
+    .container {
+      grid-template-columns: minmax(18rem, 1.2fr) minmax(14rem, 1fr);
+      gap: var(--space-3xl);
+    }
+
+    .kitchenFan__cardInner {
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    height: auto;
+    min-height: 100svh;
+    padding-top: var(--space-56);
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100svh - var(--space-56));
+      padding-right: var(--space-0);
+      padding-left: var(--space-0);
+      gap: var(--space-6xl);
+    }
+
+    .kitchenFan__intro {
+      order: -1;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding-right: var(--space-md);
+      padding-left: var(--space-md);
+      text-align: left;
+    }
+
+    .kitchenFan__title {
+      -webkit-text-stroke: 0.0938rem $color-darkGold;
+    }
+
+    .kitchenFan__description {
+      max-width: none;
+    }
+
+    .kitchenFan__stage {
+      flex: 0 0 calc(var(--space-256) * 2);
+      display: flex;
+      align-items: stretch;
+      height: calc(var(--space-256) * 2);
+      padding: var(--space-0) var(--space-md) var(--space-md);
+      overflow-x: auto;
+      overflow-y: hidden;
+      touch-action: auto;
+    }
+
+    .kitchenFan__item {
+      display: flex;
+      flex: 0 0 var(--space-56);
+      width: var(--space-56);
+      height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
+      min-height: 0;
+      margin: var(--space-0) var(--space-3xs);
+
+      &.is-expanding,
+      &.is-expanded {
+        flex-basis: calc(var(--space-256) + var(--space-md));
+        width: calc(var(--space-256) + var(--space-md));
+        height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
+      }
+    }
+
+    .kitchenFan__summary {
+      flex-direction: row;
+      width: 100%;
+      min-height: 100%;
+      padding: var(--space-md) var(--space-xs);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      gap: var(--space-md);
+    }
+
+    .kitchenFan__summaryEn {
+      max-height: 10rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .kitchenFan__cardInner {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .kitchenFan__cardPhoto {
+      flex: 0 0 auto;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+    }
+
+    .kitchenFan__cardText {
+      gap: var(--space-sm);
+    }
+
+    .kitchenFan__nameZh {
+      font-size: var(--font-size-label);
+    }
+
+    .kitchenFan__nameEn,
+    .kitchenFan__note {
+      font-size: var(--font-size-body-lg);
+    }
+
+    .kitchenFan__divider {
+      margin-top: var(--space-xs);
+    }
+
+    .kitchenFan__note {
+      margin: var(--space-0);
+    }
+  }
+}

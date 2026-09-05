@@ -1,0 +1,126 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ========================================
+// Section / About
+// ========================================
+
+.section--about {
+  border-bottom: $color-black solid 0.125rem;
+
+  .container {
+    @include flex(row, center, stretch);
+    position: relative;
+
+    .media {
+      flex: 1;
+      margin-right: var(--space-5xl);
+
+      .media__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .block {
+      flex: 2;
+      @include flex(column, flex-end, flex-start);
+
+      &--introduction {
+        .media {
+          margin-bottom: var(--space-5xl);
+          margin-right: var(--space-0);
+        }
+      }
+
+      .block__title {
+        font-family: $font-title;
+        font-weight: var(--font-weight-regular);
+        color: var(--color-transparent);
+        margin-bottom: var(--space-lg);
+        -webkit-text-stroke: 0.125rem $color-darkGold;
+      }
+
+      .block__content {
+        margin-bottom: var(--space-xs);
+      }
+
+      .block__jobs {
+        @include flex(column, flex-start, center, var(--space-xs));
+        margin-top: var(--space-md);
+        width: 100%;
+
+        .block__jobDescription {
+          width: 100%;
+          @include flex(row, flex-start, center, var(--space-xs));
+
+          &--dotLine {
+            border-bottom: 0.125rem dotted $color-black;
+            width: 100%;
+          }
+
+          &--company,
+          &--title {
+            min-width: fit-content;
+          }
+        }
+
+        .block__jobDescription--past {
+          p {
+            color: $color-gray;
+          }
+
+          .block__jobDescription--dotLine {
+            border-bottom: 0.125rem dotted $color-gray;
+          }
+        }
+      }
+    }
+
+    @media (max-width: $bp-heading) {
+      @include flex(column, center, flex-start);
+
+      .media {
+        margin: var(--space-0) var(--space-0) var(--space-xl);
+      }
+
+      .block {
+        .block__jobs {
+          @include flex(column, flex-start, center, var(--space-xl));
+          margin-top: var(--space-3xl);
+
+          .block__jobDescription {
+            @include flex(column, flex-start, flex-start, var(--space-3xs));
+
+            .block__jobDescription--company {
+              font-weight: var(--font-weight-bold);
+            }
+
+            .block__jobDescription--dotLine {
+              display: none;
+            }
+
+            .block__jobDescription--title {
+              font-style: italic;
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: $bp-mobile) {
+      .block {
+        &--introduction {
+          .media {
+            margin-bottom: var(--space-xl);
+          }
+        }
+
+        .block__title {
+          -webkit-text-stroke: 0.0938rem $color-darkGold;
+        }
+      }
+    }
+  }
+}

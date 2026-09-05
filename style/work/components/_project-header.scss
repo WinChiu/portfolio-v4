@@ -1,5 +1,5 @@
 @use '../../tokens' as *;
-@use '../../base/mixins' as *;
+@use '../../mixins' as *;
 
 // ========================================
 // Component / Project Header
@@ -11,7 +11,7 @@
     width: 100vw;
     min-height: 50dvh;
     overflow: hidden;
-    padding-left: var(--space-custom-750);
+    padding-left: var(--space-120);
     border-bottom: $color-black solid 0.125rem;
     background-color: $color-bgWhite;
     z-index: var(--z-raised);
@@ -87,7 +87,7 @@
     &__metadata {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-lg) var(--space-custom-500);
+      gap: var(--space-lg) var(--space-80);
       border-top: 0;
     }
 
@@ -121,7 +121,7 @@
     .project-header {
       &__inner {
         @include flex(column, center, center, var(--space-lg));
-        padding-top: var(--space-custom-450);
+        padding-top: var(--space-72);
       }
 
       &__image {
@@ -137,10 +137,10 @@
 
   @media (max-width: $bp-mobile-wide) {
     .project-header {
-      padding-left: var(--space-custom-450);
+      padding-left: var(--space-72);
 
       &__inner {
-        padding: var(--space-custom-450) var(--space-xl) var(--space-3xl);
+        padding: var(--space-72) var(--space-xl) var(--space-3xl);
       }
 
       &__metadata {
@@ -156,7 +156,7 @@
 
       &__inner {
         min-height: 50dvh;
-        padding: var(--space-custom-500) var(--space-md) var(--space-4xl);
+        padding: var(--space-80) var(--space-md) var(--space-4xl);
       }
 
       &__metadata {

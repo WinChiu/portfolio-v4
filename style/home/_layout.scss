@@ -1,0 +1,71 @@
+@use '../tokens' as *;
+
+// ========================================
+// Layout / Section
+// ========================================
+
+.section {
+  position: relative;
+  max-width: 100vw;
+  padding-left: var(--space-120);
+  box-sizing: border-box;
+  background-color: $color-bgWhite;
+  z-index: var(--z-raised);
+
+  .container--content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: var(--space-6xl);
+    border-left: $color-black solid 0.125rem;
+  }
+
+  @media (max-width: $bp-mobile-wide) {
+    padding-left: var(--space-88);
+
+    .container--content {
+      padding: var(--space-3xl);
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding-left: var(--space-0);
+
+    .container--content {
+      padding: var(--space-xl) var(--space-md);
+      border-left: none;
+    }
+  }
+}
+
+// ========================================
+// Layout / Background
+// ========================================
+
+.canvas-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-base);
+  overflow: hidden;
+}
+
+#backgroundCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.canvas-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3.125rem);
+  z-index: var(--z-content);
+  pointer-events: none;
+}
