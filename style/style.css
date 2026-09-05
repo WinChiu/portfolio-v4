@@ -1420,8 +1420,9 @@ h6 {
 .section--kitchenFan .kitchenFan__divider {
   display: block;
   width: 100%;
-  height: auto;
+  height: var(--space-hairline);
   margin-top: var(--space-sm);
+  object-fit: fill;
 }
 .section--kitchenFan .kitchenFan__note {
   margin: var(--space-md) var(--space-0);

@@ -103,7 +103,7 @@
                 <div class="kitchenFan__cardNames">
                   <p class="kitchenFan__nameZh">${item.nameZh}</p>
                   <p class="kitchenFan__nameEn">${item.nameEn}</p>
-                  <img class="kitchenFan__divider" src="./img/icon-kitchenFanDivider.svg" alt="" aria-hidden="true" />
+                  <img class="kitchenFan__divider" src="./img/icon-kitchenFanDivider.svg?v=2" alt="" aria-hidden="true" />
                 </div>
 
                 <p class="kitchenFan__note">${item.note}</p>
