@@ -153,7 +153,9 @@
 
   .kitchenFan__cardPhoto {
     flex: 0 0 44%;
+    align-self: center;
     min-width: 0;
+    height: auto;
     aspect-ratio: 1 / 1;
     overflow: hidden;
     background: var(--color-background-soft);
@@ -248,6 +250,51 @@
     }
   }
 
+  @media (max-width: $bp-tablet) {
+    .container {
+      grid-template-columns: minmax(16rem, 22rem) minmax(14rem, 20rem);
+      gap: var(--space-xl);
+    }
+
+    .kitchenFan__stage {
+      max-width: 22rem;
+      justify-self: end;
+    }
+
+    .kitchenFan__intro {
+      justify-self: start;
+    }
+
+    .kitchenFan__title {
+      font-size: var(--font-size-display-md);
+    }
+
+    .kitchenFan__item {
+      &.is-expanding,
+      &.is-expanded {
+        height: calc(var(--space-256) + var(--space-xl));
+      }
+    }
+
+    .kitchenFan__cardInner {
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+
+    .kitchenFan__cardPhoto {
+      flex-basis: 42%;
+    }
+
+    .kitchenFan__nameZh,
+    .kitchenFan__note {
+      font-size: var(--font-size-label);
+    }
+
+    .kitchenFan__nameEn {
+      font-size: var(--font-size-caption);
+    }
+  }
+
   @media (max-width: $bp-mobile) {
     height: auto;
     min-height: 100svh;
@@ -330,6 +377,7 @@
 
     .kitchenFan__cardPhoto {
       flex: 0 0 auto;
+      align-self: stretch;
       width: 100%;
       aspect-ratio: 1 / 1;
     }

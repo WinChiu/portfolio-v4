@@ -46,6 +46,7 @@ CSS block `.section--kitchenFan`. Markup comes from `renderKitchenFanCard` and `
 - Browsing: the expanded row closes as scrolling starts and stays closed during inertia
 - Settle: the nearest item snaps to centre, holds, then expands
 - Direct selection: click and arrow-key input close and scroll simultaneously before settling
+- Narrow desktop: the stage, card, type, and inter-column gap reduce while the photo remains square
 - Mobile card: the photo stays square and card content remains visible
 
 ## 7. Code example

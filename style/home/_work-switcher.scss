@@ -13,8 +13,9 @@
   z-index: var(--z-content);
   box-sizing: border-box;
   border-top: 0.125rem solid $color-black;
+  border-right: none;
   border-bottom: 0.125rem solid $color-black;
-  border-left: 0.125rem solid $color-black;
+  border-left: none;
   @include flex(row, center, center);
 
   a {
@@ -23,11 +24,12 @@
   }
 
   .block__design {
+    border: none;
     border-right: 0.125rem solid $color-black;
   }
 
   .block__coding {
-    border-right: none;
+    border: none;
   }
 
   .block__design,
@@ -63,7 +65,6 @@
 
   @media (max-width: $bp-mobile) {
     top: 3.375rem;
-    border-left: none;
 
     .block__design,
     .block__coding {

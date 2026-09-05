@@ -1072,8 +1072,9 @@ h6 {
   z-index: var(--z-content);
   box-sizing: border-box;
   border-top: 0.125rem solid var(--color-text);
+  border-right: none;
   border-bottom: 0.125rem solid var(--color-text);
-  border-left: 0.125rem solid var(--color-text);
+  border-left: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1085,10 +1086,11 @@ h6 {
   text-decoration: none;
 }
 .block--switcher .block__design {
+  border: none;
   border-right: 0.125rem solid var(--color-text);
 }
 .block--switcher .block__coding {
-  border-right: none;
+  border: none;
 }
 .block--switcher .block__design,
 .block--switcher .block__coding {
@@ -1120,7 +1122,6 @@ h6 {
 @media (max-width: 30rem) {
   .block--switcher {
     top: 3.375rem;
-    border-left: none;
   }
   .block--switcher .block__design,
   .block--switcher .block__coding {
@@ -1378,7 +1379,9 @@ h6 {
 }
 .section--kitchenFan .kitchenFan__cardPhoto {
   flex: 0 0 44%;
+  align-self: center;
   min-width: 0;
+  height: auto;
   aspect-ratio: 1/1;
   overflow: hidden;
   background: var(--color-background-soft);
@@ -1459,6 +1462,39 @@ h6 {
     padding: var(--space-lg);
   }
 }
+@media (max-width: 72rem) {
+  .section--kitchenFan .container {
+    grid-template-columns: minmax(16rem, 22rem) minmax(14rem, 20rem);
+    gap: var(--space-xl);
+  }
+  .section--kitchenFan .kitchenFan__stage {
+    max-width: 22rem;
+    justify-self: end;
+  }
+  .section--kitchenFan .kitchenFan__intro {
+    justify-self: start;
+  }
+  .section--kitchenFan .kitchenFan__title {
+    font-size: var(--font-size-display-md);
+  }
+  .section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
+    height: calc(var(--space-256) + var(--space-xl));
+  }
+  .section--kitchenFan .kitchenFan__cardInner {
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+  .section--kitchenFan .kitchenFan__cardPhoto {
+    flex-basis: 42%;
+  }
+  .section--kitchenFan .kitchenFan__nameZh,
+  .section--kitchenFan .kitchenFan__note {
+    font-size: var(--font-size-label);
+  }
+  .section--kitchenFan .kitchenFan__nameEn {
+    font-size: var(--font-size-caption);
+  }
+}
 @media (max-width: 30rem) {
   .section--kitchenFan {
     height: auto;
@@ -1531,6 +1567,7 @@ h6 {
   }
   .section--kitchenFan .kitchenFan__cardPhoto {
     flex: 0 0 auto;
+    align-self: stretch;
     width: 100%;
     aspect-ratio: 1/1;
   }
