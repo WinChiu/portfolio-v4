@@ -2,7 +2,9 @@
   const hasGsap = typeof window.gsap !== 'undefined';
   const hasScrollTrigger = typeof window.ScrollTrigger !== 'undefined';
 
-  document.documentElement.dataset.homeAnimation = hasGsap ? 'gsap' : 'fallback';
+  document.documentElement.dataset.homeAnimation = hasGsap
+    ? 'gsap'
+    : 'fallback';
 
   function getVisibleProjectCards() {
     return Array.from(
@@ -214,10 +216,88 @@
     );
   }
 
+  function setupSectionNavigation() {
+    const links = Array.from(
+      document.querySelectorAll('.nav--main a[href^="#"]'),
+    );
+    if (!links.length) return;
+
+    const scrollSpeed = 8000;
+    let scrollTween = null;
+    let previousScrollBehavior = '';
+
+    function restoreScrollBehavior() {
+      document.documentElement.style.scrollBehavior = previousScrollBehavior;
+    }
+
+    function stopScrollAnimation() {
+      if (!scrollTween) return;
+      scrollTween.kill();
+      scrollTween = null;
+      restoreScrollBehavior();
+    }
+
+    ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach((eventName) => {
+      window.addEventListener(eventName, stopScrollAnimation, {
+        passive: true,
+      });
+    });
+
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const hash = link.getAttribute('href');
+        const target = hash ? document.querySelector(hash) : null;
+        if (!target) return;
+
+        event.preventDefault();
+        stopScrollAnimation();
+
+        const startY = window.scrollY;
+        const maxY = document.documentElement.scrollHeight - window.innerHeight;
+        const targetY = Math.min(
+          maxY,
+          Math.max(0, target.getBoundingClientRect().top + startY),
+        );
+
+        if (!hasGsap) {
+          previousScrollBehavior =
+            document.documentElement.style.scrollBehavior;
+          document.documentElement.style.scrollBehavior = 'auto';
+          window.scrollTo(0, targetY);
+          restoreScrollBehavior();
+          window.history.pushState(null, '', hash);
+          return;
+        }
+
+        previousScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        const scrollState = { y: startY };
+        const reduceMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)',
+        ).matches;
+        const duration = Math.abs(targetY - startY) / scrollSpeed;
+
+        scrollTween = window.gsap.to(scrollState, {
+          y: targetY,
+          duration,
+          ease: reduceMotion ? 'power1.out' : 'power2.inOut',
+          overwrite: true,
+          onUpdate: () => window.scrollTo(0, scrollState.y),
+          onComplete: () => {
+            scrollTween = null;
+            restoreScrollBehavior();
+            window.history.pushState(null, '', hash);
+          },
+        });
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     setupWorkSwitcher();
     setupHeroAnimation();
     setupProjectCardReveal();
     setupKitchenReveal();
+    setupSectionNavigation();
   });
 })();

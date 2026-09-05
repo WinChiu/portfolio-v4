@@ -30,16 +30,17 @@ Do not use inside project-page content.
 
 ## 5. Props/API
 
-CSS block `.nav--main`; navigation anchors compose the shared `.ui-link.ui-link--nav` component.
+CSS block `.nav--main`; navigation anchors compose the shared `.ui-link.ui-link--nav` component and same-page scrolling is initialized by `utility/landingPageAnimation.js`.
 
 ## 6. States
 
 - Default: fixed vertical rail
 - Hover: link and icon browser behavior
-- Active: page link semantics supplied by markup
+- Active: same-page links scroll to their section with interruptible GSAP motion
+- Reduced motion: same-page scrolling uses a shorter, gentler transition
 - Focus: native focus-visible behavior
 - Disabled: not applicable
-- Error: not applicable
+- Error: missing targets retain native link behavior
 
 ## 7. Code example
 

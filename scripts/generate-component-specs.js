@@ -21,8 +21,8 @@ const components = [
     use: 'Use as the persistent site-level navigation on landing pages.', avoid: 'Do not use inside project-page content.',
     anatomy: ['Navigation list', 'Navigation item', 'Social links', 'Language action'],
     tokens: ['--color-background', '--color-border', '--color-text', '--space-*', '--font-size-*', '--z-sticky'],
-    api: 'CSS block `.nav--main`; navigation anchors compose the shared `.ui-link.ui-link--nav` component.',
-    states: ['Default: fixed vertical rail', 'Hover: link and icon browser behavior', 'Active: page link semantics supplied by markup', 'Focus: native focus-visible behavior', 'Disabled: not applicable', 'Error: not applicable'],
+    api: 'CSS block `.nav--main`; navigation anchors compose the shared `.ui-link.ui-link--nav` component and same-page scrolling is initialized by `utility/landingPageAnimation.js`.',
+    states: ['Default: fixed vertical rail', 'Hover: link and icon browser behavior', 'Active: same-page links scroll at a consistent distance-based speed with interruptible GSAP motion', 'Reduced motion: same-page scrolling retains the fixed speed with gentler easing', 'Focus: native focus-visible behavior', 'Disabled: not applicable', 'Error: missing targets retain native link behavior'],
     example: '<nav class="nav nav--main"><a class="ui-link ui-link--nav" href="#work">Work</a></nav>', related: ['Hero', 'Link', 'Project Navigation'],
   },
   {
