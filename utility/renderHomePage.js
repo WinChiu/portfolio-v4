@@ -316,9 +316,10 @@
       </div>
     </section>
     ${renderKitchenFanSection(content.kitchen)}
+    ${renderLifeSection(content.life)}
     <nav class="nav nav--main" id="navbar">
       <div class="block block--navList">
-        ${renderNav(content.nav.filter((item) => item.href !== '#life'))}
+        ${renderNav(content.nav)}
       </div>
       <div class="nav__actions">
         <figure class="media media--socialList">

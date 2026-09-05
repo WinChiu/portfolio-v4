@@ -1,0 +1,176 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// ========================================
+// Life
+// ========================================
+
+.section--life {
+  border-top: $color-black solid 0.125rem;
+  min-height: 100dvh;
+  position: relative;
+  // A dismissed card's -150vh exit (see utility/lifeStackAnimation.js) is
+  // clipped right here instead of flying past the section into Kitchen or
+  // the page above -- a photo never renders outside the Life frame.
+  overflow: hidden;
+  // `min-height` alone doesn't give .container a definite height to fill --
+  // making the section itself a flex column lets .container use flex:1 to
+  // stretch the full min-height regardless of content size, so its own
+  // `align-items: center` can vertically center intro/stack within it.
+  display: flex;
+  flex-direction: column;
+
+  .container {
+    @include flex(row, space-between, center, var(--space-4xl));
+    // padding-right: var(--space-8xl);
+    flex: 1;
+  }
+
+  // Restored -- this rule was accidentally dropped in a hand-edit; without
+  // it .life__intro has no flex/gap and the title+description sit flush
+  // against each other.
+  .life__intro {
+    @include flex(column, center, center, var(--space-xl));
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .life__title {
+    font-family: $font-title;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-transparent);
+    line-height: 0.9;
+    -webkit-text-stroke: 0.125rem $color-darkGold;
+    text-align: center;
+  }
+
+  .life__description {
+    width: 100%;
+    color: $color-darkGray;
+    text-align: center;
+    max-width: 26rem;
+  }
+
+  .life__stack {
+    position: relative;
+    width: 22.5rem;
+    max-width: 100%;
+    aspect-ratio: 18 / 25;
+    flex-shrink: 0;
+    // Clickable (advances a photo, restacks at the end) as well as
+    // scrollable, and click/tap is the only way to drive it on touch.
+    cursor: pointer;
+  }
+
+  .life__card {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-background);
+    border: 0.125rem solid var(--color-text);
+    padding: var(--space-3xl);
+    box-shadow: none;
+    // A fast scroll retargets this transition many times a second (see
+    // utility/lifeStackAnimation.js) -- ease-out (no token for it in
+    // _tokens.scss) keeps each retarget starting at full speed instead of
+    // re-decelerating from zero, which is what makes a quick scroll read as
+    // one continuous cascade instead of a stutter between snaps.
+    transition: transform var(--motion-duration-standard) ease-out;
+    will-change: transform;
+  }
+
+  .life__card--landscape {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: 125%;
+    height: 90%;
+    padding: var(--space-xl);
+    translate: -50% -50%;
+  }
+
+  .life__cardPhoto {
+    flex: 1;
+    min-height: 0;
+    background: var(--color-background-soft);
+    overflow: hidden;
+  }
+
+  .life__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--space-0);
+    box-shadow: none;
+  }
+
+  .life__note {
+    margin: var(--space-md) var(--space-0) var(--space-0);
+    font-family: 'Caveat', $font-serifText;
+    font-size: var(--font-size-title-sm);
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .life__cardMeta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-top: var(--space-3xl);
+    font-size: var(--font-size-caption);
+    color: var(--color-text);
+  }
+
+  // The global `* { font-family: ... }` reset (style.scss "Base / Globals")
+  // wins over inheritance from .life__cardMeta, so the font has to be set
+  // directly on the leaf elements, not just the row that wraps them.
+  .life__location,
+  .life__date {
+    font-family: 'Courier Prime', $font-serif;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  @media (min-width: $bp-heading) {
+    .container {
+      padding-right: var(--space-8xl);
+    }
+  }
+  @media (max-width: $bp-heading) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-4xl);
+      padding-top: var(--space-4xl);
+      padding-bottom: var(--space-4xl);
+    }
+
+    .life__intro {
+      max-width: none;
+    }
+  }
+  @media (max-width: $bp-mobile) {
+    .life__intro {
+      flex: 0;
+    }
+    .life__title {
+      -webkit-text-stroke: 0.0938rem $color-darkGold;
+    }
+    .life__stack {
+      width: 80%;
+      flex: 0;
+    }
+    .life__card {
+      padding: var(--space-xl);
+    }
+    .life__card--landscape {
+      padding: var(--space-md);
+    }
+    .container {
+      justify-content: center;
+      gap: var(--space-6xl);
+    }
+  }
+}

@@ -45,7 +45,8 @@
   }
 
   .kitchenFan__description {
-    max-width: 30rem;
+    width: 100%;
+    max-width: 26rem;
     margin: var(--space-0);
     color: $color-darkGray;
     text-align: center;
@@ -251,62 +252,16 @@
   }
 
   @media (max-width: $bp-tablet) {
-    .container {
-      grid-template-columns: minmax(16rem, 22rem) minmax(14rem, 20rem);
-      gap: var(--space-xl);
-    }
-
-    .kitchenFan__stage {
-      max-width: 22rem;
-      justify-self: end;
-    }
-
-    .kitchenFan__intro {
-      justify-self: start;
-    }
-
-    .kitchenFan__title {
-      font-size: var(--font-size-display-md);
-    }
-
-    .kitchenFan__item {
-      &.is-expanding,
-      &.is-expanded {
-        height: calc(var(--space-256) + var(--space-xl));
-      }
-    }
-
-    .kitchenFan__cardInner {
-      gap: var(--space-md);
-      padding: var(--space-md);
-    }
-
-    .kitchenFan__cardPhoto {
-      flex-basis: 42%;
-    }
-
-    .kitchenFan__nameZh,
-    .kitchenFan__note {
-      font-size: var(--font-size-label);
-    }
-
-    .kitchenFan__nameEn {
-      font-size: var(--font-size-caption);
-    }
-  }
-
-  @media (max-width: $bp-mobile) {
     height: auto;
     min-height: 100svh;
-    padding-top: var(--space-56);
 
     .container {
       display: flex;
       flex-direction: column;
-      min-height: calc(100svh - var(--space-56));
+      min-height: 100svh;
       padding-right: var(--space-0);
       padding-left: var(--space-0);
-      gap: var(--space-6xl);
+      gap: var(--space-3xl);
     }
 
     .kitchenFan__intro {
@@ -319,21 +274,25 @@
     }
 
     .kitchenFan__title {
+      font-size: var(--font-size-display-md);
       -webkit-text-stroke: 0.0938rem $color-darkGold;
     }
 
     .kitchenFan__description {
-      max-width: none;
+      align-self: center;
     }
 
     .kitchenFan__stage {
       flex: 0 0 calc(var(--space-256) * 2);
       display: flex;
       align-items: stretch;
+      max-width: none;
       height: calc(var(--space-256) * 2);
       padding: var(--space-0) var(--space-md) var(--space-md);
       overflow-x: auto;
       overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      overscroll-behavior-y: auto;
       touch-action: auto;
     }
 
@@ -401,6 +360,20 @@
 
     .kitchenFan__note {
       margin: var(--space-0);
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding-top: var(--space-56);
+
+    .container {
+      min-height: calc(100svh - var(--space-56));
+    }
+
+    .kitchenFan__stage {
+      width: 100vw;
+      padding-right: var(--space-0);
+      padding-left: var(--space-0);
     }
   }
 }

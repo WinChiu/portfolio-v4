@@ -20,7 +20,7 @@
   const MAX_VELOCITY = 92;
   const INERTIA_FRICTION = 0.88;
   const MIN_VELOCITY = 0.38;
-  const MOBILE_QUERY = '(max-width: 30rem)';
+  const HORIZONTAL_QUERY = '(max-width: 72rem)';
 
   function makeClone(item, batch) {
     const clone = item.cloneNode(true);
@@ -418,9 +418,7 @@
 
   function wheelDelta(event) {
     const raw = axis.mobile
-      ? Math.abs(event.deltaX) > Math.abs(event.deltaY)
-        ? event.deltaX
-        : event.deltaY
+      ? event.deltaX
       : event.deltaY;
     if (event.deltaMode === 1) return raw * 16;
     if (event.deltaMode === 2) return raw * stageSize();
@@ -518,13 +516,17 @@
   const media = gsap.matchMedia();
   media.add(
     {
-      desktop: '(min-width: 30.0001rem)',
-      mobile: MOBILE_QUERY,
+      desktop: '(min-width: 72.0001rem)',
+      horizontal: HORIZONTAL_QUERY,
       reduceMotion: '(prefers-reduced-motion: reduce)',
     },
     (context) => {
-      axis = context.conditions.mobile
-        ? { mobile: true, scrollProperty: 'scrollLeft', compactExtent: 0 }
+      axis = context.conditions.horizontal
+        ? {
+            mobile: true,
+            scrollProperty: 'scrollLeft',
+            compactExtent: 0,
+          }
         : { mobile: false, scrollProperty: 'scrollTop', compactExtent: 0 };
       reduceMotion = context.conditions.reduceMotion;
       requestAnimationFrame(initialiseAxis);
