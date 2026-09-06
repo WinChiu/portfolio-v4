@@ -11,6 +11,25 @@
 // + utility/renderHomePage.js, which reads document.documentElement.lang at
 // runtime) -- this template only covers the static HTML shell around that.
 
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+
+const ROOT_DIR = path.join(__dirname, '..');
+
+// Cache-busting query for a local asset, derived from the file's own content
+// -- every edit gets a fresh URL automatically, so there's no hand-maintained
+// `?v=N` to remember to bump. A stale `?v=` (or a missing one, like
+// smoothScroll.js used to have) silently serves an old cached copy of the
+// script/stylesheet with no error, which is exactly the kind of bug that's
+// invisible until someone's browser is caught running mismatched files.
+function withVersion(relativePath) {
+  const absolutePath = path.join(ROOT_DIR, relativePath.replace(/^\.\//, ''));
+  const contents = fs.readFileSync(absolutePath);
+  const hash = crypto.createHash('sha1').update(contents).digest('hex').slice(0, 8);
+  return `${relativePath}?v=${hash}`;
+}
+
 const HOME_META = {
   en: {
     htmlLang: 'en',
@@ -45,7 +64,7 @@ function renderHomePage(lang) {
     />
     <title>Win's Portfolio</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style/style.css?v=25" />
+    <link rel="stylesheet" href="${withVersion('style/style.css')}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Courier+Prime:wght@400;700&family=Caveat:wght@500;600&display=swap"
@@ -57,8 +76,8 @@ function renderHomePage(lang) {
     <script src="./utility/Flip.min.js"></script>
     <script src="./utility/SplitText.min.js"></script>
     <script src="./utility/lenis.min.js"></script>
-    <script src="./utility/smoothScroll.js"></script>
-    <script type="module" src="./components/components.js"></script>
+    <script src="${withVersion('./utility/smoothScroll.js')}"></script>
+    <script type="module" src="${withVersion('./components/components.js')}"></script>
     <script
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
       type="module"
@@ -74,13 +93,13 @@ function renderHomePage(lang) {
       ></dotlottie-wc>
     </div>
     <div id="home-page-root"></div>
-    <script src="content/homeContent.js?v=2"></script>
-    <script src="utility/renderHomePage.js?v=13"></script>
-    <script src="utility/kitchenFanAnimation.js?v=15"></script>
-    <script src="utility/lifeStackAnimation.js?v=3"></script>
-    <script src="utility/landingPageAnimation.js?v=5"></script>
-    <script src="utility/eyeAnimation.js"></script>
-    <script src="utility/loadingPage.js?v=2"></script>
+    <script src="${withVersion('content/homeContent.js')}"></script>
+    <script src="${withVersion('utility/renderHomePage.js')}"></script>
+    <script src="${withVersion('utility/kitchenFanAnimation.js')}"></script>
+    <script src="${withVersion('utility/lifeStackAnimation.js')}"></script>
+    <script src="${withVersion('utility/landingPageAnimation.js')}"></script>
+    <script src="${withVersion('utility/eyeAnimation.js')}"></script>
+    <script src="${withVersion('utility/loadingPage.js')}"></script>
   </body>
 </html>
 `;

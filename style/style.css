@@ -1331,10 +1331,19 @@ h6 {
 }
 .section--kitchenFan .kitchenFan__item {
   position: relative;
-  width: 100%;
-  height: var(--space-64);
+  width: 82%;
+  margin-right: auto;
   margin-bottom: var(--space-md);
+  margin-left: auto;
   overflow: hidden;
+  height: var(--space-64);
+  transition: width 0.2s ease;
+}
+.section--kitchenFan .kitchenFan__item.is-centered, .section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
+  width: 100%;
+}
+.section--kitchenFan .kitchenFan__item.is-centered .kitchenFan__summary, .section--kitchenFan .kitchenFan__item.is-expanding .kitchenFan__summary, .section--kitchenFan .kitchenFan__item.is-expanded .kitchenFan__summary {
+  color: var(--color-text);
 }
 .section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
   height: calc(var(--space-256) + var(--space-56));
@@ -1357,9 +1366,10 @@ h6 {
   border: 0.125rem solid var(--color-border-muted);
   border-radius: var(--radius-none);
   background: var(--color-background);
-  color: var(--color-text-muted);
+  color: var(--color-border-muted);
   text-align: center;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 .section--kitchenFan .kitchenFan__summary:hover {
   border-color: var(--color-text);
@@ -1420,7 +1430,7 @@ h6 {
   min-width: 0;
 }
 .section--kitchenFan .kitchenFan__cardNames {
-  padding-top: var(--space-3xs);
+  padding-top: var(--space-xs);
 }
 .section--kitchenFan .kitchenFan__nameZh {
   margin: var(--space-0);
@@ -1460,6 +1470,7 @@ h6 {
   font-family: "Courier Prime", var(--font-family-mono);
   font-size: var(--font-size-caption);
   white-space: nowrap;
+  padding-bottom: var(--space-3xs);
 }
 .section--kitchenFan .kitchenFan__cardMeta span {
   font-family: "Courier Prime", var(--font-family-mono);
@@ -1531,14 +1542,22 @@ h6 {
     display: flex;
     flex: 0 0 var(--space-56);
     width: var(--space-56);
-    height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
+    height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl) - var(--space-4xl));
     min-height: 0;
     margin: var(--space-0) var(--space-3xs);
+    align-self: center;
+    transition: height 0.2s ease;
+  }
+  .section--kitchenFan .kitchenFan__item.is-centered, .section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
+    height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
+    align-self: stretch;
+  }
+  .section--kitchenFan .kitchenFan__item.is-centered .kitchenFan__summary, .section--kitchenFan .kitchenFan__item.is-expanding .kitchenFan__summary, .section--kitchenFan .kitchenFan__item.is-expanded .kitchenFan__summary {
+    color: var(--color-text);
   }
   .section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
     flex-basis: calc(var(--space-256) + var(--space-md));
     width: calc(var(--space-256) + var(--space-md));
-    height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
   }
   .section--kitchenFan .kitchenFan__summary {
     flex-direction: row;

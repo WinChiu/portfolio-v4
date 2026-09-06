@@ -74,10 +74,33 @@
 
   .kitchenFan__item {
     position: relative;
-    width: 100%;
-    height: var(--space-64);
+    // Narrower than the centred item (below) so the compact rows visibly
+    // recede from it as they scroll past -- width is the cross axis here
+    // (the stage scrolls on height/scrollTop), so this is purely visual and
+    // doesn't touch the loop's scroll-position math.
+    width: 82%;
+    margin-right: auto;
     margin-bottom: var(--space-md);
+    margin-left: auto;
     overflow: hidden;
+    height: var(--space-64);
+    transition: width 0.2s ease;
+
+    // `.is-centered` tracks whichever row is nearest the stage's centre
+    // RIGHT NOW, kept live during scroll/inertia by kitchenFanAnimation.js
+    // -- independent of `.is-expanding`/`.is-expanded`, which only land once
+    // scrolling has settled and the card has actually opened. Without this,
+    // the centred row only grew to full width after it finished expanding,
+    // so it looked identical to every other compact row while still mid-scroll.
+    &.is-centered,
+    &.is-expanding,
+    &.is-expanded {
+      width: 100%;
+
+      .kitchenFan__summary {
+        color: var(--color-text);
+      }
+    }
 
     &.is-expanding,
     &.is-expanded {
@@ -105,9 +128,15 @@
     border: 0.125rem solid var(--color-border-muted);
     border-radius: var(--radius-none);
     background: var(--color-background);
-    color: var(--color-text-muted);
+    // Non-centred rows default to the same grey as their own border, so the
+    // text recedes into the outline instead of standing out from it;
+    // `.is-centered` above (and `.is-expanding`/`.is-expanded`, though their
+    // summary is hidden by then) bump it back up to full `--color-text` so
+    // the centred row reads clearly darker, not just bigger.
+    color: var(--color-border-muted);
     text-align: center;
     cursor: pointer;
+    transition: color 0.2s ease;
 
     &:hover {
       border-color: var(--color-text);
@@ -178,7 +207,7 @@
   }
 
   .kitchenFan__cardNames {
-    padding-top: var(--space-3xs);
+    padding-top: var(--space-xs);
   }
 
   .kitchenFan__nameZh {
@@ -223,7 +252,7 @@
     font-family: 'Courier Prime', var(--font-family-mono);
     font-size: var(--font-size-caption);
     white-space: nowrap;
-
+    padding-bottom: var(--space-3xs);
     span {
       font-family: 'Courier Prime', var(--font-family-mono);
     }
@@ -309,15 +338,37 @@
       display: flex;
       flex: 0 0 var(--space-56);
       width: var(--space-56);
-      height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
+      // Axes are swapped here vs the vertical layout above -- the stage now
+      // scrolls on width, so height becomes the (purely visual) cross axis:
+      // shorter than the centred item, and centred with align-self, so it
+      // visibly recedes from it as it scrolls past.
+      height: calc(
+        var(--space-256) + var(--space-8xl) + var(--space-7xl) - var(--space-4xl)
+      );
       min-height: 0;
       margin: var(--space-0) var(--space-3xs);
+      align-self: center;
+      transition: height 0.2s ease;
+
+      // See the vertical layout above for why `.is-centered` exists --
+      // same idea, just on the swapped axis: the row nearest the stage's
+      // centre grows to full height live during scroll, not only once it's
+      // finished expanding.
+      &.is-centered,
+      &.is-expanding,
+      &.is-expanded {
+        height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
+        align-self: stretch;
+
+        .kitchenFan__summary {
+          color: var(--color-text);
+        }
+      }
 
       &.is-expanding,
       &.is-expanded {
         flex-basis: calc(var(--space-256) + var(--space-md));
         width: calc(var(--space-256) + var(--space-md));
-        height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
       }
     }
 

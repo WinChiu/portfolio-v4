@@ -78,6 +78,7 @@
   let inertiaActive = false;
   let wheelVelocity = 0;
   let resizeFrame = null;
+  let centeredItem = null;
 
   function logicalIndex(item) {
     return Number(item.dataset.index);
@@ -392,6 +393,39 @@
     return nearest;
   }
 
+  // Keeps `.is-centered` on whichever row is nearest the stage's centre RIGHT
+  // NOW -- called continuously through a scroll/inertia/snap gesture, not
+  // just once things settle. Without this, the "bigger" sizing (see the CSS)
+  // only ever appeared on a row after it had already finished expanding, so
+  // rows looked visually identical to each other the whole time they were
+  // still scrolling past.
+  function updateCenteredVisual() {
+    if (!axis) return;
+    const nearest = closestItem();
+    if (nearest === centeredItem) return;
+    if (centeredItem) centeredItem.classList.remove('is-centered');
+    centeredItem = nearest;
+    if (centeredItem) centeredItem.classList.add('is-centered');
+  }
+
+  // closestItem() reads every item's (cloned copies included -- 3x the
+  // recipe count) getBoundingClientRect, which is cheap once but adds up if
+  // it runs more than once per frame. The native 'scroll' event can fire
+  // faster than that -- every scrollTop write during a fast fling plus
+  // whatever the browser itself coalesces -- so the 'scroll' listener runs
+  // this THROUGH here instead of calling it directly, collapsing any burst
+  // down to at most once per animation frame. Kept separate from
+  // updateCenteredVisual() itself because updateInertia/snapTo's onUpdate
+  // are already called at most once per gsap tick and can call it directly.
+  let centeredVisualFrame = null;
+  function scheduleCenteredVisualUpdate() {
+    if (centeredVisualFrame !== null) return;
+    centeredVisualFrame = requestAnimationFrame(() => {
+      centeredVisualFrame = null;
+      updateCenteredVisual();
+    });
+  }
+
   function closestCopyOf(logical) {
     return matchingItems(logical).reduce((nearest, item) => {
       if (!nearest) return item;
@@ -437,6 +471,7 @@
         const progress = scrollEase(scrollProgress.value);
         const liveTarget = targetPosition(item);
         writePosition(startPosition + (liveTarget - startPosition) * progress);
+        updateCenteredVisual();
       },
       onComplete: () => {
         setPosition(targetPosition(item));
@@ -489,6 +524,7 @@
     const frameRatio = gsap.ticker.deltaRatio(60);
     writePosition(currentPosition() + wheelVelocity * frameRatio);
     normalizeLoop();
+    updateCenteredVisual();
     wheelVelocity *= Math.pow(INERTIA_FRICTION, frameRatio);
     if (Math.abs(wheelVelocity) <= MIN_VELOCITY) {
       stopInertia();
@@ -514,12 +550,7 @@
       // gesture, and some land with a near-zero (or, on the "wrong" axis,
       // exactly zero) delta. Bailing out on those without calling
       // preventDefault() used to let that one sub-event fall through to the
-      // browser's native scroll -- invisible on its own, but it nudges the
-      // page position by a hair each time. Over a real, sustained scroll
-      // session that drift adds up until the section no longer lines up
-      // with the viewport within isEngaged()'s tolerance, and the menu
-      // stops responding to wheel input at all, page-permanently, since the
-      // page (now misaligned) is never able to get "engaged" again either.
+      // browser's native scroll, nudging the page position by a hair each time.
       event.preventDefault();
       const delta = wheelDelta(event);
       if (!delta) return;
@@ -551,6 +582,12 @@
   stage.addEventListener(
     'scroll',
     () => {
+      // Kept live regardless of the guards below -- purely visual, and
+      // those guards exist to skip re-triggering browsing/settle logic
+      // during states (inertia, snapping, ...) that already drive this
+      // themselves elsewhere. Scheduled (not called directly) since this
+      // listener can fire faster than once per frame during a fast fling.
+      scheduleCenteredVisualUpdate();
       if (suppressScrollEvent || isSnapping || isExpanding || isCollapsing || inertiaActive) return;
       beginBrowsing();
       normalizeLoop();
@@ -603,6 +640,9 @@
     const initialItem = items[originals.length + activeLogicalIndex];
     setPosition(targetPosition(initialItem));
     expandCard(initialItem, false);
+    if (centeredItem) centeredItem.classList.remove('is-centered');
+    centeredItem = null;
+    updateCenteredVisual();
   }
 
   const media = gsap.matchMedia();
