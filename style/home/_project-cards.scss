@@ -27,9 +27,8 @@
       .block__number {
         font-family: $font-title;
         font-weight: var(--font-weight-light);
-        color: var(--color-transparent);
         margin-bottom: var(--space-xs);
-        -webkit-text-stroke: 0.125rem $color-darkGold;
+        @include stroke-heading;
       }
 
       // 內容區塊

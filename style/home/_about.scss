@@ -37,9 +37,8 @@
       .block__title {
         font-family: $font-title;
         font-weight: var(--font-weight-regular);
-        color: var(--color-transparent);
         margin-bottom: var(--space-lg);
-        -webkit-text-stroke: 0.125rem $color-darkGold;
+        @include stroke-heading;
       }
 
       .block__content {
@@ -118,7 +117,7 @@
         }
 
         .block__title {
-          -webkit-text-stroke: 0.0938rem $color-darkGold;
+          @include stroke-heading(0.0938rem);
         }
       }
     }

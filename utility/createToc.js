@@ -180,8 +180,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // 更新 TOC focus 樣式
     document.querySelectorAll(".project-toc").forEach((link) => {
       link.classList.remove("project-toc--active");
-    });
       link.classList.remove("is-active");
+    });
     if (lastActiveSection) {
       const link = document.querySelector(
         `.project-toc[href="#${lastActiveSection.id}"]`

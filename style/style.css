@@ -532,8 +532,8 @@ h6 {
 .section--work .container--content .block--introduction .block__number {
   font-family: var(--font-family-display);
   font-weight: var(--font-weight-light);
-  color: var(--color-transparent);
   margin-bottom: var(--space-xs);
+  color: var(--color-transparent);
   -webkit-text-stroke: 0.125rem var(--color-text-muted);
 }
 .section--work .container--content .block--introduction .block__content {
@@ -1186,8 +1186,8 @@ h6 {
 .section--about .container .block .block__title {
   font-family: var(--font-family-display);
   font-weight: var(--font-weight-regular);
-  color: var(--color-transparent);
   margin-bottom: var(--space-lg);
+  color: var(--color-transparent);
   -webkit-text-stroke: 0.125rem var(--color-text-muted);
 }
 .section--about .container .block .block__content {
@@ -1264,6 +1264,7 @@ h6 {
     margin-bottom: var(--space-xl);
   }
   .section--about .container .block .block__title {
+    color: var(--color-transparent);
     -webkit-text-stroke: 0.0938rem var(--color-text-muted);
   }
 }
@@ -1296,10 +1297,10 @@ h6 {
 }
 .section--kitchenFan .kitchenFan__title {
   margin: var(--space-0);
-  color: var(--color-transparent);
   font-family: var(--font-family-display);
   font-weight: var(--font-weight-regular);
   line-height: 0.9;
+  color: var(--color-transparent);
   -webkit-text-stroke: 0.125rem var(--color-text-muted);
   text-align: center;
   width: 100%;
@@ -1507,6 +1508,7 @@ h6 {
   }
   .section--kitchenFan .kitchenFan__title {
     font-size: var(--font-size-display-md);
+    color: var(--color-transparent);
     -webkit-text-stroke: 0.0938rem var(--color-text-muted);
   }
   .section--kitchenFan .kitchenFan__description {
@@ -1621,8 +1623,8 @@ h6 {
 .section--life .life__title {
   font-family: var(--font-family-display);
   font-weight: var(--font-weight-regular);
-  color: var(--color-transparent);
   line-height: 0.9;
+  color: var(--color-transparent);
   -webkit-text-stroke: 0.125rem var(--color-text-muted);
   text-align: center;
 }
@@ -1718,6 +1720,7 @@ h6 {
     flex: 0;
   }
   .section--life .life__title {
+    color: var(--color-transparent);
     -webkit-text-stroke: 0.0938rem var(--color-text-muted);
   }
   .section--life .life__stack {
