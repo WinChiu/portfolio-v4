@@ -508,10 +508,21 @@
   stage.addEventListener(
     'wheel',
     (event) => {
-      if (!isEngaged()) return; // let the page keep scrolling while just passing through
-      const delta = wheelDelta(event);
-      if (!delta || event.ctrlKey) return;
+      if (!isEngaged() || event.ctrlKey) return; // let the page keep scrolling while just passing through (or pinch-zooming)
+      // Claim the WHOLE gesture the instant it's engaged, before looking at
+      // delta -- a real trackpad/mouse sends many wheel sub-events per
+      // gesture, and some land with a near-zero (or, on the "wrong" axis,
+      // exactly zero) delta. Bailing out on those without calling
+      // preventDefault() used to let that one sub-event fall through to the
+      // browser's native scroll -- invisible on its own, but it nudges the
+      // page position by a hair each time. Over a real, sustained scroll
+      // session that drift adds up until the section no longer lines up
+      // with the viewport within isEngaged()'s tolerance, and the menu
+      // stops responding to wheel input at all, page-permanently, since the
+      // page (now misaligned) is never able to get "engaged" again either.
       event.preventDefault();
+      const delta = wheelDelta(event);
+      if (!delta) return;
       wheelVelocity = gsap.utils.clamp(
         -MAX_VELOCITY,
         MAX_VELOCITY,
