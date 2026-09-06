@@ -52,9 +52,9 @@
         const pastClass = job.isPast ? ' block__jobDescription--past' : '';
         return `
             <div class="block__jobDescription${pastClass}">
-              <p class="block__jobDescription--company">${job.company}</p>
-              <div class="block__jobDescription--dotLine"></div>
               <p class="block__jobDescription--title">${job.title}</p>
+              <div class="block__jobDescription--dotLine"></div>
+              <p class="block__jobDescription--company">${job.company}</p>
             </div>`;
       })
       .join('\n');

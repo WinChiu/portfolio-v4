@@ -27,6 +27,19 @@
   const stack = document.querySelector('.life__stack');
   if (!stack) return;
 
+  const section = stack.closest('.section--life');
+  // See utility/smoothScroll.js's isScrollSectionEngaged for why this
+  // exists: without it, this stack swallows the wheel gesture that was
+  // supposed to keep scrolling the page toward it, the instant the cursor
+  // happens to be over it while merely passing through. Falls open (treats
+  // every wheel as engaged) if smoothScroll.js hasn't loaded for some
+  // reason, matching the old unconditional behavior.
+  function isEngaged() {
+    return window.isScrollSectionEngaged
+      ? window.isScrollSectionEngaged(section)
+      : true;
+  }
+
   const cards = Array.from(stack.querySelectorAll('.life__card'));
   if (!cards.length) return;
 
@@ -142,6 +155,7 @@
   stack.addEventListener(
     'wheel',
     (event) => {
+      if (!isEngaged()) return; // let the page keep scrolling while just passing through
       event.preventDefault();
       deltaAccumulator += event.deltaY;
       while (Math.abs(deltaAccumulator) >= STEP_THRESHOLD) {

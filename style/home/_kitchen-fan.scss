@@ -296,7 +296,13 @@
       overflow-y: hidden;
       overscroll-behavior-x: contain;
       overscroll-behavior-y: auto;
-      touch-action: auto;
+      // `auto` lets the browser decide which axis a touch gesture belongs
+      // to, and since this element scrolls horizontally, it can end up
+      // claiming a vertical swipe too instead of letting it pass through to
+      // scroll the page. `pan-x` tells it up front: this element only ever
+      // claims horizontal panning, so a vertical swipe starting anywhere
+      // over it scrolls the page as normal, no JS involved.
+      touch-action: pan-x;
     }
 
     .kitchenFan__item {

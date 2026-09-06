@@ -6,6 +6,19 @@
   const gsap = window.gsap;
   if (!stage || !gsap) return;
 
+  const section = stage.closest('.section--kitchenFan');
+  // See utility/smoothScroll.js's isScrollSectionEngaged for why this
+  // exists: without it, this stage swallows the wheel gesture that was
+  // supposed to keep scrolling the page toward it, the instant the cursor
+  // happens to be over it while merely passing through. Falls open (treats
+  // every wheel as engaged) if smoothScroll.js hasn't loaded for some
+  // reason, matching the old unconditional behavior.
+  function isEngaged() {
+    return window.isScrollSectionEngaged
+      ? window.isScrollSectionEngaged(section)
+      : true;
+  }
+
   // Flip is optional -- if it failed to load for some reason, expandCard/
   // collapseCard fall back to plain gsap tweens further down.
   const Flip = window.Flip;
@@ -495,6 +508,7 @@
   stage.addEventListener(
     'wheel',
     (event) => {
+      if (!isEngaged()) return; // let the page keep scrolling while just passing through
       const delta = wheelDelta(event);
       if (!delta || event.ctrlKey) return;
       event.preventDefault();

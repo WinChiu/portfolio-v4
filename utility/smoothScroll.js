@@ -7,18 +7,44 @@
   const LenisCtor = window.Lenis;
   if (!gsap || !LenisCtor) return;
 
+  // Kitchen's menu and Life's photo stack are both infinite/looping widgets
+  // -- unlike a normal nested-scroll region, they have no edge to reach and
+  // hand control back at, so they always want every wheel event the instant
+  // the cursor is over them. Left unconditional, that means: scroll down
+  // from the section above with the cursor resting anywhere over that (very
+  // large) area, and the moment a wheel tick lands, the page's smooth glide
+  // cuts out mid-motion and gets swapped for the widget's own inertia --
+  // a jolt, even though the visitor was just passing through.
+  //
+  // The fix is to only let a widget claim the wheel once its section has
+  // actually arrived (fills the viewport) -- while merely passing through,
+  // wheel events fall through to Lenis like anywhere else on the page.
+  // kitchenFanAnimation.js / lifeStackAnimation.js call this same function
+  // before deciding whether to preventDefault(), so both sides agree on the
+  // handoff point instead of one silently disagreeing with the other.
+  function isScrollSectionEngaged(section, tolerance = 4) {
+    if (!section) return true; // fail open -- never create a dead zone
+    const rect = section.getBoundingClientRect();
+    return rect.top <= tolerance && rect.bottom >= window.innerHeight - tolerance;
+  }
+  window.isScrollSectionEngaged = isScrollSectionEngaged;
+
   const lenis = new LenisCtor({
-    // .kitchenFan__stage (utility/kitchenFanAnimation.js) and .life__stack
-    // (utility/lifeStackAnimation.js) already run their own custom
-    // wheel-driven inertia/scroll logic and call preventDefault() on their
-    // own wheel events. If Lenis also grabbed those same events to
-    // smooth-scroll the page underneath, the two would fight over one
-    // gesture -- so Lenis is told to leave anything inside them alone.
-    prevent: (node) =>
-      Boolean(
-        node.closest &&
-          (node.closest('.kitchenFan__stage') || node.closest('.life__stack')),
-      ),
+    // See isScrollSectionEngaged above -- Lenis only steps back for these
+    // widgets once their section has actually arrived; while the visitor is
+    // merely scrolling past, Lenis keeps driving the page as normal.
+    prevent: (node) => {
+      if (!node.closest) return false;
+      const stage = node.closest('.kitchenFan__stage');
+      if (stage) {
+        return isScrollSectionEngaged(stage.closest('.section--kitchenFan'));
+      }
+      const stack = node.closest('.life__stack');
+      if (stack) {
+        return isScrollSectionEngaged(stack.closest('.section--life'));
+      }
+      return false;
+    },
     // Lenis owning the scroll means the browser's native `scroll-behavior:
     // smooth` (style/home/_globals.scss) can no longer be trusted to
     // animate an anchor jump on its own -- Lenis's rAF loop is also writing
