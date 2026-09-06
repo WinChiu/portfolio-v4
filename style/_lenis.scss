@@ -1,0 +1,15 @@
+// Lenis' own recommended baseline styles (utility/lenis.min.js), trimmed to
+// what this site actually uses -- no <iframe>s, no lenis-autoToggle mode.
+// https://github.com/darkroomengineering/lenis/blob/main/packages/core/lenis.css
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}

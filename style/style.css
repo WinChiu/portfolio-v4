@@ -326,6 +326,19 @@
     --font-size-display-lg: 3.75rem;
   }
 }
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
 .block__translator,
 .nav__language {
   display: none !important;
@@ -345,6 +358,11 @@ body {
 
 .highlight {
   color: var(--color-link);
+}
+
+.split-char,
+.split-word {
+  color: inherit;
 }
 
 html,
@@ -1261,7 +1279,7 @@ h6 {
   display: grid;
   grid-template-columns: minmax(22rem, 1.35fr) minmax(18rem, 1fr);
   align-items: center;
-  gap: var(--space-8xl);
+  gap: var(--space-6xl);
   height: 100%;
   padding-top: var(--space-0);
   padding-bottom: var(--space-0);
@@ -1473,7 +1491,9 @@ h6 {
     display: flex;
     flex-direction: column;
     min-height: 100svh;
+    padding-top: var(--space-4xl);
     padding-right: var(--space-0);
+    padding-bottom: var(--space-4xl);
     padding-left: var(--space-0);
     gap: var(--space-3xl);
   }
@@ -1565,6 +1585,7 @@ h6 {
     padding-top: var(--space-56);
   }
   .section--kitchenFan .container {
+    padding-top: var(--space-0);
     min-height: calc(100svh - var(--space-56));
   }
   .section--kitchenFan .kitchenFan__stage {
@@ -1675,12 +1696,12 @@ h6 {
   flex-shrink: 0;
   white-space: nowrap;
 }
-@media (min-width: 62.5rem) {
+@media (min-width: 72rem) {
   .section--life .container {
     padding-right: var(--space-8xl);
   }
 }
-@media (max-width: 62.5rem) {
+@media (max-width: 72rem) {
   .section--life .container {
     flex-direction: column;
     align-items: center;

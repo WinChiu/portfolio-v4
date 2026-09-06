@@ -132,12 +132,18 @@
     flex-shrink: 0;
     white-space: nowrap;
   }
-  @media (min-width: $bp-heading) {
+  // Matches Kitchen's row<->column breakpoint ($bp-tablet). It used to
+  // switch at the narrower $bp-heading, which left a squeezed row-layout
+  // zone (roughly 1000-1152px) where the stack's tilted/landscape photos
+  // (they intentionally bleed past .life__stack's own box -- see
+  // .life__card--landscape below) had too little gap to clear .life__intro
+  // and visibly overlapped its text.
+  @media (min-width: $bp-tablet) {
     .container {
       padding-right: var(--space-8xl);
     }
   }
-  @media (max-width: $bp-heading) {
+  @media (max-width: $bp-tablet) {
     .container {
       flex-direction: column;
       align-items: center;

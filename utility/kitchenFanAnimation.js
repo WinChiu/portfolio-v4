@@ -6,6 +6,11 @@
   const gsap = window.gsap;
   if (!stage || !gsap) return;
 
+  // Flip is optional -- if it failed to load for some reason, expandCard/
+  // collapseCard fall back to plain gsap tweens further down.
+  const Flip = window.Flip;
+  if (Flip) gsap.registerPlugin(Flip);
+
   const originals = Array.from(stage.querySelectorAll('.kitchenFan__item'));
   if (!originals.length) return;
 
@@ -164,7 +169,7 @@
     delete stage.dataset.activeIndex;
 
     const finishCollapse = () => {
-      gsap.set(expandedItems, { clearProps: 'height,width,flexBasis' });
+      gsap.set(expandedItems, { clearProps: 'height,width,flexBasis,transform' });
       expandedItems.forEach((item) => item.classList.remove('is-expanded', 'is-expanding'));
       panels.forEach((panel) => panel.setAttribute('aria-hidden', 'true'));
       gsap.set(panels, { clearProps: 'transform,opacity,visibility,clipPath' });
@@ -190,35 +195,71 @@
 
     isCollapsing = true;
     afterCollapse = onComplete;
+    // Same flex-basis caveat as expandCard: Flip needs it named explicitly on
+    // the horizontal axis or the resize tween is a no-op (flex-basis wins
+    // over width for main-axis sizing on that axis).
     const extentProperty = axis.mobile ? 'flexBasis' : 'height';
+    const flipProps = axis.mobile ? 'flexBasis' : undefined;
     const collapsedClip = axis.mobile ? 'inset(0% 48% 0% 48%)' : 'inset(48% 0% 48% 0%)';
+    const closeDuration = reduceMotion ? 0.28 : CLOSE_DURATION;
+
+    // Capture the CURRENT (still expanded) layout before anything moves --
+    // classes stay "expanded" for the whole close so the panel keeps
+    // display:block and can fade out; only the size is snapped back to
+    // compact right after this, and Flip animates that visual jump away.
+    const flipState = Flip
+      ? Flip.getState(expandedItems, flipProps ? { props: flipProps } : undefined)
+      : null;
+    if (flipState) gsap.set(expandedItems, { [extentProperty]: axis.compactExtent });
+
+    const centeringUpdate = preserveCentre
+      ? () => {
+          const currentCentre = itemCentre(anchor);
+          writePosition(currentPosition() + currentCentre - beforeCentre);
+        }
+      : null;
+
     closeTimeline = gsap.timeline({ onComplete: finishCollapse });
-    closeTimeline
-      .to(panels, {
+    closeTimeline.to(
+      panels,
+      {
         autoAlpha: 0,
         clipPath: collapsedClip,
         duration: reduceMotion ? 0.2 : CLOSE_DURATION * 0.72,
         ease: 'power2.in',
-      })
-      .to(
+      },
+      0,
+    );
+
+    if (flipState) {
+      closeTimeline.add(
+        Flip.from(flipState, {
+          targets: expandedItems,
+          props: flipProps,
+          scale: false,
+          absolute: false,
+          duration: closeDuration,
+          ease: 'power3.inOut',
+          onUpdate: centeringUpdate,
+        }),
+        0,
+      );
+    } else {
+      closeTimeline.to(
         expandedItems,
         {
           [extentProperty]: axis.compactExtent,
-          duration: reduceMotion ? 0.28 : CLOSE_DURATION,
+          duration: closeDuration,
           ease: 'power3.inOut',
-          onUpdate: preserveCentre
-            ? () => {
-                const currentCentre = itemCentre(anchor);
-                writePosition(currentPosition() + currentCentre - beforeCentre);
-              }
-            : null,
+          onUpdate: centeringUpdate,
         },
         0,
       );
+    }
   }
 
   function finishExpanded(item, copies, panel) {
-    gsap.set(copies, { clearProps: 'height,width,flexBasis' });
+    gsap.set(copies, { clearProps: 'height,width,flexBasis,transform' });
     copies.forEach((copy) => {
       copy.classList.remove('is-expanding');
       copy.classList.add('is-expanded');
@@ -245,17 +286,13 @@
     stage.classList.remove('is-browsing');
     setExpandedState(logical, true);
 
-    copies.forEach((copy) => copy.classList.add('is-expanding'));
     copies.forEach((copy) => {
       const copyPanel = copy.querySelector('.kitchenFan__panel');
       if (copyPanel) copyPanel.setAttribute('aria-hidden', String(copy !== item));
     });
 
     if (!animate) {
-      copies.forEach((copy) => {
-        copy.classList.remove('is-expanding');
-        copy.classList.add('is-expanded');
-      });
+      copies.forEach((copy) => copy.classList.add('is-expanded'));
       gsap.set(panel, { autoAlpha: 1, clipPath: 'inset(0% 0% 0% 0%)' });
       cardVisible = true;
       measureLoop();
@@ -264,35 +301,65 @@
     }
 
     isExpanding = true;
+    // On the horizontal (mobile) axis, flex-basis is what actually drives the
+    // item's main-axis size (width is just a redundant hint in the CSS) --
+    // Flip only tracks width/height out of the box, so flex-basis has to be
+    // requested explicitly via `props` on BOTH getState and from() or the
+    // item would silently jump to full size the instant the class lands.
     const extentProperty = axis.mobile ? 'flexBasis' : 'height';
-    const expandedExtent = itemSize(item);
-    copies.forEach((copy) => copy.classList.remove('is-expanded'));
-    gsap.set(copies, { [extentProperty]: axis.compactExtent });
+    const flipProps = axis.mobile ? 'flexBasis' : undefined;
+
+    // Capture the CURRENT (compact) layout of every clone as the Flip
+    // "before" state -- this replaces the old manual
+    // `gsap.set(copies, { [extentProperty]: axis.compactExtent })` snap-back,
+    // Flip measures the real compact rect itself instead of relying on a
+    // cached constant.
+    const flipState = Flip
+      ? Flip.getState(copies, flipProps ? { props: flipProps } : undefined)
+      : null;
+
+    copies.forEach((copy) => {
+      copy.classList.remove('is-expanded');
+      copy.classList.add('is-expanding');
+    });
     gsap.set(panel, {
       autoAlpha: 0,
       clipPath: axis.mobile ? 'inset(0% 48% 0% 48%)' : 'inset(48% 0% 48% 0%)',
     });
 
-    openTimeline = gsap.timeline({
-      defaults: { ease: 'power2.out' },
-      onComplete: () => finishExpanded(item, copies, panel),
-    });
-    openTimeline
-      .to(copies, {
-        [extentProperty]: expandedExtent,
-        duration: reduceMotion ? 0.44 : OPEN_DURATION,
-        ease: 'power3.inOut',
-        onUpdate: () => writePosition(targetPosition(item)),
-      })
-      .to(
-        panel,
-        {
-          autoAlpha: 1,
-          clipPath: 'inset(0% 0% 0% 0%)',
-          duration: reduceMotion ? 0.24 : 0.3,
-        },
-        reduceMotion ? 0.04 : 0.1,
-      );
+    const duration = reduceMotion ? 0.44 : OPEN_DURATION;
+
+    openTimeline = flipState
+      ? Flip.from(flipState, {
+          targets: copies,
+          props: flipProps,
+          scale: false, // real height/flexBasis, not transform scale -- text must not stretch
+          absolute: false, // stay in flow so sibling rows keep reflowing live, matching the old behavior
+          duration,
+          ease: 'power3.inOut',
+          onUpdate: () => writePosition(targetPosition(item)),
+          onComplete: () => finishExpanded(item, copies, panel),
+        })
+      : gsap.timeline({ onComplete: () => finishExpanded(item, copies, panel) }).fromTo(
+          copies,
+          { [extentProperty]: axis.compactExtent },
+          {
+            [extentProperty]: itemSize(item),
+            duration,
+            ease: 'power3.inOut',
+            onUpdate: () => writePosition(targetPosition(item)),
+          },
+        );
+
+    openTimeline.to(
+      panel,
+      {
+        autoAlpha: 1,
+        clipPath: 'inset(0% 0% 0% 0%)',
+        duration: reduceMotion ? 0.24 : 0.3,
+      },
+      reduceMotion ? 0.04 : 0.1,
+    );
   }
 
   function closestItem() {

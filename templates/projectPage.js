@@ -179,6 +179,8 @@ function renderProjectPage(project, lang) {
     ></script>
     <script src="../../utility/gsap.min.js"></script>
     <script src="../../utility/ScrollTrigger.min.js"></script>
+    <script src="../../utility/lenis.min.js"></script>
+    <script src="../../utility/smoothScroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
     <script
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"

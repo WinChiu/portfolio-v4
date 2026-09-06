@@ -1,10 +1,67 @@
 (function () {
   const hasGsap = typeof window.gsap !== 'undefined';
   const hasScrollTrigger = typeof window.ScrollTrigger !== 'undefined';
+  const hasSplitText = hasGsap && typeof window.SplitText !== 'undefined';
+  if (hasSplitText) window.gsap.registerPlugin(window.SplitText);
 
   document.documentElement.dataset.homeAnimation = hasGsap
     ? 'gsap'
     : 'fallback';
+
+  // One-shot split only (no autoSplit): autoSplit's internal ResizeObserver
+  // re-splits shortly after the first split even with fonts already fully
+  // loaded, replacing the char/word elements a timeline was about to
+  // animate and instantly revealing the fresh ones via plain CSS before the
+  // timeline ever plays. A plain one-time split has no such re-split step,
+  // so nothing can race it -- the tradeoff is a harmless
+  // "SplitText called before fonts loaded" console warning when fonts
+  // genuinely aren't ready yet.
+  //
+  // charsClass/wordsClass tag the generated wrapper elements so
+  // style/home/_globals.scss can force them to `color: inherit` -- the
+  // site's global `* { color: ... }` reset otherwise colors every new
+  // element directly, which wins over (silently erases) any color a split
+  // char/word would have inherited from an ancestor like a highlighted
+  // span, a link, or a stroked/transparent-fill heading.
+  function splitText(el, type) {
+    return hasSplitText && el
+      ? window.SplitText.create(el, {
+          type,
+          smartWrap: true,
+          charsClass: 'split-char',
+          wordsClass: 'split-word',
+        })
+      : null;
+  }
+
+  // Reveals one split target's chars/words on `tl` at `position`. `target`
+  // may be a single element or an array of elements (whatever was passed to
+  // splitText/SplitText.create). Falls back to a plain fade+rise on
+  // `target` itself when it wasn't split (no SplitText available).
+  function revealSplitText(tl, target, splitResult, position, vars) {
+    if (!target || (Array.isArray(target) && !target.length)) return;
+    const units = splitResult && (splitResult.chars || splitResult.words);
+    if (units && units.length) {
+      tl.fromTo(
+        units,
+        { autoAlpha: 0, y: 16 },
+        { autoAlpha: 1, y: 0, clearProps: 'transform,visibility', ...vars },
+        position,
+      );
+    } else {
+      tl.fromTo(
+        target,
+        { y: 22 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          clearProps: 'transform,visibility',
+          duration: vars.duration,
+        },
+        position,
+      );
+    }
+  }
 
   function getVisibleProjectCards() {
     return Array.from(
@@ -91,15 +148,23 @@
     if (!hero) return;
 
     const avatar = hero.querySelector('.media--image');
-    const heroItems = [
-      hero.querySelector('#hero-eyebrow'),
-      hero.querySelector('#greet'),
-      hero.querySelector('#intro'),
-      hero.querySelector('#annotation'),
-    ].filter(Boolean);
+    const greet = hero.querySelector('#greet');
+    const eyebrow = hero.querySelector('#hero-eyebrow');
+    const intro = hero.querySelector('#intro');
+    const annotation = hero.querySelector('#annotation');
+    const annotationTexts = annotation
+      ? Array.from(
+          annotation.querySelectorAll(
+            '.block__heroDetailTitle, .block__heroDetailSubtitle',
+          ),
+        )
+      : [];
+    const allHeroText = [greet, eyebrow, intro, ...annotationTexts].filter(
+      Boolean,
+    );
 
     if (!hasGsap) {
-      [avatar, ...heroItems].filter(Boolean).forEach((element) => {
+      [avatar, ...allHeroText].filter(Boolean).forEach((element) => {
         element.style.opacity = '1';
         element.style.visibility = 'visible';
         element.style.transform = 'none';
@@ -107,41 +172,101 @@
       return;
     }
 
-    const tl = window.gsap.timeline({
-      paused: true,
-      defaults: { duration: 0.72, ease: 'power3.out' },
-    });
+    const gsap = window.gsap;
 
-    if (avatar) {
-      tl.fromTo(
-        avatar,
-        { autoAlpha: 0, y: 24, scale: 0.96 },
-        { autoAlpha: 1, y: 0, scale: 1, clearProps: 'transform,visibility' },
-        0,
-      );
-    }
+    // Hide everything up front, synchronously -- the full-page loading
+    // screen (if present) already covers this the whole time regardless,
+    // but this also closes the gap below where each char-split build has
+    // to wait on fonts.ready and could otherwise render unsplit-and-visible
+    // for a moment if the loader finishes first.
+    gsap.set([avatar, ...allHeroText].filter(Boolean), { autoAlpha: 0 });
 
-    tl.fromTo(
-      heroItems,
-      { autoAlpha: 0, y: 22 },
-      {
-        autoAlpha: 1,
-        y: 0,
-        stagger: 0.12,
-        clearProps: 'transform,visibility',
-      },
-      avatar ? 0.18 : 0,
-    );
+    const greetSplit = splitText(greet, 'chars');
+    const eyebrowSplit = splitText(eyebrow, 'chars');
+    // The description stays a plain fade+rise (no split) -- requested
+    // directly, rather than the word-by-word reveal used until now.
+    const introSplit = null;
+    const annotationSplit =
+      hasSplitText && annotationTexts.length
+        ? window.SplitText.create(annotationTexts, {
+            type: 'chars',
+            smartWrap: true,
+            charsClass: 'split-char',
+          })
+        : null;
 
-    const loader = document.querySelector('.loading-mask');
-    if (loader) {
-      window.addEventListener('portfolio:assets-ready', () => tl.play(0), {
-        once: true,
+    // Once split, an element's own opacity is no longer what hides it --
+    // its individual char/word spans are (set below, inside revealSplitText)
+    // -- so every split parent can come back to full opacity now.
+    // #annotation additionally has its own `opacity: 0` in
+    // style/home/_hero.scss (a CSS-only default meant to be cleared by JS,
+    // independent of anything GSAP set above) -- so it needs the same
+    // treatment even though it isn't itself one of the split targets, only
+    // a container for them.
+    const splitParents = [];
+    if (greetSplit) splitParents.push(greet);
+    if (eyebrowSplit) splitParents.push(eyebrow);
+    if (introSplit) splitParents.push(intro);
+    if (annotationSplit) splitParents.push(...annotationTexts, annotation);
+    if (splitParents.length) gsap.set(splitParents, { autoAlpha: 1 });
+
+    function buildTimeline() {
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.72, ease: 'power3.out' },
       });
-      return;
+
+      if (avatar) {
+        tl.fromTo(
+          avatar,
+          { y: 24, scale: 0.96 },
+          { autoAlpha: 1, y: 0, scale: 1, clearProps: 'transform,visibility' },
+          0,
+        );
+      }
+
+      // Each block starts once the previous one is a little more than half
+      // revealed, so the whole hero cascades as one continuous read instead
+      // of either strictly waiting turn-by-turn or all firing at once.
+      const greetStart = avatar ? 0.18 : 0;
+      revealSplitText(tl, greet, greetSplit, greetStart, {
+        duration: 0.5,
+        stagger: 0.02,
+      });
+
+      const eyebrowStart = greetSplit ? greetStart + 0.14 : greetStart;
+      revealSplitText(tl, eyebrow, eyebrowSplit, eyebrowStart, {
+        duration: 0.45,
+        stagger: 0.018,
+      });
+
+      const introStart = eyebrowSplit ? eyebrowStart + 0.2 : eyebrowStart;
+      revealSplitText(tl, intro, introSplit, introStart, {
+        duration: 0.5,
+        stagger: 0.035,
+      });
+
+      const annotationStart = introSplit ? introStart + 0.3 : introStart;
+      revealSplitText(tl, annotation, annotationSplit, annotationStart, {
+        duration: 0.4,
+        stagger: 0.008,
+      });
+
+      return tl;
     }
 
-    tl.play(0);
+    function playWhenReady(tl) {
+      const loader = document.querySelector('.loading-mask');
+      if (loader) {
+        window.addEventListener('portfolio:assets-ready', () => tl.play(0), {
+          once: true,
+        });
+        return;
+      }
+      tl.play(0);
+    }
+
+    playWhenReady(buildTimeline());
   }
 
   function setupProjectCardReveal() {
@@ -150,7 +275,8 @@
       return;
     }
 
-    window.gsap.registerPlugin(window.ScrollTrigger);
+    const gsap = window.gsap;
+    gsap.registerPlugin(window.ScrollTrigger);
     document.documentElement.dataset.homeScrollAnimation = 'gsap';
 
     getVisibleProjectCards().forEach((card, index) => {
@@ -160,9 +286,9 @@
 
       if (!targets.length) return;
 
-      window.gsap.set(targets, { willChange: 'transform, opacity' });
+      gsap.set(targets, { willChange: 'transform, opacity' });
 
-      window.gsap.fromTo(
+      gsap.fromTo(
         targets,
         {
           autoAlpha: 0,
@@ -216,88 +342,21 @@
     );
   }
 
-  function setupSectionNavigation() {
-    const links = Array.from(
-      document.querySelectorAll('.nav--main a[href^="#"]'),
-    );
-    if (!links.length) return;
-
-    const scrollSpeed = 8000;
-    let scrollTween = null;
-    let previousScrollBehavior = '';
-
-    function restoreScrollBehavior() {
-      document.documentElement.style.scrollBehavior = previousScrollBehavior;
-    }
-
-    function stopScrollAnimation() {
-      if (!scrollTween) return;
-      scrollTween.kill();
-      scrollTween = null;
-      restoreScrollBehavior();
-    }
-
-    ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach((eventName) => {
-      window.addEventListener(eventName, stopScrollAnimation, {
-        passive: true,
-      });
-    });
-
-    links.forEach((link) => {
-      link.addEventListener('click', (event) => {
-        const hash = link.getAttribute('href');
-        const target = hash ? document.querySelector(hash) : null;
-        if (!target) return;
-
-        event.preventDefault();
-        stopScrollAnimation();
-
-        const startY = window.scrollY;
-        const maxY = document.documentElement.scrollHeight - window.innerHeight;
-        const targetY = Math.min(
-          maxY,
-          Math.max(0, target.getBoundingClientRect().top + startY),
-        );
-
-        if (!hasGsap) {
-          previousScrollBehavior =
-            document.documentElement.style.scrollBehavior;
-          document.documentElement.style.scrollBehavior = 'auto';
-          window.scrollTo(0, targetY);
-          restoreScrollBehavior();
-          window.history.pushState(null, '', hash);
-          return;
-        }
-
-        previousScrollBehavior = document.documentElement.style.scrollBehavior;
-        document.documentElement.style.scrollBehavior = 'auto';
-        const scrollState = { y: startY };
-        const reduceMotion = window.matchMedia(
-          '(prefers-reduced-motion: reduce)',
-        ).matches;
-        const duration = Math.abs(targetY - startY) / scrollSpeed;
-
-        scrollTween = window.gsap.to(scrollState, {
-          y: targetY,
-          duration,
-          ease: reduceMotion ? 'power1.out' : 'power2.inOut',
-          overwrite: true,
-          onUpdate: () => window.scrollTo(0, scrollState.y),
-          onComplete: () => {
-            scrollTween = null;
-            restoreScrollBehavior();
-            window.history.pushState(null, '', hash);
-          },
-        });
-      });
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     setupWorkSwitcher();
     setupHeroAnimation();
     setupProjectCardReveal();
     setupKitchenReveal();
-    setupSectionNavigation();
+    // Nav-link (#work/#about/#kitchen/#life) scrolling used to be a
+    // hand-rolled GSAP scrollTo tween here, then briefly routed through
+    // Lenis's scrollTo(). Both ended up worse than just leaving these as
+    // plain anchor links: the site already sets `scroll-behavior: smooth`
+    // on <html> (style/home/_globals.scss), which is exactly what makes
+    // the in-copy "cooking" link (content/homeContent.js) smooth-scroll to
+    // #kitchen with zero JS. Lenis's scrollTo(), on the other hand, honors
+    // prefers-reduced-motion and jumps instantly for anyone with that OS
+    // setting on -- which plain CSS scroll-behavior does not do the same
+    // way in practice, so routing nav through it made nav feel broken for
+    // exactly the visitors it was supposed to help. No handler needed here.
   });
 })();

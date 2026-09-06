@@ -26,6 +26,17 @@ body {
   color: $color-darkOrange;
 }
 
+// SplitText (utility/landingPageAnimation.js) wraps each split char/word in
+// its own new element, tagged with these classes -- since the `*` reset
+// above assigns color directly to every element rather than leaving it to
+// inherit, those new wrappers would otherwise silently lose any color
+// coming from an ancestor like `.highlight` or a link, no matter how the
+// split text itself is styled.
+.split-char,
+.split-word {
+  color: inherit;
+}
+
 html,
 body {
   position: relative;
