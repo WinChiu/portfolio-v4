@@ -1,9 +1,22 @@
+@use 'tokens' as *;
+
 @mixin flex($flexDirection, $justifyContent, $alignItems, $gap: var(--space-0)) {
   display: flex;
   justify-content: $justifyContent;
   align-items: $alignItems;
   flex-direction: $flexDirection;
   gap: $gap;
+}
+
+// The transparent-fill/gold-outline heading look used for "Kitchen", "Life",
+// "About" and each project card's number -- repeated identically across
+// four partials before this (base stroke width, plus a narrower override at
+// smaller breakpoints). Re-declaring color here at the narrower call site is
+// redundant with the base include but harmless -- it keeps every call site
+// self-contained rather than relying on cascade order between rules.
+@mixin stroke-heading($width: 0.125rem) {
+  color: var(--color-transparent);
+  -webkit-text-stroke: $width $color-darkGold;
 }
 
 @mixin full-page-loader {

@@ -6,7 +6,42 @@ const { pathToFileURL } = require('node:url');
 const { spawn } = require('node:child_process');
 
 const root = path.resolve(__dirname, '..');
-const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+
+// Resolves a Chrome executable without assuming one specific machine's
+// install location. Checked in order: an explicit CHROME_PATH override,
+// then the common per-OS install paths, then (on Linux/other Unix-likes,
+// where Chrome is normally just a command on PATH rather than a fixed
+// absolute path) a bare command name for spawn() to resolve itself.
+function resolveChromePath() {
+  if (process.env.CHROME_PATH) {
+    return process.env.CHROME_PATH;
+  }
+
+  if (process.platform === 'win32') {
+    const candidates = [
+      'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+      'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+      process.env.LOCALAPPDATA &&
+        path.join(process.env.LOCALAPPDATA, 'Google\\Chrome\\Application\\chrome.exe'),
+    ].filter(Boolean);
+    const found = candidates.find((candidate) => fs.existsSync(candidate));
+    if (found) return found;
+  } else if (process.platform === 'darwin') {
+    const macPath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+    if (fs.existsSync(macPath)) return macPath;
+  } else {
+    // spawn() resolves plain command names via PATH itself, so there's
+    // nothing to existsSync here -- this is Debian/Ubuntu's package name;
+    // set CHROME_PATH explicitly on distros/setups that name it differently.
+    return 'google-chrome';
+  }
+
+  throw new Error(
+    'Could not find a Chrome install. Set the CHROME_PATH environment variable to your Chrome executable and re-run.',
+  );
+}
+
+const chromePath = resolveChromePath();
 const pages = [
   ...fs.readdirSync(path.join(root, 'pages', 'en')).map((file) => path.join(root, 'pages', 'en', file)),
   ...fs.readdirSync(path.join(root, 'pages', 'zh')).map((file) => path.join(root, 'pages', 'zh', file)),
@@ -262,6 +297,15 @@ async function run() {
     '--allow-file-access-from-files',
     'about:blank',
   ]);
+  // Without this, a bad/missing chromePath (e.g. CHROME_PATH pointing
+  // nowhere, or the 'google-chrome' PATH fallback not being installed)
+  // surfaces as an unhandled 'error' event -- a raw, unexplained crash
+  // instead of a message pointing at what to fix.
+  chrome.on('error', (error) => {
+    console.error(`Failed to launch Chrome at "${chromePath}": ${error.message}`);
+    console.error('Set the CHROME_PATH environment variable to your Chrome executable and re-run.');
+    process.exit(1);
+  });
 
   try {
     const port = await waitForDevtoolsPort(userDataDir);

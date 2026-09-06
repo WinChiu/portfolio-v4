@@ -38,9 +38,8 @@
   .life__title {
     font-family: $font-title;
     font-weight: var(--font-weight-regular);
-    color: var(--color-transparent);
     line-height: 0.9;
-    -webkit-text-stroke: 0.125rem $color-darkGold;
+    @include stroke-heading;
     text-align: center;
   }
 
@@ -161,7 +160,7 @@
       flex: 0;
     }
     .life__title {
-      -webkit-text-stroke: 0.0938rem $color-darkGold;
+      @include stroke-heading(0.0938rem);
     }
     .life__stack {
       width: 80%;
