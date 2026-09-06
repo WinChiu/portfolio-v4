@@ -17,15 +17,28 @@
   // a jolt, even though the visitor was just passing through.
   //
   // The fix is to only let a widget claim the wheel once its section has
-  // actually arrived (fills the viewport) -- while merely passing through,
-  // wheel events fall through to Lenis like anywhere else on the page.
+  // actually arrived -- while merely passing through, wheel events fall
+  // through to Lenis like anywhere else on the page.
   // kitchenFanAnimation.js / lifeStackAnimation.js call this same function
   // before deciding whether to preventDefault(), so both sides agree on the
   // handoff point instead of one silently disagreeing with the other.
-  function isScrollSectionEngaged(section, tolerance = 4) {
+  //
+  // "Arrived" means at least half the viewport is covered by the section --
+  // NOT both edges lined up with the viewport within a few px. That old,
+  // pixel-perfect version left almost no margin for a section whose height
+  // sits right at the viewport height (e.g. Kitchen's fixed 100dvh): Lenis's
+  // smoothing and the widget's own wheel-driven inertia routinely drift the
+  // scroll position by more than that across a single real (trackpad)
+  // gesture, and once it drifted past the tiny window, engagement could
+  // never trigger again -- permanently handing that section's wheel input
+  // back to the page. A 50%-of-viewport-covered threshold has enough slack
+  // to absorb that drift entirely.
+  function isScrollSectionEngaged(section) {
     if (!section) return true; // fail open -- never create a dead zone
     const rect = section.getBoundingClientRect();
-    return rect.top <= tolerance && rect.bottom >= window.innerHeight - tolerance;
+    const visibleHeight =
+      Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+    return visibleHeight >= window.innerHeight / 2;
   }
   window.isScrollSectionEngaged = isScrollSectionEngaged;
 
