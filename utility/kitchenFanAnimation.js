@@ -79,6 +79,7 @@
   let wheelVelocity = 0;
   let resizeFrame = null;
   let centeredItem = null;
+  let mobileGesture = null;
 
   function logicalIndex(item) {
     return Number(item.dataset.index);
@@ -490,6 +491,7 @@
 
   function settle() {
     settleTimer = null;
+    if (axis.mobile && mobileGesture?.active) return;
     normalizeLoop();
     snapTo(closestItem(), true);
   }
@@ -532,6 +534,40 @@
     }
   }
 
+  // Native touch scrolling keeps its original inertia. Touching a card must
+  // not close it until the user has clearly chosen the horizontal axis.
+  stage.addEventListener('touchstart', (event) => {
+    if (!axis.mobile) return;
+    const touch = event.touches[0];
+    mobileGesture = {
+      x: touch.clientX, y: touch.clientY, active: true, moved: false,
+      direction: event.touches.length === 1 ? 'pending' : 'vertical',
+    };
+  }, { passive: true });
+
+  stage.addEventListener('touchmove', (event) => {
+    if (!axis.mobile || !mobileGesture) return;
+    if (event.touches.length !== 1) {
+      mobileGesture.direction = 'vertical';
+      return;
+    }
+    if (mobileGesture.direction !== 'pending') return;
+    const dx = Math.abs(event.touches[0].clientX - mobileGesture.x);
+    const dy = Math.abs(event.touches[0].clientY - mobileGesture.y);
+    if (Math.max(dx, dy) < 8) return;
+    if (dy >= dx) mobileGesture.direction = 'vertical';
+    else if (dx > dy * 1.3) mobileGesture.direction = 'horizontal';
+  }, { passive: true });
+
+  function finishMobileGesture() {
+    if (!mobileGesture) return;
+    mobileGesture.active = false;
+    // Retain direction for native momentum events after finger release.
+    if (mobileGesture.direction === 'horizontal' && mobileGesture.moved) scheduleSettle();
+  }
+  stage.addEventListener('touchend', finishMobileGesture, { passive: true });
+  stage.addEventListener('touchcancel', finishMobileGesture, { passive: true });
+
   function wheelDelta(event) {
     const raw = axis.mobile
       ? event.deltaX
@@ -545,6 +581,10 @@
     'wheel',
     (event) => {
       if (!isEngaged() || event.ctrlKey) return; // let the page keep scrolling while just passing through (or pinch-zooming)
+      if (axis.mobile) {
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+        mobileGesture = null;
+      }
       // Claim the WHOLE gesture the instant it's engaged, before looking at
       // delta -- a real trackpad/mouse sends many wheel sub-events per
       // gesture, and some land with a near-zero (or, on the "wrong" axis,
@@ -568,6 +608,7 @@
   stage.addEventListener(
     'pointerdown',
     (event) => {
+      if (axis.mobile) return; // Only actual horizontal scrolling starts browsing.
       if (event.target.closest('.kitchenFan__summary')) return;
       stopInertia();
       beginBrowsing({
@@ -582,6 +623,10 @@
   stage.addEventListener(
     'scroll',
     () => {
+      if (axis.mobile && mobileGesture) {
+        if (mobileGesture.direction !== 'horizontal') return;
+        mobileGesture.moved = true;
+      }
       // Kept live regardless of the guards below -- purely visual, and
       // those guards exist to skip re-triggering browsing/settle logic
       // during states (inertia, snapping, ...) that already drive this
@@ -623,6 +668,7 @@
 
   function initialiseAxis() {
     if (!axis) return;
+    mobileGesture = null;
     if (settleTimer) window.clearTimeout(settleTimer);
     stopInertia();
     if (snapTween) snapTween.kill();

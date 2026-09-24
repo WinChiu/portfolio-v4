@@ -43,6 +43,13 @@
   window.isScrollSectionEngaged = isScrollSectionEngaged;
 
   const lenis = new LenisCtor({
+    // Mobile Kitchen claims horizontal wheel input only. Do not smooth an
+    // already consumed event; vertical input over the belt stays page input.
+    virtualScroll: ({ event }) => !(
+      event.type === 'wheel' && event.defaultPrevented &&
+      event.target.closest?.('.kitchenFan__stage') &&
+      window.matchMedia('(max-width: 72rem)').matches
+    ),
     // See isScrollSectionEngaged above -- Lenis only steps back for these
     // widgets once their section has actually arrived; while the visitor is
     // merely scrolling past, Lenis keeps driving the page as normal.
@@ -50,6 +57,7 @@
       if (!node.closest) return false;
       const stage = node.closest('.kitchenFan__stage');
       if (stage) {
+        if (window.matchMedia('(max-width: 72rem)').matches) return false;
         return isScrollSectionEngaged(stage.closest('.section--kitchenFan'));
       }
       const stack = node.closest('.life__stack');
