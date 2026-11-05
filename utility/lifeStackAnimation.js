@@ -104,6 +104,7 @@
   let currentIndex = 0;
 
   function applyPositions() {
+    stack.dataset.activeIndex = String(currentIndex);
     cards.forEach((card, index) => {
       const depth = index - currentIndex;
       // Only two positions exist: "gone" (already dismissed, off past the

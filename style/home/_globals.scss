@@ -34,7 +34,12 @@ body {
 // split text itself is styled.
 .split-char,
 .split-word {
-  color: inherit;
+  color: var(--color-inherit);
+  font-family: inherit;
+  // Inline-block split wrappers otherwise interrupt link underlines.
+  text-decoration: inherit;
+  text-decoration-thickness: inherit;
+  text-underline-offset: inherit;
 }
 
 html,

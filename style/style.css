@@ -362,7 +362,11 @@ body {
 
 .split-char,
 .split-word {
-  color: inherit;
+  color: var(--color-inherit);
+  font-family: inherit;
+  text-decoration: inherit;
+  text-decoration-thickness: inherit;
+  text-underline-offset: inherit;
 }
 
 html,
@@ -514,7 +518,18 @@ h6 {
   flex-direction: row;
   gap: var(--space-0);
   position: relative;
-  border-bottom: 0.125rem var(--color-text) solid;
+  border-bottom: var(--space-hairline) solid var(--color-transparent);
+}
+.section--work .container--content::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--space-0);
+  bottom: calc(-1 * var(--space-hairline));
+  height: var(--space-hairline);
+  background: var(--color-border);
+  transform: scaleX(var(--work-line-progress, 1));
+  transform-origin: left;
+  pointer-events: none;
 }
 .section--work .container--content .block--introduction {
   display: flex;
@@ -548,14 +563,28 @@ h6 {
   margin-bottom: var(--space-xs);
 }
 .section--work .container--content .block--introduction .block__tag {
+  display: block;
   color: var(--color-text-subtle);
   font-family: var(--font-family-mono);
   font-weight: var(--font-weight-regular);
 }
 .section--work .container--content .block--introduction .block__description {
+  position: relative;
   padding-left: var(--space-md);
-  border-left: var(--color-interactive) solid 0.25rem;
+  border-left: var(--color-transparent) solid var(--space-3xs);
   margin-bottom: var(--space-3xl);
+}
+.section--work .container--content .block--introduction .block__description::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-3xs));
+  top: var(--space-0);
+  bottom: var(--space-0);
+  width: var(--space-3xs);
+  background: var(--color-interactive);
+  transform: scaleY(var(--work-accent-progress, 1));
+  transform-origin: top;
+  pointer-events: none;
 }
 .section--work .container--content .block--introduction .block__buttonContainer {
   display: flex;
@@ -740,6 +769,21 @@ h6 {
   pointer-events: none;
 }
 
+.section .split-char,
+.nav--main .split-char {
+  position: relative;
+}
+.section .split-char.is-typing-char::after,
+.nav--main .split-char.is-typing-char::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: calc(-1 * var(--space-3xs));
+  top: 10%;
+  height: 80%;
+  border-right: var(--space-hairline) solid;
+  pointer-events: none;
+}
+
 .section--main {
   height: 100dvh;
   border-bottom: none;
@@ -776,8 +820,7 @@ h6 {
   font-weight: var(--font-weight-semibold);
   line-height: 1.2;
   margin-bottom: var(--space-3xs);
-  opacity: 0;
-  transition: var(--transition-entrance);
+  opacity: 1;
 }
 .section--main .container--content .block--introduction .block__header .block__title {
   color: var(--color-text);
@@ -786,13 +829,11 @@ h6 {
   font-weight: var(--font-weight-medium);
   letter-spacing: 0;
   line-height: 1;
-  opacity: 0;
-  transition: var(--transition-entrance);
+  opacity: 1;
   width: 110%;
 }
 .section--main .container--content .block--introduction .block__description {
-  opacity: 0;
-  transition: var(--transition-entrance);
+  opacity: 1;
   font-family: var(--font-family-body);
   color: var(--color-text-subtle);
   font-weight: var(--font-weight-regular);
@@ -813,8 +854,7 @@ h6 {
   color: var(--color-link-hover);
 }
 .section--main .container--content .block--introduction .block__annotation {
-  opacity: 0;
-  transition: var(--transition-entrance);
+  opacity: 1;
   color: var(--color-text-muted);
   font-weight: var(--font-weight-regular);
   line-height: 140%;
@@ -827,8 +867,7 @@ h6 {
   align-items: flex-start;
   flex-direction: row;
   gap: var(--space-3xl);
-  opacity: 0;
-  transition: var(--transition-entrance);
+  opacity: 1;
   width: 100%;
   margin-top: var(--space-160);
 }
@@ -868,8 +907,7 @@ h6 {
   background-size: cover;
 }
 .section--main .container--content .media--image {
-  opacity: 0;
-  transition-duration: var(--motion-duration-entrance);
+  opacity: 1;
   position: relative;
   aspect-ratio: 1051/1378;
   width: min(48vw, 76.2699564586vh);
@@ -1152,7 +1190,18 @@ h6 {
 }
 
 .section--about {
-  border-bottom: var(--color-text) solid 0.125rem;
+  border-bottom: var(--color-transparent) solid var(--space-hairline);
+}
+.section--about::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--space-0);
+  bottom: var(--space-0);
+  height: var(--space-hairline);
+  background: var(--color-border);
+  transform: scaleX(var(--section-line-progress, 1));
+  transform-origin: left;
+  pointer-events: none;
 }
 .section--about .container {
   display: flex;
@@ -1332,12 +1381,12 @@ h6 {
 .section--kitchenFan .kitchenFan__item {
   position: relative;
   width: 82%;
-  margin-right: auto;
+  margin-right: var(--space-auto);
   margin-bottom: var(--space-md);
-  margin-left: auto;
+  margin-left: var(--space-auto);
   overflow: hidden;
   height: var(--space-64);
-  transition: width 0.2s ease;
+  transition: width var(--motion-duration-fast) ease;
 }
 .section--kitchenFan .kitchenFan__item.is-centered, .section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
   width: 100%;
@@ -1369,7 +1418,7 @@ h6 {
   color: var(--color-border-muted);
   text-align: center;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color var(--motion-duration-fast) ease;
 }
 .section--kitchenFan .kitchenFan__summary:hover {
   border-color: var(--color-text);
@@ -1546,7 +1595,7 @@ h6 {
     min-height: 0;
     margin: var(--space-0) var(--space-3xs);
     align-self: center;
-    transition: height 0.2s ease;
+    transition: height var(--motion-duration-fast) ease;
   }
   .section--kitchenFan .kitchenFan__item.is-centered, .section--kitchenFan .kitchenFan__item.is-expanding, .section--kitchenFan .kitchenFan__item.is-expanded {
     height: calc(var(--space-256) + var(--space-8xl) + var(--space-7xl));
@@ -1617,7 +1666,20 @@ h6 {
 }
 
 .section--life {
-  border-top: var(--color-text) solid 0.125rem;
+  border-top: var(--color-transparent) solid var(--space-hairline);
+}
+.section--life::before {
+  content: "";
+  position: absolute;
+  inset-inline: var(--space-0);
+  top: var(--space-0);
+  height: var(--space-hairline);
+  background: var(--color-border);
+  transform: scaleX(var(--section-line-progress, 1));
+  transform-origin: left;
+  pointer-events: none;
+}
+.section--life {
   min-height: 100dvh;
   position: relative;
   overflow: hidden;

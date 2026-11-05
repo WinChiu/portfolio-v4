@@ -6,7 +6,19 @@
 // ========================================
 
 .section--about {
-  border-bottom: $color-black solid 0.125rem;
+  border-bottom: var(--color-transparent) solid var(--space-hairline);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: var(--space-0);
+    bottom: var(--space-0);
+    height: var(--space-hairline);
+    background: var(--color-border);
+    transform: scaleX(var(--section-line-progress, 1));
+    transform-origin: left;
+    pointer-events: none;
+  }
 
   .container {
     @include flex(row, center, stretch);

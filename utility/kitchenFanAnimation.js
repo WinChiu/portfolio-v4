@@ -32,8 +32,12 @@
   const SNAP_DURATION = 0.48;
   const CLICK_SCROLL_DURATION = 0.78;
   const CENTRE_PAUSE_MS = 260;
-  const OPEN_DURATION = 0.72;
   const CLOSE_DURATION = 0.36;
+  function motionDuration(name) {
+    const value = getComputedStyle(document.documentElement)
+      .getPropertyValue(`--motion-duration-${name}`).trim();
+    return parseFloat(value) / (value.endsWith('ms') ? 1000 : 1);
+  }
   const WHEEL_FORCE = 0.18;
   const MAX_VELOCITY = 92;
   const INERTIA_FRICTION = 0.88;
@@ -188,6 +192,9 @@
       expandedItems.forEach((item) => item.classList.remove('is-expanded', 'is-expanding'));
       panels.forEach((panel) => panel.setAttribute('aria-hidden', 'true'));
       gsap.set(panels, { clearProps: 'transform,opacity,visibility,clipPath' });
+      gsap.set(expandedItems.flatMap((copy) => Array.from(copy.querySelectorAll(
+        '.kitchenFan__cardPhoto, .kitchenFan__cardText',
+      ))), { clearProps: 'clipPath,opacity,visibility' });
       activePhysicalItem = null;
       isCollapsing = false;
       closeTimeline = null;
@@ -306,9 +313,11 @@
       if (copyPanel) copyPanel.setAttribute('aria-hidden', String(copy !== item));
     });
 
-    if (!animate) {
+    if (!animate || reduceMotion) {
       copies.forEach((copy) => copy.classList.add('is-expanded'));
       gsap.set(panel, { autoAlpha: 1, clipPath: 'inset(0% 0% 0% 0%)' });
+      gsap.set(panel.querySelectorAll('.kitchenFan__cardPhoto, .kitchenFan__cardText'),
+        { clearProps: 'clipPath,opacity,visibility' });
       cardVisible = true;
       measureLoop();
       setPosition(targetPosition(item));
@@ -338,14 +347,22 @@
       copy.classList.add('is-expanding');
     });
     gsap.set(panel, {
-      autoAlpha: 0,
-      clipPath: axis.mobile ? 'inset(0% 48% 0% 48%)' : 'inset(48% 0% 48% 0%)',
+      autoAlpha: 1,
+      clipPath: 'inset(0% 0% 0% 0%)',
     });
+    const photo = panel.querySelector('.kitchenFan__cardPhoto');
+    const text = panel.querySelector('.kitchenFan__cardText');
+    if (photo) gsap.set(photo, { clipPath: 'inset(0% 100% 0% 0%)' });
+    if (text) gsap.set(text, { autoAlpha: 0 });
 
-    const duration = reduceMotion ? 0.44 : OPEN_DURATION;
+    const duration = motionDuration('slow');
+    const photoDuration = motionDuration('slow');
+    const textStart = duration + photoDuration;
 
-    openTimeline = flipState
-      ? Flip.from(flipState, {
+    // One owner timeline: an interruption cancels every phase together.
+    openTimeline = gsap.timeline({ onComplete: () => finishExpanded(item, copies, panel) });
+    if (flipState) {
+      openTimeline.add(Flip.from(flipState, {
           targets: copies,
           props: flipProps,
           scale: false, // real height/flexBasis, not transform scale -- text must not stretch
@@ -353,9 +370,9 @@
           duration,
           ease: 'power3.inOut',
           onUpdate: () => writePosition(targetPosition(item)),
-          onComplete: () => finishExpanded(item, copies, panel),
-        })
-      : gsap.timeline({ onComplete: () => finishExpanded(item, copies, panel) }).fromTo(
+        }), 0);
+    } else {
+      openTimeline.fromTo(
           copies,
           { [extentProperty]: axis.compactExtent },
           {
@@ -365,16 +382,16 @@
             onUpdate: () => writePosition(targetPosition(item)),
           },
         );
+    }
 
-    openTimeline.to(
-      panel,
-      {
-        autoAlpha: 1,
-        clipPath: 'inset(0% 0% 0% 0%)',
-        duration: reduceMotion ? 0.24 : 0.3,
-      },
-      reduceMotion ? 0.04 : 0.1,
-    );
+    if (photo) openTimeline.to(photo, {
+      clipPath: 'inset(0% 0% 0% 0%)', duration: photoDuration,
+      ease: 'power3.inOut', clearProps: 'clipPath',
+    }, duration);
+    openTimeline.call(() => {
+      stage.dispatchEvent(new CustomEvent('portfolio:kitchen-text-ready', { detail: { panel } }));
+    }, [], textStart);
+    if (text) openTimeline.set(text, { autoAlpha: 1 }, textStart);
   }
 
   function closestItem() {

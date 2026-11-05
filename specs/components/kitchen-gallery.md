@@ -45,6 +45,7 @@ CSS block `.section--kitchenFan`. Markup comes from `renderKitchenFanCard` and `
 - Default: compact dishes form an infinitely looping list
 - Browsing: the expanded row closes as scrolling starts and stays closed during inertia
 - Settle: the nearest item snaps to centre, holds, then expands
+- Expansion: the frame opens first, the photo reveals next, then the text types quickly; new input interrupts the sequence
 - Direct selection: click and arrow-key input close and scroll simultaneously before settling
 - Tablet: at 72rem and below, the intro stacks above a horizontal mobile-style recipe belt; only horizontal input moves the belt
 - Mobile card: the photo stays square and the card belt clips at viewport edges

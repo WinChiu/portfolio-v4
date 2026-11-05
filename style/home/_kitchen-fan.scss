@@ -79,12 +79,12 @@
     // (the stage scrolls on height/scrollTop), so this is purely visual and
     // doesn't touch the loop's scroll-position math.
     width: 82%;
-    margin-right: auto;
+    margin-right: var(--space-auto);
     margin-bottom: var(--space-md);
-    margin-left: auto;
+    margin-left: var(--space-auto);
     overflow: hidden;
     height: var(--space-64);
-    transition: width 0.2s ease;
+    transition: width var(--motion-duration-fast) ease;
 
     // `.is-centered` tracks whichever row is nearest the stage's centre
     // RIGHT NOW, kept live during scroll/inertia by kitchenFanAnimation.js
@@ -136,7 +136,7 @@
     color: var(--color-border-muted);
     text-align: center;
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: color var(--motion-duration-fast) ease;
 
     &:hover {
       border-color: var(--color-text);
@@ -344,7 +344,7 @@
       min-height: 0;
       margin: var(--space-0) var(--space-3xs);
       align-self: center;
-      transition: height 0.2s ease;
+      transition: height var(--motion-duration-fast) ease;
 
       // See the vertical layout above for why `.is-centered` exists --
       // same idea, just on the swapped axis: the row nearest the stage's

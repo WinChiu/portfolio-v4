@@ -6,7 +6,19 @@
 // ========================================
 
 .section--life {
-  border-top: $color-black solid 0.125rem;
+  border-top: var(--color-transparent) solid var(--space-hairline);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline: var(--space-0);
+    top: var(--space-0);
+    height: var(--space-hairline);
+    background: var(--color-border);
+    transform: scaleX(var(--section-line-progress, 1));
+    transform-origin: left;
+    pointer-events: none;
+  }
   min-height: 100dvh;
   position: relative;
   // A dismissed card's -150vh exit (see utility/lifeStackAnimation.js) is
