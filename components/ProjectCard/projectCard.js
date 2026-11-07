@@ -1,3 +1,5 @@
+import '../HairlineCover/hairlineCover.js?v=cb43968d';
+
 class ProjectCard extends HTMLElement {
   constructor() {
     super();
@@ -9,6 +11,7 @@ class ProjectCard extends HTMLElement {
     const tag = this.getAttribute('tag') || '';
     const description = this.getAttribute('description') || '';
     const imageUrl = this.getAttribute('image-url') || '';
+    const coverType = this.getAttribute('cover-type');
     const projectUrl = this.getAttribute('project-url') || '#';
     const siteUrl = this.getAttribute('site-url');
     const type = this.getAttribute('type') || 'design';
@@ -17,6 +20,9 @@ class ProjectCard extends HTMLElement {
     const viewProjectText = lang === 'zh' ? '查看專案' : 'View Project';
     const viewSiteText = lang === 'zh' ? '查看網站' : 'View Site';
     const hideClass = type === 'code' ? 'workHide' : '';
+    const cover = ['component-tray', 'delivery'].includes(coverType)
+      ? `<hairline-cover figure="${coverType}" lang="${lang}"><img class="media__img" src="${imageUrl}" alt="${title}" /></hairline-cover>`
+      : `<img class="media__img" src="${imageUrl}" alt="${title}" />`;
     const buttonClass = `ui-button ui-button--primary block__button block__button--${
       type === 'code' ? 'code' : 'design'
     }`;
@@ -54,7 +60,7 @@ class ProjectCard extends HTMLElement {
     this.innerHTML = `
       <div class="ui-card ui-card--project container container--content ${hideClass}" data-type="${type}">
         <figure class="media media--workCover">
-          <img class="media__img" src="${imageUrl}" alt="${title}" />
+          ${cover}
         </figure>
         <article class="block block--introduction">
           <div class="block__header">

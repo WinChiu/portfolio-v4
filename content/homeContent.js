@@ -690,6 +690,7 @@ window.__HOME_PAGE_CONTENT__ = {
         description:
           'Redesigned the design system architecture, rebuilt components, and reviewed usage scenarios to improve efficiency, speed up onboarding, and maintain integrity and accuracy.',
         imageUrl: '/img/image-projectCover-designSystem.webp',
+        coverType: 'component-tray',
         projectUrl: 'pages/en/designSystem.html',
         order: 1,
         type: 'design',
@@ -791,6 +792,7 @@ window.__HOME_PAGE_CONTENT__ = {
         description:
           'Designed an asset tracking workflow for medical equipment rental service and deviceOrientation to improve operational efficiency and billing accuracy.',
         imageUrl: '/img/projects/keepwell/image-keepwell-fistImage.webp',
+        coverType: 'delivery',
         projectUrl: 'pages/en/keepwell.html',
         order: 2,
         type: 'design',
@@ -1372,6 +1374,7 @@ window.__HOME_PAGE_CONTENT__ = {
         description:
           '以「提升使用效率」、「提升上手速度」、「維護完整性與正確性」為目標，為 SHOPLINE 進行設計系統架構重設計、元件再造與使用情境盤點。',
         imageUrl: '/img/image-projectCover-designSystem.webp',
+        coverType: 'component-tray',
         projectUrl: 'pages/zh/designSystem.html',
         order: 1,
         type: 'design',
@@ -1457,6 +1460,7 @@ window.__HOME_PAGE_CONTENT__ = {
         description:
           '設計醫療設備於清潔與包裝階段的資產追蹤流程。受 NDA 限制，研究細節與最終設計暫以佔位內容呈現。',
         imageUrl: '/img/projects/keepwell/image-keepwell-fistImage.webp',
+        coverType: 'delivery',
         projectUrl: 'pages/zh/keepwell.html',
         order: 2,
         type: 'design',

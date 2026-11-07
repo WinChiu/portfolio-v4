@@ -1,4 +1,4 @@
-import ProjectCard from './ProjectCard/projectCard.js';
+import ProjectCard from './ProjectCard/projectCard.js?v=bbf0e87b';
 
 const components = {
   'project-card': ProjectCard,

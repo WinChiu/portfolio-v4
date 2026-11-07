@@ -558,6 +558,20 @@ html {
   padding-top: var(--space-0);
   z-index: var(--z-raised);
 }
+.project-page .project-header__image--hairline {
+  max-height: none;
+  filter: none;
+}
+.project-page .project-header__image--hairline hairline-cover {
+  --hairline-plate: var(--color-background);
+  --hairline-hi: var(--color-text);
+  --hairline-edge: var(--color-text);
+  --hairline-mid: var(--color-text-muted);
+  --hairline-lo: var(--color-border-muted);
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
 .project-page .project-header__tags {
   display: none;
 }

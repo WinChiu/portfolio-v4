@@ -67,6 +67,22 @@
       z-index: var(--z-raised);
     }
 
+    &__image--hairline {
+      max-height: none;
+      filter: none;
+
+      hairline-cover {
+        --hairline-plate: var(--color-background);
+        --hairline-hi: var(--color-text);
+        --hairline-edge: var(--color-text);
+        --hairline-mid: var(--color-text-muted);
+        --hairline-lo: var(--color-border-muted);
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+    }
+
     &__tags {
       display: none;
     }

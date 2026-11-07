@@ -14,7 +14,7 @@ Do not use for long case-study content or generic navigation.
 
 ## 3. Anatomy
 
-- Cover image
+- Cover image or interactive Hairline figure
 - Project number
 - Title
 - Tag
@@ -34,7 +34,7 @@ Do not use for long case-study content or generic navigation.
 
 ## 5. Props/API
 
-`<project-card>` attributes: `number`, `title`, `tag`, `description`, `image-url`, `project-url`, optional `site-url`, `type`, and `lang`.
+`<project-card>` attributes: `number`, `title`, `tag`, `description`, `image-url`, `project-url`, optional `site-url`, `type`, and `lang`. Set optional `cover-type="component-tray"` for the interactive design-system cover, or `cover-type="delivery"` for the KeepWell delivery cover; `image-url` remains its fallback. The figure supports pointer, touch, arrow keys, and Enter/Space without navigating away.
 
 ## 6. States
 

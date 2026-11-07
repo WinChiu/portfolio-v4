@@ -32,7 +32,7 @@ Do not use on the landing page.
 
 ## 5. Props/API
 
-CSS block `.project-header`; metadata composes Metadata Item and categories compose Tag.
+CSS block `.project-header`; metadata composes Metadata Item and categories compose Tag. Design System and KeepWell use the shared `<hairline-cover>` in `.project-header__image--hairline` with their original image as fallback; the existing header image breakpoint remains in effect.
 
 ## 6. States
 

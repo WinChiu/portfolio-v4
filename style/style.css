@@ -649,6 +649,22 @@ h6 {
   flex-direction: column;
   gap: var(--space-0);
 }
+.section--work .container--content .media--workCover:has(hairline-cover) {
+  justify-content: center;
+  width: 100%;
+  min-width: var(--space-0);
+}
+.section--work .container--content .media--workCover hairline-cover {
+  --hairline-plate: var(--color-background);
+  --hairline-hi: var(--color-text);
+  --hairline-edge: var(--color-text);
+  --hairline-mid: var(--color-text-muted);
+  --hairline-lo: var(--color-border-muted);
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--color-transparent);
+}
 .section--work .container--content .media--workCover .media__img {
   width: 100%;
   height: 100%;
@@ -669,6 +685,9 @@ h6 {
     align-items: flex-end;
     flex-direction: column;
     gap: var(--space-0);
+  }
+  .section--work .container--content .media--workCover hairline-cover {
+    aspect-ratio: 4/3;
   }
   .section--work .container--content .block--introduction {
     margin-left: var(--space-0);

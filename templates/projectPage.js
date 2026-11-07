@@ -83,8 +83,20 @@ function getProjectHeaderImages(project) {
   };
 }
 
-function renderHeader(project, header) {
+function renderHeader(project, header, lang) {
   const headerImages = getProjectHeaderImages(project);
+  const figure = { designSystem: 'component-tray', keepwell: 'delivery' }[project.slug];
+  const artwork = figure
+    ? `<div class="project-header__image project-header__image--hairline">
+          <hairline-cover figure="${figure}" lang="${lang}">
+            <img src="${headerImages.main}" alt="${header.title}" />
+          </hairline-cover>
+        </div>`
+    : `<img
+          src="${headerImages.main}"
+          alt="${header.title}"
+          class="project-header__image"
+        />`;
   const tags = (project.tags || '')
     .split(',')
     .map((tag) => tag.trim())
@@ -104,18 +116,8 @@ ${tags}
     : '';
 
   return `    <main class="project-header" id="top">
-      <img
-        src="${headerImages.bg}"
-        alt=""
-        class="project-header__bg"
-        aria-hidden="true"
-      />
       <div class="project-header__inner">
-        <img
-          src="${headerImages.main}"
-          alt="${header.title}"
-          class="project-header__image"
-        />
+        ${artwork}
         <div class="project-header__content">
 ${tagsBlock}          <h3 class="project-header__title">${header.title}</h3>
           <div class="project-header__metadata">
@@ -178,7 +180,8 @@ function renderProjectPage(project, lang) {
       crossorigin="anonymous"
     ></script>
     <script src="../../utility/gsap.min.js"></script>
-    <script src="../../utility/ScrollTrigger.min.js"></script>
+    <script src="../../utility/ScrollTrigger.min.js"></script>${['designSystem', 'keepwell'].includes(project.slug)
+      ? '\n    <script type="module" src="../../components/HairlineCover/hairlineCover.js?v=cb43968d"></script>' : ''}
     <script src="../../utility/lenis.min.js"></script>
     <script src="../../utility/smoothScroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
@@ -187,7 +190,7 @@ function renderProjectPage(project, lang) {
       type="module"
     ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
-    <link rel="stylesheet" href="../../style/workStyle.css" />
+    <link rel="stylesheet" href="../../style/workStyle.css${['designSystem', 'keepwell'].includes(project.slug) ? '?v=hairline-header-1' : ''}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -208,7 +211,7 @@ function renderProjectPage(project, lang) {
     </div>
 
 ${renderTranslator(project, lang)}
-${renderHeader(project, header)}
+${renderHeader(project, header, lang)}
     <section class="project-page__content">
       <div class="project-page__content-inner">
 ${renderContent(project, lang)}

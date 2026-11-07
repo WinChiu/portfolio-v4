@@ -40,6 +40,9 @@
         if (project.siteUrl) {
           attributes.push(`site-url="${escapeAttribute(project.siteUrl)}"`);
         }
+        if (project.coverType) {
+          attributes.push(`cover-type="${escapeAttribute(project.coverType)}"`);
+        }
 
         return `<project-card ${attributes.join(' ')}></project-card>`;
       })

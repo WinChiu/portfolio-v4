@@ -157,6 +157,24 @@
     .media--workCover {
       flex: 1;
       @include flex(column, flex-end, flex-end);
+
+      &:has(hairline-cover) {
+        justify-content: center;
+        width: 100%;
+        min-width: var(--space-0);
+      }
+
+      hairline-cover {
+        --hairline-plate: var(--color-background);
+        --hairline-hi: var(--color-text);
+        --hairline-edge: var(--color-text);
+        --hairline-mid: var(--color-text-muted);
+        --hairline-lo: var(--color-border-muted);
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: var(--color-transparent);
+      }
       .media__img {
         width: 100%;
         height: 100%;
@@ -177,6 +195,10 @@
     // Media Query
     @media (max-width: $bp-heading) {
       @include flex(column, center, flex-end);
+
+      .media--workCover hairline-cover {
+        aspect-ratio: 4 / 3;
+      }
 
       .block--introduction {
         margin-left: var(--space-0);
