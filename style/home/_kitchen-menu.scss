@@ -74,13 +74,13 @@
   &__nav { display: flex; align-items: center; gap: var(--space-xs); }
   &__iconBtn {
     display: grid; place-items: center; width: var(--space-36); height: var(--space-36); padding: var(--space-0);
-    border: var(--space-hairline) solid var(--color-transparent); background: none; cursor: pointer; color: var(--color-text-muted);
-    transition: var(--transition-color); -webkit-tap-highlight-color: var(--color-transparent);
-    &:hover, &:active { color: var(--color-text); }
+    // Prev, next and close share one framed style.
+    border: var(--space-hairline) solid var(--color-border); background: none; cursor: pointer; color: var(--color-text);
+    transition: var(--transition-color), background var(--motion-duration-fast) var(--motion-ease-standard);
+    -webkit-tap-highlight-color: var(--color-transparent);
+    &:hover, &:active { background: var(--color-text); color: var(--color-background); }
   }
   &__icon { display: block; width: var(--space-lg); height: var(--space-lg); }
-  &__close { border-color: var(--color-border); color: var(--color-text); }
-  &__close:hover { background: var(--color-text); color: var(--color-background); }
   &__hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-3xl); margin-top: var(--space-3xl); align-items: end; }
   &__photo { border: var(--space-hairline) solid var(--color-border); }
   &__photo img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; clip-path: inset(0 100% 0 0); transition: clip-path var(--motion-duration-loading) var(--motion-ease-emphasized); }

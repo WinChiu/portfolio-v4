@@ -1545,28 +1545,21 @@ h6 {
   width: var(--space-36);
   height: var(--space-36);
   padding: var(--space-0);
-  border: var(--space-hairline) solid var(--color-transparent);
+  border: var(--space-hairline) solid var(--color-border);
   background: none;
   cursor: pointer;
-  color: var(--color-text-muted);
-  transition: var(--transition-color);
+  color: var(--color-text);
+  transition: var(--transition-color), background var(--motion-duration-fast) var(--motion-ease-standard);
   -webkit-tap-highlight-color: var(--color-transparent);
 }
 .kitchenMenu__iconBtn:hover, .kitchenMenu__iconBtn:active {
-  color: var(--color-text);
+  background: var(--color-text);
+  color: var(--color-background);
 }
 .kitchenMenu__icon {
   display: block;
   width: var(--space-lg);
   height: var(--space-lg);
-}
-.kitchenMenu__close {
-  border-color: var(--color-border);
-  color: var(--color-text);
-}
-.kitchenMenu__close:hover {
-  background: var(--color-text);
-  color: var(--color-background);
 }
 .kitchenMenu__hero {
   display: grid;
