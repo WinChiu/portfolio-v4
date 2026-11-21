@@ -3,7 +3,8 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const sourceExtensions = new Set(['.html', '.css']);
-const ignoredDirectories = new Set(['.git', 'archive', 'node_modules']);
+// Prototypes contain runtime template URLs and are not generated site pages.
+const ignoredDirectories = new Set(['.git', 'archive', 'node_modules', 'prototypes']);
 
 function walk(directory) {
   const entries = fs.readdirSync(directory, { withFileTypes: true });

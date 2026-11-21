@@ -93,10 +93,11 @@ function renderHomePage(lang) {
       ></dotlottie-wc>
     </div>
     <div id="home-page-root"></div>
+    <script src="${withVersion('content/kitchenMenuData.js')}"></script>
     <script src="${withVersion('content/homeContent.js')}"></script>
     <script src="${withVersion('utility/renderHomePage.js')}"></script>
-    <script src="${withVersion('utility/kitchenFanAnimation.js')}"></script>
-    <script src="${withVersion('utility/lifeStackAnimation.js')}"></script>
+    <script src="${withVersion('utility/kitchenMenu.js')}"></script>
+    <script src="${withVersion('utility/lifeStrip.js')}"></script>
     <script src="${withVersion('utility/landingPageAnimation.js')}"></script>
     <script src="${withVersion('utility/eyeAnimation.js')}"></script>
     <script src="${withVersion('utility/loadingPage.js')}"></script>

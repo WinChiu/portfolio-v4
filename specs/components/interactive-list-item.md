@@ -45,5 +45,5 @@ Use `.ui-interactive-item` on a native button with `aria-pressed`; use `.is-acti
 
 ## 8. Cross-references
 
-- [Kitchen Gallery](./kitchen-gallery.md)
+- [Kitchen Menu](./kitchen-gallery.md)
 - [Button](./button.md)

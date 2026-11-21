@@ -6,7 +6,8 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const includeArchive = !process.argv.includes('--active');
 const json = process.argv.includes('--json');
-const ignoredDirectories = new Set(['.git', 'node_modules', 'specs']);
+// Standalone design explorations deliberately use values outside the site tokens.
+const ignoredDirectories = new Set(['.git', 'node_modules', 'specs', 'prototypes']);
 const ignoredFiles = new Set([
   path.join('style', 'tokens.css'),
 ]);

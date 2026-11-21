@@ -69,95 +69,35 @@
       .join('\n');
   }
 
-  // Interactive recipe index. One dish opens in place while the others remain
-  // compact jump targets in the infinitely looping list.
-  function renderKitchenFanStars(effort) {
-    return Array.from({ length: 3 }, (_, index) => {
-      const isFilled = index < effort;
-      const src = isFilled
-        ? './img/icon-starFilled.svg'
-        : './img/icon-star.svg';
-      return `<img class="kitchenFan__star" src="${src}" alt="" aria-hidden="true" />`;
-    }).join('');
+  function renderKitchenMenuSection(kitchen) {
+    const flame = '<svg viewBox="0 0 11 14" aria-hidden="true"><path d="M5.5 13C2.5 13 1 11 1 8.6 1 6 3.4 4.6 4 1.2c2.4 1.6 3.3 3.4 3 5.4.8-.5 1.4-1.3 1.6-2.2C9.6 5.6 10 7 10 8.6 10 11 8.5 13 5.5 13Z"/></svg>';
+    return `<section class="section section--kitchenMenu" id="kitchen">
+      <div class="container container--content">
+        <header class="kitchenMenu__head"><h1 class="kitchenMenu__title">${kitchen.title}</h1><p class="kitchenMenu__description">${kitchen.description}</p></header>
+        <div class="kitchenMenu__menu">${kitchen.courses.map((course) => {
+          const items = kitchen.items.map((item, index) => ({ ...item, index })).filter((item) => item.course === course.key);
+          if (!items.length) return '';
+          return `<section class="kitchenMenu__course"><h2 class="kitchenMenu__courseHead"><span class="kitchenMenu__courseZh">${course.zh}</span><span class="kitchenMenu__courseEn">${course.en}</span><span class="kitchenMenu__courseLine" aria-hidden="true"></span></h2>
+            ${items.map((item) => `<button type="button" class="kitchenMenu__dish" data-index="${item.index}" aria-haspopup="dialog" aria-controls="kitchen-recipe">
+              <span class="kitchenMenu__names"><span class="kitchenMenu__zh">${item.nameZh}</span><span class="kitchenMenu__en">${item.nameEn}</span></span><span class="kitchenMenu__leader" aria-hidden="true"></span><span class="kitchenMenu__effort" role="img" aria-label="Effort ${item.effort} of 3">${[1, 2, 3].map((n) => `<span class="${n > item.effort ? 'is-off' : ''}">${flame}</span>`).join('')}</span>
+            </button>`).join('')}</section>`;
+        }).join('')}</div>
+      </div>
+      <div class="kitchenMenu__overlay" inert aria-hidden="true"><div class="kitchenMenu__scrim"></div><aside class="kitchenMenu__sheet" id="kitchen-recipe" role="dialog" aria-modal="true" aria-labelledby="kitchen-recipe-name" tabindex="-1" data-lenis-prevent></aside></div>
+    </section>`;
   }
 
-  function renderKitchenFanCard(item, index) {
-    const no = String(index + 1).padStart(2, '0');
-    return `
-        <article class="kitchenFan__item" data-index="${index}">
-          <button
-            class="kitchenFan__summary"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="kitchenFan__summaryZh">${item.nameZh}</span>
-            <span class="kitchenFan__summaryEn">${item.nameEn}</span>
-          </button>
-          <div class="kitchenFan__panel" aria-hidden="true">
-            <div class="kitchenFan__cardInner">
-              <div class="kitchenFan__cardPhoto">
-                <img
-                  src="${resolveAssetPath(item.imageSrc)}"
-                  alt="${escapeAttribute(item.imageAlt)}"
-                  loading="lazy"
-                />
-              </div>
-              <div class="kitchenFan__cardText">
-                <div class="kitchenFan__cardNames">
-                  <p class="kitchenFan__nameZh">${item.nameZh}</p>
-                  <p class="kitchenFan__nameEn">${item.nameEn}</p>
-                  <img class="kitchenFan__divider" src="./img/icon-kitchenFanDivider.svg?v=2" alt="" aria-hidden="true" />
-                </div>
-
-                <p class="kitchenFan__note">${item.note}</p>
-                <div class="kitchenFan__cardMeta">
-                  <span class="kitchenFan__effort">Effort ${renderKitchenFanStars(item.effort)}</span>
-                  <span>No.${no}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>`;
-  }
-
-  function renderKitchenFanSection(kitchen) {
-    return `
-      <section class="section section--kitchenFan" id="kitchen">
-        <div class="container container--content">
-          <div
-            class="kitchenFan__stage"
-            role="region"
-            aria-label="Kitchen recipe index"
-            tabindex="0"
-          >
-            ${kitchen.items.map((item, index) => renderKitchenFanCard(item, index)).join('\n')}
-          </div>
-          <article class="kitchenFan__intro">
-            <h1 class="kitchenFan__title">${kitchen.title}</h1>
-            <p class="kitchenFan__description">${kitchen.description}</p>
-          </article>
-        </div>
-      </section>`;
-  }
-
-  // Stacked-Polaroid style card, one per photo. Positioning/tilt/scroll
-  // behaviour is owned by utility/lifeStackAnimation.js -- this only emits
-  // the static markup it hooks into.
   function renderLifeCard(item, index) {
     return `
         <article class="life__card" data-index="${index}">
           <div class="life__cardPhoto">
-            <img
-              class="life__photo"
-              src="${resolveAssetPath(item.imageSrc)}"
-              alt="${escapeAttribute(item.imageAlt)}"
-              loading="lazy"
-            />
+            <img class="life__photo" src="${resolveAssetPath(item.imageSrc)}"
+              alt="${escapeAttribute(item.imageAlt)}" loading="${index < 4 ? 'eager' : 'lazy'}" />
           </div>
           <p class="life__note">${item.note}</p>
           <div class="life__cardMeta">
             <span class="life__location">${item.location}</span>
-            <span class="life__date">${item.date}</span>
+            ${item.date?.trim() ? `<span class="life__date">${item.date}</span>` : ''}
           </div>
         </article>`;
   }
@@ -166,12 +106,15 @@
     return `
       <section class="section section--life" id="life">
         <div class="container container--content">
-          <article class="life__intro">
+          <header class="life__intro">
             <h1 class="life__title">${life.title}</h1>
             <p class="life__description">${life.description}</p>
-          </article>
-          <div class="life__stack">
-            ${life.items.map((item, index) => renderLifeCard(item, index)).join('\n')}
+          </header>
+          <div class="life__viewport" tabindex="0" role="region"
+            aria-label="${lang === 'zh' ? '生活照片' : 'Life photos'}" data-lenis-prevent-horizontal>
+            <div class="life__strip">
+              ${life.items.map(renderLifeCard).join('\n')}
+            </div>
           </div>
         </div>
       </section>`;
@@ -318,7 +261,7 @@
         </article>
       </div>
     </section>
-    ${renderKitchenFanSection(content.kitchen)}
+    ${renderKitchenMenuSection(content.kitchen)}
     ${renderLifeSection(content.life)}
     <nav class="nav nav--main" id="navbar">
       <div class="block block--navList">

@@ -199,7 +199,7 @@
       if (media.length) tl.fromTo(media, { clipPath: 'inset(0 100% 0 0)' }, {
         clipPath: 'inset(0 0% 0 0)', duration: duration('loading'),
         ease: 'power3.inOut', clearProps: 'clipPath',
-      }, 0);
+      }, root.matches('.section--kitchenMenu') ? duration('standard') : 0);
       if (lineSelector) {
         const lines = root.querySelectorAll(lineSelector);
         if (lines.length) tl.fromTo(lines, { scaleX: 0, transformOrigin: 'left' }, {
@@ -235,61 +235,13 @@
     }
     group(document.querySelector('.section--about'),
       '.block__title, .block__content, .block__jobs p', '.media--avatar', '.block__jobDescription--dotLine');
-    group(document.querySelector('.section--kitchenFan'),
-      '.kitchenFan__title, .kitchenFan__description', '.kitchenFan__stage');
+    group(document.querySelector('.section--kitchenMenu'),
+      '.kitchenMenu__title, .kitchenMenu__description', '.kitchenMenu__menu');
     group(document.querySelector('.section--life'),
       '.life__title, .life__description');
     group(document.querySelector('.nav--main'), '.block__navItem a', '.media--socialList', null, true);
 
-    // Animate recipe details only when opened, and Life captions when their
-    // card comes forward. Never touch either component's layout transforms.
-    const seen = new WeakSet();
-    context.add('typeActiveDetails', (root, selector) => {
-      if (!root || seen.has(root)) return;
-      seen.add(root);
-      const tl = gsap.timeline();
-      root.querySelectorAll(selector).forEach((element, index) => {
-        const maxDuration = root.matches('.kitchenFan__panel') ? duration('slow') : duration('loading');
-        addTypedText(tl, element, index * duration('stagger'), splits, maxDuration);
-      });
-    });
-    const observers = [];
-    const kitchen = document.querySelector('.kitchenFan__stage');
-    const recipeTextSelector = '.kitchenFan__nameZh, .kitchenFan__nameEn, .kitchenFan__note, .kitchenFan__cardMeta > span:not(.kitchenFan__effort)';
-    const typeRecipe = (event) => context.typeActiveDetails(event.detail.panel, recipeTextSelector);
-    if (kitchen) kitchen.addEventListener('portfolio:kitchen-text-ready', typeRecipe);
-    const stack = document.querySelector('.life__stack');
-    function watch(root, callback, options) {
-      if (!root) return;
-      let entered = false;
-      const observer = new MutationObserver((records) => {
-        if (entered && records.some(({ target }) => target === root ||
-          target.matches('.kitchenFan__item, .kitchenFan__panel'))) callback();
-      });
-      observer.observe(root, options);
-      observers.push(observer);
-      const intersection = new IntersectionObserver((entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        entered = true;
-        intersection.disconnect();
-        callback();
-      }, { threshold: 0.1 });
-      intersection.observe(root);
-      observers.push(intersection);
-    }
-    watch(kitchen, () => {
-      const panel = kitchen.querySelector('.is-expanded .kitchenFan__panel[aria-hidden="false"]');
-      context.typeActiveDetails(panel,
-        '.kitchenFan__nameZh, .kitchenFan__nameEn, .kitchenFan__note, .kitchenFan__cardMeta > span:not(.kitchenFan__effort)');
-    }, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-hidden'] });
-    watch(stack, () => {
-      const index = Number(stack.dataset.activeIndex || 0);
-      context.typeActiveDetails(stack.querySelectorAll('.life__card')[index],
-        '.life__note, .life__location, .life__date');
-    }, { attributes: true, attributeFilter: ['data-active-index'] });
     context.add(() => () => {
-      observers.forEach((observer) => observer.disconnect());
-      if (kitchen) kitchen.removeEventListener('portfolio:kitchen-text-ready', typeRecipe);
       focusHandlers.forEach((remove) => remove());
       splits.forEach((split) => split.revert());
     });

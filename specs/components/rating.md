@@ -43,4 +43,4 @@ Use `.ui-rating` with decorative `.ui-rating__icon` children and an accessible l
 
 ## 8. Cross-references
 
-- [Kitchen Gallery](./kitchen-gallery.md)
+- [Kitchen Menu](./kitchen-gallery.md)

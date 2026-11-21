@@ -1,13 +1,10 @@
 @use '../tokens' as *;
 @use '../mixins' as *;
 
-// ========================================
-// Life
-// ========================================
-
 .section--life {
-  border-top: var(--color-transparent) solid var(--space-hairline);
-
+  position: relative;
+  overflow: hidden;
+  border-top: var(--space-hairline) solid var(--color-transparent);
   &::before {
     content: '';
     position: absolute;
@@ -19,174 +16,59 @@
     transform-origin: left;
     pointer-events: none;
   }
-  min-height: 100dvh;
-  position: relative;
-  // A dismissed card's -150vh exit (see utility/lifeStackAnimation.js) is
-  // clipped right here instead of flying past the section into Kitchen or
-  // the page above -- a photo never renders outside the Life frame.
-  overflow: hidden;
-  // `min-height` alone doesn't give .container a definite height to fill --
-  // making the section itself a flex column lets .container use flex:1 to
-  // stretch the full min-height regardless of content size, so its own
-  // `align-items: center` can vertically center intro/stack within it.
-  display: flex;
-  flex-direction: column;
-
   .container {
-    @include flex(row, space-around, center, var(--space-4xl));
-    // padding-right: var(--space-8xl);
-    flex: 1;
-  }
-
-  // Restored -- this rule was accidentally dropped in a hand-edit; without
-  // it .life__intro has no flex/gap and the title+description sit flush
-  // against each other.
-  .life__intro {
-    @include flex(column, center, center, var(--space-xl));
-    //flex: 1;
-    // width: 100%;
-  }
-
-  .life__title {
-    font-family: $font-title;
-    font-weight: var(--font-weight-regular);
-    line-height: 0.9;
-    @include stroke-heading;
-    text-align: center;
-  }
-
-  .life__description {
-    width: 100%;
-    color: $color-darkGray;
-    text-align: center;
-    max-width: 26rem;
-  }
-
-  .life__stack {
-    position: relative;
-    width: 22.5rem;
-    max-width: 100%;
-    aspect-ratio: 18 / 25;
-    flex-shrink: 0;
-    // Clickable (advances a photo, restacks at the end) as well as
-    // scrollable, and click/tap is the only way to drive it on touch.
-    cursor: pointer;
-  }
-
-  .life__card {
-    position: absolute;
-    inset: 0;
     display: flex;
     flex-direction: column;
-    background: var(--color-background);
-    border: 0.125rem solid var(--color-text);
-    padding: var(--space-3xl);
-    box-shadow: none;
-    // A fast scroll retargets this transition many times a second (see
-    // utility/lifeStackAnimation.js) -- ease-out (no token for it in
-    // _tokens.scss) keeps each retarget starting at full speed instead of
-    // re-decelerating from zero, which is what makes a quick scroll read as
-    // one continuous cascade instead of a stutter between snaps.
-    transition: transform var(--motion-duration-standard) ease-out;
-    will-change: transform;
+    gap: var(--space-xl);
+    padding-block: var(--space-3xl);
+    // Budget header, captions, progress and navigation before sizing photos.
+    --life-photo-height: min(57vh, calc(100dvh - var(--space-256) - var(--space-160)), calc((100vw - var(--space-120) - var(--space-8xl) - var(--space-6xl)) * 0.8));
   }
-
-  .life__card--landscape {
-    inset: auto;
-    top: 50%;
-    left: 50%;
-    width: 125%;
-    height: 90%;
+  .life__intro { display: flex; flex-direction: column; align-items: center; gap: var(--space-xl); text-align: center; }
+  .life__title { font-family: $font-title; font-weight: var(--font-weight-regular); line-height: 0.9; @include stroke-heading; }
+  .life__description { max-width: calc(var(--space-256) + var(--space-160)); color: var(--color-text-muted); text-align: center; }
+  // The strip bleeds through .container--content's side padding so photos
+  // run edge to edge instead of being cut off short of the section edges.
+  --life-gutter: var(--space-6xl);
+  --life-bleed: calc(var(--life-gutter) * -1);
+  .life__viewport {
+    width: calc(100% + var(--life-gutter) * 2);
+    margin-inline: var(--life-bleed);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+    &::-webkit-scrollbar { display: none; }
+    &:focus-visible { outline: var(--space-hairline) solid var(--color-focus); outline-offset: var(--space-3xs); }
+  }
+  .life__strip { position: relative; display: flex; align-items: flex-start; gap: var(--space-4xl); width: max-content; padding-block: var(--space-xl); }
+  .life__card {
+    flex: 0 0 auto;
+    width: calc(var(--life-photo-height) * 0.8 + var(--space-xl) * 2 + var(--space-hairline) * 2);
     padding: var(--space-xl);
-    translate: -50% -50%;
+    background: var(--color-background);
+    border: var(--space-hairline) solid var(--color-border);
+    transform: rotate(-1.5deg);
+    scroll-snap-align: center;
+    &:nth-child(even) { transform: rotate(1.5deg); }
   }
-
-  .life__cardPhoto {
-    flex: 1;
-    min-height: 0;
-    background: var(--color-background-soft);
-    overflow: hidden;
-  }
-
-  .life__photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--space-0);
-    box-shadow: none;
-  }
-
-  .life__note {
-    margin: var(--space-md) var(--space-0) var(--space-0);
-    font-family: 'Caveat', $font-serifText;
-    font-size: var(--font-size-title-sm);
-    line-height: 1.2;
-    color: var(--color-text);
-  }
-
-  .life__cardMeta {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-md);
-    margin-top: var(--space-3xl);
-    font-size: var(--font-size-caption);
-    color: var(--color-text);
-  }
-
-  // The global `* { font-family: ... }` reset (style.scss "Base / Globals")
-  // wins over inheritance from .life__cardMeta, so the font has to be set
-  // directly on the leaf elements, not just the row that wraps them.
-  .life__location,
-  .life__date {
-    font-family: 'Courier Prime', $font-serif;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-  // Matches Kitchen's row<->column breakpoint ($bp-tablet). It used to
-  // switch at the narrower $bp-heading, which left a squeezed row-layout
-  // zone (roughly 1000-1152px) where the stack's tilted/landscape photos
-  // (they intentionally bleed past .life__stack's own box -- see
-  // .life__card--landscape below) had too little gap to clear .life__intro
-  // and visibly overlapped its text.
-  @media (min-width: $bp-tablet) {
-    .container {
-      padding-right: var(--space-8xl);
-    }
-  }
-  @media (max-width: $bp-tablet) {
-    .container {
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-4xl);
-      padding-top: var(--space-4xl);
-      padding-bottom: var(--space-4xl);
-    }
-
-    .life__intro {
-      max-width: none;
-    }
+  .life__card--landscape { width: calc(var(--life-photo-height) * 1.25 + var(--space-xl) * 2 + var(--space-hairline) * 2); }
+  .life__cardPhoto { height: var(--life-photo-height); overflow: hidden; background: var(--color-background-soft); }
+  .life__photo { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-none); }
+  .life__note { margin-top: var(--space-md); font-family: 'Caveat', $font-serifText; font-size: var(--font-size-title-sm); line-height: var(--line-height-heading); }
+  .life__cardMeta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-xs); margin-top: var(--space-md); }
+  .life__location, .life__date { font-family: 'Courier Prime', var(--font-family-mono); font-size: var(--font-size-caption); color: var(--color-text-muted); }
+  &.is-pinned .life__viewport { overflow: hidden; scroll-snap-type: none; }
+  @media (max-width: $bp-mobile-wide) {
+    --life-gutter: var(--space-3xl);
+    .container { --life-photo-height: min(60vw, calc((100vw - var(--space-88) - var(--space-6xl) - var(--space-6xl)) * 0.8)); }
   }
   @media (max-width: $bp-mobile) {
-    .life__intro {
-      flex: 0;
-    }
-    .life__title {
-      @include stroke-heading(0.0938rem);
-    }
-    .life__stack {
-      width: 80%;
-      flex: 0;
-    }
-    .life__card {
-      padding: var(--space-xl);
-    }
-    .life__card--landscape {
-      padding: var(--space-md);
-    }
-    .container {
-      justify-content: center;
-      gap: var(--space-6xl);
-    }
+    --life-gutter: var(--space-md);
+    .container { padding-block: var(--space-5xl); --life-photo-height: min(60vw, calc((100vw - var(--space-md) * 2 - var(--space-6xl)) * 0.8)); }
+    .life__title { @include stroke-heading(0.0938rem); }
+    .life__card { padding: var(--space-sm); width: calc(var(--life-photo-height) * 0.8 + var(--space-sm) * 2 + var(--space-hairline) * 2); }
+    .life__card--landscape { width: calc(var(--life-photo-height) * 1.25 + var(--space-sm) * 2 + var(--space-hairline) * 2); }
   }
 }

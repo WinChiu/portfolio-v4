@@ -36,8 +36,8 @@ CSS block `.nav--main`; navigation anchors compose the shared `.ui-link.ui-link-
 
 - Default: fixed vertical rail
 - Hover: link and icon browser behavior
-- Active: same-page links scroll to their section with interruptible GSAP motion
-- Reduced motion: same-page scrolling uses a shorter, gentler transition
+- Active: same-page links scroll at a consistent distance-based speed with interruptible GSAP motion
+- Reduced motion: same-page scrolling retains the fixed speed with gentler easing
 - Focus: native focus-visible behavior
 - Disabled: not applicable
 - Error: missing targets retain native link behavior

@@ -7,65 +7,7 @@
   const LenisCtor = window.Lenis;
   if (!gsap || !LenisCtor) return;
 
-  // Kitchen's menu and Life's photo stack are both infinite/looping widgets
-  // -- unlike a normal nested-scroll region, they have no edge to reach and
-  // hand control back at, so they always want every wheel event the instant
-  // the cursor is over them. Left unconditional, that means: scroll down
-  // from the section above with the cursor resting anywhere over that (very
-  // large) area, and the moment a wheel tick lands, the page's smooth glide
-  // cuts out mid-motion and gets swapped for the widget's own inertia --
-  // a jolt, even though the visitor was just passing through.
-  //
-  // The fix is to only let a widget claim the wheel once its section has
-  // actually arrived -- while merely passing through, wheel events fall
-  // through to Lenis like anywhere else on the page.
-  // kitchenFanAnimation.js / lifeStackAnimation.js call this same function
-  // before deciding whether to preventDefault(), so both sides agree on the
-  // handoff point instead of one silently disagreeing with the other.
-  //
-  // "Arrived" means at least half the viewport is covered by the section --
-  // NOT both edges lined up with the viewport within a few px. That old,
-  // pixel-perfect version left almost no margin for a section whose height
-  // sits right at the viewport height (e.g. Kitchen's fixed 100dvh): Lenis's
-  // smoothing and the widget's own wheel-driven inertia routinely drift the
-  // scroll position by more than that across a single real (trackpad)
-  // gesture, and once it drifted past the tiny window, engagement could
-  // never trigger again -- permanently handing that section's wheel input
-  // back to the page. A 50%-of-viewport-covered threshold has enough slack
-  // to absorb that drift entirely.
-  function isScrollSectionEngaged(section) {
-    if (!section) return true; // fail open -- never create a dead zone
-    const rect = section.getBoundingClientRect();
-    const visibleHeight =
-      Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-    return visibleHeight >= window.innerHeight / 2;
-  }
-  window.isScrollSectionEngaged = isScrollSectionEngaged;
-
   const lenis = new LenisCtor({
-    // Mobile Kitchen claims horizontal wheel input only. Do not smooth an
-    // already consumed event; vertical input over the belt stays page input.
-    virtualScroll: ({ event }) => !(
-      event.type === 'wheel' && event.defaultPrevented &&
-      event.target.closest?.('.kitchenFan__stage') &&
-      window.matchMedia('(max-width: 72rem)').matches
-    ),
-    // See isScrollSectionEngaged above -- Lenis only steps back for these
-    // widgets once their section has actually arrived; while the visitor is
-    // merely scrolling past, Lenis keeps driving the page as normal.
-    prevent: (node) => {
-      if (!node.closest) return false;
-      const stage = node.closest('.kitchenFan__stage');
-      if (stage) {
-        if (window.matchMedia('(max-width: 72rem)').matches) return false;
-        return isScrollSectionEngaged(stage.closest('.section--kitchenFan'));
-      }
-      const stack = node.closest('.life__stack');
-      if (stack) {
-        return isScrollSectionEngaged(stack.closest('.section--life'));
-      }
-      return false;
-    },
     // Lenis owning the scroll means the browser's native `scroll-behavior:
     // smooth` (style/home/_globals.scss) can no longer be trusted to
     // animate an anchor jump on its own -- Lenis's rAF loop is also writing

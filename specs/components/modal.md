@@ -47,5 +47,5 @@ Use `.ui-modal`, `.ui-modal__backdrop`, and `.ui-modal__dialog`; toggle the nati
 
 ## 8. Cross-references
 
-- [Kitchen Gallery](./kitchen-gallery.md)
+- [Kitchen Menu](./kitchen-gallery.md)
 - [Icon Button](./icon-button.md)
