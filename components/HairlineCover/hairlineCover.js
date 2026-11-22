@@ -11,7 +11,7 @@ class HairlineCover extends HTMLElement {
       /* Crop the original canvas, keeping its coordinates and pointer hit
          testing intact. The visible artwork sits below the SVG's midpoint. */
       .stage { position: absolute; left: 0; top: 50%; width: 100%; height: auto; aspect-ratio: 5 / 4; transform: translateY(var(--hairline-stage-offset)); }
-      .stage:focus-visible { outline: var(--space-hairline) solid var(--color-focus); outline-offset: var(--space-xs); }
+      .stage:focus-visible { outline: var(--sys-space-hairline) solid var(--sys-color-focus); outline-offset: var(--sys-space-xs); }
       .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
       ::slotted(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     </style><div class="stage" hidden data-hairline="component-tray" data-hairline-theme="light"

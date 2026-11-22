@@ -1,0 +1,11 @@
+// Leader: a dotted rule that stretches between a label and a value.
+// The line takes its color from the text and turns to the surrounding accent ink when the row is hovered or focused
+// (the row sets that up; see MenuItem).
+
+.leader {
+  flex: 1;
+  min-width: var(--sys-font-size-body);
+  height: 0;
+  border-bottom: var(--sys-space-hairline) dotted color-mix(in srgb, var(--sys-color-text) 45%, transparent);
+  transition: border-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+}

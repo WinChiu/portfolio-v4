@@ -187,17 +187,8 @@ window.__HOME_PAGE_CONTENT__ = {
       eyebrow: "Hi! I'm Win🏅, and I'm a",
       title: 'Product Designer',
       description:
-        'Specialized in <span class="highlight">B2B tool design</span>, <span class="highlight">design systems</span> and <a class="ui-link highlight block__descriptionLink" href="#kitchen">cooking</a>, with 2+ years of experience in the <span class="highlight">healthcare</span> and <span class="highlight">e-commerce</span> industries.',
-      details: [
-        {
-          title: 'Stockholm',
-          subtitle: 'Sweden',
-        },
-        {
-          title: "Master's Student (year 2)",
-          subtitle: 'Interactive Media Technology, KTH',
-        },
-      ],
+        'I design <span class="highlight">B2B workflows and design systems</span> for healthcare and e-commerce, with 2+ years in the field. Now in Stockholm, studying Interactive Media Technology at KTH, and cooking a lot.',
+      ticker: ["Design is Nothing Without It's People", 'Design is not always about solving problems. It is about creating alternative and appealing futures and visions of doing things.'],
     },
     workTabs: {
       design: 'Design & Research',
@@ -244,14 +235,14 @@ window.__HOME_PAGE_CONTENT__ = {
       labels: { effort: 'Effort', time: 'Time', course: 'Course', ingredients: 'Ingredients', method: 'Method', prev: 'Prev', next: 'Next', close: 'Close recipe', comingSoon: 'Recipe coming soon.' },
       title: 'Kitchen',
       description:
-        "I gradually started to love cooking after I couldn't stand bread and meatballs anymore in Sweden.",
+        'I started to love cooking after I <span class="hl">couldn’t stand bread and meatballs anymore</span> in Sweden.',
       previewLabel: 'Kitchen dish preview',
       items: kitchenMenuItems('en'),
     },
     life: {
       title: 'Life',
       description:
-        'Threads of My Life. Instead of chasing work–life balance, I wish to enjoy my work and cherish my life.',
+        'Instead of chasing work–life balance, I wish to <span class="hl">enjoy my work and cherish my life</span>.',
       items: lifeItems,
     },
     projects: [
@@ -435,16 +426,7 @@ window.__HOME_PAGE_CONTENT__ = {
       title: 'Product Designer',
       description:
         '專注於 <span class="highlight">B2B 工具設計</span>、<span class="highlight">設計系統</span>與<a class="highlight block__descriptionLink" href="#kitchen">做菜</a>，具備 2+ 年<span class="highlight">醫療照護</span>與<span class="highlight">電商</span>產業經驗。',
-      details: [
-        {
-          title: 'Stockholm',
-          subtitle: 'Sweden',
-        },
-        {
-          title: "Master's Student (year 2)",
-          subtitle: 'Interactive Media Technology, KTH',
-        },
-      ],
+      ticker: ["Design is Nothing Without It's People", 'Design is not always about solving problems. It is about creating alternative and appealing futures and visions of doing things.'],
     },
     workTabs: {
       design: 'Design & Research',

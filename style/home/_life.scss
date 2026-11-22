@@ -1,74 +1,19 @@
-@use '../tokens' as *;
-@use '../mixins' as *;
+// Home page / life
 
-.section--life {
-  position: relative;
-  overflow: hidden;
-  border-top: var(--space-hairline) solid var(--color-transparent);
-  &::before {
-    content: '';
-    position: absolute;
-    inset-inline: var(--space-0);
-    top: var(--space-0);
-    height: var(--space-hairline);
-    background: var(--color-border);
-    transform: scaleX(var(--section-line-progress, 1));
-    transform-origin: left;
-    pointer-events: none;
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-    padding-block: var(--space-3xl);
-    // Budget header, captions, progress and navigation before sizing photos.
-    --life-photo-height: min(57vh, calc(100dvh - var(--space-256) - var(--space-160)), calc((100vw - var(--space-120) - var(--space-8xl) - var(--space-6xl)) * 0.8));
-  }
-  .life__intro { display: flex; flex-direction: column; align-items: center; gap: var(--space-xl); text-align: center; }
-  .life__title { font-family: $font-title; font-weight: var(--font-weight-regular); line-height: 0.9; @include stroke-heading; }
-  .life__description { max-width: calc(var(--space-256) + var(--space-160)); color: var(--color-text-muted); text-align: center; }
-  // The strip bleeds through .container--content's side padding so photos
-  // run edge to edge instead of being cut off short of the section edges.
-  --life-gutter: var(--space-6xl);
-  --life-bleed: calc(var(--life-gutter) * -1);
-  .life__viewport {
-    width: calc(100% + var(--life-gutter) * 2);
-    margin-inline: var(--life-bleed);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-    touch-action: pan-x pan-y;
-    &::-webkit-scrollbar { display: none; }
-    &:focus-visible { outline: var(--space-hairline) solid var(--color-focus); outline-offset: var(--space-3xs); }
-  }
-  .life__strip { position: relative; display: flex; align-items: flex-start; gap: var(--space-4xl); width: max-content; padding-block: var(--space-xl); }
-  .life__card {
-    flex: 0 0 auto;
-    width: calc(var(--life-photo-height) * 0.8 + var(--space-xl) * 2 + var(--space-hairline) * 2);
-    padding: var(--space-xl);
-    background: var(--color-background);
-    border: var(--space-hairline) solid var(--color-border);
-    transform: rotate(-1.5deg);
-    scroll-snap-align: center;
-    &:nth-child(even) { transform: rotate(1.5deg); }
-  }
-  .life__card--landscape { width: calc(var(--life-photo-height) * 1.25 + var(--space-xl) * 2 + var(--space-hairline) * 2); }
-  .life__cardPhoto { height: var(--life-photo-height); overflow: hidden; background: var(--color-background-soft); }
-  .life__photo { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-none); }
-  .life__note { margin-top: var(--space-md); font-family: 'Caveat', $font-serifText; font-size: var(--font-size-title-sm); line-height: var(--line-height-heading); }
-  .life__cardMeta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-xs); margin-top: var(--space-md); }
-  .life__location, .life__date { font-family: 'Courier Prime', var(--font-family-mono); font-size: var(--font-size-caption); color: var(--color-text-muted); }
-  &.is-pinned .life__viewport { overflow: hidden; scroll-snap-type: none; }
-  @media (max-width: $bp-mobile-wide) {
-    --life-gutter: var(--space-3xl);
-    .container { --life-photo-height: min(60vw, calc((100vw - var(--space-88) - var(--space-6xl) - var(--space-6xl)) * 0.8)); }
-  }
-  @media (max-width: $bp-mobile) {
-    --life-gutter: var(--space-md);
-    .container { padding-block: var(--space-5xl); --life-photo-height: min(60vw, calc((100vw - var(--space-md) * 2 - var(--space-6xl)) * 0.8)); }
-    .life__title { @include stroke-heading(0.0938rem); }
-    .life__card { padding: var(--space-sm); width: calc(var(--life-photo-height) * 0.8 + var(--space-sm) * 2 + var(--space-hairline) * 2); }
-    .life__card--landscape { width: calc(var(--life-photo-height) * 1.25 + var(--space-sm) * 2 + var(--space-hairline) * 2); }
-  }
+.life__intro { max-width: var(--comp-measure-copy); font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-heading); font-weight: var(--sys-font-weight-medium); }
+.life { overflow: clip; }
+.life__intro .hl { color: var(--sys-color-chapter-life); }
+.life__viewport { overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; }
+.life__strip {
+  display: flex; align-items: flex-start; gap: var(--sys-space-4xl);
+  padding: var(--sys-space-sm) var(--gutter) var(--sys-space-3xl);
+  width: max-content; min-width: 100%;
+  flex-shrink: 0;
 }
+.life__strip::-webkit-scrollbar { display: none; }
+@media (max-width: 48rem) {
+  .life__intro { font-size: var(--sys-font-size-title-xs); line-height: var(--sys-line-height-body); }
+  .life__strip { padding-bottom: var(--sys-space-xl); gap: var(--sys-space-xl); }
+}
+.section--life.is-pinned .life__viewport { overflow: visible; }
+.section--life.is-pinned { overflow: clip; }

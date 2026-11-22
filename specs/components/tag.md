@@ -19,11 +19,11 @@ Do not use tags as interactive filters without button semantics.
 
 ## 4. Tokens used
 
-- `--color-text-muted`
+- `--sys-color-text-muted`
 - `--color-accent-soft`
-- `--space-*`
-- `--radius-sm`
-- `--font-size-small`
+- `--sys-space-*`
+- `--sys-radius-sm`
+- `--sys-font-size-small`
 
 ## 5. Props/API
 

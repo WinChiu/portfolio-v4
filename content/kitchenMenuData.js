@@ -164,7 +164,53 @@ window.__KITCHEN_MENU__ = [
     "effort": 2,
     "imageSrc": "/img/image-dish-braised-chicken-cutlet-in-creamy-kimchi-sauce.webp",
     "imageAltEn": "Braised chicken cutlet in creamy kimchi sauce",
-    "imageClass": "kitchen__photo--focus-3"
+    "imageClass": "kitchen__photo--focus-3",
+    "ingredients": [
+      {
+        "name": "Boneless chicken thigh",
+        "qty": "1 piece"
+      },
+      {
+        "name": "Mushrooms",
+        "qty": "10"
+      },
+      {
+        "name": "Onion",
+        "qty": "1/2"
+      },
+      {
+        "name": "Minced garlic",
+        "qty": "1 tbsp"
+      },
+      {
+        "name": "Olive oil",
+        "qty": "As needed"
+      },
+      {
+        "name": "Kimchi",
+        "qty": "As needed"
+      },
+      {
+        "name": "Water",
+        "qty": "As needed"
+      },
+      {
+        "name": "Heavy cream",
+        "qty": "As needed"
+      },
+      {
+        "name": "Parsley",
+        "qty": "2 sprigs"
+      }
+    ],
+    "steps": [
+      "Cut a few shallow slits in the chicken thigh so it curls less as it cooks.",
+      "Pan-fry the chicken until crisp. Flip it and cook until nearly done.",
+      "In the same pan, fry the onion, garlic, and mushrooms in olive oil until fragrant.",
+      "Stir in the kimchi and add water. Return the chicken to the pan, cover, and simmer over low heat.",
+      "Add the cream. Once the chicken is cooked through, take it out and slice it. Turn up the heat to reduce the sauce.",
+      "Add the chopped parsley. Once the sauce is as thick as you like, serve it with the chicken."
+    ]
   },
   {
     "course": "noodle",
@@ -211,7 +257,7 @@ window.__KITCHEN_MENU__ = [
     "imageClass": "kitchen__photo--focus-1"
   },
   {
-    "course": "stew",
+    "course": "main",
     "nameZh": "焦糖洋蔥燉肉",
     "nameEn": "Braised Pork With Caramelized Onions",
     "noteZh": "其中 1 個小時都在煮洋蔥",
@@ -230,10 +276,99 @@ window.__KITCHEN_MENU__ = [
     "effort": 2,
     "imageSrc": "/img/image-dish-seafood-pancake.webp",
     "imageAltEn": "Seafood pancake",
-    "imageClass": "kitchen__photo--focus-3"
+    "imageClass": "kitchen__photo--focus-3",
+    "ingredients": [
+      {
+        "name": "Water (batter)",
+        "qty": "100 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "qty": "100 g"
+      },
+      {
+        "name": "Cornstarch",
+        "qty": "30 g"
+      },
+      {
+        "name": "Eggs",
+        "qty": "2"
+      },
+      {
+        "name": "Sliced onion",
+        "qty": "50 g"
+      },
+      {
+        "name": "Scallions (batter)",
+        "qty": "100 g"
+      },
+      {
+        "name": "Prawns",
+        "qty": "50 g"
+      },
+      {
+        "name": "Squid",
+        "qty": "50 g"
+      },
+      {
+        "name": "Shucked oysters",
+        "qty": "30 g"
+      },
+      {
+        "name": "Large red chili",
+        "qty": "1"
+      },
+      {
+        "name": "Shredded cabbage",
+        "qty": "20 g"
+      },
+      {
+        "name": "Water (sauce)",
+        "qty": "50 g"
+      },
+      {
+        "name": "Sugar",
+        "qty": "50 g"
+      },
+      {
+        "name": "Soy sauce",
+        "qty": "100 g"
+      },
+      {
+        "name": "White vinegar",
+        "qty": "50 g"
+      },
+      {
+        "name": "Chili powder",
+        "qty": "5 g"
+      },
+      {
+        "name": "Dark sesame oil",
+        "qty": "15 g"
+      },
+      {
+        "name": "Scallions (sauce)",
+        "qty": "15 g"
+      },
+      {
+        "name": "Garlic",
+        "qty": "5 g"
+      },
+      {
+        "name": "White sesame seeds",
+        "qty": "5 g"
+      }
+    ],
+    "steps": [
+      "Mix the flour, cornstarch, eggs, and batter water to make a batter.",
+      "Stir the onion, scallions, prawns, squid, oysters, chili, and cabbage into the batter.",
+      "For the dipping sauce, mix the sauce water, sugar, soy sauce, vinegar, chili powder, sesame oil, scallions, garlic, and sesame seeds.",
+      "Fry the pancake in oil over low heat. Flip it, press it flat, and cook until done.",
+      "Serve the pancake with the dipping sauce."
+    ]
   },
   {
-    "course": "stew",
+    "course": "main",
     "nameZh": "辣奶油馬鈴薯燉鮭魚",
     "nameEn": "Salmon And Potato Stew In Spicy Cream Sauce",
     "noteZh": "清冰箱",
@@ -288,7 +423,7 @@ window.__KITCHEN_MENU__ = [
     "imageClass": "kitchen__photo--focus-2"
   },
   {
-    "course": "stew",
+    "course": "main",
     "nameZh": "辣奶油燉雞排",
     "nameEn": "Chicken Cutlet In Spicy Cream Sauce",
     "noteZh": "清冰箱",
@@ -384,7 +519,73 @@ window.__KITCHEN_MENU__ = [
     "effort": 2,
     "imageSrc": "/img/image-dish-braised-pork-belly-with-preserved-mustard-greens.webp",
     "imageAltEn": "Braised pork belly with preserved mustard greens",
-    "imageClass": "kitchen__photo--focus-2"
+    "imageClass": "kitchen__photo--focus-2",
+    "ingredients": [
+      {
+        "name": "Pork belly",
+        "qty": "325 g"
+      },
+      {
+        "name": "Cooking oil",
+        "qty": "1 tbsp"
+      },
+      {
+        "name": "Scallions",
+        "qty": "As needed"
+      },
+      {
+        "name": "Garlic",
+        "qty": "As needed"
+      },
+      {
+        "name": "Preserved mustard greens",
+        "qty": "1/2 bundle"
+      },
+      {
+        "name": "Soy sauce",
+        "qty": "5 tbsp"
+      },
+      {
+        "name": "Thick soy sauce",
+        "qty": "3 tbsp"
+      },
+      {
+        "name": "Rice wine",
+        "qty": "3 tbsp"
+      },
+      {
+        "name": "Ground white pepper",
+        "qty": "1/2 tsp"
+      },
+      {
+        "name": "Ground black pepper",
+        "qty": "A pinch"
+      },
+      {
+        "name": "Umami seasoning",
+        "qty": "2 tsp"
+      },
+      {
+        "name": "Rock sugar",
+        "qty": "3 tsp"
+      },
+      {
+        "name": "Large chilies",
+        "qty": "2"
+      },
+      {
+        "name": "Thinly sliced scallions",
+        "qty": "As needed"
+      }
+    ],
+    "steps": [
+      "Soak the preserved mustard greens in water for 20 minutes. Rinse them three times and set aside.",
+      "Slice the pork belly and fry it over medium heat until golden.",
+      "Use the rendered pork fat to fry the scallions and garlic. Add the mustard greens and stir-fry until fragrant.",
+      "Add the seasonings and bring to a boil. Reduce to medium-low heat and simmer for 15 minutes.",
+      "Put the pork and mustard greens in a bowl and lay the chilies on top. Steam in a rice cooker for 1 hour, using three rounds with 2 cups of water each.",
+      "Top with thinly sliced scallions and serve."
+    ]
   },
   {
     "course": "main",
@@ -420,7 +621,7 @@ window.__KITCHEN_MENU__ = [
     "imageClass": "kitchen__photo--focus-2"
   },
   {
-    "course": "snack",
+    "course": "main",
     "nameZh": "辣蜂蜜炸雞漢堡",
     "nameEn": "Honey Spicy Fried Chicken Burger",
     "noteZh": "短影片食譜",
@@ -431,7 +632,7 @@ window.__KITCHEN_MENU__ = [
     "imageClass": "kitchen__photo--focus-3"
   },
   {
-    "course": "snack",
+    "course": "main",
     "nameZh": "蝦排堡",
     "nameEn": "Shrimp Burger",
     "noteZh": "手打蝦排",
@@ -442,7 +643,7 @@ window.__KITCHEN_MENU__ = [
     "imageClass": "kitchen__photo--focus-1"
   },
   {
-    "course": "stew",
+    "course": "main",
     "nameZh": "鮮蝦粉絲煲",
     "nameEn": "Shrimp Glass Noodle Casserole",
     "noteZh": "有人需要辦桌嗎？",
@@ -483,7 +684,45 @@ window.__KITCHEN_MENU__ = [
     "effort": 2,
     "imageSrc": "/img/image-dish-tapioca-jelly.webp",
     "imageAltEn": "Tapioca jelly",
-    "imageClass": "kitchen__photo--focus-2"
+    "imageClass": "kitchen__photo--focus-2",
+    "ingredients": [
+      {
+        "name": "Tapioca starch",
+        "qty": "120 g"
+      },
+      {
+        "name": "Potato starch",
+        "qty": "20 g"
+      },
+      {
+        "name": "Water (starch mixture)",
+        "qty": "150 ml"
+      },
+      {
+        "name": "Dark brown sugar",
+        "qty": "60 g"
+      },
+      {
+        "name": "Light brown sugar",
+        "qty": "25 g"
+      },
+      {
+        "name": "Water (syrup)",
+        "qty": "300 ml"
+      }
+    ],
+    "steps": [
+      "Lightly grease a heatproof dish with olive oil.",
+      "Mix the tapioca starch and potato starch with 150 ml of water until smooth.",
+      "Bring both sugars and 300 ml of water to a boil over medium heat.",
+      "Pour in the starch mixture and stir.",
+      "Heat the mixture over a hot water bath until thick.",
+      "Pour it into the greased dish and steam in a rice cooker with 1 1/2 cups of water.",
+      "When the cooker switches off, leave the lid closed for 15 minutes.",
+      "Take the dish out and let the jelly cool.",
+      "Remove the jelly from the dish. Dip a knife in ice water and cut the jelly into strips.",
+      "Cut the strips into bite-size pieces and soak them in ice water."
+    ]
   },
   {
     "course": "snack",
@@ -539,5 +778,148 @@ window.__KITCHEN_MENU__ = [
     "imageSrc": "/img/image-dish-spicy-and-sour-shredded-potatoes.webp",
     "imageAltEn": "Spicy and sour shredded potatoes",
     "imageClass": "kitchen__photo--focus-1"
+  },
+  {
+    "course": "main",
+    "nameZh": "洋釀炸雞",
+    "nameEn": "Yangnyeom Fried Chicken",
+    "noteZh": "",
+    "noteEn": "One more step away from Monster Chicken.",
+    "effort": 2,
+    "imageSrc": "/img/image-dish-yangnyeom-fried-chicken.webp",
+    "imageAltEn": "Yangnyeom Fried Chicken",
+    "imageClass": ""
+  },
+  {
+    "course": "sweet",
+    "nameZh": "白糖粿",
+    "nameEn": "Taiwanese White Sugar Cake",
+    "noteZh": "",
+    "noteEn": "Best enjoyed within 5 minutes.",
+    "effort": 2,
+    "imageSrc": "/img/image-dish-white-sugar-cake.webp",
+    "imageAltEn": "Taiwanese White Sugar Cake",
+    "imageClass": ""
+  },
+  {
+    "course": "sweet",
+    "nameZh": "麻花捲",
+    "nameEn": "Mahua Twists",
+    "noteZh": "",
+    "noteEn": "Let's make money from it!",
+    "effort": 1,
+    "imageSrc": "/img/image-dish-twist-roll-mahua.webp",
+    "imageAltEn": "Mahua Twists",
+    "imageClass": ""
+  },
+  {
+    "course": "sweet",
+    "nameZh": "雙胞胎",
+    "nameEn": "Horseshoe Doughnuts",
+    "noteZh": "",
+    "noteEn": "It's called The Twins in Taiwan",
+    "effort": 2,
+    "imageSrc": "/img/image-dish-horse-hooves-donut.webp",
+    "imageAltEn": "Horseshoe Doughnuts",
+    "imageClass": ""
+  },
+  {
+    "course": "main",
+    "nameZh": "西班牙蒜味蝦",
+    "nameEn": "Spanish Garlic Shrimp",
+    "noteZh": "",
+    "noteEn": "A copy from the travel to Barcelona",
+    "effort": 1,
+    "imageSrc": "/img/image-dish-spanish-garlic-shrimp.webp",
+    "imageAltEn": "Spanish Garlic Shrimp",
+    "imageClass": ""
+  },
+  {
+    "course": "main",
+    "nameZh": "韓式辣味炒雞",
+    "nameEn": "Gochujang Stir-Fried Chicken",
+    "noteZh": "",
+    "noteEn": "Simple",
+    "effort": 1,
+    "imageSrc": "/img/image-dish-gochujang-stir-fried-chicken.webp",
+    "imageAltEn": "Gochujang Stir-Fried Chicken",
+    "imageClass": ""
+  },
+  {
+    "course": "main",
+    "nameZh": "韓式蜂蜜醬油炸雞",
+    "nameEn": "Korean Honey Soy Chicken",
+    "noteZh": "",
+    "noteEn": "One more step away from Monster Chicken.",
+    "effort": 2,
+    "imageSrc": "/img/image-dish-korean-honey-soy-chicken.webp",
+    "imageAltEn": "Korean Honey Soy Chicken",
+    "imageClass": ""
+  },
+  {
+    "course": "noodle",
+    "nameZh": "紅燒牛肉麵",
+    "nameEn": "Braised Beef Noodle Soup",
+    "noteZh": "",
+    "noteEn": "Classic!",
+    "effort": 2,
+    "imageSrc": "/img/image-dish-braised-beef-noodle.webp",
+    "imageAltEn": "Braised Beef Noodle Soup",
+    "imageClass": ""
+  },
+  {
+    "course": "snack",
+    "nameZh": "牛肉海鮮泡菜煎餅",
+    "nameEn": "Beef and Seafood Kimchi Pancake",
+    "noteZh": "",
+    "noteEn": "Obviously, left-over dish.",
+    "effort": 1,
+    "imageSrc": "/img/image-dish-beef-and-seafood-kimchi-pancake.webp",
+    "imageAltEn": "Beef and Seafood Kimchi Pancake",
+    "imageClass": ""
+  },
+  {
+    "course": "noodle",
+    "nameZh": "肉骨茶雞湯麵",
+    "nameEn": "Bak Kut Teh Chicken Noodle Soup",
+    "noteZh": "",
+    "noteEn": "I'm ready for the winter",
+    "effort": 1,
+    "imageSrc": "/img/image-dish-bak-kut-teh-chicken-noodle.webp",
+    "imageAltEn": "Bak Kut Teh Chicken Noodle Soup",
+    "imageClass": ""
+  },
+  {
+    "course": "noodle",
+    "nameZh": "番茄牛肉麵",
+    "nameEn": "Tomato Beef Noodle Soup",
+    "noteZh": "",
+    "noteEn": "Try out before the Braised Beef noodle",
+    "effort": 1,
+    "imageSrc": "/img/image-dish-tomato-beef-noodle.webp",
+    "imageAltEn": "Tomato Beef Noodle Soup",
+    "imageClass": ""
+  },
+  {
+    "course": "rice",
+    "nameZh": "滑蛋牛肉丼飯",
+    "nameEn": "Silky Egg and Beef Donburi",
+    "noteZh": "",
+    "noteEn": "cooked at 2:00 AM",
+    "effort": 1,
+    "imageSrc": "/img/image-dish-silky-egg-and-beef-donburi.webp",
+    "imageAltEn": "Silky Egg and Beef Donburi",
+    "imageClass": ""
+  },
+  {
+    "course": "rice",
+    "nameZh": "牛腩燴飯",
+    "nameEn": "Beef Brisket Rice",
+    "noteZh": "",
+    "noteEn": "Another nice picture.",
+    "effort": 2,
+    "imageSrc": "/img/image-dish-beef-brisket-rice.webp",
+    "imageAltEn": "Beef Brisket Rice",
+    "imageClass": ""
   }
 ];

@@ -23,14 +23,14 @@ Do not repeat inside case studies.
 
 ## 4. Tokens used
 
-- `--color-text`
-- `--color-text-subtle`
-- `--color-link`
-- `--font-size-*`
-- `--font-weight-*`
-- `--space-*`
-- `--motion-duration-entrance`
-- `--z-*`
+- `--sys-color-text`
+- `--sys-color-text-muted`
+- `--sys-color-link`
+- `--sys-font-size-*`
+- `--sys-font-weight-*`
+- `--sys-space-*`
+- `--sys-motion-duration-slow`
+- `--sys-z-*`
 
 ## 5. Props/API
 

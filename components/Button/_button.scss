@@ -1,0 +1,129 @@
+// Button: a link styled as a button. Variants: outline, bordered, solid, secondary, text.
+// `outline` takes its color from the surrounding chapter or project (--accent-ink).
+
+.button {
+  display: inline-flex;
+  appearance: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button__icon {
+  transition: transform var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+  color: var(--sys-color-inherit);
+}
+
+.button:hover .button__icon,
+.button:focus-visible .button__icon {
+  transform: translateX(var(--sys-space-3xs));
+}
+
+// ---- outline: accent ink, fills on hover (home project links)
+.button--outline {
+  align-items: center;
+  gap: var(--sys-space-sm);
+  padding: var(--sys-space-xs) var(--sys-space-md);
+  border: var(--sys-space-hairline) solid var(--accent-ink);
+  color: var(--accent-ink);
+  font-family: var(--sys-font-family-mono);
+  font-size: var(--sys-font-size-small);
+  line-height: var(--sys-line-height-body);
+  transition:
+    color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth),
+    background-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+
+  &:hover,
+  &:focus-visible {
+    background: var(--accent-ink);
+    color: var(--sys-color-background);
+  }
+}
+
+// ---- bordered: ink border, accent text, no hover change (project pages; it inherits the surrounding text style)
+.button--bordered {
+  padding: var(--sys-space-xs) var(--sys-space-md);
+  border: var(--sys-space-hairline) solid var(--sys-color-border);
+  color: var(--accent-ink);
+}
+
+// ---- solid, secondary, text: the design-system buttons
+.button--solid,
+.button--secondary,
+.button--text {
+  align-items: center;
+  justify-content: center;
+  gap: var(--sys-space-xs);
+  min-height: var(--sys-space-4xl);
+  padding: var(--sys-space-xs) var(--sys-space-md);
+  border: var(--sys-space-hairline) solid var(--sys-color-interactive);
+  font: inherit;
+  font-weight: var(--sys-font-weight-medium);
+  line-height: var(--sys-line-height-body);
+  transition:
+    background-color var(--sys-motion-duration-fast) var(--sys-motion-ease-standard),
+    border-color var(--sys-motion-duration-fast) var(--sys-motion-ease-standard),
+    color var(--sys-motion-duration-fast) var(--sys-motion-ease-standard),
+    transform var(--sys-motion-duration-fast) var(--sys-motion-ease-standard);
+
+  > * {
+    color: var(--sys-color-inherit);
+  }
+
+  &:focus-visible {
+    outline: var(--sys-space-hairline) solid var(--sys-color-focus);
+    outline-offset: var(--sys-space-hairline);
+  }
+
+  &:disabled,
+  &[aria-disabled='true'],
+  &.is-disabled {
+    color: var(--sys-color-text-disabled);
+    background-color: var(--sys-color-interactive-subtle);
+    border-color: var(--sys-color-interactive-subtle);
+    cursor: default;
+    opacity: var(--sys-opacity-muted);
+    transform: none;
+    pointer-events: none;
+  }
+}
+
+.button--solid {
+  color: var(--sys-color-text-inverse);
+  background-color: var(--sys-color-interactive);
+  border-color: var(--sys-color-interactive);
+
+  &:hover,
+  &:active {
+    color: var(--sys-color-text-inverse);
+    background-color: var(--sys-color-interactive-hover);
+    border-color: var(--sys-color-interactive-hover);
+  }
+}
+
+.button--secondary {
+  color: var(--sys-color-text-muted);
+  background-color: var(--sys-color-transparent);
+  border-color: var(--sys-color-text-muted);
+
+  &:hover,
+  &:active {
+    color: var(--sys-color-interactive-hover);
+    background-color: var(--sys-color-transparent);
+    border-color: var(--sys-color-interactive-hover);
+  }
+}
+
+.button--text {
+  min-height: auto;
+  padding: var(--sys-space-0);
+  color: var(--sys-color-link);
+  background-color: var(--sys-color-transparent);
+  border-color: var(--sys-color-transparent);
+
+  &:hover,
+  &:active {
+    color: var(--sys-color-link-hover);
+    background-color: var(--sys-color-transparent);
+    border-color: var(--sys-color-transparent);
+  }
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restyle — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display&family=Noto+Sans+TC:wght@400;500&family=Caveat:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="restyle.css" />
+  <link rel="stylesheet" href="home.css" />
+  </head>
+<body class="home-page">
+  <div class="page-loader" role="status" aria-label="Loading portfolio"><dotlottie-wc src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie" autoplay loop></dotlottie-wc><span class="mono">Loading</span></div>
+
+  <nav class="index" aria-label="Sections">
+    <span class="index__fill" aria-hidden="true"></span>
+    <ol class="index__list">
+      <li><a class="c-work" href="#work"><span class="n">01</span><span class="t">Work</span></a></li>
+      <li><a class="c-about" href="#about"><span class="n">02</span><span class="t">About</span></a></li>
+      <li><a class="c-kitchen" href="#kitchen"><span class="n">03</span><span class="t">Kitchen</span></a></li>
+      <li><a class="c-life" href="#life"><span class="n">04</span><span class="t">Life</span></a></li>
+    </ol>
+    <a class="index__social" href="https://www.linkedin.com/in/wei-chen-win-chiu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)"><img src="/img/icon-linkedin.svg" alt="" width="28" height="28" /></a>
+  </nav>
+
+  <main class="with-nav" id="top">
+
+    <!-- HERO -->
+    <section class="hero c-work">
+      <h1 class="hero__big"><span class="line1">Product</span><span class="line2">Designer</span></h1>
+      <div class="hero__copy">
+      <p class="hero__hi" aria-label="Hi! I'm Win"><span id="hero-typing" aria-hidden="true">Hi! I'm Win</span></p>
+      <p class="hero__intro">I design <span class="hl">B2B workflows and design systems</span> for healthcare and e-commerce, with 2+ years in the field. Now in Stockholm, studying Interactive Media Technology at KTH, and cooking a lot.</p>
+      <dl class="hero__details" id="hero-details"></dl>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="chapter work c-work" id="work">
+      <h2 class="chapter__title">Work</h2>
+      <div class="tabs" role="tablist" aria-label="Project category">
+        <button type="button" class="is-on" id="tab-design" role="tab" aria-selected="true" aria-controls="project-list" data-type="design">Design &amp; Research</button>
+        <button type="button" id="tab-code" role="tab" aria-selected="false" aria-controls="project-list" tabindex="-1" data-type="code">Programming</button>
+      </div>
+      <div id="project-list" role="tabpanel" aria-labelledby="tab-design"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="chapter about c-about" id="about">
+      <div class="about__body">
+        <div class="about__photo"><img src="../../img/intro.webp" alt="Portrait of Win" /></div>
+        <div class="about__text">
+          <div class="about__intro">
+            <h2 class="chapter__title">About</h2>
+            <div class="about__paragraphs" id="about-paragraphs"></div>
+          </div>
+          <ul class="jobs" id="about-jobs"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- KITCHEN -->
+    <section class="chapter kitchen c-kitchen" id="kitchen">
+      <div class="kitchen__head">
+        <h2 class="chapter__title">Kitchen</h2>
+        <p class="kitchen__lede">I started to love cooking after I <span class="hl">couldn’t stand bread and meatballs anymore</span> in Sweden.</p>
+      </div>
+      <div class="menu" id="menu"></div>
+      <div class="peek" id="peek" aria-hidden="true"><img alt="" /><p class="peek__hint mono">Click to see the recipe →</p></div>
+      <div class="sheet-wrap" id="sheet-wrap" aria-hidden="true" inert>
+        <div class="scrim" data-close></div>
+        <aside class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabindex="-1">
+          <div class="sheet__top">
+            <span class="sheet__nav">
+              <button type="button" class="sheet__btn" data-go="-1" aria-label="Previous recipe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6l6 6"/></svg></button>
+              <button type="button" class="sheet__btn" data-go="1" aria-label="Next recipe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6l-6 6"/></svg></button>
+            </span>
+            <button type="button" class="sheet__btn" data-close aria-label="Close recipe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12M6 6l12 12"/></svg></button>
+          </div>
+          <span class="sheet__no mono" id="sheet-no"></span>
+          <div class="sheet__intro">
+            <div class="sheet__photo"><img id="sheet-img" alt="" /></div>
+            <div class="sheet__title">
+              <h3 class="sheet__zh" id="sheet-title" lang="zh-Hant"></h3>
+              <p class="sheet__en" id="sheet-en"></p>
+            </div>
+            <dl class="sheet__meta" id="sheet-meta"></dl>
+          </div>
+          <p class="sheet__note" id="sheet-note"></p>
+          <div id="sheet-recipe"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- LIFE -->
+    <section class="chapter life c-life" id="life">
+      <div class="life__head">
+        <h2 class="chapter__title">Life</h2>
+        <p class="life__intro">Instead of chasing work–life balance, I wish to <span class="hl">enjoy my work and cherish my life</span>.</p>
+      </div>
+      <div class="life__strip" id="strip" tabindex="0" role="region" aria-label="Life photos"></div>
+    </section>
+  </main>
+
+  <script src="../../content/kitchenMenuData.js"></script>
+  <script src="../../content/homeContent.js"></script>
+  <script type="module" src="/components/HairlineCover/hairlineCover.js"></script>
+  <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"></script>
+  <script src="home-extra.js"></script>
+  <script src="kitchen-life.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+// Project pages / media
+
+.figure img, .media-grid img { width: 100%; }
+.zoom-trigger { display: block; width: 100%; padding: var(--sys-space-0); background: var(--sys-color-transparent); border: 0; cursor: zoom-in; }
+.zoom-trigger img { width: 100%; height: auto; }
+.media-grid { display: grid; grid-template-columns: repeat(var(--media-grid-columns, 2), minmax(0, 1fr)); gap: var(--sys-space-xl); align-items: start; }
+figcaption, .media-caption { font-family: var(--sys-font-family-mono); color: var(--sys-color-text-muted); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); margin-top: var(--sys-space-sm); }
+.media-placeholder { min-height: var(--comp-media-placeholder-min-height); background: var(--sys-color-background-soft); display: grid; place-items: center; padding: var(--sys-space-md); border: var(--sys-space-hairline) solid var(--sys-color-border); }
+.media-aside { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sys-space-3xl); align-items: start; }
+/* image on top, text below */
+.media-aside--text { grid-template-columns: 1fr; }
+.media-aside article + article { margin-top: var(--sys-space-3xl); }
+.project-module--image img, .project-module__media img, .media-aside > img { width: 100%; height: auto; }
+.project-module--image-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sys-space-xl); }
+.project-module--image-pair img { width: 100%; }
+.project-module--media-aside-text-only { grid-template-columns: 1fr; }
+.project-module__media-caption { font-family: var(--sys-font-family-mono); color: var(--sys-color-text-muted); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); }
+@media (max-width: 48rem) {
+  .project-module--image-pair { grid-template-columns: 1fr; }
+}
+.project-module__media-placeholder { min-height: var(--comp-media-placeholder-min-height); background: var(--sys-color-background-soft); display: grid; place-items: center; padding: var(--sys-space-md); border: var(--sys-space-hairline) solid var(--sys-color-border); }

@@ -1,137 +1,44 @@
-@use '../tokens' as *;
-@use '../mixins' as *;
+// Home page / about
 
-// ========================================
-// Section / About
-// ========================================
+.about__body {
+  display: flex; align-items: flex-end; gap: var(--sys-space-5xl);
+  padding: var(--sys-space-5xl) var(--gutter) var(--sys-space-80);
+}
+.about__photo { flex: 0 0 min(var(--comp-about-portrait-width), 34%); position: relative; }
+.about__photo img { width: 100%; aspect-ratio: 459 / 689; object-fit: cover; box-shadow: var(--comp-shadow-offset-about); }
+.about__text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: var(--sys-space-4xl); }
+.about__intro { display: flex; flex-direction: column; gap: var(--sys-space-xl); }
+.about__paragraphs { display: flex; flex-direction: column; gap: var(--sys-space-md); color: var(--sys-color-text-muted); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }
+.jobs { list-style: none; }
+.jobs .block__jobDescription {
+  display: flex; align-items: center; gap: var(--sys-space-xl);
+  padding: var(--sys-space-sm) var(--sys-space-0);
+  border-top: var(--sys-rule-width-thin) solid var(--sys-color-text);
+  color: var(--sys-color-text);
+}
+.jobs .job__title { flex: 1 1 0; min-width: 0; font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }
+.jobs .job__company { flex: 1 1 0; min-width: 0; text-align: right; font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); overflow-wrap: anywhere; }
+.jobs .block__jobDescription--past { opacity: 0.6; }
+@media (min-width: 48.0625rem) and (max-width: 72rem) {
+  .about__body { flex-direction: column; align-items: stretch; }
+  .about__photo { flex-basis: auto; max-width: var(--comp-about-portrait-width); margin-right: var(--sys-space-xs); }
+}
+@media (max-width: 48rem) {
+  .about__body { flex-direction: column; align-items: stretch; gap: var(--sys-space-3xl); padding: var(--sys-space-3xl) var(--gutter) var(--sys-space-5xl); }
+  .about__text { display: contents; }
+  .about__intro { order: 1; }
+  .about__photo { order: 2; flex-basis: auto; margin: var(--sys-space-0) var(--sys-space-xs) var(--sys-space-xs) var(--sys-space-0); }
+  .jobs { order: 3; }
+  .jobs .block__jobDescription { flex-direction: column; align-items: flex-start; gap: var(--sys-space-3xs); }
+  .jobs .job__company { text-align: left; }
+}
 
-.section--about {
-  border-bottom: var(--color-transparent) solid var(--space-hairline);
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset-inline: var(--space-0);
-    bottom: var(--space-0);
-    height: var(--space-hairline);
-    background: var(--color-border);
-    transform: scaleX(var(--section-line-progress, 1));
-    transform-origin: left;
-    pointer-events: none;
-  }
-
-  .container {
-    @include flex(row, center, stretch);
-    position: relative;
-
-    .media {
-      flex: 1;
-      margin-right: var(--space-5xl);
-
-      .media__img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    .block {
-      flex: 2;
-      @include flex(column, flex-end, flex-start);
-
-      &--introduction {
-        .media {
-          margin-bottom: var(--space-5xl);
-          margin-right: var(--space-0);
-        }
-      }
-
-      .block__title {
-        font-family: $font-title;
-        font-weight: var(--font-weight-regular);
-        margin-bottom: var(--space-lg);
-        @include stroke-heading;
-      }
-
-      .block__content {
-        margin-bottom: var(--space-xs);
-      }
-
-      .block__jobs {
-        @include flex(column, flex-start, center, var(--space-xs));
-        margin-top: var(--space-md);
-        width: 100%;
-
-        .block__jobDescription {
-          width: 100%;
-          @include flex(row, flex-start, center, var(--space-xs));
-
-          &--dotLine {
-            border-bottom: 0.125rem dotted $color-black;
-            width: 100%;
-          }
-
-          &--company,
-          &--title {
-            min-width: fit-content;
-          }
-        }
-
-        .block__jobDescription--past {
-          p {
-            color: $color-gray;
-          }
-
-          .block__jobDescription--dotLine {
-            border-bottom: 0.125rem dotted $color-gray;
-          }
-        }
-      }
-    }
-
-    @media (max-width: $bp-heading) {
-      @include flex(column, center, flex-start);
-
-      .media {
-        margin: var(--space-0) var(--space-0) var(--space-xl);
-      }
-
-      .block {
-        .block__jobs {
-          @include flex(column, flex-start, center, var(--space-xl));
-          margin-top: var(--space-3xl);
-
-          .block__jobDescription {
-            @include flex(column, flex-start, flex-start, var(--space-3xs));
-
-            .block__jobDescription--company {
-              font-style: italic;
-            }
-
-            .block__jobDescription--dotLine {
-              display: none;
-            }
-
-            .block__jobDescription--title {
-              font-weight: var(--font-weight-bold);
-            }
-          }
-        }
-      }
-    }
-
-    @media (max-width: $bp-mobile) {
-      .block {
-        &--introduction {
-          .media {
-            margin-bottom: var(--space-xl);
-          }
-        }
-
-        .block__title {
-          @include stroke-heading(0.0938rem);
-        }
-      }
-    }
-  }
+// About and Life are at least one screen tall; extra room goes around the content instead of squeezing it.
+.section--about, .section--life { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+.section--about .about__body { flex: 1 1 auto; align-items: flex-end; }
+.section--life .home__content { flex: 1 1 auto; display: flex; flex-direction: column; }
+.section--life .life__viewport { margin-top: var(--sys-space-auto); }
+@media (max-width: 48rem) {
+  .section--about, .section--life { min-height: calc(100svh - var(--comp-nav-height-home)); }
+  .section--about .about__body { align-items: stretch; justify-content: center; }
 }

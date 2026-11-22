@@ -20,10 +20,10 @@ Do not use outside an in-page table of contents.
 
 ## 4. Tokens used
 
-- `--color-interactive`
-- `--color-focus`
-- `--font-weight-bold`
-- `--motion-duration-fast`
+- `--sys-color-interactive`
+- `--sys-color-focus`
+- `--sys-font-weight-bold`
+- `--sys-motion-duration-fast`
 
 ## 5. Props/API
 

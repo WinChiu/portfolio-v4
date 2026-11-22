@@ -19,10 +19,10 @@ Do not use as a generic decorative card.
 
 ## 4. Tokens used
 
-- `--color-accent-subtle`
-- `--color-interactive-subtle`
-- `--space-*`
-- `--font-family-serif`
+- `--sys-color-accent-subtle`
+- `--sys-color-interactive-subtle`
+- `--sys-space-*`
+- `--sys-font-family-display`
 
 ## 5. Props/API
 

@@ -20,12 +20,12 @@ Do not use for navigation to unrelated pages.
 
 ## 4. Tokens used
 
-- `--color-background`
-- `--color-border`
-- `--color-interactive-hover`
-- `--color-text-inverse`
-- `--space-*`
-- `--motion-duration-fast`
+- `--sys-color-background`
+- `--sys-color-border`
+- `--sys-color-interactive-hover`
+- `--sys-color-text-inverse`
+- `--sys-space-*`
+- `--sys-motion-duration-fast`
 
 ## 5. Props/API
 

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <base href="/pages/zh/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../utility/gsap.min.js"></script>
+    <script src="../../utility/ScrollTrigger.min.js"></script>
+    <script type="module" src="../../components/HairlineCover/hairlineCover.js?v=cb43968d"></script>
+    <script src="../../utility/lenis.min.js"></script>
+    <script src="../../utility/smoothScroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
+    <link rel="stylesheet" href="../../style/image-zoom.css" />
+    <link rel="stylesheet" href="../../style/workStyle.css?v=hairline-header-1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <title>設計系統架構規劃與整理</title>
+    <link rel="icon" href="../../img/favicon.ico" type="image/x-icon" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Noto+Sans+TC:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="/prototypes/restyle/layer/tokens.css" />
+    <link rel="stylesheet" href="/prototypes/restyle/layer/work.css" />
+  </head>
+  <body class="project-page project-page--designSystem" data-restyle="work">
+    <!-- Generated from project content data -->
+    <div class="ui-loader page-loader">
+      <dotlottie-wc
+        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
+        autoplay
+        loop
+      ></dotlottie-wc>
+    </div>
+
+
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <div class="project-header__image project-header__image--hairline">
+          <hairline-cover figure="component-tray" lang="zh">
+            <img src="../../img/image-projectCover-designSystem.webp" alt="設計系統架構規劃與整理" />
+          </hairline-cover>
+        </div>
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="ui-tag project-header__tag">
+            <p>Design System</p>
+          </div>
+        </div>
+          <h3 class="project-header__title">設計系統架構規劃與整理</h3>
+          <div class="project-header__metadata">
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Duration</p>
+              <p class="ui-metadata-item__value project-header__meta-value">May. 2022 ~ Jul. 2022</p>
+            </div>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Role</p>
+              <p class="ui-metadata-item__value project-header__meta-value">UIUX Designer</p>
+            </div>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Responsibility</p>
+              <p class="ui-metadata-item__value project-header__meta-value">需求探索、架構規劃、元件製作</p>
+            </div>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Company</p>
+              <p class="ui-metadata-item__value project-header__meta-value">SHOPLINE</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">專案背景</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">本次重設系統為 SHOPLINE 電商產品線的 V2.0 設計系統，用於 B 端產品後台管理頁面，提供網店設計和訂單處理等功能，是主要設計系統之一。</p>
+        <p class="project-module__text">目前該系統以 Figma 文件構建，供設計師和工程師使用。但由於缺乏完整的管理方式和使用規範，且部分元件來自 Sketch 轉檔，<span class="highlight">導致元件使用情境不明、Figma 元件破損、查找困難，降低了效率並影響設計一致性。</span></p>
+
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-workflow.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">問題定義</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">問題一</h6>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">各元件無定義使用情境，難以根據設計系統創建新頁面</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">本次重設系統為 SHOPLINE 電商產品線的 V2.0 設計系統，用於 B 端產品後台管理頁面，提供網店設計和訂單處理等功能，是主要設計系統之一。</p>
+
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-problem1.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">問題二</h6>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">元件命名與歸檔方式無統一規則，造成歸檔不符使用方式，難易查找元件</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">元件缺失與命名不統一，導致無法通過搜尋找到所需元件，加上情境定義不明，設計師每次使用元件時都需回到設計系統主文件中查找。</p>
+
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-problem2.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">問題三</h6>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+        <img src="../../img/projects/designSystem/image-ds-problem3.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">無統一架構進行資源管理，導致元件與規範分散無法同步</h6>
+        <p class="project-module__item-text">現行設計系統採用元件與規範並行歸檔，導致內容重複。例如，名為 Flow 的文件記錄了所有元件的互動方式（如：menu bar 的互動模式），同時還有各元件規格（如：menu bar 的顏色規範），分屬不同頁面且部分重複。</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">問題四</h6>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+        <img src="../../img/sketch-confuse.svg" alt="" class="ui-zoomable-media" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">規範編寫無統一格式，閱讀效率低</h6>
+        <p class="project-module__item-text">各元件頁面的規範沒有統一的書寫規則，缺乏情境定義，基本樣式、狀態、互動方式等要素也不完整，無法在文件中找到完整規範。</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--eyebrow">
+        <h6 class="project-module__eyebrow">問題五</h6>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+        <img src="../../img/sketch-webDesign.svg" alt="" class="ui-zoomable-media" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">無明確的更新機制，使得設計系統時常無法與線上版本對齊</h6>
+        <p class="project-module__item-text">產品中的元件大致分為 V2 原版、工程師自創版、設計師自創版和其他 UI kit 四種。這些版本缺乏明確的溝通和更新機制，導致 V2 設計系統無法及時更新元件與規範，變得過時。</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">設計目標</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module__item">
+        <img src="../../img/sketch-aha.svg" alt="" class="ui-zoomable-media" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">提升使用效率</h6>
+        <p class="project-module__item-text">重整設計系統在 figma 檔案上的邊排方式，讓設計師能快速查找設計規範與使用元件。</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-checkListPaper.svg" alt="" class="ui-zoomable-media" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">提升上手速度</h6>
+        <p class="project-module__item-text">提供足夠的引導與說明，讓首次使用本設計系統的使用者可以快速理解用法。</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-fix.svg" alt="" class="ui-zoomable-media" data-zoom-image />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title">維護品質</h6>
+        <p class="project-module__item-text">確保在未來不斷增減與修改設計規範時，內容一員能維持完整性與正確性。</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="ui-quote project-module project-module--feature-quote">
+        <img class="project-module__icon" src="../../img/sketch-think.svg" alt="" />
+        <h3 class="project-module__heading">根據目標，我提供了從==規範建立、元件歸納到更新維護的完整方案。==</h3>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">解決方案</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">重整文件架構:</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">根據設計師既有的使用習慣，以維護品質為目標，利用以下架構整理元件:</p>
+
+        </div>
+        <div class="project-module project-module--media-content">
+        <img src="../../img/projects/designSystem/image-ds-solution1.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        <div class="project-module__content">
+        <div class="project-module__entry">
+        <h6 class="project-module__item-title">Introduction</h6>
+
+        <ol class="project-module__list">
+          <li>檔案層級與用途說明</li>
+          <li>文件瀏覽與取用說明</li>
+          <li>元件建立、使用、命名規範、更新方式說明</li>
+          <li>註解方式說明</li>
+        </ol>
+        </div>
+        <div class="project-module__entry">
+        <h6 class="project-module__item-title">All Components</h6>
+
+        <ol class="project-module__list">
+          <li>按類型與狀態，歸類存放元件之子元件</li>
+          <li>建立元件目錄，並連接到 full guide 中對應的元件</li>
+          <li>僅作為取用與查找，此頁面元件不可修正</li>
+        </ol>
+        </div>
+        <div class="project-module__entry">
+        <h6 class="project-module__item-title">Full Guide</h6>
+
+        <ol class="project-module__list">
+          <li>編寫完整規範，存放元件之父元件</li>
+          <li>建立連結連接至 All Components 頁面中對應的子元件</li>
+          <li>作為規範編寫與設計更新使用，此頁面元件不可取用</li>
+        </ol>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">區隔父元件與子元件確保維護性，連接元件與規範以互相參照</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">在 All Component 頁面中存放所有子元件，使用者只需在此頁面尋找並使用所需元件，且子元件的特性可以避免破壞整體設計系統。</p>
+
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-solution2.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--text">
+        <p class="project-module__text">在各子元件區域的右上角附上 storybook 和 full guide 的連結，方便使用者查看元件狀態並解決使用疑問。</p>
+        <p class="project-module__text">同時，在 full guide 頁面右上角也附有 storybook 和 all component 的連結，讓使用者在閱讀規範後能回到 all component 頁面，避免直接修改母元件。</p>
+
+        </div>
+        <div class="project-module project-module--image-pair">
+        <img src="../../img/projects/designSystem/image-ds-solution3-1.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        <img src="../../img/projects/designSystem/image-ds-solution3-2.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">定義統一編寫樣式與格式</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">規範各元件需包含以下 7 項固定標題：Usage、Spec、Content、Layout、Application、Asset、Components，並明確規定各標題下的內容。</p>
+
+        </div>
+        <div class="project-module project-module--image-pair">
+        <img src="../../img/projects/designSystem/image-ds-solution4-1.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        <img src="../../img/projects/designSystem/image-ds-solution4-2.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">建立回報表，即時更新元件狀態</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">紀錄遇到的元件問題，並指派相關人員進行修正；定期於週會確認待處理的元件問題，並討論解決方案。</p>
+
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/designSystem/image-ds-solution5.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">學習點</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">設計系統需以情境為中心，並加強跨職位同步與維護機制</h6>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+
+        <div class="project-module__item-content">
+
+        <p class="project-module__item-text">通過本次專案，我發現設計系統對產品一致性至關重要。如果設計系統未以『情境』為中心進行規範，Design System 只能作為元件庫，無法提供有效的實作參考。此外，當規範和元件分散在不同文件中時，會增加實作時間成本，最終導致產品設計不一致問題加劇。</p>
+        <p class="project-module__item-text">不同職位對設計系統的需求也不同，統一的命名影響程式編寫、設計師查找元件及測試時的效率。無效的溝通會導致元件使用不同步，設計師和工程師使用不同元件。因此，各職位間的同步與更新機制對設計系統的維護尤為重要，這不僅關乎設計師，也關乎產品品質。</p>
+        </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a class="ui-link ui-link--nav" href="../../home-zh.html#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a class="ui-link ui-link--nav" href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
+    <script src="../../utility/image-zoom.js"></script>
+    <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/projectPageAnimation.js"></script>
+    <script src="../../utility/loadingPage.js"></script>
+      <script src="/prototypes/restyle/layer/preview.js"></script>
+    <script src="/prototypes/restyle/layer/work.js"></script>
+  </body>
+</html>

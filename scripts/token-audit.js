@@ -68,6 +68,30 @@ const categorySuggestions = {
   ]),
 };
 
+// Suggestions follow tokens.css: drop hints that point at tokens that no longer exist, and derive the exact-value hints from the live tokens.
+{
+  const defined = new Map();
+  const resolveValue = (value, seen = 0) => {
+    const alias = seen < 8 && value.match(/^var\((--[\w-]+)\)$/);
+    return alias && defined.has(alias[1]) ? resolveValue(defined.get(alias[1]), seen + 1) : value;
+  };
+  for (const match of fs.readFileSync(path.join(root, 'style', 'tokens.css'), 'utf8').replace(/\r/g, '').matchAll(/^\s*(--[\w-]+):\s*([^;]+);/gm)) defined.set(match[1], match[2].trim());
+  const live = new Map([...defined].filter(([name]) => name.startsWith('--sys-')).map(([name, value]) => [name, resolveValue(value)]));
+  const prune = (map) => { for (const [value, token] of [...map]) if (!defined.has(token)) map.delete(value); };
+  prune(tokenSuggestions);
+  Object.values(categorySuggestions).forEach(prune);
+  const derive = (map, prefix) => { for (const [name, value] of live) if (name.startsWith(prefix) && /^-?[\d.]+(rem|px|ms|s)?$/.test(value)) map.set(value, name); };
+  [categorySuggestions.spacing, categorySuggestions['font sizes'], categorySuggestions['font weights'], categorySuggestions['border radii'], categorySuggestions['z-index']].forEach((map) => map.clear());
+  derive(categorySuggestions.spacing, '--sys-space-');
+  derive(categorySuggestions['font sizes'], '--sys-font-size-');
+  derive(categorySuggestions['font weights'], '--sys-font-weight-');
+  derive(categorySuggestions['border radii'], '--sys-radius-');
+  derive(categorySuggestions['z-index'], '--sys-z-');
+  tokenSuggestions.clear();
+  for (const [name, value] of live) if (name.startsWith('--sys-color-') && /^#/.test(value)) tokenSuggestions.set(value.toLowerCase(), name);
+  for (const [name, value] of live) if (name.startsWith('--sys-motion-duration-')) tokenSuggestions.set(value, name);
+}
+
 function walk(directory, files = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (ignoredDirectories.has(entry.name)) continue;
@@ -101,19 +125,19 @@ function suggestion(value, category) {
   if (category === 'transition durations' && normalized.endsWith('s')) {
     const steps = Number.parseFloat(normalized) / 0.05;
     if (Number.isFinite(steps) && Math.abs(steps - Math.round(steps)) < 0.000001) {
-      return `calc(var(--motion-duration-stagger) * ${Math.round(steps)})`;
+      return `calc(var(--sys-motion-duration-stagger) * ${Math.round(steps)})`;
     }
   }
-  if (category === 'colors') return 'var(--color-*)';
-  if (category === 'semantic color keywords') return 'var(--color-transparent) or var(--color-inherit)';
-  if (category === 'spacing') return 'var(--space-*)';
-  if (category === 'pixel spacing') return 'var(--space-*) or a relative layout token';
-  if (category === 'font sizes') return 'var(--font-size-*)';
-  if (category === 'font weights') return 'var(--font-weight-*)';
-  if (category === 'border radii') return 'var(--radius-*)';
-  if (category === 'z-index') return 'var(--z-*)';
-  if (category === 'box shadows') return 'var(--shadow-*)';
-  return 'var(--motion-*)';
+  if (category === 'colors') return 'var(--sys-color-*)';
+  if (category === 'semantic color keywords') return 'var(--sys-color-transparent) or var(--sys-color-inherit)';
+  if (category === 'spacing') return 'var(--sys-space-*)';
+  if (category === 'pixel spacing') return 'var(--sys-space-*) or a component token';
+  if (category === 'font sizes') return 'var(--sys-font-size-*)';
+  if (category === 'font weights') return 'var(--sys-font-weight-*)';
+  if (category === 'border radii') return 'var(--sys-radius-*)';
+  if (category === 'z-index') return 'var(--sys-z-*)';
+  if (category === 'box shadows') return 'var(--sys-shadow-*)';
+  return 'var(--sys-motion-*)';
 }
 
 const rules = [
@@ -126,6 +150,7 @@ const rules = [
   { category: 'border radii', severity: 'error', property: /^border-radius$/, regex: /-?(?:\d*\.)?\d+(?:px|rem|em|%)?\b/gi },
   { category: 'z-index', severity: 'error', property: /^z-index$/, regex: /-?\d+\b/g },
   { category: 'box shadows', severity: 'error', property: /^(?:box-shadow|filter)$/, regex: /(?:-?(?:\d*\.)?\d+(?:px|rem|em)\s*){2,}|rgba?\([^)]*\)|#[0-9a-f]{3,8}\b/gi },
+  { category: 'reference token used directly', severity: 'error', raw: true, regex: /var\(\s*--ref-[\w-]+/g, message: 'use the --sys-* or --comp-* token that points at it' },
   { category: 'transition durations', severity: 'warning', property: /^(?:transition|transition-duration|animation|animation-duration|animation-delay)$/, regex: /\b(?:\d*\.)?\d+(?:ms|s)\b/gi },
 ];
 
@@ -149,7 +174,7 @@ for (const file of walk(root)) {
       if (rule.property && (!property || !rule.property.test(property))) continue;
       rule.regex.lastIndex = 0;
       let match;
-      while ((match = rule.regex.exec(inspectableLine))) {
+      while ((match = rule.regex.exec(rule.raw ? line : inspectableLine))) {
         counts[rule.category] += 1;
         fileCounts.set(relative, (fileCounts.get(relative) || 0) + 1);
         violations.push({
@@ -158,7 +183,7 @@ for (const file of walk(root)) {
           severity: rule.severity,
           category: rule.category,
           value: match[0],
-          suggestion: suggestion(match[0], rule.category),
+          suggestion: rule.message || suggestion(match[0], rule.category),
         });
       }
     }

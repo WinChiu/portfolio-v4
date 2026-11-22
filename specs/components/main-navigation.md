@@ -21,12 +21,12 @@ Do not use inside project-page content.
 
 ## 4. Tokens used
 
-- `--color-background`
-- `--color-border`
-- `--color-text`
-- `--space-*`
-- `--font-size-*`
-- `--z-sticky`
+- `--sys-color-background`
+- `--sys-color-border`
+- `--sys-color-text`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-z-sticky`
 
 ## 5. Props/API
 

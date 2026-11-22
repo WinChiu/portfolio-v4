@@ -1,0 +1,150 @@
+/* Restyle mockup — synced from Figma "Portfolio Restyle · Home / KeepWell".
+   Tokens mirror the Figma variables (Ink, Muted ink, Paper, Soft paper, chapter inks,
+   Spacing/*, Layout/Structural border weight). Spacing sits on a 4px grid. */
+:root {
+  --cream: #fbfbf6;      /* Paper */
+  --cream-soft: #f8f6ed; /* Soft paper */
+  --ink: #1d1712;        /* Ink */
+  --ink-soft: #5a5048;   /* Muted ink */
+  --ink-mute: #5a5048;   /* alias of Muted ink */
+  --border-weight: 2px;  /* Layout/Structural border weight */
+  --line: var(--border-weight) solid var(--ink);
+  --rule: var(--ink);
+
+  /* one ink per chapter */
+  --c-work-ink: #945f44;
+  --c-about-ink: #5a6f7d;
+  --c-kitchen-ink: #8b662f;
+  --c-life-ink: #a95342;
+  --me: #449449;         /* Me (hero highlight) */
+
+  --f-sans: 'DM Sans', 'Noto Sans TC', system-ui, sans-serif;
+  --f-mono: 'DM Mono', 'Noto Sans TC', monospace;
+  --f-serif: 'DM Serif Display', Georgia, serif;
+  --f-hand: 'Caveat', cursive;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 160ms;
+  --t-base: 240ms;
+
+  --nav: 6.1875rem; /* 99px home index */
+  --gutter: 3rem;   /* var(--gutter) = 48 */
+}
+@media (max-width: 64rem) { :root { --gutter: 2rem; } }
+@media (max-width: 48rem) { :root { --gutter: 1.25rem; } }
+
+/* chapter / project color sets: accent === the ink of that chapter */
+.c-work    { --accent: var(--c-work-ink);    --accent-ink: var(--c-work-ink); }
+.c-about   { --accent: var(--c-about-ink);   --accent-ink: var(--c-about-ink); }
+.c-kitchen { --accent: var(--c-kitchen-ink); --accent-ink: var(--c-kitchen-ink); }
+.c-life    { --accent: var(--c-life-ink);    --accent-ink: var(--c-life-ink); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  font-size: 0.875rem;
+  line-height: 1.7142857; /* 24 / 14 */
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-ink, var(--ink)); outline-offset: 4px; }
+
+.mono { font-family: var(--f-mono); font-size: 0.875rem; line-height: 1.4285714; font-variant-numeric: tabular-nums; }
+.mute { color: var(--ink-soft); }
+.hl { color: var(--accent-ink); }
+
+.link-arrow {
+  font-family: var(--f-mono);
+  font-size: 0.875rem;
+  line-height: 1.4285714;
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--accent-ink);
+}
+.link-arrow span { transition: transform var(--t-fast) var(--ease); }
+.link-arrow:hover span { transform: translateX(4px); }
+
+/* ---------- index nav (home: 99px left column that fills with the chapter color) ---------- */
+.index {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--nav);
+  padding: 3rem 1.5rem;
+  border-right: var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  background: var(--cream);
+  overflow: hidden;
+}
+/* progress fill: at most two colors at once (previous chapter on top, current chapter following it). */
+.index__fill {
+  position: absolute; inset: 0;
+  background: var(--fill-gradient, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+.index__list, .index__social { position: relative; z-index: 1; }
+.index__list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.index__list a {
+  position: relative;
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  transition: color var(--t-fast) var(--ease);
+}
+.index__list a .n { display: none; }
+.index__list a:hover { color: var(--ink); }
+.index__list a.is-active { color: var(--accent-ink); }
+/* text that sits on the filled part flips to paper */
+.index__list a.on-fill, .index__list a.on-fill:hover { color: var(--cream); }
+.index__list a.on-fill:not(.is-active) { opacity: 0.72; }
+.index__social { display: block; width: 1.75rem; height: 1.75rem; }
+.index__social img { width: 100%; height: 100%; transition: filter var(--t-fast) var(--ease); }
+.index__social.on-fill img { filter: brightness(0) invert(1); }
+
+.with-nav { margin-left: var(--nav); }
+
+/* ---------- chapter title (DM Serif Display, solid) ---------- */
+.chapter { border-top: var(--line); }
+.chapter__title {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: clamp(6rem, 11.9vw, 10rem); /* 160 */
+  line-height: 1.125;                    /* 180 */
+  letter-spacing: -0.0375em;             /* -6 */
+  color: var(--accent-ink);
+}
+
+@media (max-width: 48rem) {
+  .index {
+    inset: 0 0 auto 0;
+    width: auto;
+    height: 56px;
+    padding: 0 1rem;
+    border-right: 0;
+    border-bottom: var(--line);
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+  .index__list { flex-direction: row; gap: 1.25rem; }
+  .index__list a { font-size: 0.875rem; }
+  .index__social { width: 1.5rem; height: 1.5rem; flex: 0 0 1.5rem; margin-left: auto; }
+  .with-nav { margin-left: 0; padding-top: 56px; }
+  .chapter { scroll-margin-top: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::after { animation: none !important; transition: none !important; }
+}

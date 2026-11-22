@@ -20,14 +20,14 @@ Do not combine with Main Navigation on the same page.
 
 ## 4. Tokens used
 
-- `--color-background`
-- `--color-border`
-- `--color-text`
-- `--space-*`
-- `--font-size-*`
-- `--font-weight-*`
-- `--transition-nav`
-- `--z-sticky`
+- `--sys-color-background`
+- `--sys-color-border`
+- `--sys-color-text`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-font-weight-*`
+- `--sys-transition-opacity`
+- `--sys-z-sticky`
 
 ## 5. Props/API
 

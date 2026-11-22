@@ -1,0 +1,24 @@
+// EffortMeter: flames drawn in the surrounding accent ink (--accent-ink); an "off" flame is an outline only.
+
+.effort-meter {
+  display: inline-flex;
+  gap: var(--sys-space-hairline);
+  align-items: center;
+  flex: 0 0 auto;
+
+  svg {
+    width: var(--sys-space-sm);
+    height: var(--sys-space-14);
+    display: block;
+  }
+
+  path {
+    fill: var(--accent-ink);
+    stroke: var(--accent-ink);
+    stroke-width: 1.2;
+  }
+}
+
+.effort-meter__flame--off path {
+  fill: none;
+}

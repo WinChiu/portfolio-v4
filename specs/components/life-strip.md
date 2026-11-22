@@ -21,13 +21,13 @@ Do not intercept wheel input or overlap cards.
 
 ## 4. Tokens used
 
-- `--color-background`
-- `--color-border`
-- `--color-text`
-- `--color-text-muted`
-- `--space-*`
-- `--font-size-*`
-- `--font-family-mono`
+- `--sys-color-background`
+- `--sys-color-border`
+- `--sys-color-text`
+- `--sys-color-text-muted`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-font-family-mono`
 
 ## 5. Props/API
 

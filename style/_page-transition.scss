@@ -1,0 +1,117 @@
+// ========================================
+// Page loader + page-to-page curtain
+// Shared by the home pages (style.css) and the project pages (workStyle.css).
+// Behavior and timings live in utility/loadingPage.js and read the
+// --motion-*-curtain / --motion-*-loader tokens from tokens.css.
+// ========================================
+
+// Two classes so it wins over .loading-mask / .page-loader wherever they sit in the bundle.
+.ui-loader.pl {
+  display: block;
+  transition: var(--sys-transition-none);
+}
+
+.pl {
+  &__stage {
+    position: absolute;
+    right: var(--comp-loader-gutter);
+    left: var(--comp-loader-gutter);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--sys-space-md);
+    color: var(--sys-color-text);
+  }
+
+  &__name {
+    font-family: var(--sys-font-family-mono);
+    font-size: var(--sys-font-size-small);
+  }
+
+  &__count {
+    font-family: var(--sys-font-family-mono);
+    font-size: var(--comp-loader-count-font-size);
+    line-height: var(--sys-line-height-tight);
+    font-variant-numeric: tabular-nums;
+  }
+
+  // Arriving from another page: only the line, no counter.
+  &--short &__count {
+    visibility: hidden;
+  }
+
+  &__line {
+    height: var(--sys-space-hairline);
+    background: color-mix(in srgb, var(--sys-color-text) var(--comp-loader-track-mix), var(--sys-color-transparent));
+
+    i {
+      display: block;
+      height: 100%;
+      background: var(--sys-color-text);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+  }
+}
+
+.pl-curtain {
+  position: fixed;
+  inset: var(--sys-space-0);
+  z-index: var(--sys-z-curtain);
+  background: var(--sys-color-background);
+  clip-path: inset(0 0 100% 0);
+  pointer-events: all;
+
+  i {
+    position: absolute;
+    right: var(--comp-loader-gutter);
+    left: var(--comp-loader-gutter);
+    top: 50%;
+    height: var(--sys-space-hairline);
+    background: var(--sys-color-text);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+}
+
+@media (max-width: 37.5rem) {
+  .pl__stage,
+  .pl-curtain i {
+    right: var(--comp-loader-gutter-narrow);
+    left: var(--comp-loader-gutter-narrow);
+  }
+}
+
+// ========================================
+// Loader shell
+// The loader script toggles .hidden / --hidden on the mask when it finishes;
+// the .pl rules above draw the contents.
+// ========================================
+
+.loading-mask,
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--sys-color-background);
+  z-index: var(--sys-z-loader);
+  opacity: 1;
+  transition: var(--sys-motion-duration-loading);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: var(--sys-space-0);
+}
+
+.loading-mask.hidden,
+.page-loader--hidden {
+  opacity: 0;
+}

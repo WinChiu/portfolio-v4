@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project header variants</title>
+<link rel="stylesheet" href="../style/workStyle.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+<style>
+  /* Preview chrome only. Each variant below is scoped to .v2 / .v3 / .v4. */
+  .switcher { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center; padding: 0.75rem var(--gutter); background: var(--color-background); border-bottom: 1px solid var(--color-border); font-family: var(--font-family-mono); font-size: 0.8125rem; }
+  .switcher b { font-weight: 500; color: var(--color-text-muted); }
+  .switcher button { font: inherit; padding: 0.25rem 0.75rem; border: 1px solid var(--color-border); background: none; color: var(--color-text); cursor: pointer; }
+  .switcher button[aria-pressed="true"] { background: var(--color-text); color: var(--color-background); }
+  .note { padding: 1.5rem var(--gutter) 0; max-width: 48rem; color: var(--color-text-muted); font-size: 0.875rem; }
+  .p-head { padding-bottom: var(--space-5xl); }
+  .p-facts { display: block; border: 0; padding: 0; }   /* reset the shipped grid; variants define their own */
+  .p-facts > div { display: block; }
+
+  /* ---- Variant 2: one inline line (credit-line style) ---- */
+  .v2 .facts-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0; font-size: var(--font-size-body, 1.125rem); line-height: 1.6; color: var(--color-text); }
+  .v2 .facts-line span + span::before { content: '·'; margin: 0 0.75em; color: var(--color-text-muted); }
+  .v2 .facts-resp { margin-top: var(--space-sm); color: var(--color-text-muted); font-size: var(--font-size-small); line-height: var(--space-xl); max-width: 44rem; }
+  .v2 .facts-resp strong { font-family: var(--font-family-mono); font-weight: 400; margin-right: 0.75em; color: var(--accent-ink); }
+
+  /* ---- Variant 3: four plain columns, one rule above, accent-colored labels ---- */
+  .v3 .p-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-2xl) var(--space-3xl); border-top: 1px solid var(--color-border); padding-top: var(--space-xl); }
+  .v3 .p-facts > div { display: flex; flex-direction: column; gap: var(--space-xs); }
+  .v3 .p-facts dt { font-family: var(--font-family-mono); font-size: var(--font-size-small); color: var(--accent-ink); }
+  .v3 .p-facts dd { font-size: var(--font-size-small); line-height: var(--space-xl); margin: 0; }
+  @media (max-width: 48rem) { .v3 .p-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* ---- Variant 4: three short facts in a row; Responsibility is its own lead paragraph ---- */
+  .v4 .facts-short { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2xl) var(--space-3xl); border-top: 1px solid var(--color-border); padding-top: var(--space-xl); }
+  .v4 .facts-short > div { display: flex; flex-direction: column; gap: var(--space-xs); }
+  .v4 dt { font-family: var(--font-family-mono); font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .v4 dd { margin: 0; font-size: var(--font-size-small); line-height: var(--space-xl); }
+  .v4 .facts-lead { margin-top: var(--space-3xl); max-width: 44rem; }
+  .v4 .facts-lead dd { font-size: clamp(1.125rem, 2vw, 1.5rem); line-height: 1.5; color: var(--color-text); }
+  .v4 .facts-lead dt { color: var(--accent-ink); margin-bottom: var(--space-xs); }
+  @media (max-width: 48rem) { .v4 .facts-short { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
+</head>
+<body class="project-page project-page--designSystem">
+<div class="switcher">
+  <b>Variant</b>
+  <span id="variants"></span>
+  <b>Project</b>
+  <span id="projects"></span>
+</div>
+<p class="note" id="note"></p>
+<header class="p-head" id="head"></header>
+
+<script>
+  const projects = {
+    ds: { cls: 'project-page--designSystem', title: 'Design System Architecture Design and Organization',
+      duration: 'May. 2022 ~ Jul. 2022', role: 'UIUX Designer', company: 'SHOPLINE',
+      resp: 'Requirement Exploration, Architecture Planning, and Component Creation' },
+    pos: { cls: 'project-page--pos', title: 'POS: Faster Checkout',
+      duration: 'Jan. 2023 ~ Mar. 2023', role: 'Product Designer', company: 'SHOPLINE',
+      resp: 'Research' },
+  };
+  const variants = {
+    v2: ['2 · Inline line', 'Short facts become one credit line; Responsibility stays below as a quiet sentence.'],
+    v3: ['3 · Accent labels', 'Four plain columns, one rule above, labels in the project accent color.'],
+    v4: ['4 · Lead paragraph', 'Three short facts in a row; Responsibility becomes its own larger paragraph.'],
+  };
+  let variant = 'v3', project = 'ds';
+
+  const html = (p) => ({
+    v2: `<div class="facts-line"><span>${p.role}</span><span>${p.company}</span><span>${p.duration}</span></div>
+         <p class="facts-resp"><strong>Responsibility</strong>${p.resp}</p>`,
+    v3: `<dl class="p-facts"><div><dt>Duration</dt><dd>${p.duration}</dd></div><div><dt>Role</dt><dd>${p.role}</dd></div>
+         <div><dt>Responsibility</dt><dd>${p.resp}</dd></div><div><dt>Company</dt><dd>${p.company}</dd></div></dl>`,
+    v4: `<dl><div class="facts-short"><div><dt>Duration</dt><dd>${p.duration}</dd></div><div><dt>Role</dt><dd>${p.role}</dd></div><div><dt>Company</dt><dd>${p.company}</dd></div></div>
+         <div class="facts-lead"><dt>Responsibility</dt><dd>${p.resp}</dd></div></dl>`,
+  }[variant]);
+
+  function render() {
+    const p = projects[project];
+    document.body.className = `project-page ${p.cls}`;
+    const head = document.getElementById('head');
+    head.className = `p-head ${variant}`;
+    head.innerHTML = `<div class="p-titleblock"><h1 class="p-title">${p.title}</h1></div>${html(p)}`;
+    document.getElementById('note').textContent = variants[variant][1];
+    for (const [id, el] of [['variants', variants], ['projects', projects]]) {
+      document.getElementById(id).querySelectorAll('button').forEach((b) =>
+        b.setAttribute('aria-pressed', String(b.dataset.key === (id === 'variants' ? variant : project))));
+    }
+  }
+  function build(id, items, label, set) {
+    const root = document.getElementById(id);
+    Object.entries(items).forEach(([key, value]) => {
+      const b = document.createElement('button');
+      b.dataset.key = key; b.textContent = label(value);
+      b.addEventListener('click', () => { set(key); render(); });
+      root.append(b, ' ');
+    });
+  }
+  build('variants', variants, (v) => v[0], (k) => (variant = k));
+  build('projects', projects, (v) => (v.title.length > 18 ? v.title.slice(0, 14) + '…' : v.title), (k) => (project = k));
+  render();
+</script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/pages/en/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../utility/gsap.min.js"></script>
+    <script src="../../utility/ScrollTrigger.min.js"></script>
+    <script src="../../utility/lenis.min.js"></script>
+    <script src="../../utility/smoothScroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
+    <script
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
+      type="module"
+    ></script>
+    <link rel="stylesheet" href="../../style/image-zoom.css" />
+    <link rel="stylesheet" href="../../style/workStyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <title>POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design</title>
+    <link rel="icon" href="../../img/favicon.ico" type="image/x-icon" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Noto+Sans+TC:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="/prototypes/restyle/layer/tokens.css" />
+    <link rel="stylesheet" href="/prototypes/restyle/layer/work.css" />
+  </head>
+  <body class="project-page project-page--pos" data-restyle="work">
+    <!-- Generated from project content data -->
+    <div class="ui-loader page-loader">
+      <dotlottie-wc
+        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
+        autoplay
+        loop
+      ></dotlottie-wc>
+    </div>
+
+
+    <main class="project-header" id="top">
+      <div class="project-header__inner">
+        <img
+          src="../../img/projects/pos/image-pos-projectHeader-main.webp"
+          alt="POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design"
+          class="project-header__image"
+        />
+        <div class="project-header__content">
+        <div class="project-header__tags">
+          <div class="ui-tag project-header__tag">
+            <p>E-commerce</p>
+          </div>
+          <div class="ui-tag project-header__tag">
+            <p>Finance</p>
+          </div>
+        </div>
+          <h3 class="project-header__title">POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design</h3>
+          <div class="project-header__metadata">
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Duration</p>
+              <p class="ui-metadata-item__value project-header__meta-value">Jul. 2022 ~ Nov. 2022</p>
+            </div>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Role</p>
+              <p class="ui-metadata-item__value project-header__meta-value">UX Designer</p>
+            </div>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Responsibility</p>
+              <p class="ui-metadata-item__value project-header__meta-value">Process Planning, UI Mock-up, UI Testing</p>
+            </div>
+            <div class="ui-metadata-item project-header__meta-item">
+              <p class="ui-metadata-item__label project-header__meta-label">Company</p>
+              <p class="ui-metadata-item__value project-header__meta-value">SHOPLINE</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <section class="project-page__content">
+      <div class="project-page__content-inner">
+        <div class="project-page__section project-page__section--narrow project-page__section--flush-top">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Project Background</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">SHOPLINE is an e-commerce platform that integrates online and
+                                                                                                              offline sales, offering a POS system to help merchants manage
+                                                                                                              payment processes in physical stores.</p>
+        <p class="project-module__text">At the time of this project, SHOPLINE's POS system in Taiwan had
+                                                                                                              not integrated its own payment service, requiring merchants to
+                                                                                                              contract with banks directly. In Hong Kong, although payment
+                                                                                                              integration was completed, multiple card terminal brands needed
+                                                                                                              support, and fees remained higher than the market average.</p>
+
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--narrow project-page__section--workflow">
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-workflow-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Problem Definition</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="ui-quote project-module project-module--feature-quote project-module--bg-quote">
+        <h3 class="project-module__heading">Lack of Payment Integration and High Pricing Undermining
+                                                                                                              SHOPLINE's Competitiveness</h3>
+        <div class="project-module__callout-list">
+        <div class="ui-callout project-module__callout">
+          <p class="project-module__callout-title">No Payment Integration, Reducing Product Competitiveness</p>
+          <p class="project-module__text">In the Taiwan market, the lack of card payment integration means merchants using SHOPLINE services must handle credit card payments separately, which decreases checkout efficiency.</p>
+        </div>
+        <div class="ui-callout project-module__callout">
+          <p class="project-module__callout-title">Higher-than-Average Pricing, Hindering Business Promotion</p>
+          <p class="project-module__text">In the Hong Kong market, the current card terminal payment cost is higher than the market average, making it difficult to promote and adopt the POS system.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow project-page__section--narrow">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Goal Breakdown</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--icon-list-horizontal">
+        <div class="project-module__item">
+        <img src="../../img/sketch-money.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title"><span class="project-module__item-label">Business Goal</span>Increase SHOPLINE Payment Revenue</h6>
+        <p class="project-module__item-text">Increase the number of orders using SHOPLINE Payment to <span class="highlight">boost credit card
+                                                                                                                  transaction fee income.</span></p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-function.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title"><span class="project-module__item-label">Product Goal</span>Provide Comprehensive Payment Services</h6>
+        <p class="project-module__item-text">Deliver a <span class="highlight">full suite of SHOPLINE Payment services</span> (checkout,
+                                                                                                                  cancellation, refund, returns) to enable merchants to offer
+                                                                                                                  credit card payment options to consumers.</p>
+        </div>
+        </div>
+        <div class="project-module__item">
+        <img src="../../img/sketch-webDesign.svg" alt="" />
+        <div class="project-module__item-content">
+        <h6 class="project-module__item-title"><span class="project-module__item-label">Design Goal</span>Provide Seamless Payment Experience</h6>
+        <p class="project-module__item-text">Ensure that merchants can <span class="highlight">quickly complete</span> the payment process
+                                                                                                                  while <span class="highlight">effectively resolving errors</span> to prevent prolonged
+                                                                                                                  customer wait times.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--wide pos-section--analysis">
+        <div class="project-module project-module--media-aside">
+        <div class="project-module__media">
+        <img src="../../img/projects/pos/image-pos-complexFlow-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        <div class="project-module__aside">
+        <h3 class="project-module__heading">Challenge</h3>
+        <p class="project-module__text">Evaluate the POS payment architecture by reviewing transaction timing, status synchronization, and refund handling across various transaction rules and outcomes. Payment flows required special attention, as inconsistent or delayed statuses directly affected how clearly the system could communicate results to users.</p>
+        </div>
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Solution</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Clearly Remind Merchants of Incomplete Card Terminal Settlement</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">After a card transaction, the funds are not immediately
+                                                                                                              transferred to the merchant's account; a manual terminal
+                                                                                                              settlement is required. Therefore, when adding the card terminal
+                                                                                                              settlement feature, we need to clearly remind merchants to
+                                                                                                              complete the settlement.</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-cashFlow-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
+        <div class="ui-quote project-module project-module--quote">
+        <p class="project-module__text">Design Focus: Ensure that important actions are promptly
+                                                                                                              communicated to merchants without adding informational overload.</p>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">As a key feature for merchant payments, I designed a separate
+                                                                                                              'Settlement' tab with a red dot notification for incomplete
+                                                                                                              settlements. Upon entering the page, merchants can quickly check
+                                                                                                              the status of each card terminal and complete the settlement one
+                                                                                                              terminal at a time.</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-sol1New-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Real-Time Refund Restrictions to Reduce Operational Errors</h6>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">In the refund process, different payment methods and card terminal
+                                                                                                              types have various refund restrictions (e.g., full refunds only or
+                                                                                                              partial refunds). Without clear prompts for the applicable refund
+                                                                                                              option, merchants may waste time with unnecessary attempts.
+                                                                                                              Therefore, the system must preserve input flexibility while
+                                                                                                              preventing incorrect actions to ensure a smooth customer
+                                                                                                              experience during refunds.</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-figmaFlow.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
+        <div class="ui-quote project-module project-module--quote">
+        <p class="project-module__text">Design Focus: Remind and prevent merchants from entering incorrect
+                                                                                                              refund amounts without affecting operational efficiency.</p>
+        </div>
+        <div class="project-module project-module--text">
+        <p class="project-module__text">I added refund amount prompts in the 'Select Refund Method' and
+                                                                                                              'Refund Method List' sections, and displayed the correct amount
+                                                                                                              again in case of an error to assist merchants in completing the
+                                                                                                              refund process.</p>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-sol2New-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+        <div class="project-page__section project-page__section--narrow pos-section--learning">
+        <div class="project-module project-module--section-title">
+        <h3 class="project-module__heading">Key Learnings</h3>
+
+        <div class="project-module__line"></div>
+        </div>
+        <div class="project-module project-module--subsection-title">
+        <h6 class="project-module__subheading">Reflect on the Rationality of the Solution from the User's
+                                                                                                              Perspective</h6>
+        </div>
+        <div class="project-module project-module--icon-list-vertical">
+        <div class="project-module__item">
+
+        <div class="project-module__item-content">
+
+        <p class="project-module__item-text">Even when receiving very specific requirements, a designer
+                                                                                                                  should still assess the business, product, and design goals.
+                                                                                                                  This applies even in feature-driven B2B products, where it's
+                                                                                                                  essential to ensure that the solution aligns with the user's
+                                                                                                                  context and provides a good experience. This prevents the
+                                                                                                                  product from becoming overly complex due to feature bloat,
+                                                                                                                  which can ultimately compromise usability.</p>
+        </div>
+        </div>
+        </div>
+        <div class="project-module project-module--image">
+        <img src="../../img/projects/pos/image-pos-figmaFile.webp" alt="" class="ui-zoomable-media" data-zoom-image />
+        </div>
+        </div>
+      </div>
+    </section>
+    <nav class="project-nav" id="navbar">
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a class="ui-link ui-link--nav" href="/#work">Back</a>
+        </h6>
+      </div>
+      <div class="project-nav__group">
+        <h6 class="project-nav__item">
+          <a class="ui-link ui-link--nav" href="#top">Top</a>
+        </h6>
+      </div>
+    </nav>
+    <script src="../../utility/image-zoom.js"></script>
+    <script src="../../utility/createToc.js"></script>
+    <script src="../../utility/projectPageAnimation.js"></script>
+    <script src="../../utility/loadingPage.js"></script>
+      <script src="/prototypes/restyle/layer/preview.js"></script>
+    <script src="/prototypes/restyle/layer/work.js"></script>
+  </body>
+</html>

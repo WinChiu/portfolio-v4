@@ -1,0 +1,33 @@
+// Home page / work
+
+.tabs {
+  position: sticky; top: 0; z-index: var(--sys-z-tabs);
+  display: flex; align-items: stretch;
+  background: var(--sys-color-background);
+  border-bottom: var(--sys-border-hairline);
+}
+.tabs button {
+  all: unset; cursor: pointer; box-sizing: border-box;
+  flex: 1 1 0; display: flex; align-items: center; justify-content: center;
+  min-height: var(--sys-font-size-display-sm); padding: var(--sys-space-0) var(--gutter);
+  font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-body); line-height: var(--sys-line-height-body);
+  color: var(--sys-color-text-muted);
+  background: var(--sys-color-transparent);
+  transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), background-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+}
+.tabs button + button { border-left: var(--sys-border-hairline); }
+.tabs button:hover { color: var(--sys-color-text); }
+.tabs button.is-on { color: var(--sys-color-background); background: var(--accent-ink); font-weight: var(--sys-font-weight-medium); }
+.tabs button:focus-visible { outline: var(--sys-space-hairline) solid var(--sys-color-text); outline-offset: var(--sys-outline-offset-inset); }
+/* Each link is an outlined button in the chapter color; hover fills it. */
+@media (min-width: 72.0625rem) {
+  /* Drawn (Hairline) covers carry their own empty margin inside the box. Pull the box into the row padding so the artwork, not its empty margin, sets the visual spacing, and centre it against the text. */
+}
+@media (max-width: 48rem) {
+  .tabs { top: var(--comp-nav-height-home); }
+  .tabs button { min-height: var(--sys-space-5xl); padding: var(--sys-space-0) var(--sys-space-xs); font-size: var(--sys-font-size-small); }
+}
+.workHide { display: none; }
+.tabs h4 { font: inherit; color: var(--sys-color-inherit); }
+/* each card draws its own bottom line (the next card's top) as it appears; the last one leaves the line to the next chapter */
+#project-list .project-card.is-last-visible::after { display: none; }

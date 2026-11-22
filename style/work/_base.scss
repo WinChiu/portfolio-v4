@@ -1,0 +1,40 @@
+// Project pages / base
+
+* { box-sizing: border-box; margin: var(--sys-space-0); padding: var(--sys-space-0); }
+html { scroll-behavior: smooth; font-size: var(--sys-font-size-root-fluid); }
+body {
+  background: var(--sys-color-background);
+  color: var(--sys-color-text);
+  font-family: var(--sys-font-family-body);
+  font-size: var(--sys-font-size-small);
+  line-height: var(--sys-line-height-relaxed); /* 24 / 14 */
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: var(--sys-color-inherit); text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: var(--sys-space-hairline) solid var(--accent-ink, var(--sys-color-text)); outline-offset: var(--sys-space-3xs); }
+.mono { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); font-variant-numeric: tabular-nums; }
+.mute { color: var(--sys-color-text-muted); }
+.hl { color: var(--accent-ink); }
+/* Project page — values taken from Figma "KeepWell · project?p=keepwell" (1200 content, 240 index). */
+.project-page { --nav: var(--comp-nav-width-project); }
+.project-page :where(main, section, div, article, figure) { min-width: 0; }
+.project-page :where(h1, h2, h3, p, dd, li, a) { overflow-wrap: anywhere; }
+.project-page :where(em, i) { font-style: normal; }
+.project-page .highlight { color: var(--accent-ink); font-weight: var(--sys-font-weight-semibold); }
+.skip-link { position: fixed; left: var(--sys-space-md); top: var(--comp-skip-link-offset); z-index: var(--sys-z-skip-link); padding: var(--sys-space-sm); background: var(--sys-color-background); border: var(--sys-space-hairline) solid var(--sys-color-border); }
+.skip-link:focus { top: var(--sys-space-md); }
+.body { color: var(--sys-color-text-muted); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }
+.body + .body { margin-top: var(--sys-space-md); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .project-page * { transition: none !important; }
+}
+.project-page { --gutter: var(--sys-space-5xl); --accent-ink: var(--sys-color-chapter-about); --accent: var(--accent-ink); }
+.ui-link { color: var(--accent-ink); }
+@media (max-width: 64rem) {
+  .project-page { --gutter: var(--sys-space-3xl); }
+}
+@media (max-width: 48rem) {
+  .project-page { --gutter: var(--sys-space-lg); }
+}

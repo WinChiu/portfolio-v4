@@ -1,20 +1,21 @@
 @import url('./tokens.css');
 
-/* =============================================================================
-Image Zoom JS v0.0.1 | MIT License | https://github.com/alecrios/image-zoom-js
-============================================================================= */
+/* Image zoom: the picture is cloned to <body> and moved with one transform (see utility/image-zoom.js). */
 
 [data-zoom-backdrop] {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
-	z-index: var(--z-zoom-backdrop);
-	background-color: var(--color-zoom-overlay);
+	height: 100lvh;
+	z-index: var(--sys-z-zoom-backdrop);
+	background-color: var(--sys-color-scrim);
 	opacity: 0;
-	transition: var(--transition-zoom-opacity);
+	transition: var(--sys-transition-zoom-opacity);
 	pointer-events: none;
+	touch-action: none;
+	overscroll-behavior: contain;
 }
 
 [data-zoom-backdrop='active'] {
@@ -23,24 +24,45 @@ Image Zoom JS v0.0.1 | MIT License | https://github.com/alecrios/image-zoom-js
 }
 
 [data-zoom-image] {
-	position: relative;
-	z-index: var(--z-zoom-image);
-	transform: none;
-	transition: var(--transition-zoom-transform);
 	cursor: zoom-in;
-}
-
-[data-zoom-image='active'] {
-	z-index: var(--z-modal);
-	cursor: zoom-out;
 }
 
 [data-zoom-clone] {
 	position: fixed;
-	z-index: var(--z-modal);
-	margin: var(--space-0);
+	z-index: var(--sys-z-modal);
+	margin: var(--sys-space-0);
+	max-width: none;
+	max-height: none;
+	transform-origin: 0 0;
 	transform: none;
-	transition: var(--transition-zoom-transform);
 	cursor: zoom-out;
+	pointer-events: auto;
+	touch-action: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+}
+
+[data-zoom-close] {
+	position: fixed;
+	top: max(var(--sys-space-md), env(safe-area-inset-top));
+	right: max(var(--sys-space-md), env(safe-area-inset-right));
+	z-index: var(--sys-z-modal-control);
+	width: var(--sys-space-4xl);
+	height: var(--sys-space-4xl);
+	display: grid;
+	place-items: center;
+	padding: var(--sys-space-0);
+	border: var(--sys-border-hairline);
+	background: var(--sys-color-background);
+	color: var(--sys-color-text);
+	cursor: pointer;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-standard);
+}
+
+[data-zoom-close='active'] {
+	opacity: 1;
 	pointer-events: auto;
 }

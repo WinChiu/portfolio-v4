@@ -20,10 +20,10 @@ Do not use a link for an action that does not navigate.
 
 ## 4. Tokens used
 
-- `--color-link`
-- `--color-link-hover`
-- `--color-focus`
-- `--motion-duration-fast`
+- `--sys-color-link`
+- `--sys-color-link-hover`
+- `--sys-color-focus`
+- `--sys-motion-duration-fast`
 
 ## 5. Props/API
 

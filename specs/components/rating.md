@@ -19,8 +19,8 @@ Do not use as an editable rating input.
 
 ## 4. Tokens used
 
-- `--space-3xs`
-- `--space-lg`
+- `--sys-space-3xs`
+- `--sys-space-lg`
 
 ## 5. Props/API
 

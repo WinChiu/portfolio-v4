@@ -1,3 +1,5 @@
+const Button = require('../components/Button/button.js');
+
 function indent(text, spaces = 8) {
   const prefix = ' '.repeat(spaces);
   return text
@@ -15,7 +17,7 @@ function renderImage(image) {
 
 function normalizeContentClass(className, fallback) {
   const classMap = {
-    'module__text': 'project-module__text',
+    'module__text': 'project-module__text body',
     'module__button': 'project-module__button',
     'module__content--content': 'project-module__list',
   };
@@ -38,23 +40,23 @@ ${items.map((item) => `  <li>${item}</li>`).join('\n')}
 function renderContentItem(item) {
   switch (item.type) {
     case 'paragraph':
-      return `<p class="${normalizeContentClass(item.className, 'project-module__text')}">${item.html}</p>`;
+      return `<p class="${normalizeContentClass(item.className, 'project-module__text body')}">${item.html}</p>`;
     case 'orderedList':
       return renderOrderedList(item.items, item.className);
     case 'unorderedList':
       return renderUnorderedList(item.items, item.className);
     case 'button':
       return `<div class="${normalizeContentClass(item.className, 'project-module__button')}">
-  <a class="ui-button ui-button--primary" href="${item.href}"${item.target ? ` target="${item.target}"` : ''}><p>${item.label}</p></a>
+  ${Button({ label: item.label, href: item.href, variant: 'bordered', target: item.target || '' })}
 </div>`;
     case 'callOut':
-      return `<div class="ui-callout project-module__callout">
+      return `<div class="ui-callout project-module__callout callout">
   <p class="project-module__callout-title">${item.title}</p>
-  <p class="project-module__text">${item.text}</p>
+  <p class="project-module__text body">${item.text}</p>
 </div>`;
     case 'linkParagraph':
       return `<a class="ui-link" href="${item.href}"${item.target ? ` target="${item.target}"` : ''}>
-  <p class="${normalizeContentClass(item.className, 'project-module__text')}">${item.html}</p>
+  <p class="${normalizeContentClass(item.className, 'project-module__text body')}">${item.html}</p>
 </a>`;
     default:
       throw new Error(`Unsupported content item type: ${item.type}`);
@@ -69,7 +71,7 @@ ${module.items.map((item) => renderContentItem(item)).join('\n')}
   }
 
   const paragraphs = (module.paragraphs || [])
-    .map((paragraph) => `<p class="project-module__text">${paragraph}</p>`)
+    .map((paragraph) => `<p class="project-module__text body">${paragraph}</p>`)
     .join('\n');
 
   const orderedList = module.orderedList
@@ -84,9 +86,9 @@ ${orderedList}
 
 function renderQuote(module) {
   const extraClasses = module.paragraphClass ? ` ${module.paragraphClass}` : '';
-  const paragraphClass = ` class="project-module__text${extraClasses}"`;
+  const paragraphClass = ` class="project-module__text body${extraClasses}"`;
 
-  return `<div class="ui-quote project-module project-module--quote">
+  return `<div class="ui-quote project-module project-module--quote nda">
 <p${paragraphClass}>${module.html}</p>
 </div>`;
 }
@@ -99,9 +101,9 @@ function renderBgQuote(module) {
     ? ` style="${module.callOutListStyle}"`
     : '';
 
-  return `<div class="ui-quote project-module project-module--feature-quote project-module--bg-quote">
+  return `<div class="ui-quote project-module project-module--feature-quote project-module--bg-quote sec--dark">
 <${module.headingTag || 'h3'} class="project-module__heading"${headingStyle}>${module.headingHtml}</${module.headingTag || 'h3'}>
-<div class="project-module__callout-list"${callOutListStyle}>
+<div class="project-module__callout-list problems"${callOutListStyle}>
 ${module.callOuts.map((item) => renderContentItem({ ...item, type: 'callOut' })).join('\n')}
 </div>
 </div>`;
@@ -116,21 +118,21 @@ function renderVerticalIconList(module) {
       const paragraphs = (item.paragraphs || [])
         .map(
           (paragraph) =>
-            `<p class="project-module__item-text">${paragraph}</p>`
+            `<p class="project-module__item-text body">${paragraph}</p>`
         )
         .join('\n');
 
-      return `<div class="project-module__item">
-${item.image ? renderImage(item.image) : ''}
+      return `<article class="project-module__item">
+${item.image ? `<div class="goal-icon">${renderImage({ ...item.image, zoom: false })}</div>` : ''}
 <div class="project-module__item-content">
 ${title}
 ${paragraphs}
 </div>
-</div>`;
+</article>`;
     })
     .join('\n');
 
-  return `<div class="project-module project-module--icon-list-vertical">
+  return `<div class="project-module project-module--icon-list-vertical goals">
 ${items}
 </div>`;
 }
@@ -138,17 +140,17 @@ ${items}
 function renderHorizontalIconList(module) {
   const items = module.items
     .map(
-      (item) => `<div class="project-module__item">
-${renderImage(item.image)}
+      (item) => `<article class="project-module__item">
+<div class="goal-icon">${renderImage({ ...item.image, zoom: false })}</div>
 <div class="project-module__item-content">
 <h6 class="project-module__item-title">${item.title}</h6>
-<p class="project-module__item-text">${item.content}</p>
+<p class="project-module__item-text body">${item.content}</p>
 </div>
-</div>`
+</article>`
     )
     .join('\n');
 
-  return `<div class="project-module project-module--icon-list-horizontal">
+  return `<div class="project-module project-module--icon-list-horizontal goals">
 ${items}
 </div>`;
 }
@@ -157,7 +159,7 @@ function renderImgAndContentBlock(module) {
   const entries = module.entries
     .map((entry) => {
       const paragraphs = (entry.paragraphs || [])
-        .map((paragraph) => `<p class="project-module__text">${paragraph}</p>`)
+        .map((paragraph) => `<p class="project-module__text body">${paragraph}</p>`)
         .join('\n');
       const orderedList = entry.orderedList
         ? `<ol class="project-module__list">
@@ -173,7 +175,7 @@ ${orderedList}
     })
     .join('\n');
 
-  return `<div class="project-module project-module--media-content">
+  return `<div class="project-module project-module--media-content media-aside">
 ${renderImage(module.image)}
 <div class="project-module__content">
 ${entries}
@@ -184,7 +186,7 @@ ${entries}
 function renderBigQuote(module) {
   const extraClass = module.className ? ` ${module.className}` : '';
 
-  return `<div class="ui-quote project-module project-module--feature-quote${extraClass}">
+  return `<div class="ui-quote project-module project-module--feature-quote big-quote${extraClass}">
 ${module.icon ? `<img class="project-module__icon" src="${module.icon}" alt="" />` : ''}
 <h3 class="project-module__heading">${module.content}</h3>
 </div>`;
@@ -204,10 +206,10 @@ ${renderImage(module.image)}
 `
     : '';
   const paragraphs = (module.paragraphs || [])
-    .map((paragraph) => `<p class="project-module__text">${paragraph}</p>`)
+    .map((paragraph) => `<p class="project-module__text body">${paragraph}</p>`)
     .join('\n');
 
-  return `<div class="project-module project-module--media-aside${variantClass}${textOnlyClass}">
+  return `<div class="project-module project-module--media-aside media-aside${variantClass}${textOnlyClass}">
 ${media}<div class="project-module__aside">
 <h3 class="project-module__heading">${module.title}</h3>
 ${paragraphs}
@@ -257,7 +259,7 @@ ${media}
     })
     .join('\n');
 
-  return `<div class="project-module project-module--captioned-media-grid" style="--media-grid-columns: ${module.columns || 2}">
+  return `<div class="project-module project-module--captioned-media-grid media-grid" style="--media-grid-columns: ${module.columns || 2}">
 ${items}
 </div>`;
 }
@@ -336,31 +338,35 @@ ${module.images.map((image) => renderImage(image)).join('\n')}
   }
 }
 
-function renderSection(section) {
-  const classMap = {
-    specialSection: 'project-page__section--featured',
-    'specialSection--gray': 'project-page__section--featured-gray',
-    'specialSection--yellow': 'project-page__section--featured-yellow',
-    'specialSection--narrow': 'project-page__section--narrow',
-    sectionWide: 'project-page__section--wide',
-    sectionNarrow: 'project-page__section--narrow',
-    sectionFlushTop: 'project-page__section--flush-top',
-    sectionWorkflow: 'project-page__section--workflow',
-  };
-  const classes = [
-    'project-page__section',
-    ...(section.classes || []).map((className) => classMap[className] || className),
-  ].join(' ').trim();
-
-  return `<div class="${classes}">
-${section.modules.map((module) => renderModule(module)).join('\n')}
-</div>`;
-}
-
 function renderSections(sections) {
-  return sections.map((section) => indent(renderSection(section))).join('\n');
+  const chapters = [];
+  let current = null;
+  let preamble = '';
+  for (const section of sections) {
+    for (const module of section.modules) {
+      if (module.type === 'bgTitle') {
+        current = { title: module.html || module.text, blocks: [], dark: false };
+        chapters.push(current);
+      } else if (current) {
+        current.blocks.push(renderModule(module));
+        if (module.type === 'bgQuote') current.dark = true;
+      } else {
+        preamble += renderModule(module);
+      }
+    }
+  }
+  return indent((preamble ? `<div class="p-preamble">${preamble}</div>` : '') + chapters.map((chapter, index) => {
+    const id = `toc${index + 1}`;
+    return `<section class="project-page__section sec${chapter.dark ? ' sec--problem' : ''}" id="${id}" aria-labelledby="${id}-title">
+      <div class="sec__grid">
+        <span class="sec__num" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+        <div class="sec__content">
+          <h2 class="project-module__chapter-title" id="${id}-title">${chapter.title}</h2>
+          ${chapter.blocks.join('\n')}
+        </div>
+      </div>
+    </section>`;
+  }).join('\n'));
 }
 
-module.exports = {
-  renderSections,
-};
+module.exports = { renderSections };

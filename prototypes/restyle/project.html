@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project — Win Chiu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="restyle.css" />
+  <link rel="stylesheet" href="project.css" />
+  <script defer src="data/projects.js"></script>
+  <script defer src="../../content/homeContent.js"></script>
+  <script type="module" src="../../components/HairlineCover/hairlineCover.js"></script>
+  <script defer src="project.js"></script>
+</head>
+<body class="project-page c-about">
+  <a class="skip-link mono" href="#top">Skip to project</a>
+  <nav class="index" aria-label="Project sections">
+    <span class="index__fill" aria-hidden="true"></span>
+    <a class="index__back mono" href="home.html#work" aria-label="Back to all work"><span class="rail-label">Back</span></a>
+    <span class="mobile-current mono" aria-live="polite">Overview</span>
+    <button class="sections-toggle mono" type="button" aria-expanded="false" aria-controls="section-list">Sections</button>
+    <ol class="index__list" id="section-list"></ol>
+    <div class="index__foot mono"><a href="#top" aria-label="Back to top"><span class="rail-label">Top</span></a></div>
+    <span class="page-progress" aria-hidden="true"></span>
+  </nav>
+  <main class="with-nav" id="top" tabindex="-1"></main>
+  <noscript><p class="p-head">Enable JavaScript to view this project. <a href="home.html#work">All work →</a></p></noscript>
+  <dialog class="zoom" aria-label="Enlarged project image">
+    <button class="zoom__close mono" type="button" autofocus>Close ×</button>
+    <img alt="" />
+    <p class="mono"></p>
+  </dialog>
+</body>
+</html>

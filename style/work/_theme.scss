@@ -1,0 +1,8 @@
+// Project pages / theme
+
+.project-page--designSystem { --accent-ink: var(--sys-color-chapter-work); }
+.project-page--pos { --accent-ink: var(--sys-color-chapter-life); }
+.project-page--bizpro { --accent-ink: var(--sys-color-chapter-kitchen); }
+.project-page--childcare, .project-page--forest { --accent-ink: var(--sys-color-project-sage); }
+.project-page--gongChi { --accent-ink: var(--sys-color-project-plum); }
+.project-page--keepwell, .project-page--rfid, .project-page--ba { --accent-ink: var(--sys-color-chapter-about); }

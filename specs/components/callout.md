@@ -20,10 +20,10 @@ Do not use as a quotation or generic decoration.
 
 ## 4. Tokens used
 
-- `--color-interactive-subtle`
-- `--color-interactive`
-- `--color-text`
-- `--space-md`
+- `--sys-color-interactive-subtle`
+- `--sys-color-interactive`
+- `--sys-color-text`
+- `--sys-space-md`
 
 ## 5. Props/API
 

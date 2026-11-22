@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restyle — KeepWell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="restyle.css" />
+  <style>
+    /* each project gets its own accent */
+    /* each project gets its own chapter color via a class on body */
+
+    .index__back { color: var(--ink-mute); }
+    .index__back:hover { color: var(--ink); }
+
+    /* ---------- header ---------- */
+    .p-head { padding: 4rem var(--gutter) 0; }
+    .p-title {
+      font-weight: 500;
+      font-size: clamp(3rem, 7.5vw, 7.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      margin: 0 0 3rem -0.04em;
+      max-width: 13ch;
+      color: var(--accent);
+    }
+    .p-title .ink { color: var(--ink); }
+    .p-facts { display: grid; grid-template-columns: repeat(4, 1fr); border-top: var(--line); }
+    .p-facts div { padding: 1rem 1rem 1.75rem 0; }
+    .p-facts div + div { padding-left: 1rem; border-left: var(--line); }
+    .p-facts dt { font-family: var(--f-mono); font-size: 0.875rem; color: var(--ink-mute); }
+    .p-facts dd { margin-top: 0.5rem; line-height: 1.4; }
+
+    .p-cover { margin: 0 var(--gutter); aspect-ratio: 21 / 9; overflow: hidden; background: var(--cream-soft); }
+    .p-cover img { width: 100%; height: 100%; object-fit: cover; }
+
+    .nda {
+      margin: 3rem var(--gutter) 0;
+      padding: 1rem 1.25rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(111, 142, 163, 0.08);
+      max-width: 46rem;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- sections ---------- */
+    .sec { padding: 6rem var(--gutter); border-top: var(--line); margin-top: 6rem; }
+    .sec__grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; }
+    .sec__num {
+      font-family: var(--f-mono);
+      font-size: clamp(4rem, 7vw, 6.5rem);
+      line-height: 0.85;
+      letter-spacing: -0.06em;
+      color: var(--accent);
+    }
+    .sec h2 {
+      font-weight: 500;
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      margin-bottom: 2rem;
+      max-width: 22ch;
+    }
+    .sec h2 .hl { color: var(--accent-ink); }
+    .sec--dark h2 .hl { color: var(--accent); }
+    .sec p.body { max-width: 38rem; color: var(--ink-soft); margin-bottom: 1.1rem; }
+
+    .figure { margin-top: 3rem; }
+    .figure img { width: 100%; background: #fff; }
+
+    .sec--dark { background: var(--ink); color: var(--cream); border-top: 0; }
+    .problems { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+    .problems article { border-top: 1px solid rgba(248, 244, 230, 0.1); padding-top: 1.25rem; }
+    .problems .mono { color: var(--accent); }
+    .problems h3 { font-weight: 500; font-size: 1.375rem; line-height: 1.25; letter-spacing: -0.01em; margin: 0.5rem 0; }
+    .problems p:last-child { color: rgba(248, 244, 230, 0.72); font-size: 1rem; }
+
+    .goals { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2rem; border-top: var(--line); }
+    .goals article { padding: 1.25rem 1.25rem 0 0; }
+    .goals article + article { padding-left: 1.25rem; border-left: var(--line); }
+    .goals .mono { color: var(--accent-ink); }
+    .goals p:last-child { margin-top: 0.5rem; }
+
+    .overlap { position: relative; margin-top: 3rem; min-height: 30rem; }
+    .overlap img:first-child { width: 70%; }
+    .overlap img:last-child { position: absolute; width: 42%; right: 0; bottom: -3rem; border: 0.5rem solid var(--cream); }
+
+    .next { display: block; padding: 4rem var(--gutter) 5rem; border-top: var(--line); }
+    .next .mono { color: var(--ink-mute); }
+    .next .p-title { color: var(--c-work-ink); margin: 0.75rem 0 0; font-size: clamp(2.5rem, 6vw, 6rem); }
+
+    @media (max-width: 48rem) {
+      .p-facts, .problems, .goals { grid-template-columns: 1fr 1fr; }
+      .sec__grid { grid-template-columns: 1fr; gap: 1rem; }
+      .p-facts div:nth-child(3) { padding-left: 0; border-left: 0; }
+      .goals article + article { padding-left: 0; border-left: 0; }
+    }
+  </style>
+</head>
+<body class="c-about">
+  <nav class="index" aria-label="Project sections">
+    <a class="index__back mono" href="home.html">← All work</a>
+    <ol class="index__list">
+      <li><a href="#bg"><span class="n">01</span><span class="t">Background</span></a></li>
+      <li><a href="#problem"><span class="n">02</span><span class="t">Problem</span></a></li>
+      <li><a href="#goals"><span class="n">03</span><span class="t">Goals</span></a></li>
+      <li><a href="#action"><span class="n">04</span><span class="t">Actions</span></a></li>
+    </ol>
+    <div class="index__foot mono">
+      <a href="#">繁中 / EN</a>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </nav>
+
+  <main class="with-nav" id="top">
+    <header class="p-head">
+      <h1 class="p-title">KeepWell<span class="ink">: tracking medical devices, one scan at a time</span></h1>
+      <dl class="p-facts">
+        <div><dt>Duration</dt><dd>July 2024 – Apr. 2025</dd></div>
+        <div><dt>Role</dt><dd>Product Designer</dd></div>
+        <div><dt>Responsibility</dt><dd>UI mockup, functional spec, PM testing, field simulation, proposal</dd></div>
+        <div><dt>Company</dt><dd>Wellell</dd></div>
+      </dl>
+    </header>
+
+    <div class="p-cover"><img src="../../img/projects/keepwell/image-keepwell-wideCover.webp" alt="KeepWell cover" /></div>
+
+    <p class="nda">This project is under an NDA, so certain user research findings and the final design cannot be disclosed in detail publicly.</p>
+
+    <section class="sec" id="bg">
+      <div class="sec__grid">
+        <span class="sec__num">01</span>
+        <div>
+          <h2>A SaaS platform for <span class="hl">decontamination and rental</span> management</h2>
+          <p class="body">KeepWell streamlines decontamination and rental management for medical equipment, with an initial focus on medical air mattresses, pairing barcode asset tags with RFID scanning.</p>
+          <p class="body">In this portfolio, I focus on workflow “4. Cleaning &amp; packing”. Detailed research findings and final interfaces are shown as placeholders because of the NDA.</p>
+          <figure class="figure"><img src="../../img/projects/keepwell/image-keepwell-serviceFlow.webp" alt="Service flow" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec sec--dark" id="problem">
+      <div class="sec__grid">
+        <span class="sec__num">02</span>
+        <div>
+          <h2>Inaccurate rental data and limited visibility caused <span class="hl">hidden revenue loss</span>.</h2>
+          <div class="problems">
+            <article>
+              <p class="mono">a /</p>
+              <h3>Paper-based workflows led to incomplete records</h3>
+              <p>Rental quantities and dates were recorded on paper. Even with multiple manual checks, providers couldn’t tell whether each product was in the hospital or returned.</p>
+            </article>
+            <article>
+              <p class="mono">b /</p>
+              <h3>Limited visibility into efficiency and status</h3>
+              <p>Managers couldn’t easily assess station efficiency, inventory availability, bottlenecks, or future demand.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="goals" style="margin-top:0">
+      <div class="sec__grid">
+        <span class="sec__num">03</span>
+        <div>
+          <h2>Make status updates <span class="hl">fast</span>, without interrupting the line</h2>
+          <div class="goals">
+            <article><p class="mono">business</p><p>A foundation for future IoT integration with hardware products.</p></article>
+            <article><p class="mono">product</p><p>Simplify an overloaded system and add RFID for bulk registration.</p></article>
+            <article><p class="mono">user</p><p>Recording status at each station shouldn’t add extra work.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="action">
+      <div class="sec__grid">
+        <span class="sec__num">04</span>
+        <div>
+          <h2>Field simulations with <span class="hl">different RFID scanners</span></h2>
+          <p class="body">We measured maximum scanning range, read counts and environmental interference to decide which device fits each workstation.</p>
+          <div class="overlap">
+            <img src="../../img/projects/keepwell/image-keepwell-handheldCart.webp" alt="Handheld cart scanner" />
+            <img src="../../img/projects/keepwell/image-keepwell-handheld2.webp" alt="Handheld scanner" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <a class="next" href="home.html">
+      <span class="mono">Next project →</span>
+      <p class="p-title">POS TW/HK Payment Gateway</p>
+    </a>
+  </main>
+
+  <script src="nav.js"></script>
+</body>
+</html>

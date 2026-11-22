@@ -21,12 +21,12 @@ Do not use on decorative images or tiny icons.
 ## 4. Tokens used
 
 - `--color-zoom-overlay`
-- `--motion-duration-slow`
-- `--motion-ease-standard`
-- `--z-zoom-image`
+- `--sys-motion-duration-slow`
+- `--sys-motion-ease-standard`
+- `--sys-z-zoom-image`
 - `--z-zoom-clone`
-- `--z-zoom-backdrop`
-- `--z-modal`
+- `--sys-z-zoom-backdrop`
+- `--sys-z-modal`
 
 ## 5. Props/API
 

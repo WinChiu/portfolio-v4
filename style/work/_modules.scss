@@ -1,0 +1,9 @@
+// Project pages / modules
+
+.project-page__content, .project-page__content-inner { width: 100%; }
+/* zoomable images carry z-index 800; keep them in their own stacking context so they never paint over the nav */
+.project-page__content { position: relative; z-index: var(--sys-z-base); }
+.project-module { min-width: 0; }
+.project-module--text, .project-module__item-content, .project-module__aside, .project-module__content { display: flex; flex-direction: column; gap: var(--sys-space-md); }
+.project-page .project-module__item-title, .project-page .project-module__subheading, .project-module__callout-title { font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-semibold); }
+.project-page .project-module--text .body + .body { margin-top: var(--sys-space-0); }

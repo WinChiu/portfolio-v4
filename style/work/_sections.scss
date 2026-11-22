@@ -1,0 +1,55 @@
+// Project pages / sections
+
+/* ---------- sections ---------- */
+.sec { padding: var(--sys-space-160) var(--gutter); border-top: var(--sys-space-hairline) solid var(--sys-color-border); scroll-margin-top: var(--sys-space-3xl); }
+.sec__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--sys-space-5xl); align-items: start; }
+.sec__num { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-section-number); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tightest); color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+.sec__content { display: flex; flex-direction: column; gap: var(--sys-space-5xl); }
+.sec h2 { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-section-title); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tight); margin: var(--sys-space-0); }
+.project-page h3 { font-weight: var(--sys-font-weight-semibold); font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); margin-bottom: var(--sys-space-md); }
+.project-page .project-module__eyebrow { color: var(--accent-ink); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-regular); }
+.nda { border-left: var(--sys-border-width-accent) solid var(--accent-ink); background: color-mix(in srgb, var(--accent-ink) 10%, var(--sys-color-transparent)); padding: var(--sys-space-md) var(--sys-space-lg); }
+.nda p { color: var(--sys-color-text-muted); font-weight: var(--sys-font-weight-semibold); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }
+/* dark problem band: the whole section turns ink */
+.sec:has(.sec--dark) { background: var(--sys-color-text); color: var(--sys-color-background); }
+.sec:has(.sec--dark) .sec__num { color: var(--sys-color-background); }
+.sec--dark { display: flex; flex-direction: column; gap: var(--sys-space-5xl); }
+.sec--dark > h3 { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-title-lg); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tight); margin: var(--sys-space-0); color: var(--sys-color-background); }
+.sec--dark .highlight { color: var(--sys-color-background); font-weight: var(--sys-font-weight-medium); }
+.problems { display: flex; gap: var(--sys-space-3xl); }
+.problems .callout { flex: 1 1 0; border: 0; border-top: var(--sys-space-hairline) solid var(--accent-ink); padding: var(--sys-space-lg) var(--sys-space-0) var(--sys-space-0); display: flex; flex-direction: column; gap: var(--sys-space-md); }
+.problems .callout h3 { color: var(--sys-color-background); margin: var(--sys-space-0); }
+.problems .body { color: var(--sys-color-background); }
+.big-quote { display: flex; align-items: center; gap: var(--sys-space-xl); padding: var(--sys-space-3xl) var(--sys-space-0); }
+/* round base like .goal-icon; the sketch keeps its size and the circle grows around it (content-box) */
+.big-quote > img { width: var(--sys-space-160); box-sizing: content-box; padding: var(--sys-space-xl); object-fit: contain; border-radius: var(--sys-radius-round); background: var(--sys-color-background); flex-shrink: 0; }
+.big-quote h3 { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-title-md); line-height: var(--sys-line-height-heading); letter-spacing: var(--sys-letter-spacing-tight); margin: var(--sys-space-0); }
+.big-quote .highlight { font-weight: var(--sys-font-weight-inherit); }
+/* next project */
+.next { display: flex; flex-direction: column; gap: var(--sys-space-sm); padding: var(--sys-space-6xl) var(--gutter) var(--sys-space-80); border-top: var(--sys-space-hairline) solid var(--sys-color-border); }
+.next .mono { color: var(--sys-color-text); }
+.next .p-title { margin: var(--sys-space-0); color: var(--sys-color-text); }
+@media (min-width: 48.001rem) {
+  /* the big section number stays pinned while its section scrolls */
+  .sec__num { position: sticky; top: var(--sys-space-3xl); align-self: start; }
+}
+@media (min-width: 48.001rem) and (max-width: 72rem) {
+  .sec__grid { grid-template-columns: var(--sys-space-80) minmax(0, 1fr); gap: var(--sys-space-3xl); }
+  .sec__num { font-size: var(--sys-font-size-display-sm); }
+}
+@media (max-width: 48rem) {
+  .sec { padding: var(--sys-space-7xl) var(--gutter); scroll-margin-top: var(--comp-section-scroll-margin); }
+  .sec__grid { grid-template-columns: 1fr; gap: var(--sys-space-xl); }
+  .sec__num { font-size: var(--sys-font-size-display-sm); }
+  .problems { flex-direction: column; }
+  .sec--dark > h3 { font-size: var(--sys-font-size-title-md); line-height: var(--sys-line-height-heading); }
+  .big-quote { flex-direction: column; align-items: center; text-align: center; gap: var(--sys-space-md); max-width: var(--comp-measure-quote); margin-inline: var(--sys-space-auto); }
+  .big-quote > img { width: var(--sys-space-8xl); }
+  .big-quote h3 { font-size: var(--sys-font-size-title-sm); }
+}
+.project-page .sec--problem, .project-page .sec--problem .body { background: var(--sys-color-text); color: var(--sys-color-background); }
+.sec--problem .sec__num { color: var(--sys-color-background); }
+.project-page .sec--dark .project-module__heading { margin: var(--sys-space-0); }
+@media (max-width: 48rem) {
+  .sec__num { font-size: var(--sys-font-size-display-sm); }
+}

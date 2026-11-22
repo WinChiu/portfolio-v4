@@ -1,151 +1,315 @@
 /*
- * Project design tokens. Components consume these variables only —
- * never hardcode a raw color, spacing, font, radius, shadow, z-index,
- * or motion value in component CSS.
+ * Design tokens, three tiers (same model as Material 3):
+ *   --ref-*   reference: every approved raw value, named for what it IS (a palette tone, a typeface, a length).
+ *             One value, one name. Never used by components directly.
+ *   --sys-*   system: the decisions and roles that give the design its character. They point at --ref-* tokens
+ *             wherever the value exists there. Components consume these.
+ *   --comp-*  component: measures and properties that belong to one element or section. They point at --sys-*
+ *             (or --ref-*) tokens; a one-off length may be written here.
+ * Components consume --sys-* and --comp-* only.
  */
 
 :root {
-  /* Colors */
-  --color-text: #363a35;
-  --color-text-strong: #555555;
-  --color-text-muted: #7a776d;
-  --color-text-subtle: #868684;
-  --color-text-disabled: #c8c8c8;
-  --color-text-inverse: #ffffff;
-  --color-background: #fbfbf6;
-  --color-background-soft: #f8f6ed;
-  --color-surface-inverse: #4f4b43;
-  --color-link: #c14804;
-  --color-link-hover: #a63e03;
-  --color-border: #363a35;
-  --color-border-muted: rgba(122, 119, 109, 0.45);
-  --color-interactive: #b74343;
-  --color-interactive-hover: #cabd8a;
-  --color-interactive-disabled: rgba(183, 67, 67, 0.18);
-  --color-focus: rgba(183, 67, 67, 0.5);
-  --color-focus-soft: rgba(183, 67, 67, 0.35);
-  --color-accent: #d1b129;
-  --color-accent-bright: #f37021;
-  --color-highlight: #f5dead;
-  --color-highlight-soft: rgba(245, 222, 173, 0.28);
-  --color-overlay: rgba(0, 0, 0, 0.55);
-  --color-zoom-overlay: rgba(0, 0, 0, 0.529);
-  --color-surface-glass: rgba(251, 251, 246, 0.4);
-  --color-border-inverse: rgba(255, 255, 255, 0.85);
-  --color-accent-soft: rgba(209, 177, 41, 0.12);
-  --color-accent-subtle: rgba(209, 177, 41, 0.2);
-  --color-interactive-subtle: rgba(183, 67, 67, 0.16);
-  --color-interactive-soft: rgba(183, 67, 67, 0.2);
-  --color-svg-silver: rgb(209, 211, 212);
-  --color-svg-gold: rgb(232, 213, 117);
-  --color-svg-ink: rgb(35, 31, 32);
-  --color-transparent: transparent;
-  --color-inherit: inherit;
+  /* ======== Reference tokens ======== */
 
-  --opacity-hidden: 0;
-  --opacity-muted: 0.5;
+  /* Reference: palette (hue-tone; tone is CIE L*, 0 black to 100 white) */
+  --ref-palette-neutral-0: #000000;
+  --ref-palette-neutral-8: #1d1712;
+  --ref-palette-neutral-35: #5a5048;
+  --ref-palette-neutral-81: #c8c8c8;
+  --ref-palette-neutral-97: #f8f6ed;
+  --ref-palette-neutral-98: #fbfbf6;
+  --ref-palette-neutral-100: #ffffff;
+  --ref-palette-green-55: #449449;
+  --ref-palette-brown-45: #945f44;
+  --ref-palette-slate-46: #5a6f7d;
+  --ref-palette-ochre-46: #8b662f;
+  --ref-palette-rust-46: #a95342;
+  --ref-palette-sage-48: #6a7758;
+  --ref-palette-plum-48: #8a6882;
+  --ref-palette-orange-41: #a63e03;
+  --ref-palette-orange-47: #c14804;
+  --ref-palette-red-45: #b74343;
+  --ref-palette-sand-77: #cabd8a;
+  --ref-palette-sand-89: #f5dead;
+  --ref-palette-gold-73: #d1b129;
 
-  /* Spacing */
-  --space-0: 0;
-  --space-hairline: 0.125rem;
-  --space-3xs: 0.25rem;
-  --space-2xs: 0.375rem;
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-14: 0.875rem;
-  --space-md: 1rem;
-  --space-lg: 1.25rem;
-  --space-xl: 1.5rem;
-  --space-2xl: 1.75rem;
-  --space-3xl: 2rem;
-  --space-36: 2.25rem;
-  --space-4xl: 2.5rem;
-  --space-5xl: 3rem;
-  --space-56: 3.5rem;
-  --space-6xl: 4rem;
-  --space-72: 4.5rem;
-  --space-76: 4.75rem;
-  --space-80: 5rem;
-  --space-88: 5.5rem;
-  --space-7xl: 6rem;
-  --space-120: 7.5rem;
-  --space-8xl: 8rem;
-  --space-160: 10rem;
-  --space-256: 16rem;
-  --space-auto: auto;
+  /* Reference: typefaces */
+  --ref-typeface-dm-serif-display: 'DM Serif Display', serif;
+  --ref-typeface-dm-sans: 'DM Sans', system-ui, sans-serif;
+  --ref-typeface-dm-mono: 'DM Mono', monospace;
+  --ref-typeface-caveat: 'Caveat', cursive;
 
-  /* Typography */
-  --font-family-display: 'DM Serif Display', serif;
-  --font-family-body: 'DM Sans', system-ui, sans-serif;
-  --font-family-serif: 'DM Serif Text', serif;
-  --font-family-mono: 'DM Mono', monospace;
-  --font-size-caption: 0.75rem;
-  --font-size-small: 0.875rem;
-  --font-size-body: 1rem;
-  --font-size-body-lg: 1.125rem;
-  --font-size-label: 1.25rem;
-  --font-size-title-sm: 1.5rem;
-  --font-size-title-md: 1.75rem;
-  --font-size-title-lg: 2.25rem;
-  --font-size-heading: 2.75rem;
-  --font-size-display-sm: 3.5rem;
-  --font-size-display-md: 4.5rem;
-  --font-size-display-lg: 6rem;
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-inherit: inherit;
-  --line-height-tight: 1;
-  --line-height-heading: 1.2;
-  --line-height-body: 1.55;
-  --line-height-relaxed: 1.75;
+  /* Reference: font weights */
+  --ref-font-weight-400: 400;
+  --ref-font-weight-500: 500;
+  --ref-font-weight-600: 600;
+  --ref-font-weight-700: 700;
 
-  /* Radius */
-  --radius-none: 0;
-  --radius-xs: 0.125rem;
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-round: 50%;
-  --radius-pill: 999rem;
+  /* Reference: line heights (percent of font size) */
+  --ref-line-height-100: 1;
+  --ref-line-height-120: 1.2;
+  --ref-line-height-150: 1.5;
+  --ref-line-height-175: 1.75;
 
-  /* Shadows */
-  --shadow-low: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.16);
-  --shadow-raised: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.16), 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.23);
-  --shadow-floating: 0 1.5rem 3rem rgba(0, 0, 0, 0.2);
-  --shadow-soft: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.08);
-  --filter-shadow-project-image: drop-shadow(0 1.5rem 2rem rgba(0, 0, 0, 0.2));
+  /* Reference: letter spacing */
+  --ref-letter-spacing-neg-1px: -1px;
+  --ref-letter-spacing-neg-3px: -3px;
+  --ref-letter-spacing-neg-6px: -6px;
+  --ref-letter-spacing-neg-0-04em: -0.04em;
 
-  /* Z-index */
-  --z-behind: -1;
-  --z-base: 0;
-  --z-content: 1;
-  --z-raised: 2;
-  --z-sticky: 10;
-  --z-zoom-image: 800;
-  --z-zoom-clone: 850;
-  --z-zoom-backdrop: 900;
-  --z-modal: 1000;
-  --z-loader: 9999;
+  /* Reference: sizes (px at a 16px root; used for space, type, radius and shared measures) */
+  --ref-size-neg-16: -1rem;
+  --ref-size-neg-12: -0.75rem;
+  --ref-size-neg-6: -0.375rem;
+  --ref-size-neg-4: -0.25rem;
+  --ref-size-0: 0;
+  --ref-size-2: 0.125rem;
+  --ref-size-4: 0.25rem;
+  --ref-size-6: 0.375rem;
+  --ref-size-8: 0.5rem;
+  --ref-size-12: 0.75rem;
+  --ref-size-14: 0.875rem;
+  --ref-size-16: 1rem;
+  --ref-size-18: 1.125rem;
+  --ref-size-20: 1.25rem;
+  --ref-size-24: 1.5rem;
+  --ref-size-28: 1.75rem;
+  --ref-size-32: 2rem;
+  --ref-size-40: 2.5rem;
+  --ref-size-48: 3rem;
+  --ref-size-56: 3.5rem;
+  --ref-size-64: 4rem;
+  --ref-size-72: 4.5rem;
+  --ref-size-80: 5rem;
+  --ref-size-88: 5.5rem;
+  --ref-size-96: 6rem;
+  --ref-size-128: 8rem;
+  --ref-size-160: 10rem;
+  --ref-size-272: 17rem;
+  --ref-size-512: 32rem;
 
-  /* Motion */
-  --motion-duration-stagger: 50ms;
-  --motion-duration-fast: 200ms;
-  --motion-duration-standard: 300ms;
-  --motion-duration-slow: 400ms;
-  --motion-duration-loading: 1000ms;
-  --motion-duration-entrance: 1500ms;
-  --motion-ease-standard: ease;
-  --motion-ease-emphasized: ease-in-out;
-  --motion-ease-drawing: cubic-bezier(0.47, 0, 0.745, 0.715);
-  --transition-color: color var(--motion-duration-fast) var(--motion-ease-standard);
-  --transition-opacity: opacity var(--motion-duration-standard) var(--motion-ease-standard);
-  --transition-entrance: opacity var(--motion-duration-entrance) var(--motion-ease-emphasized);
-  --transition-nav: max-width var(--motion-duration-standard);
-  --transition-zoom-opacity: opacity var(--motion-duration-slow) var(--motion-ease-standard);
-  --transition-zoom-transform: transform var(--motion-duration-slow) var(--motion-ease-standard);
-  --transition-none: none;
+  /* ======== System tokens ======== */
+
+  /* System: Color: text */
+  --sys-color-text: var(--ref-palette-neutral-8); /* Ink: body copy and headings */
+  --sys-color-text-muted: var(--ref-palette-neutral-35); /* secondary copy, captions, labels */
+  --sys-color-text-disabled: var(--ref-palette-neutral-81);
+  --sys-color-text-inverse: var(--ref-palette-neutral-100); /* on filled buttons */
+
+  /* System: Color: surface */
+  --sys-color-background: var(--ref-palette-neutral-98); /* page paper */
+  --sys-color-background-soft: var(--ref-palette-neutral-97); /* placeholders, peek card */
+
+  /* System: Color: border */
+  --sys-color-border: var(--ref-palette-neutral-8);
+
+  /* System: Color: brand and chapter inks (one ink per home chapter / per project) */
+  --sys-color-brand: var(--ref-palette-green-55); /* hero highlight and focus */
+  --sys-color-chapter-work: var(--ref-palette-brown-45);
+  --sys-color-chapter-about: var(--ref-palette-slate-46);
+  --sys-color-chapter-kitchen: var(--ref-palette-ochre-46);
+  --sys-color-chapter-life: var(--ref-palette-rust-46);
+  --sys-color-project-sage: var(--ref-palette-sage-48);
+  --sys-color-project-plum: var(--ref-palette-plum-48);
+
+  /* System: Color: interactive (design-system buttons and links) */
+  --sys-color-link: var(--ref-palette-orange-47);
+  --sys-color-link-hover: var(--ref-palette-orange-41);
+  --sys-color-interactive: var(--ref-palette-red-45);
+  --sys-color-interactive-hover: var(--ref-palette-sand-77);
+  --sys-color-interactive-subtle: color-mix(in srgb, var(--ref-palette-red-45) 16%, transparent); /* tint and disabled fill */
+  --sys-color-focus: color-mix(in srgb, var(--ref-palette-red-45) 50%, transparent);
+
+  /* System: Color: emphasis tints */
+  --sys-color-highlight: color-mix(in srgb, var(--ref-palette-sand-89) 28%, transparent);
+  --sys-color-accent-subtle: color-mix(in srgb, var(--ref-palette-gold-73) 20%, transparent);
+
+  /* System: Color: overlay */
+  --sys-color-scrim: color-mix(in srgb, var(--ref-palette-neutral-8) 50%, transparent); /* behind modals, recipe sheet and zoomed images */
+
+  /* System: Color: keywords */
+  --sys-color-transparent: transparent;
+  --sys-color-inherit: inherit;
+
+  /* System: Opacity */
+  --sys-opacity-hidden: 0;
+  --sys-opacity-muted: 0.5;
+
+  /* System: Spacing */
+  --sys-space-0: var(--ref-size-0);
+  --sys-space-hairline: var(--ref-size-2);
+  --sys-space-3xs: var(--ref-size-4);
+  --sys-space-2xs: var(--ref-size-6);
+  --sys-space-xs: var(--ref-size-8);
+  --sys-space-sm: var(--ref-size-12);
+  --sys-space-14: var(--ref-size-14);
+  --sys-space-md: var(--ref-size-16);
+  --sys-space-lg: var(--ref-size-20);
+  --sys-space-xl: var(--ref-size-24);
+  --sys-space-2xl: var(--ref-size-28);
+  --sys-space-3xl: var(--ref-size-32);
+  --sys-space-4xl: var(--ref-size-40);
+  --sys-space-5xl: var(--ref-size-48);
+  --sys-space-56: var(--ref-size-56);
+  --sys-space-6xl: var(--ref-size-64);
+  --sys-space-72: var(--ref-size-72);
+  --sys-space-80: var(--ref-size-80);
+  --sys-space-88: var(--ref-size-88);
+  --sys-space-7xl: var(--ref-size-96);
+  --sys-space-8xl: var(--ref-size-128);
+  --sys-space-160: var(--ref-size-160);
+  --sys-space-pull-2xs: var(--ref-size-neg-4);
+  --sys-space-pull-xs: var(--ref-size-neg-6);
+  --sys-space-pull-sm: var(--ref-size-neg-12);
+  --sys-space-pull-md: var(--ref-size-neg-16);
+  --sys-space-auto: auto;
+
+  /* System: Typography */
+  --sys-font-family-display: var(--ref-typeface-dm-serif-display);
+  --sys-font-family-body: var(--ref-typeface-dm-sans);
+  --sys-font-family-mono: var(--ref-typeface-dm-mono);
+  --sys-font-family-hand: var(--ref-typeface-caveat);
+  --sys-font-size-caption: var(--ref-size-12);
+  --sys-font-size-small: var(--ref-size-14);
+  --sys-font-size-body: var(--ref-size-16);
+  --sys-font-size-body-lg: var(--ref-size-18);
+  --sys-font-size-title-xs: var(--ref-size-20);
+  --sys-font-size-title-sm: var(--ref-size-24);
+  --sys-font-size-title-md: var(--ref-size-32);
+  --sys-font-size-title-lg: var(--ref-size-40);
+  --sys-font-size-display-sm: var(--ref-size-56);
+  --sys-font-size-display-md: var(--ref-size-72);
+  --sys-font-size-display-lg: var(--ref-size-96);
+  --sys-font-size-section-title: clamp(var(--sys-font-size-title-md), 4vw, var(--sys-font-size-title-lg));
+  --sys-font-size-section-number: clamp(var(--sys-font-size-display-sm), 8vw, var(--sys-font-size-display-lg));
+  --sys-font-size-project-title: clamp(var(--sys-font-size-title-lg), 5vw, var(--sys-font-size-display-md));
+  --sys-font-size-chapter: clamp(var(--ref-size-96), 12vw, var(--ref-size-160));
+  --sys-font-size-hero: clamp(var(--ref-size-72), 16vw, var(--ref-size-160));
+  --sys-font-weight-regular: var(--ref-font-weight-400);
+  --sys-font-weight-medium: var(--ref-font-weight-500);
+  --sys-font-weight-semibold: var(--ref-font-weight-600);
+  --sys-font-weight-bold: var(--ref-font-weight-700);
+  --sys-font-weight-inherit: inherit;
+  --sys-line-height-tight: var(--ref-line-height-100);
+  --sys-line-height-heading: var(--ref-line-height-120);
+  --sys-line-height-body: var(--ref-line-height-150);
+  --sys-line-height-relaxed: var(--ref-line-height-175);
+  --sys-letter-spacing-tight: var(--ref-letter-spacing-neg-1px);
+  --sys-letter-spacing-tighter: var(--ref-letter-spacing-neg-3px);
+  --sys-letter-spacing-tightest: var(--ref-letter-spacing-neg-6px);
+  --sys-letter-spacing-display: var(--ref-letter-spacing-neg-0-04em);
+
+  /* System: Radius */
+  --sys-radius-none: var(--ref-size-0);
+  --sys-radius-sm: var(--ref-size-4);
+  --sys-radius-lg: var(--ref-size-8);
+  --sys-radius-round: 50%;
+
+  /* System: Shadows */
+  --sys-shadow-floating: 0 1.5rem 3rem color-mix(in srgb, var(--ref-palette-neutral-0) 20%, transparent);
+
+  /* System: Z-index */
+  --sys-z-base: 0;
+  --sys-z-content: 1;
+  --sys-z-raised: 2;
+  --sys-z-sticky: 10;
+  --sys-z-zoom-image: 800;
+  --sys-z-zoom-backdrop: 900;
+  --sys-z-modal: 1000;
+  --sys-z-modal-control: 1001;
+  --sys-z-loader: 9999;
+  --sys-z-tabs: 5;
+  --sys-z-peek: 20;
+  --sys-z-overlay: 30;
+  --sys-z-skip-link: 50;
+  --sys-z-curtain: 10000;
+
+  /* System: Motion */
+  --sys-motion-duration-stagger: 50ms;
+  --sys-motion-duration-fast: 200ms;
+  --sys-motion-duration-standard: 300ms;
+  --sys-motion-duration-slow: 400ms;
+  --sys-motion-duration-long: 600ms;
+  --sys-motion-duration-curtain: 800ms;
+  --sys-motion-duration-loading: 1000ms;
+  --sys-motion-duration-ticker: 45s;
+  --sys-motion-ease-standard: ease;
+  --sys-motion-ease-smooth: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --sys-motion-ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+  --sys-transition-color: color var(--sys-motion-duration-fast) var(--sys-motion-ease-standard);
+  --sys-transition-opacity: opacity var(--sys-motion-duration-standard) var(--sys-motion-ease-standard);
+  --sys-transition-zoom-opacity: opacity var(--sys-motion-duration-slow) var(--sys-motion-ease-standard);
+  --sys-transition-zoom-transform: transform var(--sys-motion-duration-slow) var(--sys-motion-ease-standard);
+  --sys-transition-none: none;
+
+  /* System: Root size: 16px up to a 1440px-wide screen, then it grows with the screen so the whole (rem-based) layout scales up instead of looking tiny on large displays. */
+  --sys-font-size-root-fluid: clamp(1rem, calc(100vw / 90), 2.5rem);
+
+  /* System: Border and rules */
+  --sys-rule-width-thin: 1px;
+  --sys-text-stroke-width: var(--sys-space-hairline);
+  --sys-border-width-accent: var(--sys-space-3xs);
+  --sys-border-hairline: var(--sys-space-hairline) solid var(--sys-color-border);
+  --sys-outline-offset-inset: calc(-1 * var(--sys-space-2xs));
+  --sys-rule-nudge: calc(var(--sys-rule-width-thin) / -2);
+
+  /* ======== Component tokens ======== */
+
+  /* Component: Shadows */
+  --comp-shadow-offset-about: var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-about);
+  --comp-shadow-offset-kitchen: var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-kitchen);
+  --comp-shadow-offset-kitchen-phone: var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-kitchen);
+
+  /* Component: Page loader and page-to-page curtain (read by utility/loadingPage.js) */
+  --comp-loader-gutter: var(--sys-space-3xl);
+  --comp-loader-gutter-narrow: var(--sys-space-lg);
+  --comp-loader-track-mix: 20%;
+  --comp-loader-count-font-size: clamp(var(--sys-font-size-title-lg), 7vw, var(--sys-font-size-display-md));
+
+  /* Component: Navigation */
+  --comp-nav-width-home: var(--sys-space-7xl);
+  --comp-nav-height-home: var(--sys-space-56);
+  --comp-nav-width-project: var(--sys-space-72);
+  --comp-nav-width-project-expanded: var(--ref-size-272);
+  --comp-skip-link-offset: calc(-1 * var(--sys-space-80));
+  --comp-project-index-list-top: var(--sys-space-56);
+  --comp-page-progress-offset: calc(-1 * var(--sys-space-hairline));
+  --comp-section-scroll-margin: var(--sys-space-80);
+
+  /* Component: Hero */
+  --comp-hero-card-width: 11rem;
+  --comp-hero-card-width-phone: 7rem;
+  --comp-hero-card-width-stacked: var(--sys-space-160);
+  --comp-hero-padding-top: 24rem;
+  --comp-hero-padding-bottom: var(--sys-space-160);
+  --comp-hero-copy-bottom: var(--sys-space-88);
+  --comp-hero-copy-width: var(--ref-size-512);
+  --comp-hero-line1-indent: 1em;
+
+  /* Component: Home sections */
+  --comp-project-cover-bleed: calc(-1 * var(--sys-space-72));
+  --comp-project-cover-width: var(--ref-size-512);
+  --comp-about-portrait-width: 29rem;
+  --comp-chapter-title-padding-top: var(--sys-space-3xl);
+  --comp-menu-item-padding-block: var(--sys-space-sm);
+  --comp-kitchen-peek-hint-padding-block: var(--sys-space-xs);
+  --comp-kitchen-peek-width: var(--ref-size-272);
+  --comp-kitchen-recipe-width: 36rem;
+  --comp-life-card-width: 22rem;
+  --comp-life-card-width-landscape: 33rem;
+  --comp-life-photo-height: 24rem;
+  --comp-typing-caret-height: 1em;
+
+  /* Component: Measures (max text widths) */
+  --comp-measure-copy: 38rem;
+  --comp-measure-quote: 22rem;
+  --comp-measure-lead: 44rem;
+
+  /* Component: Project pages */
+  --comp-goal-icon-fluid: 18vw; /* icon circle grows with the window between its min and max */
+  --comp-goal-icon-fill: 0.8; /* artwork share of the circle */
+  --comp-goal-icon-art-size: var(--sys-space-8xl);
+  --comp-text-link-underline-offset: 0.2em;
+  --comp-media-placeholder-min-height: 12rem;
 }

@@ -20,13 +20,13 @@ Do not use as a generic two-option form control.
 
 ## 4. Tokens used
 
-- `--color-background`
-- `--color-border`
-- `--color-interactive-hover`
-- `--color-text-inverse`
-- `--space-*`
-- `--font-weight-medium`
-- `--z-content`
+- `--sys-color-background`
+- `--sys-color-border`
+- `--sys-color-interactive-hover`
+- `--sys-color-text-inverse`
+- `--sys-space-*`
+- `--sys-font-weight-medium`
+- `--sys-z-content`
 
 ## 5. Props/API
 

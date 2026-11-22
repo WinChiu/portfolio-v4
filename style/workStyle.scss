@@ -1,19 +1,14 @@
-@use 'ui-primitives';
-@use 'type-scale';
 @use 'lenis';
-
-@use 'work/typography';
-@use 'work/components/project-header';
-@use 'work/components/nav';
-@use 'work/components/translator';
-@use 'work/project-page';
-@use 'work/components/project-module';
-@use 'work/components/quote';
-@use 'work/components/media-aside';
-@use 'work/components/icon-list';
-@use 'work/components/process-flow';
-@use 'work/project-overrides';
-@use 'work/reveal';
-@use 'work/components/loader';
+@use 'scrollbar';
+@use 'page-transition';
+@use '../components/Button/button';
+@use 'work/base';
+@use 'work/nav-rail';
+@use 'work/header';
+@use 'work/sections';
+@use 'work/media';
+@use 'work/lists';
+@use 'work/theme';
+@use 'work/modules';
 
 @import url('./tokens.css');

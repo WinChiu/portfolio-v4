@@ -31,6 +31,8 @@
 
   const ScrollTrigger = window.ScrollTrigger;
   if (ScrollTrigger) {
+    // Phone browser bars showing/hiding resize the viewport; that must not re-measure the whole page.
+    ScrollTrigger.config({ ignoreMobileResize: true });
     lenis.on('scroll', ScrollTrigger.update);
   }
 

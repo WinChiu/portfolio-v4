@@ -1,85 +1,35 @@
-import '../HairlineCover/hairlineCover.js?v=cb43968d';
+// ProjectCard: one case study in the Work list: number, tag, title, description, links and a cover.
+//   UI.ProjectCard({ number: '01', tag: 'UX', title: 'RFID', description: '…', imageUrl: 'img/…',
+//                    projectUrl: 'pages/en/rfid.html', type: 'design', coverType: 'delivery', lang: 'en' })
+//
+// type       'design' | 'code'. A code project starts hidden (the Work tabs show and hide cards by [data-type]) and may
+//            carry a `siteUrl`, which adds a "View site" button.
+// coverType  'component-tray' | 'delivery' draws the cover with <hairline-cover> (the image is its fallback).
+// tag, title, description may contain markup; everything else is escaped.
+// Composes Button.
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('../escape.js'), require('../Button/button.js'));
+  else { root.UI = root.UI || {}; root.UI.ProjectCard = factory(root.UI.escape, root.UI.Button); }
+})(typeof self !== 'undefined' ? self : this, function (escape, Button) {
+  const DRAWN_COVERS = ['component-tray', 'delivery'];
 
-class ProjectCard extends HTMLElement {
-  constructor() {
-    super();
-  }
-
-  connectedCallback() {
-    const number = this.getAttribute('number') || '';
-    const title = this.getAttribute('title') || '';
-    const tag = this.getAttribute('tag') || '';
-    const description = this.getAttribute('description') || '';
-    const imageUrl = this.getAttribute('image-url') || '';
-    const coverType = this.getAttribute('cover-type');
-    const projectUrl = this.getAttribute('project-url') || '#';
-    const siteUrl = this.getAttribute('site-url');
-    const type = this.getAttribute('type') || 'design';
-    const lang = this.getAttribute('lang') || 'zh';
-
-    const viewProjectText = lang === 'zh' ? '查看專案' : 'View Project';
-    const viewSiteText = lang === 'zh' ? '查看網站' : 'View Site';
-    const hideClass = type === 'code' ? 'workHide' : '';
-    const cover = ['component-tray', 'delivery'].includes(coverType)
-      ? `<hairline-cover figure="${coverType}" lang="${lang}"><img class="media__img" src="${imageUrl}" alt="${title}" /></hairline-cover>`
-      : `<img class="media__img" src="${imageUrl}" alt="${title}" />`;
-    const buttonClass = `ui-button ui-button--primary block__button block__button--${
-      type === 'code' ? 'code' : 'design'
-    }`;
-
-    // Create the project button
-    const projectButton = `
-      <a
-        href="${projectUrl}"
-        class="${buttonClass}"
-      >
-        <p>${viewProjectText}</p>
-      </a>`;
-
-    // Create the site button if siteUrl exists
-    const siteButton = siteUrl
-      ? `
-      <a
-        href="${siteUrl}"
-        class="ui-button ui-button--secondary block__button--viewSite"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <p>${viewSiteText}</p>
-      </a>`
+  return function ProjectCard({ number, tag, title, description, imageUrl, coverType = '', lang = 'en', type = 'design', projectUrl, siteUrl = '' }) {
+    const external = /^https?:\/\//.test(projectUrl);
+    const isCode = type === 'code';
+    const image = `<img src="${escape(imageUrl)}" alt="${escape(title)}" loading="lazy" />`;
+    const cover = DRAWN_COVERS.includes(coverType)
+      ? `<hairline-cover figure="${escape(coverType)}" lang="${escape(lang)}">${image}</hairline-cover>`
+      : image;
+    const site = isCode && siteUrl
+      ? Button({ label: 'View site', href: siteUrl, variant: 'outline', icon: '↗', external: true })
       : '';
-
-    // Create the button container with appropriate structure
-    const buttonContainer = siteUrl
-      ? `<div class="block__buttonContainer">
-           ${projectButton}
-           ${siteButton}
-         </div>`
-      : projectButton;
-
-    this.innerHTML = `
-      <div class="ui-card ui-card--project container container--content ${hideClass}" data-type="${type}">
-        <figure class="media media--workCover">
-          ${cover}
-        </figure>
-        <article class="block block--introduction">
-          <div class="block__header">
-            <h1 class="block__number">${number}</h1>
-            <div class="block__content">
-              <h3 class="block__title">${title}</h3>
-              <h4 class="ui-tag ui-tag--text block__tag">${tag}</h4>
-            </div>
-          </div>
-          <p class="block__description">${description}</p>
-          ${buttonContainer}
-        </article>
-      </div>`;
-  }
-}
-
-// Define the custom element
-if (!customElements.get('project-card')) {
-  customElements.define('project-card', ProjectCard);
-}
-
-export default ProjectCard;
+    return `<article class="project-card${isCode ? ' workHide' : ''}" data-type="${escape(type)}" aria-hidden="${isCode}">
+          <span class="project-card__number">${escape(number)}</span>
+          <div class="project-card__body"><div class="project-card__header">
+            <p class="project-card__tags mono">${tag}</p><h3 class="project-card__title">${title}</h3>
+            <p class="project-card__description">${description}</p></div>
+            <div class="project-card__links">${Button({ label: 'View project', href: projectUrl, variant: 'outline', icon: '→', external })}
+            ${site}</div>
+          </div><div class="project-card__cover">${cover}</div></article>`;
+  };
+});

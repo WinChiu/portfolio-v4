@@ -1,0 +1,102 @@
+// Project pages / nav-rail
+
+/* Fixed project index and page progress. */
+.index {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--nav);
+  padding: var(--sys-space-5xl) var(--sys-space-xl);
+  border-right: var(--sys-space-hairline) solid var(--sys-color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: var(--sys-z-sticky);
+  background: var(--sys-color-background);
+  overflow: hidden;
+}
+/* Page progress fills the rail from top to bottom. */
+.index__fill {
+  position: absolute; inset: 0;
+  background: var(--fill-gradient, var(--sys-color-transparent));
+  pointer-events: none;
+  z-index: var(--sys-z-base);
+}
+.index__list { list-style: none; display: flex; flex-direction: column; gap: var(--sys-space-md); }
+.index__list a {
+  position: relative;
+  display: block;
+  font-size: var(--sys-font-size-small);
+  line-height: var(--sys-line-height-relaxed);
+  color: var(--sys-color-text-muted);
+  white-space: nowrap;
+  transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+}
+.index__list a .n { display: none; }
+.index__list a:hover { color: var(--sys-color-text); }
+.index__list a.is-active { color: var(--accent-ink); }
+/* text that sits on the filled part flips to paper */
+.index__list a.on-fill, .index__list a.on-fill:hover { color: var(--sys-color-background); }
+.index__list a.on-fill:not(.is-active) { opacity: 0.72; }
+.with-nav { margin-left: var(--nav); }
+/* Collapsed rail; expansion overlays the project. */
+.project-page .index { width: var(--sys-space-72); gap: var(--sys-space-3xl); padding: var(--sys-space-2xl) var(--sys-space-lg); align-items: stretch; overflow: hidden; transition: width var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth); }
+.project-page .index > :not(.index__fill) { position: relative; z-index: var(--sys-z-content); }
+.index.is-filled .index__back, .index.is-filled .index__foot a { transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth); }
+.index__back.on-fill, .index__foot a.on-fill, .index__back.on-fill:hover, .index__foot a.on-fill:hover { color: var(--sys-color-background); }
+.project-page .index__list a.on-fill::after { background: var(--sys-color-background); }
+.index__back, .index__foot a { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); color: var(--sys-color-text-muted); transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth); }
+.index__back:hover, .index__foot a:hover { color: var(--sys-color-text); }
+.index__back { flex-shrink: 0; }
+.index__back, .index__foot a { display: flex; align-items: center; justify-content: center; width: var(--sys-space-3xl); white-space: nowrap; overflow: visible; }
+.project-page .index__list { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; justify-content: safe center; gap: var(--sys-space-3xs); }
+.project-page .index__list a {
+  display: grid; grid-template-columns: var(--sys-space-3xl) minmax(0, 1fr); align-items: start;
+  padding: var(--sys-space-xs) var(--sys-space-0); min-height: var(--sys-space-4xl); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); white-space: normal;
+}
+.project-page .index__list a .n { text-align: center; display: block; font-family: var(--sys-font-family-mono); font-variant-numeric: tabular-nums; line-height: var(--sys-line-height-relaxed); }
+.project-page .index__list a .t { font-size: var(--sys-font-size-caption); line-height: var(--sys-line-height-relaxed); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project-page .index__list a::after { left: var(--sys-space-2xs); right: auto; width: var(--sys-space-lg); bottom: var(--sys-space-3xs); transform-origin: center; }
+.project-page .index__foot { flex-shrink: 0; }
+.mobile-current, .sections-toggle, .page-progress { display: none; }
+@media (min-width: 48.001rem) {
+  /* ---------- rail: numbers only until hover / focus ---------- */
+  /* The number column, Back and Top never move: expanding only reveals the labels to their right. */
+  .project-page .index:not(:hover):not(:focus-within) .t { display: none; }
+  .project-page .index:hover, .project-page .index:focus-within { width: var(--comp-nav-width-project-expanded); }
+}
+/* numbers: the current section stands out, the rest are pale */
+.project-page .index__list a:not(.is-active) { opacity: .5; }
+.project-page .index__list a.is-active { opacity: 1; font-weight: var(--sys-font-weight-medium); }
+.project-page .index__list a.on-fill:not(.is-active) { opacity: .42; }
+@media (max-width: 48rem) {
+  /* ---------- mobile: top bar ---------- */
+  .project-page .index { inset: 0 0 auto; width: 100%; height: var(--sys-space-56); padding: var(--sys-space-0) var(--sys-space-md); border: 0; border-bottom: var(--sys-space-hairline) solid var(--sys-color-border); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sys-space-md); align-items: center; }
+  .project-page .index__foot { display: none; }
+  .project-page .index__back { line-height: var(--sys-line-height-relaxed); }
+  .mobile-current { display: none; }
+  .sections-toggle { display: block; justify-self: end; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: var(--sys-line-height-relaxed); text-align: center; color: var(--sys-color-text); padding: var(--sys-space-3xs) var(--sys-space-xs); border: var(--sys-space-hairline) solid var(--sys-color-border); background: var(--sys-color-background); cursor: pointer; font-size: var(--sys-font-size-caption); }
+  .project-page .index__list { display: none; position: absolute; top: var(--comp-project-index-list-top); left: 0; right: 0; max-height: calc(100dvh - var(--sys-space-56)); background: var(--sys-color-background); border-bottom: var(--sys-space-hairline) solid var(--sys-color-border); padding: var(--sys-space-md) var(--gutter); }
+  .project-page .index.is-open .index__list { display: flex; flex-direction: column; justify-content: flex-start; }
+  .project-page .index__list a .t { display: block; overflow: visible; white-space: normal; }
+  /* the whole top bar fills with the reading progress (left to right) */
+  .index__fill { display: block; background: var(--accent-ink); transform: scaleX(var(--page-progress, 0)); transform-origin: left; }
+  .page-progress { display: none; }
+  .project-page .with-nav { margin: var(--sys-space-0); padding: var(--sys-space-56) var(--sys-space-0) var(--sys-space-0); }
+}
+.project-page .index__list a { height: var(--sys-space-4xl); overflow: hidden; flex-shrink: 0; color: var(--accent-ink); }
+.project-page .index__list a .n { width: var(--sys-space-3xl); }
+.project-page .index__list a .t { padding-left: var(--sys-space-sm); }
+.project-page .index__list { padding-left: var(--sys-space-0); }
+.project-page .index__list li { padding: var(--sys-space-0); flex-shrink: 0; }
+.project-page .index__list a.on-fill { color: var(--sys-color-background); }
+@media (max-width: 48rem) {
+  .project-page .index { overflow: visible; }
+  .project-page .index:hover, .project-page .index:focus-within { width: 100%; }
+  .project-page .index__list a.on-fill { color: var(--accent-ink); }
+  .project-page .index__back.on-fill { color: var(--sys-color-background); }
+  .project-page .index__list a .t { overflow: hidden; white-space: nowrap; }
+  .project-page .index__list { overflow-y: auto; }
+  .project-page .index .index__list { position: absolute; }
+  .project-page .index .page-progress { position: absolute; }
+}

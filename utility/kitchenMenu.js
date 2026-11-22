@@ -1,7 +1,7 @@
 ﻿(function () {
   const section = document.querySelector('.section--kitchenMenu');
   if (!section) return;
-  const kitchen = window.__HOME_PAGE_CONTENT__[document.documentElement.lang === 'zh' ? 'zh' : 'en'].kitchen;
+  const kitchen = window.__HOME_PAGE_CONTENT__.en.kitchen;
   const { items, courses, labels } = kitchen;
   const overlay = section.querySelector('.kitchenMenu__overlay');
   const sheet = overlay.querySelector('.kitchenMenu__sheet');
@@ -9,9 +9,8 @@
   document.body.append(overlay);
   const escape = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const pad = (n) => String(n).padStart(2, '0');
-  const flame = '<svg viewBox="0 0 11 14" aria-hidden="true"><path d="M5.5 13C2.5 13 1 11 1 8.6 1 6 3.4 4.6 4 1.2c2.4 1.6 3.3 3.4 3 5.4.8-.5 1.4-1.3 1.6-2.2C9.6 5.6 10 7 10 8.6 10 11 8.5 13 5.5 13Z"/></svg>';
-  const flames = (n) => `<span class="kitchenMenu__effort" role="img" aria-label="Effort ${n} of 3">${[1, 2, 3].map((k) => `<span class="${k > n ? 'is-off' : ''}">${flame}</span>`).join('')}</span>`;
-  const leader = '<span class="kitchenMenu__leader" aria-hidden="true"></span>';
+  const flames = (level) => UI.EffortMeter({ level });
+  const leader = UI.Leader();
   // Tabler Icons (outline): chevron-left, chevron-right, x.
   const ICON_PATHS = {
     chevronLeft: '<path d="M15 6l-6 6l6 6"/>',
@@ -24,7 +23,6 @@
   let trigger = null;
   let savedScroll;
   let background = [];
-  let frame;
 
   function render(index, focusAction) {
     current = (index + items.length) % items.length;
@@ -35,17 +33,12 @@
     sheet.innerHTML = `<div class="kitchenMenu__sheetIn">
       <div class="kitchenMenu__sheetTop"><div class="kitchenMenu__nav"><button type="button" class="kitchenMenu__iconBtn" data-go="-1" aria-label="${escape(labels.prev)}">${icon('chevronLeft')}</button><button type="button" class="kitchenMenu__iconBtn" data-go="1" aria-label="${escape(labels.next)}">${icon('chevronRight')}</button></div><button type="button" class="kitchenMenu__iconBtn kitchenMenu__close" aria-label="${escape(labels.close)}">${icon('x')}</button></div>
       <div class="kitchenMenu__hero"><div class="kitchenMenu__photo"><img src="${escape(item.imageSrc.replace(/^\//, './'))}" alt="${escape(item.imageAlt)}"></div><div>
-        <h2 class="kitchenMenu__sZh" id="kitchen-recipe-name">${escape(item.nameZh)}</h2><p class="kitchenMenu__sEn">${escape(item.nameEn)}</p><p class="kitchenMenu__sNote">${escape(item.note)}</p>
-        <dl class="kitchenMenu__meta">${row(labels.effort, flames(item.effort))}${item.time ? row(labels.time, escape(item.time)) : ''}${row(labels.course, escape(`${course.zh} ${course.en}`))}</dl>
+        <h2 class="kitchenMenu__sZh" lang="zh-Hant" id="kitchen-recipe-name">${escape(item.nameZh)}</h2><p class="kitchenMenu__sEn">${escape(item.nameEn)}</p><p class="kitchenMenu__sNote">${escape(item.note)}</p>
+        <dl class="kitchenMenu__meta">${row(labels.course, escape(course.en))}${item.time ? row(labels.time, escape(item.time)) : ''}${row(labels.effort, flames(item.effort))}</dl>
       </div></div>
       ${ingredients || method ? `<div class="kitchenMenu__cols">${ingredients}${method}</div>` : `<p class="kitchenMenu__comingSoon">${escape(labels.comingSoon)}</p>`}
     </div>`;
     sheet.scrollTop = 0;
-    if (frame) cancelAnimationFrame(frame);
-    const image = sheet.querySelector('.kitchenMenu__photo img');
-    // Commit the concealed state before starting each new photo wipe.
-    image.getBoundingClientRect();
-    frame = requestAnimationFrame(() => image.classList.add('is-revealed'));
     (focusAction ? sheet.querySelector(focusAction) : sheet).focus({ preventScroll: true });
   }
 
@@ -53,7 +46,9 @@
     trigger = button;
     const body = document.body;
     const html = document.documentElement;
-    savedScroll = { body: body.style.overflow, html: html.style.overflow, lenisStopped: window.lenis?.isStopped };
+    savedScroll = { body: body.style.overflow, html: html.style.overflow, paddingRight: body.style.paddingRight, lenisStopped: window.lenis?.isStopped };
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
+    if (scrollbarWidth > 0) body.style.paddingRight = `${parseFloat(getComputedStyle(body).paddingRight) + scrollbarWidth}px`;
     window.lenis?.stop();
     body.style.overflow = 'hidden';
     html.style.overflow = 'hidden';
@@ -72,6 +67,7 @@
     overlay.inert = true;
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = savedScroll.body;
+    document.body.style.paddingRight = savedScroll.paddingRight;
     document.documentElement.style.overflow = savedScroll.html;
     if (!savedScroll.lenisStopped) window.lenis?.start();
     background.forEach(([node, inert]) => { node.inert = inert; });
@@ -82,15 +78,20 @@
   // Hover preview: the dish photo follows the cursor (mouse only; touch has
   // no hover, so phones go straight to the sheet).
   const menuEl = section.querySelector('.kitchenMenu__menu');
+  // Narrow windows (and touch screens) get the photo card in the bottom corner; wide windows with a mouse get
+  // the photo that follows the cursor.
+  const narrow = window.matchMedia('(max-width: 48rem)');
+  const touch = window.matchMedia('(hover: none), (pointer: coarse)');
+  const useDock = () => narrow.matches || touch.matches;
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     const peek = document.createElement('div');
     peek.className = 'kitchenMenu__peek';
     peek.setAttribute('aria-hidden', 'true');
-    peek.innerHTML = '<img alt="">';
+    peek.innerHTML = '<img alt=""><p class="kitchenMenu__peekHint mono">Click to see the recipe →</p>';
     document.body.append(peek);
     const peekImg = peek.querySelector('img');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const OFFSET_X = 96; // gap between cursor and the preview's near edge, so it clears the dish name
+    const OFFSET_X = 24;
     let target = { x: 0, y: 0 };
     let pos = { x: 0, y: 0 };
     let raf = null;
@@ -106,7 +107,7 @@
       const w = peek.offsetWidth, h = peek.offsetHeight;
       let x = event.clientX + OFFSET_X;
       if (x + w > window.innerWidth) x = event.clientX - OFFSET_X - w;
-      target = { x, y: Math.min(Math.max(event.clientY - h / 2, 0), window.innerHeight - h) };
+      target = { x: Math.max(8, Math.min(x, window.innerWidth - w - 8)), y: Math.max(8, Math.min(event.clientY - 80, window.innerHeight - h - 8)) };
     };
     const hide = () => peek.classList.remove('is-on');
     menuEl.addEventListener('mousemove', (event) => {
@@ -114,8 +115,8 @@
       if (!raf) raf = requestAnimationFrame(loop);
     });
     menuEl.addEventListener('mouseover', (event) => {
-      const dish = event.target.closest('.kitchenMenu__dish');
-      if (!dish || current !== null) return hide();
+      const dish = event.target.closest('.menu-item');
+      if (!dish || current !== null || useDock()) return hide();
       const item = items[Number(dish.dataset.index)];
       const src = item.imageSrc.replace(/^\//, './');
       if (peekImg.getAttribute('src') !== src) peekImg.src = src;
@@ -127,8 +128,55 @@
     window.addEventListener('scroll', hide, { passive: true });
   }
 
+  // Narrow windows and touch screens: the dish whose row is nearest the middle of the screen gets a small
+  // photo card pinned to the bottom corner while you scroll through the menu; tapping the card opens its recipe.
+  {
+    const dock = document.createElement('button');
+    dock.type = 'button';
+    dock.className = 'kitchenMenu__dock';
+    dock.setAttribute('aria-hidden', 'true');
+    dock.tabIndex = -1;
+    dock.innerHTML = '<img alt=""><span class="kitchenMenu__peekHint mono">Tap for recipe →</span>';
+    document.body.append(dock);
+    const dockImg = dock.querySelector('img');
+    const rows = [...menuEl.querySelectorAll('.menu-item')];
+    let focused = null;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const box = menuEl.getBoundingClientRect();
+      const mid = window.innerHeight * 0.5;
+      let best = null;
+      if (useDock() && current === null && box.top < mid && box.bottom > mid) {
+        let bestDistance = Infinity;
+        rows.forEach((row) => {
+          const r = row.getBoundingClientRect();
+          const distance = Math.abs(r.top + r.height / 2 - mid);
+          if (distance < bestDistance) { bestDistance = distance; best = row; }
+        });
+      }
+      if (best !== focused) {
+        if (focused) focused.classList.remove('is-focus');
+        focused = best;
+        if (focused) {
+          focused.classList.add('is-focus');
+          const src = items[Number(focused.dataset.index)].imageSrc.replace(/^\//, './');
+          if (dockImg.getAttribute('src') !== src) dockImg.src = src;
+        }
+      }
+      dock.classList.toggle('is-on', Boolean(focused));
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    window.addEventListener('scroll', schedule, { passive: true });
+    if (window.lenis && window.lenis.on) window.lenis.on('scroll', schedule);
+    window.addEventListener('resize', schedule);
+    dock.addEventListener('click', () => { if (focused) open(Number(focused.dataset.index), focused); });
+    new MutationObserver(schedule).observe(overlay, { attributes: true, attributeFilter: ['class'] });
+    schedule();
+  }
+
   menuEl.addEventListener('click', (event) => {
-    const button = event.target.closest('.kitchenMenu__dish');
+    const button = event.target.closest('.menu-item');
     if (button) open(Number(button.dataset.index), button);
   });
   overlay.querySelector('.kitchenMenu__scrim').addEventListener('click', close);

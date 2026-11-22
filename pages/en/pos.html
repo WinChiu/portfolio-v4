@@ -13,16 +13,12 @@
     <script src="../../utility/lenis.min.js"></script>
     <script src="../../utility/smoothScroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.dotdotdot/4.1.0/dotdotdot.min.js"></script>
-    <script
-      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
-      type="module"
-    ></script>
     <link rel="stylesheet" href="../../style/image-zoom.css" />
     <link rel="stylesheet" href="../../style/workStyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       rel="stylesheet"
     />
     <title>POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design</title>
@@ -30,152 +26,116 @@
   </head>
   <body class="project-page project-page--pos">
     <!-- Generated from project content data -->
-    <div class="ui-loader page-loader">
-      <dotlottie-wc
-        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
-        autoplay
-        loop
-      ></dotlottie-wc>
-    </div>
+    <div class="ui-loader page-loader"></div>
 
-
-    <main class="project-header" id="top">
-      <div class="project-header__inner">
-        <img
-          src="../../img/projects/pos/image-pos-projectHeader-main.webp"
-          alt="POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design"
-          class="project-header__image"
-        />
-        <div class="project-header__content">
-        <div class="project-header__tags">
-          <div class="ui-tag project-header__tag">
-            <p>E-commerce</p>
-          </div>
-          <div class="ui-tag project-header__tag">
-            <p>Finance</p>
-          </div>
-        </div>
-          <h3 class="project-header__title">POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design</h3>
-          <div class="project-header__metadata">
-            <div class="ui-metadata-item project-header__meta-item">
-              <p class="ui-metadata-item__label project-header__meta-label">Duration</p>
-              <p class="ui-metadata-item__value project-header__meta-value">Jul. 2022 ~ Nov. 2022</p>
-            </div>
-            <div class="ui-metadata-item project-header__meta-item">
-              <p class="ui-metadata-item__label project-header__meta-label">Role</p>
-              <p class="ui-metadata-item__value project-header__meta-value">UX Designer</p>
-            </div>
-            <div class="ui-metadata-item project-header__meta-item">
-              <p class="ui-metadata-item__label project-header__meta-label">Responsibility</p>
-              <p class="ui-metadata-item__value project-header__meta-value">Process Planning, UI Mock-up, UI Testing</p>
-            </div>
-            <div class="ui-metadata-item project-header__meta-item">
-              <p class="ui-metadata-item__label project-header__meta-label">Company</p>
-              <p class="ui-metadata-item__value project-header__meta-value">SHOPLINE</p>
-            </div>
-          </div>
-        </div>
+<a class="skip-link mono" href="#top">Skip to project</a>
+    <main class="with-nav">
+<header class="project-header p-head" id="top" tabindex="-1">
+      <div class="p-titleblock">
+        <h1 class="project-header__title p-title">POS TW/HK Payment Gateway Integration - Forward and Reverse Process Design</h1>
       </div>
-    </main>
+      <div class="project-header__metadata p-facts">
+        <p class="p-facts__line project-header__meta-item"><span>UX Designer</span><span>SHOPLINE</span><span>Jul. 2022 ~ Nov. 2022</span></p>
+        <p class="p-facts__resp project-header__meta-item">Process Planning, UI Mock-up, UI Testing</p>
+      </div>
+    </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
-        <div class="project-page__section project-page__section--narrow project-page__section--flush-top">
-        <div class="project-module project-module--section-title">
-        <h3 class="project-module__heading">Project Background</h3>
-
-        <div class="project-module__line"></div>
-        </div>
-        <div class="project-module project-module--text">
-        <p class="project-module__text">SHOPLINE is an e-commerce platform that integrates online and
+        <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
+              <div class="sec__grid">
+                <span class="sec__num" aria-hidden="true">01</span>
+                <div class="sec__content">
+                  <h2 class="project-module__chapter-title" id="toc1-title">Project Background</h2>
+                  <div class="project-module project-module--text">
+        <p class="project-module__text body">SHOPLINE is an e-commerce platform that integrates online and
                                                                                                               offline sales, offering a POS system to help merchants manage
                                                                                                               payment processes in physical stores.</p>
-        <p class="project-module__text">At the time of this project, SHOPLINE's POS system in Taiwan had
+        <p class="project-module__text body">At the time of this project, SHOPLINE's POS system in Taiwan had
                                                                                                               not integrated its own payment service, requiring merchants to
                                                                                                               contract with banks directly. In Hong Kong, although payment
                                                                                                               integration was completed, multiple card terminal brands needed
                                                                                                               support, and fees remained higher than the market average.</p>
 
         </div>
-        </div>
-        <div class="project-page__section project-page__section--narrow project-page__section--workflow">
         <div class="project-module project-module--image">
         <img src="../../img/projects/pos/image-pos-workflow-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
         </div>
-        </div>
-        <div class="project-page__section project-page__section--featured project-page__section--featured-gray project-page__section--narrow">
-        <div class="project-module project-module--section-title">
-        <h3 class="project-module__heading">Problem Definition</h3>
-
-        <div class="project-module__line"></div>
-        </div>
-        <div class="ui-quote project-module project-module--feature-quote project-module--bg-quote">
+                </div>
+              </div>
+            </section>
+        <section class="project-page__section sec sec--problem" id="toc2" aria-labelledby="toc2-title">
+              <div class="sec__grid">
+                <span class="sec__num" aria-hidden="true">02</span>
+                <div class="sec__content">
+                  <h2 class="project-module__chapter-title" id="toc2-title">Problem Definition</h2>
+                  <div class="ui-quote project-module project-module--feature-quote project-module--bg-quote sec--dark">
         <h3 class="project-module__heading">Lack of Payment Integration and High Pricing Undermining
                                                                                                               SHOPLINE's Competitiveness</h3>
-        <div class="project-module__callout-list">
-        <div class="ui-callout project-module__callout">
+        <div class="project-module__callout-list problems">
+        <div class="ui-callout project-module__callout callout">
           <p class="project-module__callout-title">No Payment Integration, Reducing Product Competitiveness</p>
-          <p class="project-module__text">In the Taiwan market, the lack of card payment integration means merchants using SHOPLINE services must handle credit card payments separately, which decreases checkout efficiency.</p>
+          <p class="project-module__text body">In the Taiwan market, the lack of card payment integration means merchants using SHOPLINE services must handle credit card payments separately, which decreases checkout efficiency.</p>
         </div>
-        <div class="ui-callout project-module__callout">
+        <div class="ui-callout project-module__callout callout">
           <p class="project-module__callout-title">Higher-than-Average Pricing, Hindering Business Promotion</p>
-          <p class="project-module__text">In the Hong Kong market, the current card terminal payment cost is higher than the market average, making it difficult to promote and adopt the POS system.</p>
+          <p class="project-module__text body">In the Hong Kong market, the current card terminal payment cost is higher than the market average, making it difficult to promote and adopt the POS system.</p>
         </div>
         </div>
         </div>
-        </div>
-        <div class="project-page__section project-page__section--featured project-page__section--featured-yellow project-page__section--narrow">
-        <div class="project-module project-module--section-title">
-        <h3 class="project-module__heading">Goal Breakdown</h3>
-
-        <div class="project-module__line"></div>
-        </div>
-        <div class="project-module project-module--icon-list-horizontal">
-        <div class="project-module__item">
-        <img src="../../img/sketch-money.svg" alt="" />
+                </div>
+              </div>
+            </section>
+        <section class="project-page__section sec" id="toc3" aria-labelledby="toc3-title">
+              <div class="sec__grid">
+                <span class="sec__num" aria-hidden="true">03</span>
+                <div class="sec__content">
+                  <h2 class="project-module__chapter-title" id="toc3-title">Goal Breakdown</h2>
+                  <div class="project-module project-module--icon-list-horizontal goals">
+        <article class="project-module__item">
+        <div class="goal-icon"><img src="../../img/sketch-money.svg" alt="" /></div>
         <div class="project-module__item-content">
         <h6 class="project-module__item-title"><span class="project-module__item-label">Business Goal</span>Increase SHOPLINE Payment Revenue</h6>
-        <p class="project-module__item-text">Increase the number of orders using SHOPLINE Payment to <span class="highlight">boost credit card
+        <p class="project-module__item-text body">Increase the number of orders using SHOPLINE Payment to <span class="highlight">boost credit card
                                                                                                                   transaction fee income.</span></p>
         </div>
-        </div>
-        <div class="project-module__item">
-        <img src="../../img/sketch-function.svg" alt="" />
+        </article>
+        <article class="project-module__item">
+        <div class="goal-icon"><img src="../../img/sketch-function.svg" alt="" /></div>
         <div class="project-module__item-content">
         <h6 class="project-module__item-title"><span class="project-module__item-label">Product Goal</span>Provide Comprehensive Payment Services</h6>
-        <p class="project-module__item-text">Deliver a <span class="highlight">full suite of SHOPLINE Payment services</span> (checkout,
+        <p class="project-module__item-text body">Deliver a <span class="highlight">full suite of SHOPLINE Payment services</span> (checkout,
                                                                                                                   cancellation, refund, returns) to enable merchants to offer
                                                                                                                   credit card payment options to consumers.</p>
         </div>
-        </div>
-        <div class="project-module__item">
-        <img src="../../img/sketch-webDesign.svg" alt="" />
+        </article>
+        <article class="project-module__item">
+        <div class="goal-icon"><img src="../../img/sketch-webDesign.svg" alt="" /></div>
         <div class="project-module__item-content">
         <h6 class="project-module__item-title"><span class="project-module__item-label">Design Goal</span>Provide Seamless Payment Experience</h6>
-        <p class="project-module__item-text">Ensure that merchants can <span class="highlight">quickly complete</span> the payment process
+        <p class="project-module__item-text body">Ensure that merchants can <span class="highlight">quickly complete</span> the payment process
                                                                                                                   while <span class="highlight">effectively resolving errors</span> to prevent prolonged
                                                                                                                   customer wait times.</p>
         </div>
+        </article>
         </div>
-        </div>
-        </div>
-        <div class="project-page__section project-page__section--wide pos-section--analysis">
-        <div class="project-module project-module--media-aside">
+        <div class="project-module project-module--media-aside media-aside">
         <div class="project-module__media">
         <img src="../../img/projects/pos/image-pos-complexFlow-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
         </div>
         <div class="project-module__aside">
         <h3 class="project-module__heading">Challenge</h3>
-        <p class="project-module__text">Evaluate the POS payment architecture by reviewing transaction timing, status synchronization, and refund handling across various transaction rules and outcomes. Payment flows required special attention, as inconsistent or delayed statuses directly affected how clearly the system could communicate results to users.</p>
+        <p class="project-module__text body">Evaluate the POS payment architecture by reviewing transaction timing, status synchronization, and refund handling across various transaction rules and outcomes. Payment flows required special attention, as inconsistent or delayed statuses directly affected how clearly the system could communicate results to users.</p>
         </div>
         </div>
-        </div>
-        <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
-        <div class="project-module project-module--section-title">
-        <h3 class="project-module__heading">Solution</h3>
-
-        <div class="project-module__line"></div>
-        </div>
-        <div class="project-module project-module--subsection-title">
+                </div>
+              </div>
+            </section>
+        <section class="project-page__section sec" id="toc4" aria-labelledby="toc4-title">
+              <div class="sec__grid">
+                <span class="sec__num" aria-hidden="true">04</span>
+                <div class="sec__content">
+                  <h2 class="project-module__chapter-title" id="toc4-title">Solution</h2>
+                  <div class="project-module project-module--subsection-title">
         <h6 class="project-module__subheading">Clearly Remind Merchants of Incomplete Card Terminal Settlement</h6>
         </div>
         <div class="project-module project-module--text">
@@ -188,10 +148,8 @@
         <div class="project-module project-module--image">
         <img src="../../img/projects/pos/image-pos-cashFlow-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
         </div>
-        </div>
-        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
-        <div class="ui-quote project-module project-module--quote">
-        <p class="project-module__text">Design Focus: Ensure that important actions are promptly
+        <div class="ui-quote project-module project-module--quote nda">
+        <p class="project-module__text body">Design Focus: Ensure that important actions are promptly
                                                                                                               communicated to merchants without adding informational overload.</p>
         </div>
         <div class="project-module project-module--text">
@@ -204,8 +162,6 @@
         <div class="project-module project-module--image">
         <img src="../../img/projects/pos/image-pos-sol1New-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
         </div>
-        </div>
-        <div class="project-page__section project-page__section--narrow pos-section--solution-intro">
         <div class="project-module project-module--subsection-title">
         <h6 class="project-module__subheading">Real-Time Refund Restrictions to Reduce Operational Errors</h6>
         </div>
@@ -221,10 +177,8 @@
         <div class="project-module project-module--image">
         <img src="../../img/projects/pos/image-pos-figmaFlow.webp" alt="" class="ui-zoomable-media" data-zoom-image />
         </div>
-        </div>
-        <div class="project-page__section project-page__section--narrow pos-section--solution-detail">
-        <div class="ui-quote project-module project-module--quote">
-        <p class="project-module__text">Design Focus: Remind and prevent merchants from entering incorrect
+        <div class="ui-quote project-module project-module--quote nda">
+        <p class="project-module__text body">Design Focus: Remind and prevent merchants from entering incorrect
                                                                                                               refund amounts without affecting operational efficiency.</p>
         </div>
         <div class="project-module project-module--text">
@@ -236,23 +190,24 @@
         <div class="project-module project-module--image">
         <img src="../../img/projects/pos/image-pos-sol2New-en.webp" alt="" class="ui-zoomable-media" data-zoom-image />
         </div>
-        </div>
-        <div class="project-page__section project-page__section--narrow pos-section--learning">
-        <div class="project-module project-module--section-title">
-        <h3 class="project-module__heading">Key Learnings</h3>
-
-        <div class="project-module__line"></div>
-        </div>
-        <div class="project-module project-module--subsection-title">
+                </div>
+              </div>
+            </section>
+        <section class="project-page__section sec" id="toc5" aria-labelledby="toc5-title">
+              <div class="sec__grid">
+                <span class="sec__num" aria-hidden="true">05</span>
+                <div class="sec__content">
+                  <h2 class="project-module__chapter-title" id="toc5-title">Key Learnings</h2>
+                  <div class="project-module project-module--subsection-title">
         <h6 class="project-module__subheading">Reflect on the Rationality of the Solution from the User's
                                                                                                               Perspective</h6>
         </div>
-        <div class="project-module project-module--icon-list-vertical">
-        <div class="project-module__item">
+        <div class="project-module project-module--icon-list-vertical goals">
+        <article class="project-module__item">
 
         <div class="project-module__item-content">
 
-        <p class="project-module__item-text">Even when receiving very specific requirements, a designer
+        <p class="project-module__item-text body">Even when receiving very specific requirements, a designer
                                                                                                                   should still assess the business, product, and design goals.
                                                                                                                   This applies even in feature-driven B2B products, where it's
                                                                                                                   essential to ensure that the solution aligns with the user's
@@ -260,25 +215,26 @@
                                                                                                                   product from becoming overly complex due to feature bloat,
                                                                                                                   which can ultimately compromise usability.</p>
         </div>
-        </div>
+        </article>
         </div>
         <div class="project-module project-module--image">
         <img src="../../img/projects/pos/image-pos-figmaFile.webp" alt="" class="ui-zoomable-media" data-zoom-image />
         </div>
-        </div>
+                </div>
+              </div>
+            </section>
       </div>
     </section>
-    <nav class="project-nav" id="navbar">
-      <div class="project-nav__group">
-        <h6 class="project-nav__item">
-          <a class="ui-link ui-link--nav" href="/#work">Back</a>
-        </h6>
-      </div>
-      <div class="project-nav__group">
-        <h6 class="project-nav__item">
-          <a class="ui-link ui-link--nav" href="#top">Top</a>
-        </h6>
-      </div>
+    <a class="next project-page--childcare" href="childcare.html"><span class="mono mute">Next project</span><p class="p-title">Taipei City Childcare Registration and Lottery System Redesign</p></a>
+    </main>
+    <nav class="project-nav index" id="navbar" aria-label="Project sections">
+      <span class="index__fill" aria-hidden="true"></span>
+      <a class="index__back mono" href="/#work">Back</a>
+      <span class="mobile-current mono" aria-live="polite">Overview</span>
+      <button class="sections-toggle mono" type="button" aria-label="Sections" aria-expanded="false" aria-controls="section-list">Sections</button>
+      <ol class="project-nav__toc index__list" id="section-list" data-lenis-prevent></ol>
+      <div class="index__foot"><a class="mono" href="#top">Top</a></div>
+      <span class="page-progress" aria-hidden="true"></span>
     </nav>
     <script src="../../utility/image-zoom.js"></script>
     <script src="../../utility/createToc.js"></script>

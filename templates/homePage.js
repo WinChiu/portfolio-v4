@@ -44,8 +44,8 @@ const HOME_META = {
 };
 
 function renderHomePage(lang) {
-  const meta = HOME_META[lang];
-  if (!meta) {
+  const meta = HOME_META.en;
+  if (!HOME_META[lang]) {
     throw new Error(`Unknown home page language: ${lang}`);
   }
 
@@ -67,7 +67,7 @@ function renderHomePage(lang) {
     <link rel="stylesheet" href="${withVersion('style/style.css')}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Courier+Prime:wght@400;700&family=Caveat:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -78,28 +78,26 @@ function renderHomePage(lang) {
     <script src="./utility/lenis.min.js"></script>
     <script src="${withVersion('./utility/smoothScroll.js')}"></script>
     <script type="module" src="${withVersion('./components/components.js')}"></script>
-    <script
-      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js"
-      type="module"
-    ></script>
   </head>
   <body>
     <!-- Loading Mask -->
-    <div class="ui-loader loading-mask">
-      <dotlottie-wc
-        src="https://lottie.host/5d48cdf2-9cfc-4b40-8a88-807eb0ffee03/ejEDoHb0VS.lottie"
-        autoplay
-        loop
-      ></dotlottie-wc>
-    </div>
+    <div class="ui-loader loading-mask"></div>
     <div id="home-page-root"></div>
+    <script src="${withVersion('components/escape.js')}"></script>
+    <script src="${withVersion('components/Leader/leader.js')}"></script>
+    <script src="${withVersion('components/EffortMeter/effortMeter.js')}"></script>
+    <script src="${withVersion('components/MenuItem/menuItem.js')}"></script>
+    <script src="${withVersion('components/Button/button.js')}"></script>
+    <script src="${withVersion('components/PhotoCard/photoCard.js')}"></script>
+    <script src="${withVersion('components/ProjectCard/projectCard.js')}"></script>
     <script src="${withVersion('content/kitchenMenuData.js')}"></script>
     <script src="${withVersion('content/homeContent.js')}"></script>
     <script src="${withVersion('utility/renderHomePage.js')}"></script>
     <script src="${withVersion('utility/kitchenMenu.js')}"></script>
     <script src="${withVersion('utility/lifeStrip.js')}"></script>
     <script src="${withVersion('utility/landingPageAnimation.js')}"></script>
-    <script src="${withVersion('utility/eyeAnimation.js')}"></script>
+    <script src="${withVersion('utility/homeNavigation.js')}"></script>
+    <script src="${withVersion('utility/heroCards.js')}"></script>
     <script src="${withVersion('utility/loadingPage.js')}"></script>
   </body>
 </html>

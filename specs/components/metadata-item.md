@@ -19,11 +19,11 @@ Do not use for long narrative content.
 
 ## 4. Tokens used
 
-- `--color-link`
-- `--color-text`
-- `--space-xs`
-- `--font-family-serif`
-- `--font-size-body`
+- `--sys-color-link`
+- `--sys-color-text`
+- `--sys-space-xs`
+- `--sys-font-family-display`
+- `--sys-font-size-body`
 
 ## 5. Props/API
 

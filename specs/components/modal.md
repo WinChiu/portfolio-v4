@@ -21,10 +21,10 @@ Do not use for content that can remain in normal page flow.
 
 ## 4. Tokens used
 
-- `--color-overlay`
-- `--radius-lg`
-- `--shadow-floating`
-- `--z-modal`
+- `--sys-color-scrim`
+- `--sys-radius-lg`
+- `--sys-shadow-floating`
+- `--sys-z-modal`
 
 ## 5. Props/API
 

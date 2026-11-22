@@ -1,0 +1,66 @@
+// MenuItem: a dish row. Name on the left, a dotted leader, the effort flames on the right.
+// The accent color comes from the surrounding chapter (--accent-ink).
+
+.menu-item {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--sys-space-xs);
+  // The row's whole box flips colors when it is the dish being looked at, so it gets side room (cancelled by the margin).
+  width: calc(100% + var(--sys-space-sm) * 2);
+  margin-inline: calc(var(--sys-space-sm) * -1);
+  padding: var(--comp-menu-item-padding-block) var(--sys-space-sm);
+  transition: background-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+
+  &:focus-visible {
+    outline: var(--sys-space-hairline) solid var(--accent-ink);
+    outline-offset: var(--sys-space-hairline);
+  }
+}
+
+// Looked-at dish: the whole row inverts. Wide screens with a mouse: on hover. Narrow screens and touch: the row
+// nearest the middle of the screen gets .is-focus (utility/kitchenMenu.js), the same one whose photo is shown.
+@mixin menu-item-inverted {
+  background: var(--accent-ink);
+
+  .menu-item__zh,
+  .menu-item__en { color: var(--sys-color-background); }
+  .leader { border-color: color-mix(in srgb, var(--sys-color-background) 60%, transparent); }
+  // lit flames are filled, unlit ones keep only their outline
+  .effort-meter path { stroke: var(--sys-color-background); }
+  .effort-meter__flame:not(.effort-meter__flame--off) path { fill: var(--sys-color-background); }
+}
+
+.menu-item.is-focus { @include menu-item-inverted; }
+
+@media (hover: hover) and (min-width: 48.0625rem) {
+  .menu-item:hover { @include menu-item-inverted; }
+}
+
+.menu-item__names {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-3xs);
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.menu-item__zh {
+  display: block;
+  font-family: var(--sys-font-family-body);
+  font-size: var(--sys-font-size-body);
+  line-height: var(--sys-line-height-body);
+  font-weight: var(--sys-font-weight-medium);
+  color: var(--sys-color-text);
+  transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+}
+
+.menu-item__en {
+  display: block;
+  font-family: var(--sys-font-family-mono);
+  font-size: var(--sys-font-size-small);
+  line-height: var(--sys-line-height-body);
+  color: var(--sys-color-text-muted);
+}

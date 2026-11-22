@@ -19,10 +19,10 @@ Do not use for short in-page actions.
 
 ## 4. Tokens used
 
-- `--color-background`
-- `--motion-duration-loading`
-- `--space-*`
-- `--z-loader`
+- `--sys-color-background`
+- `--sys-motion-duration-loading`
+- `--sys-space-*`
+- `--sys-z-loader`
 
 ## 5. Props/API
 

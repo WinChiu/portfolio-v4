@@ -21,11 +21,11 @@ Do not use for unordered feature lists.
 
 ## 4. Tokens used
 
-- `--color-link`
-- `--color-text`
-- `--space-*`
-- `--font-size-*`
-- `--font-weight-*`
+- `--sys-color-link`
+- `--sys-color-text`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-font-weight-*`
 
 ## 5. Props/API
 

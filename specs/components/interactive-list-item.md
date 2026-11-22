@@ -21,8 +21,8 @@ Do not use a generic div when native button semantics are available.
 ## 4. Tokens used
 
 - `--color-highlight-soft`
-- `--color-focus`
-- `--motion-duration-fast`
+- `--sys-color-focus`
+- `--sys-motion-duration-fast`
 
 ## 5. Props/API
 

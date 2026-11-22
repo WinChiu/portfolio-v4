@@ -21,10 +21,10 @@ Do not use when content order would become ambiguous on mobile.
 
 ## 4. Tokens used
 
-- `--color-text`
-- `--space-*`
-- `--font-size-*`
-- `--radius-*`
+- `--sys-color-text`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-radius-*`
 
 ## 5. Props/API
 

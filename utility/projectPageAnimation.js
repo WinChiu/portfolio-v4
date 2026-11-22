@@ -6,7 +6,9 @@
     ? 'gsap'
     : 'fallback';
 
-  if (!hasGsap) return;
+  if (window.lenis) window.lenis.options.respectReducedMotion = true;
+
+  if (!hasGsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
@@ -149,36 +151,10 @@
     });
   }
 
-  function setupTocActiveAnimation() {
-    const tocLinks = Array.from(document.querySelectorAll('.project-toc'));
-    if (!tocLinks.length) return;
-
-    tocLinks.forEach((link) => {
-      const label = link.querySelector('.project-toc__label');
-
-      const animateState = () => {
-        const isActive = link.classList.contains('project-toc--active');
-
-        gsap.to(label, {
-          x: isActive ? 4 : 0,
-          duration: 0.22,
-          ease: 'power2.out',
-        });
-      };
-
-      animateState();
-
-      new MutationObserver(animateState).observe(link, {
-        attributes: true,
-        attributeFilter: ['class'],
-      });
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     setupHeaderIntro();
     setupHeaderParallax();
     setupContentReveal();
-    setupTocActiveAnimation();
+
   });
 })();

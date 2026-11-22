@@ -1,0 +1,67 @@
+/* Restyle layer — shared tokens. Loaded after the site's own CSS.
+   Overrides the original token values where the new direction differs,
+   and adds the chapter / project color sets. */
+:root {
+  /* original surface + line, kept */
+  --color-background: #fbfbf6;
+  --color-background-soft: #f8f6ed;
+  --color-border: #363a35;
+  --rs-line: 2px solid #363a35;
+  --rs-line-w: 2px;
+
+  /* text roles */
+  --rs-ink: #363a35;         /* primary, 11.2:1 */
+  --rs-ink-soft: #55584f;    /* secondary */
+  --rs-mute: #757268;        /* muted, 4.6:1 */
+  --rs-leader: rgba(54, 58, 53, 0.3); /* dotted leaders, off icons */
+
+  /* chapter + project colors: display (outlines, big numbers, fills)
+     and -ink (text on the light background, ≥4.6:1) */
+  --rs-terracotta: #c9805a; --rs-terracotta-ink: #9c6547;
+  --rs-slate: #6f8ea3;      --rs-slate-ink: #5e7585;
+  --rs-mustard: #b8863b;    --rs-mustard-ink: #916a31;
+  --rs-brick: #c8604c;      --rs-brick-ink: #b35745;
+  --rs-sage: #7d8f69;       --rs-sage-ink: #6a7758;
+  --rs-plum: #8d6a85;       --rs-plum-ink: #8a6882;
+
+  --accent: var(--rs-terracotta);
+  --accent-ink: var(--rs-terracotta-ink);
+
+  --rs-sans: 'DM Sans', 'Noto Sans TC', system-ui, sans-serif;
+  --rs-mono: 'DM Mono', 'Noto Sans TC', ui-monospace, monospace;
+
+  --rs-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --rs-fast: 160ms;
+  --rs-base: 240ms;
+
+  /* original font tokens remapped: serif / Courier / Caveat roles → sans or mono */
+  --font-family-display: var(--rs-sans);
+  --font-family-body: var(--rs-sans);
+  --font-family-serif: var(--rs-sans);
+  --font-family-mono: var(--rs-mono);
+}
+
+/* chapter color sets (home) */
+.rs-c-work, #work       { --accent: var(--rs-terracotta); --accent-ink: var(--rs-terracotta-ink); }
+.rs-c-about, #about     { --accent: var(--rs-slate);      --accent-ink: var(--rs-slate-ink); }
+.rs-c-kitchen, #kitchen { --accent: var(--rs-mustard);    --accent-ink: var(--rs-mustard-ink); }
+.rs-c-life, #life       { --accent: var(--rs-brick);      --accent-ink: var(--rs-brick-ink); }
+
+/* one color per project (project pages) */
+.project-page--designSystem { --accent: var(--rs-terracotta); --accent-ink: var(--rs-terracotta-ink); }
+.project-page--keepwell,
+.project-page--rfid,
+.project-page--ba           { --accent: var(--rs-slate);      --accent-ink: var(--rs-slate-ink); }
+.project-page--pos          { --accent: var(--rs-brick);      --accent-ink: var(--rs-brick-ink); }
+.project-page--childcare,
+.project-page--forest       { --accent: var(--rs-sage);       --accent-ink: var(--rs-sage-ink); }
+.project-page--bizpro       { --accent: var(--rs-mustard);    --accent-ink: var(--rs-mustard-ink); }
+.project-page--gongChi      { --accent: var(--rs-plum);       --accent-ink: var(--rs-plum-ink); }
+
+html, body { background: var(--color-background); }
+body { color: var(--rs-ink); font-family: var(--rs-sans); -webkit-font-smoothing: antialiased; }
+:lang(zh) body, html[lang='zh'] body, html[lang='zh-Hant'] body { font-family: 'DM Sans', 'Noto Sans TC', sans-serif; }
+:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 4px; }
+
+/* English only for now: hide every language switch (original and injected) */
+.nav__language, .block__translator, .translator, [data-rs-lang] { display: none !important; }

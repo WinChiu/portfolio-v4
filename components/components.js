@@ -1,13 +1,2 @@
-import ProjectCard from './ProjectCard/projectCard.js?v=bbf0e87b';
-
-const components = {
-  'project-card': ProjectCard,
-};
-
-Object.entries(components).forEach(([tagName, component]) => {
-  if (!customElements.get(tagName)) {
-    customElements.define(tagName, component);
-  }
-});
-
-export default components;
+// Custom elements. (Render-function components such as Button and ProjectCard are plain scripts; see README.md.)
+import './HairlineCover/hairlineCover.js?v=cb43968d';

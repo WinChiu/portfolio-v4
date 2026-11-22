@@ -20,12 +20,12 @@ Do not use without `aria-label` when no visible text exists.
 
 ## 4. Tokens used
 
-- `--color-interactive`
-- `--color-interactive-hover`
-- `--color-focus`
-- `--space-4xl`
-- `--radius-lg`
-- `--motion-duration-fast`
+- `--sys-color-interactive`
+- `--sys-color-interactive-hover`
+- `--sys-color-focus`
+- `--sys-space-4xl`
+- `--sys-radius-lg`
+- `--sys-motion-duration-fast`
 
 ## 5. Props/API
 

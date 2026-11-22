@@ -22,12 +22,12 @@ Do not use for site chrome.
 
 ## 4. Tokens used
 
-- `--color-*`
-- `--space-*`
-- `--font-size-*`
-- `--font-weight-*`
-- `--radius-*`
-- `--shadow-low`
+- `--sys-color-*`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-font-weight-*`
+- `--sys-radius-*`
+- `--sys-shadow-floating`
 
 ## 5. Props/API
 

@@ -1,0 +1,1534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design tokens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000&family=DM+Serif+Display&family=Caveat:wght@400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style/tokens.css" />
+<style>
+  /* Page chrome only; it uses system tokens. Everything inside a demo is drawn with the live token. */
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--sys-color-background); color: var(--sys-color-text); font-family: var(--sys-font-family-body); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); }
+  code { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-caption); }
+  .shell { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: var(--sys-space-5xl); max-width: 84rem; margin: 0 auto; padding: var(--sys-space-5xl) var(--sys-space-3xl) var(--sys-space-8xl); }
+  nav { position: sticky; top: var(--sys-space-5xl); align-self: start; display: flex; flex-direction: column; gap: var(--sys-space-xs); font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-caption); max-height: calc(100vh - 6rem); overflow: auto; }
+  nav a { color: var(--sys-color-text-muted); text-decoration: none; padding: var(--sys-space-3xs) 0; }
+  nav a:hover { color: var(--sys-color-text); }
+  .nav__tier { margin-top: var(--sys-space-lg); padding-top: var(--sys-space-xs); border-top: var(--sys-space-hairline) solid var(--sys-color-text); color: var(--sys-color-text); }
+  h1 { font-size: var(--sys-font-size-display-sm); font-weight: var(--sys-font-weight-medium); line-height: var(--sys-line-height-tight); margin: 0 0 var(--sys-space-md); }
+  .meta { color: var(--sys-color-text-muted); margin: 0 0 var(--sys-space-7xl); max-width: 46rem; }
+  section { padding-top: var(--sys-space-5xl); border-top: var(--sys-space-hairline) solid var(--sys-color-text); margin-bottom: var(--sys-space-7xl); }
+  .eyebrow { display: block; font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-caption); color: var(--sys-color-text-muted); margin-bottom: var(--sys-space-xs); }
+  h2 { font-size: var(--sys-font-size-title-md); font-weight: var(--sys-font-weight-medium); margin: 0 0 var(--sys-space-3xl); }
+  h3 { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); font-weight: var(--sys-font-weight-regular); color: var(--sys-color-text-muted); margin: var(--sys-space-5xl) 0 var(--sys-space-lg); }
+  h3 small { font-size: var(--sys-font-size-caption); margin-left: var(--sys-space-xs); }
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--sys-space-3xl); }
+  .tiers h3 { margin-top: 0; color: var(--sys-color-text); }
+  .tiers p { margin: 0; color: var(--sys-color-text-muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: var(--sys-space-xl) var(--sys-space-lg); }
+  .grid--swatch { grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
+  .grid--roomy { grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: var(--sys-space-4xl) var(--sys-space-3xl); }
+  .list { display: flex; flex-direction: column; }
+  .tk { display: flex; flex-direction: column; gap: var(--sys-space-2xs); min-width: 0; }
+  .tk--wide { display: grid; grid-template-columns: minmax(0, 1fr) 17rem 12rem; align-items: center; gap: var(--sys-space-xs) var(--sys-space-lg); padding: var(--sys-space-sm) var(--sys-space-0); border-bottom: var(--sys-space-hairline) solid color-mix(in srgb, var(--sys-color-text) 10%, transparent); }
+  .tk--wide .tk__demo { grid-column: 1; grid-row: 1 / span 2; min-width: 0; }
+  .tk--wide .tk__name { grid-column: 2; grid-row: 1; }
+  .tk--wide .tk__value { grid-column: 3; grid-row: 1; }
+  .tk--wide .tk__alias { grid-column: 2 / span 2; grid-row: 2; }
+  .tk--wide .tk__uses, .tk--wide .tk__note { grid-column: 2 / span 2; }
+  .tk__value { color: var(--sys-color-text-muted); font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-caption); overflow-wrap: anywhere; }
+  .tk__alias { font-size: var(--sys-font-size-caption); color: var(--sys-color-text-muted); }
+  .tk__alias code { color: var(--sys-color-text); }
+  .arrow { color: var(--sys-color-text-muted); margin-right: var(--sys-space-3xs); }
+  .tk__uses { font-size: var(--sys-font-size-caption); color: var(--sys-color-text-muted); cursor: default; }
+  .tk__uses--none { color: var(--sys-color-interactive); }
+  .tk__note { color: var(--sys-color-text-muted); font-size: var(--sys-font-size-caption); line-height: var(--sys-line-height-body); }
+  .swatch { display: block; height: 4rem; border: var(--sys-space-hairline) solid color-mix(in srgb, var(--sys-color-text) 14%, transparent); }
+  .bar { display: block; height: var(--sys-space-sm); background: var(--sys-color-text); max-width: 100%; }
+  .box { display: block; width: 4rem; height: 4rem; background: var(--sys-color-text); }
+  .box--card { width: 100%; height: 4.5rem; background: var(--sys-color-background); border: var(--sys-space-hairline) solid color-mix(in srgb, var(--sys-color-text) 8%, transparent); }
+  .z { font-family: var(--sys-font-family-mono); }
+  .track { display: block; position: relative; height: var(--sys-space-md); background: color-mix(in srgb, var(--sys-color-text) 8%, transparent); }
+  .run { position: absolute; inset: 0 auto 0 0; background: var(--sys-color-text); animation: run 1.6s var(--sys-motion-ease-standard) infinite alternate; }
+  .dot { position: absolute; top: 0; width: var(--sys-space-md); height: var(--sys-space-md); background: var(--sys-color-text); animation: slide 1.6s linear infinite alternate; }
+  @keyframes run { from { width: 0; } to { width: 100%; } }
+  @keyframes slide { from { left: 0; } to { left: calc(100% - var(--sys-space-md)); } }
+  .table { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: var(--sys-font-size-caption); }
+  td { padding: var(--sys-space-sm) var(--sys-space-md) var(--sys-space-sm) var(--sys-space-0); border-top: var(--sys-space-hairline) solid color-mix(in srgb, var(--sys-color-text) 10%, transparent); vertical-align: top; }
+  td:first-child { width: 4.5rem; }
+  details summary { cursor: pointer; color: var(--sys-color-text-muted); }
+  details code { display: inline-block; margin: var(--sys-space-3xs) var(--sys-space-xs) var(--sys-space-3xs) var(--sys-space-0); }
+  .status { display: inline-block; padding: var(--sys-space-3xs) var(--sys-space-xs); border: var(--sys-space-hairline) solid currentColor; font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-caption); }
+  .status--ok { color: var(--ref-palette-green-55); }
+  .status--warn { color: var(--sys-color-interactive); }
+  .status--note { color: var(--sys-color-text-muted); }
+  @media (max-width: 52rem) {
+    .shell { grid-template-columns: 1fr; gap: var(--sys-space-3xl); padding: var(--sys-space-3xl) var(--sys-space-lg) var(--sys-space-7xl); }
+    nav { position: static; flex-direction: row; flex-wrap: wrap; gap: var(--sys-space-xs) var(--sys-space-lg); max-height: none; }
+    .nav__tier { margin-top: 0; border-top: 0; padding-top: 0; }
+    .tk--wide { grid-template-columns: 1fr; }
+    .tk--wide .tk__demo, .tk--wide .tk__name, .tk--wide .tk__value, .tk--wide .tk__alias, .tk--wide .tk__uses, .tk--wide .tk__note { grid-column: 1; grid-row: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { .run, .dot { animation: none; } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav aria-label="Token groups"><a href="#overview">Overview</a><span class="nav__tier">Reference</span><a href="#ref-palette">Palette</a><a href="#ref-type">Type</a><a href="#ref-size">Sizes</a><span class="nav__tier">System</span><a href="#sys-color">Color roles</a><a href="#sys-type">Typography</a><a href="#sys-space">Spacing</a><a href="#sys-shape">Shape</a><a href="#sys-elevation">Elevation</a><a href="#sys-layers">Layers</a><a href="#sys-motion">Motion</a><a href="#sys-other">Other</a><span class="nav__tier">Component</span><a href="#comp">Component tokens</a></nav>
+  <main>
+    <h1>Design tokens</h1>
+    <p class="meta">237 tokens from <code>style/tokens.css</code>, in three tiers: reference, system, component. Generated by <code>scripts/generate-token-preview.js</code>; edit the tokens, then run <code>npm run specs:generate</code>.</p>
+    <section id="overview"><h2>Overview</h2><div class="tiers">
+      <article><h3>Reference <small>65</small></h3><p>Every approved raw value, named for what it is: a palette tone, a typeface, a length. One value has one name. Components never use these.</p></article>
+      <article><h3>System <small>129</small></h3><p>The decisions and roles that give the design its character. Each points at a reference token wherever the value exists there. Components consume these.</p></article>
+      <article><h3>Component <small>43</small></h3><p>Measures and properties that belong to one element or section. They point at system or reference tokens; a one-off length may be written here.</p></article>
+    </div>
+    <h3>Checks</h3>
+    <div class="table"><table><tbody>
+      <tr><td><span class="status status--ok">ok</span></td><td>Reference values that carry two names</td><td>none</td></tr>
+      <tr><td><span class="status status--ok">ok</span></td><td>Reference tokens nothing points at</td><td>none</td></tr>
+      <tr><td><span class="status status--note">info</span></td><td>System tokens that write their own value (no reference to point at)</td><td><details><summary>35 of 129: shadows, z-index, motion, opacity, keywords and fluid sizes</summary><code>--sys-color-transparent</code> <code>--sys-color-inherit</code> <code>--sys-opacity-hidden</code> <code>--sys-opacity-muted</code> <code>--sys-space-auto</code> <code>--sys-font-weight-inherit</code> <code>--sys-radius-round</code> <code>--sys-z-base</code> <code>--sys-z-content</code> <code>--sys-z-raised</code> <code>--sys-z-sticky</code> <code>--sys-z-zoom-image</code> <code>--sys-z-zoom-backdrop</code> <code>--sys-z-modal</code> <code>--sys-z-modal-control</code> <code>--sys-z-loader</code> <code>--sys-z-tabs</code> <code>--sys-z-peek</code> <code>--sys-z-overlay</code> <code>--sys-z-skip-link</code> <code>--sys-z-curtain</code> <code>--sys-motion-duration-stagger</code> <code>--sys-motion-duration-fast</code> <code>--sys-motion-duration-standard</code> <code>--sys-motion-duration-slow</code> <code>--sys-motion-duration-long</code> <code>--sys-motion-duration-curtain</code> <code>--sys-motion-duration-loading</code> <code>--sys-motion-duration-ticker</code> <code>--sys-motion-ease-standard</code> <code>--sys-motion-ease-smooth</code> <code>--sys-motion-ease-curtain</code> <code>--sys-transition-none</code> <code>--sys-font-size-root-fluid</code> <code>--sys-rule-width-thin</code></details></td></tr>
+      <tr><td><span class="status status--note">info</span></td><td>Component tokens that write their own value (one-off measures)</td><td><details><summary>18 of 43</summary><code>--comp-loader-track-mix</code> <code>--comp-hero-card-width</code> <code>--comp-hero-card-width-phone</code> <code>--comp-hero-padding-top</code> <code>--comp-hero-line1-indent</code> <code>--comp-about-portrait-width</code> <code>--comp-kitchen-recipe-width</code> <code>--comp-life-card-width</code> <code>--comp-life-card-width-landscape</code> <code>--comp-life-photo-height</code> <code>--comp-typing-caret-height</code> <code>--comp-measure-copy</code> <code>--comp-measure-quote</code> <code>--comp-measure-lead</code> <code>--comp-goal-icon-fluid</code> <code>--comp-goal-icon-fill</code> <code>--comp-text-link-underline-offset</code> <code>--comp-media-placeholder-min-height</code></details></td></tr>
+    </tbody></table></div></section>
+    <section id="ref-palette"><span class="eyebrow">Reference</span><h2>Palette</h2><h3>neutral</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-neutral-0)"></span></div>
+    <code class="tk__name">--ref-palette-neutral-0</code>
+    
+    <span class="tk__value">#000000</span>
+    <span class="tk__uses" title="--sys-shadow-floating">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-neutral-8)"></span></div>
+    <code class="tk__name">--ref-palette-neutral-8</code>
+    
+    <span class="tk__value">#1d1712</span>
+    <span class="tk__uses" title="--sys-color-text, --sys-color-border, --sys-color-scrim">used by 3</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-neutral-35)"></span></div>
+    <code class="tk__name">--ref-palette-neutral-35</code>
+    
+    <span class="tk__value">#5a5048</span>
+    <span class="tk__uses" title="--sys-color-text-muted">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-neutral-81)"></span></div>
+    <code class="tk__name">--ref-palette-neutral-81</code>
+    
+    <span class="tk__value">#c8c8c8</span>
+    <span class="tk__uses" title="--sys-color-text-disabled">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-neutral-97)"></span></div>
+    <code class="tk__name">--ref-palette-neutral-97</code>
+    
+    <span class="tk__value">#f8f6ed</span>
+    <span class="tk__uses" title="--sys-color-background-soft">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-neutral-98)"></span></div>
+    <code class="tk__name">--ref-palette-neutral-98</code>
+    
+    <span class="tk__value">#fbfbf6</span>
+    <span class="tk__uses" title="--sys-color-background">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-neutral-100)"></span></div>
+    <code class="tk__name">--ref-palette-neutral-100</code>
+    
+    <span class="tk__value">#ffffff</span>
+    <span class="tk__uses" title="--sys-color-text-inverse">used by 1</span>
+  </div></div><h3>green</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-green-55)"></span></div>
+    <code class="tk__name">--ref-palette-green-55</code>
+    
+    <span class="tk__value">#449449</span>
+    <span class="tk__uses" title="--sys-color-brand">used by 1</span>
+  </div></div><h3>brown</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-brown-45)"></span></div>
+    <code class="tk__name">--ref-palette-brown-45</code>
+    
+    <span class="tk__value">#945f44</span>
+    <span class="tk__uses" title="--sys-color-chapter-work">used by 1</span>
+  </div></div><h3>slate</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-slate-46)"></span></div>
+    <code class="tk__name">--ref-palette-slate-46</code>
+    
+    <span class="tk__value">#5a6f7d</span>
+    <span class="tk__uses" title="--sys-color-chapter-about">used by 1</span>
+  </div></div><h3>ochre</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-ochre-46)"></span></div>
+    <code class="tk__name">--ref-palette-ochre-46</code>
+    
+    <span class="tk__value">#8b662f</span>
+    <span class="tk__uses" title="--sys-color-chapter-kitchen">used by 1</span>
+  </div></div><h3>rust</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-rust-46)"></span></div>
+    <code class="tk__name">--ref-palette-rust-46</code>
+    
+    <span class="tk__value">#a95342</span>
+    <span class="tk__uses" title="--sys-color-chapter-life">used by 1</span>
+  </div></div><h3>sage</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-sage-48)"></span></div>
+    <code class="tk__name">--ref-palette-sage-48</code>
+    
+    <span class="tk__value">#6a7758</span>
+    <span class="tk__uses" title="--sys-color-project-sage">used by 1</span>
+  </div></div><h3>plum</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-plum-48)"></span></div>
+    <code class="tk__name">--ref-palette-plum-48</code>
+    
+    <span class="tk__value">#8a6882</span>
+    <span class="tk__uses" title="--sys-color-project-plum">used by 1</span>
+  </div></div><h3>orange</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-orange-41)"></span></div>
+    <code class="tk__name">--ref-palette-orange-41</code>
+    
+    <span class="tk__value">#a63e03</span>
+    <span class="tk__uses" title="--sys-color-link-hover">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-orange-47)"></span></div>
+    <code class="tk__name">--ref-palette-orange-47</code>
+    
+    <span class="tk__value">#c14804</span>
+    <span class="tk__uses" title="--sys-color-link">used by 1</span>
+  </div></div><h3>red</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-red-45)"></span></div>
+    <code class="tk__name">--ref-palette-red-45</code>
+    
+    <span class="tk__value">#b74343</span>
+    <span class="tk__uses" title="--sys-color-interactive, --sys-color-interactive-subtle, --sys-color-focus">used by 3</span>
+  </div></div><h3>sand</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-sand-77)"></span></div>
+    <code class="tk__name">--ref-palette-sand-77</code>
+    
+    <span class="tk__value">#cabd8a</span>
+    <span class="tk__uses" title="--sys-color-interactive-hover">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-sand-89)"></span></div>
+    <code class="tk__name">--ref-palette-sand-89</code>
+    
+    <span class="tk__value">#f5dead</span>
+    <span class="tk__uses" title="--sys-color-highlight">used by 1</span>
+  </div></div><h3>gold</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--ref-palette-gold-73)"></span></div>
+    <code class="tk__name">--ref-palette-gold-73</code>
+    
+    <span class="tk__value">#d1b129</span>
+    <span class="tk__uses" title="--sys-color-accent-subtle">used by 1</span>
+  </div></div></section>
+    <section id="ref-type"><span class="eyebrow">Reference</span><h2>Type</h2><h3>Typefaces</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-family:var(--ref-typeface-dm-serif-display);font-size:var(--sys-font-size-title-sm)">The quick brown fox · 設計系統</span></div>
+    <code class="tk__name">--ref-typeface-dm-serif-display</code>
+    
+    <span class="tk__value">'DM Serif Display', serif</span>
+    <span class="tk__uses" title="--sys-font-family-display">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-family:var(--ref-typeface-dm-sans);font-size:var(--sys-font-size-title-sm)">The quick brown fox · 設計系統</span></div>
+    <code class="tk__name">--ref-typeface-dm-sans</code>
+    
+    <span class="tk__value">'DM Sans', system-ui, sans-serif</span>
+    <span class="tk__uses" title="--sys-font-family-body">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-family:var(--ref-typeface-dm-mono);font-size:var(--sys-font-size-title-sm)">The quick brown fox · 設計系統</span></div>
+    <code class="tk__name">--ref-typeface-dm-mono</code>
+    
+    <span class="tk__value">'DM Mono', monospace</span>
+    <span class="tk__uses" title="--sys-font-family-mono">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-family:var(--ref-typeface-caveat);font-size:var(--sys-font-size-title-sm)">The quick brown fox · 設計系統</span></div>
+    <code class="tk__name">--ref-typeface-caveat</code>
+    
+    <span class="tk__value">'Caveat', cursive</span>
+    <span class="tk__uses" title="--sys-font-family-hand">used by 1</span>
+  </div></div><h3>Font weights</h3><div class="grid "><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--ref-font-weight-400);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--ref-font-weight-400</code>
+    
+    <span class="tk__value">400</span>
+    <span class="tk__uses" title="--sys-font-weight-regular">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--ref-font-weight-500);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--ref-font-weight-500</code>
+    
+    <span class="tk__value">500</span>
+    <span class="tk__uses" title="--sys-font-weight-medium">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--ref-font-weight-600);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--ref-font-weight-600</code>
+    
+    <span class="tk__value">600</span>
+    <span class="tk__uses" title="--sys-font-weight-semibold">used by 1</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--ref-font-weight-700);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--ref-font-weight-700</code>
+    
+    <span class="tk__value">700</span>
+    <span class="tk__uses" title="--sys-font-weight-bold">used by 1</span>
+  </div></div><h3>Line heights</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="line-height:var(--ref-line-height-100);font-size:var(--sys-font-size-small);display:block;max-width:18rem">Components consume tokens only, so the system can change in one place.</span></div>
+    <code class="tk__name">--ref-line-height-100</code>
+    
+    <span class="tk__value">1</span>
+    <span class="tk__uses" title="--sys-line-height-tight">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="line-height:var(--ref-line-height-120);font-size:var(--sys-font-size-small);display:block;max-width:18rem">Components consume tokens only, so the system can change in one place.</span></div>
+    <code class="tk__name">--ref-line-height-120</code>
+    
+    <span class="tk__value">1.2</span>
+    <span class="tk__uses" title="--sys-line-height-heading">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="line-height:var(--ref-line-height-150);font-size:var(--sys-font-size-small);display:block;max-width:18rem">Components consume tokens only, so the system can change in one place.</span></div>
+    <code class="tk__name">--ref-line-height-150</code>
+    
+    <span class="tk__value">1.5</span>
+    <span class="tk__uses" title="--sys-line-height-body">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="line-height:var(--ref-line-height-175);font-size:var(--sys-font-size-small);display:block;max-width:18rem">Components consume tokens only, so the system can change in one place.</span></div>
+    <code class="tk__name">--ref-line-height-175</code>
+    
+    <span class="tk__value">1.75</span>
+    <span class="tk__uses" title="--sys-line-height-relaxed">used by 1</span>
+  </div></div><h3>Letter spacing</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="letter-spacing:var(--ref-letter-spacing-neg-1px);font-size:var(--sys-font-size-title-md)">Design system</span></div>
+    <code class="tk__name">--ref-letter-spacing-neg-1px</code>
+    
+    <span class="tk__value">-1px</span>
+    <span class="tk__uses" title="--sys-letter-spacing-tight">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="letter-spacing:var(--ref-letter-spacing-neg-3px);font-size:var(--sys-font-size-title-md)">Design system</span></div>
+    <code class="tk__name">--ref-letter-spacing-neg-3px</code>
+    
+    <span class="tk__value">-3px</span>
+    <span class="tk__uses" title="--sys-letter-spacing-tighter">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="letter-spacing:var(--ref-letter-spacing-neg-6px);font-size:var(--sys-font-size-title-md)">Design system</span></div>
+    <code class="tk__name">--ref-letter-spacing-neg-6px</code>
+    
+    <span class="tk__value">-6px</span>
+    <span class="tk__uses" title="--sys-letter-spacing-tightest">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="letter-spacing:var(--ref-letter-spacing-neg-0-04em);font-size:var(--sys-font-size-title-md)">Design system</span></div>
+    <code class="tk__name">--ref-letter-spacing-neg-0-04em</code>
+    
+    <span class="tk__value">-0.04em</span>
+    <span class="tk__uses" title="--sys-letter-spacing-display">used by 1</span>
+  </div></div></section>
+    <section id="ref-size"><span class="eyebrow">Reference</span><h2>Sizes</h2><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-neg-16), 100%);opacity:.4"></span></div>
+    <code class="tk__name">--ref-size-neg-16</code>
+    
+    <span class="tk__value">-1rem</span>
+    <span class="tk__uses" title="--sys-space-pull-md">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-neg-12), 100%);opacity:.4"></span></div>
+    <code class="tk__name">--ref-size-neg-12</code>
+    
+    <span class="tk__value">-0.75rem</span>
+    <span class="tk__uses" title="--sys-space-pull-sm">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-neg-6), 100%);opacity:.4"></span></div>
+    <code class="tk__name">--ref-size-neg-6</code>
+    
+    <span class="tk__value">-0.375rem</span>
+    <span class="tk__uses" title="--sys-space-pull-xs">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-neg-4), 100%);opacity:.4"></span></div>
+    <code class="tk__name">--ref-size-neg-4</code>
+    
+    <span class="tk__value">-0.25rem</span>
+    <span class="tk__uses" title="--sys-space-pull-2xs">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-0), 100%);"></span></div>
+    <code class="tk__name">--ref-size-0</code>
+    
+    <span class="tk__value">0</span>
+    <span class="tk__uses" title="--sys-space-0, --sys-radius-none">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-2), 100%);"></span></div>
+    <code class="tk__name">--ref-size-2</code>
+    
+    <span class="tk__value">0.125rem</span>
+    <span class="tk__uses" title="--sys-space-hairline">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-4), 100%);"></span></div>
+    <code class="tk__name">--ref-size-4</code>
+    
+    <span class="tk__value">0.25rem</span>
+    <span class="tk__uses" title="--sys-space-3xs, --sys-radius-sm">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-6), 100%);"></span></div>
+    <code class="tk__name">--ref-size-6</code>
+    
+    <span class="tk__value">0.375rem</span>
+    <span class="tk__uses" title="--sys-space-2xs">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-8), 100%);"></span></div>
+    <code class="tk__name">--ref-size-8</code>
+    
+    <span class="tk__value">0.5rem</span>
+    <span class="tk__uses" title="--sys-space-xs, --sys-radius-lg">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-12), 100%);"></span></div>
+    <code class="tk__name">--ref-size-12</code>
+    
+    <span class="tk__value">0.75rem</span>
+    <span class="tk__uses" title="--sys-space-sm, --sys-font-size-caption">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-14), 100%);"></span></div>
+    <code class="tk__name">--ref-size-14</code>
+    
+    <span class="tk__value">0.875rem</span>
+    <span class="tk__uses" title="--sys-space-14, --sys-font-size-small">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-16), 100%);"></span></div>
+    <code class="tk__name">--ref-size-16</code>
+    
+    <span class="tk__value">1rem</span>
+    <span class="tk__uses" title="--sys-space-md, --sys-font-size-body">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-18), 100%);"></span></div>
+    <code class="tk__name">--ref-size-18</code>
+    
+    <span class="tk__value">1.125rem</span>
+    <span class="tk__uses" title="--sys-font-size-body-lg">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-20), 100%);"></span></div>
+    <code class="tk__name">--ref-size-20</code>
+    
+    <span class="tk__value">1.25rem</span>
+    <span class="tk__uses" title="--sys-space-lg, --sys-font-size-title-xs">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-24), 100%);"></span></div>
+    <code class="tk__name">--ref-size-24</code>
+    
+    <span class="tk__value">1.5rem</span>
+    <span class="tk__uses" title="--sys-space-xl, --sys-font-size-title-sm">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-28), 100%);"></span></div>
+    <code class="tk__name">--ref-size-28</code>
+    
+    <span class="tk__value">1.75rem</span>
+    <span class="tk__uses" title="--sys-space-2xl">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-32), 100%);"></span></div>
+    <code class="tk__name">--ref-size-32</code>
+    
+    <span class="tk__value">2rem</span>
+    <span class="tk__uses" title="--sys-space-3xl, --sys-font-size-title-md">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-40), 100%);"></span></div>
+    <code class="tk__name">--ref-size-40</code>
+    
+    <span class="tk__value">2.5rem</span>
+    <span class="tk__uses" title="--sys-space-4xl, --sys-font-size-title-lg">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-48), 100%);"></span></div>
+    <code class="tk__name">--ref-size-48</code>
+    
+    <span class="tk__value">3rem</span>
+    <span class="tk__uses" title="--sys-space-5xl">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-56), 100%);"></span></div>
+    <code class="tk__name">--ref-size-56</code>
+    
+    <span class="tk__value">3.5rem</span>
+    <span class="tk__uses" title="--sys-space-56, --sys-font-size-display-sm">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-64), 100%);"></span></div>
+    <code class="tk__name">--ref-size-64</code>
+    
+    <span class="tk__value">4rem</span>
+    <span class="tk__uses" title="--sys-space-6xl">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-72), 100%);"></span></div>
+    <code class="tk__name">--ref-size-72</code>
+    
+    <span class="tk__value">4.5rem</span>
+    <span class="tk__uses" title="--sys-space-72, --sys-font-size-display-md, --sys-font-size-hero">used by 3</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-80), 100%);"></span></div>
+    <code class="tk__name">--ref-size-80</code>
+    
+    <span class="tk__value">5rem</span>
+    <span class="tk__uses" title="--sys-space-80">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-88), 100%);"></span></div>
+    <code class="tk__name">--ref-size-88</code>
+    
+    <span class="tk__value">5.5rem</span>
+    <span class="tk__uses" title="--sys-space-88">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-96), 100%);"></span></div>
+    <code class="tk__name">--ref-size-96</code>
+    
+    <span class="tk__value">6rem</span>
+    <span class="tk__uses" title="--sys-space-7xl, --sys-font-size-display-lg, --sys-font-size-chapter">used by 3</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-128), 100%);"></span></div>
+    <code class="tk__name">--ref-size-128</code>
+    
+    <span class="tk__value">8rem</span>
+    <span class="tk__uses" title="--sys-space-8xl">used by 1</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-160), 100%);"></span></div>
+    <code class="tk__name">--ref-size-160</code>
+    
+    <span class="tk__value">10rem</span>
+    <span class="tk__uses" title="--sys-space-160, --sys-font-size-chapter, --sys-font-size-hero">used by 3</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-272), 100%);"></span></div>
+    <code class="tk__name">--ref-size-272</code>
+    
+    <span class="tk__value">17rem</span>
+    <span class="tk__uses" title="--comp-nav-width-project-expanded, --comp-kitchen-peek-width">used by 2</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--ref-size-512), 100%);"></span></div>
+    <code class="tk__name">--ref-size-512</code>
+    
+    <span class="tk__value">32rem</span>
+    <span class="tk__uses" title="--comp-hero-copy-width, --comp-project-cover-width">used by 2</span>
+  </div></div></section>
+    <section id="sys-color"><span class="eyebrow">System</span><h2>Color roles</h2><h3>Text</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-text)"></span></div>
+    <code class="tk__name">--sys-color-text</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-8</code></span>
+    <span class="tk__value">#1d1712</span>
+    <span class="tk__note">Ink: body copy and headings</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-text-muted)"></span></div>
+    <code class="tk__name">--sys-color-text-muted</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-35</code></span>
+    <span class="tk__value">#5a5048</span>
+    <span class="tk__note">secondary copy, captions, labels</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-text-disabled)"></span></div>
+    <code class="tk__name">--sys-color-text-disabled</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-81</code></span>
+    <span class="tk__value">#c8c8c8</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-text-inverse)"></span></div>
+    <code class="tk__name">--sys-color-text-inverse</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-100</code></span>
+    <span class="tk__value">#ffffff</span>
+    <span class="tk__note">on filled buttons</span>
+  </div></div><h3>Surface</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-background)"></span></div>
+    <code class="tk__name">--sys-color-background</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-98</code></span>
+    <span class="tk__value">#fbfbf6</span>
+    <span class="tk__note">page paper</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-background-soft)"></span></div>
+    <code class="tk__name">--sys-color-background-soft</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-97</code></span>
+    <span class="tk__value">#f8f6ed</span>
+    <span class="tk__note">placeholders, peek card</span>
+  </div></div><h3>Border</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-border)"></span></div>
+    <code class="tk__name">--sys-color-border</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-8</code></span>
+    <span class="tk__value">#1d1712</span>
+    
+  </div></div><h3>Brand and chapter inks (one ink per home chapter / per project)</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-brand)"></span></div>
+    <code class="tk__name">--sys-color-brand</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-green-55</code></span>
+    <span class="tk__value">#449449</span>
+    <span class="tk__note">hero highlight and focus</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-chapter-work)"></span></div>
+    <code class="tk__name">--sys-color-chapter-work</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-brown-45</code></span>
+    <span class="tk__value">#945f44</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-chapter-about)"></span></div>
+    <code class="tk__name">--sys-color-chapter-about</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-slate-46</code></span>
+    <span class="tk__value">#5a6f7d</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-chapter-kitchen)"></span></div>
+    <code class="tk__name">--sys-color-chapter-kitchen</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-ochre-46</code></span>
+    <span class="tk__value">#8b662f</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-chapter-life)"></span></div>
+    <code class="tk__name">--sys-color-chapter-life</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-rust-46</code></span>
+    <span class="tk__value">#a95342</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-project-sage)"></span></div>
+    <code class="tk__name">--sys-color-project-sage</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-sage-48</code></span>
+    <span class="tk__value">#6a7758</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-project-plum)"></span></div>
+    <code class="tk__name">--sys-color-project-plum</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-plum-48</code></span>
+    <span class="tk__value">#8a6882</span>
+    
+  </div></div><h3>Interactive (design-system buttons and links)</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-link)"></span></div>
+    <code class="tk__name">--sys-color-link</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-orange-47</code></span>
+    <span class="tk__value">#c14804</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-link-hover)"></span></div>
+    <code class="tk__name">--sys-color-link-hover</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-orange-41</code></span>
+    <span class="tk__value">#a63e03</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-interactive)"></span></div>
+    <code class="tk__name">--sys-color-interactive</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-red-45</code></span>
+    <span class="tk__value">#b74343</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-interactive-hover)"></span></div>
+    <code class="tk__name">--sys-color-interactive-hover</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-sand-77</code></span>
+    <span class="tk__value">#cabd8a</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-interactive-subtle)"></span></div>
+    <code class="tk__name">--sys-color-interactive-subtle</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-red-45</code></span>
+    <span class="tk__value">color-mix(in srgb, var(--ref-palette-red-45) 16%, transparent)</span>
+    <span class="tk__note">tint and disabled fill</span>
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-focus)"></span></div>
+    <code class="tk__name">--sys-color-focus</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-red-45</code></span>
+    <span class="tk__value">color-mix(in srgb, var(--ref-palette-red-45) 50%, transparent)</span>
+    
+  </div></div><h3>Emphasis tints</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-highlight)"></span></div>
+    <code class="tk__name">--sys-color-highlight</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-sand-89</code></span>
+    <span class="tk__value">color-mix(in srgb, var(--ref-palette-sand-89) 28%, transparent)</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-accent-subtle)"></span></div>
+    <code class="tk__name">--sys-color-accent-subtle</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-gold-73</code></span>
+    <span class="tk__value">color-mix(in srgb, var(--ref-palette-gold-73) 20%, transparent)</span>
+    
+  </div></div><h3>Overlay</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-scrim)"></span></div>
+    <code class="tk__name">--sys-color-scrim</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-8</code></span>
+    <span class="tk__value">color-mix(in srgb, var(--ref-palette-neutral-8) 50%, transparent)</span>
+    <span class="tk__note">behind modals, recipe sheet and zoomed images</span>
+  </div></div><h3>Keywords</h3><div class="grid grid--swatch"><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-transparent)"></span></div>
+    <code class="tk__name">--sys-color-transparent</code>
+    
+    <span class="tk__value">transparent</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="swatch" style="background:var(--sys-color-inherit)"></span></div>
+    <code class="tk__name">--sys-color-inherit</code>
+    
+    <span class="tk__value">inherit</span>
+    
+  </div></div></section>
+    <section id="sys-type"><span class="eyebrow">System</span><h2>Typography</h2><h3>Families</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-family:var(--sys-font-family-display);font-size:var(--sys-font-size-title-sm)">The quick brown fox · 設計系統</span></div>
+    <code class="tk__name">--sys-font-family-display</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-typeface-dm-serif-display</code></span>
+    <span class="tk__value">'DM Serif Display', serif</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-family:var(--sys-font-family-body);font-size:var(--sys-font-size-title-sm)">The quick brown fox · 設計系統</span></div>
+    <code class="tk__name">--sys-font-family-body</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-typeface-dm-sans</code></span>
+    <span class="tk__value">'DM Sans', system-ui, sans-serif</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-family:var(--sys-font-family-mono);font-size:var(--sys-font-size-title-sm)">The quick brown fox · 設計系統</span></div>
+    <code class="tk__name">--sys-font-family-mono</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-typeface-dm-mono</code></span>
+    <span class="tk__value">'DM Mono', monospace</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-family:var(--sys-font-family-hand);font-size:var(--sys-font-size-title-sm)">The quick brown fox · 設計系統</span></div>
+    <code class="tk__name">--sys-font-family-hand</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-typeface-caveat</code></span>
+    <span class="tk__value">'Caveat', cursive</span>
+    
+  </div></div><h3>Sizes</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-caption);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-caption</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-12</code></span>
+    <span class="tk__value">0.75rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-small);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-small</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-14</code></span>
+    <span class="tk__value">0.875rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-body);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-body</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-16</code></span>
+    <span class="tk__value">1rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-body-lg);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-body-lg</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-18</code></span>
+    <span class="tk__value">1.125rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-title-xs);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-title-xs</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-20</code></span>
+    <span class="tk__value">1.25rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-title-sm);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-title-sm</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-24</code></span>
+    <span class="tk__value">1.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-title-md);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-title-md</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-32</code></span>
+    <span class="tk__value">2rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-title-lg);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-title-lg</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-40</code></span>
+    <span class="tk__value">2.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-display-sm);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-display-sm</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-56</code></span>
+    <span class="tk__value">3.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-display-md);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-display-md</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-72</code></span>
+    <span class="tk__value">4.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-display-lg);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-display-lg</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-96</code></span>
+    <span class="tk__value">6rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-section-title);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-section-title</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-font-size-title-md</code> <span class="arrow">→</span><code>--sys-font-size-title-lg</code></span>
+    <span class="tk__value">clamp(var(--sys-font-size-title-md), 4vw, var(--sys-font-size-title-lg))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-section-number);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-section-number</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-font-size-display-sm</code> <span class="arrow">→</span><code>--sys-font-size-display-lg</code></span>
+    <span class="tk__value">clamp(var(--sys-font-size-display-sm), 8vw, var(--sys-font-size-display-lg))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-project-title);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-project-title</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-font-size-title-lg</code> <span class="arrow">→</span><code>--sys-font-size-display-md</code></span>
+    <span class="tk__value">clamp(var(--sys-font-size-title-lg), 5vw, var(--sys-font-size-display-md))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-chapter);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-chapter</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-96</code> <span class="arrow">→</span><code>--ref-size-160</code></span>
+    <span class="tk__value">clamp(var(--ref-size-96), 12vw, var(--ref-size-160))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-hero);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-hero</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-72</code> <span class="arrow">→</span><code>--ref-size-160</code></span>
+    <span class="tk__value">clamp(var(--ref-size-72), 16vw, var(--ref-size-160))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="font-size:var(--sys-font-size-root-fluid);line-height:1.1;white-space:nowrap;overflow:hidden;display:block;text-overflow:clip">Aa Design system</span></div>
+    <code class="tk__name">--sys-font-size-root-fluid</code>
+    
+    <span class="tk__value">clamp(1rem, calc(100vw / 90), 2.5rem)</span>
+    
+  </div></div><h3>Weights</h3><div class="grid "><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--sys-font-weight-regular);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--sys-font-weight-regular</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-font-weight-400</code></span>
+    <span class="tk__value">400</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--sys-font-weight-medium);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--sys-font-weight-medium</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-font-weight-500</code></span>
+    <span class="tk__value">500</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--sys-font-weight-semibold);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--sys-font-weight-semibold</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-font-weight-600</code></span>
+    <span class="tk__value">600</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--sys-font-weight-bold);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--sys-font-weight-bold</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-font-weight-700</code></span>
+    <span class="tk__value">700</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="sample" style="font-weight:var(--sys-font-weight-inherit);font-size:var(--sys-font-size-title-sm)">Aa 設計</span></div>
+    <code class="tk__name">--sys-font-weight-inherit</code>
+    
+    <span class="tk__value">inherit</span>
+    
+  </div></div><h3>Line heights</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="line-height:var(--sys-line-height-tight);font-size:var(--sys-font-size-small);display:block;max-width:18rem">Components consume tokens only, so the system can change in one place.</span></div>
+    <code class="tk__name">--sys-line-height-tight</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-line-height-100</code></span>
+    <span class="tk__value">1</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="line-height:var(--sys-line-height-heading);font-size:var(--sys-font-size-small);display:block;max-width:18rem">Components consume tokens only, so the system can change in one place.</span></div>
+    <code class="tk__name">--sys-line-height-heading</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-line-height-120</code></span>
+    <span class="tk__value">1.2</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="line-height:var(--sys-line-height-body);font-size:var(--sys-font-size-small);display:block;max-width:18rem">Components consume tokens only, so the system can change in one place.</span></div>
+    <code class="tk__name">--sys-line-height-body</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-line-height-150</code></span>
+    <span class="tk__value">1.5</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="line-height:var(--sys-line-height-relaxed);font-size:var(--sys-font-size-small);display:block;max-width:18rem">Components consume tokens only, so the system can change in one place.</span></div>
+    <code class="tk__name">--sys-line-height-relaxed</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-line-height-175</code></span>
+    <span class="tk__value">1.75</span>
+    
+  </div></div><h3>Letter spacing</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="letter-spacing:var(--sys-letter-spacing-tight);font-size:var(--sys-font-size-title-md)">Design system</span></div>
+    <code class="tk__name">--sys-letter-spacing-tight</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-letter-spacing-neg-1px</code></span>
+    <span class="tk__value">-1px</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="letter-spacing:var(--sys-letter-spacing-tighter);font-size:var(--sys-font-size-title-md)">Design system</span></div>
+    <code class="tk__name">--sys-letter-spacing-tighter</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-letter-spacing-neg-3px</code></span>
+    <span class="tk__value">-3px</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="letter-spacing:var(--sys-letter-spacing-tightest);font-size:var(--sys-font-size-title-md)">Design system</span></div>
+    <code class="tk__name">--sys-letter-spacing-tightest</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-letter-spacing-neg-6px</code></span>
+    <span class="tk__value">-6px</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="sample" style="letter-spacing:var(--sys-letter-spacing-display);font-size:var(--sys-font-size-title-md)">Design system</span></div>
+    <code class="tk__name">--sys-letter-spacing-display</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-letter-spacing-neg-0-04em</code></span>
+    <span class="tk__value">-0.04em</span>
+    
+  </div></div></section>
+    <section id="sys-space"><span class="eyebrow">System</span><h2>Spacing</h2><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-0), 100%)"></span></div>
+    <code class="tk__name">--sys-space-0</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-0</code></span>
+    <span class="tk__value">0</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-hairline), 100%)"></span></div>
+    <code class="tk__name">--sys-space-hairline</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-2</code></span>
+    <span class="tk__value">0.125rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-3xs), 100%)"></span></div>
+    <code class="tk__name">--sys-space-3xs</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-4</code></span>
+    <span class="tk__value">0.25rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-2xs), 100%)"></span></div>
+    <code class="tk__name">--sys-space-2xs</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-6</code></span>
+    <span class="tk__value">0.375rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-xs), 100%)"></span></div>
+    <code class="tk__name">--sys-space-xs</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-8</code></span>
+    <span class="tk__value">0.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-sm), 100%)"></span></div>
+    <code class="tk__name">--sys-space-sm</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-12</code></span>
+    <span class="tk__value">0.75rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-14), 100%)"></span></div>
+    <code class="tk__name">--sys-space-14</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-14</code></span>
+    <span class="tk__value">0.875rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-md), 100%)"></span></div>
+    <code class="tk__name">--sys-space-md</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-16</code></span>
+    <span class="tk__value">1rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-lg), 100%)"></span></div>
+    <code class="tk__name">--sys-space-lg</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-20</code></span>
+    <span class="tk__value">1.25rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-xl), 100%)"></span></div>
+    <code class="tk__name">--sys-space-xl</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-24</code></span>
+    <span class="tk__value">1.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-2xl), 100%)"></span></div>
+    <code class="tk__name">--sys-space-2xl</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-28</code></span>
+    <span class="tk__value">1.75rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-3xl), 100%)"></span></div>
+    <code class="tk__name">--sys-space-3xl</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-32</code></span>
+    <span class="tk__value">2rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-4xl), 100%)"></span></div>
+    <code class="tk__name">--sys-space-4xl</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-40</code></span>
+    <span class="tk__value">2.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-5xl), 100%)"></span></div>
+    <code class="tk__name">--sys-space-5xl</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-48</code></span>
+    <span class="tk__value">3rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-56), 100%)"></span></div>
+    <code class="tk__name">--sys-space-56</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-56</code></span>
+    <span class="tk__value">3.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-6xl), 100%)"></span></div>
+    <code class="tk__name">--sys-space-6xl</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-64</code></span>
+    <span class="tk__value">4rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-72), 100%)"></span></div>
+    <code class="tk__name">--sys-space-72</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-72</code></span>
+    <span class="tk__value">4.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-80), 100%)"></span></div>
+    <code class="tk__name">--sys-space-80</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-80</code></span>
+    <span class="tk__value">5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-88), 100%)"></span></div>
+    <code class="tk__name">--sys-space-88</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-88</code></span>
+    <span class="tk__value">5.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-7xl), 100%)"></span></div>
+    <code class="tk__name">--sys-space-7xl</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-96</code></span>
+    <span class="tk__value">6rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-8xl), 100%)"></span></div>
+    <code class="tk__name">--sys-space-8xl</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-128</code></span>
+    <span class="tk__value">8rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-160), 100%)"></span></div>
+    <code class="tk__name">--sys-space-160</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-160</code></span>
+    <span class="tk__value">10rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-pull-2xs), 100%)"></span></div>
+    <code class="tk__name">--sys-space-pull-2xs</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-neg-4</code></span>
+    <span class="tk__value">-0.25rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-pull-xs), 100%)"></span></div>
+    <code class="tk__name">--sys-space-pull-xs</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-neg-6</code></span>
+    <span class="tk__value">-0.375rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-pull-sm), 100%)"></span></div>
+    <code class="tk__name">--sys-space-pull-sm</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-neg-12</code></span>
+    <span class="tk__value">-0.75rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="bar" style="width:min(var(--sys-space-pull-md), 100%)"></span></div>
+    <code class="tk__name">--sys-space-pull-md</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-neg-16</code></span>
+    <span class="tk__value">-1rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-space-auto</code>
+    
+    <span class="tk__value">auto</span>
+    
+  </div></div></section>
+    <section id="sys-shape"><span class="eyebrow">System</span><h2>Shape</h2><div class="grid "><div class="tk ">
+    <div class="tk__demo"><span class="box" style="border-radius:var(--sys-radius-none)"></span></div>
+    <code class="tk__name">--sys-radius-none</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-0</code></span>
+    <span class="tk__value">0</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="box" style="border-radius:var(--sys-radius-sm)"></span></div>
+    <code class="tk__name">--sys-radius-sm</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-4</code></span>
+    <span class="tk__value">0.25rem</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="box" style="border-radius:var(--sys-radius-lg)"></span></div>
+    <code class="tk__name">--sys-radius-lg</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-8</code></span>
+    <span class="tk__value">0.5rem</span>
+    
+  </div><div class="tk ">
+    <div class="tk__demo"><span class="box" style="border-radius:var(--sys-radius-round)"></span></div>
+    <code class="tk__name">--sys-radius-round</code>
+    
+    <span class="tk__value">50%</span>
+    
+  </div></div></section>
+    <section id="sys-elevation"><span class="eyebrow">System</span><h2>Elevation</h2><div class="grid grid--roomy"><div class="tk ">
+    <div class="tk__demo"><span class="box box--card" style="box-shadow:var(--sys-shadow-floating)"></span></div>
+    <code class="tk__name">--sys-shadow-floating</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-palette-neutral-0</code></span>
+    <span class="tk__value">0 1.5rem 3rem color-mix(in srgb, var(--ref-palette-neutral-0) 20%, transparent)</span>
+    
+  </div></div></section>
+    <section id="sys-layers"><span class="eyebrow">System</span><h2>Layers</h2><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">0</span></div>
+    <code class="tk__name">--sys-z-base</code>
+    
+    <span class="tk__value">0</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">1</span></div>
+    <code class="tk__name">--sys-z-content</code>
+    
+    <span class="tk__value">1</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">2</span></div>
+    <code class="tk__name">--sys-z-raised</code>
+    
+    <span class="tk__value">2</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">5</span></div>
+    <code class="tk__name">--sys-z-tabs</code>
+    
+    <span class="tk__value">5</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">10</span></div>
+    <code class="tk__name">--sys-z-sticky</code>
+    
+    <span class="tk__value">10</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">20</span></div>
+    <code class="tk__name">--sys-z-peek</code>
+    
+    <span class="tk__value">20</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">30</span></div>
+    <code class="tk__name">--sys-z-overlay</code>
+    
+    <span class="tk__value">30</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">50</span></div>
+    <code class="tk__name">--sys-z-skip-link</code>
+    
+    <span class="tk__value">50</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">800</span></div>
+    <code class="tk__name">--sys-z-zoom-image</code>
+    
+    <span class="tk__value">800</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">900</span></div>
+    <code class="tk__name">--sys-z-zoom-backdrop</code>
+    
+    <span class="tk__value">900</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">1000</span></div>
+    <code class="tk__name">--sys-z-modal</code>
+    
+    <span class="tk__value">1000</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">1001</span></div>
+    <code class="tk__name">--sys-z-modal-control</code>
+    
+    <span class="tk__value">1001</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">9999</span></div>
+    <code class="tk__name">--sys-z-loader</code>
+    
+    <span class="tk__value">9999</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="z">10000</span></div>
+    <code class="tk__name">--sys-z-curtain</code>
+    
+    <span class="tk__value">10000</span>
+    
+  </div></div></section>
+    <section id="sys-motion"><span class="eyebrow">System</span><h2>Motion</h2><h3>Durations</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="run" style="animation-duration:min(var(--sys-motion-duration-stagger), 4s)"></span></span></div>
+    <code class="tk__name">--sys-motion-duration-stagger</code>
+    
+    <span class="tk__value">50ms</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="run" style="animation-duration:min(var(--sys-motion-duration-fast), 4s)"></span></span></div>
+    <code class="tk__name">--sys-motion-duration-fast</code>
+    
+    <span class="tk__value">200ms</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="run" style="animation-duration:min(var(--sys-motion-duration-standard), 4s)"></span></span></div>
+    <code class="tk__name">--sys-motion-duration-standard</code>
+    
+    <span class="tk__value">300ms</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="run" style="animation-duration:min(var(--sys-motion-duration-slow), 4s)"></span></span></div>
+    <code class="tk__name">--sys-motion-duration-slow</code>
+    
+    <span class="tk__value">400ms</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="run" style="animation-duration:min(var(--sys-motion-duration-long), 4s)"></span></span></div>
+    <code class="tk__name">--sys-motion-duration-long</code>
+    
+    <span class="tk__value">600ms</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="run" style="animation-duration:min(var(--sys-motion-duration-curtain), 4s)"></span></span></div>
+    <code class="tk__name">--sys-motion-duration-curtain</code>
+    
+    <span class="tk__value">800ms</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="run" style="animation-duration:min(var(--sys-motion-duration-loading), 4s)"></span></span></div>
+    <code class="tk__name">--sys-motion-duration-loading</code>
+    
+    <span class="tk__value">1000ms</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="run" style="animation-duration:min(var(--sys-motion-duration-ticker), 4s)"></span></span></div>
+    <code class="tk__name">--sys-motion-duration-ticker</code>
+    
+    <span class="tk__value">45s</span>
+    
+  </div></div><h3>Easing</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="dot" style="animation-timing-function:var(--sys-motion-ease-standard)"></span></span></div>
+    <code class="tk__name">--sys-motion-ease-standard</code>
+    
+    <span class="tk__value">ease</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="dot" style="animation-timing-function:var(--sys-motion-ease-smooth)"></span></span></div>
+    <code class="tk__name">--sys-motion-ease-smooth</code>
+    
+    <span class="tk__value">cubic-bezier(0.2, 0.7, 0.2, 1)</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"><span class="track"><span class="dot" style="animation-timing-function:var(--sys-motion-ease-curtain)"></span></span></div>
+    <code class="tk__name">--sys-motion-ease-curtain</code>
+    
+    <span class="tk__value">cubic-bezier(0.76, 0, 0.24, 1)</span>
+    
+  </div></div><h3>Composed transitions</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-transition-color</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-motion-duration-fast</code> <span class="arrow">→</span><code>--sys-motion-ease-standard</code></span>
+    <span class="tk__value">color var(--sys-motion-duration-fast) var(--sys-motion-ease-standard)</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-transition-opacity</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-motion-duration-standard</code> <span class="arrow">→</span><code>--sys-motion-ease-standard</code></span>
+    <span class="tk__value">opacity var(--sys-motion-duration-standard) var(--sys-motion-ease-standard)</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-transition-zoom-opacity</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-motion-duration-slow</code> <span class="arrow">→</span><code>--sys-motion-ease-standard</code></span>
+    <span class="tk__value">opacity var(--sys-motion-duration-slow) var(--sys-motion-ease-standard)</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-transition-zoom-transform</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-motion-duration-slow</code> <span class="arrow">→</span><code>--sys-motion-ease-standard</code></span>
+    <span class="tk__value">transform var(--sys-motion-duration-slow) var(--sys-motion-ease-standard)</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-transition-none</code>
+    
+    <span class="tk__value">none</span>
+    
+  </div></div></section>
+    <section id="sys-other"><span class="eyebrow">System</span><h2>Other</h2><h3>Opacity</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-opacity-hidden</code>
+    
+    <span class="tk__value">0</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-opacity-muted</code>
+    
+    <span class="tk__value">0.5</span>
+    
+  </div></div><h3>Border and rules</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-rule-width-thin</code>
+    
+    <span class="tk__value">1px</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-text-stroke-width</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-hairline</code></span>
+    <span class="tk__value">0.125rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-border-width-accent</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-3xs</code></span>
+    <span class="tk__value">0.25rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-border-hairline</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-hairline</code> <span class="arrow">→</span><code>--sys-color-border</code></span>
+    <span class="tk__value">var(--sys-space-hairline) solid var(--sys-color-border)</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-outline-offset-inset</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-2xs</code></span>
+    <span class="tk__value">calc(-1 * var(--sys-space-2xs))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--sys-rule-nudge</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-rule-width-thin</code></span>
+    <span class="tk__value">calc(var(--sys-rule-width-thin) / -2)</span>
+    
+  </div></div></section>
+    <section id="comp"><span class="eyebrow">Component</span><h2>Component tokens</h2><h3>Shadows</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-shadow-offset-about</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-xs</code> <span class="arrow">→</span><code>--sys-space-xs</code> <span class="arrow">→</span><code>--sys-color-chapter-about</code></span>
+    <span class="tk__value">var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-about)</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-shadow-offset-kitchen</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-xs</code> <span class="arrow">→</span><code>--sys-space-xs</code> <span class="arrow">→</span><code>--sys-color-chapter-kitchen</code></span>
+    <span class="tk__value">var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-kitchen)</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-shadow-offset-kitchen-phone</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-2xs</code> <span class="arrow">→</span><code>--sys-space-2xs</code> <span class="arrow">→</span><code>--sys-color-chapter-kitchen</code></span>
+    <span class="tk__value">var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-kitchen)</span>
+    
+  </div></div><h3>Page loader and page-to-page curtain (read by utility/loadingPage.js)</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-loader-gutter</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-3xl</code></span>
+    <span class="tk__value">2rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-loader-gutter-narrow</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-lg</code></span>
+    <span class="tk__value">1.25rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-loader-track-mix</code>
+    
+    <span class="tk__value">20%</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-loader-count-font-size</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-font-size-title-lg</code> <span class="arrow">→</span><code>--sys-font-size-display-md</code></span>
+    <span class="tk__value">clamp(var(--sys-font-size-title-lg), 7vw, var(--sys-font-size-display-md))</span>
+    
+  </div></div><h3>Navigation</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-nav-width-home</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-7xl</code></span>
+    <span class="tk__value">6rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-nav-height-home</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-56</code></span>
+    <span class="tk__value">3.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-nav-width-project</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-72</code></span>
+    <span class="tk__value">4.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-nav-width-project-expanded</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-272</code></span>
+    <span class="tk__value">17rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-skip-link-offset</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-80</code></span>
+    <span class="tk__value">calc(-1 * var(--sys-space-80))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-project-index-list-top</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-56</code></span>
+    <span class="tk__value">3.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-page-progress-offset</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-hairline</code></span>
+    <span class="tk__value">calc(-1 * var(--sys-space-hairline))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-section-scroll-margin</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-80</code></span>
+    <span class="tk__value">5rem</span>
+    
+  </div></div><h3>Hero</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-hero-card-width</code>
+    
+    <span class="tk__value">11rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-hero-card-width-phone</code>
+    
+    <span class="tk__value">7rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-hero-card-width-stacked</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-160</code></span>
+    <span class="tk__value">10rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-hero-padding-top</code>
+    
+    <span class="tk__value">24rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-hero-padding-bottom</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-160</code></span>
+    <span class="tk__value">10rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-hero-copy-bottom</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-88</code></span>
+    <span class="tk__value">5.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-hero-copy-width</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-512</code></span>
+    <span class="tk__value">32rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-hero-line1-indent</code>
+    
+    <span class="tk__value">1em</span>
+    
+  </div></div><h3>Home sections</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-project-cover-bleed</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-72</code></span>
+    <span class="tk__value">calc(-1 * var(--sys-space-72))</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-project-cover-width</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-512</code></span>
+    <span class="tk__value">32rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-about-portrait-width</code>
+    
+    <span class="tk__value">29rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-chapter-title-padding-top</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-3xl</code></span>
+    <span class="tk__value">2rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-menu-item-padding-block</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-sm</code></span>
+    <span class="tk__value">0.75rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-kitchen-peek-hint-padding-block</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-xs</code></span>
+    <span class="tk__value">0.5rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-kitchen-peek-width</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--ref-size-272</code></span>
+    <span class="tk__value">17rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-kitchen-recipe-width</code>
+    
+    <span class="tk__value">36rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-life-card-width</code>
+    
+    <span class="tk__value">22rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-life-card-width-landscape</code>
+    
+    <span class="tk__value">33rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-life-photo-height</code>
+    
+    <span class="tk__value">24rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-typing-caret-height</code>
+    
+    <span class="tk__value">1em</span>
+    
+  </div></div><h3>Measures (max text widths)</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-measure-copy</code>
+    
+    <span class="tk__value">38rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-measure-quote</code>
+    
+    <span class="tk__value">22rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-measure-lead</code>
+    
+    <span class="tk__value">44rem</span>
+    
+  </div></div><h3>Project pages</h3><div class="list"><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-goal-icon-fluid</code>
+    
+    <span class="tk__value">18vw</span>
+    <span class="tk__note">icon circle grows with the window between its min and max</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-goal-icon-fill</code>
+    
+    <span class="tk__value">0.8</span>
+    <span class="tk__note">artwork share of the circle</span>
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-goal-icon-art-size</code>
+    <span class="tk__alias"><span class="arrow">→</span><code>--sys-space-8xl</code></span>
+    <span class="tk__value">8rem</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-text-link-underline-offset</code>
+    
+    <span class="tk__value">0.2em</span>
+    
+  </div><div class="tk tk--wide">
+    <div class="tk__demo"></div>
+    <code class="tk__name">--comp-media-placeholder-min-height</code>
+    
+    <span class="tk__value">12rem</span>
+    
+  </div></div></section>
+  </main>
+</div>
+</body>
+</html>

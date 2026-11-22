@@ -22,13 +22,13 @@ Do not use on the landing page.
 
 ## 4. Tokens used
 
-- `--color-background`
-- `--color-surface-glass`
-- `--color-text`
-- `--space-*`
-- `--font-size-*`
-- `--filter-shadow-project-image`
-- `--z-raised`
+- `--sys-color-background`
+- `--sys-color-background`
+- `--sys-color-text`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-shadow-floating`
+- `--sys-z-raised`
 
 ## 5. Props/API
 

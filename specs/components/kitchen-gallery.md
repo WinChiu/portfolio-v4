@@ -22,19 +22,19 @@ Do not use as a looping carousel or hijack page scrolling.
 
 ## 4. Tokens used
 
-- `--color-text`
-- `--color-text-muted`
-- `--color-background`
-- `--color-border`
-- `--color-border-muted`
-- `--color-interactive`
-- `--color-overlay`
-- `--space-*`
-- `--font-size-*`
-- `--font-family-mono`
-- `--motion-duration-*`
+- `--sys-color-text`
+- `--sys-color-text-muted`
+- `--sys-color-background`
+- `--sys-color-border`
+- `--sys-color-border`
+- `--sys-color-interactive`
+- `--sys-color-scrim`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-font-family-mono`
+- `--sys-motion-duration-*`
 - `--motion-ease-*`
-- `--z-modal`
+- `--sys-z-modal`
 
 ## 5. Props/API
 

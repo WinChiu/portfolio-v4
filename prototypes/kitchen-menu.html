@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kitchen Menu — prototype</title>
+<link rel="stylesheet" href="../style/tokens.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300..700&family=DM+Serif+Display&family=Courier+Prime:wght@400;700&family=Caveat:wght@500;600&display=swap" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-family-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'Courier Prime', var(--font-family-mono); }
+  .hand { font-family: 'Caveat', cursive; }
+
+  /* ---------- page frame ---------- */
+  .km { max-width: 72rem; margin: 0 auto; padding: 6rem 2.5rem 8rem; }
+
+  /* ---------- masthead ---------- */
+  .km__head { text-align: center; }
+  .km__title {
+    margin: 0;
+    font-family: var(--font-family-display); font-weight: 400;
+    font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: 0.9;
+    color: transparent; -webkit-text-stroke: 0.125rem var(--color-text-muted);
+  }
+  .km__lede { max-width: 30rem; margin: 1.5rem auto 0; color: var(--color-text-muted); line-height: 1.7; }
+  /* ---------- menu body ---------- */
+  .km__menu { columns: 2; column-gap: 5rem; margin-top: 5rem; }
+  .km__course { break-inside: avoid; margin-bottom: 3.5rem; }
+  .km__courseHead { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .km__courseZh { font-size: 1.3125rem; font-weight: 600; letter-spacing: 0.1em; }
+  .km__courseEn { font-family: var(--font-family-display); font-style: italic; font-size: 1.3125rem; color: var(--color-text-muted); }
+  .km__courseLine { flex: 1; height: 1px; background: var(--color-text); align-self: center; }
+
+  .km__dish {
+    position: relative; display: grid;
+    grid-template-columns: 2.25rem minmax(0, auto) 1fr auto;
+    align-items: baseline; column-gap: 0.5rem;
+    width: 100%; padding: 0.7rem 0; border: 0; background: none; text-align: left;
+    font: inherit; color: inherit; cursor: pointer;
+    transition: opacity .35s, color .35s;
+  }
+  .km__no { font-size: 0.75rem; color: var(--color-text-muted); }
+  .km__names { min-width: 0; }
+  .km__zh { font-size: 1.0625rem; font-weight: 500; }
+  .km__en { display: block; margin-top: 2px; font-size: 0.75rem; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .km__leader { align-self: center; height: 0; border-bottom: 1px dotted var(--color-border-muted); transform: translateY(-0.35rem); transition: border-color .3s; }
+  .km__effort { display: inline-flex; gap: 2px; align-self: center; transform: translateY(-0.35rem); }
+  .km__effort svg { width: 11px; height: 14px; }
+  .km__effort path { fill: none; stroke: var(--color-text); stroke-width: 1.2; }
+  .km__effort .off path { stroke: var(--color-border-muted); }
+
+  .km__zh { transition: color .25s; }
+  .km__dish:hover .km__leader { border-color: var(--color-text); }
+  .km__dish:hover .km__zh, .km__dish:focus-visible .km__zh { color: var(--color-interactive); }
+  .km__dish:focus-visible { outline: none; }
+
+  /* ---------- recipe sheet ---------- */
+  .km__scrim { position: fixed; inset: 0; z-index: 30; background: rgba(54,58,53,.18); opacity: 0; pointer-events: none; transition: opacity .4s; }
+  .km__sheet {
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 31;
+    width: min(46rem, 100vw); overflow-y: auto; overscroll-behavior: contain;
+    background: var(--color-background); border-left: 1px solid var(--color-text);
+    transform: translateX(100%); transition: transform .6s cubic-bezier(.7,0,.2,1);
+  }
+  .is-open .km__scrim { opacity: 1; pointer-events: auto; }
+  .is-open .km__sheet { transform: translateX(0); }
+  .km__sheetIn { padding: 2rem 3rem 4rem; }
+  .km__sheetTop { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--color-text-muted); }
+  .km__close { border: 1px solid var(--color-text); background: none; width: 2.25rem; height: 2.25rem; cursor: pointer; font-size: 1.1rem; color: var(--color-text); }
+  .km__close:hover { background: var(--color-text); color: var(--color-background); }
+  .km__nav { display: flex; gap: .5rem; }
+  .km__nav button { border: 0; background: none; font: inherit; font-size: .75rem; color: var(--color-text-muted); cursor: pointer; }
+  .km__nav button:hover { color: var(--color-text); }
+
+  .km__hero { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; align-items: end; }
+  .km__photo { border: 1px solid var(--color-text); padding: .6rem; }
+  .km__photo img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; clip-path: inset(0 100% 0 0); transition: clip-path .8s .3s cubic-bezier(.7,0,.2,1); }
+  .is-open .km__photo img { clip-path: inset(0 0 0 0); }
+  .km__sNo { font-size: .75rem; color: var(--color-text-muted); }
+  .km__sZh { margin: .5rem 0 0; font-size: 1.75rem; font-weight: 600; line-height: 1.25; }
+  .km__sEn { margin: .35rem 0 0; font-size: .9375rem; color: var(--color-text-muted); }
+  .km__sNote { margin: 1rem 0 0; font-size: 1.25rem; line-height: 1.25; }
+  .km__meta { margin: 1.75rem 0 0; }
+  .km__metaRow, .km__ingRow { display: flex; align-items: baseline; gap: .5rem; padding: .3rem 0; }
+  .km__metaRow dt { font-size: .75rem; color: var(--color-text-muted); }
+  .km__metaRow dd { margin: 0; font-size: .875rem; }
+  .km__metaRow .km__leader, .km__ingRow .km__leader { flex: 1; transform: none; align-self: auto; position: relative; top: -.25rem; }
+  .km__metaRow .km__effort { transform: none; }
+
+  .km__cols { display: grid; grid-template-columns: 1fr 1.35fr; gap: 3rem; margin-top: 2.5rem; }
+  .km__h { display: flex; justify-content: space-between; align-items: center; margin: 0 0 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--color-text); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+  .km__ings { list-style: none; margin: 0; padding: 0; }
+  .km__ingRow { padding: .45rem 0; }
+  .km__ingName { font-size: .9375rem; }
+  .km__qty { font-size: .8125rem; }
+
+  .km__steps { position: relative; list-style: none; margin: 0; padding: 0 0 0 1.75rem; }
+  .km__steps::before, .km__fill { content: ''; position: absolute; left: .35rem; top: .6rem; width: 1px; }
+  .km__steps::before { bottom: .6rem; background: var(--color-border-muted); }
+  .km__fill { background: var(--color-text); height: 0; transition: height .45s cubic-bezier(.6,0,.2,1); }
+  .km__step { position: relative; padding: .35rem 0 1.1rem; cursor: pointer; color: var(--color-text-muted); transition: color .3s; line-height: 1.6; font-size: .9375rem; }
+  .km__step::before { content: ''; position: absolute; left: -1.75rem; top: .6rem; width: .7rem; height: .7rem; border: 1px solid var(--color-text); border-radius: 50%; background: var(--color-background); transition: background .3s; }
+  .km__step.is-past { color: var(--color-text); }
+  .km__step.is-past::before { background: var(--color-text); }
+  .km__step .mono { display: block; font-size: .75rem; color: var(--color-text-muted); }
+  .km__sample { margin-top: 2.5rem; font-size: .75rem; color: var(--color-text-muted); text-align: center; }
+
+  @media (max-width: 52rem) {
+    .km { padding: 4rem 1rem 6rem; }
+    .km__menu { columns: 1; }
+    .km__menu { margin-top: 3.5rem; }
+    .km__sheetIn { padding: 1.25rem 1rem 3rem; }
+    .km__hero, .km__cols { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: 0s !important; } }
+</style>
+</head>
+<body>
+<main class="km" id="km">
+  <header class="km__head">
+    <h1 class="km__title">Kitchen</h1>
+    <p class="km__lede">I gradually started to love cooking after I couldn't stand bread and meatballs anymore in Sweden.</p>
+  </header>
+
+  <div class="km__menu" id="menu"></div>
+</main>
+
+<div id="overlay">
+  <div class="km__scrim" id="scrim"></div>
+  <aside class="km__sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sZh" tabindex="-1"></aside>
+</div>
+
+<script src="../content/kitchenMenuData.js"></script>
+<script src="../content/homeContent.js"></script>
+<script>
+(function () {
+  const items = window.__HOME_PAGE_CONTENT__.en.kitchen.items;
+
+  // Prototype-only taxonomy; in production this would live on each item.
+  const COURSES = [
+    { key: 'rice',   zh: '飯',   en: 'Rice' },
+    { key: 'noodle', zh: '麵',   en: 'Noodles' },
+    { key: 'main',   zh: '主菜', en: 'Mains' },
+    { key: 'stew',   zh: '湯鍋', en: 'Soups & Stews' },
+    { key: 'snack',  zh: '小吃', en: 'Street Food' },
+    { key: 'sweet',  zh: '甜點', en: 'Sweets' },
+  ];
+  function courseOf(it) {
+    const z = it.nameZh, e = it.nameEn.toLowerCase();
+    if (/粉粿/.test(z)) return 'sweet';
+    if (/湯|鍋|煲|燉/.test(z)) return 'stew';
+    if (/飯|拌飯/.test(z)) return 'rice';
+    if (/麵|noodle|pasta/.test(z + e)) return 'noodle';
+    if (/餅|油條|肉圓|堡|鹹酥雞|洋蔥圈|蛋餅/.test(z)) return 'snack';
+    return 'main';
+  }
+  const dishes = items.map((it, i) => ({ ...it, no: i + 1, course: courseOf(it) }));
+  const pad = (n) => String(n).padStart(2, '0');
+  const flame = '<svg viewBox="0 0 11 14"><path d="M5.5 13C2.5 13 1 11 1 8.6 1 6 3.4 4.6 4 1.2c2.4 1.6 3.3 3.4 3 5.4.8-.5 1.4-1.3 1.6-2.2C9.6 5.6 10 7 10 8.6 10 11 8.5 13 5.5 13Z"/></svg>';
+  const flames = (n) => [1, 2, 3].map((k) => `<span class="${k > n ? 'off' : ''}">${flame}</span>`).join('');
+
+  // menu
+  const menu = document.getElementById('menu');
+  menu.innerHTML = COURSES.map((c) => {
+    const list = dishes.filter((d) => d.course === c.key);
+    if (!list.length) return '';
+    return `<section class="km__course">
+      <div class="km__courseHead"><span class="km__courseZh">${c.zh}</span><span class="km__courseEn">${c.en}</span><span class="km__courseLine"></span></div>
+      ${list.map((d) => `<button class="km__dish" data-no="${d.no}">
+        <span class="km__no mono">${pad(d.no)}</span>
+        <span class="km__names"><span class="km__zh">${d.nameZh}</span><span class="km__en mono">${d.nameEn}</span></span>
+        <span class="km__leader"></span>
+        <span class="km__effort" aria-label="Effort ${d.effort} of 3">${flames(d.effort)}</span>
+      </button>`).join('')}
+    </section>`;
+  }).join('');
+
+  // recipe sheet
+  const overlay = document.getElementById('overlay');
+  const sheet = document.getElementById('sheet');
+  const SAMPLE_ING = [['主食材', 300, 'g'], ['洋蔥', 0.5, '顆'], ['蒜頭', 3, '瓣'], ['醬油', 2, '大匙'], ['米酒', 1, '大匙'], ['糖', 1, '小匙']];
+  const SAMPLE_STEPS = ['備料：食材切好，用醬油、米酒抓醃 15 分鐘。', '熱鍋下油，把主食材兩面煎到上色後取出。', '同鍋爆香洋蔥與蒜頭，炒到微焦。', '主食材回鍋，加調味料與少許水，小火燉煮。', '收汁、試味道，盛盤。'];
+  let current = null, lastFocus = null;
+
+  function renderSheet(d) {
+    sheet.innerHTML = `<div class="km__sheetIn">
+      <div class="km__sheetTop mono"><span>${COURSES.find((c) => c.key === d.course).en} — No.${pad(d.no)}</span>
+        <span class="km__nav"><button data-go="-1">← Prev</button><button data-go="1">Next →</button><button class="km__close" aria-label="Close recipe">×</button></span></div>
+      <div class="km__hero">
+        <div class="km__photo"><img src="${d.imageSrc}" alt="${d.imageAlt || ''}"></div>
+        <div>
+          <div class="km__sNo mono">No.${pad(d.no)} / ${dishes.length}</div>
+          <h2 class="km__sZh" id="sZh">${d.nameZh}</h2>
+          <p class="km__sEn mono">${d.nameEn}</p>
+          <p class="km__sNote hand">${d.note}</p>
+          <dl class="km__meta mono">
+            <div class="km__metaRow"><dt>Effort</dt><span class="km__leader"></span><dd><span class="km__effort">${flames(d.effort)}</span></dd></div>
+            <div class="km__metaRow"><dt>Time</dt><span class="km__leader"></span><dd>${[25, 45, 120][d.effort - 1]} min</dd></div>
+            <div class="km__metaRow"><dt>Course</dt><span class="km__leader"></span><dd>${COURSES.find((c) => c.key === d.course).zh} ${COURSES.find((c) => c.key === d.course).en}</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="km__cols">
+        <div>
+          <h3 class="km__h mono">Ingredients</h3>
+          <ul class="km__ings">${SAMPLE_ING.map(([n, q, u]) => `<li class="km__ingRow"><span class="km__ingName">${n}</span><span class="km__leader"></span><span class="km__qty mono">${q} ${u}</span></li>`).join('')}</ul>
+        </div>
+        <div>
+          <h3 class="km__h mono">Method</h3>
+          <ol class="km__steps" id="steps"><span class="km__fill" id="fill"></span>${SAMPLE_STEPS.map((s, i) => `<li class="km__step" data-i="${i}"><span class="mono">Step ${pad(i + 1)}</span>${s}</li>`).join('')}</ol>
+        </div>
+      </div>
+      <p class="km__sample mono">* 食材與步驟為示意內容</p>
+    </div>`;
+
+    const steps = [...sheet.querySelectorAll('.km__step')];
+    const fill = sheet.querySelector('#fill');
+    function setStep(k) {
+      steps.forEach((s, i) => s.classList.toggle('is-past', i <= k));
+      fill.style.height = (steps[k].offsetTop + 10 - 10) + 'px';
+    }
+    steps.forEach((s, i) => s.addEventListener('click', () => setStep(i)));
+    requestAnimationFrame(() => setStep(0));
+
+    sheet.querySelector('.km__close').addEventListener('click', close);
+    sheet.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => {
+      const n = (d.no - 1 + +b.dataset.go + dishes.length) % dishes.length;
+      open(dishes[n], true);
+    }));
+  }
+
+  function open(d, swap) {
+    current = d;
+    if (!swap) lastFocus = document.activeElement;
+    renderSheet(d);
+    sheet.scrollTop = 0;
+    if (swap) {
+      const img = sheet.querySelector('.km__photo img');
+      img.style.transition = 'none'; img.style.clipPath = 'inset(0 100% 0 0)';
+      requestAnimationFrame(() => { img.style.transition = ''; img.style.clipPath = ''; });
+    }
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    sheet.focus({ preventScroll: true });
+  }
+  function close() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    current = null;
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  }
+  menu.addEventListener('click', (e) => {
+    const b = e.target.closest('.km__dish');
+    if (b) open(dishes[b.dataset.no - 1]);
+  });
+  document.getElementById('scrim').addEventListener('click', close);
+  document.addEventListener('keydown', (e) => {
+    if (!current) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') open(dishes[current.no % dishes.length], true);
+    if (e.key === 'ArrowLeft') open(dishes[(current.no - 2 + dishes.length) % dishes.length], true);
+  });
+})();
+</script>
+</body>
+</html>

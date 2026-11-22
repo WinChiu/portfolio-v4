@@ -20,14 +20,14 @@ Do not expose it until both language targets exist.
 
 ## 4. Tokens used
 
-- `--color-background`
-- `--color-border`
-- `--color-interactive-hover`
-- `--color-text-inverse`
-- `--space-*`
-- `--radius-sm`
-- `--shadow-raised`
-- `--z-sticky`
+- `--sys-color-background`
+- `--sys-color-border`
+- `--sys-color-interactive-hover`
+- `--sys-color-text-inverse`
+- `--sys-space-*`
+- `--sys-radius-sm`
+- `--sys-shadow-floating`
+- `--sys-z-sticky`
 
 ## 5. Props/API
 

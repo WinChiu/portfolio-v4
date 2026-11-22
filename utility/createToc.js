@@ -72,150 +72,116 @@ document.addEventListener("DOMContentLoaded", function () {
     applyHighlightMarkers();
   }
 
-  /* ========== 第 1 步：幫 section title 加上 ID，並動態生成 TOC ========== */
-  const bgTextElements = document.querySelectorAll(
-    ".project-module--section-title .project-module__heading"
-  );
 
-  // 建立 TOC 容器
-  const tocContainer = document.createElement("div");
-  tocContainer.className = "project-nav__toc";
-
-  bgTextElements.forEach((section, index) => {
-    const id = `toc${index + 1}`;
-    section.id = id; // 幫每個 section title 加上動態 ID
-
-    // 建立 <a> 作為 TOC 連結
-    const tocLink = document.createElement("a");
-    tocLink.className = "ui-link ui-toc-item project-toc";
-    tocLink.href = `#${id}`;
-
-    // dot
-    const tocDot = document.createElement("div");
-    tocDot.className = "project-toc__dot";
-
-    // 文字
-    const tocText = document.createElement("p");
-    tocText.className = "project-toc__label";
-    tocText.textContent = section.textContent.trim();
-
-    // 組合
-    tocLink.appendChild(tocDot);
-    tocLink.appendChild(tocText);
-    tocContainer.appendChild(tocLink);
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+  const toc = navbar.querySelector('.project-nav__toc');
+  const toggle = navbar.querySelector('.sections-toggle');
+  const current = navbar.querySelector('.mobile-current');
+  const headings = [...document.querySelectorAll('.project-module__chapter-title, .project-module--section-title .project-module__heading')];
+  const sections = headings.map(heading => heading.closest('.project-page__section') || heading);
+  const links = headings.map((heading, index) => {
+    heading.id ||= `toc${index + 1}`;
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.className = 'project-toc ui-toc-item';
+    link.href = `#${sections[index].id || heading.id}`;
+    link.title = heading.textContent.trim();
+    const number = document.createElement('span');
+    number.className = 'n project-toc__number';
+    number.textContent = String(index + 1).padStart(2, '0');
+    const label = document.createElement('span');
+    label.className = 't project-toc__label';
+    label.textContent = link.title;
+    link.append(number, label);
+    item.append(link);
+    toc.append(item);
+    return link;
   });
-
-  // 插入到 nav 裡第一個子元素後
-  const navbar = document.getElementById("navbar");
-  if (navbar && navbar.firstElementChild) {
-    navbar.insertBefore(tocContainer, navbar.firstElementChild.nextSibling);
-  } else if (navbar) {
-    navbar.appendChild(tocContainer);
-  }
-
-  /* ========== 第 2 步：使用 IntersectionObserver，並保留最後一次的焦點 ========== */
-
-  const observerOptions = {
-    root: null, // 以視窗為觀察容器
-    threshold: 0.5, // 目標元素 50% 進入視窗時觸發
+  const phone = matchMedia('(max-width: 48rem)');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const closeMenu = () => {
+    navbar.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
   };
-
-  const activeSections = new Set(); // 目前在視窗中的區塊
-  let lastActiveSection = null; // 最後一次成為焦點的區塊
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // 目標元素進入視窗
-        activeSections.add(entry.target);
-      } else {
-        // 目標元素離開視窗
-        activeSections.delete(entry.target);
-        if (entry.boundingClientRect.top > window.innerHeight) {
-          if (activeSections.size === 0) {
-            // 找出「目前已經滾出視窗且最接近頂部」的區塊
-            const sectionsArray = Array.from(bgTextElements);
-            let fallbackSection = null;
-            for (let i = 0; i < sectionsArray.length; i++) {
-              const rect = sectionsArray[i].getBoundingClientRect();
-              // rect.bottom < 0 代表整個區塊已經在視窗頂部以上
-              if (rect.bottom < 0) {
-                fallbackSection = sectionsArray[i];
-              } else {
-                break;
-              }
-            }
-            // 如果確實找到上一個區塊，就把它當作最後焦點
-            if (fallbackSection) {
-              lastActiveSection = fallbackSection;
-            }
-          }
-        }
-      }
-    });
-
-    // 從 activeSections 中找「視窗中最下面」的區塊
-    let currentActive = null;
-    activeSections.forEach((section) => {
-      if (!currentActive) {
-        currentActive = section;
-      } else {
-        // 比較 top 值 (越大代表越下面)
-        if (
-          section.getBoundingClientRect().top >
-          currentActive.getBoundingClientRect().top
-        ) {
-          currentActive = section;
-        }
-      }
-    });
-
-    // 若有新的 currentActive，就更新 lastActiveSection
-    if (currentActive) {
-      lastActiveSection = currentActive;
-    }
-    // 若沒有任何區塊在視窗中，則維持 lastActiveSection 不變
-    // （保留上一個焦點，不清除）
-
-    // 更新 TOC focus 樣式
-    document.querySelectorAll(".project-toc").forEach((link) => {
-      link.classList.remove("project-toc--active");
-      link.classList.remove("is-active");
-    });
-    if (lastActiveSection) {
-      const link = document.querySelector(
-        `.project-toc[href="#${lastActiveSection.id}"]`
-      );
-      if (link) {
-        link.classList.add("project-toc--active");
-        link.classList.add("is-active");
-      }
-    }
-  }, observerOptions);
-
-  // 開始觀察每個 section title
-  bgTextElements.forEach((section) => observer.observe(section));
-
-  /* ========== 第 3 步：預留錨點滾動的置頂空間 ========== */
-  const tocLinks = document.querySelectorAll(".project-toc");
-  const offset = 24; // 預留 24px 空間
-  tocLinks.forEach((link) => {
-    link.addEventListener("click", function (event) {
-      event.preventDefault(); // 阻止預設的錨點跳轉行為
-      const targetId = this.getAttribute("href").substring(1); // 取得 ID
-      const targetElement = document.getElementById(targetId);
-
-      if (targetElement) {
-        // 計算滾動位置 (目標元素的頂部位置 - 預留空間)
-        const targetPosition =
-          targetElement.getBoundingClientRect().top + window.scrollY - offset;
-
-        // 執行平滑滾動
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }
-    });
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    navbar.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
   });
+  document.addEventListener('click', event => {
+    if (!navbar.contains(event.target)) closeMenu();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navbar.classList.contains('is-open')) {
+      closeMenu();
+      toggle.focus({ preventScroll: true });
+    }
+  });
+  // Own these anchors so Lenis and native smooth scrolling never compete.
+  navbar.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
+    const target = document.getElementById(link.hash.slice(1));
+    if (!target) return;
+    event.preventDefault();
+    event.stopPropagation();
+    closeMenu();
+    if (phone.matches && link.classList.contains('project-toc')) toggle.focus({ preventScroll: true });
+    const offset = phone.matches ? 76 : 32;
+    // Lenis already reads scroll-margin-top from chapter sections.
+    if (window.lenis) window.lenis.scrollTo(target, { offset: target.matches('.sec') ? 0 : -offset, immediate: reducedMotion.matches });
+    else window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - offset, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+    history.replaceState(null, '', link.hash);
+  });
+  let scheduled = false;
+  function updateProgress() {
+    scheduled = false;
+    let active = -1;
+    sections.forEach((section, index) => {
+      if (section.getBoundingClientRect().top <= (phone.matches ? 80 : 40)) active = index;
+    });
+    links.forEach((link, index) => {
+      const selected = index === active;
+      link.classList.toggle('project-toc--active', selected);
+      link.classList.toggle('is-active', selected);
+      if (selected) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    const label = active < 0 ? 'Overview' : `${String(active + 1).padStart(2, '0')} ${links[active].title}`;
+    if (current.textContent !== label) current.textContent = label;
+    if (toggle.textContent !== label) toggle.textContent = label; // the phone button names the current section
+    const distance = document.documentElement.scrollHeight - innerHeight;
+    const progress = distance > 0 ? Math.max(0, Math.min(1, scrollY / distance)) : 1;
+    navbar.style.setProperty('--page-progress', String(progress));
+    const color = getComputedStyle(document.body).getPropertyValue('--accent-ink').trim();
+    const stop = (progress * 100).toFixed(2);
+    navbar.style.setProperty('--fill-gradient', `linear-gradient(to bottom, ${color} 0% ${stop}%, transparent ${stop}% 100%)`);
+    const rect = navbar.getBoundingClientRect();
+    navbar.querySelectorAll('.project-toc, .index__back, .index__foot a').forEach(link => {
+      const r = link.getBoundingClientRect();
+      const onFill = phone.matches
+        ? link.classList.contains('index__back') && r.left - rect.left + r.width / 2 <= rect.width * progress
+        : r.top - rect.top + r.height / 2 <= rect.height * progress;
+      link.classList.toggle('on-fill', onFill);
+    });
+  }
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(updateProgress);
+  }
+  addEventListener('scroll', schedule, { passive: true });
+  let lastWidth = innerWidth;
+  addEventListener('resize', () => {
+    // Height-only resizes on phones come from the browser bars; they shouldn't close the section menu.
+    if (innerWidth !== lastWidth) closeMenu();
+    lastWidth = innerWidth;
+    schedule();
+  });
+  toc.addEventListener('scroll', schedule, { passive: true });
+  if (window.ResizeObserver) new ResizeObserver(schedule).observe(document.querySelector('.with-nav'));
+  document.fonts?.ready.then(schedule);
+  window.lenis?.on('scroll', schedule);
+  updateProgress();
 });

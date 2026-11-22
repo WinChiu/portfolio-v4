@@ -10,10 +10,11 @@
     "check:references": "node scripts/check-local-references.js",
     "check:layout": "node scripts/check-project-layout.js",
     "audit:tokens": "node scripts/token-audit.js",
-    "specs:generate": "node scripts/generate-token-reference.js && node scripts/generate-component-specs.js",
+    "specs:generate": "node scripts/generate-token-reference.js && node scripts/generate-token-preview.js && node scripts/generate-component-specs.js",
     "scss": "sass --no-source-map style/style.scss style/style.css && sass --no-source-map style/workStyle.scss style/workStyle.css",
     "scss:watch": "sass --no-source-map --watch style/style.scss:style/style.css style/workStyle.scss:style/workStyle.css",
-    "build:kitchen": "node scripts/build-kitchen-menu.js"
+    "build:kitchen": "node scripts/build-kitchen-menu.js",
+    "tokens:preview": "node scripts/generate-token-preview.js"
   },
   "dependencies": {
     "sass": "^1.101.0"

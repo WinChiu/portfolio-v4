@@ -14,23 +14,23 @@ Do not use a button for navigation when a link is semantically correct.
 
 ## 3. Anatomy
 
-- Container
+- Link container
 - Label
 - Optional icon
 
 ## 4. Tokens used
 
-- `--color-interactive`
-- `--color-interactive-hover`
-- `--color-text-inverse`
-- `--color-focus`
-- `--space-*`
-- `--font-weight-medium`
-- `--motion-duration-fast`
+- `--sys-color-interactive`
+- `--sys-color-interactive-hover`
+- `--sys-color-text-inverse`
+- `--sys-color-focus`
+- `--sys-space-*`
+- `--sys-font-weight-medium`
+- `--sys-motion-duration-fast`
 
 ## 5. Props/API
 
-Use `.ui-button` with `.ui-button--primary`, `.ui-button--secondary`, or `.ui-button--text`. Native `disabled`, `aria-disabled="true"`, and `.is-disabled` share the disabled state.
+`UI.Button({ label, href, variant, icon, external, className })` from `components/Button/button.js` (browser and Node). `variant` is `outline` (accent ink, inside a chapter), `bordered` (ink border, inside a project page), `solid`, `secondary` or `text`. `icon` is a decorative glyph. `external` opens a new tab with `rel="noopener noreferrer"`. Styles live in `components/Button/_button.scss`; the solid, secondary and text variants share the `disabled`, `aria-disabled="true"` and `.is-disabled` state.
 
 ## 6. States
 
@@ -44,7 +44,7 @@ Use `.ui-button` with `.ui-button--primary`, `.ui-button--secondary`, or `.ui-bu
 ## 7. Code example
 
 ```html
-<button class="ui-button ui-button--primary" type="button">View project</button>
+<a class="button button--outline" href="pages/en/rfid.html"><span class="button__label">View project</span> <span class="button__icon" aria-hidden="true">→</span></a>
 ```
 
 ## 8. Cross-references

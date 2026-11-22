@@ -1,16 +1,20 @@
 @use 'ui-primitives';
-@use 'type-scale';
+@use 'page-transition';
 @use 'lenis';
-
-@use 'home/globals';
-@use 'home/project-cards';
-@use 'home/layout';
+@use 'scrollbar';
+@use '../components/Leader/leader';
+@use '../components/EffortMeter/effortMeter';
+@use '../components/MenuItem/menuItem';
+@use '../components/Button/button';
+@use '../components/PhotoCard/photoCard';
+@use '../components/ProjectCard/projectCard';
+@use 'home/base';
+@use 'home/nav';
+@use 'home/chapters';
 @use 'home/hero';
-@use 'home/work-switcher';
+@use 'home/work';
 @use 'home/about';
 @use 'home/kitchen-menu';
 @use 'home/life';
-@use 'home/main-nav';
-@use 'home/utilities';
 
 @import url('./tokens.css');

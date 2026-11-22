@@ -8,52 +8,47 @@
 
 ## 2. Overview
 
-Use on the home work grid to summarize and link to one portfolio project.
+Use on the home Work list to summarize and link to one portfolio project.
 
 Do not use for long case-study content or generic navigation.
 
 ## 3. Anatomy
 
-- Cover image or interactive Hairline figure
-- Project number
-- Title
+- Number
 - Tag
+- Title
 - Description
-- Primary project link
-- Optional site link
+- Project button
+- Optional site button
+- Cover (image or interactive Hairline figure)
 
 ## 4. Tokens used
 
-- `--color-text`
-- `--color-text-subtle`
-- `--color-interactive`
-- `--color-interactive-hover`
-- `--color-text-inverse`
-- `--space-*`
-- `--font-weight-*`
+- `--sys-color-text`
+- `--sys-color-text-muted`
+- `--sys-font-size-*`
+- `--sys-space-*`
+- `--comp-project-cover-width`
+- `--comp-project-cover-bleed`
 
 ## 5. Props/API
 
-`<project-card>` attributes: `number`, `title`, `tag`, `description`, `image-url`, `project-url`, optional `site-url`, `type`, and `lang`. Set optional `cover-type="component-tray"` for the interactive design-system cover, or `cover-type="delivery"` for the KeepWell delivery cover; `image-url` remains its fallback. The figure supports pointer, touch, arrow keys, and Enter/Space without navigating away.
+`UI.ProjectCard({ number, tag, title, description, imageUrl, projectUrl, siteUrl, type, coverType, lang })` from `components/ProjectCard/projectCard.js`. `type` is `design` or `code`; a code project starts hidden (`workHide`) and may carry a `siteUrl`, which adds a "View site" button. `coverType="component-tray"` or `"delivery"` draws the cover with `<hairline-cover>`; the image is its fallback. `tag`, `title` and `description` may carry markup. It composes Button and takes its accent from the Work chapter (`--accent-ink`). Styles: `components/ProjectCard/_projectCard.scss`.
 
 ## 6. States
 
-- Default: project summary and primary action
-- Hover: shared Button hover state
-- Active: inherited link activation
-- Focus: shared Button focus state
-- Disabled: shared Button disabled state
-- Error: not defined; omit cards with invalid required data
+- Default: project summary and buttons
+- Hover and focus: the Button states
+- Hidden: `workHide` while its category tab is off
+- Disabled, error: not applicable; omit cards with invalid required data
 
 ## 7. Code example
 
 ```html
-<project-card number="01" title="RFID" tag="UX" description="Case study" image-url="img/rfid.webp" project-url="pages/en/rfid.html"></project-card>
+<article class="project-card" data-type="design" aria-hidden="false">…</article>
 ```
 
 ## 8. Cross-references
 
 - [Button](./button.md)
-- [Hero](./hero.md)
-- [Tag](./tag.md)
-- [Work Switcher](./work-switcher.md)
+- [Photo Card](./photo-card.md)

@@ -1,0 +1,173 @@
+/* Home-only overlay. Preserve animation transforms and their progress variables. */
+html { font-size: 16px; }
+body[data-restyle='home'] {
+  --font-weight-bold: 600;
+  --color-text: var(--rs-ink);
+  --color-text-muted: var(--rs-mute);
+  --color-link: var(--accent-ink);
+  --color-link-hover: var(--accent-ink);
+  --color-interactive: var(--accent-ink);
+  --color-border-muted: var(--rs-leader);
+  font-family: var(--rs-sans);
+}
+body[data-restyle='home'] * {
+  font-family: inherit;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+}
+body[data-restyle='home'] :is(h1,h2,h3,h4,h5,h6,strong,b) { font-weight: 600; }
+body[data-restyle='home'] :is(.split-char,.split-word) { color: inherit; font: inherit; letter-spacing: inherit; }
+html[lang|='zh'] body[data-restyle='home'] { line-height: 1.75; }
+body[data-restyle='home'] .section { padding-left: 13rem; max-width: 100%; scroll-margin-top: 0; }
+body[data-restyle='home'] .section .container--content { padding: 4rem; min-width: 0; }
+body[data-restyle='home'] :is(p,h1,h2,h3,h4,h5,h6) { overflow-wrap: anywhere; }
+body[data-restyle='home'] :is(button,.ui-button,img,.life__card,.kitchenMenu__photo,.kitchenMenu__peek) { border-radius: 0; }
+body[data-restyle='home'] :is(.highlight,.block__description a,.block__content a) { color: var(--accent-ink); font-weight: 500; }
+body[data-restyle='home'] .highlight:not(a) { text-decoration: none; }
+body[data-restyle='home'] :is(.block__description a,.block__content a) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* Navigation: the social icon uses its original image as a currentColor mask. */
+body[data-restyle='home'] .nav--main { width: 13rem; height: 100dvh; padding: 2rem 1.5rem; border-right: var(--rs-line); align-items: stretch; gap: 2rem; }
+.nav--main .rs-name { display: grid; gap: .25rem; }
+.nav--main .rs-name__title { font-size: 1.25rem; font-weight: 600; color: var(--rs-ink); }
+.nav--main .rs-name__role { font-size: .875rem; color: var(--rs-mute); }
+body[data-restyle='home'] .nav--main .block--navList { align-items: stretch; gap: 1.5rem; margin-block: auto; }
+body[data-restyle='home'] .nav--main .block__navItem { margin: 0; font-size: 1rem; font-weight: 400; }
+body[data-restyle='home'] .nav--main .block__navItem a { display: grid; grid-template-columns: 2rem minmax(0,1fr); position: relative; color: var(--rs-mute); line-height: 1.5; font-weight: 500; }
+.nav--main .rs-nav-number { font-family: var(--rs-mono); color: inherit; }
+.nav--main .rs-nav-progress { position: absolute; left: 2rem; right: 0; bottom: -.25rem; height: 2px; background: var(--accent); transform: scaleX(var(--rs-chapter-progress,0)); transform-origin: left; opacity: 0; }
+body[data-restyle='home'] .nav--main .block__navItem a:is(:hover,:focus-visible,[aria-current='location']) { color: var(--accent-ink); }
+.nav--main a[aria-current='location'] .rs-nav-progress { opacity: 1; }
+body[data-restyle='home'] .nav--main .nav__actions { align-items: flex-start; gap: 1rem; }
+body[data-restyle='home'] .nav--main .media--socialList { margin: 0; }
+body[data-restyle='home'] .nav--main .media--socialList a { display: flex; align-items: center; gap: .5rem; color: var(--rs-ink); font-family: var(--rs-mono); font-size: .875rem; text-decoration: none; }
+.nav--main .media--socialList a::before { content: ''; width: 20px; height: 20px; background: currentColor; mask: url('/img/icon-linkedin.svg') center / contain no-repeat; }
+.nav--main .media--socialList a::after { content: 'LinkedIn'; color: inherit; }
+body[data-restyle='home'] .nav--main .media--socialList img { position: absolute; width: 20px; height: 20px; opacity: 0; margin: 0; }
+
+/* Hero, including the original layered face and typing wrappers. */
+body[data-restyle='home'] .section--main { height: auto; min-height: 100dvh; }
+body[data-restyle='home'] .section--main .container--content { min-height: 100dvh; padding-bottom: 0; }
+body[data-restyle='home'] .section--main .block--introduction { min-width: 0; width: 60%; height: auto; margin-bottom: 4rem; }
+body[data-restyle='home'] .section--main .block__header .block__title { font-family: var(--rs-sans); font-size: clamp(3rem,7vw,7rem); font-weight: 500; letter-spacing: -.04em; width: 100%; }
+body[data-restyle='home'] .section--main .block--introduction .block__description { font-size: 1.375rem; font-weight: 400; color: var(--rs-ink-soft); width: 100%; }
+body[data-restyle='home'] .section--main .container--content .block--introduction .block__description :is(.highlight,a) { color: var(--accent-ink); font-weight: 500; }
+body[data-restyle='home'] .section--main .container--content .block--introduction .block__description a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+body[data-restyle='home'] .section--main .block__heroDetails { flex-wrap: wrap; gap: 2rem; margin-top: 4rem; }
+body[data-restyle='home'] .section--main .block__heroDetail { min-width: 0; }
+body[data-restyle='home'] .section--main .block__heroDetailTitle { color: var(--rs-ink); font-weight: 500; }
+body[data-restyle='home'] .section--main .block__heroDetailSubtitle { color: var(--rs-mute); }
+body[data-restyle='home'] .section--main .media--image { display: flex; width: 40%; }
+
+/* Both project types share these contracts; workHide remains under site control. */
+body[data-restyle='home'] .block--switcher { border-block: var(--rs-line); background: var(--color-background); top: 0; }
+body[data-restyle='home'] .block--switcher .ui-segmented-control__item { position: relative; background: transparent; color: var(--rs-mute); padding: 1rem 1.5rem; }
+body[data-restyle='home'] .block--switcher .block__design { border-right: var(--rs-line); }
+body[data-restyle='home'] .block--switcher .ui-segmented-control__item h4 { font-family: var(--rs-sans); font-weight: 500; color: inherit; }
+body[data-restyle='home'] .block--switcher .ui-segmented-control__item:is(.selected,.is-selected,[aria-pressed='true']) { color: var(--accent-ink); background: var(--color-background); }
+.block--switcher .ui-segmented-control__item::after { content: ''; position: absolute; inset-inline: 0; bottom: 0; height: 4px; background: var(--accent); opacity: 0; }
+.block--switcher .ui-segmented-control__item:is(.selected,.is-selected,[aria-pressed='true'])::after { opacity: 1; }
+body[data-restyle='home'] .section--work .container--content::after { height: 2px; background: var(--rs-ink); }
+body[data-restyle='home'] .section--work .block--introduction { min-width: 0; margin-left: 3rem; }
+body[data-restyle='home'] :is(.section--about .block__title,.kitchenMenu__title,.life__title,.section--work .block__number) { font-family: var(--rs-sans); color: transparent; -webkit-text-fill-color: transparent; -webkit-text-stroke: 2px var(--accent); font-weight: 500; }
+body[data-restyle='home'] .section--work .block--introduction .block__number { display: block; font-family: var(--rs-mono); }
+body[data-restyle='home'] .section--work .block--introduction .block__title { font-family: var(--rs-sans); font-size: 2rem; font-weight: 500; letter-spacing: -.02em; }
+body[data-restyle='home'] .section--work .block--introduction .block__tag { font-family: var(--rs-mono); font-size: .875rem; color: var(--rs-mute); }
+body[data-restyle='home'] .section--work .block--introduction .block__description { color: var(--rs-ink-soft); border-left: 2px solid transparent; }
+body[data-restyle='home'] .section--work .block--introduction .block__description::before { left: -2px; width: 2px; background: var(--accent); }
+body[data-restyle='home'] .section--work .block--introduction .ui-button { width: fit-content; max-width: 100%; gap: .75rem; padding: .75rem 1.25rem; border: 2px solid var(--rs-ink); border-radius: 0; background: var(--rs-ink); color: var(--color-background); box-shadow: none; font-family: var(--rs-mono); font-size: .875rem; }
+body[data-restyle='home'] .section--work .block--introduction .ui-button p { color: inherit; font: inherit; margin: 0; }
+.section--work .ui-button::after { content: '→'; color: inherit; }
+body[data-restyle='home'] .section--work .block--introduction .ui-button:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+body[data-restyle='home'] .section--work .block--introduction .ui-button--secondary { background: transparent; color: var(--rs-ink); }
+.section--work .ui-button--secondary::after { content: '↗'; }
+body[data-restyle='home'] .section--work .block--introduction .ui-button--secondary:hover { background: var(--rs-ink); border-color: var(--rs-ink); color: var(--color-background); }
+body[data-restyle='home'] .section--work .block__buttonContainer { flex-wrap: wrap; gap: 1rem; }
+body[data-restyle='home'] :is(project-card:hover,.ui-button:hover,.media--workCover:hover img,.media--avatar:hover img,.life__cardPhoto:hover img) { scale: 1; box-shadow: none; }
+
+/* About's leaders remain present even where production stacks job rows. */
+body[data-restyle='home'] .section--about .block__content { color: var(--rs-ink-soft); }
+body[data-restyle='home'] .section--about .block__jobs .block__jobDescription { display: flex; gap: .75rem; align-items: baseline; width: 100%; padding-block: .5rem; }
+body[data-restyle='home'] .section--about .block__jobs .block__jobDescription--title { flex: 0 1 auto; }
+body[data-restyle='home'] .section--about .block__jobs .block__jobDescription--dotLine { flex: 1 1 1.5rem; min-width: 1.5rem; align-self: center; }
+body[data-restyle='home'] .section--about .block__jobs .block__jobDescription--company { flex: 0 1 auto; text-align: right; }
+body[data-restyle='home'] .section--about .block__jobs .block__jobDescription :is(.block__jobDescription--title,.block__jobDescription--company) { min-width: 0; color: var(--rs-ink); font-weight: 500; }
+body[data-restyle='home'] .section--about .block__jobs .block__jobDescription--company { font-family: var(--rs-mono); }
+body[data-restyle='home'] .section--about .block__jobs .block__jobDescription--dotLine { display: block; border-bottom: 2px dotted var(--rs-leader); }
+body[data-restyle='home'] .section--about .block__jobs .block__jobDescription--past p { color: var(--rs-mute); font-weight: 400; }
+
+/* Detached recipe overlay and pointer peek need their own Kitchen tokens. */
+body[data-restyle='home'] :is(.kitchenMenu__overlay,.kitchenMenu__peek) { --accent: var(--rs-mustard); --accent-ink: var(--rs-mustard-ink); }
+body[data-restyle='home'] :is(.kitchenMenu__description,.life__description) { color: var(--rs-ink-soft); }
+body[data-restyle='home'] .kitchenMenu__courseZh { font-family: var(--rs-sans); font-weight: 600; }
+body[data-restyle='home'] :is(.kitchenMenu__courseEn,.kitchenMenu__en,.kitchenMenu__sEn,.kitchenMenu__sheetTop,.kitchenMenu__meta dt,.kitchenMenu__meta dd,.kitchenMenu__qty,.kitchenMenu__h,.kitchenMenu__node,.kitchenMenu__comingSoon,.life__location,.life__date) { font-family: var(--rs-mono); font-style: normal; color: var(--rs-mute); }
+body[data-restyle='home'] .kitchenMenu__courseLine { height: 2px; background: var(--rs-ink); }
+body[data-restyle='home'] .kitchenMenu__zh { font-family: var(--rs-sans); font-weight: 500; }
+body[data-restyle='home'] .kitchenMenu__dish:is(:hover,:focus-visible,:active) .kitchenMenu__zh { color: var(--accent-ink); }
+body[data-restyle='home'] .kitchenMenu__leader { border-bottom: 2px dotted var(--rs-leader); }
+body[data-restyle='home'] .kitchenMenu__dish:is(:hover,:focus-visible,:active) .kitchenMenu__leader { border-color: var(--accent); }
+body[data-restyle='home'] .kitchenMenu__effort path { fill: var(--accent); stroke: var(--accent); }
+body[data-restyle='home'] .kitchenMenu__effort .is-off path { fill: none; stroke: var(--rs-leader); }
+body[data-restyle='home'] :is(.kitchenMenu__peek,.kitchenMenu__photo) { border: var(--rs-line); }
+body[data-restyle='home'] .kitchenMenu__sheet { border-left: var(--rs-line); }
+body[data-restyle='home'] .kitchenMenu__iconBtn { width: 36px; height: 36px; border: var(--rs-line); color: var(--rs-ink); background: transparent; }
+body[data-restyle='home'] .kitchenMenu__iconBtn:is(:hover,:focus-visible) { color: var(--color-background); background: var(--rs-ink); }
+body[data-restyle='home'] .kitchenMenu__sZh { font-family: var(--rs-sans); font-weight: 600; }
+body[data-restyle='home'] :is(.kitchenMenu__sNote,.life__note) { font-family: var(--rs-sans); font-size: 1.125rem; font-weight: 400; color: var(--rs-ink-soft); }
+body[data-restyle='home'] .kitchenMenu__h { border-bottom: var(--rs-line); text-transform: none; letter-spacing: 0; font-weight: 500; }
+body[data-restyle='home'] .kitchenMenu__node { border: var(--rs-line); border-radius: 50%; }
+body[data-restyle='home'] .kitchenMenu__step.is-past .kitchenMenu__node { background: var(--accent); color: var(--rs-ink); }
+body[data-restyle='home'] .kitchenMenu__step::after { background: var(--accent); }
+body[data-restyle='home'] .section--life::before { height: 2px; background: var(--accent); }
+body[data-restyle='home'] .section--life { --life-gutter: 4rem; }
+body[data-restyle='home'] .section--life .life__card { border: var(--rs-line); }
+body[data-restyle='home'] .section--life .container { --life-photo-height: min(57vh, max(10rem,calc(100dvh - 26rem)),max(10rem,calc((100vw - 25rem) * .55))); }
+
+/* Only visual transitions change; photo wipe and existing drawing timing stay. */
+body[data-restyle='home'] :is(.ui-button,.ui-link,.kitchenMenu__iconBtn,.kitchenMenu__zh,.kitchenMenu__leader,.kitchenMenu__node,.ui-segmented-control__item) { transition: color var(--rs-fast) var(--rs-ease), background-color var(--rs-fast) var(--rs-ease), border-color var(--rs-fast) var(--rs-ease), opacity var(--rs-base) var(--rs-ease), transform var(--rs-base) var(--rs-ease); }
+html[lang|='zh'] body[data-restyle='home'] :is(h1,h2,h3,h4,h5,h6) { letter-spacing: 0; }
+html[lang|='zh'] body[data-restyle='home'] :is(p,li,.block__description) { line-height: 1.75; }
+@media (max-width: 72rem) {
+  body[data-restyle='home'] .section .container--content { padding: 2rem; }
+  body[data-restyle='home'] .section--work .container--content { flex-direction: column; }
+  body[data-restyle='home'] .section--work .block--introduction { margin-left: 0; width: 100%; }
+  body[data-restyle='home'] .section--work .block__header { gap: 1rem; align-items: center; }
+  body[data-restyle='home'] .section--work .block__number { font-size: 4rem; }
+  body[data-restyle='home'] .section--life { --life-gutter: 2rem; }
+  body[data-restyle='home'] .kitchenMenu__menu { columns: 1; }
+}
+@media (max-width: 50rem) {
+  body[data-restyle='home'] .section { padding-left: 0; scroll-margin-top: 3.5rem; }
+  body[data-restyle='home'] .nav--main { width: 100%; height: 56px; padding: 0 1rem; flex-direction: row; align-items: center; justify-content: space-between; border-right: 0; border-bottom: var(--rs-line); gap: 1rem; }
+  .nav--main .rs-name, .nav--main .rs-nav-number { display: none; }
+  body[data-restyle='home'] .nav--main .block--navList { flex-direction: row; gap: 1rem; align-items: center; margin: 0; }
+  body[data-restyle='home'] .nav--main .block__navItem a { display: block; font-size: .875rem; white-space: nowrap; }
+  .nav--main .rs-nav-progress { left: 0; }
+  body[data-restyle='home'] .nav--main .nav__actions { flex-direction: row; align-items: center; gap: .75rem; margin-left: auto; flex-shrink: 0; }
+  .nav--main .media--socialList a::before { width: 24px; height: 24px; }
+  .nav--main .media--socialList a::after { display: none; }
+  body[data-restyle='home'] .nav--main .media--socialList img { width: 24px; height: 24px; }
+  body[data-restyle='home'] .section--main { padding-top: 3.5rem; }
+  body[data-restyle='home'] .section--main .container--content { flex-direction: column-reverse; align-items: flex-start; min-height: calc(100svh - 3.5rem); padding-bottom: 6rem; }
+  body[data-restyle='home'] .section--main .block--introduction { width: 100%; min-height: 0; margin: 0; }
+  body[data-restyle='home'] .section--main .media--image { width: min(16rem,60%); align-self: flex-end; }
+  body[data-restyle='home'] .section--main .block__heroDetails { margin-block: 2rem 0; }
+    body[data-restyle='home'] .block--switcher { top: 3.5rem; }
+  body[data-restyle='home'] .section--life .container { --life-photo-height: min(60vw,45vh); }
+}
+@media (max-width: 30rem) {
+  body[data-restyle='home'] .section .container--content { padding-inline: 1rem; }
+  body[data-restyle='home'] .nav--main { padding-inline: .5rem; gap: .5rem; }
+  body[data-restyle='home'] .nav--main .block--navList { gap: .75rem; }
+  body[data-restyle='home'] .nav--main .nav__actions { gap: .5rem; }
+  body[data-restyle='home'] :is(.section--about .block__title,.kitchenMenu__title,.life__title,.section--work .block__number) { -webkit-text-stroke-width: 1.5px; }
+  body[data-restyle='home'] .section--life { --life-gutter: 1rem; }
+  body[data-restyle='home'] .section--work .block__buttonContainer { width: 100%; }
+  body[data-restyle='home'] .kitchenMenu__sheetIn { padding: 1rem 1rem 3rem; }
+  body[data-restyle='home'] :is(.kitchenMenu__hero,.kitchenMenu__cols) { grid-template-columns: minmax(0,1fr); gap: 1.5rem; }
+}
+@media (max-width: 360px) {
+  body[data-restyle='home'] .nav--main .block--navList { gap: .5rem; }
+  body[data-restyle='home'] .nav--main .block__navItem a { font-size: .75rem; }
+}

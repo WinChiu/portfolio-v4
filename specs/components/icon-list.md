@@ -21,10 +21,10 @@ Do not use for long prose or ordered procedures.
 
 ## 4. Tokens used
 
-- `--color-text`
-- `--space-*`
-- `--font-size-*`
-- `--radius-*`
+- `--sys-color-text`
+- `--sys-space-*`
+- `--sys-font-size-*`
+- `--sys-radius-*`
 
 ## 5. Props/API
 
