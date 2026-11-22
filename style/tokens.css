@@ -205,6 +205,7 @@
   --sys-radius-sm: var(--ref-size-4);
   --sys-radius-lg: var(--ref-size-8);
   --sys-radius-round: 50%;
+  --sys-radius-pill: 999px; /* fully rounded ends on any width: capsule tags */
 
   /* System: Shadows */
   --sys-shadow-floating: 0 1.5rem 3rem color-mix(in srgb, var(--ref-palette-neutral-0) 20%, transparent);
@@ -295,7 +296,7 @@
   --comp-menu-item-padding-block: var(--sys-space-sm);
   --comp-kitchen-peek-hint-padding-block: var(--sys-space-xs);
   --comp-kitchen-peek-width: var(--ref-size-272);
-  --comp-kitchen-recipe-width: 36rem;
+  --comp-kitchen-recipe-width: 46rem;
   --comp-life-card-width: 22rem;
   --comp-life-card-width-landscape: 33rem;
   --comp-life-photo-height: 24rem;

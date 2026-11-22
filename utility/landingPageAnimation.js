@@ -114,6 +114,20 @@
       return { x: read('--x'), y: read('--y'), mx: read('--mx'), my: read('--my'), r: parseFloat(read('--r')) || 0 };
     });
     cards.slice(4).forEach((card) => gsap.set(card, { autoAlpha: 0 }));
+    // Phone: the cards live in the empty space above the headline and must never cover it. A card is moved up (and,
+    // on very short screens, made narrower) until its bottom edge is above the headline.
+    const phone = window.matchMedia('(max-width: 48rem)');
+    const bigTitle = hero.querySelector('.hero__big');
+    function fitAbove(card) {
+      card.style.removeProperty('width');
+      if (!phone.matches || !bigTitle) return;
+      const MARGIN = 8;
+      const room = bigTitle.offsetTop - MARGIN * 2;
+      if (card.offsetHeight > room) card.style.width = `${Math.max(64, card.offsetWidth * (room / card.offsetHeight))}px`;
+      const maxTop = Math.max(MARGIN, bigTitle.offsetTop - MARGIN - card.offsetHeight);
+      if (card.offsetTop > maxTop) card.style.setProperty('--my', `${maxTop}px`);
+    }
+    onTable.forEach(fitAbove);
     const num = (card, name) => parseFloat(card.style.getPropertyValue(name)) || 0;
     const rand = (min, max) => min + Math.random() * (max - min);
 
@@ -124,6 +138,7 @@
       card.dataset.dx = '0';
       card.dataset.dy = '0';
       ['--x', '--y', '--mx', '--my'].forEach((name, i) => card.style.setProperty(name, [slot.x, slot.y, slot.mx, slot.my][i]));
+      fitAbove(card);
       const fromX = -card.offsetLeft - card.offsetWidth - 40;
       const fromY = rand(-60, 60);
       const spin = (Math.random() < 0.5 ? -1 : 1) * rand(25, 45);
@@ -164,7 +179,7 @@
         let loop;
         const queue = onTable.slice();
         let next = 4;
-        const period = 5;
+        const period = 3;
         const busy = () => document.hidden || getComputedStyle(cards[0]).display === 'none' || hero.querySelector('.is-dragging') || !inView;
         let inView = true;
         const observer = 'IntersectionObserver' in window

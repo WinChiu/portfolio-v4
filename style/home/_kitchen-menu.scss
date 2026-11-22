@@ -58,12 +58,12 @@
 .kitchenMenu__photo { border: var(--sys-border-hairline); box-shadow: var(--comp-shadow-offset-kitchen); }
 .kitchenMenu__photo img { width: 100%; aspect-ratio: 1; object-fit: cover; }
 .kitchenMenu__sZh { font-family: var(--sys-font-family-body); font-size: var(--sys-font-size-title-md); line-height: var(--sys-line-height-heading); font-weight: var(--sys-font-weight-medium); }
-.kitchenMenu__sEn { font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-semibold); color: var(--sys-color-text-muted); margin-top: var(--sys-space-pull-md); }
+.kitchenMenu__sEn { font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-medium); color: var(--sys-color-text-muted); margin-top: var(--sys-space-pull-md); }
 .kitchenMenu__meta { display: flex; flex-wrap: wrap; gap: var(--sys-space-xs) var(--sys-space-xl); }
 .kitchenMenu__meta > div { flex: 1 1 0; min-width: max-content; display: flex; align-items: center; gap: var(--sys-space-md); }
 .kitchenMenu__meta dt { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); color: var(--sys-color-text-muted); }
 .kitchenMenu__meta dd { font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }
-.kitchenMenu__sNote { font-family: var(--sys-font-family-hand); font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-tight); text-align: center; padding: var(--sys-space-md) var(--sys-space-0); flex: 0 0 auto; }
+.kitchenMenu__sNote { font-family: var(--sys-font-family-hand); font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-tight); text-align: center; padding: var(--sys-space-7xl) var(--sys-space-0); flex: 0 0 auto; }
 .kitchenMenu__sNote:empty { display: none; }
 .kitchenMenu__cols { display: flex; flex-direction: column; gap: var(--sys-space-5xl); flex: 0 0 auto; }
 .kitchenMenu__h { display: flex; align-items: center; gap: var(--sys-space-md); font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-regular); color: var(--sys-color-text); }
@@ -74,18 +74,19 @@
 .kitchenMenu__ings .mono { color: var(--sys-color-text); white-space: nowrap; text-align: right; }
 .kitchenMenu__steps li { position: relative; }
 .kitchenMenu__steps li:not(:last-child)::before { content: ''; position: absolute; left: var(--sys-font-size-title-xs); top: var(--sys-font-size-title-md); bottom: var(--sys-radius-sm); width: var(--sys-rule-width-thin); background: var(--sys-color-text); transform: translateX(var(--sys-rule-nudge)); }
-.kitchenMenu__steps button {
+.kitchenMenu__stepRow {
   display: grid; grid-template-columns: var(--sys-space-4xl) minmax(0, 1fr); gap: var(--sys-space-md); align-items: start;
-  width: 100%; min-height: var(--sys-space-6xl); text-align: left; border: 0; background: none; font: inherit;
-  font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); color: var(--sys-color-text-muted); cursor: pointer;
+  width: 100%; min-height: var(--sys-space-6xl); text-align: left;
+  font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); color: var(--sys-color-text);
   padding-bottom: var(--sys-space-xl);
 }
-.kitchenMenu__steps li:last-child button { min-height: var(--sys-space-4xl); padding-bottom: var(--sys-space-0); }
+.kitchenMenu__steps li:last-child .kitchenMenu__stepRow { min-height: var(--sys-space-4xl); padding-bottom: var(--sys-space-0); }
 .kitchenMenu__node { height: var(--sys-font-size-title-sm); display: grid; place-items: center; font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); background: var(--sys-color-background); color: var(--sys-color-text); transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth); }
-.kitchenMenu__steps li.is-past::before { background: var(--accent-ink); }
-.kitchenMenu__steps li.is-past .kitchenMenu__node { color: var(--accent-ink); }
-.kitchenMenu__steps li.is-past button { color: var(--sys-color-text); }
-.kitchenMenu__comingSoon { color: var(--sys-color-text-muted); }
+/* Dish without a recipe yet: an empty state with a picture instead of a bare line of text. */
+.kitchenMenu__empty { display: flex; flex-direction: column; align-items: center; gap: var(--sys-space-sm); padding: var(--sys-space-3xl) var(--sys-space-0); text-align: center; }
+.kitchenMenu__emptyArt { display: block; width: min(var(--sys-space-160), 60%); height: auto; margin-bottom: var(--sys-space-sm); }
+.kitchenMenu__comingSoon { margin: var(--sys-space-0); font-size: var(--sys-font-size-title-xs); line-height: var(--sys-line-height-heading); font-weight: var(--sys-font-weight-medium); color: var(--sys-color-text); }
+.kitchenMenu__emptyHint { margin: var(--sys-space-0); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); color: var(--sys-color-text-muted); }
 @media (min-width: 48.0625rem) and (max-width: 72rem) {
   .kitchenMenu__menu { --kitchen-column-gap: var(--sys-space-4xl); }
 }
@@ -101,7 +102,7 @@
   .kitchenMenu__sZh { font-size: var(--sys-font-size-title-sm); }
   .kitchenMenu__sEn { font-size: var(--sys-font-size-body-lg); line-height: var(--sys-line-height-body); }
   .kitchenMenu__meta { gap: var(--sys-space-xs) var(--sys-space-lg); }
-  .kitchenMenu__sNote { font-size: var(--sys-font-size-title-sm); padding: var(--sys-space-xs) var(--sys-space-0); }
+  .kitchenMenu__sNote { font-size: var(--sys-font-size-title-sm); padding: var(--sys-space-6xl) var(--sys-space-0); }
 }
 .kitchenMenu__sheet { display: block; }
 .kitchenMenu__sheetIn, .kitchenMenu__hero, .kitchenMenu__hero > div:last-child { display: flex; flex-direction: column; gap: var(--sys-space-3xl); }
@@ -110,7 +111,6 @@
 .kitchenMenu__ings .leader { display: block; }
 .kitchenMenu__metaRow { display: flex; align-items: center; gap: var(--sys-space-md); }
 .kitchenMenu__meta dd { margin: var(--sys-space-0); }
-.kitchenMenu__sNote { order: 3; }
 .kitchenMenu__h { margin-bottom: var(--sys-space-xl); }
 .kitchenMenu__qty { font-family: var(--sys-font-family-mono); color: var(--sys-color-text); white-space: nowrap; }
 .kitchenMenu__icon { width: var(--sys-font-size-title-sm); height: var(--sys-font-size-title-sm); }
@@ -122,3 +122,22 @@
 }
 .kitchenMenu__overlay { overflow: hidden; }
 .kitchenMenu__courseZh { font-family: var(--sys-font-family-body); }
+
+/* Recipe sheet: when the sheet itself is wide enough, the photo goes on the left and the name, note and facts on the
+   right. (Judged by the sheet's width, not the window's, so a narrow desktop window gets it too; a phone-width
+   sheet keeps the photo on top.) */
+.kitchenMenu__sheet { container-type: inline-size; }
+@container (min-width: 26rem) {
+  .kitchenMenu__hero { flex-direction: row; align-items: stretch; gap: var(--sys-space-2xl); }
+  .kitchenMenu__photo { flex: 0 0 44%; align-self: flex-start; }
+  /* the name and facts sit at the bottom of the photo's height */
+  .kitchenMenu__hero > div:last-child { flex: 1 1 0; min-width: 0; justify-content: flex-end; }
+  .kitchenMenu__hero .kitchenMenu__meta { flex-direction: column; flex-wrap: nowrap; gap: var(--sys-space-xs); }
+  .kitchenMenu__hero .kitchenMenu__meta > div { flex: 0 0 auto; min-width: 0; }
+}
+
+/* Widest sheet: the ingredients run in two columns (down the first, then the second). */
+@container (min-width: 38rem) {
+  .kitchenMenu__ings { display: block; column-count: 2; column-gap: var(--sys-space-5xl); }
+  .kitchenMenu__ings li { break-inside: avoid; margin-bottom: var(--sys-space-sm); }
+}

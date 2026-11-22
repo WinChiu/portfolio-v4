@@ -11,9 +11,27 @@
   flex-shrink: 0;
 }
 .life__strip::-webkit-scrollbar { display: none; }
+/* With a mouse the strip scrolls freely (the wheel moves it smoothly); snapping to cards is for touch only. */
+@media (hover: hover) and (pointer: fine) {
+  .life__viewport { scroll-snap-type: none; }
+}
 @media (max-width: 48rem) {
   .life__intro { font-size: var(--sys-font-size-title-xs); line-height: var(--sys-line-height-body); }
   .life__strip { padding-bottom: var(--sys-space-xl); gap: var(--sys-space-xl); }
 }
 .section--life.is-pinned .life__viewport { overflow: visible; }
 .section--life.is-pinned { overflow: clip; }
+
+/* Wide screens (1440px and up): the Life section is exactly one screen tall, and the photo cards are sized from the
+   height left under the heading, so they grow and shrink with the window instead of the section outgrowing it. A card
+   keeps its proportions (portrait / landscape ratios measured from the original fixed-size cards). */
+@media (min-width: 90rem) {
+  .section--life { height: max(100svh, 32rem); min-height: 0; }
+  .section--life .home__content { min-height: 0; }
+  .section--life .life__viewport { flex: 1 1 0; min-height: 0; margin-top: 0; }
+  .life__strip { height: 100%; align-items: stretch; }
+  .life__strip .photo-card--strip { height: 100%; width: auto; aspect-ratio: 0.693; }
+  .life__strip .photo-card--strip.photo-card--landscape { width: auto; aspect-ratio: 1.039; }
+  .life__strip .photo-card__frame { flex: 1 1 0; min-height: 0; }
+  .life__strip .photo-card__photo { height: 100%; }
+}

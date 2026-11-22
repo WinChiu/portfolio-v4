@@ -4,7 +4,18 @@
 .sec { padding: var(--sys-space-160) var(--gutter); border-top: var(--sys-space-hairline) solid var(--sys-color-border); scroll-margin-top: var(--sys-space-3xl); }
 .sec__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--sys-space-5xl); align-items: start; }
 .sec__num { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-section-number); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tightest); color: var(--accent-ink); font-variant-numeric: tabular-nums; }
-.sec__content { display: flex; flex-direction: column; gap: var(--sys-space-5xl); }
+.sec__content { display: flex; flex-direction: column; gap: var(--flow-gap); }
+/* Vertical rhythm of a chapter, three levels (the nearer things are, the more they belong together):
+   --tight  a title and the content it introduces
+   --flow   one piece of content after another inside the same block
+   --block  where a new block starts (a new subsection title or "Problem n" label)
+   Between blocks must be clearly larger than inside a block, so the block structure can be read without rules. */
+.sec { --tight: var(--sys-space-md); --flow-gap: var(--sys-space-3xl); --block: var(--sys-space-80); }
+@media (min-width: 48.0625rem) {
+  .sec { --tight: var(--sys-space-xl); --flow-gap: var(--sys-space-5xl); --block: var(--sys-space-8xl); }
+}
+.sec__content > :is(.project-module--subsection-title, .project-module--eyebrow) { margin-top: calc(var(--block) - var(--flow-gap)); }
+.sec__content > :is(.project-module__chapter-title, .project-module--subsection-title, .project-module--eyebrow) + * { margin-top: calc(var(--tight) - var(--flow-gap)); }
 .sec h2 { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-section-title); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tight); margin: var(--sys-space-0); }
 .project-page h3 { font-weight: var(--sys-font-weight-semibold); font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); margin-bottom: var(--sys-space-md); }
 .project-page .project-module__eyebrow { color: var(--accent-ink); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-regular); }
@@ -29,6 +40,24 @@
 .next { display: flex; flex-direction: column; gap: var(--sys-space-sm); padding: var(--sys-space-6xl) var(--gutter) var(--sys-space-80); border-top: var(--sys-space-hairline) solid var(--sys-color-border); }
 .next .mono { color: var(--sys-color-text); }
 .next .p-title { margin: var(--sys-space-0); color: var(--sys-color-text); }
+/* Hover / keyboard focus: the next project's own color fills the block from left to right and the text turns to paper. */
+.next { position: relative; isolation: isolate; overflow: hidden; }
+.next::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: var(--accent-ink);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--sys-motion-duration-long) var(--sys-motion-ease-smooth);
+}
+.next .mono, .next .p-title { transition: color var(--sys-motion-duration-long) var(--sys-motion-ease-smooth); }
+.next:focus-visible::before { transform: scaleX(1); }
+.next:focus-visible .mono, .next:focus-visible .p-title { color: var(--sys-color-background); }
+@media (hover: hover) {
+  .next:hover::before { transform: scaleX(1); }
+  .next:hover .mono, .next:hover .p-title { color: var(--sys-color-background); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .next::before, .next .mono, .next .p-title { transition: none; }
+}
 @media (min-width: 48.001rem) {
   /* the big section number stays pinned while its section scrolls */
   .sec__num { position: sticky; top: var(--sys-space-3xl); align-self: start; }

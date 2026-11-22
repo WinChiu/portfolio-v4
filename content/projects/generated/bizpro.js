@@ -24,14 +24,14 @@ const project = {
       "title": "BizPro - Club Official Website Design and Development",
       "duration": "Sep. 2022 ~ Jan. 2023",
       "role": "UIUX Designer, Frontend Developer",
-      "responsibility": "UI/UX design, database maintenance (MongoDB), frontend and backend development (React.js, Node.js)",
+      "responsibility": "UI/UX design, database maintenance (MongoDB), frontend development (React.js), backend development (Node.js)",
       "company": "BizPro"
     },
     "zh": {
       "title": "BizPro Official Website - 社團官方網站前後臺開發",
       "duration": "Sep. 2022 ~ Jan. 2023",
       "role": "UIUX Designer, Frontend Developer",
-      "responsibility": "UIUX 介面設計、資料庫維護 (MongoDB)、前端後端開發 (React.js、Node.js)",
+      "responsibility": "UIUX 介面設計、資料庫維護 (MongoDB)、前端開發 (React.js)、後端開發 (Node.js)",
       "company": "BizPro 臺大商學研究社"
     }
   },

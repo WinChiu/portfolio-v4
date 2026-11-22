@@ -113,7 +113,7 @@
       location: item.location,
       date: item.date,
       index,
-      loading: index < 4 ? 'eager' : 'lazy',
+      loading: 'eager', // every Life photo loads up front, so nothing finishes loading (and shifts the strip) mid-scroll
     });
   }
 
@@ -161,6 +161,8 @@
           alt: item.imageAlt || title,
           caption: title,
           style: `--x:${x};--y:${y};--mx:${mx};--my:${my};--r:${r}`,
+          kind,
+          index: (kind === 'dish' ? dishes : life).indexOf(item),
         });
       })
       .join('\n        ');

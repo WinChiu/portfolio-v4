@@ -246,7 +246,7 @@ Measures and properties that belong to one component or section. They point at s
 | `--comp-menu-item-padding-block` | `var(--sys-space-sm)` | Measure or property of one component or section. |
 | `--comp-kitchen-peek-hint-padding-block` | `var(--sys-space-xs)` | Measure or property of one component or section. |
 | `--comp-kitchen-peek-width` | `var(--ref-size-272)` | Measure or property of one component or section. |
-| `--comp-kitchen-recipe-width` | `36rem` | Measure or property of one component or section. |
+| `--comp-kitchen-recipe-width` | `46rem` | Measure or property of one component or section. |
 | `--comp-life-card-width` | `22rem` | Measure or property of one component or section. |
 | `--comp-life-card-width-landscape` | `33rem` | Measure or property of one component or section. |
 | `--comp-life-photo-height` | `24rem` | Measure or property of one component or section. |

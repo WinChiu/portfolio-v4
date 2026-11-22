@@ -712,7 +712,7 @@ a:focus-visible, button:focus-visible {
   font-weight: var(--sys-font-weight-medium);
   font-size: var(--sys-font-size-project-title);
   line-height: var(--sys-line-height-tight);
-  letter-spacing: var(--sys-letter-spacing-tighter);
+  letter-spacing: var(--sys-letter-spacing-tight);
   margin: var(--sys-space-0);
   color: var(--accent-ink);
 }
@@ -767,6 +767,29 @@ a:focus-visible, button:focus-visible {
   max-width: var(--comp-measure-lead);
 }
 
+/* Scope: what I worked on, as a row of outlined tags (they are parallel items, not steps). */
+.p-scope {
+  max-width: var(--comp-measure-lead);
+}
+
+.p-scope__list {
+  list-style: none;
+  margin: var(--sys-space-0);
+  padding: var(--sys-space-0);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sys-space-xs);
+}
+
+.p-scope__list li {
+  padding: var(--sys-space-3xs) var(--sys-space-sm);
+  border: var(--sys-border-hairline);
+  border-radius: var(--sys-radius-pill);
+  font-size: var(--sys-font-size-small);
+  line-height: var(--sys-line-height-relaxed);
+  color: var(--sys-color-text);
+}
+
 .p-preamble {
   padding: var(--sys-space-3xl) var(--gutter) var(--sys-space-6xl); /* + the header's 2rem bottom padding = 4rem above, matching 4rem below to the section rule */
   display: flex;
@@ -777,6 +800,48 @@ a:focus-visible, button:focus-visible {
 @media (max-width: 48rem) {
   .p-head {
     padding-top: var(--sys-space-4xl);
+  }
+}
+/* Phone: a small grid with a label above each value (role, company, period) instead of a line joined by dots. */
+@media (max-width: 48rem) {
+  .p-facts__line {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sys-space-md) var(--sys-space-lg);
+  }
+  .p-facts__line span {
+    display: block;
+    min-width: 0;
+  }
+  .p-facts__line span:nth-child(3) {
+    grid-column: 1/-1;
+  }
+  .p-facts__line span::before,
+  .p-facts__line span + span::before {
+    display: block;
+    margin: var(--sys-space-0) var(--sys-space-0) var(--sys-space-3xs);
+    font-family: var(--sys-font-family-mono);
+    font-size: var(--sys-font-size-caption);
+    line-height: var(--sys-line-height-body);
+    color: var(--sys-color-text-muted);
+  }
+  .p-facts__line span:nth-child(1)::before {
+    content: "Role";
+  }
+  .p-facts__line span:nth-child(2)::before {
+    content: "Company";
+  }
+  .p-facts__line span:nth-child(3)::before {
+    content: "Period";
+  }
+  :lang(zh) .p-facts__line span:nth-child(1)::before {
+    content: "職稱";
+  }
+  :lang(zh) .p-facts__line span:nth-child(2)::before {
+    content: "公司";
+  }
+  :lang(zh) .p-facts__line span:nth-child(3)::before {
+    content: "期間";
   }
 }
 /* ---------- sections ---------- */
@@ -805,7 +870,33 @@ a:focus-visible, button:focus-visible {
 .sec__content {
   display: flex;
   flex-direction: column;
-  gap: var(--sys-space-5xl);
+  gap: var(--flow-gap);
+}
+
+/* Vertical rhythm of a chapter, three levels (the nearer things are, the more they belong together):
+   --tight  a title and the content it introduces
+   --flow   one piece of content after another inside the same block
+   --block  where a new block starts (a new subsection title or "Problem n" label)
+   Between blocks must be clearly larger than inside a block, so the block structure can be read without rules. */
+.sec {
+  --tight: var(--sys-space-md);
+  --flow-gap: var(--sys-space-3xl);
+  --block: var(--sys-space-80);
+}
+
+@media (min-width: 48.0625rem) {
+  .sec {
+    --tight: var(--sys-space-xl);
+    --flow-gap: var(--sys-space-5xl);
+    --block: var(--sys-space-8xl);
+  }
+}
+.sec__content > :is(.project-module--subsection-title, .project-module--eyebrow) {
+  margin-top: calc(var(--block) - var(--flow-gap));
+}
+
+.sec__content > :is(.project-module__chapter-title, .project-module--subsection-title, .project-module--eyebrow) + * {
+  margin-top: calc(var(--tight) - var(--flow-gap));
 }
 
 .sec h2 {
@@ -945,6 +1036,49 @@ a:focus-visible, button:focus-visible {
   color: var(--sys-color-text);
 }
 
+/* Hover / keyboard focus: the next project's own color fills the block from left to right and the text turns to paper. */
+.next {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.next::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--sys-motion-duration-long) var(--sys-motion-ease-smooth);
+}
+
+.next .mono, .next .p-title {
+  transition: color var(--sys-motion-duration-long) var(--sys-motion-ease-smooth);
+}
+
+.next:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.next:focus-visible .mono, .next:focus-visible .p-title {
+  color: var(--sys-color-background);
+}
+
+@media (hover: hover) {
+  .next:hover::before {
+    transform: scaleX(1);
+  }
+  .next:hover .mono, .next:hover .p-title {
+    color: var(--sys-color-background);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .next::before, .next .mono, .next .p-title {
+    transition: none;
+  }
+}
 @media (min-width: 48.001rem) {
   /* the big section number stays pinned while its section scrolls */
   .sec__num {
@@ -1258,8 +1392,9 @@ figcaption, .media-caption {
     grid-column: 1;
     width: auto;
   }
+  /* the picture now sits above its text, so it can be much larger than the old side icon */
   .goals {
-    --goal-icon: clamp(var(--sys-space-88), var(--comp-goal-icon-fluid), var(--sys-space-160));
+    --goal-icon: clamp(var(--sys-space-160), 44vw, 15rem);
   }
   /* scales with the window instead of snapping to a tiny icon at 48rem */
   /* phone: the picture sits above its text */
@@ -1406,4 +1541,21 @@ figcaption, .media-caption {
 
 .project-page .project-module--text .body + .body {
   margin-top: var(--sys-space-0);
+}
+
+/* Image + several titled paragraphs (design system page): same title/text treatment as the goal lists, with the
+   title tight to its own text and clear space between one entry and the next. */
+.project-module__entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-3xs);
+}
+
+.project-module__content:has(> .project-module__entry) {
+  gap: var(--sys-space-2xl);
+}
+
+.project-page .project-module__entry .project-module__item-title {
+  font-size: var(--sys-font-size-small);
+  line-height: var(--sys-line-height-relaxed);
 }

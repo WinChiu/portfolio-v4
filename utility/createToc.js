@@ -135,12 +135,24 @@ document.addEventListener("DOMContentLoaded", function () {
     history.replaceState(null, '', link.hash);
   });
   let scheduled = false;
+  let accentInk = '';
+  const fillTargets = [...navbar.querySelectorAll('.project-toc, .index__back, .index__foot a')];
+  // Runs once per frame while scrolling. All layout reads come first and all writes after them, so the browser
+  // lays the page out once per frame instead of once per read.
   function updateProgress() {
     scheduled = false;
+    if (!accentInk) accentInk = getComputedStyle(document.body).getPropertyValue('--accent-ink').trim();
+    // ---- reads
+    const line = phone.matches ? 80 : 40;
     let active = -1;
     sections.forEach((section, index) => {
-      if (section.getBoundingClientRect().top <= (phone.matches ? 80 : 40)) active = index;
+      if (section.getBoundingClientRect().top <= line) active = index;
     });
+    const distance = document.documentElement.scrollHeight - innerHeight;
+    const progress = distance > 0 ? Math.max(0, Math.min(1, scrollY / distance)) : 1;
+    const rect = navbar.getBoundingClientRect();
+    const spots = fillTargets.map((link) => ({ link, r: link.getBoundingClientRect() }));
+    // ---- writes
     links.forEach((link, index) => {
       const selected = index === active;
       link.classList.toggle('project-toc--active', selected);
@@ -151,15 +163,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const label = active < 0 ? 'Overview' : `${String(active + 1).padStart(2, '0')} ${links[active].title}`;
     if (current.textContent !== label) current.textContent = label;
     if (toggle.textContent !== label) toggle.textContent = label; // the phone button names the current section
-    const distance = document.documentElement.scrollHeight - innerHeight;
-    const progress = distance > 0 ? Math.max(0, Math.min(1, scrollY / distance)) : 1;
     navbar.style.setProperty('--page-progress', String(progress));
-    const color = getComputedStyle(document.body).getPropertyValue('--accent-ink').trim();
     const stop = (progress * 100).toFixed(2);
-    navbar.style.setProperty('--fill-gradient', `linear-gradient(to bottom, ${color} 0% ${stop}%, transparent ${stop}% 100%)`);
-    const rect = navbar.getBoundingClientRect();
-    navbar.querySelectorAll('.project-toc, .index__back, .index__foot a').forEach(link => {
-      const r = link.getBoundingClientRect();
+    navbar.style.setProperty('--fill-gradient', `linear-gradient(to bottom, ${accentInk} 0% ${stop}%, transparent ${stop}% 100%)`);
+    spots.forEach(({ link, r }) => {
       const onFill = phone.matches
         ? link.classList.contains('index__back') && r.left - rect.left + r.width / 2 <= rect.width * progress
         : r.top - rect.top + r.height / 2 <= rect.height * progress;

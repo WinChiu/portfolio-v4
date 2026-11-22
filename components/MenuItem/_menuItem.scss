@@ -20,8 +20,8 @@
   }
 }
 
-// Looked-at dish: the whole row inverts. Wide screens with a mouse: on hover. Narrow screens and touch: the row
-// nearest the middle of the screen gets .is-focus (utility/kitchenMenu.js), the same one whose photo is shown.
+// Looked-at dish: the whole row inverts. utility/kitchenMenu.js puts .is-focus on the row under the cursor (wide
+// screen with a mouse) or nearest the middle of the screen (narrow / touch), the same one whose photo is shown.
 @mixin menu-item-inverted {
   background: var(--accent-ink);
 
@@ -34,10 +34,6 @@
 }
 
 .menu-item.is-focus { @include menu-item-inverted; }
-
-@media (hover: hover) and (min-width: 48.0625rem) {
-  .menu-item:hover { @include menu-item-inverted; }
-}
 
 .menu-item__names {
   display: flex;

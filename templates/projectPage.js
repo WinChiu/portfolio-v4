@@ -25,7 +25,23 @@ function renderNavigation(language) {
     </nav>`;
 }
 
-function renderHeader(project, header) {
+// Splits "A, B (C, D), and E" (or the Chinese "A、B（C、D）") into ["A", "B (C, D)", "E"]: separators inside
+// parentheses stay, and a leading "and" is dropped.
+function splitScope(text) {
+  const items = [];
+  let depth = 0;
+  let current = '';
+  for (const char of String(text)) {
+    if ('(（'.includes(char)) depth += 1;
+    if (')）'.includes(char)) depth = Math.max(0, depth - 1);
+    if (depth === 0 && ',，、'.includes(char)) { items.push(current); current = ''; continue; }
+    current += char;
+  }
+  items.push(current);
+  return items.map((item) => item.trim().replace(/^and\s+/i, '')).filter(Boolean);
+}
+
+function renderHeader(project, header, lang) {
   const colon = header.title.indexOf(':');
   const title = colon < 0 ? header.title : `${header.title.slice(0, colon)}<span class="ink">${header.title.slice(colon)}</span>`;
   return `<header class="project-header p-head" id="top" tabindex="-1">
@@ -34,7 +50,7 @@ function renderHeader(project, header) {
       </div>
       <div class="project-header__metadata p-facts">
         <p class="p-facts__line project-header__meta-item">${['role', 'company', 'duration'].filter(key => header[key]).map(key => `<span>${header[key]}</span>`).join('')}</p>
-        ${header.responsibility ? `<p class="p-facts__resp project-header__meta-item">${header.responsibility}</p>` : ''}
+        ${header.responsibility ? `<div class="p-scope project-header__meta-item"><ul class="p-scope__list" aria-label="${lang === 'zh' ? '負責內容' : 'Scope'}">${splitScope(header.responsibility).map((item) => `<li>${item}</li>`).join('')}</ul></div>` : ''}
       </div>
     </header>`;
 }

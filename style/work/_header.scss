@@ -2,7 +2,7 @@
 
 /* ---------- header ---------- */
 .p-head { padding: var(--sys-space-6xl) var(--gutter) var(--sys-space-0); display: flex; flex-direction: column; gap: var(--sys-space-3xl); }
-.p-title { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-project-title); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tighter); margin: var(--sys-space-0); color: var(--accent-ink); }
+.p-title { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-project-title); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tight); margin: var(--sys-space-0); color: var(--accent-ink); }
 .p-title .ink { color: var(--sys-color-text); }
 /* the project title is plain Ink; the accent color is only used by the "next project" title */
 .p-head .p-title { color: var(--sys-color-text); }
@@ -14,7 +14,37 @@
 .p-facts__line { display: flex; flex-wrap: wrap; align-items: baseline; row-gap: var(--sys-space-3xs); }
 .p-facts__line span + span::before { content: '·'; margin: var(--sys-space-0) var(--sys-space-sm); color: var(--sys-color-text-muted); }
 .p-facts__resp { max-width: var(--comp-measure-lead); }
+/* Scope: what I worked on, as a row of outlined tags (they are parallel items, not steps). */
+.p-scope { max-width: var(--comp-measure-lead); }
+.p-scope__list { list-style: none; margin: var(--sys-space-0); padding: var(--sys-space-0); display: flex; flex-wrap: wrap; gap: var(--sys-space-xs); }
+.p-scope__list li {
+  padding: var(--sys-space-3xs) var(--sys-space-sm);
+  border: var(--sys-border-hairline);
+  border-radius: var(--sys-radius-pill);
+  font-size: var(--sys-font-size-small);
+  line-height: var(--sys-line-height-relaxed);
+  color: var(--sys-color-text);
+}
 .p-preamble { padding: var(--sys-space-3xl) var(--gutter) var(--sys-space-6xl); /* + the header's 2rem bottom padding = 4rem above, matching 4rem below to the section rule */ display: flex; flex-direction: column; gap: var(--sys-space-3xl); }
 @media (max-width: 48rem) {
   .p-head { padding-top: var(--sys-space-4xl); }
+}
+
+/* Phone: a small grid with a label above each value (role, company, period) instead of a line joined by dots. */
+@media (max-width: 48rem) {
+  .p-facts__line { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sys-space-md) var(--sys-space-lg); }
+  .p-facts__line span { display: block; min-width: 0; }
+  .p-facts__line span:nth-child(3) { grid-column: 1 / -1; }
+  .p-facts__line span::before,
+  .p-facts__line span + span::before {
+    display: block; margin: var(--sys-space-0) var(--sys-space-0) var(--sys-space-3xs);
+    font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-caption); line-height: var(--sys-line-height-body);
+    color: var(--sys-color-text-muted);
+  }
+  .p-facts__line span:nth-child(1)::before { content: 'Role'; }
+  .p-facts__line span:nth-child(2)::before { content: 'Company'; }
+  .p-facts__line span:nth-child(3)::before { content: 'Period'; }
+  :lang(zh) .p-facts__line span:nth-child(1)::before { content: '職稱'; }
+  :lang(zh) .p-facts__line span:nth-child(2)::before { content: '公司'; }
+  :lang(zh) .p-facts__line span:nth-child(3)::before { content: '期間'; }
 }

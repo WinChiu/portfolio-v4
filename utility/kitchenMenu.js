@@ -29,14 +29,15 @@
     const item = items[current];
     const course = courses.find((entry) => entry.key === item.course);
     const ingredients = item.ingredients?.length ? `<div><h3 class="kitchenMenu__h">${escape(labels.ingredients)}</h3><ul class="kitchenMenu__ings">${item.ingredients.map((entry) => `<li class="kitchenMenu__ingRow"><span>${escape(entry.name)}</span>${leader}<span class="kitchenMenu__qty">${escape(entry.qty)}</span></li>`).join('')}</ul></div>` : '';
-    const method = item.steps?.length ? `<div><h3 class="kitchenMenu__h">${escape(labels.method)}</h3><ol class="kitchenMenu__steps">${item.steps.map((step, i) => `<li class="kitchenMenu__step"><button type="button" data-step="${i}" aria-pressed="false"><span class="kitchenMenu__node">${pad(i + 1)}</span><span>${escape(step)}</span></button></li>`).join('')}</ol></div>` : '';
+    const method = item.steps?.length ? `<div><h3 class="kitchenMenu__h">${escape(labels.method)}</h3><ol class="kitchenMenu__steps">${item.steps.map((step, i) => `<li class="kitchenMenu__step"><div class="kitchenMenu__stepRow"><span class="kitchenMenu__node">${pad(i + 1)}</span><span>${escape(step)}</span></div></li>`).join('')}</ol></div>` : '';
     sheet.innerHTML = `<div class="kitchenMenu__sheetIn">
       <div class="kitchenMenu__sheetTop"><div class="kitchenMenu__nav"><button type="button" class="kitchenMenu__iconBtn" data-go="-1" aria-label="${escape(labels.prev)}">${icon('chevronLeft')}</button><button type="button" class="kitchenMenu__iconBtn" data-go="1" aria-label="${escape(labels.next)}">${icon('chevronRight')}</button></div><button type="button" class="kitchenMenu__iconBtn kitchenMenu__close" aria-label="${escape(labels.close)}">${icon('x')}</button></div>
       <div class="kitchenMenu__hero"><div class="kitchenMenu__photo"><img src="${escape(item.imageSrc.replace(/^\//, './'))}" alt="${escape(item.imageAlt)}"></div><div>
-        <h2 class="kitchenMenu__sZh" lang="zh-Hant" id="kitchen-recipe-name">${escape(item.nameZh)}</h2><p class="kitchenMenu__sEn">${escape(item.nameEn)}</p><p class="kitchenMenu__sNote">${escape(item.note)}</p>
+        <h2 class="kitchenMenu__sZh" lang="zh-Hant" id="kitchen-recipe-name">${escape(item.nameZh)}</h2><p class="kitchenMenu__sEn">${escape(item.nameEn)}</p>
         <dl class="kitchenMenu__meta">${row(labels.course, escape(course.en))}${item.time ? row(labels.time, escape(item.time)) : ''}${row(labels.effort, flames(item.effort))}</dl>
       </div></div>
-      ${ingredients || method ? `<div class="kitchenMenu__cols">${ingredients}${method}</div>` : `<p class="kitchenMenu__comingSoon">${escape(labels.comingSoon)}</p>`}
+      <p class="kitchenMenu__sNote">${escape(item.note)}</p>
+      ${ingredients || method ? `<div class="kitchenMenu__cols">${ingredients}${method}</div>` : `<div class="kitchenMenu__empty"><img class="kitchenMenu__emptyArt" src="./img/sketch-chef-slicing.svg" alt=""><p class="kitchenMenu__comingSoon">${escape(labels.comingSoon)}</p><p class="kitchenMenu__emptyHint">Cleaning up the kitchen</p></div>`}
     </div>`;
     sheet.scrollTop = 0;
     (focusAction ? sheet.querySelector(focusAction) : sheet).focus({ preventScroll: true });
@@ -75,105 +76,161 @@
     trigger?.focus({ preventScroll: true });
   }
 
-  // Hover preview: the dish photo follows the cursor (mouse only; touch has
-  // no hover, so phones go straight to the sheet).
+  // The dish being looked at ("focus") gets its row inverted and its photo shown:
+  //  - wide window with a mouse: the row under the cursor, with the photo following the cursor;
+  //  - narrow window or touch screen: the row nearest the middle of the screen, with a photo card in the corner
+  //    (tap it to open the recipe).
+  // The row is worked out from the pointer position / scroll position on every frame, not from hover events:
+  // browsers only refresh :hover and mouseover after scrolling stops, which made the photo lag behind.
   const menuEl = section.querySelector('.kitchenMenu__menu');
-  // Narrow windows (and touch screens) get the photo card in the bottom corner; wide windows with a mouse get
-  // the photo that follows the cursor.
   const narrow = window.matchMedia('(max-width: 48rem)');
   const touch = window.matchMedia('(hover: none), (pointer: coarse)');
   const useDock = () => narrow.matches || touch.matches;
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const peek = document.createElement('div');
+  const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const rows = [...menuEl.querySelectorAll('.menu-item')];
+  const srcOf = (row) => items[Number(row.dataset.index)].imageSrc.replace(/^\//, './');
+
+  // Photos load a little before their row is reached, so they are ready when the row gets focus.
+  const preloaded = new Set();
+  const preload = (row) => {
+    const src = srcOf(row);
+    if (preloaded.has(src)) return;
+    preloaded.add(src);
+    const image = new Image();
+    image.decoding = 'async';
+    image.src = src;
+  };
+  if ('IntersectionObserver' in window) {
+    const watcher = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) { preload(entry.target); watcher.unobserve(entry.target); }
+    }), { rootMargin: '900px 0px' });
+    rows.forEach((row) => watcher.observe(row));
+  } else rows.forEach(preload);
+
+  const peek = hasMouse ? document.createElement('div') : null;
+  let peekImg = null;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const OFFSET_X = 24;
+  let target = { x: 0, y: 0 };
+  let pos = { x: 0, y: 0 };
+  let raf = null;
+  let pointer = null; // last known cursor position, null when the cursor is outside the menu
+  if (peek) {
     peek.className = 'kitchenMenu__peek';
     peek.setAttribute('aria-hidden', 'true');
     peek.innerHTML = '<img alt=""><p class="kitchenMenu__peekHint mono">Click to see the recipe →</p>';
     document.body.append(peek);
-    const peekImg = peek.querySelector('img');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const OFFSET_X = 24;
-    let target = { x: 0, y: 0 };
-    let pos = { x: 0, y: 0 };
-    let raf = null;
-    const place = () => { peek.style.transform = `translate(${pos.x}px, ${pos.y}px)`; };
-    const loop = () => {
-      const ease = reduceMotion.matches ? 1 : 0.2;
-      pos.x += (target.x - pos.x) * ease;
-      pos.y += (target.y - pos.y) * ease;
-      place();
-      raf = Math.abs(target.x - pos.x) + Math.abs(target.y - pos.y) > 0.5 ? requestAnimationFrame(loop) : null;
-    };
-    const aim = (event) => {
-      const w = peek.offsetWidth, h = peek.offsetHeight;
-      let x = event.clientX + OFFSET_X;
-      if (x + w > window.innerWidth) x = event.clientX - OFFSET_X - w;
-      target = { x: Math.max(8, Math.min(x, window.innerWidth - w - 8)), y: Math.max(8, Math.min(event.clientY - 80, window.innerHeight - h - 8)) };
-    };
-    const hide = () => peek.classList.remove('is-on');
-    menuEl.addEventListener('mousemove', (event) => {
-      aim(event);
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-    menuEl.addEventListener('mouseover', (event) => {
-      const dish = event.target.closest('.menu-item');
-      if (!dish || current !== null || useDock()) return hide();
-      const item = items[Number(dish.dataset.index)];
-      const src = item.imageSrc.replace(/^\//, './');
-      if (peekImg.getAttribute('src') !== src) peekImg.src = src;
-      if (!peek.classList.contains('is-on')) { aim(event); pos = { ...target }; place(); }
-      peek.classList.add('is-on');
-    });
-    menuEl.addEventListener('mouseleave', hide);
-    menuEl.addEventListener('click', hide);
-    window.addEventListener('scroll', hide, { passive: true });
+    peekImg = peek.querySelector('img');
   }
+  const place = () => { peek.style.transform = `translate(${pos.x}px, ${pos.y}px)`; };
+  const loop = () => {
+    const ease = reduceMotion.matches ? 1 : 0.2;
+    pos.x += (target.x - pos.x) * ease;
+    pos.y += (target.y - pos.y) * ease;
+    place();
+    raf = Math.abs(target.x - pos.x) + Math.abs(target.y - pos.y) > 0.5 ? requestAnimationFrame(loop) : null;
+  };
+  const aim = () => {
+    if (!pointer) return;
+    const w = peek.offsetWidth, h = peek.offsetHeight;
+    let x = pointer.x + OFFSET_X;
+    if (x + w > window.innerWidth) x = pointer.x - OFFSET_X - w;
+    target = { x: Math.max(8, Math.min(x, window.innerWidth - w - 8)), y: Math.max(8, Math.min(pointer.y - 80, window.innerHeight - h - 8)) };
+  };
 
-  // Narrow windows and touch screens: the dish whose row is nearest the middle of the screen gets a small
-  // photo card pinned to the bottom corner while you scroll through the menu; tapping the card opens its recipe.
-  {
-    const dock = document.createElement('button');
-    dock.type = 'button';
-    dock.className = 'kitchenMenu__dock';
-    dock.setAttribute('aria-hidden', 'true');
-    dock.tabIndex = -1;
-    dock.innerHTML = '<img alt=""><span class="kitchenMenu__peekHint mono">Tap for recipe →</span>';
-    document.body.append(dock);
-    const dockImg = dock.querySelector('img');
-    const rows = [...menuEl.querySelectorAll('.menu-item')];
-    let focused = null;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const box = menuEl.getBoundingClientRect();
-      const mid = window.innerHeight * 0.5;
-      let best = null;
-      if (useDock() && current === null && box.top < mid && box.bottom > mid) {
-        let bestDistance = Infinity;
-        rows.forEach((row) => {
-          const r = row.getBoundingClientRect();
-          const distance = Math.abs(r.top + r.height / 2 - mid);
-          if (distance < bestDistance) { bestDistance = distance; best = row; }
-        });
-      }
-      if (best !== focused) {
-        if (focused) focused.classList.remove('is-focus');
-        focused = best;
-        if (focused) {
-          focused.classList.add('is-focus');
-          const src = items[Number(focused.dataset.index)].imageSrc.replace(/^\//, './');
-          if (dockImg.getAttribute('src') !== src) dockImg.src = src;
-        }
-      }
-      dock.classList.toggle('is-on', Boolean(focused));
-    };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    window.addEventListener('scroll', schedule, { passive: true });
-    if (window.lenis && window.lenis.on) window.lenis.on('scroll', schedule);
-    window.addEventListener('resize', schedule);
-    dock.addEventListener('click', () => { if (focused) open(Number(focused.dataset.index), focused); });
-    new MutationObserver(schedule).observe(overlay, { attributes: true, attributeFilter: ['class'] });
-    schedule();
+  const dock = document.createElement('button');
+  dock.type = 'button';
+  dock.className = 'kitchenMenu__dock';
+  dock.setAttribute('aria-hidden', 'true');
+  dock.tabIndex = -1;
+  dock.innerHTML = '<img alt=""><span class="kitchenMenu__peekHint mono">Tap for recipe →</span>';
+  document.body.append(dock);
+  const dockImg = dock.querySelector('img');
+
+  let focused = null;
+  const setFocus = (row) => {
+    if (row === focused) return;
+    if (focused) focused.classList.remove('is-focus');
+    focused = row;
+    if (!row) return;
+    row.classList.add('is-focus');
+    preload(row);
+    const src = srcOf(row);
+    if (peekImg && peekImg.getAttribute('src') !== src) peekImg.src = src;
+    if (dockImg.getAttribute('src') !== src) dockImg.src = src;
+  };
+
+  // Page positions of the menu and each row; measured lazily and again whenever the menu's size changes.
+  const rowSpots = { stale: true, top: 0, bottom: 0, centers: [] };
+  function measureRows() {
+    const offset = window.scrollY;
+    const box = menuEl.getBoundingClientRect();
+    rowSpots.top = box.top + offset;
+    rowSpots.bottom = box.bottom + offset;
+    rowSpots.centers = rows.map((candidate) => {
+      const r = candidate.getBoundingClientRect();
+      return r.top + offset + r.height / 2;
+    });
+    rowSpots.stale = false;
   }
+  const staleRows = () => { rowSpots.stale = true; };
+  window.addEventListener('resize', staleRows);
+  if ('ResizeObserver' in window) { const watcher = new ResizeObserver(staleRows); watcher.observe(menuEl); watcher.observe(document.body); } // the page above may also change height
+
+  const update = () => {
+    let row = null;
+    if (current === null) {
+      if (useDock()) {
+        // Row positions are measured once (see measureRows) and compared with the scroll position, so scrolling
+        // costs no layout reads at all.
+        if (rowSpots.stale) measureRows();
+        const mid = window.scrollY + window.innerHeight * 0.5;
+        if (rowSpots.top < mid && rowSpots.bottom > mid) {
+          let nearest = Infinity;
+          rowSpots.centers.forEach((center, i) => {
+            const distance = Math.abs(center - mid);
+            if (distance < nearest) { nearest = distance; row = rows[i]; }
+          });
+        }
+      } else if (pointer) {
+        const hit = document.elementFromPoint(pointer.x, pointer.y);
+        row = hit ? hit.closest('.menu-item') : null;
+        if (row && !menuEl.contains(row)) row = null;
+      }
+    }
+    setFocus(row);
+    dock.classList.toggle('is-on', Boolean(row) && useDock());
+    if (peek) {
+      const show = Boolean(row) && !useDock();
+      if (show && !peek.classList.contains('is-on')) { aim(); pos = { ...target }; place(); }
+      peek.classList.toggle('is-on', show);
+    }
+  };
+  let frame = 0;
+  const schedule = () => { if (!frame) frame = requestAnimationFrame(() => { frame = 0; update(); }); };
+
+  if (peek) {
+    menuEl.addEventListener('mousemove', (event) => {
+      pointer = { x: event.clientX, y: event.clientY };
+      aim();
+      if (!raf) raf = requestAnimationFrame(loop);
+      schedule();
+    });
+    menuEl.addEventListener('mouseleave', () => { pointer = null; schedule(); });
+  }
+  window.addEventListener('scroll', schedule, { passive: true });
+  if (window.lenis && window.lenis.on) window.lenis.on('scroll', schedule);
+  window.addEventListener('resize', schedule);
+  dock.addEventListener('click', () => { if (focused) open(Number(focused.dataset.index), focused); });
+  new MutationObserver(schedule).observe(overlay, { attributes: true, attributeFilter: ['class'] });
+  schedule();
+
+  // Asked from outside (a hero photo card): open this dish's recipe.
+  document.addEventListener('kitchen:open', (event) => {
+    const index = event.detail && event.detail.index;
+    if (current !== null || !items[index]) return;
+    open(index, menuEl.querySelector(`.menu-item[data-index="${index}"]`));
+  });
 
   menuEl.addEventListener('click', (event) => {
     const button = event.target.closest('.menu-item');
@@ -185,15 +242,6 @@
     if (!button) return;
     if (button.matches('.kitchenMenu__close')) close();
     else if (button.hasAttribute('data-go')) render(current + Number(button.dataset.go), `[data-go="${button.dataset.go}"]`);
-    else if (button.hasAttribute('data-step')) {
-      const steps = [...sheet.querySelectorAll('.kitchenMenu__step')];
-      const index = Number(button.dataset.step);
-      steps.forEach((step, i) => {
-        step.classList.toggle('is-past', i <= index);
-        step.classList.toggle('is-current', i === index);
-        step.querySelector('button').setAttribute('aria-pressed', String(i <= index));
-      });
-    }
   });
   // Horizontal swipe on the sheet moves to the previous/next dish. Only a
   // clearly horizontal gesture counts, so vertical scrolling stays untouched.

@@ -41,8 +41,9 @@
 
   .photo-card__caption {
     margin-top: var(--sys-space-xs);
-    font-size: var(--sys-font-size-caption);
-    line-height: var(--sys-line-height-heading);
+    font-family: var(--sys-font-family-hand);
+    font-size: var(--sys-font-size-body);
+    line-height: var(--sys-line-height-tight);
     color: var(--sys-color-text);
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -106,8 +107,9 @@
 }
 
 .photo-card__note {
-  font-size: var(--sys-font-size-small);
-  line-height: var(--sys-line-height-relaxed);
+  font-family: var(--sys-font-family-hand);
+  font-size: var(--sys-font-size-title-sm);
+  line-height: var(--sys-line-height-tight);
   color: var(--sys-color-text);
 }
 
@@ -128,8 +130,13 @@
 @media (max-width: 48rem) {
   .photo-card--strip,
   .photo-card--strip.photo-card--landscape {
-    width: min(var(--comp-life-card-width), 82vw);
-    padding: var(--sys-space-md);
+    // smaller on phones so the next card peeks in from the side
+    width: min(var(--comp-life-card-width), 62vw);
+    padding: var(--sys-space-sm);
+  }
+
+  .photo-card__note {
+    font-size: var(--sys-font-size-body);
   }
 
   .photo-card--strip .photo-card__photo {

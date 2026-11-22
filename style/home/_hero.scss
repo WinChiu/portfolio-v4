@@ -4,6 +4,9 @@
   min-height: 100vh;
   min-height: 100svh;
   position: relative;
+  /* its own stacking context: the photo cards' z-index values (they keep rising as cards are dealt and dragged)
+     must stay inside the hero and never paint over the fixed nav */
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -55,7 +58,6 @@
   .hero__copy { position: static; width: auto; gap: var(--sys-space-lg); }
   .hero { padding-bottom: calc(var(--sys-space-6xl) + var(--sys-space-xl)); }
   .hero__hi { margin-bottom: var(--sys-space-pull-sm); }
-  /* phone: the hero is crowded, so the photo cards are left out and the ticker is smaller */
-  .hero .photo-card--floating { display: none; }
+  /* phone: the ticker is smaller */
   .hero__ticker { padding: var(--sys-space-2xs) var(--sys-space-0); font-size: calc(var(--sys-font-size-caption) * 0.85); }
 }

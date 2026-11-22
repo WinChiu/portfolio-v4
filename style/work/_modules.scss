@@ -7,3 +7,9 @@
 .project-module--text, .project-module__item-content, .project-module__aside, .project-module__content { display: flex; flex-direction: column; gap: var(--sys-space-md); }
 .project-page .project-module__item-title, .project-page .project-module__subheading, .project-module__callout-title { font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-semibold); }
 .project-page .project-module--text .body + .body { margin-top: var(--sys-space-0); }
+
+/* Image + several titled paragraphs (design system page): same title/text treatment as the goal lists, with the
+   title tight to its own text and clear space between one entry and the next. */
+.project-module__entry { display: flex; flex-direction: column; gap: var(--sys-space-3xs); }
+.project-module__content:has(> .project-module__entry) { gap: var(--sys-space-2xl); }
+.project-page .project-module__entry .project-module__item-title { font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }

@@ -63,6 +63,8 @@
     }
   }
 
+  let navFrame = 0;
+  const schedule = () => { if (!navFrame) navFrame = requestAnimationFrame(() => { navFrame = 0; update(); }); };
   const update = () => {
     const mid = innerHeight * 0.5;
     let active = -1;
@@ -81,10 +83,10 @@
     show(active, previous);
   };
 
-  window.addEventListener('scroll', update, { passive: true });
-  if (window.lenis && window.lenis.on) window.lenis.on('scroll', update); // smooth scroll reports its own position too
-  window.addEventListener('resize', update);
-  const observer = new ResizeObserver(update);
+  window.addEventListener('scroll', schedule, { passive: true });
+  if (window.lenis && window.lenis.on) window.lenis.on('scroll', schedule); // smooth scroll reports its own position too
+  window.addEventListener('resize', schedule);
+  const observer = new ResizeObserver(schedule);
   sections.forEach((section) => observer.observe(section));
   update();
 })();

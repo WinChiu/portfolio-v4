@@ -435,24 +435,6 @@ html.lenis body {
   fill: var(--sys-color-background);
 }
 
-@media (hover: hover) and (min-width: 48.0625rem) {
-  .menu-item:hover {
-    background: var(--accent-ink);
-  }
-  .menu-item:hover .menu-item__zh,
-  .menu-item:hover .menu-item__en {
-    color: var(--sys-color-background);
-  }
-  .menu-item:hover .leader {
-    border-color: color-mix(in srgb, var(--sys-color-background) 60%, transparent);
-  }
-  .menu-item:hover .effort-meter path {
-    stroke: var(--sys-color-background);
-  }
-  .menu-item:hover .effort-meter__flame:not(.effort-meter__flame--off) path {
-    fill: var(--sys-color-background);
-  }
-}
 .menu-item__names {
   display: flex;
   flex-direction: column;
@@ -628,8 +610,9 @@ html.lenis body {
 }
 .photo-card--floating .photo-card__caption {
   margin-top: var(--sys-space-xs);
-  font-size: var(--sys-font-size-caption);
-  line-height: var(--sys-line-height-heading);
+  font-family: var(--sys-font-family-hand);
+  font-size: var(--sys-font-size-body);
+  line-height: var(--sys-line-height-tight);
   color: var(--sys-color-text);
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -683,8 +666,9 @@ html.lenis body {
 }
 
 .photo-card__note {
-  font-size: var(--sys-font-size-small);
-  line-height: var(--sys-line-height-relaxed);
+  font-family: var(--sys-font-family-hand);
+  font-size: var(--sys-font-size-title-sm);
+  line-height: var(--sys-line-height-tight);
   color: var(--sys-color-text);
 }
 
@@ -705,8 +689,11 @@ html.lenis body {
 @media (max-width: 48rem) {
   .photo-card--strip,
   .photo-card--strip.photo-card--landscape {
-    width: min(var(--comp-life-card-width), 82vw);
-    padding: var(--sys-space-md);
+    width: min(var(--comp-life-card-width), 62vw);
+    padding: var(--sys-space-sm);
+  }
+  .photo-card__note {
+    font-size: var(--sys-font-size-body);
   }
   .photo-card--strip .photo-card__photo {
     height: auto;
@@ -1141,6 +1128,9 @@ a:focus-visible, button:focus-visible {
   min-height: 100vh;
   min-height: 100svh;
   position: relative;
+  /* its own stacking context: the photo cards' z-index values (they keep rising as cards are dealt and dragged)
+     must stay inside the hero and never paint over the fixed nav */
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1284,10 +1274,7 @@ a:focus-visible, button:focus-visible {
   .hero__hi {
     margin-bottom: var(--sys-space-pull-sm);
   }
-  /* phone: the hero is crowded, so the photo cards are left out and the ticker is smaller */
-  .hero .photo-card--floating {
-    display: none;
-  }
+  /* phone: the ticker is smaller */
   .hero__ticker {
     padding: var(--sys-space-2xs) var(--sys-space-0);
     font-size: calc(var(--sys-font-size-caption) * 0.85);
@@ -1768,7 +1755,7 @@ a:focus-visible, button:focus-visible {
 .kitchenMenu__sEn {
   font-size: var(--sys-font-size-title-sm);
   line-height: var(--sys-line-height-body);
-  font-weight: var(--sys-font-weight-semibold);
+  font-weight: var(--sys-font-weight-medium);
   color: var(--sys-color-text-muted);
   margin-top: var(--sys-space-pull-md);
 }
@@ -1804,7 +1791,7 @@ a:focus-visible, button:focus-visible {
   font-size: var(--sys-font-size-title-sm);
   line-height: var(--sys-line-height-tight);
   text-align: center;
-  padding: var(--sys-space-md) var(--sys-space-0);
+  padding: var(--sys-space-7xl) var(--sys-space-0);
   flex: 0 0 auto;
 }
 
@@ -1877,7 +1864,7 @@ a:focus-visible, button:focus-visible {
   transform: translateX(var(--sys-rule-nudge));
 }
 
-.kitchenMenu__steps button {
+.kitchenMenu__stepRow {
   display: grid;
   grid-template-columns: var(--sys-space-4xl) minmax(0, 1fr);
   gap: var(--sys-space-md);
@@ -1885,17 +1872,13 @@ a:focus-visible, button:focus-visible {
   width: 100%;
   min-height: var(--sys-space-6xl);
   text-align: left;
-  border: 0;
-  background: none;
-  font: inherit;
   font-size: var(--sys-font-size-small);
   line-height: var(--sys-line-height-relaxed);
-  color: var(--sys-color-text-muted);
-  cursor: pointer;
+  color: var(--sys-color-text);
   padding-bottom: var(--sys-space-xl);
 }
 
-.kitchenMenu__steps li:last-child button {
+.kitchenMenu__steps li:last-child .kitchenMenu__stepRow {
   min-height: var(--sys-space-4xl);
   padding-bottom: var(--sys-space-0);
 }
@@ -1912,19 +1895,35 @@ a:focus-visible, button:focus-visible {
   transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
 
-.kitchenMenu__steps li.is-past::before {
-  background: var(--accent-ink);
+/* Dish without a recipe yet: an empty state with a picture instead of a bare line of text. */
+.kitchenMenu__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-sm);
+  padding: var(--sys-space-3xl) var(--sys-space-0);
+  text-align: center;
 }
 
-.kitchenMenu__steps li.is-past .kitchenMenu__node {
-  color: var(--accent-ink);
-}
-
-.kitchenMenu__steps li.is-past button {
-  color: var(--sys-color-text);
+.kitchenMenu__emptyArt {
+  display: block;
+  width: min(var(--sys-space-160), 60%);
+  height: auto;
+  margin-bottom: var(--sys-space-sm);
 }
 
 .kitchenMenu__comingSoon {
+  margin: var(--sys-space-0);
+  font-size: var(--sys-font-size-title-xs);
+  line-height: var(--sys-line-height-heading);
+  font-weight: var(--sys-font-weight-medium);
+  color: var(--sys-color-text);
+}
+
+.kitchenMenu__emptyHint {
+  margin: var(--sys-space-0);
+  font-size: var(--sys-font-size-small);
+  line-height: var(--sys-line-height-relaxed);
   color: var(--sys-color-text-muted);
 }
 
@@ -1976,7 +1975,7 @@ a:focus-visible, button:focus-visible {
   }
   .kitchenMenu__sNote {
     font-size: var(--sys-font-size-title-sm);
-    padding: var(--sys-space-xs) var(--sys-space-0);
+    padding: var(--sys-space-6xl) var(--sys-space-0);
   }
 }
 .kitchenMenu__sheet {
@@ -2009,10 +2008,6 @@ a:focus-visible, button:focus-visible {
 
 .kitchenMenu__meta dd {
   margin: var(--sys-space-0);
-}
-
-.kitchenMenu__sNote {
-  order: 3;
 }
 
 .kitchenMenu__h {
@@ -2055,6 +2050,51 @@ a:focus-visible, button:focus-visible {
   font-family: var(--sys-font-family-body);
 }
 
+/* Recipe sheet: when the sheet itself is wide enough, the photo goes on the left and the name, note and facts on the
+   right. (Judged by the sheet's width, not the window's, so a narrow desktop window gets it too; a phone-width
+   sheet keeps the photo on top.) */
+.kitchenMenu__sheet {
+  container-type: inline-size;
+}
+
+@container (min-width: 26rem) {
+  .kitchenMenu__hero {
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--sys-space-2xl);
+  }
+  .kitchenMenu__photo {
+    flex: 0 0 44%;
+    align-self: flex-start;
+  }
+  /* the name and facts sit at the bottom of the photo's height */
+  .kitchenMenu__hero > div:last-child {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: flex-end;
+  }
+  .kitchenMenu__hero .kitchenMenu__meta {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: var(--sys-space-xs);
+  }
+  .kitchenMenu__hero .kitchenMenu__meta > div {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+}
+/* Widest sheet: the ingredients run in two columns (down the first, then the second). */
+@container (min-width: 38rem) {
+  .kitchenMenu__ings {
+    display: block;
+    column-count: 2;
+    column-gap: var(--sys-space-5xl);
+  }
+  .kitchenMenu__ings li {
+    break-inside: avoid;
+    margin-bottom: var(--sys-space-sm);
+  }
+}
 .life__intro {
   max-width: var(--comp-measure-copy);
   font-size: var(--sys-font-size-title-sm);
@@ -2090,6 +2130,12 @@ a:focus-visible, button:focus-visible {
   display: none;
 }
 
+/* With a mouse the strip scrolls freely (the wheel moves it smoothly); snapping to cards is for touch only. */
+@media (hover: hover) and (pointer: fine) {
+  .life__viewport {
+    scroll-snap-type: none;
+  }
+}
 @media (max-width: 48rem) {
   .life__intro {
     font-size: var(--sys-font-size-title-xs);
@@ -2106,4 +2152,42 @@ a:focus-visible, button:focus-visible {
 
 .section--life.is-pinned {
   overflow: clip;
+}
+
+/* Wide screens (1440px and up): the Life section is exactly one screen tall, and the photo cards are sized from the
+   height left under the heading, so they grow and shrink with the window instead of the section outgrowing it. A card
+   keeps its proportions (portrait / landscape ratios measured from the original fixed-size cards). */
+@media (min-width: 90rem) {
+  .section--life {
+    height: max(100svh, 32rem);
+    min-height: 0;
+  }
+  .section--life .home__content {
+    min-height: 0;
+  }
+  .section--life .life__viewport {
+    flex: 1 1 0;
+    min-height: 0;
+    margin-top: 0;
+  }
+  .life__strip {
+    height: 100%;
+    align-items: stretch;
+  }
+  .life__strip .photo-card--strip {
+    height: 100%;
+    width: auto;
+    aspect-ratio: 0.693;
+  }
+  .life__strip .photo-card--strip.photo-card--landscape {
+    width: auto;
+    aspect-ratio: 1.039;
+  }
+  .life__strip .photo-card__frame {
+    flex: 1 1 0;
+    min-height: 0;
+  }
+  .life__strip .photo-card__photo {
+    height: 100%;
+  }
 }

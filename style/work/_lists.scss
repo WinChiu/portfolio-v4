@@ -29,7 +29,8 @@
   .goals, .media-aside, .media-grid { grid-template-columns: 1fr; }
   .goals article, .goals article:first-child { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: var(--sys-space-xs); align-items: start; padding: var(--sys-space-5xl) var(--sys-space-0) var(--sys-space-xl); }
   .goals article > * { grid-column: 1; width: auto; }
-  .goals { --goal-icon: clamp(var(--sys-space-88), var(--comp-goal-icon-fluid), var(--sys-space-160)); }
+  /* the picture now sits above its text, so it can be much larger than the old side icon */
+  .goals { --goal-icon: clamp(var(--sys-space-160), 44vw, 15rem); }
   /* scales with the window instead of snapping to a tiny icon at 48rem */
   /* phone: the picture sits above its text */
   .goals article > .goal-icon { grid-column: 1; grid-row: auto; width: var(--goal-icon) !important; height: var(--goal-icon); margin-bottom: var(--sys-space-md); }
