@@ -99,6 +99,17 @@
     height: var(--comp-life-photo-height);
     object-fit: cover;
   }
+
+  // a little more air between the photo and the handwritten title
+  .photo-card__note {
+    margin-top: var(--sys-space-sm);
+  }
+
+  // the place sits at the right edge
+  .photo-card__meta {
+    justify-content: flex-end;
+    text-align: right;
+  }
 }
 
 // set by utility/lifeStrip.js once the photo's own shape is known
@@ -108,7 +119,7 @@
 
 .photo-card__note {
   font-family: var(--sys-font-family-hand);
-  font-size: var(--sys-font-size-title-sm);
+  font-size: 1.75rem;
   line-height: var(--sys-line-height-tight);
   color: #3b3b38;
 }
@@ -136,7 +147,7 @@
   }
 
   .photo-card__note {
-    font-size: var(--sys-font-size-body);
+    font-size: 1.375rem;
   }
 
   .photo-card--strip .photo-card__photo {

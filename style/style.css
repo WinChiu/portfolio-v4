@@ -683,6 +683,13 @@ html.lenis body {
   height: var(--comp-life-photo-height);
   object-fit: cover;
 }
+.photo-card--strip .photo-card__note {
+  margin-top: var(--sys-space-sm);
+}
+.photo-card--strip .photo-card__meta {
+  justify-content: flex-end;
+  text-align: right;
+}
 
 .photo-card--strip.photo-card--landscape {
   width: var(--comp-life-card-width-landscape);
@@ -690,7 +697,7 @@ html.lenis body {
 
 .photo-card__note {
   font-family: var(--sys-font-family-hand);
-  font-size: var(--sys-font-size-title-sm);
+  font-size: 1.75rem;
   line-height: var(--sys-line-height-tight);
   color: #3b3b38;
 }
@@ -716,7 +723,7 @@ html.lenis body {
     padding: var(--sys-space-sm);
   }
   .photo-card__note {
-    font-size: var(--sys-font-size-body);
+    font-size: 1.375rem;
   }
   .photo-card--strip .photo-card__photo {
     height: auto;
@@ -1708,11 +1715,14 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
     transform: none;
   }
 }
+/* Taller than the largest viewport by one spare band, so on phones the sheet still reaches the very bottom of the screen
+   (the page menu must never peek out under it) even when the browser's bars move or its toolbar floats over the page. */
 .kitchenMenu__overlay {
+  --overlay-spare: var(--sys-space-5xl);
   position: fixed;
   inset: 0 0 auto 0;
-  height: 100vh;
-  height: 100lvh;
+  height: calc(100vh + var(--overlay-spare));
+  height: calc(100lvh + var(--overlay-spare));
   z-index: var(--sys-z-overlay);
   pointer-events: none;
 }
@@ -2017,7 +2027,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   /* the sheet is as tall as the largest viewport; keep its last lines clear of the browser's bottom bar */
   .kitchenMenu__sheet {
     width: 100%;
-    padding: var(--sys-space-md) var(--sys-space-lg) calc(var(--sys-space-5xl) + var(--sys-space-7xl));
+    padding: var(--sys-space-md) var(--sys-space-lg) calc(var(--sys-space-5xl) + var(--sys-space-7xl) + var(--overlay-spare));
     border-left: 0;
     gap: var(--sys-space-xl);
   }
