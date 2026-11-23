@@ -58,7 +58,7 @@ a:focus-visible, button:focus-visible { outline: var(--sys-space-hairline) solid
    a quiet label next to the big serif titles. Prefixed with body to win over each partial's own font-size. */
 .home-page, body { --mono-size: 0.8125rem; --mono-track: 0.08em; }
 body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__meta dt, .kitchenMenu__h,
-         .kitchenMenu__node, .kitchenMenu__qty, .hero__ticker) {
+         .kitchenMenu__node, .kitchenMenu__qty) {
   font-size: var(--mono-size);
   letter-spacing: var(--mono-track);
 }

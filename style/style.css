@@ -1018,7 +1018,7 @@ a:focus-visible, button:focus-visible {
 }
 
 body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__meta dt, .kitchenMenu__h,
-.kitchenMenu__node, .kitchenMenu__qty, .hero__ticker) {
+.kitchenMenu__node, .kitchenMenu__qty) {
   font-size: var(--mono-size);
   letter-spacing: var(--mono-track);
 }
@@ -1261,6 +1261,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   background: var(--sys-color-background);
   font-family: var(--sys-font-family-mono);
   font-size: var(--sys-font-size-small);
+  letter-spacing: var(--mono-track, 0.08em);
   line-height: var(--sys-line-height-body);
   color: var(--sys-color-text-muted);
 }

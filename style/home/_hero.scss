@@ -39,7 +39,7 @@
 .hero__intro { font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); color: var(--sys-color-text); }
 .hero__intro .hl { color: var(--sys-color-brand); }
 .hero .photo-card--floating:nth-of-type(n+5) { visibility: hidden; }
-.hero__ticker { position: absolute; z-index: var(--sys-z-raised); left: var(--sys-space-0); right: var(--sys-space-0); bottom: var(--sys-space-0); margin: var(--sys-space-0); padding: var(--sys-space-sm) var(--sys-space-0); overflow: hidden; white-space: nowrap; border-top: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border); background: var(--sys-color-background); font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); color: var(--sys-color-text-muted); }
+.hero__ticker { position: absolute; z-index: var(--sys-z-raised); left: var(--sys-space-0); right: var(--sys-space-0); bottom: var(--sys-space-0); margin: var(--sys-space-0); padding: var(--sys-space-sm) var(--sys-space-0); overflow: hidden; white-space: nowrap; border-top: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border); background: var(--sys-color-background); font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); letter-spacing: var(--mono-track, 0.08em); line-height: var(--sys-line-height-body); color: var(--sys-color-text-muted); }
 .hero__tickerTrack { display: inline-flex; width: max-content; animation: hero-ticker var(--sys-motion-duration-ticker) linear infinite; }
 .hero__tickerTrack > span { padding-right: var(--sys-space-5xl); }
 .hero__tickerSr { position: absolute; width: var(--sys-rule-width-thin); height: var(--sys-rule-width-thin); overflow: hidden; clip-path: inset(50%); }
