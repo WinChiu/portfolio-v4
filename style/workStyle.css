@@ -412,7 +412,7 @@ a:focus-visible, button:focus-visible {
     --gutter: var(--sys-space-lg);
   }
 }
-/* Fixed project index and page progress. */
+/* Fixed project index. */
 .index {
   position: fixed;
   inset: 0 auto 0 0;
@@ -426,15 +426,6 @@ a:focus-visible, button:focus-visible {
   z-index: var(--sys-z-sticky);
   background: var(--sys-color-background);
   overflow: hidden;
-}
-
-/* Page progress fills the rail from top to bottom. */
-.index__fill {
-  position: absolute;
-  inset: 0;
-  background: var(--fill-gradient, var(--sys-color-transparent));
-  pointer-events: none;
-  z-index: var(--sys-z-base);
 }
 
 .index__list {
@@ -466,15 +457,6 @@ a:focus-visible, button:focus-visible {
   color: var(--sys-color-text);
 }
 
-/* text that sits on the filled part flips to paper */
-.index__list a.on-fill, .index__list a.on-fill:hover {
-  color: var(--sys-color-background);
-}
-
-.index__list a.on-fill:not(.is-active) {
-  opacity: 0.72;
-}
-
 .with-nav {
   margin-left: var(--nav);
 }
@@ -489,21 +471,9 @@ a:focus-visible, button:focus-visible {
   transition: width var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth);
 }
 
-.project-page .index > :not(.index__fill) {
+.project-page .index > * {
   position: relative;
   z-index: var(--sys-z-content);
-}
-
-.index.is-filled .index__back, .index.is-filled .index__foot a {
-  transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
-}
-
-.index__back.on-fill, .index__foot a.on-fill, .index__back.on-fill:hover, .index__foot a.on-fill:hover {
-  color: var(--sys-color-background);
-}
-
-.project-page .index__list a.on-fill::after {
-  background: var(--sys-color-background);
 }
 
 .index__back, .index__foot a {
@@ -579,7 +549,7 @@ a:focus-visible, button:focus-visible {
   flex-shrink: 0;
 }
 
-.mobile-current, .sections-toggle, .page-progress {
+.mobile-current, .sections-toggle {
   display: none;
 }
 
@@ -601,10 +571,6 @@ a:focus-visible, button:focus-visible {
 .project-page .index__list a.is-active {
   opacity: 1;
   font-weight: var(--sys-font-weight-medium);
-}
-
-.project-page .index__list a.on-fill:not(.is-active) {
-  opacity: 0.42;
 }
 
 @media (max-width: 48rem) {
@@ -667,16 +633,6 @@ a:focus-visible, button:focus-visible {
     overflow: visible;
     white-space: normal;
   }
-  /* the whole top bar fills with the reading progress (left to right) */
-  .index__fill {
-    display: block;
-    background: var(--accent-ink);
-    transform: scaleX(var(--page-progress, 0));
-    transform-origin: left;
-  }
-  .page-progress {
-    display: none;
-  }
   .project-page .with-nav {
     margin: var(--sys-space-0);
     padding: var(--sys-space-56) var(--sys-space-0) var(--sys-space-0);
@@ -706,22 +662,12 @@ a:focus-visible, button:focus-visible {
   flex-shrink: 0;
 }
 
-.project-page .index__list a.on-fill {
-  color: var(--sys-color-background);
-}
-
 @media (max-width: 48rem) {
   .project-page .index {
     overflow: visible;
   }
   .project-page .index:hover, .project-page .index:focus-within {
     width: 100%;
-  }
-  .project-page .index__list a.on-fill {
-    color: var(--accent-ink);
-  }
-  .project-page .index__back.on-fill {
-    color: var(--sys-color-background);
   }
   .project-page .index__list a .t {
     overflow: hidden;
@@ -732,43 +678,6 @@ a:focus-visible, button:focus-visible {
   }
   .project-page .index .index__list {
     position: absolute;
-  }
-  .project-page .index .page-progress {
-    position: absolute;
-  }
-}
-/* No colour fill behind the rail / top bar: keep every link in its normal grey, whether or not JS marks it on-fill. */
-.project-page .index__fill {
-  display: none;
-}
-
-.project-page .index__list a.on-fill, .project-page .index__list a.on-fill:hover {
-  color: var(--sys-color-text);
-}
-
-.project-page .index__list a.on-fill:not(.is-active) {
-  opacity: 0.5;
-}
-
-.project-page .index__list a.on-fill::after {
-  background: currentColor;
-}
-
-.project-page .index__back.on-fill, .project-page .index__foot a.on-fill,
-.project-page .index__back.on-fill:hover, .project-page .index__foot a.on-fill:hover {
-  color: var(--sys-color-text-muted);
-}
-
-.project-page .index__back.on-fill:hover, .project-page .index__foot a.on-fill:hover {
-  color: var(--sys-color-text);
-}
-
-@media (max-width: 48rem) {
-  .project-page .index__list a.on-fill {
-    color: var(--sys-color-text);
-  }
-  .project-page .index__back.on-fill {
-    color: var(--sys-color-text-muted);
   }
 }
 /* ---------- header ---------- */

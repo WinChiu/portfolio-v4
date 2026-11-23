@@ -207,7 +207,6 @@
       ${renderLifeSection(content.life)}
     </main>
     <nav class="index nav--main" id="navbar" aria-label="Sections">
-      <span class="index__fill" aria-hidden="true"></span>
       <ol class="index__list">${content.nav.map((item) => `<li class="block__navItem"><a class="c-${item.href.slice(1)}" href="${item.href}">${item.label}</a></li>`).join('')}</ol>
       <a class="index__social" href="https://www.linkedin.com/in/wei-chen-win-chiu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)"><img src="./img/icon-linkedin.svg" alt="" width="28" height="28" /></a>
     </nav>

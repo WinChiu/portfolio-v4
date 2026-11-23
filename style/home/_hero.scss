@@ -49,7 +49,9 @@
   .hero__tickerTrack > span:last-child { display: none; }
 }
 @media (max-width: 88rem) {
-  .hero { padding: var(--comp-hero-padding-top) var(--gutter) var(--sys-space-72); gap: var(--sys-space-4xl); }
+  /* No fixed top padding here: the hero is at least one screen tall and bottom-aligned, so the space above the title
+     is whatever the screen has left over (that is where the photo cards sit) and the hero never outgrows the window. */
+  .hero { padding: var(--sys-space-0) var(--gutter) var(--sys-space-72); gap: var(--sys-space-4xl); }
   .hero__copy { position: static; left: auto; bottom: auto; width: min(var(--comp-hero-copy-width), 100%); }
 }
 @media (max-width: 48rem) {

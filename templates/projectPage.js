@@ -15,13 +15,11 @@ function renderNavigation(language) {
   const backLink = language === 'zh' ? '../../home-zh.html#work' : '/#work';
 
   return `<nav class="project-nav index" id="navbar" aria-label="Project sections">
-      <span class="index__fill" aria-hidden="true"></span>
       <a class="index__back mono" href="${backLink}">Back</a>
       <span class="mobile-current mono" aria-live="polite">Overview</span>
       <button class="sections-toggle mono" type="button" aria-label="Sections" aria-expanded="false" aria-controls="section-list">Sections</button>
       <ol class="project-nav__toc index__list" id="section-list" data-lenis-prevent></ol>
       <div class="index__foot"><a class="mono" href="#top">Top</a></div>
-      <span class="page-progress" aria-hidden="true"></span>
     </nav>`;
 }
 

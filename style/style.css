@@ -1041,18 +1041,6 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   z-index: var(--sys-z-sticky);
   background: var(--sys-color-background);
   overflow: hidden;
-  --nav-wipe-duration: 800ms;
-}
-
-.index__fill {
-  position: absolute;
-  inset: 0;
-  background: var(--fill-color, var(--sys-color-transparent));
-  clip-path: var(--fill-clip, inset(0 0 100% 0));
-  opacity: var(--sys-opacity-hidden);
-  transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), clip-path var(--nav-wipe-duration) var(--sys-motion-ease-smooth);
-  pointer-events: none;
-  z-index: var(--sys-z-base);
 }
 
 .index__list, .index__social {
@@ -1091,14 +1079,6 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   font-weight: var(--sys-font-weight-semibold);
 }
 
-.index__list a.on-fill, .index__list a.on-fill:hover {
-  color: var(--sys-color-background);
-}
-
-.index__list a.on-fill:not(.is-active) {
-  opacity: 0.72;
-}
-
 .index__social {
   display: block;
   width: var(--sys-font-size-title-md);
@@ -1109,35 +1089,6 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   width: 100%;
   height: 100%;
   transition: filter var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
-}
-
-.index__social.on-fill img {
-  filter: brightness(0) invert(1);
-}
-
-/* TRIAL: nav colour fill switched off (remove this block to restore it). */
-.index__fill {
-  display: none;
-}
-
-.index__list a.on-fill {
-  color: #85827b;
-}
-
-.index__list a.on-fill:hover {
-  color: #3b3b38;
-}
-
-.index__list a.on-fill.is-active {
-  color: #1d1a16;
-}
-
-.index__list a.on-fill:not(.is-active) {
-  opacity: 1;
-}
-
-.index__social.on-fill img {
-  filter: none;
 }
 
 .with-nav {
@@ -1346,8 +1297,10 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   }
 }
 @media (max-width: 88rem) {
+  /* No fixed top padding here: the hero is at least one screen tall and bottom-aligned, so the space above the title
+     is whatever the screen has left over (that is where the photo cards sit) and the hero never outgrows the window. */
   .hero {
-    padding: var(--comp-hero-padding-top) var(--gutter) var(--sys-space-72);
+    padding: var(--sys-space-0) var(--gutter) var(--sys-space-72);
     gap: var(--sys-space-4xl);
   }
   .hero__copy {

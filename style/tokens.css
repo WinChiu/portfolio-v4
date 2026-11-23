@@ -262,12 +262,6 @@
   --comp-shadow-offset-kitchen: var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-kitchen);
   --comp-shadow-offset-kitchen-phone: var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-kitchen);
 
-  /* Component: Page loader and page-to-page curtain (read by utility/loadingPage.js) */
-  --comp-loader-gutter: var(--sys-space-3xl);
-  --comp-loader-gutter-narrow: var(--sys-space-lg);
-  --comp-loader-track-mix: 20%;
-  --comp-loader-count-font-size: clamp(var(--sys-font-size-title-lg), 7vw, var(--sys-font-size-display-md));
-
   /* Component: Navigation */
   --comp-nav-width-home: var(--sys-space-7xl);
   --comp-nav-height-home: var(--sys-space-56);
@@ -282,7 +276,6 @@
   --comp-hero-card-width: 11rem;
   --comp-hero-card-width-phone: 7rem;
   --comp-hero-card-width-stacked: var(--sys-space-160);
-  --comp-hero-padding-top: 24rem;
   --comp-hero-padding-bottom: var(--sys-space-160);
   --comp-hero-copy-bottom: calc(var(--sys-space-88) + var(--sys-space-2xl));
   --comp-hero-copy-width: var(--ref-size-512);
