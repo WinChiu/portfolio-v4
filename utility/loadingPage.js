@@ -149,7 +149,7 @@
 
   // Styles live in style/_page-transition.scss; timings come from the tokens read above.
 
-  const ui = { count: null, fill: null, stage: null };
+  const ui = { digits: [], panels: [], stage: null };
   const startedAt = performance.now();
   const minimumMs = reduceMotion ? 0
     : arrivedByCover ? ms('--sys-motion-duration-standard', 350) : ms('--sys-motion-duration-loading', 1300);
@@ -163,19 +163,22 @@
     loader.setAttribute('role', 'status');
     loader.setAttribute('aria-label', 'Loading');
     loader.insertAdjacentHTML('beforeend', `
+      <div class="pl__panels" aria-hidden="true"><i class="pl__panel"></i></div>
       <div class="pl__stage">
-        <div class="pl__meta"><span class="pl__name">Win Chiu</span><span class="pl__count" aria-hidden="true">000</span></div>
-        <div class="pl__line"><i></i></div>
+        <div class="pl__top">
+          <div class="pl__big"><span class="pl__count" aria-hidden="true"><span>0</span><span>0</span><span>0</span></span></div>
+          <span>Win Chiu</span><span>Product Designer</span><span>Portfolio</span><span>Loading</span>
+        </div>
       </div>`);
     ui.stage = loader.querySelector('.pl__stage');
-    ui.count = loader.querySelector('.pl__count');
-    ui.fill = loader.querySelector('.pl__line i');
+    ui.panels = Array.from(loader.querySelectorAll('.pl__panel'));
+    ui.digits = Array.from(loader.querySelectorAll('.pl__count span'));
   }
 
   function render() {
-    if (!ui.fill) return;
-    ui.fill.style.transform = `scaleX(${shown.toFixed(4)})`;
-    ui.count.textContent = String(Math.round(shown * 100)).padStart(3, '0');
+    if (!ui.digits.length) return;
+    const text = String(Math.round(shown * 100)).padStart(3, '0');
+    ui.digits.forEach((digit, i) => { if (digit.textContent !== text[i]) digit.textContent = text[i]; });
   }
 
   // Resolves once the displayed number has really reached 100, so a fast cache hit
@@ -246,9 +249,11 @@
     await animate(ui.stage, [{ opacity: 1 }, { opacity: 0 }], { duration: ms('--sys-motion-duration-fast', 220), easing: 'ease-out' });
     // The page's own entrance waits for this event, so it starts as the curtain lifts.
     window.dispatchEvent(new CustomEvent('portfolio:assets-ready'));
-    await animate(loader,
-      [{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(0 0 100% 0)' }],
-      { duration: arrivedByCover ? ms('--sys-motion-duration-long', 600) : ms('--sys-motion-duration-curtain', 800) });
+    // the sheet of paper lifts away
+    const lift = arrivedByCover ? ms('--sys-motion-duration-long', 600) : ms('--sys-motion-duration-curtain', 800);
+    await Promise.all(ui.panels.map((panel, i) => animate(panel,
+      [{ transform: 'translateY(0)' }, { transform: 'translateY(-101%)' }],
+      { duration: lift, delay: reduceMotion ? 0 : i * 90 })));
 
     loader.classList.add('is-hidden');
     loader.classList.add(loader.classList.contains('page-loader') ? 'page-loader--hidden' : 'hidden');
@@ -265,15 +270,10 @@
     try { sessionStorage.setItem(COVER_FLAG, '1'); } catch (error) { /* ignore */ }
     const go = () => { window.location.href = url; };
     if (reduceMotion || !curtain.animate) return go();
-    curtain.firstElementChild.animate(
-      [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
-      { duration: ms('--sys-motion-duration-standard', 320), easing: EASE, fill: 'forwards' },
-    ).finished
-      .then(() => curtain.animate(
-        [{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }],
-        { duration: ms('--sys-motion-duration-slow', 420), easing: EASE, fill: 'forwards' },
-      ).finished)
-      .then(go, go);
+    Promise.all(Array.from(curtain.children).map((column, i) => column.animate(
+      [{ transform: 'translateY(-101%)' }, { transform: 'translateY(0)' }],
+      { duration: ms('--sys-motion-duration-slow', 420), delay: i * 70, easing: EASE, fill: 'forwards' },
+    ).finished)).then(go, go);
   }
 
   document.addEventListener('click', (event) => {

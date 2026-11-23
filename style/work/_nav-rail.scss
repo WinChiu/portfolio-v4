@@ -6,7 +6,7 @@
   inset: 0 auto 0 0;
   width: var(--nav);
   padding: var(--sys-space-5xl) var(--sys-space-xl);
-  border-right: var(--sys-space-hairline) solid var(--sys-color-border);
+  border-right: var(--line-w, 1px) solid var(--sys-color-border);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +34,7 @@
 }
 .index__list a .n { display: none; }
 .index__list a:hover { color: var(--sys-color-text); }
-.index__list a.is-active { color: var(--accent-ink); }
+.index__list a.is-active { color: var(--sys-color-text); }
 /* text that sits on the filled part flips to paper */
 .index__list a.on-fill, .index__list a.on-fill:hover { color: var(--sys-color-background); }
 .index__list a.on-fill:not(.is-active) { opacity: 0.72; }
@@ -71,12 +71,12 @@
 .project-page .index__list a.on-fill:not(.is-active) { opacity: .42; }
 @media (max-width: 48rem) {
   /* ---------- mobile: top bar ---------- */
-  .project-page .index { inset: 0 0 auto; width: 100%; height: var(--sys-space-56); padding: var(--sys-space-0) var(--sys-space-md); border: 0; border-bottom: var(--sys-space-hairline) solid var(--sys-color-border); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sys-space-md); align-items: center; }
+  .project-page .index { inset: 0 0 auto; width: 100%; height: var(--sys-space-56); padding: var(--sys-space-0) var(--sys-space-md); border: 0; border-bottom: var(--line-w, 1px) solid var(--sys-color-border); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sys-space-md); align-items: center; }
   .project-page .index__foot { display: none; }
   .project-page .index__back { line-height: var(--sys-line-height-relaxed); }
   .mobile-current { display: none; }
-  .sections-toggle { display: block; justify-self: end; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: var(--sys-line-height-relaxed); text-align: center; color: var(--sys-color-text); padding: var(--sys-space-3xs) var(--sys-space-xs); border: var(--sys-space-hairline) solid var(--sys-color-border); background: var(--sys-color-background); cursor: pointer; font-size: var(--sys-font-size-caption); }
-  .project-page .index__list { display: none; position: absolute; top: var(--comp-project-index-list-top); left: 0; right: 0; max-height: calc(100dvh - var(--sys-space-56)); background: var(--sys-color-background); border-bottom: var(--sys-space-hairline) solid var(--sys-color-border); padding: var(--sys-space-md) var(--gutter); }
+  .sections-toggle { display: block; justify-self: end; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: var(--sys-line-height-relaxed); text-align: center; color: var(--sys-color-text); padding: var(--sys-space-3xs) var(--sys-space-xs); border: var(--line-w, 1px) solid var(--sys-color-border); background: var(--sys-color-background); cursor: pointer; font-size: var(--sys-font-size-caption); }
+  .project-page .index__list { display: none; position: absolute; top: var(--comp-project-index-list-top); left: 0; right: 0; max-height: calc(100dvh - var(--sys-space-56)); background: var(--sys-color-background); border-bottom: var(--line-w, 1px) solid var(--sys-color-border); padding: var(--sys-space-md) var(--gutter); }
   .project-page .index.is-open .index__list { display: flex; flex-direction: column; justify-content: flex-start; }
   .project-page .index__list a .t { display: block; overflow: visible; white-space: normal; }
   /* the whole top bar fills with the reading progress (left to right) */
@@ -84,7 +84,7 @@
   .page-progress { display: none; }
   .project-page .with-nav { margin: var(--sys-space-0); padding: var(--sys-space-56) var(--sys-space-0) var(--sys-space-0); }
 }
-.project-page .index__list a { height: var(--sys-space-4xl); overflow: hidden; flex-shrink: 0; color: var(--accent-ink); }
+.project-page .index__list a { height: var(--sys-space-4xl); overflow: hidden; flex-shrink: 0; color: var(--sys-color-text); }
 .project-page .index__list a .n { width: var(--sys-space-3xl); }
 .project-page .index__list a .t { padding-left: var(--sys-space-sm); }
 .project-page .index__list { padding-left: var(--sys-space-0); }
@@ -99,4 +99,17 @@
   .project-page .index__list { overflow-y: auto; }
   .project-page .index .index__list { position: absolute; }
   .project-page .index .page-progress { position: absolute; }
+}
+
+/* No colour fill behind the rail / top bar: keep every link in its normal grey, whether or not JS marks it on-fill. */
+.project-page .index__fill { display: none; }
+.project-page .index__list a.on-fill, .project-page .index__list a.on-fill:hover { color: var(--sys-color-text); }
+.project-page .index__list a.on-fill:not(.is-active) { opacity: .5; }
+.project-page .index__list a.on-fill::after { background: currentColor; }
+.project-page .index__back.on-fill, .project-page .index__foot a.on-fill,
+.project-page .index__back.on-fill:hover, .project-page .index__foot a.on-fill:hover { color: var(--sys-color-text-muted); }
+.project-page .index__back.on-fill:hover, .project-page .index__foot a.on-fill:hover { color: var(--sys-color-text); }
+@media (max-width: 48rem) {
+  .project-page .index__list a.on-fill { color: var(--sys-color-text); }
+  .project-page .index__back.on-fill { color: var(--sys-color-text-muted); }
 }

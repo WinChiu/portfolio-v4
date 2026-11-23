@@ -68,6 +68,7 @@
     const mainCourse = courses.find((course) => course.key === 'main');
     const dishes = kitchen.items.map((item, index) => ({ ...item, index }));
 
+
     function renderDishes(items) {
       return items.map((item) => UI.MenuItem({ index: item.index, nameZh: item.nameZh, nameEn: item.nameEn, effort: item.effort })).join('');
     }

@@ -6,84 +6,109 @@
 // ========================================
 
 // Two classes so it wins over .loading-mask / .page-loader wherever they sit in the bundle.
+// The loader is one sheet of paper with the counter above a column of small labels in the middle;
+// when loading ends the sheet lifts away.
 .ui-loader.pl {
   display: block;
+  background: var(--sys-color-transparent);
   transition: var(--sys-transition-none);
+  --pl-ink: #2b2926;
+  --pl-muted: #85827b;
+  --pl-line: #dcdcd6;
 }
 
 .pl {
+  &__panels {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
   &__stage {
     position: absolute;
-    right: var(--comp-loader-gutter);
-    left: var(--comp-loader-gutter);
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  // one sheet of paper that lifts away when loading ends
+  &__panel {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--sys-color-background);
+    will-change: transform;
+  }
+
+  &__stage {
+    grid-template-rows: 1fr;
+    color: var(--pl-ink);
+    pointer-events: none;
+  }
+
+  // the counter and four small mono labels, stacked in the middle of the screen
+  &__top {
+    position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &__meta {
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: var(--sys-space-md);
-    color: var(--sys-color-text);
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sys-space-sm);
+    text-align: center;
+    white-space: nowrap;
+    font-family: var(--sys-font-family-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: var(--sys-line-height-body);
+    color: var(--pl-muted);
+
+    > span:nth-child(2) { color: var(--pl-ink); }
   }
 
-  &__name {
-    font-family: var(--sys-font-family-mono);
-    font-size: var(--sys-font-size-small);
+  // the counter sits above the name, centred, in the display serif
+  &__big {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sys-space-xs);
+    margin-bottom: var(--sys-space-md);
+    text-transform: none;
   }
 
   &__count {
-    font-family: var(--sys-font-family-mono);
-    font-size: var(--comp-loader-count-font-size);
-    line-height: var(--sys-line-height-tight);
-    font-variant-numeric: tabular-nums;
+    display: inline-flex;
+    font-family: var(--sys-font-family-display);
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: 0;
+    color: var(--pl-ink);
+
+    // fixed-width digits so the number never jitters while it counts
+    span { display: inline-block; width: 0.56em; text-align: center; }
   }
 
-  // Arriving from another page: only the line, no counter.
-  &--short &__count {
+  // Arriving from another page: columns only, no counter.
+  &--short &__top {
     visibility: hidden;
-  }
-
-  &__line {
-    height: var(--sys-space-hairline);
-    background: color-mix(in srgb, var(--sys-color-text) var(--comp-loader-track-mix), var(--sys-color-transparent));
-
-    i {
-      display: block;
-      height: 100%;
-      background: var(--sys-color-text);
-      transform: scaleX(0);
-      transform-origin: left;
-    }
   }
 }
 
+// Leaving for another page: the sheet drops in from the top.
 .pl-curtain {
   position: fixed;
   inset: var(--sys-space-0);
   z-index: var(--sys-z-curtain);
-  background: var(--sys-color-background);
-  clip-path: inset(0 0 100% 0);
   pointer-events: all;
 
   i {
-    position: absolute;
-    right: var(--comp-loader-gutter);
-    left: var(--comp-loader-gutter);
-    top: 50%;
-    height: var(--sys-space-hairline);
-    background: var(--sys-color-text);
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-}
-
-@media (max-width: 37.5rem) {
-  .pl__stage,
-  .pl-curtain i {
-    right: var(--comp-loader-gutter-narrow);
-    left: var(--comp-loader-gutter-narrow);
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--sys-color-background);
+    transform: translateY(-101%);
   }
 }
 

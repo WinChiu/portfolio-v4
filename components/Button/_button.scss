@@ -23,8 +23,8 @@
   align-items: center;
   gap: var(--sys-space-sm);
   padding: var(--sys-space-xs) var(--sys-space-md);
-  border: var(--sys-space-hairline) solid var(--accent-ink);
-  color: var(--accent-ink);
+  border: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
+  color: var(--sys-color-text);
   font-family: var(--sys-font-family-mono);
   font-size: var(--sys-font-size-small);
   line-height: var(--sys-line-height-body);
@@ -34,7 +34,8 @@
 
   &:hover,
   &:focus-visible {
-    background: var(--accent-ink);
+    background: var(--sys-color-text);
+    border-color: var(--sys-color-text);
     color: var(--sys-color-background);
   }
 }
@@ -42,8 +43,8 @@
 // ---- bordered: ink border, accent text, no hover change (project pages; it inherits the surrounding text style)
 .button--bordered {
   padding: var(--sys-space-xs) var(--sys-space-md);
-  border: var(--sys-space-hairline) solid var(--sys-color-border);
-  color: var(--accent-ink);
+  border: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
+  color: var(--sys-color-text);
 }
 
 // ---- solid, secondary, text: the design-system buttons

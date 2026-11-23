@@ -238,74 +238,96 @@
 
 .ui-loader.pl {
   display: block;
+  background: var(--sys-color-transparent);
   transition: var(--sys-transition-none);
+  --pl-ink: #2b2926;
+  --pl-muted: #85827b;
+  --pl-line: #dcdcd6;
 }
 
+.pl__panels {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
 .pl__stage {
   position: absolute;
-  right: var(--comp-loader-gutter);
-  left: var(--comp-loader-gutter);
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.pl__panel {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--sys-color-background);
+  will-change: transform;
+}
+.pl__stage {
+  grid-template-rows: 1fr;
+  color: var(--pl-ink);
+  pointer-events: none;
+}
+.pl__top {
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-}
-.pl__meta {
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: var(--sys-space-md);
-  color: var(--sys-color-text);
-}
-.pl__name {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-sm);
+  text-align: center;
+  white-space: nowrap;
   font-family: var(--sys-font-family-mono);
-  font-size: var(--sys-font-size-small);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: var(--sys-line-height-body);
+  color: var(--pl-muted);
+}
+.pl__top > span:nth-child(2) {
+  color: var(--pl-ink);
+}
+.pl__big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-xs);
+  margin-bottom: var(--sys-space-md);
+  text-transform: none;
 }
 .pl__count {
-  font-family: var(--sys-font-family-mono);
-  font-size: var(--comp-loader-count-font-size);
-  line-height: var(--sys-line-height-tight);
-  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  font-family: var(--sys-font-family-display);
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--pl-ink);
 }
-.pl--short .pl__count {
+.pl__count span {
+  display: inline-block;
+  width: 0.56em;
+  text-align: center;
+}
+.pl--short .pl__top {
   visibility: hidden;
-}
-.pl__line {
-  height: var(--sys-space-hairline);
-  background: color-mix(in srgb, var(--sys-color-text) var(--comp-loader-track-mix), var(--sys-color-transparent));
-}
-.pl__line i {
-  display: block;
-  height: 100%;
-  background: var(--sys-color-text);
-  transform: scaleX(0);
-  transform-origin: left;
 }
 
 .pl-curtain {
   position: fixed;
   inset: var(--sys-space-0);
   z-index: var(--sys-z-curtain);
-  background: var(--sys-color-background);
-  clip-path: inset(0 0 100% 0);
   pointer-events: all;
 }
 .pl-curtain i {
-  position: absolute;
-  right: var(--comp-loader-gutter);
-  left: var(--comp-loader-gutter);
-  top: 50%;
-  height: var(--sys-space-hairline);
-  background: var(--sys-color-text);
-  transform: scaleX(0);
-  transform-origin: left;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--sys-color-background);
+  transform: translateY(-101%);
 }
 
-@media (max-width: 37.5rem) {
-  .pl__stage,
-  .pl-curtain i {
-    right: var(--comp-loader-gutter-narrow);
-    left: var(--comp-loader-gutter-narrow);
-  }
-}
 .loading-mask,
 .page-loader {
   position: fixed;
@@ -376,7 +398,7 @@ html.lenis body {
   flex: 1;
   min-width: var(--sys-font-size-body);
   height: 0;
-  border-bottom: var(--sys-space-hairline) dotted color-mix(in srgb, var(--sys-color-text) 45%, transparent);
+  border-bottom: var(--line-w, var(--sys-space-hairline)) dotted color-mix(in srgb, var(--sys-color-text) 45%, transparent);
   transition: border-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
 
@@ -482,22 +504,23 @@ html.lenis body {
   align-items: center;
   gap: var(--sys-space-sm);
   padding: var(--sys-space-xs) var(--sys-space-md);
-  border: var(--sys-space-hairline) solid var(--accent-ink);
-  color: var(--accent-ink);
+  border: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
+  color: var(--sys-color-text);
   font-family: var(--sys-font-family-mono);
   font-size: var(--sys-font-size-small);
   line-height: var(--sys-line-height-body);
   transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), background-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
 .button--outline:hover, .button--outline:focus-visible {
-  background: var(--accent-ink);
+  background: var(--sys-color-text);
+  border-color: var(--sys-color-text);
   color: var(--sys-color-background);
 }
 
 .button--bordered {
   padding: var(--sys-space-xs) var(--sys-space-md);
-  border: var(--sys-space-hairline) solid var(--sys-color-border);
-  color: var(--accent-ink);
+  border: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
+  color: var(--sys-color-text);
 }
 
 .button--solid,
@@ -613,7 +636,7 @@ html.lenis body {
   font-family: var(--sys-font-family-hand);
   font-size: var(--sys-font-size-body);
   line-height: var(--sys-line-height-tight);
-  color: var(--sys-color-text);
+  color: #3b3b38;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -669,7 +692,7 @@ html.lenis body {
   font-family: var(--sys-font-family-hand);
   font-size: var(--sys-font-size-title-sm);
   line-height: var(--sys-line-height-tight);
-  color: var(--sys-color-text);
+  color: #3b3b38;
 }
 
 .photo-card__meta {
@@ -718,20 +741,23 @@ html.lenis body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: var(--sys-space-hairline);
-  background: var(--sys-color-text);
+  height: var(--line-w, 1px);
+  background: var(--sys-color-border);
   transform: scaleX(var(--work-line-progress, 1));
   transform-origin: left;
 }
 
 .project-card__number {
   font-family: var(--sys-font-family-mono);
-  font-size: var(--sys-font-size-display-lg);
+  font-size: var(--sys-font-size-section-number);
   line-height: var(--sys-line-height-tight);
   letter-spacing: var(--sys-letter-spacing-tightest);
-  color: var(--sys-color-transparent);
-  -webkit-text-stroke: var(--sys-text-stroke-width) var(--accent-ink);
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  /* Line the top of the digits up with the top of the title, not with the tag line above it. */
+  align-self: start;
+  margin-top: var(--project-card-number-offset, 1.8rem);
 }
 
 .project-card__body {
@@ -856,6 +882,39 @@ html.lenis body {
   --accent-ink: var(--sys-color-chapter-life);
 }
 
+/* Softer ink: each area keeps copy in a soft black-grey and leaves titles in its own colour, and draws thin (1px) lines
+   in one light grey. Components keep reading --sys-color-text / -muted / --sys-border-hairline. */
+.hero, .index, .c-work, .c-about, .c-kitchen, .c-life {
+  --tint: var(--sys-color-brand);
+  --line-w: 1px;
+  --sys-color-text: #2b2926; /* black-grey for all copy and buttons; the chapter colour stays on titles */
+  --sys-color-text-muted: #6b6862;
+  --sys-color-border: #dcdcd6; /* one light grey for every line */
+  --sys-border-hairline: var(--line-w) solid var(--sys-color-border);
+  color: var(--sys-color-text);
+}
+
+.c-work {
+  --tint: var(--sys-color-chapter-work);
+}
+
+.c-about {
+  --tint: var(--sys-color-chapter-about);
+}
+
+.c-kitchen {
+  --tint: var(--sys-color-chapter-kitchen);
+}
+
+.c-life {
+  --tint: var(--sys-color-chapter-life);
+}
+
+/* The drawn (Hairline) covers fill their plates with the page paper instead of white, so they sit flush on the page. */
+:root {
+  --hairline-plate: var(--sys-color-background);
+}
+
 * {
   box-sizing: border-box;
   margin: var(--sys-space-0);
@@ -951,6 +1010,24 @@ a:focus-visible, button:focus-visible {
   border-right: var(--sys-space-hairline) solid currentColor;
 }
 
+/* Small labels: the mono text (tabs, buttons, meta, ticker, numbers) runs smaller with wide tracking, so it reads as
+   a quiet label next to the big serif titles. Prefixed with body to win over each partial's own font-size. */
+.home-page, body {
+  --mono-size: 0.8125rem;
+  --mono-track: 0.08em;
+}
+
+body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__meta dt, .kitchenMenu__h,
+.kitchenMenu__node, .kitchenMenu__qty, .hero__ticker) {
+  font-size: var(--mono-size);
+  letter-spacing: var(--mono-track);
+}
+
+/* Chapter titles a touch lighter than the full chapter colour. */
+.chapter__title {
+  color: color-mix(in srgb, var(--accent-ink) 82%, var(--sys-color-background));
+}
+
 .index {
   position: fixed;
   inset: 0 auto 0 0;
@@ -995,7 +1072,7 @@ a:focus-visible, button:focus-visible {
   display: block;
   font-size: var(--sys-font-size-small);
   line-height: var(--sys-line-height-relaxed);
-  color: var(--sys-color-text-muted);
+  color: #85827b;
   white-space: nowrap;
   transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
@@ -1005,11 +1082,13 @@ a:focus-visible, button:focus-visible {
 }
 
 .index__list a:hover {
-  color: var(--sys-color-text);
+  color: #3b3b38;
 }
 
+/* One neutral grey for every link; the current section is shown by weight and a darker grey, not by hue. */
 .index__list a.is-active {
-  color: var(--accent-ink);
+  color: #1d1a16;
+  font-weight: var(--sys-font-weight-semibold);
 }
 
 .index__list a.on-fill, .index__list a.on-fill:hover {
@@ -1034,6 +1113,31 @@ a:focus-visible, button:focus-visible {
 
 .index__social.on-fill img {
   filter: brightness(0) invert(1);
+}
+
+/* TRIAL: nav colour fill switched off (remove this block to restore it). */
+.index__fill {
+  display: none;
+}
+
+.index__list a.on-fill {
+  color: #85827b;
+}
+
+.index__list a.on-fill:hover {
+  color: #3b3b38;
+}
+
+.index__list a.on-fill.is-active {
+  color: #1d1a16;
+}
+
+.index__list a.on-fill:not(.is-active) {
+  opacity: 1;
+}
+
+.index__social.on-fill img {
+  filter: none;
 }
 
 .with-nav {
@@ -1110,9 +1214,9 @@ a:focus-visible, button:focus-visible {
 .chapter::before {
   content: "";
   position: absolute;
-  top: calc(-1 * var(--sys-space-hairline));
+  top: calc(-1 * var(--line-w, 1px));
   inset-inline: var(--sys-space-0);
-  height: var(--sys-space-hairline);
+  height: var(--line-w, 1px);
   background: var(--sys-color-border);
   transform: scaleX(var(--section-line-progress, 1));
   transform-origin: left;
@@ -1202,7 +1306,7 @@ a:focus-visible, button:focus-visible {
   padding: var(--sys-space-sm) var(--sys-space-0);
   overflow: hidden;
   white-space: nowrap;
-  border-top: var(--sys-space-hairline) solid var(--sys-color-border);
+  border-top: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
   background: var(--sys-color-background);
   font-family: var(--sys-font-family-mono);
   font-size: var(--sys-font-size-small);
@@ -1269,7 +1373,7 @@ a:focus-visible, button:focus-visible {
     gap: var(--sys-space-lg);
   }
   .hero {
-    padding-bottom: calc(var(--sys-space-6xl) + var(--sys-space-xl));
+    padding-bottom: calc((var(--sys-space-6xl) + var(--sys-space-xl)) / 2);
   }
   .hero__hi {
     margin-bottom: var(--sys-space-pull-sm);
@@ -1406,7 +1510,7 @@ a:focus-visible, button:focus-visible {
   align-items: center;
   gap: var(--sys-space-xl);
   padding: var(--sys-space-sm) var(--sys-space-0);
-  border-top: var(--sys-rule-width-thin) solid var(--sys-color-text);
+  border-top: var(--sys-rule-width-thin) solid var(--sys-color-border);
   color: var(--sys-color-text);
 }
 
@@ -1544,10 +1648,11 @@ a:focus-visible, button:focus-visible {
   column-gap: var(--kitchen-column-gap);
 }
 
+/* Course heading: the course name in the display serif, then the rule. */
 .kitchenMenu__courseHead {
   display: flex;
-  align-items: center;
-  gap: var(--sys-space-md);
+  align-items: flex-end;
+  gap: var(--sys-space-lg);
   padding-bottom: var(--sys-space-md);
 }
 
@@ -1558,16 +1663,18 @@ a:focus-visible, button:focus-visible {
 }
 
 .kitchenMenu__courseEn {
-  font-family: var(--sys-font-family-mono);
-  font-size: var(--sys-font-size-body-lg);
-  line-height: var(--sys-line-height-heading);
-  color: var(--sys-color-text-muted);
+  font-family: var(--sys-font-family-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: var(--sys-letter-spacing-display);
+  color: var(--sys-color-text);
   font-weight: var(--sys-font-weight-regular);
 }
 
 .kitchenMenu__courseLine {
   flex: 1;
-  border-top: var(--sys-rule-width-thin) solid var(--sys-color-text);
+  border-top: var(--sys-rule-width-thin) solid var(--sys-color-border);
+  margin-bottom: 0.5rem;
 }
 
 .kitchenMenu__peek {
@@ -1579,6 +1686,7 @@ a:focus-visible, button:focus-visible {
   width: var(--comp-kitchen-peek-width);
   border: var(--sys-border-hairline);
   background: var(--sys-color-background-soft);
+  box-shadow: var(--comp-shadow-offset-kitchen);
   opacity: 0;
   transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }

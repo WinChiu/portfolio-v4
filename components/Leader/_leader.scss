@@ -6,6 +6,6 @@
   flex: 1;
   min-width: var(--sys-font-size-body);
   height: 0;
-  border-bottom: var(--sys-space-hairline) dotted color-mix(in srgb, var(--sys-color-text) 45%, transparent);
+  border-bottom: var(--line-w, var(--sys-space-hairline)) dotted color-mix(in srgb, var(--sys-color-text) 45%, transparent);
   transition: border-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }

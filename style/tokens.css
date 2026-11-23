@@ -284,7 +284,7 @@
   --comp-hero-card-width-stacked: var(--sys-space-160);
   --comp-hero-padding-top: 24rem;
   --comp-hero-padding-bottom: var(--sys-space-160);
-  --comp-hero-copy-bottom: var(--sys-space-88);
+  --comp-hero-copy-bottom: calc(var(--sys-space-88) + var(--sys-space-2xl));
   --comp-hero-copy-width: var(--ref-size-512);
   --comp-hero-line1-indent: 1em;
 

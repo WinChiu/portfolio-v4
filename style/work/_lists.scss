@@ -1,10 +1,10 @@
 // Project pages / lists
 
 /* icon lists */
-.goals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--sys-space-hairline) solid var(--sys-color-border); }
+.goals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--line-w, 1px) solid var(--sys-color-border); }
 .goals article { display: flex; flex-direction: column; align-items: center; gap: var(--sys-space-md); padding: var(--sys-space-4xl) var(--sys-space-lg) var(--sys-space-lg); }
 .goals article:first-child { padding-left: var(--sys-space-0); }
-.goals article + article { border-left: var(--sys-space-hairline) solid var(--sys-color-border); }
+.goals article + article { border-left: var(--line-w, 1px) solid var(--sys-color-border); }
 .goals article > * { width: 100%; }
 .goal-icon { width: var(--sys-space-160) !important; height: var(--sys-space-160); border-radius: var(--sys-radius-round); background: var(--sys-color-background); display: grid; place-items: center; overflow: hidden; }
 .goal-icon img { max-width: var(--comp-goal-icon-art-size); max-height: var(--comp-goal-icon-art-size); object-fit: contain; }
@@ -21,10 +21,10 @@
 .project-list { padding-left: var(--sys-space-2xl); }
 .project-list li + li { margin-top: var(--sys-space-sm); }
 .project-list li::marker { font-family: var(--sys-font-family-mono); color: var(--accent-ink); }
-.callout { border: var(--sys-space-hairline) solid var(--sys-color-border); padding: var(--sys-space-xl); }
+.callout { border: var(--line-w, 1px) solid var(--sys-color-border); padding: var(--sys-space-xl); }
 .text-link { color: var(--accent-ink); text-decoration: underline; text-underline-offset: var(--comp-text-link-underline-offset); }
 .process-flow, .method-list { list-style: none; }
-.process-flow li, .method-list li { display: grid; grid-template-columns: var(--sys-space-3xl) minmax(0, 1fr); gap: var(--sys-space-md); border-top: var(--sys-space-hairline) solid var(--sys-color-border); padding: var(--sys-space-xl) var(--sys-space-0); }
+.process-flow li, .method-list li { display: grid; grid-template-columns: var(--sys-space-3xl) minmax(0, 1fr); gap: var(--sys-space-md); border-top: var(--line-w, 1px) solid var(--sys-color-border); padding: var(--sys-space-xl) var(--sys-space-0); }
 @media (max-width: 48rem) {
   .goals, .media-aside, .media-grid { grid-template-columns: 1fr; }
   .goals article, .goals article:first-child { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: var(--sys-space-xs); align-items: start; padding: var(--sys-space-5xl) var(--sys-space-0) var(--sys-space-xl); }
@@ -39,7 +39,7 @@
   .goals { border-top: 0; }
   /* stacked list: rules only between items, none above the first */
   .goals article:first-child { padding-top: var(--sys-space-xl); }
-  .goals article + article { border-left: 0; border-top: var(--sys-space-hairline) solid var(--sys-color-border); }
+  .goals article + article { border-left: 0; border-top: var(--line-w, 1px) solid var(--sys-color-border); }
   .goals > article:only-child, .goals > article:only-child:has(> .goal-icon) { grid-template-columns: minmax(0, 1fr); row-gap: var(--sys-space-xs); align-items: start; padding: var(--sys-space-0); }
   .goals > article:only-child > .goal-icon { grid-row: auto; }
   .goals > article:only-child > .project-module__item-content { grid-column: 1; }
@@ -50,7 +50,7 @@
 .project-module__list li + li { margin-top: var(--sys-space-sm); }
 .project-module__list li::marker { font-family: var(--sys-font-family-mono); color: var(--accent-ink); }
 .project-module--process-flow ol, .project-module--method-list { list-style: none; padding: var(--sys-space-0); }
-.project-module__process-step, .project-module__method-item { border-top: var(--sys-space-hairline) solid var(--sys-color-border); padding: var(--sys-space-xl) var(--sys-space-0); }
+.project-module__process-step, .project-module__method-item { border-top: var(--line-w, 1px) solid var(--sys-color-border); padding: var(--sys-space-xl) var(--sys-space-0); }
 .project-module__process-heading, .project-module__method-item { display: flex; gap: var(--sys-space-md); }
 .project-module__process-number, .project-module__method-icon { font-family: var(--sys-font-family-mono); color: var(--accent-ink); }
 .project-module__process-description, .project-module__method-text { color: var(--sys-color-text-muted); }

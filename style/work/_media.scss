@@ -5,7 +5,11 @@
 .zoom-trigger img { width: 100%; height: auto; }
 .media-grid { display: grid; grid-template-columns: repeat(var(--media-grid-columns, 2), minmax(0, 1fr)); gap: var(--sys-space-xl); align-items: start; }
 figcaption, .media-caption { font-family: var(--sys-font-family-mono); color: var(--sys-color-text-muted); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); margin-top: var(--sys-space-sm); }
-.media-placeholder { min-height: var(--comp-media-placeholder-min-height); background: var(--sys-color-background-soft); display: grid; place-items: center; padding: var(--sys-space-md); border: var(--sys-space-hairline) solid var(--sys-color-border); }
+/* Caption sits above its image in captioned media: give it room below instead of above. */
+.project-module__captioned-media figcaption { margin-top: var(--sys-space-0); margin-bottom: var(--sys-space-lg); }
+/* The baked-in frames are cropped out of the image files; every zoomable picture gets the one 1px light-grey frame instead. */
+.project-page img.ui-zoomable-media { border: var(--line-w, 1px) solid var(--sys-color-border); }
+.media-placeholder { min-height: var(--comp-media-placeholder-min-height); background: var(--sys-color-background-soft); display: grid; place-items: center; padding: var(--sys-space-md); border: var(--line-w, 1px) solid var(--sys-color-border); }
 .media-aside { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sys-space-3xl); align-items: start; }
 /* image on top, text below */
 .media-aside--text { grid-template-columns: 1fr; }
@@ -18,4 +22,4 @@ figcaption, .media-caption { font-family: var(--sys-font-family-mono); color: va
 @media (max-width: 48rem) {
   .project-module--image-pair { grid-template-columns: 1fr; }
 }
-.project-module__media-placeholder { min-height: var(--comp-media-placeholder-min-height); background: var(--sys-color-background-soft); display: grid; place-items: center; padding: var(--sys-space-md); border: var(--sys-space-hairline) solid var(--sys-color-border); }
+.project-module__media-placeholder { min-height: var(--comp-media-placeholder-min-height); background: var(--sys-color-background-soft); display: grid; place-items: center; padding: var(--sys-space-md); border: var(--line-w, 1px) solid var(--sys-color-border); }

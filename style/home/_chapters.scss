@@ -20,9 +20,9 @@
 .chapter::before {
   content: '';
   position: absolute;
-  top: calc(-1 * var(--sys-space-hairline));
+  top: calc(-1 * var(--line-w, 1px));
   inset-inline: var(--sys-space-0);
-  height: var(--sys-space-hairline);
+  height: var(--line-w, 1px);
   background: var(--sys-color-border);
   transform: scaleX(var(--section-line-progress, 1));
   transform-origin: left;

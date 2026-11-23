@@ -31,18 +31,26 @@
   display: block;
   font-size: var(--sys-font-size-small);
   line-height: var(--sys-line-height-relaxed);
-  color: var(--sys-color-text-muted);
+  color: #85827b;
   white-space: nowrap;
   transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
 .index__list a .n { display: none; }
-.index__list a:hover { color: var(--sys-color-text); }
-.index__list a.is-active { color: var(--accent-ink); }
+.index__list a:hover { color: #3b3b38; }
+/* One neutral grey for every link; the current section is shown by weight and a darker grey, not by hue. */
+.index__list a.is-active { color: #1d1a16; font-weight: var(--sys-font-weight-semibold); }
 .index__list a.on-fill, .index__list a.on-fill:hover { color: var(--sys-color-background); }
 .index__list a.on-fill:not(.is-active) { opacity: 0.72; }
 .index__social { display: block; width: var(--sys-font-size-title-md); height: var(--sys-font-size-title-md); }
 .index__social img { width: 100%; height: 100%; transition: filter var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth); }
 .index__social.on-fill img { filter: brightness(0) invert(1); }
+/* TRIAL: nav colour fill switched off (remove this block to restore it). */
+.index__fill { display: none; }
+.index__list a.on-fill { color: #85827b; }
+.index__list a.on-fill:hover { color: #3b3b38; }
+.index__list a.on-fill.is-active { color: #1d1a16; }
+.index__list a.on-fill:not(.is-active) { opacity: 1; }
+.index__social.on-fill img { filter: none; }
 .with-nav { margin-left: var(--comp-nav-width-home); }
 @media (max-width: 48rem) {
   .index {

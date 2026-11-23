@@ -5,6 +5,23 @@
 .c-about   { --accent: var(--sys-color-chapter-about);   --accent-ink: var(--sys-color-chapter-about); }
 .c-kitchen { --accent: var(--sys-color-chapter-kitchen); --accent-ink: var(--sys-color-chapter-kitchen); }
 .c-life    { --accent: var(--sys-color-chapter-life);    --accent-ink: var(--sys-color-chapter-life); }
+/* Softer ink: each area keeps copy in a soft black-grey and leaves titles in its own colour, and draws thin (1px) lines
+   in one light grey. Components keep reading --sys-color-text / -muted / --sys-border-hairline. */
+.hero, .index, .c-work, .c-about, .c-kitchen, .c-life {
+  --tint: var(--sys-color-brand);
+  --line-w: 1px;
+  --sys-color-text: #2b2926; /* black-grey for all copy and buttons; the chapter colour stays on titles */
+  --sys-color-text-muted: #6b6862;
+  --sys-color-border: #dcdcd6; /* one light grey for every line */
+  --sys-border-hairline: var(--line-w) solid var(--sys-color-border);
+  color: var(--sys-color-text);
+}
+.c-work    { --tint: var(--sys-color-chapter-work); }
+.c-about   { --tint: var(--sys-color-chapter-about); }
+.c-kitchen { --tint: var(--sys-color-chapter-kitchen); }
+.c-life    { --tint: var(--sys-color-chapter-life); }
+/* The drawn (Hairline) covers fill their plates with the page paper instead of white, so they sit flush on the page. */
+:root { --hairline-plate: var(--sys-color-background); }
 * { box-sizing: border-box; margin: var(--sys-space-0); padding: var(--sys-space-0); }
 html { scroll-behavior: smooth; font-size: var(--sys-font-size-root-fluid); }
 body {
@@ -36,3 +53,14 @@ a:focus-visible, button:focus-visible { outline: var(--sys-space-hairline) solid
 .highlight { color: var(--sys-color-brand); }
 .split-char, .split-word { color: var(--sys-color-inherit); font-family: inherit; text-decoration: inherit; }
 .is-typing-char::after { content: ''; position: absolute; height: var(--comp-typing-caret-height); border-right: var(--sys-space-hairline) solid currentColor; }
+
+/* Small labels: the mono text (tabs, buttons, meta, ticker, numbers) runs smaller with wide tracking, so it reads as
+   a quiet label next to the big serif titles. Prefixed with body to win over each partial's own font-size. */
+.home-page, body { --mono-size: 0.8125rem; --mono-track: 0.08em; }
+body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__meta dt, .kitchenMenu__h,
+         .kitchenMenu__node, .kitchenMenu__qty, .hero__ticker) {
+  font-size: var(--mono-size);
+  letter-spacing: var(--mono-track);
+}
+/* Chapter titles a touch lighter than the full chapter colour. */
+.chapter__title { color: color-mix(in srgb, var(--accent-ink) 82%, var(--sys-color-background)); }

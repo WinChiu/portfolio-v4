@@ -13,7 +13,7 @@
 .jobs .block__jobDescription {
   display: flex; align-items: center; gap: var(--sys-space-xl);
   padding: var(--sys-space-sm) var(--sys-space-0);
-  border-top: var(--sys-rule-width-thin) solid var(--sys-color-text);
+  border-top: var(--sys-rule-width-thin) solid var(--sys-color-border);
   color: var(--sys-color-text);
 }
 .jobs .job__title { flex: 1 1 0; min-width: 0; font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }

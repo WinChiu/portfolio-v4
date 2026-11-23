@@ -17,8 +17,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: var(--sys-space-hairline);
-    background: var(--sys-color-text);
+    height: var(--line-w, 1px);
+    background: var(--sys-color-border);
     transform: scaleX(var(--work-line-progress, 1));
     transform-origin: left;
   }
@@ -26,12 +26,15 @@
 
 .project-card__number {
   font-family: var(--sys-font-family-mono);
-  font-size: var(--sys-font-size-display-lg);
+  font-size: var(--sys-font-size-section-number);
   line-height: var(--sys-line-height-tight);
   letter-spacing: var(--sys-letter-spacing-tightest);
-  color: var(--sys-color-transparent);
-  -webkit-text-stroke: var(--sys-text-stroke-width) var(--accent-ink);
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  /* Line the top of the digits up with the top of the title, not with the tag line above it. */
+  align-self: start;
+  margin-top: var(--project-card-number-offset, 1.8rem);
 }
 
 .project-card__body {

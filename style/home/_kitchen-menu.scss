@@ -7,13 +7,14 @@
 .kitchenMenu__column { display: flex; flex-direction: column; gap: var(--sys-space-56); min-width: 0; }
 .kitchenMenu__course--wide { grid-column: 1 / -1; }
 .kitchenMenu__dishColumns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--kitchen-column-gap); }
-.kitchenMenu__courseHead { display: flex; align-items: center; gap: var(--sys-space-md); padding-bottom: var(--sys-space-md); }
+/* Course heading: the course name in the display serif, then the rule. */
+.kitchenMenu__courseHead { display: flex; align-items: flex-end; gap: var(--sys-space-lg); padding-bottom: var(--sys-space-md); }
 .kitchenMenu__courseZh { font-size: var(--sys-font-size-title-md); line-height: var(--sys-line-height-heading); font-weight: var(--sys-font-weight-medium); }
-.kitchenMenu__courseEn { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-body-lg); line-height: var(--sys-line-height-heading); color: var(--sys-color-text-muted); font-weight: var(--sys-font-weight-regular); }
-.kitchenMenu__courseLine { flex: 1; border-top: var(--sys-rule-width-thin) solid var(--sys-color-text); }
+.kitchenMenu__courseEn { font-family: var(--sys-font-family-display); font-size: clamp(2rem, 4vw, 3rem); line-height: 1; letter-spacing: var(--sys-letter-spacing-display); color: var(--sys-color-text); font-weight: var(--sys-font-weight-regular); }
+.kitchenMenu__courseLine { flex: 1; border-top: var(--sys-rule-width-thin) solid var(--sys-color-border); margin-bottom: 0.5rem; }
 .kitchenMenu__peek {
   position: fixed; top: 0; left: 0; z-index: var(--sys-z-peek); pointer-events: none;
-  width: var(--comp-kitchen-peek-width); border: var(--sys-border-hairline); background: var(--sys-color-background-soft);
+  width: var(--comp-kitchen-peek-width); border: var(--sys-border-hairline); background: var(--sys-color-background-soft); box-shadow: var(--comp-shadow-offset-kitchen);
   opacity: 0; transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
 .kitchenMenu__peek img { width: 100%; aspect-ratio: 1; object-fit: cover; }

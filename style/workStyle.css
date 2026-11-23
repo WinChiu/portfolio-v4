@@ -45,74 +45,96 @@ html.lenis body {
 
 .ui-loader.pl {
   display: block;
+  background: var(--sys-color-transparent);
   transition: var(--sys-transition-none);
+  --pl-ink: #2b2926;
+  --pl-muted: #85827b;
+  --pl-line: #dcdcd6;
 }
 
+.pl__panels {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
 .pl__stage {
   position: absolute;
-  right: var(--comp-loader-gutter);
-  left: var(--comp-loader-gutter);
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.pl__panel {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--sys-color-background);
+  will-change: transform;
+}
+.pl__stage {
+  grid-template-rows: 1fr;
+  color: var(--pl-ink);
+  pointer-events: none;
+}
+.pl__top {
+  position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-}
-.pl__meta {
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: var(--sys-space-md);
-  color: var(--sys-color-text);
-}
-.pl__name {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-sm);
+  text-align: center;
+  white-space: nowrap;
   font-family: var(--sys-font-family-mono);
-  font-size: var(--sys-font-size-small);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: var(--sys-line-height-body);
+  color: var(--pl-muted);
+}
+.pl__top > span:nth-child(2) {
+  color: var(--pl-ink);
+}
+.pl__big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sys-space-xs);
+  margin-bottom: var(--sys-space-md);
+  text-transform: none;
 }
 .pl__count {
-  font-family: var(--sys-font-family-mono);
-  font-size: var(--comp-loader-count-font-size);
-  line-height: var(--sys-line-height-tight);
-  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  font-family: var(--sys-font-family-display);
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--pl-ink);
 }
-.pl--short .pl__count {
+.pl__count span {
+  display: inline-block;
+  width: 0.56em;
+  text-align: center;
+}
+.pl--short .pl__top {
   visibility: hidden;
-}
-.pl__line {
-  height: var(--sys-space-hairline);
-  background: color-mix(in srgb, var(--sys-color-text) var(--comp-loader-track-mix), var(--sys-color-transparent));
-}
-.pl__line i {
-  display: block;
-  height: 100%;
-  background: var(--sys-color-text);
-  transform: scaleX(0);
-  transform-origin: left;
 }
 
 .pl-curtain {
   position: fixed;
   inset: var(--sys-space-0);
   z-index: var(--sys-z-curtain);
-  background: var(--sys-color-background);
-  clip-path: inset(0 0 100% 0);
   pointer-events: all;
 }
 .pl-curtain i {
-  position: absolute;
-  right: var(--comp-loader-gutter);
-  left: var(--comp-loader-gutter);
-  top: 50%;
-  height: var(--sys-space-hairline);
-  background: var(--sys-color-text);
-  transform: scaleX(0);
-  transform-origin: left;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--sys-color-background);
+  transform: translateY(-101%);
 }
 
-@media (max-width: 37.5rem) {
-  .pl__stage,
-  .pl-curtain i {
-    right: var(--comp-loader-gutter-narrow);
-    left: var(--comp-loader-gutter-narrow);
-  }
-}
 .loading-mask,
 .page-loader {
   position: fixed;
@@ -157,22 +179,23 @@ html.lenis body {
   align-items: center;
   gap: var(--sys-space-sm);
   padding: var(--sys-space-xs) var(--sys-space-md);
-  border: var(--sys-space-hairline) solid var(--accent-ink);
-  color: var(--accent-ink);
+  border: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
+  color: var(--sys-color-text);
   font-family: var(--sys-font-family-mono);
   font-size: var(--sys-font-size-small);
   line-height: var(--sys-line-height-body);
   transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), background-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
 .button--outline:hover, .button--outline:focus-visible {
-  background: var(--accent-ink);
+  background: var(--sys-color-text);
+  border-color: var(--sys-color-text);
   color: var(--sys-color-background);
 }
 
 .button--bordered {
   padding: var(--sys-space-xs) var(--sys-space-md);
-  border: var(--sys-space-hairline) solid var(--sys-color-border);
-  color: var(--accent-ink);
+  border: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
+  color: var(--sys-color-text);
 }
 
 .button--solid,
@@ -249,6 +272,11 @@ html.lenis body {
   color: var(--sys-color-link-hover);
   background-color: var(--sys-color-transparent);
   border-color: var(--sys-color-transparent);
+}
+
+/* The drawn (Hairline) covers fill their plates with the page paper instead of white, so they sit flush on the page. */
+:root {
+  --hairline-plate: var(--sys-color-background);
 }
 
 * {
@@ -330,7 +358,7 @@ a:focus-visible, button:focus-visible {
   z-index: var(--sys-z-skip-link);
   padding: var(--sys-space-sm);
   background: var(--sys-color-background);
-  border: var(--sys-space-hairline) solid var(--sys-color-border);
+  border: var(--line-w, 1px) solid var(--sys-color-border);
 }
 
 .skip-link:focus {
@@ -361,6 +389,15 @@ a:focus-visible, button:focus-visible {
   --accent: var(--accent-ink);
 }
 
+/* Softer ink, same as the home page: copy in a black-grey, one light-grey 1px line; the project colour stays on titles and numbers. */
+.project-page {
+  --line-w: 1px;
+  --sys-color-text: #2b2926;
+  --sys-color-text-muted: #6b6862;
+  --sys-color-border: #dcdcd6;
+  --sys-border-hairline: var(--line-w) solid var(--sys-color-border);
+}
+
 .ui-link {
   color: var(--accent-ink);
 }
@@ -381,7 +418,7 @@ a:focus-visible, button:focus-visible {
   inset: 0 auto 0 0;
   width: var(--nav);
   padding: var(--sys-space-5xl) var(--sys-space-xl);
-  border-right: var(--sys-space-hairline) solid var(--sys-color-border);
+  border-right: var(--line-w, 1px) solid var(--sys-color-border);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -426,7 +463,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .index__list a.is-active {
-  color: var(--accent-ink);
+  color: var(--sys-color-text);
 }
 
 /* text that sits on the filled part flips to paper */
@@ -578,7 +615,7 @@ a:focus-visible, button:focus-visible {
     height: var(--sys-space-56);
     padding: var(--sys-space-0) var(--sys-space-md);
     border: 0;
-    border-bottom: var(--sys-space-hairline) solid var(--sys-color-border);
+    border-bottom: var(--line-w, 1px) solid var(--sys-color-border);
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     gap: var(--sys-space-md);
@@ -604,7 +641,7 @@ a:focus-visible, button:focus-visible {
     text-align: center;
     color: var(--sys-color-text);
     padding: var(--sys-space-3xs) var(--sys-space-xs);
-    border: var(--sys-space-hairline) solid var(--sys-color-border);
+    border: var(--line-w, 1px) solid var(--sys-color-border);
     background: var(--sys-color-background);
     cursor: pointer;
     font-size: var(--sys-font-size-caption);
@@ -617,7 +654,7 @@ a:focus-visible, button:focus-visible {
     right: 0;
     max-height: calc(100dvh - var(--sys-space-56));
     background: var(--sys-color-background);
-    border-bottom: var(--sys-space-hairline) solid var(--sys-color-border);
+    border-bottom: var(--line-w, 1px) solid var(--sys-color-border);
     padding: var(--sys-space-md) var(--gutter);
   }
   .project-page .index.is-open .index__list {
@@ -649,7 +686,7 @@ a:focus-visible, button:focus-visible {
   height: var(--sys-space-4xl);
   overflow: hidden;
   flex-shrink: 0;
-  color: var(--accent-ink);
+  color: var(--sys-color-text);
 }
 
 .project-page .index__list a .n {
@@ -698,6 +735,40 @@ a:focus-visible, button:focus-visible {
   }
   .project-page .index .page-progress {
     position: absolute;
+  }
+}
+/* No colour fill behind the rail / top bar: keep every link in its normal grey, whether or not JS marks it on-fill. */
+.project-page .index__fill {
+  display: none;
+}
+
+.project-page .index__list a.on-fill, .project-page .index__list a.on-fill:hover {
+  color: var(--sys-color-text);
+}
+
+.project-page .index__list a.on-fill:not(.is-active) {
+  opacity: 0.5;
+}
+
+.project-page .index__list a.on-fill::after {
+  background: currentColor;
+}
+
+.project-page .index__back.on-fill, .project-page .index__foot a.on-fill,
+.project-page .index__back.on-fill:hover, .project-page .index__foot a.on-fill:hover {
+  color: var(--sys-color-text-muted);
+}
+
+.project-page .index__back.on-fill:hover, .project-page .index__foot a.on-fill:hover {
+  color: var(--sys-color-text);
+}
+
+@media (max-width: 48rem) {
+  .project-page .index__list a.on-fill {
+    color: var(--sys-color-text);
+  }
+  .project-page .index__back.on-fill {
+    color: var(--sys-color-text-muted);
   }
 }
 /* ---------- header ---------- */
@@ -847,8 +918,8 @@ a:focus-visible, button:focus-visible {
 /* ---------- sections ---------- */
 .sec {
   padding: var(--sys-space-160) var(--gutter);
-  border-top: var(--sys-space-hairline) solid var(--sys-color-border);
-  scroll-margin-top: var(--sys-space-3xl);
+  border-top: var(--line-w, 1px) solid var(--sys-color-border);
+  scroll-margin-top: var(--sys-space-0);
 }
 
 .sec__grid {
@@ -972,7 +1043,7 @@ a:focus-visible, button:focus-visible {
 .problems .callout {
   flex: 1 1 0;
   border: 0;
-  border-top: var(--sys-space-hairline) solid var(--accent-ink);
+  border-top: var(--line-w, 1px) solid var(--sys-color-border);
   padding: var(--sys-space-lg) var(--sys-space-0) var(--sys-space-0);
   display: flex;
   flex-direction: column;
@@ -1024,7 +1095,7 @@ a:focus-visible, button:focus-visible {
   flex-direction: column;
   gap: var(--sys-space-sm);
   padding: var(--sys-space-6xl) var(--gutter) var(--sys-space-80);
-  border-top: var(--sys-space-hairline) solid var(--sys-color-border);
+  border-top: var(--line-w, 1px) solid var(--sys-color-border);
 }
 
 .next .mono {
@@ -1181,13 +1252,24 @@ figcaption, .media-caption {
   margin-top: var(--sys-space-sm);
 }
 
+/* Caption sits above its image in captioned media: give it room below instead of above. */
+.project-module__captioned-media figcaption {
+  margin-top: var(--sys-space-0);
+  margin-bottom: var(--sys-space-lg);
+}
+
+/* The baked-in frames are cropped out of the image files; every zoomable picture gets the one 1px light-grey frame instead. */
+.project-page img.ui-zoomable-media {
+  border: var(--line-w, 1px) solid var(--sys-color-border);
+}
+
 .media-placeholder {
   min-height: var(--comp-media-placeholder-min-height);
   background: var(--sys-color-background-soft);
   display: grid;
   place-items: center;
   padding: var(--sys-space-md);
-  border: var(--sys-space-hairline) solid var(--sys-color-border);
+  border: var(--line-w, 1px) solid var(--sys-color-border);
 }
 
 .media-aside {
@@ -1243,14 +1325,14 @@ figcaption, .media-caption {
   display: grid;
   place-items: center;
   padding: var(--sys-space-md);
-  border: var(--sys-space-hairline) solid var(--sys-color-border);
+  border: var(--line-w, 1px) solid var(--sys-color-border);
 }
 
 /* icon lists */
 .goals {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: var(--sys-space-hairline) solid var(--sys-color-border);
+  border-top: var(--line-w, 1px) solid var(--sys-color-border);
 }
 
 .goals article {
@@ -1266,7 +1348,7 @@ figcaption, .media-caption {
 }
 
 .goals article + article {
-  border-left: var(--sys-space-hairline) solid var(--sys-color-border);
+  border-left: var(--line-w, 1px) solid var(--sys-color-border);
 }
 
 .goals article > * {
@@ -1355,7 +1437,7 @@ figcaption, .media-caption {
 }
 
 .callout {
-  border: var(--sys-space-hairline) solid var(--sys-color-border);
+  border: var(--line-w, 1px) solid var(--sys-color-border);
   padding: var(--sys-space-xl);
 }
 
@@ -1373,7 +1455,7 @@ figcaption, .media-caption {
   display: grid;
   grid-template-columns: var(--sys-space-3xl) minmax(0, 1fr);
   gap: var(--sys-space-md);
-  border-top: var(--sys-space-hairline) solid var(--sys-color-border);
+  border-top: var(--line-w, 1px) solid var(--sys-color-border);
   padding: var(--sys-space-xl) var(--sys-space-0);
 }
 
@@ -1421,7 +1503,7 @@ figcaption, .media-caption {
   }
   .goals article + article {
     border-left: 0;
-    border-top: var(--sys-space-hairline) solid var(--sys-color-border);
+    border-top: var(--line-w, 1px) solid var(--sys-color-border);
   }
   .goals > article:only-child, .goals > article:only-child:has(> .goal-icon) {
     grid-template-columns: minmax(0, 1fr);
@@ -1467,7 +1549,7 @@ figcaption, .media-caption {
 }
 
 .project-module__process-step, .project-module__method-item {
-  border-top: var(--sys-space-hairline) solid var(--sys-color-border);
+  border-top: var(--line-w, 1px) solid var(--sys-color-border);
   padding: var(--sys-space-xl) var(--sys-space-0);
 }
 
