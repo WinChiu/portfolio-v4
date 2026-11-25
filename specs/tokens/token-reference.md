@@ -171,6 +171,7 @@ Decisions and roles. Each points at a reference token wherever the value exists 
 | `--sys-radius-sm` | `var(--ref-size-4)` | Use for corner rounding. |
 | `--sys-radius-lg` | `var(--ref-size-8)` | Use for corner rounding. |
 | `--sys-radius-round` | `50%` | Use for corner rounding. |
+| `--sys-radius-pill` | `999px` | Use for corner rounding. |
 | `--sys-shadow-floating` | `0 1.5rem 3rem color-mix(in srgb, var(--ref-palette-neutral-0) 20%, transparent)` | Use for the named elevation level. |
 | `--sys-z-base` | `0` | Use only for the named stacking role. |
 | `--sys-z-content` | `1` | Use only for the named stacking role. |
@@ -193,7 +194,6 @@ Decisions and roles. Each points at a reference token wherever the value exists 
 | `--sys-motion-duration-long` | `600ms` | Use to compose transitions and animation timing. |
 | `--sys-motion-duration-curtain` | `800ms` | Use to compose transitions and animation timing. |
 | `--sys-motion-duration-loading` | `1000ms` | Use to compose transitions and animation timing. |
-| `--sys-motion-duration-ticker` | `45s` | Use to compose transitions and animation timing. |
 | `--sys-motion-ease-standard` | `ease` | Use to compose transitions and animation timing. |
 | `--sys-motion-ease-smooth` | `cubic-bezier(0.2, 0.7, 0.2, 1)` | Use to compose transitions and animation timing. |
 | `--sys-motion-ease-curtain` | `cubic-bezier(0.76, 0, 0.24, 1)` | Use to compose transitions and animation timing. |
@@ -210,7 +210,7 @@ Decisions and roles. Each points at a reference token wherever the value exists 
 | `--sys-outline-offset-inset` | `calc(-1 * var(--sys-space-2xs))` | System decision. |
 | `--sys-rule-nudge` | `calc(var(--sys-rule-width-thin) / -2)` | System decision. |
 
-## Component tokens (43)
+## Component tokens (40)
 
 Measures and properties that belong to one component or section. They point at system or reference tokens.
 
@@ -219,10 +219,8 @@ Measures and properties that belong to one component or section. They point at s
 | `--comp-shadow-offset-about` | `var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-about)` | Use for the named elevation level. |
 | `--comp-shadow-offset-kitchen` | `var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-kitchen)` | Use for the named elevation level. |
 | `--comp-shadow-offset-kitchen-phone` | `var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-kitchen)` | Use for the named elevation level. |
-| `--comp-loader-gutter` | `var(--sys-space-3xl)` | Measure or property of one component or section. |
-| `--comp-loader-gutter-narrow` | `var(--sys-space-lg)` | Measure or property of one component or section. |
-| `--comp-loader-track-mix` | `20%` | Measure or property of one component or section. |
-| `--comp-loader-count-font-size` | `clamp(var(--sys-font-size-title-lg), 7vw, var(--sys-font-size-display-md))` | Measure or property of one component or section. |
+| `--comp-shadow-offset-work` | `var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-work)` | Use for the named elevation level. |
+| `--comp-shadow-offset-work-phone` | `var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-work)` | Use for the named elevation level. |
 | `--comp-nav-width-home` | `var(--sys-space-7xl)` | Measure or property of one component or section. |
 | `--comp-nav-height-home` | `var(--sys-space-56)` | Measure or property of one component or section. |
 | `--comp-nav-width-project` | `var(--sys-space-72)` | Measure or property of one component or section. |
@@ -234,9 +232,8 @@ Measures and properties that belong to one component or section. They point at s
 | `--comp-hero-card-width` | `11rem` | Measure or property of one component or section. |
 | `--comp-hero-card-width-phone` | `7rem` | Measure or property of one component or section. |
 | `--comp-hero-card-width-stacked` | `var(--sys-space-160)` | Measure or property of one component or section. |
-| `--comp-hero-padding-top` | `24rem` | Measure or property of one component or section. |
-| `--comp-hero-padding-bottom` | `var(--sys-space-160)` | Measure or property of one component or section. |
-| `--comp-hero-copy-bottom` | `var(--sys-space-88)` | Measure or property of one component or section. |
+| `--comp-hero-padding-bottom` | `var(--sys-space-72)` | Measure or property of one component or section. |
+| `--comp-hero-copy-bottom` | `var(--sys-space-2xl)` | Measure or property of one component or section. |
 | `--comp-hero-copy-width` | `var(--ref-size-512)` | Measure or property of one component or section. |
 | `--comp-hero-line1-indent` | `1em` | Measure or property of one component or section. |
 | `--comp-project-cover-bleed` | `calc(-1 * var(--sys-space-72))` | Measure or property of one component or section. |

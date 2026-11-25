@@ -13,6 +13,10 @@ figcaption, .media-caption { font-family: var(--sys-font-family-mono); color: va
 .media-aside { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sys-space-3xl); align-items: start; }
 /* image on top, text below */
 .media-aside--text { grid-template-columns: 1fr; }
+/* image with titled entries beside it (design system page): picture left, entries right; stacked on phones by the rule in _lists.scss */
+@media (min-width: 48.0625rem) {
+  .media-aside:has(> img + .project-module__content) { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--sys-space-4xl); }
+}
 .media-aside article + article { margin-top: var(--sys-space-3xl); }
 .project-module--image img, .project-module__media img, .media-aside > img { width: 100%; height: auto; }
 .project-module--image-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sys-space-xl); }

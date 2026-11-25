@@ -277,8 +277,8 @@
   --comp-hero-card-width: 11rem;
   --comp-hero-card-width-phone: 7rem;
   --comp-hero-card-width-stacked: var(--sys-space-160);
-  --comp-hero-padding-bottom: var(--sys-space-160);
-  --comp-hero-copy-bottom: calc(var(--sys-space-88) + var(--sys-space-2xl));
+  --comp-hero-padding-bottom: var(--sys-space-72);
+  --comp-hero-copy-bottom: var(--sys-space-2xl);
   --comp-hero-copy-width: var(--ref-size-512);
   --comp-hero-line1-indent: 1em;
 

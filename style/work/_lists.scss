@@ -2,13 +2,13 @@
 
 /* icon lists */
 .goals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--line-w, 1px) solid var(--sys-color-border); }
-.goals article { display: flex; flex-direction: column; align-items: center; gap: var(--sys-space-md); padding: var(--sys-space-4xl) var(--sys-space-lg) var(--sys-space-lg); }
+.goals article { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sys-space-md); padding: var(--sys-space-4xl) var(--sys-space-lg) var(--sys-space-lg); }
 .goals article:first-child { padding-left: var(--sys-space-0); }
 .goals article + article { border-left: var(--line-w, 1px) solid var(--sys-color-border); }
 .goals article > * { width: 100%; }
-.goal-icon { width: var(--sys-space-160) !important; height: var(--sys-space-160); border-radius: var(--sys-radius-round); background: var(--sys-color-background); display: grid; place-items: center; overflow: hidden; }
+.goal-icon { width: var(--sys-space-160) !important; height: var(--sys-space-160); border-radius: var(--sys-radius-round); background: var(--sys-color-background); display: grid; place-items: center start; overflow: hidden; }
 .goal-icon img { max-width: var(--comp-goal-icon-art-size); max-height: var(--comp-goal-icon-art-size); object-fit: contain; }
-.goals h3 { font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); margin: var(--sys-space-0); }
+.goals h3 { font-size: var(--sys-font-size-body-lg); line-height: var(--sys-line-height-body); margin: var(--sys-space-0); }
 .goals .mono { color: var(--accent-ink); margin-bottom: var(--sys-space-pull-2xs); }
 /* a single item is not a list: no rule on top; with an icon, icon and text sit side by side */
 .goals:has(> article:only-child) { grid-template-columns: minmax(0, 1fr); border-top: 0; }
@@ -44,9 +44,9 @@
   .goals > article:only-child > .goal-icon { grid-row: auto; }
   .goals > article:only-child > .project-module__item-content { grid-column: 1; }
 }
-.project-page .goals .project-module__item-title { font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }
+.project-page .goals .project-module__item-title { font-size: var(--sys-font-size-body-lg); line-height: var(--sys-line-height-body); }
 .project-module__item-label, .project-module__eyebrow { font-family: var(--sys-font-family-mono); color: var(--accent-ink); font-weight: var(--sys-font-weight-regular); }
-.project-module__list { padding-left: var(--sys-space-2xl); color: var(--sys-color-text-muted); }
+.project-module__list { padding-left: var(--sys-space-2xl); color: var(--sys-color-text-muted); font-size: var(--sys-font-size-body); line-height: var(--sys-line-height-relaxed); }
 .project-module__list li + li { margin-top: var(--sys-space-sm); }
 .project-module__list li::marker { font-family: var(--sys-font-family-mono); color: var(--accent-ink); }
 .project-module--process-flow ol, .project-module--method-list { list-style: none; padding: var(--sys-space-0); }

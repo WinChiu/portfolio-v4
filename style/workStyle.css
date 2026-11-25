@@ -367,7 +367,12 @@ a:focus-visible, button:focus-visible {
 
 .body {
   color: var(--sys-color-text-muted);
-  font-size: var(--sys-font-size-small);
+  font-size: var(--sys-font-size-body);
+  line-height: var(--sys-line-height-relaxed);
+}
+
+.project-page :is(.project-module__text, .project-module__item-text) {
+  font-size: var(--sys-font-size-body);
   line-height: var(--sys-line-height-relaxed);
 }
 
@@ -875,8 +880,13 @@ a:focus-visible, button:focus-visible {
   margin-top: calc(var(--block) - var(--flow-gap));
 }
 
-.sec__content > :is(.project-module__chapter-title, .project-module--subsection-title, .project-module--eyebrow) + * {
+.sec__content > :is(.project-module--subsection-title, .project-module--eyebrow) + * {
   margin-top: calc(var(--tight) - var(--flow-gap));
+}
+
+/* whatever sits straight under the chapter title (eyebrow, sub-heading, image, text) starts a new block, so it gets the block gap, not the tight one */
+.sec__content > .project-module__chapter-title + * {
+  margin-top: calc(var(--block) - var(--flow-gap));
 }
 
 .sec h2 {
@@ -888,7 +898,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .project-page h3 {
-  font-weight: var(--sys-font-weight-semibold);
+  font-weight: var(--sys-font-weight-medium);
   font-size: var(--sys-font-size-title-sm);
   line-height: var(--sys-line-height-body);
   margin-bottom: var(--sys-space-md);
@@ -932,8 +942,8 @@ a:focus-visible, button:focus-visible {
 
 .sec--dark > h3 {
   font-weight: var(--sys-font-weight-medium);
-  font-size: var(--sys-font-size-title-lg);
-  line-height: var(--sys-line-height-tight);
+  font-size: var(--sys-font-size-title-md);
+  line-height: var(--sys-line-height-heading);
   letter-spacing: var(--sys-letter-spacing-tight);
   margin: var(--sys-space-0);
   color: var(--sys-color-background);
@@ -1092,7 +1102,7 @@ a:focus-visible, button:focus-visible {
     flex-direction: column;
   }
   .sec--dark > h3 {
-    font-size: var(--sys-font-size-title-md);
+    font-size: var(--sys-font-size-title-sm);
     line-height: var(--sys-line-height-heading);
   }
   .big-quote {
@@ -1193,6 +1203,13 @@ figcaption, .media-caption {
   grid-template-columns: 1fr;
 }
 
+/* image with titled entries beside it (design system page): picture left, entries right; stacked on phones by the rule in _lists.scss */
+@media (min-width: 48.0625rem) {
+  .media-aside:has(> img + .project-module__content) {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: var(--sys-space-4xl);
+  }
+}
 .media-aside article + article {
   margin-top: var(--sys-space-3xl);
 }
@@ -1247,7 +1264,7 @@ figcaption, .media-caption {
 .goals article {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--sys-space-md);
   padding: var(--sys-space-4xl) var(--sys-space-lg) var(--sys-space-lg);
 }
@@ -1270,7 +1287,7 @@ figcaption, .media-caption {
   border-radius: var(--sys-radius-round);
   background: var(--sys-color-background);
   display: grid;
-  place-items: center;
+  place-items: center start;
   overflow: hidden;
 }
 
@@ -1281,8 +1298,8 @@ figcaption, .media-caption {
 }
 
 .goals h3 {
-  font-size: var(--sys-font-size-small);
-  line-height: var(--sys-line-height-relaxed);
+  font-size: var(--sys-font-size-body-lg);
+  line-height: var(--sys-line-height-body);
   margin: var(--sys-space-0);
 }
 
@@ -1428,8 +1445,8 @@ figcaption, .media-caption {
   }
 }
 .project-page .goals .project-module__item-title {
-  font-size: var(--sys-font-size-small);
-  line-height: var(--sys-line-height-relaxed);
+  font-size: var(--sys-font-size-body-lg);
+  line-height: var(--sys-line-height-body);
 }
 
 .project-module__item-label, .project-module__eyebrow {
@@ -1441,6 +1458,8 @@ figcaption, .media-caption {
 .project-module__list {
   padding-left: var(--sys-space-2xl);
   color: var(--sys-color-text-muted);
+  font-size: var(--sys-font-size-body);
+  line-height: var(--sys-line-height-relaxed);
 }
 
 .project-module__list li + li {
@@ -1524,14 +1543,28 @@ figcaption, .media-caption {
   gap: var(--sys-space-md);
 }
 
-.project-page .project-module__item-title, .project-page .project-module__subheading, .project-module__callout-title {
-  font-size: var(--sys-font-size-title-sm);
+/* Type roles, big to small: chapter title (h2, 32-40) > sub-heading / statement h3 (24, medium) > card & item titles (18, semibold) > body (16). */
+.project-page .project-module__item-title, .project-module__callout-title {
+  font-size: var(--sys-font-size-body-lg);
   line-height: var(--sys-line-height-body);
   font-weight: var(--sys-font-weight-semibold);
 }
 
-.project-page .project-module--text .body + .body {
+.project-page .project-module__subheading {
+  font-size: var(--sys-font-size-title-sm);
+  line-height: var(--sys-line-height-body);
+  font-weight: var(--sys-font-weight-medium);
+}
+
+.project-page :is(.project-module--text, .project-module__item-content) .body + .body {
   margin-top: var(--sys-space-0);
+}
+
+/* a callout stacks its title and text with a gap (they used to touch) */
+.project-module__callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sys-space-sm);
 }
 
 /* Image + several titled paragraphs (design system page): same title/text treatment as the goal lists, with the
@@ -1539,7 +1572,7 @@ figcaption, .media-caption {
 .project-module__entry {
   display: flex;
   flex-direction: column;
-  gap: var(--sys-space-3xs);
+  gap: var(--sys-space-xs);
 }
 
 .project-module__content:has(> .project-module__entry) {
@@ -1547,6 +1580,13 @@ figcaption, .media-caption {
 }
 
 .project-page .project-module__entry .project-module__item-title {
-  font-size: var(--sys-font-size-small);
-  line-height: var(--sys-line-height-relaxed);
+  font-size: var(--sys-font-size-body-lg);
+  line-height: var(--sys-line-height-body);
+}
+
+/* phone: sub-headings step down so they stay clearly below the 32px chapter title */
+@media (max-width: 48rem) {
+  .project-page .project-module__subheading {
+    font-size: var(--sys-font-size-title-xs);
+  }
 }

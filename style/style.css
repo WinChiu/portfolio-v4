@@ -1280,7 +1280,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
     min-height: calc(100svh - var(--comp-nav-height-home));
     padding: var(--sys-space-6xl) var(--gutter) var(--sys-space-4xl);
     justify-content: flex-end;
-    gap: var(--sys-space-3xl);
+    gap: var(--sys-space-lg);
   }
   /* phone: Product sits at the left edge, Designer at the right edge */
   .hero__big .line1 {
@@ -1295,7 +1295,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
     gap: var(--sys-space-lg);
   }
   .hero {
-    padding-bottom: calc((var(--sys-space-6xl) + var(--sys-space-xl)) / 2 + var(--sys-space-md));
+    padding-bottom: var(--sys-space-xl);
   }
   .hero__hi {
     margin-bottom: var(--sys-space-pull-sm);

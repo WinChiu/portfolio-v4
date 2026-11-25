@@ -15,9 +15,11 @@
   .sec { --tight: var(--sys-space-xl); --flow-gap: var(--sys-space-5xl); --block: var(--sys-space-8xl); }
 }
 .sec__content > :is(.project-module--subsection-title, .project-module--eyebrow) { margin-top: calc(var(--block) - var(--flow-gap)); }
-.sec__content > :is(.project-module__chapter-title, .project-module--subsection-title, .project-module--eyebrow) + * { margin-top: calc(var(--tight) - var(--flow-gap)); }
+.sec__content > :is(.project-module--subsection-title, .project-module--eyebrow) + * { margin-top: calc(var(--tight) - var(--flow-gap)); }
+/* whatever sits straight under the chapter title (eyebrow, sub-heading, image, text) starts a new block, so it gets the block gap, not the tight one */
+.sec__content > .project-module__chapter-title + * { margin-top: calc(var(--block) - var(--flow-gap)); }
 .sec h2 { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-section-title); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tight); margin: var(--sys-space-0); }
-.project-page h3 { font-weight: var(--sys-font-weight-semibold); font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); margin-bottom: var(--sys-space-md); }
+.project-page h3 { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); margin-bottom: var(--sys-space-md); }
 .project-page .project-module__eyebrow { color: var(--accent-ink); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-regular); }
 .nda { border-left: var(--sys-border-width-accent) solid var(--accent-ink); background: color-mix(in srgb, var(--accent-ink) 10%, var(--sys-color-transparent)); padding: var(--sys-space-md) var(--sys-space-lg); }
 .nda p { color: var(--sys-color-text-muted); font-weight: var(--sys-font-weight-semibold); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); }
@@ -25,7 +27,7 @@
 .sec:has(.sec--dark) { background: var(--sys-color-text); color: var(--sys-color-background); }
 .sec:has(.sec--dark) .sec__num { color: var(--sys-color-background); }
 .sec--dark { display: flex; flex-direction: column; gap: var(--sys-space-5xl); }
-.sec--dark > h3 { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-title-lg); line-height: var(--sys-line-height-tight); letter-spacing: var(--sys-letter-spacing-tight); margin: var(--sys-space-0); color: var(--sys-color-background); }
+.sec--dark > h3 { font-weight: var(--sys-font-weight-medium); font-size: var(--sys-font-size-title-md); line-height: var(--sys-line-height-heading); letter-spacing: var(--sys-letter-spacing-tight); margin: var(--sys-space-0); color: var(--sys-color-background); }
 .sec--dark .highlight { color: var(--sys-color-background); font-weight: var(--sys-font-weight-medium); }
 .problems { display: flex; gap: var(--sys-space-3xl); }
 .problems .callout { flex: 1 1 0; border: 0; border-top: var(--line-w, 1px) solid var(--sys-color-border); padding: var(--sys-space-lg) var(--sys-space-0) var(--sys-space-0); display: flex; flex-direction: column; gap: var(--sys-space-md); }
@@ -71,7 +73,7 @@
   .sec__grid { grid-template-columns: 1fr; gap: var(--sys-space-xl); }
   .sec__num { font-size: var(--sys-font-size-display-sm); }
   .problems { flex-direction: column; }
-  .sec--dark > h3 { font-size: var(--sys-font-size-title-md); line-height: var(--sys-line-height-heading); }
+  .sec--dark > h3 { font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-heading); }
   .big-quote { flex-direction: column; align-items: center; text-align: center; gap: var(--sys-space-md); max-width: var(--comp-measure-quote); margin-inline: var(--sys-space-auto); }
   .big-quote > img { width: var(--sys-space-8xl); }
   .big-quote h3 { font-size: var(--sys-font-size-title-sm); }
