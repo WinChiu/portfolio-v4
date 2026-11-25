@@ -169,12 +169,6 @@
       .join('\n        ');
   }
 
-  function renderHeroTicker(lines) {
-    if (!lines || !lines.length) return '';
-    const text = lines.map(escapeAttribute).join(' · ');
-    return `<p class="hero__ticker"><span class="hero__tickerSr">${text}</span><span class="hero__tickerTrack" aria-hidden="true"><span>${text}</span><span>${text}</span></span></p>`;
-  }
-
   document.body.classList.add('home-page');
   root.innerHTML = `
     <main class="with-nav" id="top">
@@ -185,7 +179,6 @@
           <p class="hero__hi" id="hero-eyebrow">Hi! I'm Win</p>
           <p class="hero__intro" id="intro">${content.hero.description}</p>
         </div>
-        ${renderHeroTicker(content.hero.ticker)}
       </section>
       <section class="chapter work c-work section--work" id="work">
         <div class="tabs block--switcher" role="group" aria-label="Project category">

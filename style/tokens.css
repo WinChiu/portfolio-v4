@@ -234,7 +234,6 @@
   --sys-motion-duration-long: 600ms;
   --sys-motion-duration-curtain: 800ms;
   --sys-motion-duration-loading: 1000ms;
-  --sys-motion-duration-ticker: 45s;
   --sys-motion-ease-standard: ease;
   --sys-motion-ease-smooth: cubic-bezier(0.2, 0.7, 0.2, 1);
   --sys-motion-ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
@@ -261,6 +260,8 @@
   --comp-shadow-offset-about: var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-about);
   --comp-shadow-offset-kitchen: var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-kitchen);
   --comp-shadow-offset-kitchen-phone: var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-kitchen);
+  --comp-shadow-offset-work: var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-work);
+  --comp-shadow-offset-work-phone: var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-work);
 
   /* Component: Navigation */
   --comp-nav-width-home: var(--sys-space-7xl);

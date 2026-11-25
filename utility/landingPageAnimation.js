@@ -88,9 +88,8 @@
     const title = hero.querySelector('#greet');
     const bigLines = Array.from(hero.querySelectorAll('.hero__big .line1, .hero__big .line2'));
     const cards = Array.from(hero.querySelectorAll('.photo-card--floating'));
-    const ticker = hero.querySelector('.hero__ticker');
     const intro = hero.querySelector('#intro');
-    const targets = [avatar, eyebrow, title, intro, ...bigLines, ...cards, ticker].filter(Boolean);
+    const targets = [avatar, eyebrow, title, intro, ...bigLines, ...cards].filter(Boolean);
     // Typed glyphs appear instantly, without the old CSS opacity transition.
     gsap.set(targets, { autoAlpha: 1, transition: 'none' });
     const splits = [];
@@ -216,10 +215,6 @@
     }
     const introStart = position;
     addReveal(tl, intro, introStart);
-    // The ticker line draws across once the intro starts to type.
-    if (ticker) tl.fromTo(ticker, { clipPath: 'inset(0 100% 0 0)' }, {
-      clipPath: 'inset(0 0% 0 0)', duration: duration('loading') * 1.4, ease: 'power2.inOut', clearProps: 'clipPath',
-    }, introStart);
     if (avatar) addReveal(tl, avatar, 0, { y: 0, time: duration('loading') });
     let startCall;
     // The loader fades for one loading-duration after assets-ready. Start
