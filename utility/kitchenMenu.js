@@ -90,16 +90,18 @@
   const rows = [...menuEl.querySelectorAll('.menu-item')];
   const srcOf = (row) => items[Number(row.dataset.index)].imageSrc.replace(/^\//, './');
 
-  // Photos load a little before their row is reached, so they are ready when the row gets focus.
-  const preloaded = new Set();
-  const preload = (row) => {
-    const src = srcOf(row);
-    if (preloaded.has(src)) return;
-    preloaded.add(src);
-    const image = new Image();
-    image.decoding = 'async';
-    image.src = src;
+  // Photos are loaded and decoded a little before their row is reached: decoding one as its card appears would
+  // stall the page for a moment.
+  const decoded = new Map(); // src -> promise that settles once the photo can be painted at once
+  const ready = (src) => {
+    if (!decoded.has(src)) {
+      const image = new Image();
+      image.src = src;
+      decoded.set(src, (image.decode ? image.decode() : Promise.resolve()).catch(() => {}).then(() => image));
+    }
+    return decoded.get(src);
   };
+  const preload = (row) => { ready(srcOf(row)); };
   if ('IntersectionObserver' in window) {
     const watcher = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (entry.isIntersecting) { preload(entry.target); watcher.unobserve(entry.target); }
@@ -148,6 +150,15 @@
   const dockImg = dock.querySelector('img');
 
   let focused = null;
+  let hideTimer = 0;
+  function reveal(card, image, row) {
+    const src = srcOf(row);
+    ready(src).then(() => {
+      if (row !== focused || card.classList.contains('is-on')) return;
+      image.src = src;
+      card.classList.add('is-on');
+    });
+  }
   const setFocus = (row) => {
     if (row === focused) return;
     if (focused) focused.classList.remove('is-focus');
@@ -156,12 +167,13 @@
     row.classList.add('is-focus');
     preload(row);
     const src = srcOf(row);
-    [peekImg, dockImg].forEach((image) => {
-      if (!image || image.getAttribute('src') === src) return;
-      image.src = src;
-      if (matchMedia('(prefers-reduced-motion: reduce)').matches || !image.animate) return;
-      image.animate([{ clipPath: 'inset(0 100% 0 0)', scale: '1.12' }, { clipPath: 'inset(0 0 0 0)', scale: '1' }],
-        { duration: 320, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)' });
+    // the photo is swapped once the new one can be painted
+    ready(src).then(() => {
+      if (row !== focused) return; // the mouse has moved on
+      [peekImg, dockImg].forEach((image) => {
+        if (!image || image.getAttribute('src') === src) return;
+        image.src = src;
+      });
     });
   };
 
@@ -206,11 +218,22 @@
       }
     }
     setFocus(row);
-    dock.classList.toggle('is-on', Boolean(row) && useDock());
+    const dockShows = Boolean(row) && useDock();
+    if (!dockShows) dock.classList.remove('is-on');
+    else if (!dock.classList.contains('is-on')) reveal(dock, dockImg, row);
     if (peek) {
       const show = Boolean(row) && !useDock();
-      if (show && !peek.classList.contains('is-on')) { aim(); pos = { ...target }; place(); }
-      peek.classList.toggle('is-on', show);
+      clearTimeout(hideTimer);
+      if (show) {
+        if (!peek.classList.contains('is-on')) {
+          aim();
+          pos = { ...target };
+          place();
+          reveal(peek, peekImg, row);
+        }
+      } else if (current !== null || !pointer) peek.classList.remove('is-on');
+      // crossing the little gap between two dishes must not blink the card out and back
+      else hideTimer = setTimeout(() => peek.classList.remove('is-on'), 120);
     }
   };
   let frame = 0;

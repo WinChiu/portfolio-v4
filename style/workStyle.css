@@ -1344,9 +1344,10 @@ a:focus-visible, button:focus-visible {
   }
 }
 @media (max-width: 48rem) {
+  /* a jump from the section menu lands the section right under the 56px bar, their lines on top of each other */
   .sec {
     padding: var(--sys-space-7xl) var(--gutter);
-    scroll-margin-top: var(--comp-section-scroll-margin);
+    scroll-margin-top: calc(var(--sys-space-56) - var(--line-w, var(--sys-rule-width-thin)));
   }
   .sec__grid {
     grid-template-columns: 1fr;

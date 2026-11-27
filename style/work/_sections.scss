@@ -107,7 +107,8 @@
   .sec__num { font-size: var(--sys-font-size-display-sm); }
 }
 @media (max-width: 48rem) {
-  .sec { padding: var(--sys-space-7xl) var(--gutter); scroll-margin-top: var(--comp-section-scroll-margin); }
+  /* a jump from the section menu lands the section right under the 56px bar, their lines on top of each other */
+  .sec { padding: var(--sys-space-7xl) var(--gutter); scroll-margin-top: calc(var(--sys-space-56) - var(--line-w, var(--sys-rule-width-thin))); }
   .sec__grid { grid-template-columns: 1fr; gap: var(--sys-space-xl); }
   .sec__num { font-size: var(--sys-font-size-display-sm); }
   .problems { flex-direction: column; }
