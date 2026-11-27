@@ -86,10 +86,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const link = document.createElement('a');
     link.className = 'project-toc ui-toc-item';
     link.href = `#${sections[index].id || heading.id}`;
-    link.title = heading.textContent.trim();
+    link.title = heading.dataset.toc || heading.textContent.trim();
     const number = document.createElement('span');
     number.className = 'n project-toc__number';
-    number.textContent = String(index + 1).padStart(2, '0');
+    // The printed section number wins, so a page that opens with the 00 summary stays in step.
+    number.textContent = sections[index].querySelector('.sec__num')?.textContent || String(index + 1).padStart(2, '0');
     const label = document.createElement('span');
     label.className = 't project-toc__label';
     label.textContent = link.title;
@@ -110,7 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
     toggle.setAttribute('aria-expanded', String(open));
   });
   document.addEventListener('click', event => {
-    if (!navbar.contains(event.target)) closeMenu();
+    // the mask behind the open menu belongs to the bar itself, so a tap on it targets the bar
+    if (!navbar.contains(event.target) || event.target === navbar) closeMenu();
   });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && navbar.classList.contains('is-open')) {
@@ -153,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (selected) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
-    const label = active < 0 ? 'Overview' : `${String(active + 1).padStart(2, '0')} ${links[active].title}`;
+    const label = active < 0 ? 'Overview' : `${links[active].firstChild.textContent} ${links[active].title}`;
     if (current.textContent !== label) current.textContent = label;
     if (toggle.textContent !== label) toggle.textContent = label; // the phone button names the current section
   }

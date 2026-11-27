@@ -8,7 +8,7 @@
 .p-head .p-title { color: var(--sys-color-text); }
 .p-titleblock { display: flex; flex-direction: column; gap: var(--sys-space-md); }
 /* credit line: role · company · duration on one line, Responsibility as a quiet sentence below; no grid of rules */
-.p-facts { display: flex; flex-direction: column; gap: var(--sys-space-sm); padding: var(--sys-space-0) var(--sys-space-0) var(--sys-space-3xl); }
+.p-facts { display: flex; flex-direction: column; gap: var(--sys-space-2xl); padding: var(--sys-space-0) var(--sys-space-0) var(--sys-space-3xl); }
 .p-facts p { margin: var(--sys-space-0); }
 .p-facts__line, .p-facts__resp { font-size: var(--sys-font-size-body); line-height: var(--sys-line-height-relaxed); color: var(--sys-color-text); }
 .p-facts__line { display: flex; flex-wrap: wrap; align-items: baseline; row-gap: var(--sys-space-3xs); }

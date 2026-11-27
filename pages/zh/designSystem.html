@@ -2,6 +2,10 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,6 +45,24 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
+        <section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="摘要">以使用情境重整設計系統，投入 SHOPLINE V2</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">問題</h3>
+        <p class="body">元件沒有定義使用情境、命名歸檔不一、規範分散且缺少更新機制，設計師難查難用，系統也常與線上版本脫節。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">關鍵決策</h3>
+        <p class="body">設計兩個互相連結的元件庫：供設計師取用的元件，以及記載規範的母元件；統一規範格式；建立設計問題回報表，於週會追蹤問題。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">成果</h3>
+        <p class="body">定義 45 種元件與相關規範，投入 SHOPLINE 電商平台 V2 使用，並在週會持續迭代。</p>
+        </div>
+              </div>
+            </section>
         <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>

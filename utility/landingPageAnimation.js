@@ -1,6 +1,12 @@
+// Home entrance animations, designed for pages that slide in (utility/homeNavigation.js).
+//
+// A shared, editorial base: chapter titles rise from behind a mask, lines draw, body copy stays put or fades lightly,
+// and pictures are laid down and then lifted off their shadow. Each chapter adds one signature move: the hero portrait drops onto the table, the Work
+// numbers roll up, Kitchen flames light one by one, Life photos are
+// dealt in like cards. Every move plays once, when its part of the page first comes into view; while a page is sliding,
+// it starts part-way through the slide. With reduced motion everything is simply there.
 (function () {
   const gsap = window.gsap;
-  let refreshWorkReveal = () => {};
   document.documentElement.dataset.homeAnimation = gsap ? 'gsap' : 'fallback';
 
   function duration(name) {
@@ -9,47 +15,15 @@
     return parseFloat(value) / (value.endsWith('ms') ? 1000 : 1);
   }
 
-  // Instant character steps, shared by every text block in the hero and work.
-  // Reserve the complete text layout and preserve links inside rich text.
-  function addTypedText(tl, element, position, splits, maxDuration = duration('loading'), stepOverride) {
-    if (!element) return position;
-    if (!window.SplitText) return position;
-    const split = window.SplitText.create(element, {
-      type: 'words,chars', smartWrap: true,
-      charsClass: 'split-char', wordsClass: 'split-word',
-      aria: element.querySelector('a') ? 'none' : 'auto',
-    });
-    splits.push(split);
-    const step = stepOverride || Math.min(duration('stagger') / 2, maxDuration / Math.max(1, split.chars.length));
-    gsap.set(split.chars, { visibility: 'hidden' });
-    split.chars.forEach((char, index) => {
-      const at = position + index * step;
-      tl.set(char, { visibility: 'visible' }, at);
-      tl.call(() => {
-        if (index) split.chars[index - 1].classList.remove('is-typing-char');
-        char.classList.add('is-typing-char');
-      }, [], at);
-    });
-    const end = position + Math.max(0, split.chars.length - 1) * step + duration('stagger');
-    tl.call(() => {
-      split.chars.forEach((char) => char.classList.remove('is-typing-char'));
-    }, [], end);
-    return end;
-  }
-
-  // Content layer: a quiet fade-up. Typing is reserved for the hero headline; lines draw, everything else fades.
-  function addReveal(tl, targets, position, { y = 14, stagger = duration('stagger'), time = duration('slow') } = {}) {
-    const items = Array.from(targets && targets.length !== undefined ? targets : [targets]).filter(Boolean);
-    if (!items.length) return position;
-    tl.fromTo(items, { autoAlpha: 0, y }, {
-      autoAlpha: 1, y: 0, duration: time, stagger, ease: 'power2.out', clearProps: 'transform',
-    }, position);
-    return position + time + (items.length - 1) * stagger;
-  }
-
   function setupWorkSwitcher() {
     const buttons = Array.from(document.querySelectorAll('.block--switcher button'));
     const cards = Array.from(document.querySelectorAll('.section--work [data-type]'));
+    // the last card on show leaves its line to the next chapter
+    const markLast = () => {
+      const shown = cards.filter((card) => !card.classList.contains('workHide'));
+      cards.forEach((card) => card.classList.toggle('is-last-visible', card === shown[shown.length - 1]));
+    };
+    markLast();
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
         if (button.getAttribute('aria-pressed') === 'true') return;
@@ -66,7 +40,7 @@
           card.classList.toggle('workHide', hidden);
           card.setAttribute('aria-hidden', String(hidden));
         });
-        refreshWorkReveal();
+        markLast();
         if (window.ScrollTrigger) window.ScrollTrigger.refresh();
       });
     });
@@ -80,334 +54,236 @@
     }));
   }
 
-  function setupHeroAnimation(context) {
-    const hero = document.querySelector('.section--main');
-    if (!hero) return;
-    const avatar = hero.querySelector('.media--image');
-    const eyebrow = hero.querySelector('#hero-eyebrow');
-    const title = hero.querySelector('#greet');
-    const bigLines = Array.from(hero.querySelectorAll('.hero__big .line1, .hero__big .line2'));
-    const cards = Array.from(hero.querySelectorAll('.photo-card--floating'));
-    const intro = hero.querySelector('#intro');
-    const targets = [avatar, eyebrow, title, intro, ...bigLines, ...cards].filter(Boolean);
-    // Typed glyphs appear instantly, without the old CSS opacity transition.
-    gsap.set(targets, { autoAlpha: 1, transition: 'none' });
-    const splits = [];
-    const tl = gsap.timeline({ paused: true });
-    let position = 0;
-    // In order: "Product", then "Designer", then the greeting. Everything else joins in alongside.
-    bigLines.forEach((line) => {
-      position = addTypedText(tl, line, position, splits, undefined, duration('stagger') * 1.4);
+  // ---------------------------------------------------------------- shared moves
+  const list = (targets) => Array.from(targets && targets.length !== undefined ? targets : [targets]).filter(Boolean);
+
+  function fade(tl, targets, at, { y = 10, stagger = duration('stagger'), time = duration('slow') } = {}) {
+    const items = list(targets);
+    if (items.length) {
+      tl.fromTo(items, { autoAlpha: 0, y }, { autoAlpha: 1, y: 0, stagger, duration: time, ease: 'power2.out', clearProps: 'transform' }, at);
+    }
+  }
+
+  // a title rising from behind a mask (the final inset is generous, so descenders are never cut)
+  function rise(tl, targets, at) {
+    const items = list(targets);
+    if (items.length) {
+      tl.fromTo(items, { clipPath: 'inset(0% -5% 100% -5%)', yPercent: 55 },
+        { clipPath: 'inset(-20% -5% -30% -5%)', yPercent: 0, duration: duration('long'), ease: 'power3.out', clearProps: 'clipPath,transform' }, at);
+    }
+  }
+
+  // uncovered from left to right, with room for an offset shadow
+  function wipe(tl, targets, at, { time = duration('long'), stagger = 0 } = {}) {
+    const items = list(targets);
+    if (items.length) {
+      tl.fromTo(items, { clipPath: 'inset(-24px 100% -24px -24px)' },
+        { clipPath: 'inset(-24px -24px -24px -24px)', duration: time, stagger, ease: 'power3.inOut', clearProps: 'clipPath' }, at);
+    }
+  }
+
+  // A picture is laid down, then picked up a little: it moves up and to the left while its solid shadow opens by the
+  // same amount, so the shadow stays where the picture lay. `element` is whatever carries the shadow; one without a
+  // shadow is only laid down.
+  function layAndLift(tl, element, at = 0) {
+    if (!element) return;
+    const shadow = getComputedStyle(element).boxShadow;
+    const offset = /(-?[\d.]+)px (-?[\d.]+)px/.exec(shadow);
+    const [x, y] = offset ? [Number(offset[1]), Number(offset[2])] : [0, 0];
+    const flat = offset ? shadow.replace(offset[0], '0px 0px') : 'none';
+    tl.fromTo(element, { autoAlpha: 0, x, y: y - 28, scale: 1.04, ...(offset && { boxShadow: flat }) },
+      { autoAlpha: 1, x, y, scale: 1, duration: duration('long'), ease: 'power3.out' }, at);
+    const lift = { x: 0, y: 0, duration: duration('slow'), ease: 'power2.out', clearProps: offset ? 'transform,boxShadow' : 'transform' };
+    if (offset) lift.boxShadow = shadow;
+    tl.to(element, lift, at + duration('long'));
+  }
+
+  // ---------------------------------------------------------------- hero
+  function typeIn(tl, element, at, splits) {
+    if (!element || !window.SplitText) return at;
+    const split = window.SplitText.create(element, { type: 'words,chars', smartWrap: true, charsClass: 'split-char', wordsClass: 'split-word' });
+    splits.push(split);
+    const step = duration('stagger') * 1.2;
+    gsap.set(split.chars, { visibility: 'hidden' });
+    split.chars.forEach((char, index) => {
+      tl.set(char, { visibility: 'visible' }, at + index * step);
+      tl.call(() => {
+        if (index) split.chars[index - 1].classList.remove('is-typing-char');
+        char.classList.add('is-typing-char');
+      }, [], at + index * step);
     });
-    position = addTypedText(tl, title, position, splits);
-    // Content layer: everything below the headline fades up together, one beat.
-    addReveal(tl, eyebrow, 0);
-    // Photo cards are dealt onto the page one by one from off the left edge, like a casino dealer's cards.
-    // Afterwards the throwing continues: every new card lands on the
-    // oldest one's spot and the oldest is taken away, so four stay on the table. Cards animate the CSS
-    // variables dragging uses (--dx, --dy, --r) so a landed card is a normal draggable card.
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const onTable = cards.slice(0, 4);
-    const slots = onTable.map((card) => {
-      const read = (name) => card.style.getPropertyValue(name);
-      return { x: read('--x'), y: read('--y'), mx: read('--mx'), my: read('--my'), r: parseFloat(read('--r')) || 0 };
-    });
-    cards.slice(4).forEach((card) => gsap.set(card, { autoAlpha: 0 }));
-    // Phone: the cards live in the empty space above the headline and must never cover it. A card is moved up (and,
-    // on very short screens, made narrower) until its bottom edge is above the headline.
-    const phone = window.matchMedia('(max-width: 48rem)');
-    const bigTitle = hero.querySelector('.hero__big');
-    function fitAbove(card) {
-      card.style.removeProperty('width');
-      if (!phone.matches || !bigTitle) return;
-      const MARGIN = 8;
-      const room = bigTitle.offsetTop - MARGIN * 2;
-      if (card.offsetHeight > room) card.style.width = `${Math.max(64, card.offsetWidth * (room / card.offsetHeight))}px`;
-      const maxTop = Math.max(MARGIN, bigTitle.offsetTop - MARGIN - card.offsetHeight);
-      if (card.offsetTop > maxTop) card.style.setProperty('--my', `${maxTop}px`);
-    }
-    onTable.forEach(fitAbove);
-    const num = (card, name) => parseFloat(card.style.getPropertyValue(name)) || 0;
-    const rand = (min, max) => min + Math.random() * (max - min);
+    const end = at + split.chars.length * step;
+    tl.call(() => split.chars.forEach((char) => char.classList.remove('is-typing-char')), [], end);
+    return end;
+  }
 
-    // Throw `card` onto `slot`, like a dealer: the card is flicked flat across the felt in a straight line.
-    // Only sliding friction acts on it (constant deceleration = a quadratic ease-out), so there is no arc,
-    // no scaling and no hop. It leaves the hand with a small spin that dies out as it stops.
-    function throwCard(card, slot, rest) {
-      card.dataset.dx = '0';
-      card.dataset.dy = '0';
-      ['--x', '--y', '--mx', '--my'].forEach((name, i) => card.style.setProperty(name, [slot.x, slot.y, slot.mx, slot.my][i]));
-      fitAbove(card);
-      const fromX = -card.offsetLeft - card.offsetWidth - 40;
-      const fromY = rand(-60, 60);
-      const spin = (Math.random() < 0.5 ? -1 : 1) * rand(25, 45);
-      const t = gsap.timeline();
-      t.set(card, { '--dx': `${fromX}px`, '--dy': `${fromY}px`, '--r': `${rest + spin}deg`, '--s': 1, autoAlpha: 1, zIndex: ++window.heroCardTop }, 0);
-      t.to(card, { '--dx': '0px', '--dy': '0px', duration: 0.5, ease: 'power2.out' }, 0);
-      t.to(card, { '--r': `${rest}deg`, duration: 0.5, ease: 'power2.out' }, 0);
-      t.land = 0.5;
-      return t;
-    }
+  // The portrait falls onto the table, using the same height, shadow and light as when it is thrown
+  // (utility/heroPortrait.js drives these properties during a drag).
+  function dropPortrait(tl, card, at) {
+    const props = ['--dy', '--lift', '--shadow-x', '--shadow-y'];
+    const tilt = (5 * Math.PI) / 180;
+    const fall = { z: 1.6 };
+    const clear = () => {
+      props.forEach((name) => card.style.removeProperty(name));
+      card.classList.remove('is-up');
+    };
+    const paint = () => {
+      const offset = 16 * fall.z;
+      card.style.setProperty('--dy', `${-34 * fall.z}px`);
+      card.style.setProperty('--lift', fall.z.toFixed(3));
+      card.style.setProperty('--shadow-x', `${offset * (Math.cos(tilt) + Math.sin(tilt))}px`);
+      card.style.setProperty('--shadow-y', `${offset * (Math.cos(tilt) - Math.sin(tilt))}px`);
+      card.classList.toggle('is-up', fall.z > 0.01);
+    };
+    tl.fromTo(card, { autoAlpha: 0 }, { autoAlpha: 1, duration: duration('fast') }, at);
+    const drop = gsap.to(fall, { z: 0, duration: duration('long'), ease: 'power2.in', onStart: paint, onUpdate: paint, onComplete: clear });
+    tl.add(drop, at);
+    // picking it up mid-fall hands it over to the drag
+    card.addEventListener('pointerdown', () => { if (drop.progress() < 1) { drop.kill(); clear(); } });
+  }
 
-    // Taken away: the dealer sweeps it off the way it came, straight and accelerating.
-    function takeAway(card) {
-      const heroRect = hero.getBoundingClientRect();
-      const rect = card.getBoundingClientRect();
-      const t = gsap.timeline();
-      t.to(card, {
-        '--dx': `${num(card, '--dx') - (rect.right - heroRect.left) - 40}px`,
-        '--r': `${num(card, '--r') - 8}deg`,
-        duration: 0.4, ease: 'power2.in',
-      }, 0);
-      t.set(card, { autoAlpha: 0 }, 0.4);
-      return t;
+  function hero(tl, root, splits) {
+    const card = root.querySelector('.photo-card--portrait');
+    const hint = root.querySelector('.photo-card__hint');
+    const lines = Array.from(root.querySelectorAll('.hero__big .line1, .hero__big .line2'));
+    if (card) {
+      gsap.set(card, { transition: 'none' });
+      dropPortrait(tl, card, 0);
     }
+    let at = 0;
+    lines.forEach((line) => { at = typeIn(tl, line, at, splits); });
+    // "Drag & Throw!" is written once the card has landed
+    if (hint) {
+      tl.fromTo(hint, { clipPath: 'inset(-30% 100% -30% -5%)' },
+        { clipPath: 'inset(-30% -5% -30% -5%)', duration: duration('curtain'), ease: 'none', clearProps: 'clipPath' }, duration('long') + duration('fast'));
+    }
+    fade(tl, root.querySelector('#intro'), at);
+  }
 
-    if (cards.length) {
-      const dealAt = duration('standard');
-      if (reduced) {
-        tl.fromTo(onTable, { autoAlpha: 0 }, {
-          autoAlpha: 1, duration: duration('loading'), stagger: duration('stagger') * 2, ease: 'power2.out',
-        }, dealAt);
-      } else {
-        onTable.forEach((card, index) => gsap.set(card, { autoAlpha: 0 }));
-        const gap = 0.45;
-        onTable.forEach((card, index) => tl.add(throwCard(card, slots[index], slots[index].r), dealAt + index * gap));
-        // Keep throwing: queue = cards on the table, oldest first.
-        let started = false;
-        let loop;
-        const queue = onTable.slice();
-        let next = 4;
-        const period = 3;
-        const busy = () => document.hidden || getComputedStyle(cards[0]).display === 'none' || hero.querySelector('.is-dragging') || !inView;
-        let inView = true;
-        const observer = 'IntersectionObserver' in window
-          ? new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }) : null;
-        if (observer) observer.observe(hero);
-        const step = () => {
-          loop = gsap.delayedCall(period, step);
-          if (busy() || cards.length <= 4) return;
-          const oldest = queue.shift();
-          const slotIndex = slots.findIndex((slot, i) => i === step.n % 4);
-          const slot = slots[slotIndex];
-          const card = cards[next % cards.length];
-          next += 1;
-          step.n += 1;
-          const rest = slot.r + rand(-3, 3);
-          const throwTl = throwCard(card, slot, rest);
-          const round = gsap.timeline();
-          round.add(throwTl, 0);
-          round.add(takeAway(oldest), throwTl.land + 0.1);
-          queue.push(card);
-        };
-        step.n = 0;
-        const startLoop = () => {
-          if (started) return;
-          started = true;
-          loop = gsap.delayedCall(1.2, step);
-        };
-        tl.call(startLoop, [], dealAt + 3 * gap + 0.6);
-        context.add(() => () => {
-          if (loop) loop.kill();
-          if (observer) observer.disconnect();
-        });
+  // ---------------------------------------------------------------- chapters
+  function workCard(tl, card) {
+    const number = card.querySelector('.project-card__number');
+    tl.fromTo(card, { '--work-line-progress': 0 }, { '--work-line-progress': 1, duration: duration('long'), ease: 'power2.inOut' }, 0);
+    // the number rolls up into place, like a counter
+    if (number) {
+      tl.fromTo(number, { clipPath: 'inset(0% 0% 100% 0%)', yPercent: 100 },
+        { clipPath: 'inset(-10% 0% -10% 0%)', yPercent: 0, duration: duration('long'), ease: 'back.out(1.6)', clearProps: 'clipPath,transform' }, duration('stagger'));
+    }
+    layAndLift(tl, card.querySelector('.project-card__cover'));
+    fade(tl, card.querySelectorAll('.project-card__tags, .project-card__title, .project-card__description, .project-card__links'), duration('stagger'));
+  }
+
+  function kitchenCourse(tl, course) {
+    const line = course.querySelector('.kitchenMenu__courseLine');
+    rise(tl, course.querySelector('.kitchenMenu__courseEn'), 0);
+    if (line) tl.fromTo(line, { scaleX: 0, transformOrigin: 'left' }, { scaleX: 1, duration: duration('long'), ease: 'power2.inOut', clearProps: 'transform,transformOrigin' }, 0);
+    // dishes are served row by row, and each one's flames light after it
+    course.querySelectorAll('.menu-item').forEach((dish, index) => {
+      const at = duration('fast') + index * duration('stagger');
+      fade(tl, dish, at, { y: 8 });
+      const flames = dish.querySelectorAll('.effort-meter__flame');
+      if (flames.length) {
+        tl.fromTo(flames, { scale: 0, transformOrigin: '50% 100%' },
+          { scale: 1, duration: duration('standard'), stagger: duration('stagger') * 2, ease: 'back.out(2.5)', clearProps: 'transform,transformOrigin' }, at + duration('fast'));
       }
-    }
-    const introStart = position;
-    addReveal(tl, intro, introStart);
-    if (avatar) addReveal(tl, avatar, 0, { y: 0, time: duration('loading') });
-    let startCall;
-    // The loader fades for one loading-duration after assets-ready. Start
-    // typing after that fade so the first sentence isn't typed underneath it.
-    const play = () => {
-      startCall = gsap.delayedCall(duration('loading'), () => tl.play(0));
-    };
-    if (document.querySelector('.loading-mask:not(.is-hidden)')) {
-      window.addEventListener('portfolio:assets-ready', play, { once: true });
-    } else tl.play(0);
-    const finish = () => {
-      if (startCall) startCall.kill();
-      tl.progress(1);
-    };
-    hero.addEventListener('focusin', finish);
-    context.add(() => () => {
-      window.removeEventListener('portfolio:assets-ready', play);
-      if (startCall) startCall.kill();
-      hero.removeEventListener('focusin', finish);
-      splits.forEach((split) => split.revert());
     });
   }
 
-  function setupProjectCardReveal(context) {
-    if (!window.ScrollTrigger) return;
-    gsap.registerPlugin(window.ScrollTrigger);
-    const timelines = new Map();
-    const work = document.querySelector('.section--work');
-    if (!work) return;
-    const tabSplits = [];
-    const tabTimeline = gsap.timeline({
-      scrollTrigger: { trigger: work.querySelector('.block--switcher'), start: 'top 90%', once: true },
-    });
-    addReveal(tabTimeline, work.querySelectorAll('.block--switcher h4'), 0, { y: 8 });
-    tabTimeline.fromTo(work, { '--section-line-progress': 0 }, {
-      '--section-line-progress': 1, duration: duration('loading'), ease: 'power2.inOut',
+  // Life photos are dealt in from the right, each coming to rest at its own tilt
+  function dealLife(tl, root) {
+    const cards = Array.from(root.querySelectorAll('.photo-card--strip')).slice(0, 7); // the rest are off screen
+    if (!cards.length) return;
+    tl.from(cards, {
+      x: () => window.innerWidth * 0.6, rotation: '+=16', autoAlpha: 0,
+      duration: duration('curtain'), stagger: duration('stagger') * 2, ease: 'power3.out', clearProps: 'transform',
     }, 0);
-    // Category changes are synchronous; no stale completion callback can
-    // reveal the wrong category after rapid clicks.
-    context.add('rebuildWork', () => {
-      timelines.forEach(({ tl, splits }) => {
-        if (tl.scrollTrigger) tl.scrollTrigger.kill();
-        tl.revert();
-        splits.forEach((split) => split.revert());
-      });
-      timelines.clear();
-      const visibleCards = work.querySelectorAll('.project-card:not(.workHide)');
-      visibleCards.forEach((card, cardIndex) => {
-        card.classList.toggle('is-last-visible', cardIndex === visibleCards.length - 1);
-        const cover = card.querySelector('.project-card__cover');
-        const content = card.querySelector('.project-card__body');
-        const texts = content ? content.querySelectorAll('h1, h3, h4, p') : [];
-        const number = card.querySelector('.project-card__number');
-        const buttons = card.querySelectorAll('.button');
-        const splits = [];
-        const tl = gsap.timeline({
-          scrollTrigger: { trigger: card, start: 'top 86%', once: true },
-        });
-        tl.fromTo(card, { '--work-line-progress': 0, '--work-accent-progress': 0 }, {
-          '--work-line-progress': 1, duration: duration('loading'), ease: 'power2.inOut',
-        }, 0);
-        // Cover and copy rise together as one beat; the line draws underneath.
-        if (cover) addReveal(tl, cover, 0, { y: 20, time: duration('loading') / 2 });
-        tl.to(card, { '--work-accent-progress': 1,
-          duration: duration('slow'), ease: 'power2.inOut',
-        }, duration('standard'));
-        const copy = [number, ...texts].filter((element) => element && !element.closest('a'));
-        addReveal(tl, copy, duration('fast'));
-        if (buttons.length) addReveal(tl, buttons, duration('standard'), { y: 8 });
-        timelines.set(card, { tl, splits });
-      });
-    });
-    refreshWorkReveal = () => context.rebuildWork();
-    refreshWorkReveal();
-    const finishFocusedCard = (event) => {
-      if (event.target.closest('.block--switcher')) tabTimeline.progress(1);
-      const entry = timelines.get(event.target.closest('.project-card'));
-      if (entry) entry.tl.progress(1);
-    };
-    work.addEventListener('focusin', finishFocusedCard);
-    context.add(() => () => {
-      refreshWorkReveal = () => {};
-      work.removeEventListener('focusin', finishFocusedCard);
-      tabSplits.forEach((split) => split.revert());
-      timelines.forEach(({ splits }) => splits.forEach((split) => split.revert()));
-      timelines.clear();
-    });
   }
 
-  function setupRemainingHomeReveal(context) {
-    if (!window.ScrollTrigger) return;
-    gsap.registerPlugin(window.ScrollTrigger);
+  // ---------------------------------------------------------------- when they play
+  function setup(context) {
     const splits = [];
-    const focusHandlers = [];
-    function group(root, textSelector, mediaSelector, lineSelector, afterLoader = false) {
-      if (!root) return;
-      const tl = gsap.timeline({
-        paused: afterLoader,
-        scrollTrigger: afterLoader ? undefined : { trigger: root, start: 'top 86%', once: true },
-      });
-      // Overlapping stagger keeps the whole section readable quickly.
-      addReveal(tl, root.querySelectorAll(textSelector), 0, { stagger: duration('stagger') * 1.5 });
-      const media = mediaSelector ? root.querySelectorAll(mediaSelector) : [];
-      if (media.length) addReveal(tl, media, duration('fast'), { y: 0, time: duration('loading') / 2 });
-      if (lineSelector) {
-        const lines = root.querySelectorAll(lineSelector);
-        if (lines.length) tl.fromTo(lines, { scaleX: 0, transformOrigin: 'left' }, {
-          scaleX: 1, duration: duration('loading'), ease: 'power2.inOut',
-          clearProps: 'transform,transformOrigin',
-        }, 0);
-      }
-      if (root.matches('.section--about, .section--kitchenMenu, .section--life')) {
-        tl.fromTo(root, { '--section-line-progress': 0 }, {
-          '--section-line-progress': 1, duration: duration('loading'), ease: 'power2.inOut',
-        }, 0);
-      }
-      let startCall;
-      const play = () => {
-        startCall = gsap.delayedCall(duration('loading'), () => tl.play(0));
-      };
-      const stopWaiting = () => {
-        window.removeEventListener('portfolio:assets-ready', play);
-        if (startCall) startCall.kill();
-      };
-      if (afterLoader) {
-        if (document.querySelector('.loading-mask:not(.is-hidden)')) {
-          window.addEventListener('portfolio:assets-ready', play, { once: true });
-        } else tl.play(0);
-        focusHandlers.push(stopWaiting);
-      }
-      const finish = () => {
-        stopWaiting();
-        tl.progress(1);
-      };
-      root.addEventListener('focusin', finish);
-      focusHandlers.push(() => root.removeEventListener('focusin', finish));
-    }
-    group(document.querySelector('.section--about'),
-      '.block__title, .block__content, .block__jobs p', '.media--avatar', '.block__jobDescription--dotLine');
-    group(document.querySelector('.section--kitchenMenu'),
-      '.kitchenMenu__title, .kitchenMenu__description', null);
-    group(document.querySelector('.section--life'),
-      '.life__title, .life__description');
-    group(document.querySelector('.nav--main'), '.block__navItem a', '.index__social', null, true);
+    const units = new Map(); // watched element -> its timeline and how long after the page arrives it starts
+    const cleanups = [];
 
-    // Kitchen: each course reveals as it scrolls in. Heading types, its rule draws alongside, then the dishes
-    // wipe in row by row. Courses in view start together.
-    document.querySelectorAll('.kitchenMenu__course').forEach((course) => {
-      const tl = gsap.timeline({ scrollTrigger: { trigger: course, start: 'top 90%', once: true } });
-      const line = course.querySelector('.kitchenMenu__courseLine');
-      addReveal(tl, course.querySelectorAll('.kitchenMenu__courseZh, .kitchenMenu__courseEn'), 0, { y: 8 });
-      if (line) tl.fromTo(line, { scaleX: 0, transformOrigin: 'left' }, {
-        scaleX: 1, duration: duration('slow'), ease: 'power2.inOut', clearProps: 'transform,transformOrigin',
-      }, 0);
-      const dishes = course.querySelectorAll('.menu-item');
-      addReveal(tl, dishes, duration('fast'), { y: 10, stagger: duration('stagger') / 2 });
+    function unit(root, build, { watch = root, after = 0 } = {}) {
+      if (!root || !watch) return;
+      const tl = gsap.timeline({ paused: true });
+      build(tl, root);
+      if (!units.has(watch)) units.set(watch, []);
+      units.get(watch).push({ tl, after });
       const finish = () => tl.progress(1);
-      course.addEventListener('focusin', finish);
-      focusHandlers.push(() => course.removeEventListener('focusin', finish));
-    });
-
-    // Life: the film strip's cards open top-down, one after another, when the chapter comes into view.
-    const lifeCards = Array.from(document.querySelectorAll('.photo-card--strip'));
-    const life = document.querySelector('.section--life');
-    if (life && lifeCards.length) {
-      const lifeTl = gsap.timeline({ scrollTrigger: { trigger: life, start: 'top 75%', once: true } });
-      // Life cards carry a CSS rotation, so they fade without a transform.
-      lifeTl.fromTo(lifeCards, { autoAlpha: 0 }, {
-        autoAlpha: 1, duration: duration('slow'), stagger: duration('stagger'), ease: 'power2.out',
-      }, duration('standard'));
-      const finishLife = () => lifeTl.progress(1);
-      life.addEventListener('focusin', finishLife);
-      focusHandlers.push(() => life.removeEventListener('focusin', finishLife));
+      root.addEventListener('focusin', finish);
+      cleanups.push(() => root.removeEventListener('focusin', finish));
     }
+
+    unit(document.querySelector('.section--main'), (tl, root) => hero(tl, root, splits));
+    document.querySelectorAll('.project-card').forEach((card) => unit(card, workCard));
+
+    const about = document.querySelector('.section--about');
+    if (about) {
+      unit(about.querySelector('.about__intro'), (tl, root) => {
+        rise(tl, root.querySelector('.chapter__title'), 0);
+        fade(tl, root.querySelectorAll('.about__paragraphs p'), duration('fast'), { stagger: duration('stagger') * 2 });
+      });
+      unit(about.querySelector('.about__photo'), (tl, figure) => layAndLift(tl, figure.querySelector('img')));
+      // the experience list is ruled off one line at a time
+      unit(about.querySelector('.jobs'), (tl, root) => {
+        wipe(tl, root.querySelectorAll('.block__jobDescription'), 0, { stagger: duration('stagger') * 2 });
+      }, { after: duration('slow') });
+    }
+
+    const kitchenHead = document.querySelector('.kitchenMenu__head');
+    unit(kitchenHead, (tl, root) => {
+      rise(tl, root.querySelector('.chapter__title'), 0);
+      fade(tl, root.querySelector('.kitchenMenu__description'), duration('fast'));
+    });
+    document.querySelectorAll('.kitchenMenu__course').forEach((course) => unit(course, kitchenCourse, { after: duration('fast') }));
+
+    const life = document.querySelector('.section--life');
+    if (life) {
+      unit(life.querySelector('.life__head'), (tl, root) => {
+        rise(tl, root.querySelector('.chapter__title'), 0);
+        fade(tl, root.querySelector('.life__intro'), duration('fast'));
+      });
+      unit(life.querySelector('.life__viewport'), (tl) => dealLife(tl, life), { after: duration('fast') });
+    }
+
+    // Pages that are not shown wait far below the screen, so "in view" also means "this page has been turned to".
+    const observer = new IntersectionObserver((entries) => {
+      const turning = Boolean(document.documentElement.dataset.turn);
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        units.get(entry.target).forEach(({ tl, after }) => {
+          gsap.delayedCall((turning ? duration('curtain') * 0.35 : 0) + after, () => tl.play());
+        });
+      });
+    }, { rootMargin: '0px 0px -24px 0px' });
+
+    // nothing starts behind the loading screen
+    const start = () => units.forEach((_, element) => observer.observe(element));
+    if (document.querySelector('.loading-mask:not(.is-hidden)')) {
+      window.addEventListener('portfolio:assets-ready', start, { once: true });
+    } else start();
 
     context.add(() => () => {
-      focusHandlers.forEach((remove) => remove());
+      observer.disconnect();
+      window.removeEventListener('portfolio:assets-ready', start);
+      cleanups.forEach((remove) => remove());
       splits.forEach((split) => split.revert());
     });
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     setupWorkSwitcher();
-    if (!gsap) return;
+    if (!gsap || !('IntersectionObserver' in window)) return;
     if (window.SplitText) gsap.registerPlugin(window.SplitText);
     gsap.matchMedia().add({
       animate: '(prefers-reduced-motion: no-preference)',
       reduce: '(prefers-reduced-motion: reduce)',
     }, (context) => {
       if (context.conditions.reduce) return;
-      setupHeroAnimation(context);
-      setupProjectCardReveal(context);
-      setupRemainingHomeReveal(context);
+      setup(context);
     });
   });
 })();

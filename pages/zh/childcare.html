@@ -2,6 +2,10 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,6 +45,24 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
+        <section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="摘要">分三種規模提案，兩年後促成新懶人包上架</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">問題</h3>
+        <p class="body">超過 3 成申請文件填寫錯誤或資格不符，網站資訊架構與流程不佳，家長難以找到需要的規定。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">關鍵決策</h3>
+        <p class="body">把每位家長都視為首次使用者；優化手機版介面；政府沒有預留預算，因此將解方拆成三種成本層級。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">成果</h3>
+        <p class="body">專案結束兩年後，承辦人索取我們設計的懶人包，並以此為基礎公布新版。</p>
+        </div>
+              </div>
+            </section>
         <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>
@@ -268,7 +290,7 @@
             </section>
       </div>
     </section>
-    <a class="next project-page--designSystem" href="https://drive.google.com/file/d/1gW0bjl66qyWCAEFt6Bqg6CDiXGYfFeJq/view?usp=sharing" target="_blank" rel="noopener noreferrer"><span class="mono mute">Next project</span><p class="p-title">非視覺導航中觸覺與聽覺引導方式之比較</p></a>
+    <a class="next project-page--designSystem" href="designSystem.html"><span class="mono mute">Next project</span><p class="p-title">設計系統架構規劃與整理</p></a>
     </main>
     <nav class="project-nav index" id="navbar" aria-label="Project sections">
       <a class="index__back mono" href="../../home-zh.html#work">Back</a>

@@ -49,7 +49,7 @@
     const html = document.documentElement;
     savedScroll = { body: body.style.overflow, html: html.style.overflow, paddingRight: body.style.paddingRight, lenisStopped: window.lenis?.isStopped };
     const scrollbarWidth = window.innerWidth - html.clientWidth;
-    if (scrollbarWidth > 0) body.style.paddingRight = `${parseFloat(getComputedStyle(body).paddingRight) + scrollbarWidth}px`;
+    if (scrollbarWidth > 0 && !getComputedStyle(html).scrollbarGutter.startsWith('stable')) body.style.paddingRight = `${parseFloat(getComputedStyle(body).paddingRight) + scrollbarWidth}px`;
     window.lenis?.stop();
     body.style.overflow = 'hidden';
     html.style.overflow = 'hidden';
@@ -118,7 +118,7 @@
   if (peek) {
     peek.className = 'kitchenMenu__peek';
     peek.setAttribute('aria-hidden', 'true');
-    peek.innerHTML = '<img alt=""><p class="kitchenMenu__peekHint mono">Click to see the recipe →</p>';
+    peek.innerHTML = '<img alt="">';
     document.body.append(peek);
     peekImg = peek.querySelector('img');
   }
@@ -156,8 +156,13 @@
     row.classList.add('is-focus');
     preload(row);
     const src = srcOf(row);
-    if (peekImg && peekImg.getAttribute('src') !== src) peekImg.src = src;
-    if (dockImg.getAttribute('src') !== src) dockImg.src = src;
+    [peekImg, dockImg].forEach((image) => {
+      if (!image || image.getAttribute('src') === src) return;
+      image.src = src;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches || !image.animate) return;
+      image.animate([{ clipPath: 'inset(0 100% 0 0)', scale: '1.12' }, { clipPath: 'inset(0 0 0 0)', scale: '1' }],
+        { duration: 320, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)' });
+    });
   };
 
   // Page positions of the menu and each row; measured lazily and again whenever the menu's size changes.
@@ -179,7 +184,9 @@
 
   const update = () => {
     let row = null;
-    if (current === null) {
+    // the preview and the dock live in <body>: they must go when another page is shown (utility/homeNavigation.js)
+    const offPage = document.body.classList.contains('is-paged') && !section.classList.contains('is-current');
+    if (current === null && !offPage) {
       if (useDock()) {
         // Row positions are measured once (see measureRows) and compared with the scroll position, so scrolling
         // costs no layout reads at all.
@@ -221,16 +228,11 @@
   window.addEventListener('scroll', schedule, { passive: true });
   if (window.lenis && window.lenis.on) window.lenis.on('scroll', schedule);
   window.addEventListener('resize', schedule);
+  // turning a page moves nothing by scrolling, so look again here
+  document.addEventListener('home:page', () => { pointer = null; rowSpots.stale = true; schedule(); });
   dock.addEventListener('click', () => { if (focused) open(Number(focused.dataset.index), focused); });
   new MutationObserver(schedule).observe(overlay, { attributes: true, attributeFilter: ['class'] });
   schedule();
-
-  // Asked from outside (a hero photo card): open this dish's recipe.
-  document.addEventListener('kitchen:open', (event) => {
-    const index = event.detail && event.detail.index;
-    if (current !== null || !items[index]) return;
-    open(index, menuEl.querySelector(`.menu-item[data-index="${index}"]`));
-  });
 
   menuEl.addEventListener('click', (event) => {
     const button = event.target.closest('.menu-item');

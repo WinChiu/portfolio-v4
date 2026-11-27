@@ -40,13 +40,51 @@ const project = {
       "purpose": "To align with Europe's Industry 4.0 transformation, we planned to integrate an RFID scanning feature into the existing logistics module, providing customers with a more flexible way to track assets.",
       "challenge": "To reduce development cost and shorten the time to market, RFID feature should be added without major changes to the existing workflow. As the system architecture was complex, it was necessary to map all possible product tracking state and necessary response.",
       "production": "Conducted on-site research and built a simulated environment to test design concepts. Completed the final design of RFID-related features for the logistics module, delivered the full functional specification, and carried out PM testing.",
-      "outcome": "Successfully initiated partnership discussions with a Danish a service provider and prepared for gradual implementation."
+      "outcome": "A Danish service provider signed the purchase agreement and has adopted the RFID service."
     },
     "zh": {
       "purpose": "因應歐洲市場工業 4.0 智慧製造的轉型趨勢，於既有物流模組新增產品 RFID 掃描輸入功能，提供客戶更多元的資產追蹤方式。",
       "challenge": "以不大量改動既有流程為前提加上 RFID 相關功能，以降低開發成本。既有軟體架構龐大，需清楚盤點產品追蹤所遇到的各式狀態。",
       "production": "進行客戶場域調查並建構模擬場域進行設計概念測試。最終完成物流模組 RFID 相關功能之設計完稿、交付完整 Functional Specification 並進行上線前測試。",
-      "outcome": "成功推動丹麥服務商洽談合作事宜，並且準備進行逐步導入。"
+      "outcome": "成功推動丹麥服務商簽約購買，並已導入 RFID 服務。"
+    }
+  },
+  "summary": {
+    "en": {
+      "label": "Summary",
+      "headline": "RFID scanning solved the hard-to-find label problem, and the client signed and adopted it",
+      "points": [
+        {
+          "title": "Problem",
+          "text": "A QR code has to be seen to be scanned, but mattresses are stacked in cage carts. Drivers struggled to find every label, or could not at all, and frequent scanning slowed pickup and delivery."
+        },
+        {
+          "title": "Key decisions",
+          "text": "Keep QR codes and add RFID as another option. Design a simplified on-site scan screen showing only model and quantity. Offer a fallback when a scan fails, so the work never stops."
+        },
+        {
+          "title": "Outcome",
+          "text": "The client signed the purchase agreement and has adopted the RFID service."
+        }
+      ]
+    },
+    "zh": {
+      "label": "摘要",
+      "headline": "加入 RFID 掃描解決標籤難尋問題，客戶已簽約導入",
+      "points": [
+        {
+          "title": "問題",
+          "text": "QRcode 必須看到標籤才能掃，但氣墊床在籠車裡堆疊，司機難以甚至無法逐一翻找，頻繁掃描也拖慢收送貨作業。"
+        },
+        {
+          "title": "關鍵決策",
+          "text": "保留 QRcode，另加 RFID 作為選項；現場只呈現「型號與數量」；掃描異常時提供替代解法，讓作業不中斷。"
+        },
+        {
+          "title": "成果",
+          "text": "客戶已簽約購買並導入 RFID 服務。"
+        }
+      ]
     }
   },
   "sections": {
@@ -317,7 +355,7 @@ const project = {
               {
                 "type": "paragraph",
                 "className": "project-module__text",
-                "html": "To validate the concept, we demonstrated different RFID scanning\n                                                                                                      methods and results using a simulated work environment. Through\n                                                                                                      the proposal presentation, we outlined the software development\n                                                                                                      roadmap and implementation plan. The client later confirmed the\n                                                                                                      purchase agreement in the second half of 2025."
+                "html": "To validate the concept, we demonstrated different RFID scanning\n                                                                                                      methods and results using a simulated work environment. Through\n                                                                                                      the proposal presentation, we outlined the software development\n                                                                                                      roadmap and implementation plan. The client later confirmed the\n                                                                                                      purchase agreement in the second half of 2025 and has since adopted the service."
               }
             ]
           },
@@ -655,7 +693,7 @@ const project = {
               {
                 "type": "paragraph",
                 "className": "project-module__text",
-                "html": "我們向客戶展示不同 RFID\n                                                                                                      設備的掃描方式與結果，利用模擬場域模擬作業人員的掃描方式，並搭配提案簡報說明軟體開發路徑與導入相關準備事宜。並成功於\n                                                                                                      2025 年下半年確認簽約購買相關服務。"
+                "html": "我們向客戶展示不同 RFID\n                                                                                                      設備的掃描方式與結果，利用模擬場域模擬作業人員的掃描方式，並搭配提案簡報說明軟體開發路徑與導入相關準備事宜。並成功於\n                                                                                                      2025 年下半年確認簽約購買相關服務，目前已導入。"
               }
             ]
           },

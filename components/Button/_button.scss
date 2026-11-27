@@ -1,5 +1,5 @@
 // Button: a link styled as a button. Variants: outline, bordered, solid, secondary, text.
-// `outline` takes its color from the surrounding chapter or project (--accent-ink).
+// `outline` takes its fill from the surrounding chapter or project (--accent-ink).
 
 .button {
   display: inline-flex;
@@ -18,13 +18,14 @@
   transform: translateX(var(--sys-space-3xs));
 }
 
-// ---- outline: accent ink, fills on hover (home project links)
+// ---- outline: filled with the accent ink, a shade darker on hover (home project links)
 .button--outline {
   align-items: center;
   gap: var(--sys-space-sm);
   padding: var(--sys-space-xs) var(--sys-space-md);
-  border: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
-  color: var(--sys-color-text);
+  border: var(--line-w, var(--sys-space-hairline)) solid var(--accent-ink);
+  background: var(--accent-ink);
+  color: var(--sys-color-background);
   font-family: var(--sys-font-family-mono);
   font-size: var(--sys-font-size-small);
   line-height: var(--sys-line-height-body);
@@ -34,8 +35,8 @@
 
   &:hover,
   &:focus-visible {
-    background: var(--sys-color-text);
-    border-color: var(--sys-color-text);
+    background: color-mix(in srgb, var(--accent-ink) 78%, var(--sys-color-text));
+    border-color: color-mix(in srgb, var(--accent-ink) 78%, var(--sys-color-text));
     color: var(--sys-color-background);
   }
 }

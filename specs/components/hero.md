@@ -14,27 +14,24 @@ Do not repeat inside case studies.
 
 ## 3. Anatomy
 
-- Eyebrow
-- Title
-- Description
-- Annotation
-- Detail list
-- Illustration
+- Portrait photo card
+- Two-line headline
+- Introduction
 
 ## 4. Tokens used
 
 - `--sys-color-text`
-- `--sys-color-text-muted`
-- `--sys-color-link`
-- `--sys-font-size-*`
-- `--sys-font-weight-*`
+- `--comp-hero-accent`
+- `--sys-font-size-hero`
+- `--sys-font-size-body-lg`
 - `--sys-space-*`
-- `--sys-motion-duration-slow`
-- `--sys-z-*`
+- `--comp-hero-portrait-width`
+- `--comp-hero-copy-width`
+- `--comp-hero-line2-indent`
 
 ## 5. Props/API
 
-CSS section `.section--main`; animation hooks use `.animate-item` and existing JavaScript.
+CSS section `.section--main` with `.hero__big` and `.hero__text`; the entrance is `setupHeroAnimation` in `utility/landingPageAnimation.js`.
 
 ## 6. States
 
@@ -48,7 +45,7 @@ CSS section `.section--main`; animation hooks use `.animate-item` and existing J
 ## 7. Code example
 
 ```html
-<section class="section section--main"><h1 class="block__title">Portfolio</h1><p class="block__description">Selected work</p></section>
+<section class="hero section--main"><figure class="photo-card photo-card--portrait">…</figure><div class="hero__text">…</div></section>
 ```
 
 ## 8. Cross-references

@@ -2,6 +2,10 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,9 +45,27 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
-        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda">
+        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda nda--confidential">
         <p class="project-module__text body warning">本專案已簽署 NDA，無法於公開平台展示專案細節。</p>
-        </div></div><section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
+        </div></div><section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="摘要">加入 RFID 掃描解決標籤難尋問題，客戶已簽約導入</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">問題</h3>
+        <p class="body">QRcode 必須看到標籤才能掃，但氣墊床在籠車裡堆疊，司機難以甚至無法逐一翻找，頻繁掃描也拖慢收送貨作業。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">關鍵決策</h3>
+        <p class="body">保留 QRcode，另加 RFID 作為選項；現場只呈現「型號與數量」；掃描異常時提供替代解法，讓作業不中斷。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">成果</h3>
+        <p class="body">客戶已簽約購買並導入 RFID 服務。</p>
+        </div>
+              </div>
+            </section>
+        <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>
                 <div class="sec__content">
@@ -198,7 +220,7 @@
                   <div class="project-module project-module--text">
         <p class="project-module__text">我們向客戶展示不同 RFID
                                                                                                               設備的掃描方式與結果，利用模擬場域模擬作業人員的掃描方式，並搭配提案簡報說明軟體開發路徑與導入相關準備事宜。並成功於
-                                                                                                              2025 年下半年確認簽約購買相關服務。</p>
+                                                                                                              2025 年下半年確認簽約購買相關服務，目前已導入。</p>
         </div>
         <div class="project-module project-module--image-pair">
         <img src="../../img/projects/rfid/image-rfid-presentation1.webp" alt="" class="ui-zoomable-media" data-zoom-image />

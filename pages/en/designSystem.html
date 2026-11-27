@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,6 +45,24 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
+        <section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="Summary">A design system rebuilt around usage context, adopted in SHOPLINE V2</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Problem</h3>
+        <p class="body">Components had no usage context, naming was inconsistent, and specs were scattered with no update process, so the system drifted from the product.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Key decisions</h3>
+        <p class="body">Design two linked libraries: ready-to-use components for designers, and master components that hold the specs. Standardize spec writing. Set up a design issue log, reviewed in weekly meetings.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Outcome</h3>
+        <p class="body">45 components and their guidelines defined, in use on the SHOPLINE V2 platform and iterated in weekly meetings.</p>
+        </div>
+              </div>
+            </section>
         <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>

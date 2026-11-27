@@ -14,24 +14,30 @@
 .kitchenMenu__courseLine { flex: 1; border-top: var(--sys-rule-width-thin) solid var(--sys-color-border); margin-bottom: 0.5rem; }
 .kitchenMenu__peek {
   position: fixed; top: 0; left: 0; z-index: var(--sys-z-peek); pointer-events: none;
-  width: var(--comp-kitchen-peek-width); border: var(--sys-border-hairline); background: var(--sys-color-background-soft); box-shadow: var(--comp-shadow-offset-kitchen);
-  opacity: 0; transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+  width: var(--comp-kitchen-peek-width); background: var(--sys-color-background-soft);
+  /* Hidden, it lies where its shadow will be; shown, it lifts up and to the left and the shadow opens under it. */
+  opacity: 0; translate: var(--sys-space-xs) var(--sys-space-xs); scale: 0.94; box-shadow: 0 0 0 var(--sys-color-chapter-kitchen);
+  transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), translate var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth),
+    scale var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth), box-shadow var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth);
 }
+.kitchenMenu__peek, .kitchenMenu__dock { overflow: hidden; }
 .kitchenMenu__peek img { width: 100%; aspect-ratio: 1; object-fit: cover; }
 .kitchenMenu__peekHint { background: var(--sys-color-chapter-kitchen); color: var(--sys-color-background); padding: var(--comp-kitchen-peek-hint-padding-block) var(--sys-space-14); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); }
-.kitchenMenu__peek.is-on { opacity: 1; }
+.kitchenMenu__peek.is-on { opacity: 1; translate: none; scale: 1; box-shadow: var(--comp-shadow-offset-kitchen); }
 /* Touch screens: the photo card of the dish nearest the middle of the screen (see utility/kitchenMenu.js). */
 .kitchenMenu__dock {
-  position: fixed; right: var(--gutter); bottom: var(--sys-space-md); z-index: var(--sys-z-peek);
+  position: fixed; right: calc(var(--home-side-right) + var(--gutter)); bottom: calc(var(--home-side-bottom) + var(--sys-space-md)); z-index: var(--sys-z-peek);
   width: var(--sys-space-160); padding: var(--sys-space-0); display: block; text-align: left; cursor: pointer; font: inherit;
-  border: var(--sys-border-hairline); background: var(--sys-color-background-soft); box-shadow: var(--comp-shadow-offset-kitchen-phone);
-  opacity: 0; transform: translateY(var(--sys-space-md)); pointer-events: none;
-  transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), transform var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+  border: 0; background: var(--sys-color-background-soft); box-shadow: 0 0 0 var(--sys-color-chapter-kitchen);
+  opacity: 0; transform: translateY(var(--sys-space-md)); translate: var(--sys-space-2xs) var(--sys-space-2xs); scale: 0.94; pointer-events: none;
+  transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), transform var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth),
+    translate var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth), scale var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth),
+    box-shadow var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth);
 }
-.kitchenMenu__dock.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.kitchenMenu__dock.is-on { opacity: 1; transform: none; translate: none; scale: 1; box-shadow: var(--comp-shadow-offset-kitchen-phone); pointer-events: auto; }
 .kitchenMenu__dock img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
 .kitchenMenu__dock .kitchenMenu__peekHint { display: block; font-size: var(--sys-font-size-caption); }
-@media (prefers-reduced-motion: reduce) { .kitchenMenu__dock { transition: none; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .kitchenMenu__peek, .kitchenMenu__dock { transition: none; transform: none; translate: none; scale: 1; } }
 /* Taller than the largest viewport by one spare band, so on phones the sheet still reaches the very bottom of the screen
    (the page menu must never peek out under it) even when the browser's bars move or its toolbar floats over the page. */
 .kitchenMenu__overlay { --overlay-spare: var(--sys-space-5xl); position: fixed; inset: 0 0 auto 0; height: calc(100vh + var(--overlay-spare)); height: calc(100lvh + var(--overlay-spare)); z-index: var(--sys-z-overlay); pointer-events: none; }
@@ -58,10 +64,11 @@
 .kitchenMenu__iconBtn svg { width: var(--sys-font-size-title-sm); height: var(--sys-font-size-title-sm); display: block; }
 .kitchenMenu__iconBtn:hover { background: var(--sys-color-text); color: var(--sys-color-background); }
 .kitchenMenu__iconBtn:focus-visible { outline: var(--sys-space-hairline) solid var(--accent-ink); outline-offset: var(--sys-space-3xs); }
-.kitchenMenu__photo { border: var(--sys-border-hairline); box-shadow: var(--comp-shadow-offset-kitchen); }
+.kitchenMenu__photo { box-shadow: var(--comp-shadow-offset-kitchen); }
 .kitchenMenu__photo img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-.kitchenMenu__sZh { font-family: var(--sys-font-family-body); font-size: var(--sys-font-size-title-md); line-height: var(--sys-line-height-heading); font-weight: var(--sys-font-weight-medium); }
-.kitchenMenu__sEn { font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-medium); color: var(--sys-color-text-muted); margin-top: var(--sys-space-pull-md); }
+.kitchenMenu__sZh { font-family: var(--sys-font-family-body); font-size: var(--comp-kitchen-recipe-name-size); line-height: var(--sys-line-height-heading); font-weight: var(--sys-font-weight-medium); }
+/* the English name is set like a menu: the display serif in italic, in the kitchen colour */
+.kitchenMenu__sEn { font-family: var(--sys-font-family-display); font-style: italic; font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-heading); font-weight: var(--sys-font-weight-regular); color: var(--sys-color-chapter-kitchen); margin-top: var(--sys-space-pull-sm); }
 .kitchenMenu__meta { display: flex; flex-wrap: wrap; gap: var(--sys-space-xs) var(--sys-space-xl); }
 .kitchenMenu__meta > div { flex: 1 1 0; min-width: max-content; display: flex; align-items: center; gap: var(--sys-space-md); }
 .kitchenMenu__meta dt { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); color: var(--sys-color-text-muted); }
@@ -70,13 +77,13 @@
 .kitchenMenu__sNote:empty { display: none; }
 .kitchenMenu__cols { display: flex; flex-direction: column; gap: var(--sys-space-5xl); flex: 0 0 auto; }
 .kitchenMenu__h { display: flex; align-items: center; gap: var(--sys-space-md); font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-regular); color: var(--sys-color-text); }
-.kitchenMenu__h::after { content: ''; flex: 1; height: var(--sys-rule-width-thin); background: var(--sys-color-text); }
+.kitchenMenu__h::after { content: ''; flex: 1; height: var(--sys-rule-width-thin); background: var(--sys-color-border); }
 .kitchenMenu__ings, .kitchenMenu__steps { list-style: none; }
 .kitchenMenu__ings { display: flex; flex-direction: column; gap: var(--sys-space-sm); }
 .kitchenMenu__ings li { display: flex; align-items: center; gap: var(--sys-space-sm); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); color: var(--sys-color-text-muted); }
 .kitchenMenu__ings .mono { color: var(--sys-color-text); white-space: nowrap; text-align: right; }
 .kitchenMenu__steps li { position: relative; }
-.kitchenMenu__steps li:not(:last-child)::before { content: ''; position: absolute; left: var(--sys-font-size-title-xs); top: var(--sys-font-size-title-md); bottom: var(--sys-radius-sm); width: var(--sys-rule-width-thin); background: var(--sys-color-text); transform: translateX(var(--sys-rule-nudge)); }
+.kitchenMenu__steps li:not(:last-child)::before { content: ''; position: absolute; left: var(--sys-font-size-title-xs); top: var(--sys-font-size-title-md); bottom: var(--sys-radius-sm); width: var(--sys-rule-width-thin); background: var(--sys-color-border); transform: translateX(var(--sys-rule-nudge)); }
 .kitchenMenu__stepRow {
   display: grid; grid-template-columns: var(--sys-space-4xl) minmax(0, 1fr); gap: var(--sys-space-md); align-items: start;
   width: 100%; min-height: var(--sys-space-6xl); text-align: left;
@@ -131,11 +138,11 @@
    sheet keeps the photo on top.) */
 .kitchenMenu__sheet { container-type: inline-size; }
 @container (min-width: 26rem) {
-  .kitchenMenu__hero { flex-direction: row; align-items: stretch; gap: var(--sys-space-2xl); }
+  .kitchenMenu__hero { flex-direction: row; align-items: stretch; gap: var(--sys-space-56); }
   .kitchenMenu__photo { flex: 0 0 44%; align-self: flex-start; }
   /* the name and facts sit at the bottom of the photo's height */
   .kitchenMenu__hero > div:last-child { flex: 1 1 0; min-width: 0; justify-content: flex-end; }
-  .kitchenMenu__hero .kitchenMenu__meta { flex-direction: column; flex-wrap: nowrap; gap: var(--sys-space-xs); }
+  .kitchenMenu__hero .kitchenMenu__meta { flex-direction: column; flex-wrap: nowrap; gap: var(--sys-space-xs); margin-bottom: var(--sys-space-pull-xs); } /* the last row's leading: ends level with the photo */
   .kitchenMenu__hero .kitchenMenu__meta > div { flex: 0 0 auto; min-width: 0; }
 }
 

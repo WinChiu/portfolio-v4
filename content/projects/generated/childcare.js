@@ -49,6 +49,44 @@ const project = {
       "outcome": "由簡至繁提供三種方案讓政府部門參考。最終於專案結束後兩年，促成新懶人包上架於網站上。"
     }
   },
+  "summary": {
+    "en": {
+      "label": "Summary",
+      "headline": "A three-tier proposal led to a new official guide two years later",
+      "points": [
+        {
+          "title": "Problem",
+          "text": "Over 30% of applications had errors or were ineligible: parents struggled to find the rules in a poorly structured site and flow."
+        },
+        {
+          "title": "Key decisions",
+          "text": "Treat every parent as a first-time user. Improve the mobile layout. With no budget set aside, split the solution into three levels of cost."
+        },
+        {
+          "title": "Outcome",
+          "text": "Two years after the project, the agency asked for our guide and published a new one based on it."
+        }
+      ]
+    },
+    "zh": {
+      "label": "摘要",
+      "headline": "分三種規模提案，兩年後促成新懶人包上架",
+      "points": [
+        {
+          "title": "問題",
+          "text": "超過 3 成申請文件填寫錯誤或資格不符，網站資訊架構與流程不佳，家長難以找到需要的規定。"
+        },
+        {
+          "title": "關鍵決策",
+          "text": "把每位家長都視為首次使用者；優化手機版介面；政府沒有預留預算，因此將解方拆成三種成本層級。"
+        },
+        {
+          "title": "成果",
+          "text": "專案結束兩年後，承辦人索取我們設計的懶人包，並以此為基礎公布新版。"
+        }
+      ]
+    }
+  },
   "sections": {
     "en": [
       {

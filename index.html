@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:url" content="https://winchiuwc.com" />
     <meta property="og:image" content="https://i.imgur.com/boUdes1.jpg" />
@@ -13,7 +17,7 @@
     />
     <title>Win's Portfolio</title>
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style/style.css?v=5f6d054d" />
+    <link rel="stylesheet" href="style/style.css?v=8936e0dc" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@400;500;600&display=swap"
@@ -25,7 +29,7 @@
     <script src="./utility/Flip.min.js"></script>
     <script src="./utility/SplitText.min.js"></script>
     <script src="./utility/lenis.min.js"></script>
-    <script src="./utility/smoothScroll.js?v=9f280277"></script>
+    <script src="./utility/smoothScroll.js?v=3ae9a931"></script>
     <script type="module" src="./components/components.js?v=f61179a9"></script>
   </head>
   <body>
@@ -37,16 +41,16 @@
     <script src="components/EffortMeter/effortMeter.js?v=98588aa8"></script>
     <script src="components/MenuItem/menuItem.js?v=2d1a7b3b"></script>
     <script src="components/Button/button.js?v=40ce074a"></script>
-    <script src="components/PhotoCard/photoCard.js?v=7acf0520"></script>
+    <script src="components/PhotoCard/photoCard.js?v=bbb989c7"></script>
     <script src="components/ProjectCard/projectCard.js?v=1a74be62"></script>
     <script src="content/kitchenMenuData.js?v=b5f64994"></script>
-    <script src="content/homeContent.js?v=90cc388d"></script>
-    <script src="utility/renderHomePage.js?v=c2aae98e"></script>
-    <script src="utility/kitchenMenu.js?v=c5cbf6ee"></script>
-    <script src="utility/lifeStrip.js?v=07a418e3"></script>
-    <script src="utility/landingPageAnimation.js?v=fe330907"></script>
-    <script src="utility/homeNavigation.js?v=34b8d8a5"></script>
-    <script src="utility/heroCards.js?v=1eb584d4"></script>
-    <script src="utility/loadingPage.js?v=7c38f672"></script>
+    <script src="content/homeContent.js?v=af44b972"></script>
+    <script src="utility/renderHomePage.js?v=9bb16d48"></script>
+    <script src="utility/kitchenMenu.js?v=19847d50"></script>
+    <script src="utility/lifeStrip.js?v=5a1da5f0"></script>
+    <script src="utility/landingPageAnimation.js?v=74ad4baf"></script>
+    <script src="utility/homeNavigation.js?v=35bc7ba0"></script>
+    <script src="utility/heroPortrait.js?v=99c77d52"></script>
+    <script src="utility/loadingPage.js?v=c954f8fd"></script>
   </body>
 </html>

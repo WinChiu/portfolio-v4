@@ -120,6 +120,7 @@
   --sys-color-interactive-hover: var(--ref-palette-sand-77);
   --sys-color-interactive-subtle: color-mix(in srgb, var(--ref-palette-red-45) 16%, transparent); /* tint and disabled fill */
   --sys-color-focus: color-mix(in srgb, var(--ref-palette-red-45) 50%, transparent);
+  --sys-color-confidential: var(--ref-palette-red-45); /* NDA notices */
 
   /* System: Color: emphasis tints */
   --sys-color-highlight: color-mix(in srgb, var(--ref-palette-sand-89) 28%, transparent);
@@ -264,33 +265,49 @@
   --comp-shadow-offset-work-phone: var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-work);
 
   /* Component: Navigation */
-  --comp-nav-width-home: var(--sys-space-7xl);
+  --comp-nav-width-home: var(--sys-space-56);
+  --comp-nav-none: 0px; /* no bar space: a length, so it still works inside calc() */
   --comp-nav-height-home: var(--sys-space-56);
+  --comp-nav-height-home-phone: 2.75rem;
   --comp-nav-width-project: var(--sys-space-72);
   --comp-nav-width-project-expanded: var(--ref-size-272);
+  --comp-loader-count-font: serif; /* the loading percentage, thin on every page */
   --comp-skip-link-offset: calc(-1 * var(--sys-space-80));
   --comp-project-index-list-top: var(--sys-space-56);
   --comp-page-progress-offset: calc(-1 * var(--sys-space-hairline));
   --comp-section-scroll-margin: var(--sys-space-80);
 
   /* Component: Hero */
-  --comp-hero-card-width: 11rem;
-  --comp-hero-card-width-phone: 7rem;
-  --comp-hero-card-width-stacked: var(--sys-space-160);
-  --comp-hero-padding-bottom: var(--sys-space-72);
-  --comp-hero-copy-bottom: var(--sys-space-2xl);
-  --comp-hero-copy-width: var(--ref-size-512);
-  --comp-hero-line1-indent: 1em;
+  --comp-hero-portrait-width: 25.5rem;
+  --comp-hero-caption-size: min(var(--sys-font-size-title-md), 2.6vw); /* the handwritten line stays on one row */
+  --comp-hero-copy-width: 36rem;
+  --comp-hero-accent: var(--sys-color-chapter-life); /* second headline line and highlighted words */
+  --comp-hero-line2-indent: 1.15em;
+  --comp-life-min-height: 38rem;
+  --comp-life-card-max-width: 78vw;
+  --comp-life-card-max-height: 30rem;
+  --comp-life-card-max-height-phone: 21rem;
+  --comp-portrait-spot-width: 3px;
+  --comp-portrait-spot-dash: 18px 12px; /* dash, gap */
+  /* narrow screens: sizes as a share of the height above the chapter bars, capped by the width */
+  --comp-hero-narrow-portrait: 0.32;
+  --comp-hero-narrow-portrait-max: 78vw;
+  --comp-hero-narrow-caption: 0.085;
+  --comp-hero-narrow-title: 0.15;
+  --comp-hero-narrow-title-max: 17.5vw;
+  --comp-hero-title-fit: 9.5cqw; /* keeps the headline inside its column */
 
   /* Component: Home sections */
   --comp-project-cover-bleed: calc(-1 * var(--sys-space-72));
   --comp-project-cover-width: var(--ref-size-512);
   --comp-about-portrait-width: 29rem;
+  --comp-about-photo-offset: calc(var(--sys-font-size-chapter) * 0.155); /* drops the photo to the top of the letters in "About" */
   --comp-chapter-title-padding-top: var(--sys-space-3xl);
   --comp-menu-item-padding-block: var(--sys-space-sm);
   --comp-kitchen-peek-hint-padding-block: var(--sys-space-xs);
   --comp-kitchen-peek-width: var(--ref-size-272);
   --comp-kitchen-recipe-width: 46rem;
+  --comp-kitchen-recipe-name-size: var(--ref-size-28); /* the Chinese dish name in the recipe drawer */
   --comp-life-card-width: 22rem;
   --comp-life-card-width-landscape: 33rem;
   --comp-life-photo-height: 24rem;

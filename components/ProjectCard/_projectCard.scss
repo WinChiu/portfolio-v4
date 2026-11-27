@@ -1,3 +1,5 @@
+// The layout follows the width of the list, not of the window (the home page's side bars narrow it), so the list
+// that holds the cards is the query container.
 // ProjectCard: a case study on the Work list. Number, then copy, then the cover; the cover drops below the copy
 // on tablets and below everything on phones. The accent color comes from the Work chapter (--accent-ink).
 // Each card draws its own bottom line as it appears (--work-line-progress is driven by landingPageAnimation.js).
@@ -5,8 +7,8 @@
 .project-card {
   position: relative;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) minmax(0, var(--comp-project-cover-width));
-  gap: var(--sys-space-4xl);
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, min(var(--comp-project-cover-width), 40%));
+  gap: var(--sys-space-3xl);
   padding: var(--sys-space-80) var(--gutter);
   border-top: 0;
   align-items: start;
@@ -17,8 +19,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: var(--line-w, 1px);
-    background: var(--sys-color-border);
+    // a border, not a 1px-tall fill: on scaled screens only a border snaps to the same thickness as the other lines
+    border-top: var(--line-w, 1px) solid var(--sys-color-border);
     transform: scaleX(var(--work-line-progress, 1));
     transform-origin: left;
   }
@@ -93,7 +95,9 @@
   }
 }
 
-@media (min-width: 72.0625rem) {
+#project-list { container-type: inline-size; }
+
+@container (min-width: 64.0625rem) {
   // Drawn (Hairline) covers carry their own empty margin inside the box. Pull the box into the row padding so the
   // artwork, not its empty margin, sets the visual spacing, and centre it against the text.
   .project-card__cover:has(hairline-cover) {
@@ -102,7 +106,7 @@
   }
 }
 
-@media (min-width: 48.0625rem) and (max-width: 72rem) {
+@container (max-width: 56rem) {
   .project-card {
     grid-template-columns: auto minmax(0, 1fr);
     gap: var(--sys-space-xl) var(--sys-space-3xl);

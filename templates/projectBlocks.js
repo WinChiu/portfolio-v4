@@ -88,7 +88,10 @@ function renderQuote(module) {
   const extraClasses = module.paragraphClass ? ` ${module.paragraphClass}` : '';
   const paragraphClass = ` class="project-module__text body${extraClasses}"`;
 
-  return `<div class="ui-quote project-module project-module--quote nda">
+  // NDA notices share the quote box but are always red, whatever the project color.
+  const isNda = ['warning', 'project-module__nda-note'].includes(module.paragraphClass);
+
+  return `<div class="ui-quote project-module project-module--quote nda${isNda ? ' nda--confidential' : ''}">
 <p${paragraphClass}>${module.html}</p>
 </div>`;
 }
@@ -338,7 +341,27 @@ ${module.images.map((image) => renderImage(image)).join('\n')}
   }
 }
 
-function renderSections(sections) {
+// "00" chapter: the whole case on one screen. The headline states the conclusion; `label` is its short name in the nav.
+function renderSummary(summary) {
+  const points = summary.points
+    .map(
+      (point) => `<div class="summary__point">
+<h3 class="project-module__item-title">${point.title}</h3>
+<p class="body">${point.text}</p>
+</div>`,
+    )
+    .join('\n');
+
+  return `<section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+      <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+      <h2 class="project-module__chapter-title" id="toc0-title" data-toc="${summary.label}">${summary.headline}</h2>
+      <div class="summary">
+${points}
+      </div>
+    </section>\n`;
+}
+
+function renderSections(sections, summary) {
   const chapters = [];
   let current = null;
   let preamble = '';
@@ -355,7 +378,7 @@ function renderSections(sections) {
       }
     }
   }
-  return indent((preamble ? `<div class="p-preamble">${preamble}</div>` : '') + chapters.map((chapter, index) => {
+  return indent((preamble ? `<div class="p-preamble">${preamble}</div>` : '') + (summary ? renderSummary(summary) : '') + chapters.map((chapter, index) => {
     const id = `toc${index + 1}`;
     return `<section class="project-page__section sec${chapter.dark ? ' sec--problem' : ''}" id="${id}" aria-labelledby="${id}-title">
       <div class="sec__grid">

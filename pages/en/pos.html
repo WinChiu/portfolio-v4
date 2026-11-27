@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,6 +45,24 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
+        <section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="Summary">Payments that fit familiar POS flows, now live in Taiwan and Hong Kong</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Problem</h3>
+        <p class="body">Taiwan had no integrated card payment, so merchants handled it separately. In Hong Kong, above-market costs held back adoption.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Key decisions</h3>
+        <p class="body">Stay close to existing flows to limit relearning. Design a dedicated page for end-of-day card settlement, with a reminder dot. Design refund screens that show the refundable amount, preventing wrong entries.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Outcome</h3>
+        <p class="body">Six forward and reverse payment flows shipped and are used by merchants in Taiwan and Hong Kong.</p>
+        </div>
+              </div>
+            </section>
         <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>

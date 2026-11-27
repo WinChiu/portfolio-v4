@@ -184,7 +184,9 @@ window.__HOME_PAGE_CONTENT__ = {
       { label: 'Life', href: '#life' },
     ],
     hero: {
-      eyebrow: "Hi! I'm Win🏅, and I'm a",
+      imageSrc: '/img/hero-portrait.webp',
+      imageAlt: 'Win with a backpack in front of a stone wall',
+      caption: 'I’m Win, and this is me',
       title: 'Product Designer',
       description:
         'I design <span class="highlight">B2B workflows and design systems</span> for healthcare and e-commerce, with 2+ years in the field. Now in Stockholm, studying Interactive Media Technology at KTH, and cooking a lot.',
@@ -333,6 +335,7 @@ window.__HOME_PAGE_CONTENT__ = {
         order: 5,
         type: 'design',
         lang: 'en',
+        hidden: true,
       },
       {
         number: '06',
@@ -346,6 +349,7 @@ window.__HOME_PAGE_CONTENT__ = {
         order: 6,
         type: 'design',
         lang: 'en',
+        hidden: true,
       },
       {
         number: '02',
@@ -407,6 +411,7 @@ window.__HOME_PAGE_CONTENT__ = {
           'https://drive.google.com/file/d/1etnJz_AhdmPRFdXBVsFnvT6TVkz3AVjd/view?usp=sharing',
         type: 'code',
         lang: 'en',
+        hidden: true,
       },
     ],
   },
@@ -421,7 +426,9 @@ window.__HOME_PAGE_CONTENT__ = {
       { label: 'Life', href: '#life' },
     ],
     hero: {
-      eyebrow: "Hi! I'm Win🏅, and I'm a",
+      imageSrc: '/img/hero-portrait.webp',
+      imageAlt: 'Win 在石牆前的照片',
+      caption: '我是 Win，這就是我',
       title: 'Product Designer',
       description:
         '專注於 <span class="highlight">B2B 工具設計</span>、<span class="highlight">設計系統</span>與<a class="highlight block__descriptionLink" href="#kitchen">做菜</a>，具備 2+ 年<span class="highlight">醫療照護</span>與<span class="highlight">電商</span>產業經驗。',
@@ -554,6 +561,7 @@ window.__HOME_PAGE_CONTENT__ = {
         order: 5,
         type: 'design',
         lang: 'zh',
+        hidden: true,
       },
       {
         number: '06',
@@ -566,6 +574,7 @@ window.__HOME_PAGE_CONTENT__ = {
         order: 6,
         type: 'design',
         lang: 'zh',
+        hidden: true,
       },
       {
         number: '02',
@@ -627,6 +636,7 @@ window.__HOME_PAGE_CONTENT__ = {
           'https://drive.google.com/file/d/11le_59yoEMBsNNcp3lJiriQ2L9N855OX/view?usp=sharing',
         type: 'code',
         lang: 'zh',
+        hidden: true,
       },
     ],
   },

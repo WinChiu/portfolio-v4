@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,6 +45,24 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
+        <section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="Summary">A three-tier proposal led to a new official guide two years later</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Problem</h3>
+        <p class="body">Over 30% of applications had errors or were ineligible: parents struggled to find the rules in a poorly structured site and flow.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Key decisions</h3>
+        <p class="body">Treat every parent as a first-time user. Improve the mobile layout. With no budget set aside, split the solution into three levels of cost.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Outcome</h3>
+        <p class="body">Two years after the project, the agency asked for our guide and published a new one based on it.</p>
+        </div>
+              </div>
+            </section>
         <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>
@@ -313,7 +335,7 @@
             </section>
       </div>
     </section>
-    <a class="next project-page--designSystem" href="https://drive.google.com/file/d/1gW0bjl66qyWCAEFt6Bqg6CDiXGYfFeJq/view?usp=sharing" target="_blank" rel="noopener noreferrer"><span class="mono mute">Next project</span><p class="p-title">Comparing Haptic and Auditory Guidance in Non-visual Navigation System</p></a>
+    <a class="next project-page--designSystem" href="designSystem.html"><span class="mono mute">Next project</span><p class="p-title">Design System Architecture Design and Organization</p></a>
     </main>
     <nav class="project-nav index" id="navbar" aria-label="Project sections">
       <a class="index__back mono" href="/#work">Back</a>

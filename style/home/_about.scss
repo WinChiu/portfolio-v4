@@ -1,7 +1,7 @@
 // Home page / about
 
 .about__body {
-  display: flex; align-items: flex-end; gap: var(--sys-space-5xl);
+  display: flex; align-items: flex-start; gap: var(--sys-space-5xl);
   padding: var(--sys-space-5xl) var(--gutter) var(--sys-space-80);
 }
 .about__photo { flex: 0 0 min(var(--comp-about-portrait-width), 34%); position: relative; }
@@ -20,7 +20,7 @@
 .jobs .job__company { flex: 1 1 0; min-width: 0; text-align: right; font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); overflow-wrap: anywhere; }
 .jobs .block__jobDescription--past { opacity: 0.6; }
 @media (min-width: 48.0625rem) and (max-width: 72rem) {
-  .about__body { flex-direction: column; align-items: stretch; }
+  .about__body, .section--about .about__body { flex-direction: column; align-items: stretch; }
   .about__photo { flex-basis: auto; max-width: var(--comp-about-portrait-width); margin-right: var(--sys-space-xs); }
 }
 @media (max-width: 48rem) {
@@ -34,11 +34,32 @@
 }
 
 // About and Life are at least one screen tall; extra room goes around the content instead of squeezing it.
-.section--about, .section--life { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
-.section--about .about__body { flex: 1 1 auto; align-items: flex-end; }
+.section--about, .section--life { min-height: calc(100vh - var(--home-stack)); min-height: calc(100svh - var(--home-stack)); display: flex; flex-direction: column; }
+.section--about .about__body { flex: 1 1 auto; align-items: flex-start; }
+@media (min-width: 72.0625rem) {
+  // photo beside the title and text; the experience list under both, across the full width
+  .section--about .about__body {
+    display: grid;
+    grid-template-columns: min(var(--comp-about-portrait-width), 34%) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: start;
+    align-items: start;
+    row-gap: var(--sys-space-4xl);
+    column-gap: var(--sys-space-80);
+  }
+  // the title starts level with the photo and the text ends level with its foot; the room between opens up
+  .section--about .about__text { align-self: stretch; }
+  .section--about .about__intro { flex: 1 1 auto; justify-content: space-between; }
+  .section--about .about__paragraphs { margin-bottom: var(--sys-space-pull-xs); } // the last line's leading
+  .about__body .jobs { grid-column: 1 / -1; }
+  .section--about .about__photo { margin-top: var(--comp-about-photo-offset); }
+}
 .section--life .home__content { flex: 1 1 auto; display: flex; flex-direction: column; }
 .section--life .life__viewport { margin-top: var(--sys-space-auto); }
 @media (max-width: 48rem) {
-  .section--about, .section--life { min-height: calc(100svh - var(--comp-nav-height-home)); }
   .section--about .about__body { align-items: stretch; justify-content: center; }
+}
+// stacked layouts: the text and the experience list are as wide as the section
+@media (max-width: 72rem) {
+  .about__body .about__text, .about__body .jobs { align-self: stretch; }
 }

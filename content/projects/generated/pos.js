@@ -58,6 +58,44 @@ const project = {
       outcome: '產品上線並讓台灣與香港店家使用。',
     },
   },
+  "summary": {
+    "en": {
+      "label": "Summary",
+      "headline": "Payments that fit familiar POS flows, now live in Taiwan and Hong Kong",
+      "points": [
+        {
+          "title": "Problem",
+          "text": "Taiwan had no integrated card payment, so merchants handled it separately. In Hong Kong, above-market costs held back adoption."
+        },
+        {
+          "title": "Key decisions",
+          "text": "Stay close to existing flows to limit relearning. Design a dedicated page for end-of-day card settlement, with a reminder dot. Design refund screens that show the refundable amount, preventing wrong entries."
+        },
+        {
+          "title": "Outcome",
+          "text": "Six forward and reverse payment flows shipped and are used by merchants in Taiwan and Hong Kong."
+        }
+      ]
+    },
+    "zh": {
+      "label": "摘要",
+      "headline": "貼合既有流程補上金流，台港店家上線使用",
+      "points": [
+        {
+          "title": "問題",
+          "text": "台灣缺少信用卡金流整合，店家得另外處理收款；香港的刷卡機與金流成本高於市場平均，推廣受阻。"
+        },
+        {
+          "title": "關鍵決策",
+          "text": "貼合既有流程以降低學習成本；設計獨立的每日清機（刷卡結帳）頁面，並以紅點提醒；退款時顯示可退金額，避免輸入錯誤。"
+        },
+        {
+          "title": "成果",
+          "text": "6 項正逆金流流程上線，供台灣與香港店家使用。"
+        }
+      ]
+    }
+  },
   sections: {
     en: [
       {

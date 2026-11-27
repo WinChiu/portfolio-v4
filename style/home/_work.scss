@@ -1,7 +1,7 @@
 // Home page / work
 
 .tabs {
-  position: sticky; top: 0; z-index: var(--sys-z-tabs);
+  position: sticky; top: var(--home-tabs-top); z-index: var(--sys-z-tabs);
   display: flex; align-items: stretch;
   background: var(--sys-color-background);
   border-bottom: var(--sys-border-hairline);
@@ -24,7 +24,6 @@
   /* Drawn (Hairline) covers carry their own empty margin inside the box. Pull the box into the row padding so the artwork, not its empty margin, sets the visual spacing, and centre it against the text. */
 }
 @media (max-width: 48rem) {
-  .tabs { top: var(--comp-nav-height-home); }
   .tabs button { min-height: var(--sys-space-5xl); padding: var(--sys-space-0) var(--sys-space-xs); font-size: var(--sys-font-size-small); }
 }
 .workHide { display: none; }

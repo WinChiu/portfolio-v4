@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,9 +45,27 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
-        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda">
+        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda nda--confidential">
         <p class="project-module__text body project-module__nda-note"><strong>This project is under an NDA, so certain user research findings and the final design cannot be disclosed in detail publicly.</strong></p>
-        </div></div><section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
+        </div></div><section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="Summary">Faster scanning and automatic error handling won client adoption</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Problem</h3>
+        <p class="body">Paper records and manual checks left rental data inaccurate and product status unclear, causing revenue losses that were hard to spot.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Key decisions</h3>
+        <p class="body">Design the RFID scanning experience. Auto-fill non-critical data so tracking never stalls. Design efficiency analysis reports at multiple levels of granularity.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Outcome</h3>
+        <p class="body">The client confirmed the purchase agreement and adopted the solution in 2026.</p>
+        </div>
+              </div>
+            </section>
+        <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>
                 <div class="sec__content">

@@ -7,7 +7,9 @@
 .c-life    { --accent: var(--sys-color-chapter-life);    --accent-ink: var(--sys-color-chapter-life); }
 /* Softer ink: each area keeps copy in a soft black-grey and leaves titles in its own colour, and draws thin (1px) lines
    in one light grey. Components keep reading --sys-color-text / -muted / --sys-border-hairline. */
-.hero, .index, .c-work, .c-about, .c-kitchen, .c-life {
+/* The recipe drawer and the dish previews live in <body> (utility/kitchenMenu.js), so they are listed here to get the same
+   ink and lines. */
+.hero, .chapter-bar, .c-work, .c-about, .c-kitchen, .c-life, .kitchenMenu__overlay, .kitchenMenu__peek, .kitchenMenu__dock {
   --tint: var(--sys-color-brand);
   --line-w: 1px;
   --sys-color-text: #2b2926; /* black-grey for all copy and buttons; the chapter colour stays on titles */

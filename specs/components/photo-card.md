@@ -8,7 +8,7 @@
 
 ## 2. Overview
 
-Use for a photo in a paper frame: a loose, draggable card on the hero, or a card in the Life film strip.
+Use for a photo in a paper frame: the tilted portrait on the home hero, or a card in the Life film strip.
 
 Do not use for project covers or documentation images; use the project cover and zoomable media instead.
 
@@ -16,7 +16,7 @@ Do not use for project covers or documentation images; use the project cover and
 
 - Frame
 - Photo
-- Caption (floating) or note and meta line (strip)
+- Caption (portrait) or note and meta line (strip)
 
 ## 4. Tokens used
 
@@ -25,25 +25,24 @@ Do not use for project covers or documentation images; use the project cover and
 - `--sys-color-text-muted`
 - `--sys-border-hairline`
 - `--sys-space-*`
-- `--comp-hero-card-width`
+- `--comp-hero-portrait-width`
 - `--comp-life-card-width`
 - `--comp-life-photo-height`
 
 ## 5. Props/API
 
-`UI.PhotoCard({ variant, ... })` from `components/PhotoCard/photoCard.js`. `variant: "floating"` takes `src`, `alt`, `caption` and a `style` string that sets `--x --y --r --mx --my` (position and tilt); dragging is added by `utility/heroCards.js`. `variant: "strip"` takes `src`, `alt`, `note` (may carry markup), `location`, `date`, `index` and `loading`; `utility/lifeStrip.js` adds `photo-card--landscape` for wide photos. Styles: `components/PhotoCard/_photoCard.scss`.
+`UI.PhotoCard({ variant, ... })` from `components/PhotoCard/photoCard.js`. `variant: "portrait"` takes `src`, `alt` and `caption`; dragging is added by `utility/heroPortrait.js`. `variant: "strip"` takes `src`, `alt`, `note` (may carry markup), `location`, `date`, `index` and `loading`; `utility/lifeStrip.js` adds `photo-card--landscape` for wide photos. Styles: `components/PhotoCard/_photoCard.scss`.
 
 ## 6. States
 
 - Default: photo in its frame
-- Floating: grab cursor; dragging uses the grabbing cursor
-- Focus: brand-colored outline on the floating card
-- Hover, disabled, error: not applicable
+- Portrait: tilted; with a mouse or pen it can be dragged and thrown (shadow on hover, grab cursor, solid shadow lit from the top left while off the page, free rotation, bounce, a handwritten "Drag & Throw!" beside it, a dashed outline left where it came from, which it snaps back into when close, none of the motion with reduced motion)
+- Hover, focus, disabled, error: not applicable
 
 ## 7. Code example
 
 ```html
-<figure class="photo-card photo-card--floating" tabindex="0" style="--x:47%;--y:3rem;--r:-2deg">…</figure>
+<figure class="photo-card photo-card--portrait">…</figure>
 ```
 
 ## 8. Cross-references

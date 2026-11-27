@@ -68,7 +68,7 @@
     > span:nth-child(2) { color: var(--pl-ink); }
   }
 
-  // the counter sits above the name, centred, in the display serif
+  // the counter sits above the name, centred, in a thin serif
   &__big {
     display: flex;
     flex-direction: column;
@@ -80,7 +80,8 @@
 
   &__count {
     display: inline-flex;
-    font-family: var(--sys-font-family-display);
+    font-family: var(--comp-loader-count-font);
+    font-weight: var(--sys-font-weight-regular);
     font-size: 3rem;
     line-height: 1;
     letter-spacing: 0;

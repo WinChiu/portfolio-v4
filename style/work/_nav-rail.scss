@@ -30,7 +30,7 @@
 .index__list a.is-active { color: var(--sys-color-text); }
 .with-nav { margin-left: var(--nav); }
 /* Collapsed rail; expansion overlays the project. */
-.project-page .index { width: var(--sys-space-72); gap: var(--sys-space-3xl); padding: var(--sys-space-2xl) var(--sys-space-lg); align-items: stretch; overflow: hidden; transition: width var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth); }
+.project-page .index { interpolate-size: allow-keywords; width: var(--sys-space-72); gap: var(--sys-space-3xl); padding: var(--sys-space-2xl) var(--sys-space-lg); align-items: stretch; overflow: hidden; transition: width var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth); }
 .project-page .index > * { position: relative; z-index: var(--sys-z-content); }
 .index__back, .index__foot a { font-family: var(--sys-font-family-mono); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-body); color: var(--sys-color-text-muted); transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth); }
 .index__back:hover, .index__foot a:hover { color: var(--sys-color-text); }
@@ -38,7 +38,7 @@
 .index__back, .index__foot a { display: flex; align-items: center; justify-content: center; width: var(--sys-space-3xl); white-space: nowrap; overflow: visible; }
 .project-page .index__list { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; justify-content: safe center; gap: var(--sys-space-3xs); }
 .project-page .index__list a {
-  display: grid; grid-template-columns: var(--sys-space-3xl) minmax(0, 1fr); align-items: start;
+  display: grid; grid-template-columns: var(--sys-space-3xl) minmax(0, 1fr); align-items: baseline;
   padding: var(--sys-space-xs) var(--sys-space-0); min-height: var(--sys-space-4xl); font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); white-space: normal;
 }
 .project-page .index__list a .n { text-align: center; display: block; font-family: var(--sys-font-family-mono); font-variant-numeric: tabular-nums; line-height: var(--sys-line-height-relaxed); }
@@ -50,7 +50,7 @@
   /* ---------- rail: numbers only until hover / focus ---------- */
   /* The number column, Back and Top never move: expanding only reveals the labels to their right. */
   .project-page .index:not(:hover):not(:focus-within) .t { display: none; }
-  .project-page .index:hover, .project-page .index:focus-within { width: var(--comp-nav-width-project-expanded); }
+  .project-page .index:hover, .project-page .index:focus-within { width: fit-content; max-width: var(--comp-nav-width-project-expanded); min-width: var(--sys-space-72); }
 }
 /* numbers: the current section stands out, the rest are pale */
 .project-page .index__list a:not(.is-active) { opacity: .5; }
@@ -61,7 +61,7 @@
   .project-page .index__foot { display: none; }
   .project-page .index__back { line-height: var(--sys-line-height-relaxed); }
   .mobile-current { display: none; }
-  .sections-toggle { display: block; justify-self: end; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: var(--sys-line-height-relaxed); text-align: center; color: var(--sys-color-text); padding: var(--sys-space-3xs) var(--sys-space-xs); border: var(--line-w, 1px) solid var(--sys-color-border); background: var(--sys-color-background); cursor: pointer; font-size: var(--sys-font-size-caption); }
+  .sections-toggle { display: block; justify-self: end; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: var(--sys-line-height-relaxed); text-align: center; color: var(--sys-color-background); padding: var(--sys-space-3xs) var(--sys-space-xs); border: var(--line-w, 1px) solid var(--accent-ink); background: var(--accent-ink); cursor: pointer; font-size: var(--sys-font-size-caption); }
   .project-page .index__list { display: none; position: absolute; top: var(--comp-project-index-list-top); left: 0; right: 0; max-height: calc(100dvh - var(--sys-space-56)); background: var(--sys-color-background); border-bottom: var(--line-w, 1px) solid var(--sys-color-border); padding: var(--sys-space-md) var(--gutter); }
   .project-page .index.is-open .index__list { display: flex; flex-direction: column; justify-content: flex-start; }
   .project-page .index__list a .t { display: block; overflow: visible; white-space: normal; }
@@ -78,4 +78,38 @@
   .project-page .index__list a .t { overflow: hidden; white-space: nowrap; }
   .project-page .index__list { overflow-y: auto; }
   .project-page .index .index__list { position: absolute; }
+}
+@media (max-width: 48rem) {
+  /* the open menu lines up with the bar above it: numbers under "Back", the same room on both sides */
+  .project-page .index .index__list { padding: var(--sys-space-xs) var(--sys-space-md); }
+  .project-page .index__back { width: auto; justify-content: flex-start; }
+  .project-page .index .index__list a .n { width: auto; min-width: var(--sys-space-3xl); text-align: left; }
+  /* The menu rolls down from under the bar and its chapters follow one by one. Behind it, the same mask as the Kitchen
+     recipe drawer; tapping the mask closes the menu (utility/createToc.js). */
+  .project-page .index .index__list {
+    display: flex; flex-direction: column; justify-content: flex-start;
+    visibility: hidden; clip-path: inset(0 0 100% 0);
+    transition: clip-path var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth), visibility calc(var(--sys-motion-duration-stagger) * 0) var(--sys-motion-duration-standard);
+  }
+  .project-page .index.is-open .index__list {
+    visibility: visible; clip-path: inset(0 0 calc(-1 * var(--sys-space-hairline)) 0);
+    transition: clip-path var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth), visibility calc(var(--sys-motion-duration-stagger) * 0);
+  }
+  .project-page .index__list li {
+    opacity: 0; translate: 0 calc(-1 * var(--sys-space-xs));
+    transition: opacity var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth), translate var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth);
+  }
+  .project-page .index.is-open .index__list li { opacity: 1; translate: none; }
+  @for $i from 1 through 14 {
+    .project-page .index.is-open .index__list li:nth-child(#{$i}) { transition-delay: calc(#{$i} * var(--sys-motion-duration-stagger) * 0.6); }
+  }
+  .project-page .index::after {
+    content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 100dvh; background: var(--sys-color-scrim);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth), visibility calc(var(--sys-motion-duration-stagger) * 0) var(--sys-motion-duration-standard);
+  }
+  .project-page .index.is-open::after {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transition: opacity var(--sys-motion-duration-standard) var(--sys-motion-ease-smooth), visibility calc(var(--sys-motion-duration-stagger) * 0);
+  }
 }

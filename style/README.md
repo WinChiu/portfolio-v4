@@ -42,7 +42,7 @@ style/
 ├─ _lenis.scss               smooth-scroll hooks (both entries)
 ├─ home/                     one partial per home-page section
 │  ├─ _base.scss             reset, typography, links, shared helpers
-│  ├─ _nav.scss              fixed index + page progress
+│  ├─ _nav.scss              chapter bars (vertical strips / stacked)
 │  ├─ _chapters.scss         chapter headings
 │  ├─ _hero.scss, _work.scss, _about.scss, _kitchen-menu.scss, _life.scss
 └─ work/                     one partial per project-page area

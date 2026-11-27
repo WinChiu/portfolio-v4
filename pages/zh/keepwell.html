@@ -2,6 +2,10 @@
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,9 +45,27 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
-        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda">
+        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda nda--confidential">
         <p class="project-module__text body project-module__nda-note"><strong>本專案受保密協議（NDA）約束，因此部分使用者研究發現與最終設計無法公開揭露細節。</strong></p>
-        </div></div><section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
+        </div></div><section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="摘要">快速掃描加上自動排錯，客戶採購並導入</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">問題</h3>
+        <p class="body">紙本記錄與人工檢查讓租賃資料不準確，也掌握不到設施內的產品狀態，造成難以察覺的營收損失。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">關鍵決策</h3>
+        <p class="body">設計 RFID 掃描體驗；非關鍵資料自動補齊，讓追蹤不中斷；設計多顆粒度的效率分析報告。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">成果</h3>
+        <p class="body">客戶確認採購協議，並於 2026 年導入此解決方案。</p>
+        </div>
+              </div>
+            </section>
+        <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>
                 <div class="sec__content">

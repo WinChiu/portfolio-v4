@@ -46,7 +46,7 @@ A component that is made of others lists them as arguments of its wrapper (`Menu
 | MenuItem | Kitchen menu (62 dishes) | done |
 | EffortMeter | menu item, recipe sheet | done |
 | Leader | menu item, recipe sheet rows, ingredient rows | done |
-| PhotoCard (`floating`, `strip`) | hero cards, Life film strip | done |
+| PhotoCard (`portrait`, `strip`) | hero portrait, Life film strip | done |
 | ProjectCard | Work list (10 cards) | done |
 | HairlineCover | project covers (custom element) | existing |
 

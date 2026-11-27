@@ -1,52 +1,210 @@
-// Home page / nav
+// Home page / nav: one bar in front of each chapter.
+//
+// The hero and each chapter are shown one page at a time (.is-paged, set by utility/homeNavigation.js), and a bar is
+// either on the side already reached or on the side still ahead, never in between. Over 1024px the bars are vertical
+// strips on the left and right; below that they are full-width bars at the top and bottom. --passed is how many are
+// reached. Turning a page slides the new one and its bar across (a view transition); the slide always runs to the end.
+// Very short narrow screens are the exception: one long page, with the bars scrolling along.
+//
+// --home-bar is a horizontal bar's height, --home-stack the height all of them take together, --home-tabs-top the
+// offset the Work tabs stick at, --home-side-right / --home-side-bottom the room the bars take on those edges.
+// --bar is the bar's position (0 first), set by utility/renderHomePage.js.
 
-.index {
-  position: fixed;
-  inset: 0 auto 0 0;
-  width: var(--comp-nav-width-home);
-  padding: var(--sys-space-5xl) var(--sys-space-xl);
-  border-right: var(--sys-border-hairline);
+.home-page {
+  --home-bar: var(--comp-nav-height-home);
+  --home-stack: calc(4 * var(--home-bar));
+  --home-tabs-top: var(--home-bar);
+  --home-side-right: var(--comp-nav-none);
+  --home-side-bottom: var(--home-bar);
+}
+
+.chapter-bar {
+  position: sticky;
+  top: calc(var(--bar) * var(--home-bar));
+  bottom: calc((3 - var(--bar)) * var(--home-bar));
+  z-index: var(--sys-z-sticky);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  z-index: var(--sys-z-sticky);
+  height: var(--home-bar);
+  padding: var(--sys-space-0) var(--sys-space-xl);
+  border-top: var(--sys-border-hairline);
   background: var(--sys-color-background);
-  overflow: hidden;
-}
-.index__list, .index__social { position: relative; z-index: var(--sys-z-content); }
-.index__list { list-style: none; display: flex; flex-direction: column; gap: var(--sys-space-md); }
-.index__list a {
-  position: relative;
-  display: block;
   font-size: var(--sys-font-size-small);
-  line-height: var(--sys-line-height-relaxed);
-  color: #85827b;
-  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--sys-color-text-muted);
   transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+
+  // the line under the bar; the next bar's top line covers it when they are stacked
+  &::after {
+    content: '';
+    position: absolute;
+    inset: auto var(--sys-space-0) calc(-1 * var(--line-w)) var(--sys-space-0);
+    border-bottom: var(--sys-border-hairline);
+  }
+
+  &:hover { color: var(--sys-color-text); }
 }
-.index__list a .n { display: none; }
-.index__list a:hover { color: #3b3b38; }
-/* One neutral grey for every link; the current section is shown by weight and a darker grey, not by hue. */
-.index__list a.is-active { color: #1d1a16; font-weight: var(--sys-font-weight-semibold); }
-.index__social { display: block; width: var(--sys-font-size-title-md); height: var(--sys-font-size-title-md); }
-.index__social img { width: 100%; height: 100%; transition: filter var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth); }
-.with-nav { margin-left: var(--comp-nav-width-home); }
+.home-page .chapter-bar:focus-visible { outline-offset: var(--sys-outline-offset-inset); }
+
+// a bar's link (or any link to a chapter) lands the chapter right under its own bar
+#work { scroll-margin-top: var(--home-bar); }
+#about { scroll-margin-top: calc(2 * var(--home-bar)); }
+#kitchen { scroll-margin-top: calc(3 * var(--home-bar)); }
+#life { scroll-margin-top: calc(4 * var(--home-bar)); }
+
 @media (max-width: 48rem) {
-  .index {
-      inset: 0 0 auto 0;
-      width: auto;
-      height: var(--comp-nav-height-home);
-      padding: var(--sys-space-0) var(--sys-space-md);
-      border-right: 0;
-      border-bottom: var(--sys-border-hairline);
-      flex-direction: row;
-      align-items: center;
-      gap: var(--sys-space-md);
-      justify-content: flex-start;
+  .home-page { --home-bar: var(--comp-nav-height-home-phone); }
+  .chapter-bar { padding: var(--sys-space-0) var(--gutter); }
+}
+
+// very short screens (a phone on its side): the bars scroll with the page instead of taking most of the screen
+@media (max-height: 30rem) {
+  .home-page:not(.is-paged) { --home-stack: var(--comp-nav-none); --home-tabs-top: var(--sys-space-0); }
+  .home-page:not(.is-paged) .chapter-bar { position: relative; top: auto; bottom: auto; }
+  .home-page:not(.is-paged) :is(#work, #about, #kitchen, #life) { scroll-margin-top: var(--sys-space-0); }
+}
+
+// ---- paged, any width
+// the scrollbar's place is always kept, so pages with and without one are the same width and the bars never shift
+html:has(.home-page.is-paged) {
+  scrollbar-gutter: stable;
+  // an opaque track: nothing shows through the strip beside the bars
+  scrollbar-color: color-mix(in srgb, var(--sys-color-text) 35%, var(--sys-color-background)) var(--sys-color-background);
+}
+// no pull-to-refresh or bounce at the edges, where a swipe turns the page
+html:has(.home-page.is-paged) { overscroll-behavior-y: none; }
+.home-page.is-paged {
+  // The other pages wait far below the screen: out of sight and of the tab order, adding no scroll height, and too far
+  // down for their scroll reveals to fire before they are shown.
+  :is(section.hero, section.chapter):not(.is-current) {
+    position: fixed;
+    top: 10000vh;
+    left: var(--sys-space-0);
+    width: 100%;
+    visibility: hidden;
+  }
+
+  .chapter-bar { position: fixed; }
+  :is(#work, #about, #kitchen, #life) { scroll-margin-top: var(--sys-space-0); }
+}
+
+// ---- paged, wide screens: vertical bars on the left and right
+@media (min-width: 64.0625rem) {
+  .home-page.is-paged {
+    --home-bar: var(--comp-nav-none);
+    --home-stack: var(--comp-nav-none);
+    --home-tabs-top: var(--sys-space-0);
+    --home-side-bottom: var(--comp-nav-none);
+    --home-side-right: calc((4 - var(--passed, 0)) * var(--comp-nav-width-home));
+
+    main {
+      padding-left: calc(var(--passed, 0) * var(--comp-nav-width-home));
+      padding-right: var(--home-side-right);
     }
-  .index__list { flex-direction: row; gap: var(--sys-space-lg); }
-  .index__list a { font-size: var(--sys-font-size-small); }
-  .index__social { width: var(--sys-font-size-title-sm); height: var(--sys-font-size-title-sm); flex: 0 0 var(--sys-font-size-title-sm); margin-left: var(--sys-space-auto); }
-  .with-nav { margin-left: var(--sys-space-0); padding-top: var(--comp-nav-height-home); }
+
+    .chapter-bar {
+      top: var(--sys-space-0);
+      bottom: var(--sys-space-0);
+      right: calc((3 - var(--bar)) * var(--comp-nav-width-home));
+      width: var(--comp-nav-width-home);
+      height: auto;
+      flex-direction: column;
+      padding: var(--sys-space-xl) var(--sys-space-0);
+      border-top: 0;
+      border-left: var(--sys-border-hairline);
+
+      &::after { display: none; }
+
+      // the name reads top to bottom, turned a quarter; the number stays upright
+      span:last-child { writing-mode: vertical-rl; }
+
+      &.is-passed {
+        right: auto;
+        left: calc(var(--bar) * var(--comp-nav-width-home));
+        border-left: 0;
+        border-right: var(--sys-border-hairline);
+      }
+    }
+  }
+}
+
+// ---- paged, narrow screens: horizontal bars at the top and bottom
+@media (max-width: 64rem) {
+  .home-page.is-paged {
+    --home-tabs-top: calc(var(--passed, 0) * var(--home-bar));
+    --home-side-bottom: calc((4 - var(--passed, 0)) * var(--home-bar));
+
+    main {
+      padding-top: var(--home-tabs-top);
+      padding-bottom: var(--home-side-bottom);
+    }
+
+    .chapter-bar {
+      top: auto;
+      bottom: calc((3 - var(--bar)) * var(--home-bar));
+      left: var(--sys-space-0);
+      right: var(--sys-space-0);
+
+      &.is-passed {
+        top: calc(var(--bar) * var(--home-bar));
+        bottom: auto;
+      }
+    }
+  }
+}
+
+// ---- the page turn. The bars are named groups, so each glides to its new side; the rest of the page is the root
+// snapshot. Forward, the new page comes in from the right behind its bar; back, the old one leaves to the right.
+// --turn-distance is how far a bar travels, --turn-clip the bar area cut off the sliding page (both set by the script).
+html[data-turn] {
+  // the sliding page stays out of the scrollbar's strip, and is solid so the page under it does not show through
+  &::view-transition-group(root) { clip-path: inset(0 var(--turn-gutter, 0) 0 0); }
+  &::view-transition-old(root),
+  &::view-transition-new(root) { background: var(--sys-color-background); }
+
+  &::view-transition-group(*) {
+    animation-duration: var(--sys-motion-duration-curtain);
+    animation-timing-function: var(--sys-motion-ease-smooth);
+  }
+
+  &::view-transition-old(*),
+  &::view-transition-new(*) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  // a bar shows only its new look while it travels
+  &::view-transition-old(*):not(:only-child) { opacity: 0; }
+  &::view-transition-old(root):not(:only-child) { opacity: 1; }
+}
+html[data-turn='forward']::view-transition-new(root) {
+  clip-path: inset(0 0 0 var(--turn-clip));
+  animation: page-turn-in-x var(--sys-motion-duration-curtain) var(--sys-motion-ease-smooth) both;
+}
+html[data-turn='back']::view-transition-old(root) {
+  z-index: var(--sys-z-content);
+  clip-path: inset(0 0 0 var(--turn-clip));
+  animation: page-turn-out-x var(--sys-motion-duration-curtain) var(--sys-motion-ease-smooth) both;
+}
+// horizontal bars: the same turn, upwards
+html[data-turn='forward'][data-axis='y']::view-transition-new(root) {
+  clip-path: inset(var(--turn-clip) 0 0 0);
+  animation-name: page-turn-in-y;
+}
+html[data-turn='back'][data-axis='y']::view-transition-old(root) {
+  clip-path: inset(var(--turn-clip) 0 0 0);
+  animation-name: page-turn-out-y;
+}
+@keyframes page-turn-in-x {
+  from { transform: translateX(var(--turn-distance)); }
+}
+@keyframes page-turn-out-x {
+  to { transform: translateX(var(--turn-distance)); }
+}
+@keyframes page-turn-in-y {
+  from { transform: translateY(var(--turn-distance)); }
+}
+@keyframes page-turn-out-y {
+  to { transform: translateY(var(--turn-distance)); }
 }

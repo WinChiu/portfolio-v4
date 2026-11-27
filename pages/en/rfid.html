@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,10 +45,28 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
-        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda">
+        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda nda--confidential">
         <p class="project-module__text body warning">This project is under an NDA, so detailed information cannot be
                                                                                                               shared on public platforms.</p>
-        </div></div><section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
+        </div></div><section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="Summary">RFID scanning solved the hard-to-find label problem, and the client signed and adopted it</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Problem</h3>
+        <p class="body">A QR code has to be seen to be scanned, but mattresses are stacked in cage carts. Drivers struggled to find every label, or could not at all, and frequent scanning slowed pickup and delivery.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Key decisions</h3>
+        <p class="body">Keep QR codes and add RFID as another option. Design a simplified on-site scan screen showing only model and quantity. Offer a fallback when a scan fails, so the work never stops.</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">Outcome</h3>
+        <p class="body">The client signed the purchase agreement and has adopted the RFID service.</p>
+        </div>
+              </div>
+            </section>
+        <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>
                 <div class="sec__content">
@@ -225,7 +247,7 @@
                                                                                                               methods and results using a simulated work environment. Through
                                                                                                               the proposal presentation, we outlined the software development
                                                                                                               roadmap and implementation plan. The client later confirmed the
-                                                                                                              purchase agreement in the second half of 2025.</p>
+                                                                                                              purchase agreement in the second half of 2025 and has since adopted the service.</p>
         </div>
         <div class="project-module project-module--image-pair">
         <img src="../../img/projects/rfid/image-rfid-presentation1.webp" alt="" class="ui-zoomable-media" data-zoom-image />

@@ -49,3 +49,5 @@ a:focus-visible, button:focus-visible { outline: var(--sys-space-hairline) solid
 @media (max-width: 48rem) {
   .project-page { --gutter: var(--sys-space-lg); }
 }
+/* entrance moves start off to the side (utility/projectPageAnimation.js); that must never widen the page */
+.project-page main { overflow-x: clip; }

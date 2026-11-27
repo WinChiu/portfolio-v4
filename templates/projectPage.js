@@ -78,7 +78,7 @@ function renderNavigationWrapper(language) {
 
 function renderContent(project, lang) {
   if (project.sections && project.sections[lang]) {
-    return renderSections(project.sections[lang]);
+    return renderSections(project.sections[lang], project.summary?.[lang]);
   }
 
   if (project.rawContentHtml && project.rawContentHtml[lang]) {
@@ -98,6 +98,10 @@ function renderProjectPage(project, lang) {
 <html lang="${head.htmlLang}">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"

@@ -22,16 +22,32 @@
 .section--life.is-pinned .life__viewport { overflow: visible; }
 .section--life.is-pinned { overflow: clip; }
 
-/* Wide screens (1440px and up): the Life section is exactly one screen tall, and the photo cards are sized from the
-   height left under the heading, so they grow and shrink with the window instead of the section outgrowing it. A card
-   keeps its proportions (portrait / landscape ratios measured from the original fixed-size cards). */
-@media (min-width: 90rem) {
-  .section--life { height: max(100svh, 32rem); min-height: 0; }
-  .section--life .home__content { min-height: 0; }
-  .section--life .life__viewport { flex: 1 1 0; min-height: 0; margin-top: 0; }
-  .life__strip { height: 100%; align-items: stretch; }
-  .life__strip .photo-card--strip { height: 100%; width: auto; aspect-ratio: 0.693; }
-  .life__strip .photo-card--strip.photo-card--landscape { width: auto; aspect-ratio: 1.039; }
-  .life__strip .photo-card__frame { flex: 1 1 0; min-height: 0; }
-  .life__strip .photo-card__photo { height: 100%; }
+/* Life is exactly one screen tall (the room the chapter bars leave), and the photo cards are sized from the height
+   left under the heading, so they grow and shrink with the window and are never cut off. A card keeps its proportions
+   (portrait / landscape ratios measured from the original fixed-size cards) unless the screen is too narrow for them.
+   Only a very short screen makes the section taller than the room. */
+.section--life { height: max(calc(100svh - var(--home-stack)), var(--comp-life-min-height)); min-height: 0; }
+.section--life .home__content { min-height: 0; }
+.section--life .life__viewport { flex: 1 1 0; min-height: 0; margin-top: var(--sys-space-0); }
+.life__strip { height: 100%; align-items: flex-start; }
+.life__strip .photo-card--strip { height: min(100%, var(--comp-life-card-max-height)); width: auto; max-width: var(--comp-life-card-max-width); aspect-ratio: 0.693; }
+.life__strip .photo-card--strip.photo-card--landscape { width: auto; aspect-ratio: 1.039; }
+.life__strip .photo-card__frame { flex: 1 1 0; min-height: 0; }
+.life__strip .photo-card--strip .photo-card__photo { height: 100%; aspect-ratio: auto; }
+/* The heading is spaced like the Kitchen one (shared rule in _kitchen-menu.scss); the strip's own top padding counts
+   towards the space under the introduction. */
+@media (min-width: 48.0625rem) {
+  .section--life .life__head { padding-bottom: calc(var(--sys-space-6xl) - var(--sys-space-sm)); }
+  .section--life .life__strip { padding-bottom: var(--sys-space-lg); }
+}
+/* phones: the photos start right under the introduction, and are a size smaller */
+@media (max-width: 48rem) {
+  .life__strip .photo-card--strip { height: min(100%, var(--comp-life-card-max-height-phone)); }
+  .life__head { padding-bottom: var(--sys-space-xs); }
+}
+/* short wide screens: tighter cards, so the height left under the heading goes to the photo */
+@media (min-width: 48.0625rem) and (max-height: 50rem) {
+  .life__strip .photo-card--strip { padding: var(--sys-space-sm); gap: var(--sys-space-3xs); }
+  .life__strip .photo-card__note { margin-top: var(--sys-space-3xs); font-size: var(--sys-font-size-title-xs); }
+  .life__strip .photo-card__meta { margin-top: var(--sys-space-0); }
 }

@@ -1,6 +1,5 @@
 // Home page / chapters
 
-.chapter { border-top: var(--sys-border-hairline); }
 .chapter__title {
   font-family: var(--sys-font-family-display);
   font-weight: var(--sys-font-weight-regular);
@@ -9,24 +8,8 @@
   letter-spacing: var(--sys-letter-spacing-display);             
   color: var(--accent-ink);
 }
-@media (max-width: 48rem) {
-  .chapter { scroll-margin-top: var(--comp-nav-height-home); }
-}
 .work .chapter__title { padding: var(--comp-chapter-title-padding-top) var(--gutter) var(--sys-space-0); margin-left: var(--sys-space-pull-sm); margin-bottom: var(--sys-space-xl); }
 @media (max-width: 48rem) {
   .work .chapter__title { margin-left: var(--sys-space-pull-xs); padding-top: var(--sys-space-xl); margin-bottom: var(--sys-space-md); }
 }
-.chapter { position: relative; border-top-color: var(--sys-color-transparent); }
-.chapter::before {
-  content: '';
-  position: absolute;
-  top: calc(-1 * var(--line-w, 1px));
-  inset-inline: var(--sys-space-0);
-  height: var(--line-w, 1px);
-  background: var(--sys-color-border);
-  transform: scaleX(var(--section-line-progress, 1));
-  transform-origin: left;
-  pointer-events: none;
-}
-/* Life clips its overflow, which would cut off a line sitting just above its box. */
-.chapter.life::before { top: 0; }
+.chapter { position: relative; }

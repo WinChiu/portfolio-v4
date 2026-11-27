@@ -2,6 +2,10 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,6 +45,24 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
+        <section class="project-page__section sec sec--summary" id="toc0" aria-labelledby="toc0-title">
+              <p class="summary__label mono"><span class="sec__num" aria-hidden="true">00</span><span>Executive Summary</span></p>
+              <h2 class="project-module__chapter-title" id="toc0-title" data-toc="摘要">貼合既有流程補上金流，台港店家上線使用</h2>
+              <div class="summary">
+        <div class="summary__point">
+        <h3 class="project-module__item-title">問題</h3>
+        <p class="body">台灣缺少信用卡金流整合，店家得另外處理收款；香港的刷卡機與金流成本高於市場平均，推廣受阻。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">關鍵決策</h3>
+        <p class="body">貼合既有流程以降低學習成本；設計獨立的每日清機（刷卡結帳）頁面，並以紅點提醒；退款時顯示可退金額，避免輸入錯誤。</p>
+        </div>
+        <div class="summary__point">
+        <h3 class="project-module__item-title">成果</h3>
+        <p class="body">6 項正逆金流流程上線，供台灣與香港店家使用。</p>
+        </div>
+              </div>
+            </section>
         <section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">
               <div class="sec__grid">
                 <span class="sec__num" aria-hidden="true">01</span>

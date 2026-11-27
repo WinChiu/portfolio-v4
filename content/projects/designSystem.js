@@ -58,6 +58,44 @@ const designSystemProject = {
         '設計系統投入 SHOPLINE 電商平台 V2 使用，並於內部週會進行設計系統更新討論與迭代。',
     },
   },
+  "summary": {
+    "en": {
+      "label": "Summary",
+      "headline": "A design system rebuilt around usage context, adopted in SHOPLINE V2",
+      "points": [
+        {
+          "title": "Problem",
+          "text": "Components had no usage context, naming was inconsistent, and specs were scattered with no update process, so the system drifted from the product."
+        },
+        {
+          "title": "Key decisions",
+          "text": "Design two linked libraries: ready-to-use components for designers, and master components that hold the specs. Standardize spec writing. Set up a design issue log, reviewed in weekly meetings."
+        },
+        {
+          "title": "Outcome",
+          "text": "45 components and their guidelines defined, in use on the SHOPLINE V2 platform and iterated in weekly meetings."
+        }
+      ]
+    },
+    "zh": {
+      "label": "摘要",
+      "headline": "以使用情境重整設計系統，投入 SHOPLINE V2",
+      "points": [
+        {
+          "title": "問題",
+          "text": "元件沒有定義使用情境、命名歸檔不一、規範分散且缺少更新機制，設計師難查難用，系統也常與線上版本脫節。"
+        },
+        {
+          "title": "關鍵決策",
+          "text": "設計兩個互相連結的元件庫：供設計師取用的元件，以及記載規範的母元件；統一規範格式；建立設計問題回報表，於週會追蹤問題。"
+        },
+        {
+          "title": "成果",
+          "text": "定義 45 種元件與相關規範，投入 SHOPLINE 電商平台 V2 使用，並在週會持續迭代。"
+        }
+      ]
+    }
+  },
   sections: {
     en: [
       {

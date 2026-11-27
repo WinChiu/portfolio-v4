@@ -59,20 +59,6 @@
       else window.scrollTo({ top: y, behavior: reduced() ? 'instant' : 'smooth' });
     } else next.scrollIntoView({ inline: 'center', block: 'nearest', behavior: reduced() ? 'instant' : 'smooth' });
   });
-  // Asked from outside (a hero photo card): bring this photo to the middle of the strip.
-  document.addEventListener('life:show', (event) => {
-    const next = cards[event.detail && event.detail.index];
-    if (!next) return;
-    if (animation) {
-      const target = Math.max(0, Math.min(distance(), next.offsetLeft + next.offsetWidth / 2 - viewport.clientWidth / 2));
-      const y = animation.scrollTrigger.start + target;
-      if (window.lenis) window.lenis.scrollTo(y, { duration: 1.2 });
-      else window.scrollTo({ top: y, behavior: 'smooth' });
-    } else {
-      const left = Math.max(0, Math.min(maxLeftOf(), next.offsetLeft + next.offsetWidth / 2 - viewport.clientWidth / 2));
-      viewport.scrollTo({ left, behavior: reduced() ? 'instant' : 'smooth' });
-    }
-  });
   // Phones fire 'resize' when the browser's address/tool bars show or hide; only a width change is a real relayout.
   let lastWidth = window.innerWidth;
   window.addEventListener('resize', () => {
@@ -105,7 +91,7 @@
       wheelFrame = requestAnimationFrame(glide);
     };
     window.addEventListener('wheel', (event) => {
-      if (animation || !mouse.matches || event.ctrlKey || Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
+      if (animation || offPage() || !mouse.matches || event.ctrlKey || Math.abs(event.deltaY) < Math.abs(event.deltaX)) return;
       if (event.target.closest && event.target.closest('.kitchenMenu__sheet, [data-zoom-clone]')) return;
       const left = viewport.scrollLeft;
       const wantsRight = event.deltaY > 0 && atBottom() && left < maxLeft() - 1;
@@ -127,6 +113,14 @@
   ScrollTrigger.addEventListener('refreshInit', measure);
   const desktop = matchMedia('(min-width: 48.0625rem) and (min-height: 32rem) and (hover: hover) and (pointer: fine)');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  // Wide screens show one page at a time (utility/homeNavigation.js); Life does nothing while another one is shown.
+  const offPage = () => document.body.classList.contains('is-paged') && !section.classList.contains('is-current');
+  document.addEventListener('home:page', () => setupPin());
+  // The horizontal bars held at the top of the screen; Life is the last chapter, so all of them are above it. Vertical
+  // bars, and bars that scroll with the page, take no height.
+  const barsHeight = () => [...document.querySelectorAll('.chapter-bar')]
+    .filter((bar) => bar.offsetWidth > bar.offsetHeight && /sticky|fixed/.test(getComputedStyle(bar).position))
+    .reduce((sum, bar) => sum + bar.offsetHeight, 0);
   function setupPin() {
     if (!gsap || !ScrollTrigger) return;
     if (animation) {
@@ -137,13 +131,13 @@
     section.classList.remove('is-pinned');
     measure();
     // Keep the reader's place: refresh() also runs when a lazy photo finishes loading mid-swipe.
-    if (!desktop.matches || motion.matches || section.scrollHeight > window.innerHeight) { update(); return; }
+    if (!desktop.matches || motion.matches || section.scrollHeight > window.innerHeight - barsHeight() || offPage()) { update(); return; }
     viewport.scrollLeft = 0;
     section.classList.add('is-pinned');
     animation = gsap.to(strip, {
       x: () => -distance(), ease: 'none',
       scrollTrigger: {
-        trigger: section, start: 'top top', pin: true,
+        trigger: section, start: () => `top ${barsHeight()}px`, pin: true,
         scrub: 0.6,
         end: () => `+=${distance()}`, invalidateOnRefresh: true,
         onUpdate: scheduleUpdate, onRefresh: scheduleUpdate,

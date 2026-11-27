@@ -35,6 +35,44 @@ const project = {
       company: 'Wellell',
     },
   },
+  "summary": {
+    "en": {
+      "label": "Summary",
+      "headline": "Faster scanning and automatic error handling won client adoption",
+      "points": [
+        {
+          "title": "Problem",
+          "text": "Paper records and manual checks left rental data inaccurate and product status unclear, causing revenue losses that were hard to spot."
+        },
+        {
+          "title": "Key decisions",
+          "text": "Design the RFID scanning experience. Auto-fill non-critical data so tracking never stalls. Design efficiency analysis reports at multiple levels of granularity."
+        },
+        {
+          "title": "Outcome",
+          "text": "The client confirmed the purchase agreement and adopted the solution in 2026."
+        }
+      ]
+    },
+    "zh": {
+      "label": "摘要",
+      "headline": "快速掃描加上自動排錯，客戶採購並導入",
+      "points": [
+        {
+          "title": "問題",
+          "text": "紙本記錄與人工檢查讓租賃資料不準確，也掌握不到設施內的產品狀態，造成難以察覺的營收損失。"
+        },
+        {
+          "title": "關鍵決策",
+          "text": "設計 RFID 掃描體驗；非關鍵資料自動補齊，讓追蹤不中斷；設計多顆粒度的效率分析報告。"
+        },
+        {
+          "title": "成果",
+          "text": "客戶確認採購協議，並於 2026 年導入此解決方案。"
+        }
+      ]
+    }
+  },
   sections: {
     en: [
       {

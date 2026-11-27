@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -41,7 +45,7 @@
     </header>
     <section class="project-page__content">
       <div class="project-page__content-inner">
-        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda">
+        <div class="p-preamble"><div class="ui-quote project-module project-module--quote nda nda--confidential">
         <p class="project-module__text body warning">This project is under an NDA, so detailed information cannot be
                                                                                                               shared on public platforms.</p>
         </div></div><section class="project-page__section sec" id="toc1" aria-labelledby="toc1-title">

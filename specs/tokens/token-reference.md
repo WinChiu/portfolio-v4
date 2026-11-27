@@ -74,7 +74,7 @@ Every approved raw value, named for what it is. One value has one name. Componen
 | `--ref-size-272` | `17rem` | Raw value. Reference it from a system or component token, never from a component. |
 | `--ref-size-512` | `32rem` | Raw value. Reference it from a system or component token, never from a component. |
 
-## System tokens (129)
+## System tokens (130)
 
 Decisions and roles. Each points at a reference token wherever the value exists there. Components consume these.
 
@@ -100,6 +100,7 @@ Decisions and roles. Each points at a reference token wherever the value exists 
 | `--sys-color-interactive-hover` | `var(--ref-palette-sand-77)` | Use for the semantic color role named by this token. |
 | `--sys-color-interactive-subtle` | `color-mix(in srgb, var(--ref-palette-red-45) 16%, transparent)` | Use for the semantic color role named by this token. |
 | `--sys-color-focus` | `color-mix(in srgb, var(--ref-palette-red-45) 50%, transparent)` | Use for the semantic color role named by this token. |
+| `--sys-color-confidential` | `var(--ref-palette-red-45)` | Use for the semantic color role named by this token. |
 | `--sys-color-highlight` | `color-mix(in srgb, var(--ref-palette-sand-89) 28%, transparent)` | Use for the semantic color role named by this token. |
 | `--sys-color-accent-subtle` | `color-mix(in srgb, var(--ref-palette-gold-73) 20%, transparent)` | Use for the semantic color role named by this token. |
 | `--sys-color-scrim` | `color-mix(in srgb, var(--ref-palette-neutral-8) 50%, transparent)` | Use for the semantic color role named by this token. |
@@ -210,7 +211,7 @@ Decisions and roles. Each points at a reference token wherever the value exists 
 | `--sys-outline-offset-inset` | `calc(-1 * var(--sys-space-2xs))` | System decision. |
 | `--sys-rule-nudge` | `calc(var(--sys-rule-width-thin) / -2)` | System decision. |
 
-## Component tokens (40)
+## Component tokens (55)
 
 Measures and properties that belong to one component or section. They point at system or reference tokens.
 
@@ -221,29 +222,44 @@ Measures and properties that belong to one component or section. They point at s
 | `--comp-shadow-offset-kitchen-phone` | `var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-kitchen)` | Use for the named elevation level. |
 | `--comp-shadow-offset-work` | `var(--sys-space-xs) var(--sys-space-xs) 0 var(--sys-color-chapter-work)` | Use for the named elevation level. |
 | `--comp-shadow-offset-work-phone` | `var(--sys-space-2xs) var(--sys-space-2xs) 0 var(--sys-color-chapter-work)` | Use for the named elevation level. |
-| `--comp-nav-width-home` | `var(--sys-space-7xl)` | Measure or property of one component or section. |
+| `--comp-nav-width-home` | `var(--sys-space-56)` | Measure or property of one component or section. |
+| `--comp-nav-none` | `0px` | Measure or property of one component or section. |
 | `--comp-nav-height-home` | `var(--sys-space-56)` | Measure or property of one component or section. |
+| `--comp-nav-height-home-phone` | `2.75rem` | Measure or property of one component or section. |
 | `--comp-nav-width-project` | `var(--sys-space-72)` | Measure or property of one component or section. |
 | `--comp-nav-width-project-expanded` | `var(--ref-size-272)` | Measure or property of one component or section. |
+| `--comp-loader-count-font` | `serif` | Measure or property of one component or section. |
 | `--comp-skip-link-offset` | `calc(-1 * var(--sys-space-80))` | Measure or property of one component or section. |
 | `--comp-project-index-list-top` | `var(--sys-space-56)` | Measure or property of one component or section. |
 | `--comp-page-progress-offset` | `calc(-1 * var(--sys-space-hairline))` | Measure or property of one component or section. |
 | `--comp-section-scroll-margin` | `var(--sys-space-80)` | Measure or property of one component or section. |
-| `--comp-hero-card-width` | `11rem` | Measure or property of one component or section. |
-| `--comp-hero-card-width-phone` | `7rem` | Measure or property of one component or section. |
-| `--comp-hero-card-width-stacked` | `var(--sys-space-160)` | Measure or property of one component or section. |
-| `--comp-hero-padding-bottom` | `var(--sys-space-72)` | Measure or property of one component or section. |
-| `--comp-hero-copy-bottom` | `var(--sys-space-2xl)` | Measure or property of one component or section. |
-| `--comp-hero-copy-width` | `var(--ref-size-512)` | Measure or property of one component or section. |
-| `--comp-hero-line1-indent` | `1em` | Measure or property of one component or section. |
+| `--comp-hero-portrait-width` | `25.5rem` | Measure or property of one component or section. |
+| `--comp-hero-caption-size` | `min(var(--sys-font-size-title-md), 2.6vw)` | Measure or property of one component or section. |
+| `--comp-hero-copy-width` | `36rem` | Measure or property of one component or section. |
+| `--comp-hero-accent` | `var(--sys-color-chapter-life)` | Measure or property of one component or section. |
+| `--comp-hero-line2-indent` | `1.15em` | Measure or property of one component or section. |
+| `--comp-life-min-height` | `38rem` | Measure or property of one component or section. |
+| `--comp-life-card-max-width` | `78vw` | Measure or property of one component or section. |
+| `--comp-life-card-max-height` | `30rem` | Measure or property of one component or section. |
+| `--comp-life-card-max-height-phone` | `21rem` | Measure or property of one component or section. |
+| `--comp-portrait-spot-width` | `3px` | Measure or property of one component or section. |
+| `--comp-portrait-spot-dash` | `18px 12px` | Measure or property of one component or section. |
+| `--comp-hero-narrow-portrait` | `0.32` | Measure or property of one component or section. |
+| `--comp-hero-narrow-portrait-max` | `78vw` | Measure or property of one component or section. |
+| `--comp-hero-narrow-caption` | `0.085` | Measure or property of one component or section. |
+| `--comp-hero-narrow-title` | `0.15` | Measure or property of one component or section. |
+| `--comp-hero-narrow-title-max` | `17.5vw` | Measure or property of one component or section. |
+| `--comp-hero-title-fit` | `9.5cqw` | Measure or property of one component or section. |
 | `--comp-project-cover-bleed` | `calc(-1 * var(--sys-space-72))` | Measure or property of one component or section. |
 | `--comp-project-cover-width` | `var(--ref-size-512)` | Measure or property of one component or section. |
 | `--comp-about-portrait-width` | `29rem` | Measure or property of one component or section. |
+| `--comp-about-photo-offset` | `calc(var(--sys-font-size-chapter) * 0.155)` | Measure or property of one component or section. |
 | `--comp-chapter-title-padding-top` | `var(--sys-space-3xl)` | Measure or property of one component or section. |
 | `--comp-menu-item-padding-block` | `var(--sys-space-sm)` | Measure or property of one component or section. |
 | `--comp-kitchen-peek-hint-padding-block` | `var(--sys-space-xs)` | Measure or property of one component or section. |
 | `--comp-kitchen-peek-width` | `var(--ref-size-272)` | Measure or property of one component or section. |
 | `--comp-kitchen-recipe-width` | `46rem` | Measure or property of one component or section. |
+| `--comp-kitchen-recipe-name-size` | `var(--ref-size-28)` | Measure or property of one component or section. |
 | `--comp-life-card-width` | `22rem` | Measure or property of one component or section. |
 | `--comp-life-card-width-landscape` | `33rem` | Measure or property of one component or section. |
 | `--comp-life-photo-height` | `24rem` | Measure or property of one component or section. |

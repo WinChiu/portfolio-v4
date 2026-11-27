@@ -136,50 +136,23 @@
       </section>`;
   }
 
-  // Eight photo cards in the hero's empty corner. The first four are the resting layout; the rest are
-  // thrown in later by landingPageAnimation.js, one by one, while the oldest is taken away (four stay on screen).
-  function renderHeroCards(data) {
-    const esc = escapeAttribute;
-    const life = (data.life && data.life.items) || [];
-    const dishes = (data.kitchen && data.kitchen.items) || [];
-    const pick = (list, test, fallback) => list.find(test) || list[fallback];
-    const cards = [
-      { item: life[0], kind: 'life', x: '47%', y: '3rem', mx: '4%', my: '1.5rem', r: '-2deg' },
-      { item: pick(dishes, (d) => d.nameEn === 'Dongpo Pork', 0), kind: 'dish', x: '59%', y: '7rem', mx: '27%', my: '4.5rem', r: '2deg' },
-      { item: pick(life, (l) => /Hell/.test(l.note), 1), kind: 'life', x: '71%', y: '2.5rem', mx: '50%', my: '1rem', r: '-1.5deg' },
-      { item: pick(dishes, (d) => d.nameEn === 'Three Cup Chicken', 1), kind: 'dish', x: '82%', y: '8rem', mx: '66%', my: '5rem', r: '1.5deg' },
-      { item: pick(life, (l) => /image-life-23/.test(l.imageSrc), 1), kind: 'life' },
-      { item: pick(dishes, (d) => d.nameEn === 'Pepper Bun', 3), kind: 'dish' },
-      { item: pick(life, (l) => /Spring/.test(l.note), 9), kind: 'life' },
-      { item: pick(dishes, (d) => d.nameEn === 'Scallion Oil Noodles', 5), kind: 'dish' },
-    ].filter((c) => c.item).map((c) => ({ x: '47%', y: '3rem', mx: '4%', my: '1.5rem', r: '0deg', ...c }));
-    return cards
-      .map(({ item, kind, x, y, mx, my, r }) => {
-        const title = kind === 'dish' ? (item.nameEn || item.note) : item.note;
-        return UI.PhotoCard({
-          variant: 'floating',
-          src: resolveAssetPath(item.imageSrc),
-          alt: item.imageAlt || title,
-          caption: title,
-          style: `--x:${x};--y:${y};--mx:${mx};--my:${my};--r:${r}`,
-          kind,
-          index: (kind === 'dish' ? dishes : life).indexOf(item),
-        });
-      })
-      .join('\n        ');
+  // One bar in front of each chapter (style/home/_nav.scss): numbered link, stacked at the top or bottom of the screen.
+  function renderChapterBar(index) {
+    const item = content.nav[index];
+    return `<a class="chapter-bar" style="--bar:${index}" href="${item.href}"><span aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span>${item.label}</span></a>`;
   }
 
   document.body.classList.add('home-page');
   root.innerHTML = `
-    <main class="with-nav" id="top">
+    <main id="top">
       <section class="hero section--main">
-        ${renderHeroCards(content)}
-        <h1 class="hero__big"><span class="line1">Product</span><span class="line2">Designer</span></h1>
-        <div class="hero__copy">
-          <p class="hero__hi" id="hero-eyebrow">Hi! I'm Win</p>
+        ${UI.PhotoCard({ variant: 'portrait', src: resolveAssetPath(content.hero.imageSrc), alt: content.hero.imageAlt, caption: content.hero.caption })}
+        <div class="hero__text">
+          <h1 class="hero__big"><span class="line1">Product</span><span class="line2">Designer</span></h1>
           <p class="hero__intro" id="intro">${content.hero.description}</p>
         </div>
       </section>
+      ${renderChapterBar(0)}
       <section class="chapter work c-work section--work" id="work">
         <div class="tabs block--switcher" role="group" aria-label="Project category">
           <button type="button" class="block__design selected is-selected is-on" aria-pressed="true"><h4>${content.workTabs.design}</h4></button>
@@ -187,22 +160,21 @@
         </div>
         <div id="project-list">${renderProjects(content.projects)}</div>
       </section>
+      ${renderChapterBar(1)}
       <section class="chapter about c-about section--about" id="about">
         <div class="about__body">
           <figure class="about__photo media--avatar"><img src="${resolveAssetPath(content.about.imageSrc)}" alt="${content.about.imageAlt}" /></figure>
           <div class="about__text"><div class="about__intro"><h2 class="chapter__title block__title">${content.about.title}</h2>
             <div class="about__paragraphs">${renderAboutParagraphs(content.about.paragraphs)}</div></div>
-            <div class="jobs block__jobs">${renderJobs(content.about.jobs)}</div>
           </div>
+          <div class="jobs block__jobs">${renderJobs(content.about.jobs)}</div>
         </div>
       </section>
+      ${renderChapterBar(2)}
       ${renderKitchenMenuSection(content.kitchen)}
+      ${renderChapterBar(3)}
       ${renderLifeSection(content.life)}
     </main>
-    <nav class="index nav--main" id="navbar" aria-label="Sections">
-      <ol class="index__list">${content.nav.map((item) => `<li class="block__navItem"><a class="c-${item.href.slice(1)}" href="${item.href}">${item.label}</a></li>`).join('')}</ol>
-      <a class="index__social" href="https://www.linkedin.com/in/wei-chen-win-chiu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)"><img src="./img/icon-linkedin.svg" alt="" width="28" height="28" /></a>
-    </nav>
   `;
 
   root

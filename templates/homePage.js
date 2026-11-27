@@ -53,6 +53,10 @@ function renderHomePage(lang) {
 <html lang="${meta.htmlLang}">
   <head>
     <meta charset="UTF-8" />
+    <!-- paper colour before any stylesheet or script has arrived, so moving between pages never flashes white;
+         keep in step with the page background token (style/tokens.css) -->
+    <meta name="color-scheme" content="light" />
+    <style>html, body, .ui-loader { background: #fbfbf6; } .ui-loader { position: fixed; inset: 0; z-index: 9999; }</style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:url" content="https://winchiuwc.com" />
     <meta property="og:image" content="https://i.imgur.com/boUdes1.jpg" />
@@ -97,7 +101,7 @@ function renderHomePage(lang) {
     <script src="${withVersion('utility/lifeStrip.js')}"></script>
     <script src="${withVersion('utility/landingPageAnimation.js')}"></script>
     <script src="${withVersion('utility/homeNavigation.js')}"></script>
-    <script src="${withVersion('utility/heroCards.js')}"></script>
+    <script src="${withVersion('utility/heroPortrait.js')}"></script>
     <script src="${withVersion('utility/loadingPage.js')}"></script>
   </body>
 </html>

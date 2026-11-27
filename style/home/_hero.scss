@@ -1,56 +1,64 @@
-// Home page / hero
+// Home page / hero: a tilted portrait on the left, the headline and introduction on the right. It fills the screen
+// left free by the chapter bars (style/home/_nav.scss).
 
 .hero {
-  min-height: 100vh;
-  min-height: 100svh;
-  position: relative;
-  /* its own stacking context: the photo cards' z-index values (they keep rising as cards are dealt and dragged)
-     must stay inside the hero and never paint over the fixed nav */
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  position: relative; // the portrait is positioned and walled in against the hero
+  min-height: calc(100vh - var(--home-stack));
+  min-height: calc(100svh - var(--home-stack));
+  display: grid;
+  grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
+  align-items: center;
+  align-content: center;
   overflow: hidden;
-  padding: var(--sys-space-0) var(--sys-space-5xl) var(--comp-hero-padding-bottom);
+  container-type: inline-size; // the headline is sized from the hero's own width, which the side bars narrow
+  padding: var(--sys-space-3xl) var(--sys-space-0);
 }
+.hero .photo-card--portrait {
+  justify-self: center;
+  width: min(var(--comp-hero-portrait-width), 64%);
+}
+.hero__text { padding-right: var(--sys-space-xl); }
 .hero__big {
-  font-family: var(--sys-font-family-display);
+  font-family: var(--sys-font-family-body);
   font-weight: var(--sys-font-weight-regular);
-  font-size: var(--sys-font-size-hero);  
-  line-height: var(--sys-line-height-tight);                      
+  font-size: min(var(--sys-font-size-hero), var(--comp-hero-title-fit));
+  line-height: var(--sys-line-height-tight);
   letter-spacing: var(--sys-letter-spacing-display);
   color: var(--sys-color-text);
-  position: relative;
-  z-index: var(--sys-z-raised);
 }
-.hero__big .line1 { display: block; padding-left: var(--comp-hero-line1-indent); }
-.hero__big .line2 { display: block; color: var(--sys-color-brand); }
-.hero__copy {
-  position: absolute;
-  z-index: var(--sys-z-raised);
-  left: 51.45%;  
-  bottom: var(--comp-hero-copy-bottom);
-  width: min(var(--comp-hero-copy-width), 44%);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sys-space-xl);
+.hero__big .line1 { display: block; }
+.hero__big .line2 { display: block; padding-left: var(--comp-hero-line2-indent); color: var(--comp-hero-accent); }
+.hero__intro {
+  max-width: var(--comp-hero-copy-width);
+  margin-top: var(--sys-space-5xl);
+  padding-left: var(--sys-space-2xl);
+  font-size: var(--sys-font-size-body-lg);
+  line-height: var(--sys-line-height-body);
+  color: var(--sys-color-text);
 }
-.hero__hi { font-size: var(--sys-font-size-title-sm); line-height: var(--sys-line-height-body); font-weight: var(--sys-font-weight-semibold); min-height: var(--sys-space-3xl); margin-bottom: var(--sys-space-pull-md); }
-.hero__intro { font-size: var(--sys-font-size-small); line-height: var(--sys-line-height-relaxed); color: var(--sys-color-text); }
-.hero__intro .hl { color: var(--sys-color-brand); }
-.hero .photo-card--floating:nth-of-type(n+5) { visibility: hidden; }
-@media (max-width: 88rem) {
-  /* No fixed top padding here: the hero is at least one screen tall and bottom-aligned, so the space above the title
-     is whatever the screen has left over (that is where the photo cards sit) and the hero never outgrows the window. */
-  .hero { padding: var(--sys-space-0) var(--gutter) var(--sys-space-72); gap: var(--sys-space-4xl); }
-  .hero__copy { position: static; left: auto; bottom: auto; width: min(var(--comp-hero-copy-width), 100%); }
-}
+.hero__intro :is(.hl, .highlight) { color: var(--comp-hero-accent); }
+
+// Narrow screens: photo, headline and introduction stack, sized from the height left above the chapter bars so they
+// fill it and none of it ends up behind them. (A screen too short even for that makes the hero taller, never clipped.)
 @media (max-width: 48rem) {
-  .hero { min-height: calc(100svh - var(--comp-nav-height-home)); padding: var(--sys-space-6xl) var(--gutter) var(--sys-space-4xl); justify-content: flex-end; gap: var(--sys-space-lg); }
-  /* phone: Product sits at the left edge, Designer at the right edge */
-  .hero__big .line1 { padding-left: var(--sys-space-0); }
-  .hero__big .line2 { text-align: right; }
-  .hero__copy { position: static; width: auto; gap: var(--sys-space-lg); }
-  .hero { padding-bottom: var(--sys-space-xl); }
-  .hero__hi { margin-bottom: var(--sys-space-pull-sm); }
+  .hero {
+    --hero-room: calc(100svh - var(--home-stack));
+    --hero-portrait: min(var(--comp-hero-narrow-portrait-max), calc(var(--hero-room) * var(--comp-hero-narrow-portrait)));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+    gap: var(--sys-space-sm);
+    padding: var(--sys-space-md) var(--gutter);
+  }
+  .hero .photo-card--portrait { flex: none; align-self: center; width: var(--hero-portrait); }
+  .hero .photo-card--portrait .photo-card__caption { font-size: calc(var(--hero-portrait) * var(--comp-hero-narrow-caption)); }
+  .hero__text { padding-right: var(--sys-space-0); }
+  .hero__big { font-size: min(var(--comp-hero-narrow-title-max), calc(var(--hero-room) * var(--comp-hero-narrow-title))); }
+  // "Designer" keeps the same indent under "Product" as on wide screens; the pair is centred as one block
+  .hero__big { width: fit-content; margin-inline: var(--sys-space-auto); }
+  // the introduction gets the same width as the headline above it, with natural (ragged) lines (it takes no part in
+  // sizing the block, then fills it)
+  .hero__text { width: fit-content; max-width: 100%; margin-inline: var(--sys-space-auto); }
+  .hero__intro { width: 0; min-width: 100%; max-width: none; margin: var(--sys-space-2xl) var(--sys-space-0) var(--sys-space-0); padding-left: var(--sys-space-0); font-size: var(--sys-font-size-small); }
 }

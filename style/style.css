@@ -299,7 +299,8 @@
 }
 .pl__count {
   display: inline-flex;
-  font-family: var(--sys-font-family-display);
+  font-family: var(--comp-loader-count-font);
+  font-weight: var(--sys-font-weight-regular);
   font-size: 3rem;
   line-height: 1;
   letter-spacing: 0;
@@ -504,16 +505,17 @@ html.lenis body {
   align-items: center;
   gap: var(--sys-space-sm);
   padding: var(--sys-space-xs) var(--sys-space-md);
-  border: var(--line-w, var(--sys-space-hairline)) solid var(--sys-color-border);
-  color: var(--sys-color-text);
+  border: var(--line-w, var(--sys-space-hairline)) solid var(--accent-ink);
+  background: var(--accent-ink);
+  color: var(--sys-color-background);
   font-family: var(--sys-font-family-mono);
   font-size: var(--sys-font-size-small);
   line-height: var(--sys-line-height-body);
   transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), background-color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
 .button--outline:hover, .button--outline:focus-visible {
-  background: var(--sys-color-text);
-  border-color: var(--sys-color-text);
+  background: color-mix(in srgb, var(--accent-ink) 78%, var(--sys-color-text));
+  border-color: color-mix(in srgb, var(--accent-ink) 78%, var(--sys-color-text));
   color: var(--sys-color-background);
 }
 
@@ -604,62 +606,89 @@ html.lenis body {
   border: var(--sys-border-hairline);
 }
 
-.photo-card--floating {
-  position: absolute;
-  z-index: var(--sys-z-raised);
-  left: var(--x);
-  top: var(--y);
-  width: var(--comp-hero-card-width);
+.photo-card--portrait {
   margin: var(--sys-space-0);
-  padding: var(--sys-space-xs);
-  transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--r, 0deg)) scale(var(--s, 1));
-  cursor: grab;
+  padding: var(--sys-space-lg);
+  position: relative;
+  z-index: var(--sys-z-raised);
+  transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--angle, 5deg)) scale(calc(1 + var(--lift, 0) * 0.03));
   user-select: none;
-  touch-action: none;
 }
-.photo-card--floating.is-dragging {
-  cursor: grabbing;
+.photo-card--portrait.is-up {
+  box-shadow: var(--shadow-x) var(--shadow-y) 0 var(--comp-hero-accent);
 }
-.photo-card--floating:focus-visible {
-  outline: var(--sys-space-hairline) solid var(--sys-color-brand);
-  outline-offset: var(--sys-space-3xs);
+@media (pointer: fine) {
+  .photo-card--portrait {
+    cursor: grab;
+  }
+  .photo-card--portrait.is-held {
+    cursor: grabbing;
+  }
 }
-.photo-card--floating .photo-card__photo {
+.photo-card--portrait .photo-card__photo {
+  pointer-events: none;
   display: block;
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  pointer-events: none;
 }
-.photo-card--floating .photo-card__caption {
-  margin-top: var(--sys-space-xs);
+.photo-card--portrait .photo-card__caption {
+  margin-top: var(--sys-space-lg);
   font-family: var(--sys-font-family-hand);
-  font-size: var(--sys-font-size-body);
-  line-height: var(--sys-line-height-tight);
-  color: #3b3b38;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  font-size: var(--comp-hero-caption-size);
+  line-height: var(--sys-line-height-heading);
+  color: var(--sys-color-text);
 }
 
-@media (max-width: 88rem) {
-  .photo-card--floating {
-    width: var(--comp-hero-card-width-stacked);
-  }
-  .photo-card--floating .photo-card__photo {
-    aspect-ratio: 1;
+.photo-card__spot {
+  position: absolute;
+  transform: rotate(5deg);
+  pointer-events: none;
+}
+.photo-card__spot svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.photo-card__spot rect {
+  fill: none;
+  stroke: color-mix(in srgb, var(--sys-color-text-muted) 55%, var(--sys-color-background));
+  stroke-width: var(--comp-portrait-spot-width);
+  stroke-dasharray: var(--comp-portrait-spot-dash);
+}
+.photo-card__spot.is-near rect {
+  stroke: var(--comp-hero-accent);
+}
+
+.photo-card__hint {
+  display: none;
+  position: absolute;
+  margin: var(--sys-space-0);
+  white-space: nowrap;
+  font-family: var(--sys-font-family-hand);
+  font-size: var(--sys-font-size-title-md);
+  line-height: var(--sys-line-height-heading);
+  color: var(--comp-hero-accent);
+  transform: rotate(-6deg);
+  pointer-events: none;
+}
+
+@media (pointer: fine) {
+  .photo-card__hint {
+    display: block;
   }
 }
 @media (max-width: 48rem) {
-  .photo-card--floating {
-    width: var(--comp-hero-card-width-phone);
-    left: var(--mx);
-    top: var(--my);
-    padding: var(--sys-space-2xs);
+  .photo-card__hint {
+    font-size: var(--sys-font-size-title-xs);
   }
-  .photo-card--floating .photo-card__photo {
-    aspect-ratio: 1;
+  .photo-card--portrait {
+    padding: var(--sys-space-sm);
+  }
+  .photo-card--portrait .photo-card__caption {
+    margin-top: var(--sys-space-sm);
+    font-size: var(--sys-font-size-title-xs);
   }
 }
 .photo-card--strip {
@@ -736,8 +765,8 @@ html.lenis body {
 .project-card {
   position: relative;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) minmax(0, var(--comp-project-cover-width));
-  gap: var(--sys-space-4xl);
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, min(var(--comp-project-cover-width), 40%));
+  gap: var(--sys-space-3xl);
   padding: var(--sys-space-80) var(--gutter);
   border-top: 0;
   align-items: start;
@@ -748,8 +777,7 @@ html.lenis body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: var(--line-w, 1px);
-  background: var(--sys-color-border);
+  border-top: var(--line-w, 1px) solid var(--sys-color-border);
   transform: scaleX(var(--work-line-progress, 1));
   transform-origin: left;
 }
@@ -822,13 +850,17 @@ html.lenis body {
   --sys-space-xs: var(--sys-space-3xs);
 }
 
-@media (min-width: 72.0625rem) {
+#project-list {
+  container-type: inline-size;
+}
+
+@container (min-width: 64.0625rem) {
   .project-card__cover:has(hairline-cover) {
     align-self: center;
     margin-block: var(--comp-project-cover-bleed);
   }
 }
-@media (min-width: 48.0625rem) and (max-width: 72rem) {
+@container (max-width: 56rem) {
   .project-card {
     grid-template-columns: auto minmax(0, 1fr);
     gap: var(--sys-space-xl) var(--sys-space-3xl);
@@ -898,7 +930,9 @@ html.lenis body {
 
 /* Softer ink: each area keeps copy in a soft black-grey and leaves titles in its own colour, and draws thin (1px) lines
    in one light grey. Components keep reading --sys-color-text / -muted / --sys-border-hairline. */
-.hero, .index, .c-work, .c-about, .c-kitchen, .c-life {
+/* The recipe drawer and the dish previews live in <body> (utility/kitchenMenu.js), so they are listed here to get the same
+   ink and lines. */
+.hero, .chapter-bar, .c-work, .c-about, .c-kitchen, .c-life, .kitchenMenu__overlay, .kitchenMenu__peek, .kitchenMenu__dock {
   --tint: var(--sys-color-brand);
   --line-w: 1px;
   --sys-color-text: #2b2926; /* black-grey for all copy and buttons; the chapter colour stays on titles */
@@ -1042,108 +1076,224 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   color: color-mix(in srgb, var(--accent-ink) 82%, var(--sys-color-background));
 }
 
-.index {
-  position: fixed;
-  inset: 0 auto 0 0;
-  width: var(--comp-nav-width-home);
-  padding: var(--sys-space-5xl) var(--sys-space-xl);
-  border-right: var(--sys-border-hairline);
+.home-page {
+  --home-bar: var(--comp-nav-height-home);
+  --home-stack: calc(4 * var(--home-bar));
+  --home-tabs-top: var(--home-bar);
+  --home-side-right: var(--comp-nav-none);
+  --home-side-bottom: var(--home-bar);
+}
+
+.chapter-bar {
+  position: sticky;
+  top: calc(var(--bar) * var(--home-bar));
+  bottom: calc((3 - var(--bar)) * var(--home-bar));
+  z-index: var(--sys-z-sticky);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  z-index: var(--sys-z-sticky);
+  height: var(--home-bar);
+  padding: var(--sys-space-0) var(--sys-space-xl);
+  border-top: var(--sys-border-hairline);
   background: var(--sys-color-background);
-  overflow: hidden;
-}
-
-.index__list, .index__social {
-  position: relative;
-  z-index: var(--sys-z-content);
-}
-
-.index__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sys-space-md);
-}
-
-.index__list a {
-  position: relative;
-  display: block;
   font-size: var(--sys-font-size-small);
-  line-height: var(--sys-line-height-relaxed);
-  color: #85827b;
-  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--sys-color-text-muted);
   transition: color var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
 }
-
-.index__list a .n {
-  display: none;
+.chapter-bar::after {
+  content: "";
+  position: absolute;
+  inset: auto var(--sys-space-0) calc(-1 * var(--line-w)) var(--sys-space-0);
+  border-bottom: var(--sys-border-hairline);
+}
+.chapter-bar:hover {
+  color: var(--sys-color-text);
 }
 
-.index__list a:hover {
-  color: #3b3b38;
+.home-page .chapter-bar:focus-visible {
+  outline-offset: var(--sys-outline-offset-inset);
 }
 
-/* One neutral grey for every link; the current section is shown by weight and a darker grey, not by hue. */
-.index__list a.is-active {
-  color: #1d1a16;
-  font-weight: var(--sys-font-weight-semibold);
+#work {
+  scroll-margin-top: var(--home-bar);
 }
 
-.index__social {
-  display: block;
-  width: var(--sys-font-size-title-md);
-  height: var(--sys-font-size-title-md);
+#about {
+  scroll-margin-top: calc(2 * var(--home-bar));
 }
 
-.index__social img {
-  width: 100%;
-  height: 100%;
-  transition: filter var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+#kitchen {
+  scroll-margin-top: calc(3 * var(--home-bar));
 }
 
-.with-nav {
-  margin-left: var(--comp-nav-width-home);
+#life {
+  scroll-margin-top: calc(4 * var(--home-bar));
 }
 
 @media (max-width: 48rem) {
-  .index {
-    inset: 0 0 auto 0;
-    width: auto;
-    height: var(--comp-nav-height-home);
-    padding: var(--sys-space-0) var(--sys-space-md);
-    border-right: 0;
-    border-bottom: var(--sys-border-hairline);
-    flex-direction: row;
-    align-items: center;
-    gap: var(--sys-space-md);
-    justify-content: flex-start;
+  .home-page {
+    --home-bar: var(--comp-nav-height-home-phone);
   }
-  .index__list {
-    flex-direction: row;
-    gap: var(--sys-space-lg);
-  }
-  .index__list a {
-    font-size: var(--sys-font-size-small);
-  }
-  .index__social {
-    width: var(--sys-font-size-title-sm);
-    height: var(--sys-font-size-title-sm);
-    flex: 0 0 var(--sys-font-size-title-sm);
-    margin-left: var(--sys-space-auto);
-  }
-  .with-nav {
-    margin-left: var(--sys-space-0);
-    padding-top: var(--comp-nav-height-home);
+  .chapter-bar {
+    padding: var(--sys-space-0) var(--gutter);
   }
 }
-.chapter {
-  border-top: var(--sys-border-hairline);
+@media (max-height: 30rem) {
+  .home-page:not(.is-paged) {
+    --home-stack: var(--comp-nav-none);
+    --home-tabs-top: var(--sys-space-0);
+  }
+  .home-page:not(.is-paged) .chapter-bar {
+    position: relative;
+    top: auto;
+    bottom: auto;
+  }
+  .home-page:not(.is-paged) :is(#work, #about, #kitchen, #life) {
+    scroll-margin-top: var(--sys-space-0);
+  }
+}
+html:has(.home-page.is-paged) {
+  scrollbar-gutter: stable;
+  scrollbar-color: color-mix(in srgb, var(--sys-color-text) 35%, var(--sys-color-background)) var(--sys-color-background);
 }
 
+html:has(.home-page.is-paged) {
+  overscroll-behavior-y: none;
+}
+
+.home-page.is-paged :is(section.hero, section.chapter):not(.is-current) {
+  position: fixed;
+  top: 10000vh;
+  left: var(--sys-space-0);
+  width: 100%;
+  visibility: hidden;
+}
+.home-page.is-paged .chapter-bar {
+  position: fixed;
+}
+.home-page.is-paged :is(#work, #about, #kitchen, #life) {
+  scroll-margin-top: var(--sys-space-0);
+}
+
+@media (min-width: 64.0625rem) {
+  .home-page.is-paged {
+    --home-bar: var(--comp-nav-none);
+    --home-stack: var(--comp-nav-none);
+    --home-tabs-top: var(--sys-space-0);
+    --home-side-bottom: var(--comp-nav-none);
+    --home-side-right: calc((4 - var(--passed, 0)) * var(--comp-nav-width-home));
+  }
+  .home-page.is-paged main {
+    padding-left: calc(var(--passed, 0) * var(--comp-nav-width-home));
+    padding-right: var(--home-side-right);
+  }
+  .home-page.is-paged .chapter-bar {
+    top: var(--sys-space-0);
+    bottom: var(--sys-space-0);
+    right: calc((3 - var(--bar)) * var(--comp-nav-width-home));
+    width: var(--comp-nav-width-home);
+    height: auto;
+    flex-direction: column;
+    padding: var(--sys-space-xl) var(--sys-space-0);
+    border-top: 0;
+    border-left: var(--sys-border-hairline);
+  }
+  .home-page.is-paged .chapter-bar::after {
+    display: none;
+  }
+  .home-page.is-paged .chapter-bar span:last-child {
+    writing-mode: vertical-rl;
+  }
+  .home-page.is-paged .chapter-bar.is-passed {
+    right: auto;
+    left: calc(var(--bar) * var(--comp-nav-width-home));
+    border-left: 0;
+    border-right: var(--sys-border-hairline);
+  }
+}
+@media (max-width: 64rem) {
+  .home-page.is-paged {
+    --home-tabs-top: calc(var(--passed, 0) * var(--home-bar));
+    --home-side-bottom: calc((4 - var(--passed, 0)) * var(--home-bar));
+  }
+  .home-page.is-paged main {
+    padding-top: var(--home-tabs-top);
+    padding-bottom: var(--home-side-bottom);
+  }
+  .home-page.is-paged .chapter-bar {
+    top: auto;
+    bottom: calc((3 - var(--bar)) * var(--home-bar));
+    left: var(--sys-space-0);
+    right: var(--sys-space-0);
+  }
+  .home-page.is-paged .chapter-bar.is-passed {
+    top: calc(var(--bar) * var(--home-bar));
+    bottom: auto;
+  }
+}
+html[data-turn]::view-transition-group(root) {
+  clip-path: inset(0 var(--turn-gutter, 0) 0 0);
+}
+html[data-turn]::view-transition-old(root), html[data-turn]::view-transition-new(root) {
+  background: var(--sys-color-background);
+}
+html[data-turn]::view-transition-group(*) {
+  animation-duration: var(--sys-motion-duration-curtain);
+  animation-timing-function: var(--sys-motion-ease-smooth);
+}
+html[data-turn]::view-transition-old(*), html[data-turn]::view-transition-new(*) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-turn]::view-transition-old(*):not(:only-child) {
+  opacity: 0;
+}
+html[data-turn]::view-transition-old(root):not(:only-child) {
+  opacity: 1;
+}
+
+html[data-turn=forward]::view-transition-new(root) {
+  clip-path: inset(0 0 0 var(--turn-clip));
+  animation: page-turn-in-x var(--sys-motion-duration-curtain) var(--sys-motion-ease-smooth) both;
+}
+
+html[data-turn=back]::view-transition-old(root) {
+  z-index: var(--sys-z-content);
+  clip-path: inset(0 0 0 var(--turn-clip));
+  animation: page-turn-out-x var(--sys-motion-duration-curtain) var(--sys-motion-ease-smooth) both;
+}
+
+html[data-turn=forward][data-axis=y]::view-transition-new(root) {
+  clip-path: inset(var(--turn-clip) 0 0 0);
+  animation-name: page-turn-in-y;
+}
+
+html[data-turn=back][data-axis=y]::view-transition-old(root) {
+  clip-path: inset(var(--turn-clip) 0 0 0);
+  animation-name: page-turn-out-y;
+}
+
+@keyframes page-turn-in-x {
+  from {
+    transform: translateX(var(--turn-distance));
+  }
+}
+@keyframes page-turn-out-x {
+  to {
+    transform: translateX(var(--turn-distance));
+  }
+}
+@keyframes page-turn-in-y {
+  from {
+    transform: translateY(var(--turn-distance));
+  }
+}
+@keyframes page-turn-out-y {
+  to {
+    transform: translateY(var(--turn-distance));
+  }
+}
 .chapter__title {
   font-family: var(--sys-font-family-display);
   font-weight: var(--sys-font-weight-regular);
@@ -1153,11 +1303,6 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   color: var(--accent-ink);
 }
 
-@media (max-width: 48rem) {
-  .chapter {
-    scroll-margin-top: var(--comp-nav-height-home);
-  }
-}
 .work .chapter__title {
   padding: var(--comp-chapter-title-padding-top) var(--gutter) var(--sys-space-0);
   margin-left: var(--sys-space-pull-sm);
@@ -1173,137 +1318,108 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
 }
 .chapter {
   position: relative;
-  border-top-color: var(--sys-color-transparent);
-}
-
-.chapter::before {
-  content: "";
-  position: absolute;
-  top: calc(-1 * var(--line-w, 1px));
-  inset-inline: var(--sys-space-0);
-  height: var(--line-w, 1px);
-  background: var(--sys-color-border);
-  transform: scaleX(var(--section-line-progress, 1));
-  transform-origin: left;
-  pointer-events: none;
-}
-
-/* Life clips its overflow, which would cut off a line sitting just above its box. */
-.chapter.life::before {
-  top: 0;
 }
 
 .hero {
-  min-height: 100vh;
-  min-height: 100svh;
   position: relative;
-  /* its own stacking context: the photo cards' z-index values (they keep rising as cards are dealt and dragged)
-     must stay inside the hero and never paint over the fixed nav */
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  min-height: calc(100vh - var(--home-stack));
+  min-height: calc(100svh - var(--home-stack));
+  display: grid;
+  grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
+  align-items: center;
+  align-content: center;
   overflow: hidden;
-  padding: var(--sys-space-0) var(--sys-space-5xl) var(--comp-hero-padding-bottom);
+  container-type: inline-size;
+  padding: var(--sys-space-3xl) var(--sys-space-0);
+}
+
+.hero .photo-card--portrait {
+  justify-self: center;
+  width: min(var(--comp-hero-portrait-width), 64%);
+}
+
+.hero__text {
+  padding-right: var(--sys-space-xl);
 }
 
 .hero__big {
-  font-family: var(--sys-font-family-display);
+  font-family: var(--sys-font-family-body);
   font-weight: var(--sys-font-weight-regular);
-  font-size: var(--sys-font-size-hero);
+  font-size: min(var(--sys-font-size-hero), var(--comp-hero-title-fit));
   line-height: var(--sys-line-height-tight);
   letter-spacing: var(--sys-letter-spacing-display);
   color: var(--sys-color-text);
-  position: relative;
-  z-index: var(--sys-z-raised);
 }
 
 .hero__big .line1 {
   display: block;
-  padding-left: var(--comp-hero-line1-indent);
 }
 
 .hero__big .line2 {
   display: block;
-  color: var(--sys-color-brand);
-}
-
-.hero__copy {
-  position: absolute;
-  z-index: var(--sys-z-raised);
-  left: 51.45%;
-  bottom: var(--comp-hero-copy-bottom);
-  width: min(var(--comp-hero-copy-width), 44%);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sys-space-xl);
-}
-
-.hero__hi {
-  font-size: var(--sys-font-size-title-sm);
-  line-height: var(--sys-line-height-body);
-  font-weight: var(--sys-font-weight-semibold);
-  min-height: var(--sys-space-3xl);
-  margin-bottom: var(--sys-space-pull-md);
+  padding-left: var(--comp-hero-line2-indent);
+  color: var(--comp-hero-accent);
 }
 
 .hero__intro {
-  font-size: var(--sys-font-size-small);
-  line-height: var(--sys-line-height-relaxed);
+  max-width: var(--comp-hero-copy-width);
+  margin-top: var(--sys-space-5xl);
+  padding-left: var(--sys-space-2xl);
+  font-size: var(--sys-font-size-body-lg);
+  line-height: var(--sys-line-height-body);
   color: var(--sys-color-text);
 }
 
-.hero__intro .hl {
-  color: var(--sys-color-brand);
+.hero__intro :is(.hl, .highlight) {
+  color: var(--comp-hero-accent);
 }
 
-.hero .photo-card--floating:nth-of-type(n+5) {
-  visibility: hidden;
-}
-
-@media (max-width: 88rem) {
-  /* No fixed top padding here: the hero is at least one screen tall and bottom-aligned, so the space above the title
-     is whatever the screen has left over (that is where the photo cards sit) and the hero never outgrows the window. */
-  .hero {
-    padding: var(--sys-space-0) var(--gutter) var(--sys-space-72);
-    gap: var(--sys-space-4xl);
-  }
-  .hero__copy {
-    position: static;
-    left: auto;
-    bottom: auto;
-    width: min(var(--comp-hero-copy-width), 100%);
-  }
-}
 @media (max-width: 48rem) {
   .hero {
-    min-height: calc(100svh - var(--comp-nav-height-home));
-    padding: var(--sys-space-6xl) var(--gutter) var(--sys-space-4xl);
-    justify-content: flex-end;
-    gap: var(--sys-space-lg);
+    --hero-room: calc(100svh - var(--home-stack));
+    --hero-portrait: min(var(--comp-hero-narrow-portrait-max), calc(var(--hero-room) * var(--comp-hero-narrow-portrait)));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+    gap: var(--sys-space-sm);
+    padding: var(--sys-space-md) var(--gutter);
   }
-  /* phone: Product sits at the left edge, Designer at the right edge */
-  .hero__big .line1 {
+  .hero .photo-card--portrait {
+    flex: none;
+    align-self: center;
+    width: var(--hero-portrait);
+  }
+  .hero .photo-card--portrait .photo-card__caption {
+    font-size: calc(var(--hero-portrait) * var(--comp-hero-narrow-caption));
+  }
+  .hero__text {
+    padding-right: var(--sys-space-0);
+  }
+  .hero__big {
+    font-size: min(var(--comp-hero-narrow-title-max), var(--hero-room) * var(--comp-hero-narrow-title));
+  }
+  .hero__big {
+    width: fit-content;
+    margin-inline: var(--sys-space-auto);
+  }
+  .hero__text {
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: var(--sys-space-auto);
+  }
+  .hero__intro {
+    width: 0;
+    min-width: 100%;
+    max-width: none;
+    margin: var(--sys-space-2xl) var(--sys-space-0) var(--sys-space-0);
     padding-left: var(--sys-space-0);
-  }
-  .hero__big .line2 {
-    text-align: right;
-  }
-  .hero__copy {
-    position: static;
-    width: auto;
-    gap: var(--sys-space-lg);
-  }
-  .hero {
-    padding-bottom: var(--sys-space-xl);
-  }
-  .hero__hi {
-    margin-bottom: var(--sys-space-pull-sm);
+    font-size: var(--sys-font-size-small);
   }
 }
 .tabs {
   position: sticky;
-  top: 0;
+  top: var(--home-tabs-top);
   z-index: var(--sys-z-tabs);
   display: flex;
   align-items: stretch;
@@ -1353,9 +1469,6 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   /* Drawn (Hairline) covers carry their own empty margin inside the box. Pull the box into the row padding so the artwork, not its empty margin, sets the visual spacing, and centre it against the text. */
 }
 @media (max-width: 48rem) {
-  .tabs {
-    top: var(--comp-nav-height-home);
-  }
   .tabs button {
     min-height: var(--sys-space-5xl);
     padding: var(--sys-space-0) var(--sys-space-xs);
@@ -1378,7 +1491,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
 
 .about__body {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: var(--sys-space-5xl);
   padding: var(--sys-space-5xl) var(--gutter) var(--sys-space-80);
 }
@@ -1453,7 +1566,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
 }
 
 @media (min-width: 48.0625rem) and (max-width: 72rem) {
-  .about__body {
+  .about__body, .section--about .about__body {
     flex-direction: column;
     align-items: stretch;
   }
@@ -1494,17 +1607,44 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   }
 }
 .section--about, .section--life {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: calc(100vh - var(--home-stack));
+  min-height: calc(100svh - var(--home-stack));
   display: flex;
   flex-direction: column;
 }
 
 .section--about .about__body {
   flex: 1 1 auto;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
+@media (min-width: 72.0625rem) {
+  .section--about .about__body {
+    display: grid;
+    grid-template-columns: min(var(--comp-about-portrait-width), 34%) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: start;
+    align-items: start;
+    row-gap: var(--sys-space-4xl);
+    column-gap: var(--sys-space-80);
+  }
+  .section--about .about__text {
+    align-self: stretch;
+  }
+  .section--about .about__intro {
+    flex: 1 1 auto;
+    justify-content: space-between;
+  }
+  .section--about .about__paragraphs {
+    margin-bottom: var(--sys-space-pull-xs);
+  }
+  .about__body .jobs {
+    grid-column: 1/-1;
+  }
+  .section--about .about__photo {
+    margin-top: var(--comp-about-photo-offset);
+  }
+}
 .section--life .home__content {
   flex: 1 1 auto;
   display: flex;
@@ -1516,12 +1656,14 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
 }
 
 @media (max-width: 48rem) {
-  .section--about, .section--life {
-    min-height: calc(100svh - var(--comp-nav-height-home));
-  }
   .section--about .about__body {
     align-items: stretch;
     justify-content: center;
+  }
+}
+@media (max-width: 72rem) {
+  .about__body .about__text, .about__body .jobs {
+    align-self: stretch;
   }
 }
 .kitchenMenu__head, .life__head {
@@ -1601,11 +1743,17 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   z-index: var(--sys-z-peek);
   pointer-events: none;
   width: var(--comp-kitchen-peek-width);
-  border: var(--sys-border-hairline);
   background: var(--sys-color-background-soft);
-  box-shadow: var(--comp-shadow-offset-kitchen);
+  /* Hidden, it lies where its shadow will be; shown, it lifts up and to the left and the shadow opens under it. */
   opacity: 0;
-  transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+  translate: var(--sys-space-xs) var(--sys-space-xs);
+  scale: 0.94;
+  box-shadow: 0 0 0 var(--sys-color-chapter-kitchen);
+  transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), translate var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth), scale var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth), box-shadow var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth);
+}
+
+.kitchenMenu__peek, .kitchenMenu__dock {
+  overflow: hidden;
 }
 
 .kitchenMenu__peek img {
@@ -1624,13 +1772,16 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
 
 .kitchenMenu__peek.is-on {
   opacity: 1;
+  translate: none;
+  scale: 1;
+  box-shadow: var(--comp-shadow-offset-kitchen);
 }
 
 /* Touch screens: the photo card of the dish nearest the middle of the screen (see utility/kitchenMenu.js). */
 .kitchenMenu__dock {
   position: fixed;
-  right: var(--gutter);
-  bottom: var(--sys-space-md);
+  right: calc(var(--home-side-right) + var(--gutter));
+  bottom: calc(var(--home-side-bottom) + var(--sys-space-md));
   z-index: var(--sys-z-peek);
   width: var(--sys-space-160);
   padding: var(--sys-space-0);
@@ -1638,18 +1789,23 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   text-align: left;
   cursor: pointer;
   font: inherit;
-  border: var(--sys-border-hairline);
+  border: 0;
   background: var(--sys-color-background-soft);
-  box-shadow: var(--comp-shadow-offset-kitchen-phone);
+  box-shadow: 0 0 0 var(--sys-color-chapter-kitchen);
   opacity: 0;
   transform: translateY(var(--sys-space-md));
+  translate: var(--sys-space-2xs) var(--sys-space-2xs);
+  scale: 0.94;
   pointer-events: none;
-  transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), transform var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth);
+  transition: opacity var(--sys-motion-duration-fast) var(--sys-motion-ease-smooth), transform var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth), translate var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth), scale var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth), box-shadow var(--sys-motion-duration-slow) var(--sys-motion-ease-smooth);
 }
 
 .kitchenMenu__dock.is-on {
   opacity: 1;
   transform: none;
+  translate: none;
+  scale: 1;
+  box-shadow: var(--comp-shadow-offset-kitchen-phone);
   pointer-events: auto;
 }
 
@@ -1666,9 +1822,11 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kitchenMenu__dock {
+  .kitchenMenu__peek, .kitchenMenu__dock {
     transition: none;
     transform: none;
+    translate: none;
+    scale: 1;
   }
 }
 /* Taller than the largest viewport by one spare band, so on phones the sheet still reaches the very bottom of the screen
@@ -1763,7 +1921,6 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
 }
 
 .kitchenMenu__photo {
-  border: var(--sys-border-hairline);
   box-shadow: var(--comp-shadow-offset-kitchen);
 }
 
@@ -1775,17 +1932,20 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
 
 .kitchenMenu__sZh {
   font-family: var(--sys-font-family-body);
-  font-size: var(--sys-font-size-title-md);
+  font-size: var(--comp-kitchen-recipe-name-size);
   line-height: var(--sys-line-height-heading);
   font-weight: var(--sys-font-weight-medium);
 }
 
+/* the English name is set like a menu: the display serif in italic, in the kitchen colour */
 .kitchenMenu__sEn {
+  font-family: var(--sys-font-family-display);
+  font-style: italic;
   font-size: var(--sys-font-size-title-sm);
-  line-height: var(--sys-line-height-body);
-  font-weight: var(--sys-font-weight-medium);
-  color: var(--sys-color-text-muted);
-  margin-top: var(--sys-space-pull-md);
+  line-height: var(--sys-line-height-heading);
+  font-weight: var(--sys-font-weight-regular);
+  color: var(--sys-color-chapter-kitchen);
+  margin-top: var(--sys-space-pull-sm);
 }
 
 .kitchenMenu__meta {
@@ -1849,7 +2009,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   content: "";
   flex: 1;
   height: var(--sys-rule-width-thin);
-  background: var(--sys-color-text);
+  background: var(--sys-color-border);
 }
 
 .kitchenMenu__ings, .kitchenMenu__steps {
@@ -1888,7 +2048,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   top: var(--sys-font-size-title-md);
   bottom: var(--sys-radius-sm);
   width: var(--sys-rule-width-thin);
-  background: var(--sys-color-text);
+  background: var(--sys-color-border);
   transform: translateX(var(--sys-rule-nudge));
 }
 
@@ -2089,7 +2249,7 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   .kitchenMenu__hero {
     flex-direction: row;
     align-items: stretch;
-    gap: var(--sys-space-2xl);
+    gap: var(--sys-space-56);
   }
   .kitchenMenu__photo {
     flex: 0 0 44%;
@@ -2105,7 +2265,8 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
     flex-direction: column;
     flex-wrap: nowrap;
     gap: var(--sys-space-xs);
-  }
+    margin-bottom: var(--sys-space-pull-xs);
+  } /* the last row's leading: ends level with the photo */
   .kitchenMenu__hero .kitchenMenu__meta > div {
     flex: 0 0 auto;
     min-width: 0;
@@ -2182,40 +2343,82 @@ body :is(.mono, .tabs button, .button--outline, .job__company, .kitchenMenu__met
   overflow: clip;
 }
 
-/* Wide screens (1440px and up): the Life section is exactly one screen tall, and the photo cards are sized from the
-   height left under the heading, so they grow and shrink with the window instead of the section outgrowing it. A card
-   keeps its proportions (portrait / landscape ratios measured from the original fixed-size cards). */
-@media (min-width: 90rem) {
-  .section--life {
-    height: max(100svh, 32rem);
-    min-height: 0;
+/* Life is exactly one screen tall (the room the chapter bars leave), and the photo cards are sized from the height
+   left under the heading, so they grow and shrink with the window and are never cut off. A card keeps its proportions
+   (portrait / landscape ratios measured from the original fixed-size cards) unless the screen is too narrow for them.
+   Only a very short screen makes the section taller than the room. */
+.section--life {
+  height: max(100svh - var(--home-stack), var(--comp-life-min-height));
+  min-height: 0;
+}
+
+.section--life .home__content {
+  min-height: 0;
+}
+
+.section--life .life__viewport {
+  flex: 1 1 0;
+  min-height: 0;
+  margin-top: var(--sys-space-0);
+}
+
+.life__strip {
+  height: 100%;
+  align-items: flex-start;
+}
+
+.life__strip .photo-card--strip {
+  height: min(100%, var(--comp-life-card-max-height));
+  width: auto;
+  max-width: var(--comp-life-card-max-width);
+  aspect-ratio: 0.693;
+}
+
+.life__strip .photo-card--strip.photo-card--landscape {
+  width: auto;
+  aspect-ratio: 1.039;
+}
+
+.life__strip .photo-card__frame {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.life__strip .photo-card--strip .photo-card__photo {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+/* The heading is spaced like the Kitchen one (shared rule in _kitchen-menu.scss); the strip's own top padding counts
+   towards the space under the introduction. */
+@media (min-width: 48.0625rem) {
+  .section--life .life__head {
+    padding-bottom: calc(var(--sys-space-6xl) - var(--sys-space-sm));
   }
-  .section--life .home__content {
-    min-height: 0;
+  .section--life .life__strip {
+    padding-bottom: var(--sys-space-lg);
   }
-  .section--life .life__viewport {
-    flex: 1 1 0;
-    min-height: 0;
-    margin-top: 0;
-  }
-  .life__strip {
-    height: 100%;
-    align-items: stretch;
-  }
+}
+/* phones: the photos start right under the introduction, and are a size smaller */
+@media (max-width: 48rem) {
   .life__strip .photo-card--strip {
-    height: 100%;
-    width: auto;
-    aspect-ratio: 0.693;
+    height: min(100%, var(--comp-life-card-max-height-phone));
   }
-  .life__strip .photo-card--strip.photo-card--landscape {
-    width: auto;
-    aspect-ratio: 1.039;
+  .life__head {
+    padding-bottom: var(--sys-space-xs);
   }
-  .life__strip .photo-card__frame {
-    flex: 1 1 0;
-    min-height: 0;
+}
+/* short wide screens: tighter cards, so the height left under the heading goes to the photo */
+@media (min-width: 48.0625rem) and (max-height: 50rem) {
+  .life__strip .photo-card--strip {
+    padding: var(--sys-space-sm);
+    gap: var(--sys-space-3xs);
   }
-  .life__strip .photo-card__photo {
-    height: 100%;
+  .life__strip .photo-card__note {
+    margin-top: var(--sys-space-3xs);
+    font-size: var(--sys-font-size-title-xs);
+  }
+  .life__strip .photo-card__meta {
+    margin-top: var(--sys-space-0);
   }
 }
